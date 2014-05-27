@@ -36,5 +36,14 @@ namespace SettingsManager.Test
             Assert.AreEqual(sc.ModulesParams["Module1"]["Parametro7"].Value, "valor 7");
             Assert.AreEqual(sc.ModulesParams["Module1"].Count, 7);
         }
+
+        [TestMethod]
+        public void ReadOneModuleSettingsDefaultLoc()
+        {
+            SettingsManager.SettingsController sc = new SettingsManager.SettingsController(null, "Module1");
+            Assert.AreEqual(sc.ModulesParams.Count, 1);
+            Assert.AreEqual(sc.ModulesParams["Module1"]["Parametro7"].Value, "valor 7");
+            Assert.AreEqual(sc.ModulesParams["Module1"].Count, 7);
+        }
     }
 }

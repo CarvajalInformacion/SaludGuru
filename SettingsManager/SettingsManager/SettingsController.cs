@@ -30,8 +30,8 @@ namespace SettingsManager
         //personalized read one module
         public SettingsController(string oSettingsConfigLocation, string ModuleName)
         {
-
-            SettingsReader sr = new SettingsReader(oSettingsConfigLocation);
+            string SettingLoc = !string.IsNullOrEmpty(oSettingsConfigLocation) ? oSettingsConfigLocation : System.Configuration.ConfigurationManager.AppSettings["SettingsConfig"];
+            SettingsReader sr = new SettingsReader(SettingLoc);
             ModuleModel CurrentModule = sr.LoadModule(ModuleName);
             ModulesParams = new Dictionary<string, ModuleModel>();
             ModulesParams.Add(CurrentModule.Name, CurrentModule);
