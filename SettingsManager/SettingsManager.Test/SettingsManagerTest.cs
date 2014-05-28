@@ -7,6 +7,17 @@ namespace SettingsManager.Test
     public class SettingsManagerTest
     {
         [TestMethod]
+        public void ReadStaticSettings()
+        {
+            Assert.AreEqual(SettingsManager.SettingsController.SettingsInstance.ModulesParams.Count, 2);
+            Assert.AreEqual(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Module1"]["Parametro7"].Value, "valor 7");
+            Assert.AreEqual(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Module1"].Count, 7);
+            Assert.AreEqual(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Module2"]["Parametro3"].Value, "<html> <div>este es un html 3</div></html>");
+            Assert.AreEqual(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Module2"].Count, 3);
+        }
+
+
+        [TestMethod]
         public void ReadStandarSettings()
         {
             SettingsManager.SettingsController sc = new SettingsManager.SettingsController();

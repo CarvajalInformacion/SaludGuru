@@ -9,6 +9,22 @@ namespace SettingsManager
 {
     public class SettingsController
     {
+        #region public instance singleton
+        /// <summary>
+        /// public global default settings
+        /// </summary>
+        public static SettingsController SettingsInstance
+        {
+            get
+            {
+                if (oSettingsInstance == null)
+                    oSettingsInstance = new SettingsController();
+                return oSettingsInstance;
+            }
+        }
+        private static SettingsController oSettingsInstance;
+        #endregion
+
         #region public properties
         public Dictionary<string, ModuleModel> ModulesParams { get; private set; }
         #endregion
