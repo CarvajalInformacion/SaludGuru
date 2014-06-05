@@ -296,7 +296,6 @@
     <Folder Include="Areas\Mobile\Models\" />
     <Folder Include="Areas\Web\Models\" />
     <Folder Include="Areas\Web\Views\FBLogin\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
