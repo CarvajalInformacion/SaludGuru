@@ -23,6 +23,27 @@ namespace Auth.Web.Controllers
         }
         #endregion
 
+        #region public properties
+        /// <summary>
+        /// Return url
+        /// </summary>
+        public Uri ReturnUrl
+        {
+            get
+            {
+                if (Session[Auth.Models.Constants.C_SessionReturnUrl] == null)
+                    return null;
+                else
+                    return new Uri(Session[Auth.Models.Constants.C_SessionReturnUrl].ToString());
+            }
+            set
+            {
+                Session[Auth.Models.Constants.C_SessionReturnUrl] = value;
+            }
+        }
+
+        #endregion
+
         #region public methods
 
         /// <summary>

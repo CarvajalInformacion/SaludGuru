@@ -309,10 +309,6 @@
       <Project>{49789641-599c-44c7-ba5e-adac44245568}</Project>
       <Name>Auth.ApplicationBlock</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Auth.Manager\Auth.Manager.csproj">
-      <Project>{bd7f4f59-6b9f-4e51-87b4-cf51b89972b5}</Project>
-      <Name>Auth.Manager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Auth.Models\Auth.Models.csproj">
       <Project>{2158d825-6fed-4181-b7e2-20586848080d}</Project>
       <Name>Auth.Models</Name>
