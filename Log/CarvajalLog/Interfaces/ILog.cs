@@ -8,6 +8,10 @@ namespace CarvajalLog.Interfaces
 {
     public interface ILog
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="NewLog"></param>
         void SaveLog(ILogModel NewLog);
     }
 }

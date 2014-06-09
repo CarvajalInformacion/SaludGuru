@@ -8,8 +8,28 @@ namespace CarvajalLog.Interfaces
 {
     public interface ILogData
     {
-        void SaveLogMessage(string logMsj);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="LogAction"></param>
+        /// <param name="IsSuccessfull"></param>
+        /// <param name="ErrorMessage"></param>
+        /// <param name="SaveLogMessage"></param>
+        /// <param name="MessageFrom"></param>
+        /// <param name="MessageTo"></param>
+        /// <param name="IdMessage"></param>
+        void SaveLogMessage(int UserId, string LogAction, int IsSuccessfull, string ErrorMessage, string MessageFrom, string MessageTo, int IdMessage);
 
-        void SaveLogAuth(string user);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="LogAction"></param>
+        /// <param name="IsSuccessfull"></param>
+        /// <param name="ErrorMessage"></param>
+        /// <param name="Message"></param>
+        /// <param name="LogIn"></param>
+        void SaveLogAuth(int UserId, string LogAction, int IsSuccessfull, string ErrorMessage,int LogIn);
     }
 }
