@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Manager", "Auth.Manager\Auth.Manager.csproj", "{BD7F4F59-6B9F-4E51-87B4-CF51B89972B5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Models", "Auth.Models\Auth.Models.csproj", "{2158D825-6FED-4181-B7E2-20586848080D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.ApplicationBlock", "Auth.ApplicationBlock\Auth.ApplicationBlock.csproj", "{49789641-599C-44C7-BA5E-ADAC44245568}"
@@ -13,16 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Web", "Auth.Web\Auth.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.DAL", "Auth.DAL\Auth.DAL.csproj", "{3E69ADAB-1088-4213-A647-51EE0E008C69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Interfaces", "Auth.Interfaces\Auth.Interfaces.csproj", "{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.UserManager", "Auth.UserManager\Auth.UserManager.csproj", "{D18D0A7D-921C-42E5-8EC5-97065A4481CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BD7F4F59-6B9F-4E51-87B4-CF51B89972B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD7F4F59-6B9F-4E51-87B4-CF51B89972B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD7F4F59-6B9F-4E51-87B4-CF51B89972B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD7F4F59-6B9F-4E51-87B4-CF51B89972B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2158D825-6FED-4181-B7E2-20586848080D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2158D825-6FED-4181-B7E2-20586848080D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2158D825-6FED-4181-B7E2-20586848080D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +37,14 @@ Global
 		{3E69ADAB-1088-4213-A647-51EE0E008C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E69ADAB-1088-4213-A647-51EE0E008C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E69ADAB-1088-4213-A647-51EE0E008C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18D0A7D-921C-42E5-8EC5-97065A4481CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18D0A7D-921C-42E5-8EC5-97065A4481CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18D0A7D-921C-42E5-8EC5-97065A4481CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18D0A7D-921C-42E5-8EC5-97065A4481CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auth.Manager
+namespace Auth.Interfaces
 {
-    public class AuthController
+    public interface IAuthData
     {
+        Auth.Models.User UpsertUser(Auth.Models.User UserLoginInfo);
     }
 }

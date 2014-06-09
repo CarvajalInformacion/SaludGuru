@@ -8,30 +8,12 @@ namespace Auth.Web.Controllers
 {
     public partial class GoogleLoginController : BaseController
     {
-        /// <summary>
-        /// Return url stored in session not sendig to google
-        /// </summary>
-        private Uri ReturnUrl
-        {
-            get
-            {
-                if (Session["GoogleReturnUrl"] == null)
-                    return null;
-                else
-                    return new Uri(Session["GoogleReturnUrl"].ToString());
-            }
-            set
-            {
-                Session["GoogleReturnUrl"] = value;
-            }
-        }
-
         public virtual ActionResult Login(string UrlRetorno)
         {
             //get return url
-            ReturnUrl = base.GetReturnUrl(UrlRetorno);
+            Uri oReturnUrl = base.GetReturnUrl(UrlRetorno);
             //get current application name
-            string oAppName = base.GetAppNameByDomain(ReturnUrl);
+            string oAppName = base.GetAppNameByDomain(oReturnUrl);
 
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.GoogleClient GMClient = GetGMClient(oAppName);
@@ -41,6 +23,9 @@ namespace Auth.Web.Controllers
 
             if (authorization == null)
             {
+                //preserve return url before request
+                base.ReturnUrl = oReturnUrl;
+
                 //user is not login
                 GMClient.RequestUserAuthorization(scope: new[] { 
                             DotNetOpenAuth.ApplicationBlock.GoogleClient.Scopes.PlusMe,
@@ -61,7 +46,7 @@ namespace Auth.Web.Controllers
         public virtual ActionResult LoginCallBack()
         {
             //get current application name
-            string oAppName = base.GetAppNameByDomain(ReturnUrl);
+            string oAppName = base.GetAppNameByDomain(base.ReturnUrl);
 
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.GoogleClient GMClient = GetGMClient(oAppName);

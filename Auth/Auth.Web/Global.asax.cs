@@ -20,9 +20,9 @@ namespace Auth.Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            ////ensure only https navigation
-            //if (!Context.Request.IsSecureConnection)
-            //    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
+            //ensure only https navigation
+            if (!Context.Request.IsSecureConnection)
+                Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
         }
     }
 }
