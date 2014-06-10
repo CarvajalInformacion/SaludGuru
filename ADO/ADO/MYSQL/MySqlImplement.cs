@@ -51,10 +51,20 @@ namespace ADO.MYSQL
             switch (QueryParams.CommandExecutionType)
             {
                 case enumCommandExecutionType.NonQuery:
-                    oRetorno.NonQueryResult = CurrentCommand.ExecuteNonQuery();
+                    using (CurrentCommand.Connection)
+                    {
+                        CurrentCommand.Connection.Open();
+                        oRetorno.NonQueryResult = CurrentCommand.ExecuteNonQuery();
+                        CurrentCommand.Connection.Close();
+                    }
                     break;
                 case enumCommandExecutionType.Scalar:
-                    oRetorno.ScalarResult = CurrentCommand.ExecuteScalar();
+                    using (CurrentCommand.Connection)
+                    {
+                        CurrentCommand.Connection.Open();
+                        oRetorno.ScalarResult = CurrentCommand.ExecuteScalar();
+                        CurrentCommand.Connection.Close();
+                    }
                     break;
                 case enumCommandExecutionType.DataTable:
 
