@@ -194,14 +194,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Mobile\Controllers\InternalLoginController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\FBLoginController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\GoogleLoginController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\InternalLoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
-    <Compile Include="Areas\Web\Controllers\FBLoginController.cs" />
-    <Compile Include="Areas\Web\Controllers\GoogleLoginController.cs" />
-    <Compile Include="Areas\Web\Controllers\InternalLoginController.cs" />
+    <Compile Include="Areas\Web\Controllers\FBLoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Web\Controllers\GoogleLoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Web\Controllers\InternalLoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Areas\Web\WebAreaRegistration.cs" />
     <Compile Include="BaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FBLoginController.cs" />
@@ -209,63 +220,82 @@
     <Compile Include="Controllers\InternalLoginController.cs" />
     <Compile Include="FBLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GoogleLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="InternalLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mobile.InternalLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mobile.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Web.FBLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.GoogleLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.InternalLoginController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
+    <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site.css" />
+    <Content Include="Areas\Mobile\Scripts\bootstrap.js" />
+    <Content Include="Areas\Mobile\Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery-1.10.2.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Areas\Mobile\Scripts\jquery.validate.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery.validate.min.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Areas\Mobile\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Areas\Mobile\Scripts\respond.js" />
+    <Content Include="Areas\Mobile\Scripts\respond.min.js" />
+    <Content Include="Areas\Mobile\Scripts\Site\Auth.js" />
+    <Content Include="Areas\Mobile\Views\InternalLogin\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
-    <Content Include="Areas\Web\Scripts\Site\Auth.js" />
-    <Content Include="ExternalTest.html" />
-    <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
     <Content Include="Areas\Web\Content\Styles\Site.css" />
-    <Content Include="Rsx-Auth.xml" />
-    <Content Include="Rsx-SettingsConfig.xml" />
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Web\Views\web.config" />
-    <Content Include="Areas\Mobile\Views\web.config" />
-    <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Mobile\Views\InternalLogin\Index.cshtml" />
-    <Content Include="Areas\Web\Views\InternalLogin\Index.cshtml" />
-    <None Include="Areas\Web\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Web\Scripts\jquery-1.10.2.js" />
     <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.js" />
-    <None Include="Areas\Web\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.map" />
     <Content Include="Areas\Web\Scripts\jquery.validate.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.min.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.unobtrusive.js" />
@@ -273,10 +303,32 @@
     <Content Include="Areas\Web\Scripts\modernizr-2.6.2.js" />
     <Content Include="Areas\Web\Scripts\respond.js" />
     <Content Include="Areas\Web\Scripts\respond.min.js" />
-    <Content Include="Areas\Web\Scripts\_references.js" />
+    <None Include="Areas\Web\Scripts\_references.js" />
+    <Content Include="Areas\Web\Scripts\Site\Auth.js" />
+    <Content Include="Areas\Web\Views\InternalLogin\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Views\Shared\_Layout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="ExternalTest.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Web\Views\web.config" />
+    <Content Include="Areas\Mobile\Views\web.config" />
+    <Content Include="Areas\Mobile\Views\FBLogin\Login.cshtml" />
+    <Content Include="Areas\Mobile\Views\GoogleLogin\Login.cshtml" />
+    <Content Include="Areas\Mobile\Views\GoogleLogin\LoginCallBack.cshtml" />
+    <None Include="Areas\Mobile\Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Areas\Mobile\Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Areas\Mobile\Scripts\_references.js" />
     <Content Include="Areas\Web\Views\GoogleLogin\Login.cshtml" />
     <Content Include="Areas\Web\Views\GoogleLogin\LoginCallBack.cshtml" />
-    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Areas\Web\Views\FBLogin\Login.cshtml" />
+    <None Include="Areas\Web\Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Areas\Web\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Rsx-Auth.xml" />
+    <Content Include="Rsx-SettingsConfig.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -284,24 +336,17 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.map" />
-    <None Include="T4MVC.tt.hooks.t4" />
-    <None Include="T4MVC.tt">
+    <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
+    </Content>
+    <Content Include="T4MVC.tt.hooks.t4" />
+    <Content Include="T4MVC.tt.settings.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Mobile\Models\" />
-    <Folder Include="Areas\Web\Models\" />
-    <Folder Include="Areas\Web\Views\FBLogin\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -309,9 +354,21 @@
       <Project>{49789641-599c-44c7-ba5e-adac44245568}</Project>
       <Name>Auth.ApplicationBlock</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Auth.DAL\Auth.DAL.csproj">
+      <Project>{3e69adab-1088-4213-a647-51ee0e008c69}</Project>
+      <Name>Auth.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.Interfaces\Auth.Interfaces.csproj">
+      <Project>{a3bbdf3e-3654-40d4-b100-d75ac5d53ac7}</Project>
+      <Name>Auth.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Auth.Models\Auth.Models.csproj">
       <Project>{2158d825-6fed-4181-b7e2-20586848080d}</Project>
       <Name>Auth.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Auth.UserManager\Auth.UserManager.csproj">
+      <Project>{d18d0a7d-921c-42e5-8ec5-97065a4481ce}</Project>
+      <Name>Auth.UserManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

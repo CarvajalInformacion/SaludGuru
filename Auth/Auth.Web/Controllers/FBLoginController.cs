@@ -34,13 +34,23 @@ namespace Auth.Web.Controllers
             }
             else
             {
+                //get social user info
                 DotNetOpenAuth.ApplicationBlock.IOAuth2Graph oauth2Graph = FBClient.GetGraph(
-                        authorization, 
+                        authorization,
                         new[] { 
                             DotNetOpenAuth.ApplicationBlock.FacebookGraph.Fields.Defaults, 
                             DotNetOpenAuth.ApplicationBlock.FacebookGraph.Fields.Email, 
                             DotNetOpenAuth.ApplicationBlock.FacebookGraph.Fields.Picture, 
                             DotNetOpenAuth.ApplicationBlock.FacebookGraph.Fields.Birthday });
+
+                //create model login
+                Auth.Models.User UserToLogin = GetUserToLogin(oauth2Graph);
+
+                //login user
+                UserToLogin = base.LoginUser(UserToLogin);
+
+                //return to site
+                Response.Redirect(oReturnUrl.ToString());
             }
 
             return View();
@@ -63,6 +73,46 @@ namespace Auth.Web.Controllers
                                     [Auth.Models.Constants.C_FB_AppSecret.Replace("{AppName}", AppName)].Value);
 
             return client;
+        }
+
+        Auth.Models.User GetUserToLogin(DotNetOpenAuth.ApplicationBlock.IOAuth2Graph SocialUser)
+        {
+            Auth.Models.User ConvertUser = new Auth.Models.User()
+            {
+                Name = SocialUser.FirstName,
+                LastName = SocialUser.LastName,
+                Birthday = SocialUser.BirthdayDT,
+                Gender = SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Female ? (bool?)false :
+                            SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Male ? (bool?)true : null,
+                UserLogins = new List<Models.UserProvider>() 
+                { 
+                    new Models.UserProvider() 
+                    { 
+                        ProviderId = SocialUser.Id, 
+                        LoginType = Models.enumLoginType.Facebook 
+                    }
+                },
+                ExtraData = new List<Models.UserInfo>()
+                {
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.Email,
+                        Value = SocialUser.Email                    
+                    },
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.ImageProfile,
+                        Value = SocialUser.AvatarUrl.ToString()                  
+                    },
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.SocialUrl,
+                        Value = SocialUser.Link.ToString()
+                    }
+                },
+            };
+
+            return ConvertUser;
         }
         #endregion
     }

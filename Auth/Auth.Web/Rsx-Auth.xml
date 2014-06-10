@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Auth>
+    <!--General-->
+    <key name="AppConfig">
+      <![CDATA[
+          <applications>
+            <key name="marketplace">https://localhost:44302/,http://localhost:56847/</key>
+            <key name="backoffice">https://localhost:44302/,http://localhost:56847/</key>
+          </applications>
+      ]]>
+    </key>
+
+    <!--Internal Login-->
+
+
+    <!--Facebook-->
+    <key name="FB_marketplace_Enabled">true</key>
+    <key name="FB_marketplace_AppId">639144966168984</key>
+    <key name="FB_marketplace_AppSecret">02824fc9d1e0a420486dd28ccdd5de6f</key>
+
+    <key name="FB_backoffice_Enabled">true</key>
+    <key name="FB_backoffice_AppId">639144966168984</key>
+    <key name="FB_backoffice_AppSecret">02824fc9d1e0a420486dd28ccdd5de6f</key>
+
+    <!--Gmail-->
+    <key name="GM_marketplace_Enabled">true</key>
+    <key name="GM_marketplace_AppId">65284956123-78ptq4tubr8a2d1um9hkq7tmvnr6lrn2.apps.googleusercontent.com</key>
+    <key name="GM_marketplace_AppSecret">noc1gdOdcRsW26RPPU6KFPdl</key>
+
+    <key name="GM_backoffice_Enabled">true</key>
+    <key name="GM_backoffice_AppId">65284956123-78ptq4tubr8a2d1um9hkq7tmvnr6lrn2.apps.googleusercontent.com</key>
+    <key name="GM_backoffice_AppSecret">noc1gdOdcRsW26RPPU6KFPdl</key>
+
+
+
+
+  </Auth>
+
+
+</Settings>
+

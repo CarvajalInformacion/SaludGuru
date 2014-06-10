@@ -45,6 +45,9 @@ namespace Auth.Web.Controllers
 
         public virtual ActionResult LoginCallBack()
         {
+            //get return url
+            Uri oReturnUrl = base.ReturnUrl;
+
             //get current application name
             string oAppName = base.GetAppNameByDomain(base.ReturnUrl);
 
@@ -57,13 +60,21 @@ namespace Auth.Web.Controllers
             if (authorization != null)
             {
                 DotNetOpenAuth.ApplicationBlock.IOAuth2Graph oauth2Graph = GMClient.GetGraph(authState: authorization);
+
+                //create model login
+                Auth.Models.User UserToLogin = GetUserToLogin(oauth2Graph);
+
+                //login user
+                UserToLogin = base.LoginUser(UserToLogin);
+
+                //return to site
+                Response.Redirect(oReturnUrl.ToString());
             }
 
             return View();
         }
 
         #region private methods
-        //create facebook instance
         DotNetOpenAuth.ApplicationBlock.GoogleClient GetGMClient(string AppName)
         {
             DotNetOpenAuth.ApplicationBlock.GoogleClient client = new DotNetOpenAuth.ApplicationBlock.GoogleClient();
@@ -79,6 +90,46 @@ namespace Auth.Web.Controllers
                                     [Auth.Models.Constants.C_GM_AppSecret.Replace("{AppName}", AppName)].Value);
 
             return client;
+        }
+
+        Auth.Models.User GetUserToLogin(DotNetOpenAuth.ApplicationBlock.IOAuth2Graph SocialUser)
+        {
+            Auth.Models.User ConvertUser = new Auth.Models.User()
+            {
+                Name = SocialUser.FirstName,
+                LastName = SocialUser.LastName,
+                Birthday = SocialUser.BirthdayDT,
+                Gender = SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Female ? (bool?)false :
+                            SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Male ? (bool?)true : null,
+                UserLogins = new List<Models.UserProvider>() 
+                { 
+                    new Models.UserProvider() 
+                    { 
+                        ProviderId = SocialUser.Id, 
+                        LoginType = Models.enumLoginType.Google 
+                    }
+                },
+                ExtraData = new List<Models.UserInfo>()
+                {
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.Email,
+                        Value = SocialUser.Email                    
+                    },
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.ImageProfile,
+                        Value = SocialUser.AvatarUrl.ToString()                  
+                    },
+                    new Models.UserInfo()
+                    {
+                        InfoType = Models.enumUserInfoType.SocialUrl,
+                        Value = SocialUser.Link.ToString()
+                    }
+                },
+            };
+
+            return ConvertUser;
         }
         #endregion
     }

@@ -95,6 +95,62 @@ namespace Auth.Web.Controllers
             return oRetorno;
         }
 
+        #region Login Methods
+        public Auth.Models.User LoginUser(Auth.Models.User OriginalInfo)
+        {
+            Auth.Models.User oRetorno = null;
+
+            //validate user login
+            if (Auth.UserManager.LoginManager.UserIsLoggedIn)
+            {
+                Auth.UserManager.LoginManager.Logout();
+            }
+
+            //upsert user
+            oRetorno = new Auth.Models.User();
+
+            oRetorno.UserPublicId = Auth.DAL.Controller.AuthDataController.Instance.UpsertUser
+                (OriginalInfo.Name,
+                OriginalInfo.LastName,
+                OriginalInfo.Birthday,
+                OriginalInfo.Gender,
+                OriginalInfo.UserLogins.First().ProviderId,
+                OriginalInfo.UserLogins.First().LoginType);
+
+            //get temp user info
+            oRetorno = Auth.DAL.Controller.AuthDataController.Instance.GetUser(oRetorno.UserPublicId);
+
+            //insert or update extradata
+            OriginalInfo.ExtraData.All(nd =>
+            {
+                if (!oRetorno.ExtraData.Any(od => od.InfoType == nd.InfoType))
+                {
+                    //create extradata
+                    Auth.DAL.Controller.AuthDataController.Instance.InsertUserInfo
+                        (oRetorno.UserPublicId,
+                        nd.InfoType,
+                        nd.Value);
+                }
+                else if (oRetorno.ExtraData.Any(od => od.InfoType == nd.InfoType && od.Value != nd.Value))
+                {
+                    //update extradata
+                    Auth.DAL.Controller.AuthDataController.Instance.UpdateUserInfo
+                        (oRetorno.ExtraData.Where(od => od.InfoType == nd.InfoType).First().UserInfoId,
+                        nd.Value);
+                }
+
+                return true;
+            });
+
+            //get final user info
+            oRetorno = Auth.DAL.Controller.AuthDataController.Instance.GetUser(oRetorno.UserPublicId);
+
+            //save session
+            Session[Auth.Models.Constants.C_SessionUserInfo] = oRetorno;
+
+            return oRetorno;
+        }
+        #endregion
 
         #endregion
     }

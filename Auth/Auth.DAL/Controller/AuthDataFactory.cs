@@ -11,7 +11,7 @@ namespace Auth.DAL.Controller
     {
         public IAuthData GetDataInstance()
         {
-            Type typetoreturn = Type.GetType("Auth.DAL.MySqlDao.Auth_MySqlDao,Auth.DAL.MySqlDao");
+            Type typetoreturn = Type.GetType("Auth.DAL.MySqlDao.Auth_MySqlDao,Auth.DAL");
             IAuthData oRetorno = (IAuthData)Activator.CreateInstance(typetoreturn);
             return oRetorno;
         }
