@@ -16,5 +16,7 @@ namespace ADO.Interfaces
         ADOModelResponse ExecuteQuery(ADOModelRequest QueryParams);
 
         System.Data.IDbDataParameter CreateTypedParameter();
+
+        System.Data.IDbDataParameter CreateTypedParameter(string ParameterName, object ParameterValue);
     }
 }
