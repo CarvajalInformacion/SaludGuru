@@ -23,6 +23,9 @@ namespace Auth.Web.Controllers
 
             if (authorization == null)
             {
+                //preserve return url before request
+                base.ReturnUrl = oReturnUrl;
+
                 //user is not login
                 FBClient.RequestUserAuthorization(scope: new[] { 
                             DotNetOpenAuth.ApplicationBlock.FacebookClient.Scopes.UserAboutMe,
