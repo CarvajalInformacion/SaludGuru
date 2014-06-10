@@ -10,7 +10,7 @@ namespace CarvajalLog.DAL.Controller
     public class LogDataFactory
     {
         /// <summary>
-        /// 
+        /// Método que obtiene el tipo de instancia que se va a ejecutar.
         /// </summary>
         /// <returns></returns>
         public ILogData GetLogInstance()

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D6E1F8D-0834-48C6-8D1D-7D19AA2BFBC7}</ProjectGuid>
+    <ProjectGuid>{BF3AC4D4-522C-45BD-A2C5-9511858F8022}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarvajalLog</RootNamespace>
-    <AssemblyName>CarvajalLog</AssemblyName>
+    <RootNamespace>Message.Client</RootNamespace>
+    <AssemblyName>Message.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,15 +33,16 @@
     <Reference Include="ADO">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\ADO.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Data.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Web, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -56,24 +57,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Controller\LogDataController.cs" />
-    <Compile Include="DAL\Controller\LogDataFactory.cs" />
-    <Compile Include="DAL\MySQLDAO\Log_MySqlDao.cs" />
-    <Compile Include="Interfaces\ILog.cs" />
-    <Compile Include="Interfaces\ILogData.cs" />
-    <Compile Include="Interfaces\ILogModel.cs" />
-    <Compile Include="LogController.cs" />
-    <Compile Include="Models\AuthLogModel.cs" />
-    <Compile Include="Models\MessageLogModel.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="DAL\Controller\MessageClientController.cs" />
+    <Compile Include="DAL\Controller\MessageClientFactory.cs" />
+    <Compile Include="DAL\MySQLDAO\MessageClient_MySqlDao.cs" />
+    <Compile Include="Interfaces\IClientMessageData.cs" />
+    <Compile Include="Interfaces\IMessageClient.cs" />
+    <Compile Include="Models\ClientMessageParameter.cs" />
+    <Compile Include="Models\CreateMessageRequest.cs" />
+    <Compile Include="Models\ClientMessageModel.cs" />
+    <Compile Include="Models\CreateMessageResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

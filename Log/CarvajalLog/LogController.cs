@@ -22,9 +22,9 @@ namespace CarvajalLog
         }
 
         /// <summary>
-        /// 
+        /// Metodo que se encarga de distribuir el almacenamiento de los log teniendo en cuenta el tipo de modelo entrante
         /// </summary>
-        /// <param name="NewLog"></param>
+        /// <param name="NewLog">Parametro con la información y el tipo del nuevo log.</param>
         public void SaveLog(Interfaces.ILogModel NewLog)
         {
             if (Type.Equals(NewLog.GetType(), typeof(CarvajalLog.Models.AuthLogModel)))
@@ -36,22 +36,22 @@ namespace CarvajalLog
                 SaveMessageLog((CarvajalLog.Models.MessageLogModel)NewLog);
             }
 
-            // Se debe definir los demas metodos para las nuevas interfaces
+            // Continúa con la implementación de los registros de log de los demas modulos.
         }
 
         /// <summary>
-        /// 
+        /// Metodo que se encarga de guardar un registro con la información del modulo de mensajería.
         /// </summary>
-        /// <param name="messageLog"></param>
+        /// <param name="messageLog">Parametro que contiene la información del log de la capa de mensajería.</param>
         private void SaveMessageLog(Models.MessageLogModel messageLog)
         {            
             LogDAL.SaveLogMessage(messageLog.UserId, messageLog.LogAction, messageLog.IsSuccessfull, messageLog.ErrorMessage, messageLog.MessageFrom, messageLog.MessageTo, messageLog.IdMessage);
         }
 
         /// <summary>
-        /// 
+        /// Metodo que se encarga de guardar un registro con la información del modulo de autenticación. 
         /// </summary>
-        /// <param name="authLog"></param>
+        /// <param name="authLog">Parametro que contiene la información del log de la capa de autenticación.</param>
         private void SaveLogAuth(CarvajalLog.Models.AuthLogModel authLog)
         {
             LogDAL.SaveLogAuth(authLog.UserId, authLog.LogAction, authLog.IsSuccessfull, authLog.ErrorMessage, authLog.UserId);
