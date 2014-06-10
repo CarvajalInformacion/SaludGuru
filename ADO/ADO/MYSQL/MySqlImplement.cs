@@ -81,5 +81,10 @@ namespace ADO.MYSQL
         {
             return new MySql.Data.MySqlClient.MySqlParameter();
         }
+
+        public IDbDataParameter CreateTypedParameter(string ParameterName, object ParameterValue)
+        {
+            return new MySql.Data.MySqlClient.MySqlParameter(ParameterName, ParameterValue);
+        }
     }
 }
