@@ -21,9 +21,9 @@ namespace LogTest
             CarvajalLog.Models.AuthLogModel authModel = new CarvajalLog.Models.AuthLogModel();
             authModel.IdUsuario = "1";
             authModel.IsSuccessfull = 1;
-            authModel.LogAction = "Registro test auth";
+            authModel.LogAction = "Registro test auth 10 Junio";
             authModel.UserId = 1;
-            authModel.ErrorMessage = "Registro test auth";
+            authModel.ErrorMessage = "Registro test auth 10 Junio";
             authModel.IdLog = 1;
 
             //Se ejecuta el Método encargado de almacenar el nuevo registro de log.
