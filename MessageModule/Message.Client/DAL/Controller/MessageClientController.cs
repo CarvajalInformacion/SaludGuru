@@ -19,11 +19,12 @@ namespace Message.Client.DAL.Controller
             }
         }
 
-        public void InsertMessageQueue(string MessageType, DateTime ProgramType, string UserAction)
+        public int InsertMessageQueue(string MessageType, DateTime ProgramType, string UserAction)
         {
             MessageClientFactory factory = new MessageClientFactory();
             var CallObj = factory.GetMessageClientInstance();
-            CallObj.InsertMessageQueue(MessageType, ProgramType, UserAction);
+            int idResult = CallObj.InsertMessageQueue(MessageType, ProgramType, UserAction);
+            return idResult;
         }
 
         public void InsertMessageParameter(int MessageQueueId, string Key, string Value)

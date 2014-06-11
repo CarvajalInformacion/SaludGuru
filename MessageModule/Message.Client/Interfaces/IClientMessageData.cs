@@ -8,7 +8,7 @@ namespace Message.Client.Interfaces
 {
     public interface IClientMessageData
     {
-        void InsertMessageQueue(string MessageType, DateTime ProgramType, string UserAction);
+        int InsertMessageQueue(string MessageType, DateTime ProgramType, string UserAction);
         void InsertMessageParameter(int MessageQueueId, string Key, string Value);
     }
 }
