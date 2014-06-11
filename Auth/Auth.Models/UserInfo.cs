@@ -9,9 +9,9 @@ namespace Auth.Models
     public class UserInfo
     {
         public int UserInfoId { get; set; }
-        public enumUserInfoType Infotype { get; set; }
+        public enumUserInfoType InfoType { get; set; }
         public string Value { get; set; }
         public DateTime LastModify { get; set; }
-        public DateTime Create { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

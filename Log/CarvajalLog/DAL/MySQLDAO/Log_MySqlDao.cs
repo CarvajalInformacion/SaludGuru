@@ -61,11 +61,11 @@ namespace CarvajalLog.DAL.MySQLDAO
         {
             List<System.Data.IDbDataParameter> oParams = new List<System.Data.IDbDataParameter>();
 
-            oParams.Add(DataInstance.CreateTypedParameter("", UserId));
-            oParams.Add(DataInstance.CreateTypedParameter("", LogAction));
-            oParams.Add(DataInstance.CreateTypedParameter("", IsSuccessfull));
-            oParams.Add(DataInstance.CreateTypedParameter("", ErrorMessage));
-            oParams.Add(DataInstance.CreateTypedParameter("", LogIn));
+            oParams.Add(DataInstance.CreateTypedParameter("LUserId", UserId));
+            oParams.Add(DataInstance.CreateTypedParameter("LAction", LogAction));
+            oParams.Add(DataInstance.CreateTypedParameter("LIsSuccessfull", IsSuccessfull));
+            oParams.Add(DataInstance.CreateTypedParameter("LErrorMessage", ErrorMessage));
+            oParams.Add(DataInstance.CreateTypedParameter("LIn", LogIn));
 
             ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
             {

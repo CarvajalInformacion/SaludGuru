@@ -22,5 +22,7 @@
         public const string C_SessionUserInfo = "SessionUserInfo";
         public const string C_SessionReturnUrl = "SessionReturnUrl";
 
+        public const string C_AuthConnectionName = "AuthConnection";
+
     }
 }

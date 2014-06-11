@@ -9,8 +9,7 @@
 
     public enum enumLoginType
     {
-        InternalLogin = 1,
-        Facebook = 2,
-        Google = 3
+        Facebook = 1,
+        Google = 2
     }
 }

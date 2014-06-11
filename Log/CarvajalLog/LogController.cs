@@ -8,7 +8,16 @@ namespace CarvajalLog
 {
     public class LogController : CarvajalLog.Interfaces.ILog
     {
-        CarvajalLog.DAL.Controller.LogDataController LogDAL = new DAL.Controller.LogDataController();
+        private CarvajalLog.DAL.Controller.LogDataController oLogDAL;
+        public CarvajalLog.DAL.Controller.LogDataController LogDAL
+        {
+            get
+            {
+                if (oLogDAL == null)
+                    oLogDAL = new DAL.Controller.LogDataController();
+                return oLogDAL;
+            }
+        }
 
         private static CarvajalLog.Interfaces.ILog oInstance;
         public static CarvajalLog.Interfaces.ILog Instance

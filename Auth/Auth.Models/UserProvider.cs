@@ -10,5 +10,6 @@ namespace Auth.Models
     {
         public string ProviderId { get; set; }
         public enumLoginType LoginType { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

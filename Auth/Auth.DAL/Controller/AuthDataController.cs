@@ -19,21 +19,38 @@ namespace Auth.DAL.Controller
                 return oInstance;
             }
         }
+
+        private Auth.Interfaces.IAuthData DataFactory;
         #endregion
 
-        #region Implemented methods
-        /// <summary>
-        /// upsert user and return all new user info
-        /// </summary>
-        /// <param name="UserLoginInfo">user data to validate</param>
-        /// <returns></returns>
-        public Auth.Models.User UpsertUser(Auth.Models.User UserLoginInfo)
+        #region constructor
+        public AuthDataController()
         {
             AuthDataFactory factory = new AuthDataFactory();
-            var CallObj = factory.GetDataInstance();
-            return CallObj.UpsertUser(UserLoginInfo);
+            DataFactory = factory.GetDataInstance();
         }
         #endregion
 
+        #region Implemented methods
+        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, Models.enumLoginType LoginTypeId)
+        {
+            return DataFactory.UpsertUser(Name, LastName, Birthday, Gender, ProviderId, LoginTypeId);
+        }
+
+        public Models.User GetUser(string UserPublicId)
+        {
+            return DataFactory.GetUser(UserPublicId);
+        }
+
+        public void InsertUserInfo(string UserPublicId, Models.enumUserInfoType InfoTypeId, string Value)
+        {
+            DataFactory.InsertUserInfo(UserPublicId, InfoTypeId, Value);
+        }
+
+        public void UpdateUserInfo(int UserInfoId, string Value)
+        {
+            DataFactory.UpdateUserInfo(UserInfoId, Value);
+        }
+        #endregion
     }
 }
