@@ -39,11 +39,14 @@ namespace ADO.MYSQL
             CurrentCommand.Connection = (MySql.Data.MySqlClient.MySqlConnection)CurrentConnection;
             CurrentCommand.CommandText = QueryParams.CommandText;
 
-            QueryParams.Parameters.All(param =>
+            if (QueryParams.Parameters != null && QueryParams.Parameters.Count > 0)
             {
-                CurrentCommand.Parameters.Add((MySql.Data.MySqlClient.MySqlParameter)param);
-                return true;
-            });
+                QueryParams.Parameters.All(param =>
+                {
+                    CurrentCommand.Parameters.Add((MySql.Data.MySqlClient.MySqlParameter)param);
+                    return true;
+                });
+            }
 
             CurrentCommand.CommandType = QueryParams.CommandType;
 
