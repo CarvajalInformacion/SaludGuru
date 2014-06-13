@@ -100,12 +100,6 @@ namespace Auth.Web.Controllers
         {
             Auth.Models.User oRetorno = null;
 
-            //validate user login
-            if (Auth.UserManager.LoginManager.UserIsLoggedIn)
-            {
-                Auth.UserManager.LoginManager.Logout();
-            }
-
             //upsert user
             oRetorno = new Auth.Models.User();
 
