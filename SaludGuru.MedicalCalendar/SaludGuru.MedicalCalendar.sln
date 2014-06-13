@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCalendar.Manager", "MedicalCalendar.Manager\MedicalCalendar.Manager.csproj", "{765BF96B-449A-4F63-A1C3-98C4392CC964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCalendar.Test", "MedicalCalendar.Test\MedicalCalendar.Test.csproj", "{D214D59E-2D18-475F-99E6-198E64FB687C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{765BF96B-449A-4F63-A1C3-98C4392CC964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765BF96B-449A-4F63-A1C3-98C4392CC964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765BF96B-449A-4F63-A1C3-98C4392CC964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765BF96B-449A-4F63-A1C3-98C4392CC964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D214D59E-2D18-475F-99E6-198E64FB687C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D214D59E-2D18-475F-99E6-198E64FB687C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D214D59E-2D18-475F-99E6-198E64FB687C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D214D59E-2D18-475F-99E6-198E64FB687C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
