@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Message.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class ClientTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreateMessage()
         {
             Message.Client.Models.CreateMessageRequest model = new Message.Client.Models.CreateMessageRequest();
             model.NewMessage = new Message.Client.Models.ClientMessageModel();

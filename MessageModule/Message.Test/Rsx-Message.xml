@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Message>
+    <!--Agent Cofig-->
+
+    <!--Mailman-->
+    <key name="Agent_Mailman">
+      <![CDATA[
+          <Agent>
+            <key name="Assemblie">Message.Mailman.AgentMailmanImplement,Message.Mailman</key>
+          </Agent>
+      ]]>
+    </key>
+
+
+    <!--Message-->
+
+    <!--MailConfirmation-->
+    <key name="Message_Params_MailConfirmation">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">asdf@asdf.com</key>
+            <key name="Subject">asdfasdff</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_MailConfirmation">
+      <![CDATA[
+          <html>
+            este es el body
+          </html>
+      ]]>
+    </key>
+  </Message>
+</Settings>
+
