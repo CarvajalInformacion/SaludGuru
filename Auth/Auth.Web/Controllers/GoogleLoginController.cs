@@ -67,6 +67,26 @@ namespace Auth.Web.Controllers
                 //login user
                 UserToLogin = base.LoginUser(UserToLogin);
 
+                //Add Log 
+                CarvajalLog.LogController Log = new CarvajalLog.LogController();
+                CarvajalLog.Models.AuthLogModel LogAuth = new CarvajalLog.Models.AuthLogModel();
+                LogAuth.UserId = UserToLogin.UserId;
+                LogAuth.LogAction = UserToLogin.GetType().ToString();
+                string mensaje;
+                if (oReturnUrl != null)
+                {
+                    LogAuth.IsSuccessfull = 1;
+                    mensaje = "el usuario inició sesión correctamente";
+                }
+                else
+                {
+                    LogAuth.IsSuccessfull = 0;
+                    mensaje = "Error: " + oReturnUrl.ToString();
+                }
+                LogAuth.ErrorMessage = mensaje;
+
+                Log.SaveLog(LogAuth);
+
                 //return to site
                 Response.Redirect(oReturnUrl.ToString());
             }
