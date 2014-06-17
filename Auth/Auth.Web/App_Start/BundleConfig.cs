@@ -8,75 +8,75 @@ namespace Auth.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            if (Auth.Web.Controllers.BaseController.AreaName == Auth.Models.Constants.C_WebAreaName)
+            if (Auth.Web.Controllers.BaseController.AreaName == Auth.Interfaces.Models.Constants.C_WebAreaName)
             {
                 //bundle for web scripts
 
                 #region JQery
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/jquery").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
                             "~/Areas/Web/Scripts/jquery-{version}.js"));
 
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/jqueryval").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval").Include(
                             "~/Areas/Web/Scripts/jquery.validate*"));
                 #endregion
 
                 #region Modernizr
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/modernizr").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Web/Scripts/modernizr-*"));
                 #endregion
 
                 #region Bootstrap
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/bootstrap").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap").Include(
                           "~/Areas/Web/Scripts/bootstrap.js",
                           "~/Areas/Web/Scripts/respond.js"));
                 #endregion
 
                 #region SiteScripts
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/sitescripts").IncludeDirectory(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/sitescripts").IncludeDirectory(
                           "~/Areas/Web/Scripts/Site",
                           "*.js",
                           true));
                 #endregion
 
                 #region Styles
-                bundles.Add(new StyleBundle("~/" + Auth.Models.Constants.C_WebAreaName + "/content/css").IncludeDirectory(
+                bundles.Add(new StyleBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/content/css").IncludeDirectory(
                           "~/Areas/Web/Content/Styles",
                           "*.css",
                           true));
                 #endregion
             }
-            else if (Auth.Web.Controllers.BaseController.AreaName == Auth.Models.Constants.C_MobileAreaName)
+            else if (Auth.Web.Controllers.BaseController.AreaName == Auth.Interfaces.Models.Constants.C_MobileAreaName)
             {
                 //bundle for mobile scirpts
 
                 #region JQery
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/bundles/jquery").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
                             "~/Areas/Web/Scripts/jquery-{version}.js"));
 
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/bundles/jqueryval").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval").Include(
                             "~/Areas/Web/Scripts/jquery.validate*"));
                 #endregion
 
                 #region Modernizr
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/bundles/modernizr").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Web/Scripts/modernizr-*"));
                 #endregion
 
                 #region Bootstrap
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/bundles/bootstrap").Include(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap").Include(
                           "~/Areas/Web/Scripts/bootstrap.js",
                           "~/Areas/Web/Scripts/respond.js"));
                 #endregion
 
                 #region SiteScripts
-                bundles.Add(new ScriptBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/sitescripts").IncludeDirectory(
+                bundles.Add(new ScriptBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/sitescripts").IncludeDirectory(
                           "~/Areas/Web/Scripts/Site",
                           "*.js",
                           true));
                 #endregion
 
                 #region Styles
-                bundles.Add(new StyleBundle("~/" + Auth.Models.Constants.C_MobileAreaName + "/content/css").IncludeDirectory(
+                bundles.Add(new StyleBundle("~/" + Auth.Web.Controllers.BaseController.AreaName + "/content/css").IncludeDirectory(
                           "~/Areas/Web/Content/Styles",
                           "*.css",
                           true));

@@ -15,11 +15,11 @@ namespace Auth.DAL.MySqlDao
 
         public Auth_MySqlDao()
         {
-            DataInstance = new ADO.MYSQL.MySqlImplement(Auth.Models.Constants.C_AuthConnectionName);
+            DataInstance = new ADO.MYSQL.MySqlImplement(Interfaces.Models.Constants.C_AuthConnectionName);
         }
 
         #region Implemented methods
-        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, Models.enumLoginType LoginTypeId)
+        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, SessionController.Models.Auth.enumLoginType LoginTypeId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -44,7 +44,7 @@ namespace Auth.DAL.MySqlDao
                 return null;
         }
 
-        public Auth.Models.User GetUser(string UserPublicId)
+        public SessionController.Models.Auth.User GetUser(string UserPublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -58,12 +58,12 @@ namespace Auth.DAL.MySqlDao
                 Parameters = lstParams
             });
 
-            Auth.Models.User oRetorno = null;
+            SessionController.Models.Auth.User oRetorno = null;
 
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
-                oRetorno = new Auth.Models.User()
+                oRetorno = new SessionController.Models.Auth.User()
                 {
                     UserId = response.DataTableResult.Rows[0].Field<int>("UserId"),
                     UserPublicId = response.DataTableResult.Rows[0].Field<string>("UserPublicId"),
@@ -85,10 +85,10 @@ namespace Auth.DAL.MySqlDao
                                      UserInfoLastModify = ui.Field<DateTime>("UserInfoLastModify"),
                                      UserInfoCreateDate = ui.Field<DateTime>("UserInfoCreateDate"),
                                  } into uig
-                                 select new Auth.Models.UserInfo()
+                                 select new SessionController.Models.Auth.UserInfo()
                                  {
                                      UserInfoId = uig.Key.UserInfoId,
-                                     InfoType = (Models.enumUserInfoType)uig.Key.InfoTypeId,
+                                     InfoType = (SessionController.Models.Auth.enumUserInfoType)uig.Key.InfoTypeId,
                                      Value = uig.Key.Value,
                                      LastModify = uig.Key.UserInfoLastModify,
                                      CreateDate = uig.Key.UserInfoCreateDate,
@@ -103,10 +103,10 @@ namespace Auth.DAL.MySqlDao
                                       LoginTypeId = ul.Field<SByte>("LoginTypeId"),
                                       ProviderCreateDate = ul.Field<DateTime>("ProviderCreateDate"),
                                   } into ulg
-                                  select new Auth.Models.UserProvider()
+                                  select new SessionController.Models.Auth.UserProvider()
                                   {
                                       ProviderId = ulg.Key.ProviderId,
-                                      LoginType = (Models.enumLoginType)ulg.Key.LoginTypeId,
+                                      LoginType = (SessionController.Models.Auth.enumLoginType)ulg.Key.LoginTypeId,
                                       CreateDate = ulg.Key.ProviderCreateDate,
                                   }).ToList(),
                 };
@@ -115,7 +115,7 @@ namespace Auth.DAL.MySqlDao
             return oRetorno;
         }
 
-        public void InsertUserInfo(string UserPublicId, Models.enumUserInfoType InfoTypeId, string Value)
+        public void InsertUserInfo(string UserPublicId, SessionController.Models.Auth.enumUserInfoType InfoTypeId, string Value)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 

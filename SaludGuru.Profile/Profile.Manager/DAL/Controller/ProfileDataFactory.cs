@@ -8,7 +8,7 @@ namespace Profile.Manager.DAL.Controller
 {
     internal class ProfileDataFactory
     {
-        public Profile.Manager.Interfaces.IProfileData GetLogInstance()
+        public Profile.Manager.Interfaces.IProfileData GetProfileDataInstance()
         {
             Type typetoreturn = Type.GetType("Profile.Manager.DAL.MySQLDAO.Profile_MySqlDao,Profile.Manager");
             Profile.Manager.Interfaces.IProfileData oRetorno = (Profile.Manager.Interfaces.IProfileData)Activator.CreateInstance(typetoreturn);

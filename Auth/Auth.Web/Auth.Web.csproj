@@ -112,6 +112,10 @@
     <Reference Include="Microsoft.Web.DistributedCache, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="SessionController, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="SettingsManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SettingsManager\developer\SettingsManager.dll</HintPath>
@@ -364,14 +368,6 @@
     <ProjectReference Include="..\Auth.Interfaces\Auth.Interfaces.csproj">
       <Project>{a3bbdf3e-3654-40d4-b100-d75ac5d53ac7}</Project>
       <Name>Auth.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Auth.Models\Auth.Models.csproj">
-      <Project>{2158d825-6fed-4181-b7e2-20586848080d}</Project>
-      <Name>Auth.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Auth.UserManager\Auth.UserManager.csproj">
-      <Project>{d18d0a7d-921c-42e5-8ec5-97065a4481ce}</Project>
-      <Name>Auth.UserManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

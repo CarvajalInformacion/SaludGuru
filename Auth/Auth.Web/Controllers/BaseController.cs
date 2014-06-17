@@ -31,14 +31,11 @@ namespace Auth.Web.Controllers
         {
             get
             {
-                if (Session[Auth.Models.Constants.C_SessionReturnUrl] == null)
-                    return null;
-                else
-                    return new Uri(Session[Auth.Models.Constants.C_SessionReturnUrl].ToString());
+                return SessionController.SessionManager.Auth_ReturnUrl;
             }
             set
             {
-                Session[Auth.Models.Constants.C_SessionReturnUrl] = value;
+                SessionController.SessionManager.Auth_ReturnUrl = value;
             }
         }
 
@@ -58,7 +55,7 @@ namespace Auth.Web.Controllers
             string strDomain = OriginUrl.GetLeftPart(UriPartial.Authority).ToLower().TrimEnd('/');
 
             XDocument xDoc = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams
-                [Auth.Models.Constants.C_SettingsModuleName][Auth.Models.Constants.C_AppConfig].Value);
+                [Auth.Interfaces.Models.Constants.C_SettingsModuleName][Auth.Interfaces.Models.Constants.C_AppConfig].Value);
 
             xDoc.Descendants("applications").Descendants("key").All(app =>
             {
@@ -96,12 +93,12 @@ namespace Auth.Web.Controllers
         }
 
         #region Login Methods
-        public Auth.Models.User LoginUser(Auth.Models.User OriginalInfo)
+        public SessionController.Models.Auth.User LoginUser(SessionController.Models.Auth.User OriginalInfo)
         {
-            Auth.Models.User oRetorno = null;
+            SessionController.Models.Auth.User oRetorno = null;
 
             //upsert user
-            oRetorno = new Auth.Models.User();
+            oRetorno = new SessionController.Models.Auth.User();
 
             oRetorno.UserPublicId = Auth.DAL.Controller.AuthDataController.Instance.UpsertUser
                 (OriginalInfo.Name,
@@ -109,7 +106,7 @@ namespace Auth.Web.Controllers
                 OriginalInfo.Birthday,
                 OriginalInfo.Gender,
                 OriginalInfo.UserLogins.First().ProviderId,
-                OriginalInfo.UserLogins.First().LoginType);
+                OriginalInfo.UserLogins.First().LoginType.Value);
 
             //get temp user info
             oRetorno = Auth.DAL.Controller.AuthDataController.Instance.GetUser(oRetorno.UserPublicId);
@@ -122,7 +119,7 @@ namespace Auth.Web.Controllers
                     //create extradata
                     Auth.DAL.Controller.AuthDataController.Instance.InsertUserInfo
                         (oRetorno.UserPublicId,
-                        nd.InfoType,
+                        nd.InfoType.Value,
                         nd.Value);
                 }
                 else if (oRetorno.ExtraData.Any(od => od.InfoType == nd.InfoType && od.Value != nd.Value))
@@ -140,7 +137,7 @@ namespace Auth.Web.Controllers
             oRetorno = Auth.DAL.Controller.AuthDataController.Instance.GetUser(oRetorno.UserPublicId);
 
             //save session
-            Session[Auth.Models.Constants.C_SessionUserInfo] = oRetorno;
+            SessionController.SessionManager.Auth_UserLogin = oRetorno;
 
             return oRetorno;
         }

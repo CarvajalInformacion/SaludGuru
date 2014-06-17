@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ADO">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\ADO.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,16 +51,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Autorization.cs" />
+    <Compile Include="Controller\Insurance.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controller\Profile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controller\Specialty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controller\Treatment.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DAL\Controller\ProfileDataController.cs" />
     <Compile Include="DAL\Controller\ProfileDataFactory.cs" />
     <Compile Include="DAL\MySQLDAO\Profile_MySqlDao.cs" />
     <Compile Include="Interfaces\IProfileData.cs" />
+    <Compile Include="Models\Constants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Enumerations.cs" />
+    <Compile Include="Models\General\CategoryInfoModel.cs" />
+    <Compile Include="Models\General\CityModel.cs" />
+    <Compile Include="Models\General\InsuranceModel.cs" />
+    <Compile Include="Models\General\SpecialtyModel.cs" />
+    <Compile Include="Models\General\TreatmentModel.cs" />
+    <Compile Include="Models\Office\OfficeInfoModel.cs" />
+    <Compile Include="Models\Office\OfficeModel.cs" />
+    <Compile Include="Models\Office\ScheduleAvailableModel.cs" />
+    <Compile Include="Models\Profile\ProfileInfoModel.cs" />
+    <Compile Include="Models\Profile\ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)*.dll" "\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Profile\developer\" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
