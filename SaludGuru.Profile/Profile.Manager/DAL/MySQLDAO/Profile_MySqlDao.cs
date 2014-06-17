@@ -576,6 +576,7 @@ namespace Profile.Manager.DAL.MySQLDAO
                                 ProfileName = au.Field<string>("Name"),
                                 ProfileLastName = au.Field<string>("LastName"),
                                 ProfileImage = au.Field<string>("ImageProfile"),
+                                ProfileGender = au.Field<bool?>("Gender"),
                             }).ToList();
             }
             return oRetorno;

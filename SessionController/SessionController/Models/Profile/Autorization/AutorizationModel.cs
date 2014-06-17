@@ -23,5 +23,7 @@ namespace SessionController.Models.Profile.Autorization
         public string ProfileLastName { get; set; }
 
         public string ProfileImage { get; set; }
+
+        public bool? ProfileGender { get; set; }
     }
 }

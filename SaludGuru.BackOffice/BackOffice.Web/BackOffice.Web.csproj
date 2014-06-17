@@ -180,6 +180,7 @@
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\Main.css" />
+    <Content Include="Areas\Web\Scripts\Site\General.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -231,7 +232,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Mobile\Scripts\" />
     <Folder Include="Areas\Web\Content\Images\" />
-    <Folder Include="Areas\Web\Scripts\Site\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

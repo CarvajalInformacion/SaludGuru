@@ -1,30 +1,23 @@
 ﻿<div>
     <!--render autorized profiles-->
     <div>
-        <ul>
-            @*@foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+        <select onchange="javascript: Header_ChangeProfile(this);">
+            @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
             {
-                if (ua.RelatedProfile != null &&
-                    ua.RelatedProfile.FirstOrDefault() != null &&
-                    ua.RelatedProfile.FirstOrDefault().ProfilePublicId != null)
+                string DoctorName = string.Empty;
+                if (!string.IsNullOrEmpty(ua.ProfileName))
                 {
-                    foreach (SessionController.Models.Profile.Profile.ProfileModel pr in ua.RelatedProfile)
-                    {
-                        <li onclick="javascript:window.location='@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = pr.ProfilePublicId })'">
-                            <img src="" />
-                            <label>Dr. @(pr.Name + " " + pr.LastName)</label>
-                        </li>
-                    }
+                    DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
                 }
-                else
-                {
-                    <li onclick="javascript:window.location='@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name)'">
-                        <img src="" />
-                        <label>Administrador de sistema</label>
-                    </li>
-                }
-            }*@
-        </ul>
+                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile,MVC.Home.Name,new{ChangeAutorizationProfile=ua.ProfilePublicId})">
+                    <div>
+                        <img src="@ua.ProfileImage" />
+                        <label>@DoctorName</label>
+                        <label>@ua.RoleName</label>
+                    </div>
+                </option>
+            }
+        </select>
     </div>
     <!--render search box-->
     <div>
@@ -36,7 +29,10 @@
     </div>
     <!--render user options-->
     <div>
-        user options
+        <div>
+            <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
+            <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+        </div>
     </div>
 </div>
 <div>
