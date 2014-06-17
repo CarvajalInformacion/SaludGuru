@@ -38,15 +38,19 @@ namespace CarvajalLog.DAL.MySQLDAO
             oParams.Add(DataInstance.CreateTypedParameter("LMessageTo", MessageTo));
             oParams.Add(DataInstance.CreateTypedParameter("LIdMessage", IdMessage));
 
-            ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+            try
             {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
-                CommandText = "M_InsertLogMessage",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = oParams
-            };
+                ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+                {
+                    CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
+                    CommandText = "M_InsertLogMessage",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Parameters = oParams
+                };
 
-            ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);            
+                ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);
+            }
+            catch { }
         }
 
         /// <summary>
@@ -67,15 +71,19 @@ namespace CarvajalLog.DAL.MySQLDAO
             oParams.Add(DataInstance.CreateTypedParameter("LErrorMessage", ErrorMessage));
             oParams.Add(DataInstance.CreateTypedParameter("LIn", LogIn));
 
-            ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+            try
             {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
-                CommandText = "A_InsertLogAuth",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = oParams
-            };
+                ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+                {
+                    CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
+                    CommandText = "A_InsertLogAuth",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Parameters = oParams
+                };
 
-            ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);
+                ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);
+            }
+            catch { }
         }
     }
 }
