@@ -34,7 +34,7 @@ namespace Profile.Manager.DAL.Controller
 
         #region Category
 
-        public int CategoryCreate(SessionController.Models.Profile.enumCategoryType CategoryType, string Name)
+        public int CategoryCreate(enumCategoryType CategoryType, string Name)
         {
             return DataFactory.CategoryCreate(CategoryType, Name);
         }
@@ -59,7 +59,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.RelatedCategoryDelete(CategoryParent, CategoryChild);
         }
 
-        public int CategoryInfoCreate(int CategoryId, SessionController.Models.Profile.enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int CategoryInfoCreate(int CategoryId, enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             return DataFactory.CategoryInfoCreate(CategoryId, CategoryInfoType, Value, LargeValue);
         }
@@ -77,17 +77,17 @@ namespace Profile.Manager.DAL.Controller
 
         #region Profile
 
-        public string ProfileCreate(string Name, string LastName, SessionController.Models.Profile.enumProfileType ProfileType, SessionController.Models.Profile.enumProfileStatus ProfileStatus)
+        public string ProfileCreate(string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
         {
             return DataFactory.ProfileCreate(Name, LastName, ProfileType, ProfileStatus);
         }
 
-        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, SessionController.Models.Profile.enumProfileType ProfileType, SessionController.Models.Profile.enumProfileStatus ProfileStatus)
+        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
         {
             DataFactory.ProfileUpdate(ProfilePublicId, Name, LastName, ProfileType, ProfileStatus);
         }
 
-        public int ProfileInfoCreate(string ProfilePublicId, SessionController.Models.Profile.enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
+        public int ProfileInfoCreate(string ProfilePublicId, enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
         {
             return DataFactory.ProfileInfoCreate(ProfilePublicId, ProfileInfoType, Value, LargeValue);
         }
@@ -141,7 +141,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.OfficeDelete(OfficePublicId);
         }
 
-        public int OfficeInfoCreate(string OfficePublicId, SessionController.Models.Profile.enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
+        public int OfficeInfoCreate(string OfficePublicId, enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
         {
             return DataFactory.OfficeInfoCreate(OfficePublicId, OfficeInfoType, Value, LargeValue);
         }
@@ -166,7 +166,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.ScheduleAvailableDelete(ScheduleAvailableId);
         }
 
-        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, SessionController.Models.Profile.enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             return DataFactory.OfficeCategoryInfoCreate(OfficePublicId, CategoryId, CategoryInfoType, Value, LargeValue);
         }

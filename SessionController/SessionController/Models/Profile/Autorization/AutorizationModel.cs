@@ -10,11 +10,18 @@ namespace SessionController.Models.Profile.Autorization
     {
         public string UserEmail { get; set; }
 
-        public enumRole? Role { get; set; }
+        public enumRole Role { get; set; }
+
+        public string RoleName { get; set; }
 
         public bool Selected { get; set; }
 
-        public List<SessionController.Models.Profile.Profile.ProfileModel> RelatedProfile { get; set; }
+        public string ProfilePublicId { get; set; }
 
+        public string ProfileName { get; set; }
+
+        public string ProfileLastName { get; set; }
+
+        public string ProfileImage { get; set; }
     }
 }

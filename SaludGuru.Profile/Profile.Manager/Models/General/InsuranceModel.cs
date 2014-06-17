@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SessionController.Models.Profile.General
+namespace Profile.Manager.Models.General
 {
     public class InsuranceModel
     {
         public int InsuranceId { get; set; }
         public string Name { get; set; }
-        public enumCategoryType? CategoryType { get { return enumCategoryType.Insurance; } }
+        public enumCategoryType CategoryType { get { return enumCategoryType.Insurance; } }
     }
 }

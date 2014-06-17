@@ -47,16 +47,6 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Profile\Autorization\AutorizationModel.cs" />
     <Compile Include="Models\Profile\Enumerations.cs" />
-    <Compile Include="Models\Profile\General\CategoryInfoModel.cs" />
-    <Compile Include="Models\Profile\General\CityModel.cs" />
-    <Compile Include="Models\Profile\General\InsuranceModel.cs" />
-    <Compile Include="Models\Profile\General\SpecialtyModel.cs" />
-    <Compile Include="Models\Profile\General\TreatmentModel.cs" />
-    <Compile Include="Models\Profile\Office\OfficeInfoModel.cs" />
-    <Compile Include="Models\Profile\Office\OfficeModel.cs" />
-    <Compile Include="Models\Profile\Office\ScheduleAvailableModel.cs" />
-    <Compile Include="Models\Profile\Profile\ProfileInfoModel.cs" />
-    <Compile Include="Models\Profile\Profile\ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionManager.cs" />
   </ItemGroup>

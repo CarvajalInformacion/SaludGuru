@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SessionController.Models.Profile.Office
+namespace Profile.Manager.Models.Office
 {
     public class ScheduleAvailableModel
     {

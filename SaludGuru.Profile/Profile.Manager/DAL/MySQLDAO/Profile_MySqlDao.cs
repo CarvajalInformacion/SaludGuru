@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Profile.Manager.Interfaces;
-using SessionController.Models.Profile;
 using SessionController.Models.Profile.Autorization;
-using SessionController.Models.Profile.Profile;
+using Profile.Manager.Models;
 
 namespace Profile.Manager.DAL.MySQLDAO
 {
@@ -21,7 +20,7 @@ namespace Profile.Manager.DAL.MySQLDAO
 
         #region Category
 
-        public int CategoryCreate(SessionController.Models.Profile.enumCategoryType CategoryType, string Name)
+        public int CategoryCreate(enumCategoryType CategoryType, string Name)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -515,7 +514,7 @@ namespace Profile.Manager.DAL.MySQLDAO
 
         #region Autorization
 
-        public int ProfileRoleCreate(string ProfilePublicId, enumRole RoleId, string UserEmail)
+        public int ProfileRoleCreate(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId, string UserEmail)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -568,43 +567,17 @@ namespace Profile.Manager.DAL.MySQLDAO
                 response.DataTableResult.Rows.Count > 0)
             {
                 oRetorno = (from au in response.DataTableResult.AsEnumerable()
-                            group au by
-                            new
-                            {
-                                oUserEmail = au.Field<string>("UserEmail"),
-                                oRoleId = au.Field<int>("RoleId")
-                            } into aug
                             select new AutorizationModel()
                             {
-                                UserEmail = aug.Key.oUserEmail,
-                                Role = (enumRole?)aug.Key.oRoleId,
-                                RelatedProfile = (from pr in response.DataTableResult.AsEnumerable()
-                                                  where pr.Field<string>("UserEmail") == aug.Key.oUserEmail
-                                                  group pr by
-                                                  new
-                                                  {
-                                                      oProfilePublicId = pr.Field<string>("ProfilePublicId"),
-                                                      oName = pr.Field<string>("Name"),
-                                                      oLastName = pr.Field<string>("LastName"),
-                                                      oImageProfile = pr.Field<string>("ImageProfile"),
-                                                  } into prg
-                                                  select new ProfileModel()
-                                                  {
-                                                      ProfilePublicId = prg.Key.oProfilePublicId,
-                                                      Name = prg.Key.oName,
-                                                      LastName = prg.Key.oLastName,
-                                                      ProfileInfo = new List<ProfileInfoModel>() 
-                                                      { 
-                                                          new ProfileInfoModel()
-                                                          {
-                                                              ProfileInfoType = enumProfileInfoType.ImageProfile,
-                                                              Value = prg.Key.oImageProfile                                                          
-                                                          },
-                                                      },
-                                                  }).ToList(),
+                                UserEmail = au.Field<string>("UserEmail"),
+                                Role = (SessionController.Models.Profile.enumRole)au.Field<int>("RoleId"),
+                                RoleName = au.Field<string>("RoleName"),
+                                ProfilePublicId = au.Field<string>("ProfilePublicId"),
+                                ProfileName = au.Field<string>("Name"),
+                                ProfileLastName = au.Field<string>("LastName"),
+                                ProfileImage = au.Field<string>("ImageProfile"),
                             }).ToList();
             }
-
             return oRetorno;
 
         }

@@ -1,5 +1,5 @@
 ﻿using Profile.Manager.DAL.Controller;
-using SessionController.Models.Profile.General;
+using Profile.Manager.Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,35 +10,35 @@ namespace Profile.Manager.Controller
 {
     public class Insurance
     {
-        #region static crud methods
+        //#region static crud methods
 
-        public static int Create(InsuranceModel NewInsurance)
-        {
-            return ProfileDataController.Instance.CategoryCreate
-                (NewInsurance.CategoryType.Value, NewInsurance.Name);
-        }
+        //public static int Create(InsuranceModel NewInsurance)
+        //{
+        //    return ProfileDataController.Instance.CategoryCreate
+        //        (NewInsurance.CategoryType.Value, NewInsurance.Name);
+        //}
 
-        public static void Modify(InsuranceModel AlterInsurance)
-        {
-            ProfileDataController.Instance.CategoryModify
-                (AlterInsurance.InsuranceId, AlterInsurance.Name);
-        }
+        //public static void Modify(InsuranceModel AlterInsurance)
+        //{
+        //    ProfileDataController.Instance.CategoryModify
+        //        (AlterInsurance.InsuranceId, AlterInsurance.Name);
+        //}
 
-        public static void Delete(int InsuranceId)
-        {
-            ProfileDataController.Instance.CategoryDelete
-                (InsuranceId);
-        }
+        //public static void Delete(int InsuranceId)
+        //{
+        //    ProfileDataController.Instance.CategoryDelete
+        //        (InsuranceId);
+        //}
 
-        #endregion
+        //#endregion
 
-        #region static get methods
+        //#region static get methods
 
-        public static List<Insurance> GetAll()
-        {
-            return null;
-        }
+        //public static List<Insurance> GetAll()
+        //{
+        //    return null;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

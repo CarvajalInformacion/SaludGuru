@@ -71,6 +71,17 @@
     <Compile Include="Models\Constants.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Enumerations.cs" />
+    <Compile Include="Models\General\CategoryInfoModel.cs" />
+    <Compile Include="Models\General\CityModel.cs" />
+    <Compile Include="Models\General\InsuranceModel.cs" />
+    <Compile Include="Models\General\SpecialtyModel.cs" />
+    <Compile Include="Models\General\TreatmentModel.cs" />
+    <Compile Include="Models\Office\OfficeInfoModel.cs" />
+    <Compile Include="Models\Office\OfficeModel.cs" />
+    <Compile Include="Models\Office\ScheduleAvailableModel.cs" />
+    <Compile Include="Models\Profile\ProfileInfoModel.cs" />
+    <Compile Include="Models\Profile\ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

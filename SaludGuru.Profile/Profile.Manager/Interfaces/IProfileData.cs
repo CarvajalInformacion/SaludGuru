@@ -1,4 +1,4 @@
-﻿using SessionController.Models.Profile;
+﻿using Profile.Manager.Models;
 using SessionController.Models.Profile.Autorization;
 using System;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace Profile.Manager.Interfaces
 
         #region Autorization
 
-        int ProfileRoleCreate(string ProfilePublicId, enumRole RoleId, string UserEmail);
+        int ProfileRoleCreate(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId, string UserEmail);
         void ProfileRoleDelete(int ProfileRoleId);
 
         List<AutorizationModel> GetAutorization(string UserEmail);
