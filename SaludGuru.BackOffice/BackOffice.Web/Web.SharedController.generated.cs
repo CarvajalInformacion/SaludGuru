@@ -37,8 +37,10 @@ namespace T4MVC.Web
             public class _ViewNamesClass
             {
                 public readonly string _Layout = "_Layout";
+                public readonly string Header = "Header";
             }
             public readonly string _Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+            public readonly string Header = "~/Areas/Web/Views/Shared/Header.cshtml";
         }
     }
 

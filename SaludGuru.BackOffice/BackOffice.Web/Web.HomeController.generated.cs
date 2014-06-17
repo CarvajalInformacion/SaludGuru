@@ -57,6 +57,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ChangeAutorizationProfile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeAutorizationProfile);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Web.Home; } }
@@ -75,6 +81,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Dashboard = "Dashboard";
+            public readonly string ChangeAutorizationProfile = "ChangeAutorizationProfile";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,9 +89,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public const string Index = "Index";
             public const string Dashboard = "Dashboard";
+            public const string ChangeAutorizationProfile = "ChangeAutorizationProfile";
         }
 
 
+        static readonly ActionParamsClass_ChangeAutorizationProfile s_params_ChangeAutorizationProfile = new ActionParamsClass_ChangeAutorizationProfile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeAutorizationProfile ChangeAutorizationProfileParams { get { return s_params_ChangeAutorizationProfile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeAutorizationProfile
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -127,6 +143,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Dashboard);
             DashboardOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeAutorizationProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangeAutorizationProfile(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeAutorizationProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ChangeAutorizationProfileOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

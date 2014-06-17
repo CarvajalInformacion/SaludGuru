@@ -179,6 +179,7 @@
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\Main.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -205,6 +206,7 @@
     <Content Include="Areas\Web\Scripts\respond.js" />
     <Content Include="Areas\Web\Scripts\respond.min.js" />
     <Content Include="Areas\Web\Scripts\_references.js" />
+    <Content Include="Areas\Web\Views\Shared\Header.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

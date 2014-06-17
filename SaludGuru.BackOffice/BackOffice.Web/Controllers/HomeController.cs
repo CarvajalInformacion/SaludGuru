@@ -46,5 +46,11 @@ namespace BackOffice.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult ChangeAutorizationProfile(string ProfilePublicId)
+        {
+            base.ChangeCurrentProfile(ProfilePublicId);
+            return RedirectToAction(MVC.Home.ActionNames.Dashboard);
+        }
     }
 }

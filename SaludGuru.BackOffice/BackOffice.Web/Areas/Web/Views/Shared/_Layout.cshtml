@@ -9,8 +9,17 @@
 </head>
 <body>
     <div>
+        <div>
+            @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn)
+            {
+                @Html.Partial(MVC.Web.Shared.Views.Header)
+            }
+        </div>
+
         <!--Start internal content-->
-        @RenderBody()
+        <div>
+            @RenderBody()
+        </div>
     </div>
 
     @*Render boundles scripts*@

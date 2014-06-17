@@ -1,0 +1,51 @@
+﻿<div>
+    <!--render autorized profiles-->
+    <div>
+        <ul>
+            @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+            {
+                if (ua.RelatedProfile != null &&
+                    ua.RelatedProfile.FirstOrDefault() != null &&
+                    ua.RelatedProfile.FirstOrDefault().ProfilePublicId != null)
+                {
+                    foreach (SessionController.Models.Profile.Profile.ProfileModel pr in ua.RelatedProfile)
+                    {
+                        <li onclick="javascript:window.location='@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = pr.ProfilePublicId })'">
+                            <img src="" />
+                            <label>Dr. @(pr.Name + " " + pr.LastName)</label>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li onclick="javascript:window.location='@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name)'">
+                        <img src="" />
+                        <label>Administrador de sistema</label>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <!--render search box-->
+    <div>
+        <input type="text" />
+    </div>
+    <!--render notifications-->
+    <div>
+        <a href="">Notificactiones</a>
+    </div>
+    <!--render user options-->
+    <div>
+        user options
+    </div>
+</div>
+<div>
+    <!--home icon-->
+    <div>
+        <a href="">SaludGuru</a>
+    </div>
+    <!--menu-->
+    <div>
+        menu
+    </div>
+</div>
