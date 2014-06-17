@@ -112,12 +112,12 @@ namespace Auth.Web.Controllers
                     new SessionController.Models.Auth.UserInfo()
                     {
                         InfoType = SessionController.Models.Auth.enumUserInfoType.ImageProfile,
-                        Value = SocialUser.AvatarUrl.ToString()                  
+                        Value = SocialUser.AvatarUrl!=null? SocialUser.AvatarUrl.ToString():null
                     },
                     new SessionController.Models.Auth.UserInfo()
                     {
                         InfoType = SessionController.Models.Auth.enumUserInfoType.SocialUrl,
-                        Value = SocialUser.Link.ToString()
+                        Value = SocialUser.Link != null?SocialUser.Link.ToString():null
                     }
                 },
             };
