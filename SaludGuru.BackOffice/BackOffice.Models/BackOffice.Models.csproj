@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Profile.Manager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Profile\developer\Profile.Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="SettingsManager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SettingsManager\developer\SettingsManager.dll</HintPath>
     </Reference>
@@ -44,6 +50,7 @@
   <ItemGroup>
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\InternalSettings.cs" />
+    <Compile Include="General\SessionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

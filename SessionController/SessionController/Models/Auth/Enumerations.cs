@@ -1,4 +1,4 @@
-﻿namespace Auth.Models
+﻿namespace SessionController.Models.Auth
 {
     public enum enumUserInfoType
     {

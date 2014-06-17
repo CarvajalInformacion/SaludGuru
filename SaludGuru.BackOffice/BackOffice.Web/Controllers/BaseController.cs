@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackOffice.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,37 @@ namespace BackOffice.Web.Controllers
             {
                 return System.Configuration.ConfigurationManager.AppSettings["AreaName"].ToString().Trim();
             }
+        }
+
+        #endregion
+
+        #region Session methods
+
+        public void LogOut()
+        {
+            SessionController.SessionManager.Logout();
+            Response.Redirect(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name));
+        }
+
+        public void ChangeCurrentProfile(string ProfilePublicId)
+        {
+            SessionModel.UserAutorization.All(x =>
+            {
+                if (string.IsNullOrEmpty(ProfilePublicId) && x.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                {
+                    x.Selected = true;
+                }
+                else if (x.RelatedProfile.Any(p => p.ProfilePublicId == ProfilePublicId))
+                {
+                    x.Selected = true;
+                }
+                else
+                {
+                    x.Selected = false;
+                }
+
+                return true;
+            });
         }
         #endregion
     }

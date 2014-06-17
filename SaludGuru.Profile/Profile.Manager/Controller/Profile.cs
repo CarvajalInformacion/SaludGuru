@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Profile.Manager.Controller
 {
-    class Profile
+    public class Profile
     {
     }
 }

@@ -39,6 +39,9 @@
     <Reference Include="MySql.Web">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
     </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Autorization.cs" />
     <Compile Include="Controller\Insurance.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,25 +68,16 @@
     <Compile Include="DAL\Controller\ProfileDataFactory.cs" />
     <Compile Include="DAL\MySQLDAO\Profile_MySqlDao.cs" />
     <Compile Include="Interfaces\IProfileData.cs" />
-    <Compile Include="Models\AutorizationModel.cs" />
-    <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\Constants.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Enumerations.cs" />
-    <Compile Include="Models\InsuranceModel.cs" />
-    <Compile Include="Models\OfficeModel.cs" />
-    <Compile Include="Models\OfficeInfoModel.cs" />
-    <Compile Include="Models\ProfileInfoModel.cs" />
-    <Compile Include="Models\ProfileModel.cs" />
-    <Compile Include="Models\CategoryInfoModel.cs" />
-    <Compile Include="Models\ScheduleAvailableModel.cs" />
-    <Compile Include="Models\SpecialtyModel.cs" />
-    <Compile Include="Models\TreatmentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)*.dll" "\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Profile\developer\" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

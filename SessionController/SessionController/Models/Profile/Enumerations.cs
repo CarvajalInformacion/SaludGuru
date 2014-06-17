@@ -1,4 +1,4 @@
-﻿namespace Profile.Manager.Models
+﻿namespace SessionController.Models.Profile
 {
     public enum enumCategoryType
     {
@@ -37,6 +37,8 @@
         Website = 406,
         Gender = 407,
         FacebookProfile = 408,
+        ImageProfile = 409,
+        ImageGeneral = 410
     }
 
     public enum enumOfficeInfoType

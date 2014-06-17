@@ -1,5 +1,5 @@
 ﻿using Profile.Manager.DAL.Controller;
-using Profile.Manager.Models;
+using SessionController.Models.Profile.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Profile.Manager.Controller
         public static int Create(InsuranceModel NewInsurance)
         {
             return ProfileDataController.Instance.CategoryCreate
-                (NewInsurance.CategoryType, NewInsurance.Name);
+                (NewInsurance.CategoryType.Value, NewInsurance.Name);
         }
 
         public static void Modify(InsuranceModel AlterInsurance)

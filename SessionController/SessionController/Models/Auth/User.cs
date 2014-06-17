@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auth.Models
+namespace SessionController.Models.Auth
 {
     public class User
     {

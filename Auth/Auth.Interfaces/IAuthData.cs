@@ -8,9 +8,9 @@ namespace Auth.Interfaces
 {
     public interface IAuthData
     {
-        string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, Auth.Models.enumLoginType LoginTypeId);
-        Auth.Models.User GetUser(string UserPublicId);
-        void InsertUserInfo(string UserPublicId, Auth.Models.enumUserInfoType InfoTypeId, string Value);
+        string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, SessionController.Models.Auth.enumLoginType LoginTypeId);
+        SessionController.Models.Auth.User GetUser(string UserPublicId);
+        void InsertUserInfo(string UserPublicId, SessionController.Models.Auth.enumUserInfoType InfoTypeId, string Value);
         void UpdateUserInfo(int UserInfoId, string Value);
     }
 }

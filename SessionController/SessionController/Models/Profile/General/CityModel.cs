@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profile.Manager.Models
+namespace SessionController.Models.Profile.General
 {
     public class CityModel
     {

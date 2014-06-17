@@ -1,4 +1,4 @@
-﻿namespace Auth.Models
+﻿namespace Auth.Interfaces.Models
 {
     public static class Constants
     {

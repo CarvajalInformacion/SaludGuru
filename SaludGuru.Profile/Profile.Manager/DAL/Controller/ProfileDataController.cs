@@ -34,7 +34,7 @@ namespace Profile.Manager.DAL.Controller
 
         #region Category
 
-        public int CategoryCreate(Models.enumCategoryType CategoryType, string Name)
+        public int CategoryCreate(SessionController.Models.Profile.enumCategoryType CategoryType, string Name)
         {
             return DataFactory.CategoryCreate(CategoryType, Name);
         }
@@ -59,7 +59,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.RelatedCategoryDelete(CategoryParent, CategoryChild);
         }
 
-        public int CategoryInfoCreate(int CategoryId, Models.enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int CategoryInfoCreate(int CategoryId, SessionController.Models.Profile.enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             return DataFactory.CategoryInfoCreate(CategoryId, CategoryInfoType, Value, LargeValue);
         }
@@ -77,17 +77,17 @@ namespace Profile.Manager.DAL.Controller
 
         #region Profile
 
-        public string ProfileCreate(string Name, string LastName, Models.enumProfileType ProfileType, Models.enumProfileStatus ProfileStatus)
+        public string ProfileCreate(string Name, string LastName, SessionController.Models.Profile.enumProfileType ProfileType, SessionController.Models.Profile.enumProfileStatus ProfileStatus)
         {
             return DataFactory.ProfileCreate(Name, LastName, ProfileType, ProfileStatus);
         }
 
-        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, Models.enumProfileType ProfileType, Models.enumProfileStatus ProfileStatus)
+        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, SessionController.Models.Profile.enumProfileType ProfileType, SessionController.Models.Profile.enumProfileStatus ProfileStatus)
         {
             DataFactory.ProfileUpdate(ProfilePublicId, Name, LastName, ProfileType, ProfileStatus);
         }
 
-        public int ProfileInfoCreate(string ProfilePublicId, Models.enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
+        public int ProfileInfoCreate(string ProfilePublicId, SessionController.Models.Profile.enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
         {
             return DataFactory.ProfileInfoCreate(ProfilePublicId, ProfileInfoType, Value, LargeValue);
         }
@@ -141,7 +141,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.OfficeDelete(OfficePublicId);
         }
 
-        public int OfficeInfoCreate(string OfficePublicId, Models.enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
+        public int OfficeInfoCreate(string OfficePublicId, SessionController.Models.Profile.enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
         {
             return DataFactory.OfficeInfoCreate(OfficePublicId, OfficeInfoType, Value, LargeValue);
         }
@@ -166,7 +166,7 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.ScheduleAvailableDelete(ScheduleAvailableId);
         }
 
-        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, Models.enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, SessionController.Models.Profile.enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             return DataFactory.OfficeCategoryInfoCreate(OfficePublicId, CategoryId, CategoryInfoType, Value, LargeValue);
         }
@@ -185,14 +185,19 @@ namespace Profile.Manager.DAL.Controller
 
         #region Autorization
 
-        public void ProfileRoleCreate(string ProfilePublicId, Models.enumRole RoleId, string UserEmail)
+        public int ProfileRoleCreate(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId, string UserEmail)
         {
-            DataFactory.ProfileRoleCreate(ProfilePublicId, RoleId, UserEmail);
+            return DataFactory.ProfileRoleCreate(ProfilePublicId, RoleId, UserEmail);
         }
 
-        public void ProfileRoleDelete(string ProfilePublicId, Models.enumRole RoleId, string UserEmail)
+        public void ProfileRoleDelete(int ProfileRoleId)
         {
-            DataFactory.ProfileRoleDelete(ProfilePublicId, RoleId, UserEmail);
+            DataFactory.ProfileRoleDelete(ProfileRoleId);
+        }
+
+        public List<SessionController.Models.Profile.Autorization.AutorizationModel> GetAutorization(string UserEmail)
+        {
+            return DataFactory.GetAutorization(UserEmail);
         }
 
         #endregion

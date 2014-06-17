@@ -1,9 +1,13 @@
-﻿using Profile.Manager.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using Profile.Manager.Interfaces;
+using SessionController.Models.Profile;
+using SessionController.Models.Profile.Autorization;
+using SessionController.Models.Profile.Profile;
 
 namespace Profile.Manager.DAL.MySQLDAO
 {
@@ -17,7 +21,7 @@ namespace Profile.Manager.DAL.MySQLDAO
 
         #region Category
 
-        public int CategoryCreate(Models.enumCategoryType CategoryType, string Name)
+        public int CategoryCreate(SessionController.Models.Profile.enumCategoryType CategoryType, string Name)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -98,7 +102,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
-        public int CategoryInfoCreate(int CategoryId, Models.enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int CategoryInfoCreate(int CategoryId, enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -154,7 +158,7 @@ namespace Profile.Manager.DAL.MySQLDAO
 
         #region Profile
 
-        public string ProfileCreate(string Name, string LastName, Models.enumProfileType ProfileType, Models.enumProfileStatus ProfileStatus)
+        public string ProfileCreate(string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -174,7 +178,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             return response.ScalarResult.ToString();
         }
 
-        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, Models.enumProfileType ProfileType, Models.enumProfileStatus ProfileStatus)
+        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -193,7 +197,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
-        public int ProfileInfoCreate(string ProfilePublicId, Models.enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
+        public int ProfileInfoCreate(string ProfilePublicId, enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -367,7 +371,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
-        public int OfficeInfoCreate(string OfficePublicId, Models.enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
+        public int OfficeInfoCreate(string OfficePublicId, enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -454,7 +458,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
-        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, Models.enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -511,7 +515,7 @@ namespace Profile.Manager.DAL.MySQLDAO
 
         #region Autorization
 
-        public void ProfileRoleCreate(string ProfilePublicId, Models.enumRole RoleId, string UserEmail)
+        public int ProfileRoleCreate(string ProfilePublicId, enumRole RoleId, string UserEmail)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -521,20 +525,20 @@ namespace Profile.Manager.DAL.MySQLDAO
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
                 CommandText = "A_ProfileRole_Create",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
+
+            return int.Parse(response.ScalarResult.ToString());
         }
 
-        public void ProfileRoleDelete(string ProfilePublicId, Models.enumRole RoleId, string UserEmail)
+        public void ProfileRoleDelete(int ProfileRoleId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vRoleId", (int)RoleId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vUserEmail", UserEmail));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileRoleId", ProfileRoleId));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
@@ -544,6 +548,67 @@ namespace Profile.Manager.DAL.MySQLDAO
                 Parameters = lstParams
             });
         }
+
+        public List<AutorizationModel> GetAutorization(string UserEmail)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vUserEmail", UserEmail));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "A_ProfileRole_GetAutorization",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AutorizationModel> oRetorno = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                            group au by
+                            new
+                            {
+                                oUserEmail = au.Field<string>("UserEmail"),
+                                oRoleId = au.Field<int>("RoleId")
+                            } into aug
+                            select new AutorizationModel()
+                            {
+                                UserEmail = aug.Key.oUserEmail,
+                                Role = (enumRole?)aug.Key.oRoleId,
+                                RelatedProfile = (from pr in response.DataTableResult.AsEnumerable()
+                                                  where pr.Field<string>("UserEmail") == aug.Key.oUserEmail
+                                                  group pr by
+                                                  new
+                                                  {
+                                                      oProfilePublicId = pr.Field<string>("ProfilePublicId"),
+                                                      oName = pr.Field<string>("Name"),
+                                                      oLastName = pr.Field<string>("LastName"),
+                                                      oImageProfile = pr.Field<string>("ImageProfile"),
+                                                  } into prg
+                                                  select new ProfileModel()
+                                                  {
+                                                      ProfilePublicId = prg.Key.oProfilePublicId,
+                                                      Name = prg.Key.oName,
+                                                      LastName = prg.Key.oLastName,
+                                                      ProfileInfo = new List<ProfileInfoModel>() 
+                                                      { 
+                                                          new ProfileInfoModel()
+                                                          {
+                                                              ProfileInfoType = enumProfileInfoType.ImageProfile,
+                                                              Value = prg.Key.oImageProfile                                                          
+                                                          },
+                                                      },
+                                                  }).ToList(),
+                            }).ToList();
+            }
+
+            return oRetorno;
+
+        }
+
         #endregion
     }
 }
