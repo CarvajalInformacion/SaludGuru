@@ -37,7 +37,7 @@ namespace Auth.Web.Controllers
             }
             else
             {
-                RedirectToAction(MVC.GoogleLogin.ActionNames.LoginCallBack);
+                return RedirectToAction(MVC.GoogleLogin.ActionNames.LoginCallBack);
             }
 
             return View();
