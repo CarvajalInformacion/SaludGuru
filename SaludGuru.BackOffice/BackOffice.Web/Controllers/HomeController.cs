@@ -19,24 +19,17 @@ namespace BackOffice.Web.Controllers
                 BackOffice.Models.General.SessionModel.UserAutorization =
                     Autorization.GetEmailAutorization(BackOffice.Models.General.SessionModel.LoginUserEmail);
 
-                //set first profile
-                string FirstProfilePublicId = string.Empty;
-
-                if (BackOffice.Models.General.SessionModel.UserAutorization != null &&
-                    BackOffice.Models.General.SessionModel.UserAutorization.FirstOrDefault().RelatedProfile != null &&
-                    BackOffice.Models.General.SessionModel.UserAutorization.FirstOrDefault().RelatedProfile.FirstOrDefault() != null)
-                {
-                    FirstProfilePublicId = BackOffice.Models.General.SessionModel.UserAutorization.
-                        FirstOrDefault().RelatedProfile.FirstOrDefault().ProfilePublicId;
-                }
-                base.ChangeCurrentProfile(FirstProfilePublicId);
-
-
-                //load autorization modules
                 if (BackOffice.Models.General.SessionModel.UserIsAutorized)
                 {
+                    //set first profile
+                    base.ChangeCurrentProfile(BackOffice.Models.General.SessionModel.UserAutorization.FirstOrDefault().ProfilePublicId);
+
                     //redirect to dashboard
                     return RedirectToAction(MVC.Home.ActionNames.Dashboard);
+                }
+                else
+                {
+                    //user is not autorized
                 }
             }
             return View();

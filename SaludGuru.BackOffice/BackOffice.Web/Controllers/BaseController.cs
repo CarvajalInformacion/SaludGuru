@@ -36,11 +36,12 @@ namespace BackOffice.Web.Controllers
         {
             SessionModel.UserAutorization.All(x =>
             {
-                if (string.IsNullOrEmpty(ProfilePublicId) && x.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                if (string.IsNullOrEmpty(ProfilePublicId) && x.Role ==
+                    SessionController.Models.Profile.enumRole.SystemAdministrator)
                 {
                     x.Selected = true;
                 }
-                else if (x.RelatedProfile.Any(p => p.ProfilePublicId == ProfilePublicId))
+                else if (x.ProfilePublicId == ProfilePublicId)
                 {
                     x.Selected = true;
                 }

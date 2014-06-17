@@ -2,7 +2,7 @@
     <!--render autorized profiles-->
     <div>
         <ul>
-            @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+            @*@foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
             {
                 if (ua.RelatedProfile != null &&
                     ua.RelatedProfile.FirstOrDefault() != null &&
@@ -23,7 +23,7 @@
                         <label>Administrador de sistema</label>
                     </li>
                 }
-            }
+            }*@
         </ul>
     </div>
     <!--render search box-->
