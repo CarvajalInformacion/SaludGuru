@@ -1,0 +1,86 @@
+.logInMainWrapper{
+	border:none; 
+	width:100%;
+	}
+.logInContentWrapper{
+	border: none; 
+	width: 100%; 
+	height: auto; 
+	background-image:url('/Areas/Web/Content/Images/logInBackground.png'); 
+	background-repeat: no-repeat; 
+	background-size:1380px;
+	}
+.logoSaludGuru{
+	border:none;
+	padding: 0px;
+	margin: 13px 0px 0px 15%;
+	width: 120px; height: 74px;
+	background-image:url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
+	background-size: 119px 72px;
+	background-repeat:no-repeat;
+	}
+.logInBandWrapper{
+	width: 100%; 
+	min-width:600px; 
+	height: 248px; 
+	border: none; 
+	margin:98px 0px 127px 0px; 
+	background-color:rgba(255, 255, 255, 0.7); 
+	background-image: url('/Areas/Web/Content/Images/logInBandBackground.png'); 
+	background-size:94% auto; 
+	background-repeat:repeat-y; 
+	background-position:40px 0px;
+	}
+.logInDocIllustration{
+	display: inline-block; 
+	background-repeat: no-repeat; 
+	background-size: 206px 318px; 
+	border: none; 
+	width: 206px; 
+	height: 318px; 
+	margin: -50px 0px 0px 23%; 
+	background-image: url('/Areas/Web/Content/Images/logInDoctorSmall.png'); 
+	background-repeat: no-repeat;
+}
+.logInElementsWrapper{
+	display:inline-block; 
+	width:24%; 
+	height:160px; 
+	border:1px solid green; 
+	margin:27px 0px 0px -3px; 
+	vertical-align:top; 
+	min-width:200px;
+	}
+.logInElementsWrapper span{
+	font-size:20px; 
+	line-height:17px; 
+	letter-spacing:-1px;
+	}
+.logInIconsWrapper{
+	margin:14px 0px 10px 0px;
+	}
+.logInIconsWrapper a img{
+	display:inline-block;
+	width:76px;
+	height:76px;
+	border:1px solid grey;
+	}
+.logInElementsWrapper input [type=checkbox]{
+	display: block;
+	margin:140px auto 4px auto;
+	width: 50%; 
+	min-width: 400px;
+	text-align: center;
+	border: 1px solid yellow;
+	font-size: small;
+	}
+.logInCopiright{
+	display: block;
+	margin:140px auto 4px auto;
+	width: 50%;
+	min-width: 400px;
+	text-align: center;
+	border: 1px solid yellow;
+	font-size: small;
+}
+
