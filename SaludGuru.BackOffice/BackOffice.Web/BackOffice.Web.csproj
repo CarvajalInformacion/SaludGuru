@@ -229,7 +229,9 @@
     <Content Include="Areas\Web\Scripts\respond.js" />
     <Content Include="Areas\Web\Scripts\respond.min.js" />
     <Content Include="Areas\Web\Scripts\_references.js" />
-    <Content Include="Areas\Web\Views\Shared\Header.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Home\ChangeAutorizationProfile.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Web.config">

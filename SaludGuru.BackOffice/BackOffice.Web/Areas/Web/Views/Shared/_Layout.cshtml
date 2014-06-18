@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model List<BackOffice.Models.General.MenuModel>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,7 +13,9 @@
         <div>
             @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn)
             {
-                @Html.Partial(MVC.Web.Shared.Views.Header)
+                <div>
+                    @Html.Action(MVC.Base.ActionNames._L_Header)
+                </div>
             }
         </div>
 
