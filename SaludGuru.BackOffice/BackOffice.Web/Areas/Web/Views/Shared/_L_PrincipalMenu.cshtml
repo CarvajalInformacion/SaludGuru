@@ -1,3 +1,69 @@
 ﻿@model List<BackOffice.Models.General.MenuModel>
 
-menu
+<!--principal menu-->
+<ul>
+    @foreach (BackOffice.Models.General.MenuModel PrincipalM in Model)
+    {
+        switch (PrincipalM.PrincipalMenu)
+        {
+            case BackOffice.Models.General.enumPrincipalMenu.Administrator:
+                <li>
+                    <a href="">Administrar</a>
+                    <ul>
+                        <li>
+                            <a href="">Perfil</a>
+                        </li>
+                        <li>
+                            <a href="">Seguros medicos</a>
+                        </li>
+                        <li>
+                            <a href="">Especialidades</a>
+                        </li>
+                        <li>
+                            <a href="">Tratamientos</a>
+                        </li>
+                    </ul>
+                </li>
+                break;
+            case BackOffice.Models.General.enumPrincipalMenu.Appointment:
+            <li>
+                <a href="">Agenda</a>
+                <ul>
+                    <li>
+                        <a href="">Día</a>
+                    </li>
+                    <li>
+                        <a href="">Semana</a>
+                    </li>
+                    <li>
+                        <a href="">Mes</a>
+                    </li>
+                    <li>
+                        <a href="">Lista</a>
+                    </li>
+                    <li>
+                        <a href="">Configuracion</a>
+                    </li>
+                </ul>
+            </li>
+                break;
+            case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
+            <li>
+                <a href="">Dashboard</a>
+            </li>
+                break;
+            case BackOffice.Models.General.enumPrincipalMenu.Patient:
+            <li>
+                <a href="">Pacientes</a>
+            </li>
+                break;
+            case BackOffice.Models.General.enumPrincipalMenu.Profile:
+            <li>
+                <a href="">Perfil</a>
+            </li>
+                break;
+            default:
+                break;
+        }
+    };
+</ul>
