@@ -5,7 +5,7 @@
     <title>@ViewBag.Title</title>
 
     @*Render bondles styles*@
-    @Styles.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/content/css")
+    @Styles.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/content/css")
 </head>
 <body>
     <div>
@@ -13,11 +13,11 @@
     </div>
 
     @*Render boundles scripts*@
-    @Scripts.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/jquery")
-    @Scripts.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/jqueryval")
-    @Scripts.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/modernizr")
-    @Scripts.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/bundles/bootstrap")
-    @Scripts.Render("~/" + Auth.Models.Constants.C_WebAreaName + "/sitescripts")
+    @Scripts.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
+    @Scripts.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
+    @Scripts.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/modernizr")
+    @Scripts.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
+    @Scripts.Render("~/" + Auth.Web.Controllers.BaseController.AreaName + "/sitescripts")
 
 
     @*Render inline site scripts*@

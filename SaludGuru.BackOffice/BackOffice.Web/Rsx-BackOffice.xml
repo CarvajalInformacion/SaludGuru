@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <BackOffice>
+
+    <!--Login Module-->
+    <key name="Web_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <!--Menu-->
+    <key name="Menu_"></key>
+ <!--
+101
+102
+103
+104--> 
+  </BackOffice>
+</Settings>
+

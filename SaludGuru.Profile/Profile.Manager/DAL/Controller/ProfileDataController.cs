@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Profile.Manager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Profile.Manager.DAL.Controller
 {
     internal class ProfileDataController : Profile.Manager.Interfaces.IProfileData
     {
+        #region singleton instance
         private static Profile.Manager.Interfaces.IProfileData oInstance;
         internal static Profile.Manager.Interfaces.IProfileData Instance
         {
@@ -19,8 +21,185 @@ namespace Profile.Manager.DAL.Controller
             }
         }
 
-        #region Autorization
+        private Profile.Manager.Interfaces.IProfileData DataFactory;
         #endregion
 
+        #region constructor
+        ProfileDataController()
+        {
+            ProfileDataFactory factory = new ProfileDataFactory();
+            DataFactory = factory.GetProfileDataInstance();
+        }
+        #endregion
+
+        #region Category
+
+        public int CategoryCreate(enumCategoryType CategoryType, string Name)
+        {
+            return DataFactory.CategoryCreate(CategoryType, Name);
+        }
+
+        public void CategoryModify(int CategoryId, string Name)
+        {
+            DataFactory.CategoryModify(CategoryId, Name);
+        }
+
+        public void CategoryDelete(int CategoryId)
+        {
+            DataFactory.CategoryDelete(CategoryId);
+        }
+
+        public void RelatedCategoryCreate(int CategoryParent, int CategoryChild)
+        {
+            DataFactory.RelatedCategoryCreate(CategoryParent, CategoryChild);
+        }
+
+        public void RelatedCategoryDelete(int CategoryParent, int CategoryChild)
+        {
+            DataFactory.RelatedCategoryDelete(CategoryParent, CategoryChild);
+        }
+
+        public int CategoryInfoCreate(int CategoryId, enumCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        {
+            return DataFactory.CategoryInfoCreate(CategoryId, CategoryInfoType, Value, LargeValue);
+        }
+
+        public void CategoryInfoModify(int CategoryInfoTypeId, string Value, string LargeValue)
+        {
+            DataFactory.CategoryInfoModify(CategoryInfoTypeId, Value, LargeValue);
+        }
+
+        public void CategoryInfoDelete(int CategoryInfoTypeId)
+        {
+            DataFactory.CategoryInfoDelete(CategoryInfoTypeId);
+        }
+        #endregion
+
+        #region Profile
+
+        public string ProfileCreate(string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
+        {
+            return DataFactory.ProfileCreate(Name, LastName, ProfileType, ProfileStatus);
+        }
+
+        public void ProfileUpdate(string ProfilePublicId, string Name, string LastName, enumProfileType ProfileType, enumProfileStatus ProfileStatus)
+        {
+            DataFactory.ProfileUpdate(ProfilePublicId, Name, LastName, ProfileType, ProfileStatus);
+        }
+
+        public int ProfileInfoCreate(string ProfilePublicId, enumProfileInfoType ProfileInfoType, string Value, string LargeValue)
+        {
+            return DataFactory.ProfileInfoCreate(ProfilePublicId, ProfileInfoType, Value, LargeValue);
+        }
+
+        public void ProfileInfoModify(int ProfileInfoTypeId, string Value, string LargeValue)
+        {
+            DataFactory.ProfileInfoModify(ProfileInfoTypeId, Value, LargeValue);
+        }
+
+        public void ProfileInfoDelete(int ProfileInfoTypeId)
+        {
+            DataFactory.ProfileInfoDelete(ProfileInfoTypeId);
+        }
+
+        public void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild)
+        {
+            DataFactory.RelatedProfileCreate(ProfilePublicIdParent, ProfilePublicIdChild);
+        }
+
+        public void RelatedProfileDelete(string ProfilePublicIdParent, string ProfilePublicIdChild)
+        {
+            DataFactory.RelatedProfileDelete(ProfilePublicIdParent, ProfilePublicIdChild);
+        }
+
+        public void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
+        {
+            DataFactory.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
+        }
+
+        public void ProfileCategoryDelete(string ProfilePublicId, int CategoryId)
+        {
+            DataFactory.ProfileCategoryDelete(ProfilePublicId, CategoryId);
+        }
+
+        #endregion
+
+        #region Office
+
+        public string OfficeCreate(string ProfilePublicId, int CityId, string Name, bool IsDefault)
+        {
+            return DataFactory.OfficeCreate(ProfilePublicId, CityId, Name, IsDefault);
+        }
+
+        public void OfficeUpdate(string OfficePublicId, int CityId, string Name, bool IsDefault)
+        {
+            DataFactory.OfficeUpdate(OfficePublicId, CityId, Name, IsDefault);
+        }
+
+        public void OfficeDelete(string OfficePublicId)
+        {
+            DataFactory.OfficeDelete(OfficePublicId);
+        }
+
+        public int OfficeInfoCreate(string OfficePublicId, enumOfficeInfoType OfficeInfoType, string Value, string LargeValue)
+        {
+            return DataFactory.OfficeInfoCreate(OfficePublicId, OfficeInfoType, Value, LargeValue);
+        }
+
+        public void OfficeInfoModify(int OfficeInfoId, string Value, string LargeValue)
+        {
+            DataFactory.OfficeInfoModify(OfficeInfoId, Value, LargeValue);
+        }
+
+        public void OfficeInfoDelete(int OfficeInfoId)
+        {
+            DataFactory.OfficeInfoDelete(OfficeInfoId);
+        }
+
+        public int ScheduleAvailableCreate(string OfficePublicId, DayOfWeek Day, TimeSpan StartTime, TimeSpan EndTime)
+        {
+            return DataFactory.ScheduleAvailableCreate(OfficePublicId, Day, StartTime, EndTime);
+        }
+
+        public void ScheduleAvailableDelete(int ScheduleAvailableId)
+        {
+            DataFactory.ScheduleAvailableDelete(ScheduleAvailableId);
+        }
+
+        public int OfficeCategoryInfoCreate(string OfficePublicId, int CategoryId, enumOfficeCategoryInfoType CategoryInfoType, string Value, string LargeValue)
+        {
+            return DataFactory.OfficeCategoryInfoCreate(OfficePublicId, CategoryId, CategoryInfoType, Value, LargeValue);
+        }
+
+        public void OfficeCategoryInfoModify(int OfficeCategoryInfoId, string Value, string LargeValue)
+        {
+            DataFactory.OfficeCategoryInfoModify(OfficeCategoryInfoId, Value, LargeValue);
+        }
+
+        public void OfficeCategoryInfoDelete(int OfficeCategoryInfoId)
+        {
+            DataFactory.OfficeCategoryInfoDelete(OfficeCategoryInfoId);
+        }
+
+        #endregion
+
+        #region Autorization
+
+        public int ProfileRoleCreate(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId, string UserEmail)
+        {
+            return DataFactory.ProfileRoleCreate(ProfilePublicId, RoleId, UserEmail);
+        }
+
+        public void ProfileRoleDelete(int ProfileRoleId)
+        {
+            DataFactory.ProfileRoleDelete(ProfileRoleId);
+        }
+
+        public List<SessionController.Models.Profile.Autorization.AutorizationModel> GetAutorization(string UserEmail)
+        {
+            return DataFactory.GetAutorization(UserEmail);
+        }
+
+        #endregion
     }
 }

@@ -1,0 +1,47 @@
+﻿<div>
+    <!--render autorized profiles-->
+    <div>
+        <select onchange="javascript: Header_ChangeProfile(this);">
+            @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+            {
+                string DoctorName = string.Empty;
+                if (!string.IsNullOrEmpty(ua.ProfileName))
+                {
+                    DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
+                }
+                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile,MVC.Home.Name,new{ChangeAutorizationProfile=ua.ProfilePublicId})">
+                    <div>
+                        <img src="@ua.ProfileImage" />
+                        <label>@DoctorName</label>
+                        <label>@ua.RoleName</label>
+                    </div>
+                </option>
+            }
+        </select>
+    </div>
+    <!--render search box-->
+    <div>
+        <input type="text" />
+    </div>
+    <!--render notifications-->
+    <div>
+        <a href="">Notificactiones</a>
+    </div>
+    <!--render user options-->
+    <div>
+        <div>
+            <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
+            <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+        </div>
+    </div>
+</div>
+<div>
+    <!--home icon-->
+    <div>
+        <a href="">SaludGuru</a>
+    </div>
+    <!--menu-->
+    <div>
+        menu
+    </div>
+</div>

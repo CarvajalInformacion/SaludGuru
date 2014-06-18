@@ -39,6 +39,9 @@
     <Reference Include="MySql.Web">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
     </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -62,10 +65,6 @@
     <ProjectReference Include="..\Auth.Interfaces\Auth.Interfaces.csproj">
       <Project>{a3bbdf3e-3654-40d4-b100-d75ac5d53ac7}</Project>
       <Name>Auth.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Auth.Models\Auth.Models.csproj">
-      <Project>{2158d825-6fed-4181-b7e2-20586848080d}</Project>
-      <Name>Auth.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

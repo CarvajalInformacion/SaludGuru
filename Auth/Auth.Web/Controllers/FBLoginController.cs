@@ -44,10 +44,20 @@ namespace Auth.Web.Controllers
                             DotNetOpenAuth.ApplicationBlock.FacebookGraph.Fields.Birthday });
 
                 //create model login
-                Auth.Models.User UserToLogin = GetUserToLogin(oauth2Graph);
+                SessionController.Models.Auth.User UserToLogin = GetUserToLogin(oauth2Graph);
 
                 //login user
                 UserToLogin = base.LoginUser(UserToLogin);
+
+                //Add Log
+                CarvajalLog.LogController Log = new CarvajalLog.LogController();
+                Log.SaveLog(new CarvajalLog.Models.AuthLogModel()
+                {
+                    UserId = UserToLogin.UserId,
+                    LogAction = UserToLogin.GetType().ToString(),
+                    IsSuccessfull = 1,
+                    ErrorMessage = "el usuario inició sesión correctamente",
+                });
 
                 //return to site
                 Response.Redirect(oReturnUrl.ToString());
@@ -64,50 +74,50 @@ namespace Auth.Web.Controllers
 
             //appid
             client.ClientIdentifier = SettingsManager.SettingsController.SettingsInstance.ModulesParams
-                                    [Auth.Models.Constants.C_SettingsModuleName]
-                                    [Auth.Models.Constants.C_FB_AppId.Replace("{AppName}", AppName)].Value;
+                                    [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
+                                    [Auth.Interfaces.Models.Constants.C_FB_AppId.Replace("{AppName}", AppName)].Value;
             //secret key
             client.ClientCredentialApplicator = DotNetOpenAuth.OAuth2.ClientCredentialApplicator.PostParameter
                                 (SettingsManager.SettingsController.SettingsInstance.ModulesParams
-                                    [Auth.Models.Constants.C_SettingsModuleName]
-                                    [Auth.Models.Constants.C_FB_AppSecret.Replace("{AppName}", AppName)].Value);
+                                    [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
+                                    [Auth.Interfaces.Models.Constants.C_FB_AppSecret.Replace("{AppName}", AppName)].Value);
 
             return client;
         }
 
-        Auth.Models.User GetUserToLogin(DotNetOpenAuth.ApplicationBlock.IOAuth2Graph SocialUser)
+        SessionController.Models.Auth.User GetUserToLogin(DotNetOpenAuth.ApplicationBlock.IOAuth2Graph SocialUser)
         {
-            Auth.Models.User ConvertUser = new Auth.Models.User()
+            SessionController.Models.Auth.User ConvertUser = new SessionController.Models.Auth.User()
             {
                 Name = SocialUser.FirstName,
                 LastName = SocialUser.LastName,
                 Birthday = SocialUser.BirthdayDT,
                 Gender = SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Female ? (bool?)false :
                             SocialUser.GenderEnum == DotNetOpenAuth.ApplicationBlock.HumanGender.Male ? (bool?)true : null,
-                UserLogins = new List<Models.UserProvider>() 
+                UserLogins = new List<SessionController.Models.Auth.UserProvider>() 
                 { 
-                    new Models.UserProvider() 
+                    new SessionController.Models.Auth.UserProvider() 
                     { 
                         ProviderId = SocialUser.Id, 
-                        LoginType = Models.enumLoginType.Facebook 
+                        LoginType = SessionController.Models.Auth.enumLoginType.Facebook 
                     }
                 },
-                ExtraData = new List<Models.UserInfo>()
+                ExtraData = new List<SessionController.Models.Auth.UserInfo>()
                 {
-                    new Models.UserInfo()
+                    new SessionController.Models.Auth.UserInfo()
                     {
-                        InfoType = Models.enumUserInfoType.Email,
+                        InfoType = SessionController.Models.Auth.enumUserInfoType.Email,
                         Value = SocialUser.Email                    
                     },
-                    new Models.UserInfo()
+                    new SessionController.Models.Auth.UserInfo()
                     {
-                        InfoType = Models.enumUserInfoType.ImageProfile,
-                        Value = SocialUser.AvatarUrl.ToString()                  
+                        InfoType = SessionController.Models.Auth.enumUserInfoType.ImageProfile,
+                        Value = SocialUser.AvatarUrl!=null? SocialUser.AvatarUrl.ToString():null
                     },
-                    new Models.UserInfo()
+                    new SessionController.Models.Auth.UserInfo()
                     {
-                        InfoType = Models.enumUserInfoType.SocialUrl,
-                        Value = SocialUser.Link.ToString()
+                        InfoType = SessionController.Models.Auth.enumUserInfoType.SocialUrl,
+                        Value = SocialUser.Link != null?SocialUser.Link.ToString():null
                     }
                 },
             };
