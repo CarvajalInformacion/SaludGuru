@@ -11,7 +11,8 @@
 <body>
     <div>
         <div>
-            @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn)
+            @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn &&
+                BackOffice.Models.General.SessionModel.UserIsAutorized)
             {
                 <div>
                     @Html.Action(MVC.Base.ActionNames._L_Header)

@@ -56,7 +56,7 @@ namespace BackOffice.Web.Controllers
 
         #endregion
 
-        #region _LayoutModels
+        #region _Layout
 
         #region Header
 
