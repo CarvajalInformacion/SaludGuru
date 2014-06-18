@@ -19,6 +19,12 @@
 
         #endregion
 
+        #region Menu
+
+        public const string C_Settings_PrincipalMenu = "PrincipalMenu_{{RoleId}}";
+
+        #endregion
+
         #endregion
     }
 }

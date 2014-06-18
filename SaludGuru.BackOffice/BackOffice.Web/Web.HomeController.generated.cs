@@ -111,9 +111,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string ChangeAutorizationProfile = "ChangeAutorizationProfile";
                 public readonly string Dashboard = "Dashboard";
                 public readonly string Index = "Index";
             }
+            public readonly string ChangeAutorizationProfile = "~/Areas/Web/Views/Home/ChangeAutorizationProfile.cshtml";
             public readonly string Dashboard = "~/Areas/Web/Views/Home/Dashboard.cshtml";
             public readonly string Index = "~/Areas/Web/Views/Home/Index.cshtml";
         }

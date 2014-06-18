@@ -1,4 +1,6 @@
-﻿<div>
+﻿@model BackOffice.Models.General.HeaderModel
+
+<div>
     <!--render autorized profiles-->
     <div>
         <select onchange="javascript: Header_ChangeProfile(this);">
@@ -9,7 +11,7 @@
                 {
                     DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
                 }
-                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile,MVC.Home.Name,new{ChangeAutorizationProfile=ua.ProfilePublicId})">
+                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ChangeAutorizationProfile = ua.ProfilePublicId })">
                     <div>
                         <img src="@ua.ProfileImage" />
                         <label>@DoctorName</label>
@@ -42,6 +44,7 @@
     </div>
     <!--menu-->
     <div>
-        menu
+        @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu, Model.Menu)
     </div>
 </div>
+

@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="General\Constants.cs" />
+    <Compile Include="General\Enumerations.cs" />
+    <Compile Include="General\HeaderModel.cs" />
     <Compile Include="General\InternalSettings.cs" />
+    <Compile Include="General\MenuModel.cs" />
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
