@@ -46,5 +46,11 @@ namespace BackOffice.Web.Controllers
             base.ChangeCurrentProfile(ProfilePublicId);
             return RedirectToAction(MVC.Home.ActionNames.Dashboard, MVC.Home.Name);
         }
+
+        public virtual ActionResult LogOutUser()
+        {
+            base.LogOut();
+            return RedirectToAction(MVC.Home.ActionNames.Index, MVC.Home.Name);
+        }
     }
 }
