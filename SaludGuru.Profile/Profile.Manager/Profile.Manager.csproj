@@ -67,6 +67,7 @@
     <Compile Include="DAL\Controller\ProfileDataController.cs" />
     <Compile Include="DAL\Controller\ProfileDataFactory.cs" />
     <Compile Include="DAL\MySQLDAO\Profile_MySqlDao.cs" />
+    <Compile Include="Interfaces\ICategoryModel.cs" />
     <Compile Include="Interfaces\IProfileData.cs" />
     <Compile Include="Models\Constants.cs">
       <SubType>Code</SubType>

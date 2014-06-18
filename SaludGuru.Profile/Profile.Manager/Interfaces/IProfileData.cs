@@ -22,6 +22,7 @@ namespace Profile.Manager.Interfaces
         void CategoryInfoModify(int CategoryInfoTypeId, string Value, string LargeValue);
         void CategoryInfoDelete(int CategoryInfoTypeId);
 
+        List<ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter);  
         #endregion
 
         #region Profile

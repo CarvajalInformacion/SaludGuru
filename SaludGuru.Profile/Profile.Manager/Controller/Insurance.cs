@@ -1,4 +1,6 @@
 ﻿using Profile.Manager.DAL.Controller;
+using Profile.Manager.Interfaces;
+using Profile.Manager.Models;
 using Profile.Manager.Models.General;
 using System;
 using System.Collections.Generic;
@@ -40,5 +42,19 @@ namespace Profile.Manager.Controller
         //}
 
         //#endregion
+
+        public static List<InsuranceModel> CategoryGetAllAdmin(string Parameter)
+        {
+            List<InsuranceModel> oReturn = new List<InsuranceModel>();
+            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin(enumCategoryType.Insurance, Parameter);
+
+            imodelList.All(im => 
+            {
+                oReturn.Add((InsuranceModel)im);
+                return true; 
+            });
+
+            return oReturn;
+        }
     }
 }
