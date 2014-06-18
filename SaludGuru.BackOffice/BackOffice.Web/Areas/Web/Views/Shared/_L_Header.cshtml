@@ -31,9 +31,16 @@
     </div>
     <!--render user options-->
     <div>
-        <div>
+        <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
             <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
             <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+        </div>
+        <div id="divUserMenu" style="display:none;">
+            <ul>
+                <li>
+                    <a href="">Cerrar sesión</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
