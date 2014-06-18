@@ -10,7 +10,7 @@ namespace MessageModule.Controller
 {
     public class MessageDataController : IMessageData
     {
-        #region Singleton instance
+        #region Instancia Singleton
         private static IMessageData oInstance;
 
         public static IMessageData Instance
@@ -38,33 +38,48 @@ namespace MessageModule.Controller
         /// <returns>Lista de mensajes</returns>
         public List<Message.Models.MessageQueueModel> GetQueueMessage()
         {
-            return this.DataFactory.GetQueueMessage();            
+            return this.DataFactory.GetQueueMessage();
         }
 
-        public void CreateMessage()
+        /// <summary>
+        /// Función que se encarga de actualizar las tablas de procesos
+        /// </summary>
+        /// <param name="MessageQueueId">Id del mensaje de la cola</param>        
+        /// <param name="ProcessInfo">Informacion general del proceso</param>
+        /// <param name="MessageType">Tipo de mensaje que se va a envíar</param>
+        /// <param name="Agent">Medio que se va a utilizar para el envio</param>
+        /// <param name="BodyMessage">El mensaje</param>
+        /// <param name="IdAdrress">Identificación de la Dirección de destino</param>
+        /// <returns>Si el proceso se realizó correctamente</returns>
+        public bool CreateQueueProcess(int MessageQueueId, bool IsSuccess, string ProcessInfo, string MessageType, string Agent, string BodyMessage, int IdAdrress)
         {
-            this.DataFactory.CreateMessage();
+            return this.DataFactory.CreateQueueProcess(MessageQueueId, IsSuccess, ProcessInfo, MessageType, Agent, BodyMessage, IdAdrress);
         }
 
-        public void CreateMessageByAddress()
-        {
-            this.DataFactory.CreateMessageByAddress();
-        }
-
-        public void CreateQueueProcess()
-        {
-            this.DataFactory.CreateQueueProcess();
-        }
-
-        public void RemoveResend()
-        {
-            this.DataFactory.RemoveResend();
-        }
-
-
+        /// <summary>
+        /// Funcion que valida si la dirección de sms a la que se va a enviar existe, de no ser así, la crea.
+        /// </summary>
+        /// <param name="address">Dirección a validar</param>
+        /// <param name="agent">Medio de envio(Inalambria, Infobip,...)</param>
+        /// <returns>Lista de direcciones</returns>
         public List<AddressModel> UpsertAddress(string Address, string AggentWay)
         {
             return this.DataFactory.UpsertAddress(Address, AggentWay);
+        }
+
+        /// <summary>
+        /// Función que envía el mensaje a la tabla resend por sino se pudo enviar.
+        /// </summary>
+        /// <param name="MessageToSend">Mensaje que se va a enviar a la cola</param>     
+        public void AddToResendMsj(int QueueProcessId)
+        {
+            this.DataFactory.AddToResendMsj(QueueProcessId);
+        }
+
+
+        public List<int> GetAllMessageToResend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

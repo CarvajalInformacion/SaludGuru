@@ -11,6 +11,7 @@ namespace Message.Models
         public int AddressId { get; set; }
         public string Address { get; set; }
         public int IsBlackList { get; set; }
-        public string Agent { get; set; }        
+        public string Agent { get; set; }
+        public string Path { get; set; }
     }
 }

@@ -82,26 +82,6 @@ namespace Message.DAL.MySqlDao
             return modelList;
         }
 
-        public void CreateMessage()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateMessageByAddress()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateQueueProcess()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveResend()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Método que valida si la direccion se encuentra dentro de la lista negra para su Medio de envío
         /// </summary>
@@ -135,18 +115,116 @@ namespace Message.DAL.MySqlDao
                            group ui by
                            new
                            {
+                               AddressId = ui.Field<int>("AddressId"),
                                Address = ui.Field<string>("Address"),
                                IsBlackList = ui.Field<Int64>("IsBlackList"),
                                Agent = ui.Field<string>("Agent"),
                            } into uig
                            select new AddressModel()
                              {
+                                 AddressId = uig.Key.AddressId,
                                  Address = uig.Key.Address,
                                  IsBlackList = (int)uig.Key.IsBlackList,
                                  Agent = uig.Key.Agent,
                              }).ToList();
             }
             return oReturn;
+        }
+
+        /// <summary>
+        /// Función que se encarga de actualizar las tablas de procesos
+        /// </summary>
+        /// <param name="MessageQueueId">Id del mensaje de la cola</param>        
+        /// <param name="ProcessInfo">Informacion general del proceso</param>
+        /// <param name="MessageType">Tipo de mensaje que se va a envíar</param>
+        /// <param name="Agent">Medio que se va a utilizar para el envio</param>
+        /// <param name="BodyMessage">El mensaje</param>
+        /// <param name="IdAdrress">Identificación de la Dirección de destino</param>
+        /// <returns>Si el proceso se realizó correctamente</returns>
+        public bool CreateQueueProcess(int MessageQueueId, bool IsSuccess, string ProcessInfo, string MessageType, string Agent, string BodyMessage, int IdAdrress)
+        {
+            #region Parametros
+            int idResult = 0;
+
+            List<System.Data.IDbDataParameter> oParams = new List<System.Data.IDbDataParameter>();
+
+            oParams.Add(DataInstance.CreateTypedParameter("PMessageQueueId", MessageQueueId));
+            oParams.Add(DataInstance.CreateTypedParameter("PIsSuccess", IsSuccess));
+            oParams.Add(DataInstance.CreateTypedParameter("PProcessInfo", ProcessInfo));
+            oParams.Add(DataInstance.CreateTypedParameter("PMessageType", MessageType));
+            oParams.Add(DataInstance.CreateTypedParameter("PAgent", Agent));
+            oParams.Add(DataInstance.CreateTypedParameter("PBodyMessage", BodyMessage));
+            oParams.Add(DataInstance.CreateTypedParameter("PIdAddress", IdAdrress));
+
+            #endregion
+            ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "Mg_P_CreateProcessQueue",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = oParams
+            };
+
+            ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);
+            idResult = Convert.ToInt32(QueryResponse.NonQueryResult);
+
+            if (idResult != 0)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Función que envía el mensaje a la tabla resend por sino se pudo enviar.
+        /// </summary>
+        /// <param name="MessageToSend">Mensaje que se va a enviar a la cola</param>     
+        public void AddToResendMsj(int QueueProcessId)
+        {
+            #region Parametros
+            List<System.Data.IDbDataParameter> oParams = new List<System.Data.IDbDataParameter>();
+            oParams.Add(DataInstance.CreateTypedParameter("PIdQueueProcess", QueueProcessId));
+            #endregion
+
+            ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "Mg_Insert_P_Resend",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = oParams
+            };
+        }
+
+        /// <summary>
+        /// Función que obtiene todos los mensajes para ser reenviados
+        /// </summary>
+        /// <returns>Lista de Mensajes</returns>
+        public List<int> GetAllMessageToResend()
+        {
+           List<int> idReturnList = new List<int>();
+            List<System.Data.IDbDataParameter> oParams = new List<System.Data.IDbDataParameter>();
+
+            ADO.Models.ADOModelRequest Query = new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "Mg_P_GetAllFormResend",
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            
+            ADO.Models.ADOModelResponse QueryResponse = DataInstance.ExecuteQuery(Query);
+            
+            if (QueryResponse.DataTableResult != null &&
+                QueryResponse.DataTableResult.Rows.Count > 0)
+            {
+                idReturnList = (from ui in QueryResponse.DataTableResult.AsEnumerable()
+                                where !ui.IsNull("QueueProcessId")
+                           group ui by
+                           new
+                           {
+                               QueueProcessId = ui.Field<int>("QueueProcessId"),                              
+                           } into uig
+                           select new int()).ToList();
+            }
+            return idReturnList;
         }
     }
 }
