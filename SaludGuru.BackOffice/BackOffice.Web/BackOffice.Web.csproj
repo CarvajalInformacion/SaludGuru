@@ -164,6 +164,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Web\Controllers\InsuranceController.cs" />
+    <Compile Include="Areas\Web\Controllers\SpecialtyController.cs" />
+    <Compile Include="Areas\Web\Controllers\TreatmentController.cs" />
+    <Compile Include="Areas\Web\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
     <Compile Include="Areas\Web\WebAreaRegistration.cs" />
     <Compile Include="BaseController.generated.cs">
@@ -171,10 +175,17 @@
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsuranceController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SpecialtyController.cs" />
+    <Compile Include="Controllers\TreatmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Mobile.HomeController.generated.cs">
@@ -183,33 +194,64 @@
     <Compile Include="Mobile.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProfileController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialtyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="TreatmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Web.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Web.InsuranceController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web.ProfileController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Web.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web.SpecialtyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web.TreatmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\logInBackground.png" />
+    <Content Include="Areas\Web\Content\Images\logInBandBackground.png" />
+    <Content Include="Areas\Web\Content\Images\logInDoctorSmall.png" />
+    <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
-    <Content Include="Areas\Web\Content\Styles\Site\Main.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Rsx-SettingsConfig.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
@@ -217,6 +259,24 @@
     <Content Include="Areas\Web\Views\web.config" />
     <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-CondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MYRIADPRO-REGULAR.OTF" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.woff" />
     <None Include="Areas\Web\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Areas\Web\Scripts\jquery-1.10.2.js" />
     <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.js" />
@@ -229,7 +289,12 @@
     <Content Include="Areas\Web\Scripts\respond.js" />
     <Content Include="Areas\Web\Scripts\respond.min.js" />
     <Content Include="Areas\Web\Scripts\_references.js" />
-    <Content Include="Areas\Web\Views\Shared\Header.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Insurance\Search.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\Search.cshtml" />
+    <Content Include="Areas\Web\Views\Specialty\Search.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\Search.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Web.config">
@@ -254,7 +319,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Mobile\Scripts\" />
-    <Folder Include="Areas\Web\Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -296,6 +360,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)Rsx-SettingsConfig.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y
+XCOPY "$(ProjectDir)$(OutDir)Rsx-BackOffice.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

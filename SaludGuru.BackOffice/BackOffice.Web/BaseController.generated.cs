@@ -73,11 +73,13 @@ namespace BackOffice.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string _L_Header = "_L_Header";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string _L_Header = "_L_Header";
         }
 
 
@@ -99,6 +101,17 @@ namespace BackOffice.Web.Controllers
     public partial class T4MVC_BaseController : BackOffice.Web.Controllers.BaseController
     {
         public T4MVC_BaseController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void _L_HeaderOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult _L_Header()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames._L_Header);
+            _L_HeaderOverride(callInfo);
+            return callInfo;
+        }
 
     }
 }

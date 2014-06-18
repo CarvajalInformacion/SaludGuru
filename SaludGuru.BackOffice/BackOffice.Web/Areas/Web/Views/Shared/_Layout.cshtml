@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model List<BackOffice.Models.General.MenuModel>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,9 +11,12 @@
 <body>
     <div>
         <div>
-            @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn)
+            @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn &&
+                BackOffice.Models.General.SessionModel.UserIsAutorized)
             {
-                @Html.Partial(MVC.Web.Shared.Views.Header)
+                <div>
+                    @Html.Action(MVC.Base.ActionNames._L_Header)
+                </div>
             }
         </div>
 

@@ -3,8 +3,8 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <div>
+<div class="logInMainWrapper">
+    <div class="logInContentWrapper">
         @{
             //get login urls
             string RetUrl = Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name, null, Request.Url.Scheme);
@@ -17,9 +17,21 @@
                 .Value.Replace("{{UrlRetorno}}", RetUrl);
         }
         <!--Login section-->
-        <a href="@FBUrl">login facebook</a>
-        <br />
-        <a href="@GoogleUrl">login gmail</a>
+        <div class="logoSaludGuru"></div>
+        <div class="logInBandWrapper">
+            <div class="logInDocIllustration"></div> @*ilustracion doctor*@
+            <div class="logInElementsWrapper">
+                <span>Puedes ingresar usando tu usuario de Google o Facebook</span>
+                <div class="logInIconsWrapper">
+                    <a href="@GoogleUrl"><img src="/Areas/Web/Content/Images/googleIconSmall.png" alt="Login Google" title="Login Google" /></a>
+                    <a href="@FBUrl"><img src="/Areas/Web/Content/Images/facebookIconSmall.png" alt="Login con Facebook" title="Login con Facebook" /></a>
+                </div>
+                <input type="checkbox" checked="checked" /><span>&nbsp;&nbsp;Guardar mi usuario en este equipo</span>
+            </div>
+        </div>
+
+        @*copyright Salud Guru*@
+        <div class="logInCopiright">Copyright Salud Guru 2014</div>
     </div>
 
 </div>

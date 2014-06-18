@@ -1,4 +1,6 @@
-﻿<div>
+﻿@model BackOffice.Models.General.HeaderModel
+
+<div>
     <!--render autorized profiles-->
     <div>
         <select onchange="javascript: Header_ChangeProfile(this);">
@@ -9,7 +11,7 @@
                 {
                     DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
                 }
-                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile,MVC.Home.Name,new{ChangeAutorizationProfile=ua.ProfilePublicId})">
+                <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ChangeAutorizationProfile = ua.ProfilePublicId })">
                     <div>
                         <img src="@ua.ProfileImage" />
                         <label>@DoctorName</label>
@@ -29,9 +31,16 @@
     </div>
     <!--render user options-->
     <div>
-        <div>
+        <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
             <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
             <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+        </div>
+        <div id="divUserMenu" style="display:none;">
+            <ul>
+                <li>
+                    <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
@@ -42,6 +51,7 @@
     </div>
     <!--menu-->
     <div>
-        menu
+        @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu, Model.Menu)
     </div>
 </div>
+
