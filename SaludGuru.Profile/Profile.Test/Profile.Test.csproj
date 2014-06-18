@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Autorization.cs" />
+    <Compile Include="CategoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

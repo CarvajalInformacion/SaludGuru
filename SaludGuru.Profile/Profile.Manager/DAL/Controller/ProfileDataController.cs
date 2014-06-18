@@ -72,7 +72,13 @@ namespace Profile.Manager.DAL.Controller
         public void CategoryInfoDelete(int CategoryInfoTypeId)
         {
             DataFactory.CategoryInfoDelete(CategoryInfoTypeId);
+        }        
+        
+        public List<Interfaces.ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter)
+        {
+           return DataFactory.CategoryGetAllAdmin(categoryType, Parameter);
         }
+
         #endregion
 
         #region Profile
@@ -201,5 +207,8 @@ namespace Profile.Manager.DAL.Controller
         }
 
         #endregion
+
+
+      
     }
 }
