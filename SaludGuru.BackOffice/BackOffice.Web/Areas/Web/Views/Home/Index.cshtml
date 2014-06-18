@@ -3,8 +3,8 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div class="" style="border:1px solid green; width:100%;">
-    <div class="" style="border: 1px solid red; width: 100%; height: auto; background-image:url('/Areas/Web/Content/Images/logInBackground.png'); background-repeat: no-repeat; background-size:1380px;">
+<div class="logInMainWrapper">
+    <div class="logInContentWrapper">
         @{
             //get login urls
             string RetUrl = Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name, null, Request.Url.Scheme);
@@ -17,18 +17,21 @@
                 .Value.Replace("{{UrlRetorno}}", RetUrl);
         }
         <!--Login section-->
-        <div class="" style="border: 1px solid blue; padding: 0px; margin: 13px 0px 0px 15%; width: 120px; height: 74px; background-image:url('/Areas/Web/Content/Images/logoSaludGuruSmall.png'); background-size: 119px 72px; background-repeat:no-repeat;"></div>
-        <div class="" style="width: 100%; height: 248px; border: 1px solid grey; margin:98px 0px 127px 0px; background-color:rgba(255, 255, 255, 0.7); background-image: url('/Areas/Web/Content/Images/logInBandBackground.png'); background-size:100% auto; background-repeat:no-repeat;">
-            <div class="" style="display: inline-block; background-image:; background-repeat: no-repeat; background-size: 206px 318px; border: 1px solid pink; width: 206px; height: 318px; margin: -50px 0px 0px 23%; background-image: url('/Areas/Web/Content/Images/logInDoctorSmall.png'); background-repeat: no-repeat; "></div> @*ilustracion doctor*@
-            <div class="" style="display:inline-block; width:338px; height:160px; border:1px solid green; margin:27px 0px 0px -3px; vertical-align:top;">
-                <span style="font-size:20px; line-height:17px; letter-spacing:-1px;">Puedes ingresar usando tu usuario de Google o Facebook</span>
-                <div class="" style="margin:14px 0px 10px 0px;">
-                    <a href="@GoogleUrl"><img style="display: inline-block; width: 76px; height: 76px; border:1px solid grey; " src="/Areas/Web/Content/Images/googleIconSmall.png" alt="Login Google" title="Login Google" /></a>
-                    <a href="@FBUrl"><img style="display:inline-block; width:76px; height:76px; border:1px solid green;" src="/Areas/Web/Content/Images/facebookIconSmall.png" alt="Login con Facebook" title="Login con Facebook" /></a>
+        <div class="logoSaludGuru"></div>
+        <div class="logInBandWrapper">
+            <div class="logInDocIllustration"></div> @*ilustracion doctor*@
+            <div class="logInElementsWrapper">
+                <span>Puedes ingresar usando tu usuario de Google o Facebook</span>
+                <div class="logInIconsWrapper">
+                    <a href="@GoogleUrl"><img src="/Areas/Web/Content/Images/googleIconSmall.png" alt="Login Google" title="Login Google" /></a>
+                    <a href="@FBUrl"><img src="/Areas/Web/Content/Images/facebookIconSmall.png" alt="Login con Facebook" title="Login con Facebook" /></a>
                 </div>
-                <input type="checkbox" checked="checked"/><span>&nbsp;&nbsp;mi usuario en esta equipo</span>
+                <input type="checkbox" checked="checked" /><span>&nbsp;&nbsp;Guardar mi usuario en este equipo</span>
             </div>
         </div>
+
+        @*copyright Salud Guru*@
+        <div class="logInCopiright">Copyright Salud Guru 2014</div>
     </div>
 
 </div>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SettingsConfig>
   <Module name="Auth">
-    <key name="location">D:\Proyectos\GitHub\SaludGuru\Auth\Auth.Web\Rsx-Auth.xml</key>
+    <key name="location">C:\project\SaludGuruV2.0\Auth\Auth.Web\Rsx-Auth.xml</key>
   </Module>
 </SettingsConfig>
