@@ -12,5 +12,10 @@ namespace BackOffice.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult Create()
+        {
+            return View();
+        }
     }
 }
