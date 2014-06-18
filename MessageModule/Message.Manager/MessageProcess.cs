@@ -12,10 +12,14 @@ namespace Message.Manager
 {
     public class MessageProcess
     {
+        #region Variables Privadas
         /// <summary>
         /// Variable para el acceso a funciones DAL
         /// </summary>
         private MessageDataController _controller = new MessageDataController();
+        #endregion
+
+        #region Funciones Publicas
 
         /// <summary>
         /// Función que inicia el proceso
@@ -24,61 +28,74 @@ namespace Message.Manager
         {
             //read queue
             List<MessageQueueModel> messageQueueList = new List<MessageQueueModel>();
-            messageQueueList = _controller.GetQueueMessage();
-
+            messageQueueList = this._controller.GetQueueMessage();
             if (messageQueueList.Count > 0)
             {
                 foreach (MessageQueueModel item in messageQueueList)
-                {
                     this.ProcessMesage(item);
-                }
             }
         }
 
+        public void AddResend(int messageQueueId)
+        { 
+
+        }
+
+        #endregion
+
+        #region Funciones Privadas
+
         /// <summary>
-        /// Funcion que se encarga de llamar los metodos que desarrllan el proceso de envío
+        /// Funcion que se encarga de llamar los metodos que desarrollan el proceso de envío
         /// </summary>
         /// <param name="QueueItemToProcess">Mensaje para enviar, tomado de la cola</param>
-        /// <returns>Modelo con info el mensaje enviado</returns>
+        /// <returns>Modelo con info del mensaje enviado</returns>
         private Message.Models.MessageModel ProcessMesage(Message.Models.MessageQueueModel QueueItemToProcess)
         {
-            Message.Models.MessageModel oMsjReturn = new MessageModel();
-            /********validate config****************/
+            MessageModel oMsjReturn = new MessageModel();
+            //validate config
             Message.Models.AgentModel oAgentConfig = new AgentModel()
             {
                 QueueItemToProcess = QueueItemToProcess,
-                MessageConfig = GetMessageConfig(QueueItemToProcess.MessageType),
+                MessageConfig = this.GetMessageConfig(QueueItemToProcess.MessageType),
             };
             oAgentConfig.AgentConfig = GetAgentConfig(oAgentConfig.MessageConfig["Agent"]);
 
-            /*************invoque message agent**********/
-            Message.Interfaces.IAgent Agent = GetAgentInstance(oAgentConfig.AgentConfig["Assemblie"]);
+            //invoque message agent
+            Message.Interfaces.IAgent Agent = this.GetAgentInstance(oAgentConfig.AgentConfig["Assemblie"]);
 
             oMsjReturn = Agent.SendMessage(oAgentConfig);
 
+            if (oMsjReturn != null)
+            {
+                //TODO: VERIFICAR SI HAY UN RESEND Y HACER LA OPERACION
+            }
+
             /*trace log message*/
-
-
-
-            //oMsjReturn.ConfigBody = SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_MailConfirmation_Body"].Value;
-
-
             return oMsjReturn;
         }
 
-
+        /// <summary>
+        /// Función que obtiene la configuración desde el XML de acuerdo al tipo de mensaje
+        /// </summary>
+        /// <param name="MessageType">Tipo de mensaje a consultar</param>
+        /// <returns>Llave y valor de la correspondiente configuración</returns>
         private Dictionary<string, string> GetMessageConfig(string MessageType)
         {
             XDocument xDocMessType = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Params_" + MessageType].Value);
             Dictionary<string, string> MessageConfig = xDocMessType.Descendants("Message").Descendants("key").ToDictionary(k => k.Attribute("name").Value, v => v.Value);
+            XDocument xDocMessBody = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
+            MessageConfig.Add("Body", SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
+
+            //MessageConfig.Add()
             return MessageConfig;
         }
 
         /// <summary>
-        /// Funcion 
+        /// Función que obtiene la configuración del agente de envio
         /// </summary>
-        /// <param name="QueueItemToProcess"></param>
-        /// <returns></returns>
+        /// <param name="QueueItemToProcess">Nombre del agente del cual se requiere la configuración</param>
+        /// <returns>Llave y valor correspondiente al agente</returns>
         private Dictionary<string, string> GetAgentConfig(string AgentName)
         {
             XDocument xDoc = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"][AgentName].Value);
@@ -98,5 +115,7 @@ namespace Message.Manager
             Message.Interfaces.IAgent oRetorno = (Message.Interfaces.IAgent)Activator.CreateInstance(typetoreturn);
             return oRetorno;
         }
+
+        #endregion
     }
 }

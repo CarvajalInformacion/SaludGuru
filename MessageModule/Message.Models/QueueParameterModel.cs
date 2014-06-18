@@ -9,6 +9,7 @@ namespace Message.Models
     public class QueueParameterModel
     {
         public int MessageParameterId { get; set; }
+        public int MessageQueueId { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
         public DateTime CreateDate { get; set; }

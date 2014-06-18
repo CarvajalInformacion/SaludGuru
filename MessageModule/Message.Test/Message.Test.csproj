@@ -64,6 +64,10 @@
       <Project>{1e884e31-ffcf-4dda-bf63-24e1a950b476}</Project>
       <Name>Message.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Message.Inalambria\Message.Inalambria.csproj">
+      <Project>{bbf09d5a-8d32-4f2e-a10d-09606e2008f9}</Project>
+      <Name>Message.Inalambria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Message.Interfaces\Message.Interfaces.csproj">
       <Project>{c85b3dd9-70a7-4738-8ba5-0fe04ef02839}</Project>
       <Name>Message.Interfaces</Name>
