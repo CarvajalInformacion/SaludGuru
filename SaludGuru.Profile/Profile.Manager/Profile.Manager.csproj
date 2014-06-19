@@ -76,6 +76,7 @@
     <Compile Include="Models\General\CategoryInfoModel.cs" />
     <Compile Include="Models\General\CityModel.cs" />
     <Compile Include="Models\General\InsuranceModel.cs" />
+    <Compile Include="Models\General\ItemModel.cs" />
     <Compile Include="Models\General\SpecialtyModel.cs" />
     <Compile Include="Models\General\TreatmentModel.cs" />
     <Compile Include="Models\Office\OfficeInfoModel.cs" />
