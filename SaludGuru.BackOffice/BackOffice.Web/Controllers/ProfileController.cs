@@ -1,8 +1,11 @@
-﻿using System;
+﻿using BackOffice.Models.Profile;
+using Profile.Manager.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace BackOffice.Web.Controllers
 {
@@ -15,7 +18,14 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult Create()
         {
-            return View();
+            //ProfileUpSertModel Model = new ProfileUpSertModel()
+            //{
+            //    ProfileOptions = Profile.Manager.Controller.Profile.GetProfileOptions(),
+            //    Profile = null,
+            //};
+
+
+            return View(Model);
         }
     }
 }

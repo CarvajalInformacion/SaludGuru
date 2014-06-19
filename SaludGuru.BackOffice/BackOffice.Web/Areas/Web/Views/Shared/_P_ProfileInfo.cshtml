@@ -1,4 +1,4 @@
-﻿@model Profile.Manager.Models.Profile.ProfileModel
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 
 <div>
     <form action="@Url.Action(MVC.Profile.ActionNames.Create, MVC.Profile.Name)" method="post">
@@ -9,11 +9,18 @@
             </li>
             <li>
                 <label>Apellido</label>
-                <input id="Name" name="Name" value="" />
+                <input id="LastName" name="LastName" value="" />
             </li>
             <li>
                 <label>Tipo de perfil</label>
-                <input id="Name" name="Name" value="" />
+                <select id="ProfileType" name="ProfileType">
+                    @foreach (Profile.Manager.Models.General.ItemModel tp in
+                        Model.ProfileOptions.
+                        Where(x => x.CatalogId == (int)Profile.Manager.Models.enumProfileType).ToList())
+                    {
+                        <option value="@tp.ItemId">@tp.ItemName</option>
+                    }
+                </select>
             </li>
             <li>
                 <label>Estado de perfil</label>
