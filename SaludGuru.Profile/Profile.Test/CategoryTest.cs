@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Profile.Manager.Controller;
-using Profile.Manager.Models;
+using SaludGuruProfile.Manager.Controller;
+using SaludGuruProfile.Manager.Models;
 
 namespace Profile.Test
 {
@@ -11,7 +11,7 @@ namespace Profile.Test
         [TestMethod]
         public void CategoryGetAllAdmin()
         {
-            Profile.Manager.Controller.Treatment.CategoryGetAllAdmin("Em");           
+            SaludGuruProfile.Manager.Controller.Treatment.CategoryGetAllAdmin("Em");           
         }
     }
 }

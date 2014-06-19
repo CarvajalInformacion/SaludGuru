@@ -59,15 +59,15 @@
     <Compile Include="ProfileTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Profile.Manager\Profile.Manager.csproj">
-      <Project>{9bb454c7-6e9f-4c4a-a190-b241ca12080e}</Project>
-      <Name>Profile.Manager</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaludGuruProfile.Manager\SaludGuruProfile.Manager.csproj">
+      <Project>{26a38160-3cd7-4c6c-b1bb-bc3e1f3c061c}</Project>
+      <Name>SaludGuruProfile.Manager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
