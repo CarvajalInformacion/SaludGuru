@@ -413,6 +413,32 @@ namespace Profile.Manager.DAL.MySQLDAO
             return oReturnProfile;
         }
 
+        public List<ItemModel> ProfileGetOptions()
+        {
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetOptions",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = null
+            });
+
+            List<ItemModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from pm in response.DataTableResult.AsEnumerable()
+                           select new ItemModel()
+                           {
+                               CatalogId = pm.Field<int>("CatalogId"),
+                               CatalogName = pm.Field<string>("CatalogName"),
+                               ItemId = pm.Field<int>("ItemId"),
+                               ItemName = pm.Field<string>("ItemName"),
+                           }).ToList();
+            }
+
+            return oReturn;
+        }
         #endregion
 
         #region Office

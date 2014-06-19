@@ -9,7 +9,7 @@ namespace Profile.Test
     public class CategoryTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CategoryGetAllAdmin()
         {
             Profile.Manager.Controller.Treatment.CategoryGetAllAdmin("Em");           
         }

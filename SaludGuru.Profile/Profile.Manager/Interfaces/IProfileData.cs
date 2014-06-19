@@ -1,4 +1,5 @@
 ﻿using Profile.Manager.Models;
+using Profile.Manager.Models.General;
 using Profile.Manager.Models.Profile;
 using SessionController.Models.Profile.Autorization;
 using System;
@@ -41,6 +42,8 @@ namespace Profile.Manager.Interfaces
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 
         List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount);
+        List<ItemModel> ProfileGetOptions();
+
         #endregion
 
         #region Office
