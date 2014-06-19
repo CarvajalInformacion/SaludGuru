@@ -22,5 +22,25 @@ namespace SaludGuruProfile.Manager.Controller
         {
             return ProfileDataController.Instance.ProfileGetOptions();
         }
+
+        public static void InsuranceProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
+        {
+            ProfileDataController.Instance.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
+        }
+
+        public static void InsuranceProfileDelete(string ProfilePublicId, int CategoryId)
+        {
+            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
+        }
+
+        public static void SpecialtyProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
+        {
+            ProfileDataController.Instance.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
+        }
+
+        public static void SpecialtyProfileDelete(string ProfilePublicId, int CategoryId)
+        {
+            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
+        }
     }
 }
