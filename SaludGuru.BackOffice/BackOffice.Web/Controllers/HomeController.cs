@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Profile.Manager.Controller;
+using SaludGuruProfile.Manager.Controller;
 using BackOffice.Models.General;
 
 namespace BackOffice.Web.Controllers

@@ -1,5 +1,5 @@
-﻿using Profile.Manager.Models.General;
-using Profile.Manager.Models.Profile;
+﻿using SaludGuruProfile.Manager.Models.General;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using BackOffice.Models.Profile;
-using Profile.Manager.Controller;
+using SaludGuruProfile.Manager.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +18,11 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult Create()
         {
-            //ProfileUpSertModel Model = new ProfileUpSertModel()
-            //{
-            //    ProfileOptions = Profile.Manager.Controller.Profile.GetProfileOptions(),
-            //    Profile = null,
-            //};
+            ProfileUpSertModel Model = new ProfileUpSertModel()
+            {
+                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                Profile = null,
+            };
 
 
             return View(Model);

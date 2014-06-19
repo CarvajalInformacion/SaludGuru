@@ -14,9 +14,9 @@
             <li>
                 <label>Tipo de perfil</label>
                 <select id="ProfileType" name="ProfileType">
-                    @foreach (Profile.Manager.Models.General.ItemModel tp in
+                    @foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
                         Model.ProfileOptions.
-                        Where(x => x.CatalogId == (int)Profile.Manager.Models.enumProfileType).ToList())
+                        Where(x => x.CatalogId == 1).ToList())
                     {
                         <option value="@tp.ItemId">@tp.ItemName</option>
                     }
