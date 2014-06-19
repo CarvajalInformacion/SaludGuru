@@ -27,5 +27,16 @@ namespace BackOffice.Web.Controllers
 
             return View(Model);
         }
+
+
+        public virtual ActionResult Specialty(string ProfilePublicId)
+        {
+            return View();
+        }
+
+        public virtual ActionResult Insurance(string ProfilePublicId)
+        {
+            return View();
+        }
     }
 }
