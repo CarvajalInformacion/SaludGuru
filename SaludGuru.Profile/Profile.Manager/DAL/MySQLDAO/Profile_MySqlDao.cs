@@ -380,7 +380,7 @@ namespace Profile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_ProfileInfo_AdminProfile",
+                CommandText = "P_Profile_SearchProfileAdmin",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
