@@ -16,7 +16,9 @@
                 <select id="ProfileType" name="ProfileType">
                     @foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
                         Model.ProfileOptions.
-                        Where(x => x.CatalogId == 1).ToList())
+                        Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.ProfileType).
+                        OrderBy(x => x.ItemName)
+                        .ToList())
                     {
                         <option value="@tp.ItemId">@tp.ItemName</option>
                     }
