@@ -55,4 +55,10 @@
         AfterCare = 803,
         IsDefault = 804,
     }
+
+    public enum enumIdentificationType
+    {
+        Cedula = 901,
+        Nit = 902
+    }
 }
