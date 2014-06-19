@@ -1,4 +1,5 @@
 ﻿using Profile.Manager.Models;
+using Profile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,6 +129,11 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
 
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+        }
+
         #endregion
 
         #region Office
@@ -185,6 +191,12 @@ namespace Profile.Manager.DAL.Controller
         public void OfficeCategoryInfoDelete(int OfficeCategoryInfoId)
         {
             DataFactory.OfficeCategoryInfoDelete(OfficeCategoryInfoId);
+        }
+
+        public List<ProfileModel> ProfileSearchInfo(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            List<ProfileModel> oReturn = DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+            return oReturn;
         }
 
         #endregion

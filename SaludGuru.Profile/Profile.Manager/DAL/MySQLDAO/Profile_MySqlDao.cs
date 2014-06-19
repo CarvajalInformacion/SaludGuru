@@ -8,6 +8,7 @@ using Profile.Manager.Interfaces;
 using SessionController.Models.Profile.Autorization;
 using Profile.Manager.Models;
 using Profile.Manager.Models.General;
+using Profile.Manager.Models.Profile;
 
 namespace Profile.Manager.DAL.MySQLDAO
 {
@@ -369,6 +370,48 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_ProfileInfo_AdminProfile",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturnProfile = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
+                                  select new ProfileModel
+                                  {
+                                      ProfilePublicId = pm.Field<string>("ProfilePublicId"),
+                                      Name = pm.Field<string>("Name"),
+                                      LastName = pm.Field<string>("LastName"),
+                                      ProfileStatus = pm.Field<enumProfileStatus>("Status"),
+                                      ProfileInfo = new List<ProfileInfoModel>() 
+                                      { 
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("Certified"),                                        
+                                        },
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("Email"),                                        
+                                        }
+                                      },
+                                  }).ToList();
+            }
+
+            return oReturnProfile;
+        }
 
         #endregion
 

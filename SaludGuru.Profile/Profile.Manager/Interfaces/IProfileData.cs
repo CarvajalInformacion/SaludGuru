@@ -1,4 +1,5 @@
 ﻿using Profile.Manager.Models;
+using Profile.Manager.Models.Profile;
 using SessionController.Models.Profile.Autorization;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Profile.Manager.Interfaces
         void CategoryInfoModify(int CategoryInfoTypeId, string Value, string LargeValue);
         void CategoryInfoDelete(int CategoryInfoTypeId);
 
-        List<ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter);  
+        List<ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter);
         #endregion
 
         #region Profile
@@ -39,6 +40,7 @@ namespace Profile.Manager.Interfaces
         void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault);
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 
+        List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount);
         #endregion
 
         #region Office
