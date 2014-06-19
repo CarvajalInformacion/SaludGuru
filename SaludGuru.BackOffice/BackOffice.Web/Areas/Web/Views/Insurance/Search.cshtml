@@ -1,29 +1,84 @@
 ﻿@*@model*@ 
 @using System.Linq
 @{
-    //ViewBag.Title = "Search";
-    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Search";
+    //Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
 <div>
-    <input type="text"  name="txt_Search" value=" " />
+    <input type="text" name="txt_Search" value=" " />
 </div>
 
 <div id="grid"></div>
-<script id="alt-template" type="text/x-kendo-template">
-    <tr data-uid="#= uid #">
-        <td colspan="2">
-            <strong>#: name #</strong>
-            <strong>#: age #</strong>
-        </td>
-    </tr>
-</script>
 <script>
-    $("#grid").kendoGrid({
-        dataSource: [
-          { name: "Jane Doe", age: 30 },
-          { name: "John Doe", age: 33 }
-        ],
-        altRowTemplate: kendo.template($("#alt-template").html())
+
+    var data = [
+        { id: 1, text: "text 1", position: 0 },
+        { id: 2, text: "text 2", position: 1 },
+        { id: 3, text: "text 3", position: 2 }
+    ]
+
+    var dataSource = new kendo.data.DataSource({
+        data: data,
+        schema: {
+            model: {
+                id: "id",
+                fields: {
+                    id: { type: "number" },
+                    text: { type: "string" },
+                    position: { type: "number" }
+                }
+            }
+        }
+    });
+
+    var grid = $("#grid").kendoGrid({
+        dataSource: dataSource,
+        scrollable: false,
+        columns: ["id", "text"]
+    }).data("kendoGrid");
+
+    grid.table.kendoDraggable({
+        filter: "tbody > tr",
+        group: "gridGroup",
+        threshold: 100,
+        hint: function (e) {
+            var dataItem = grid.dataItem(e);
+            return $('<div class="hint">ID: ' + dataItem.id + '</div>');
+        }
+    });
+
+    grid.table.kendoDropTarget({
+        group: "gridGroup",
+        drop: function (e) {
+            e.draggable.hint.hide();
+            var target = dataSource.getByUid($(e.draggable.currentTarget).data("uid")),
+            dest = $(document.elementFromPoint(e.clientX, e.clientY));
+
+            if (dest.is("th")) {
+                return;
+            }
+            dest = dataSource.getByUid(dest.parent().data("uid"));
+
+            //not on same item
+            if (target.get("id") !== dest.get("id")) {
+                //reorder the items
+                var tmp = target.get("position");
+                target.set("position", dest.get("position"));
+                dest.set("position", tmp);
+
+                dataSource.sort({ field: "position", dir: "asc" });
+            }
+        }
     });
 </script>
+
+<style scoped>
+    .hint {
+        border: 2px solid #00FF00;
+        padding: 7px 10px;
+        background-color: #FFFFFF;
+    }
+</style>
+</body>
+</html>
