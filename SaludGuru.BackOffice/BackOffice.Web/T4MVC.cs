@@ -31,6 +31,10 @@ public static partial class MVC
     public static WebClass Web { get { return s_Web; } }
     public static BackOffice.Web.Controllers.BaseController Base = new BackOffice.Web.Controllers.T4MVC_BaseController();
     public static BackOffice.Web.Controllers.HomeController Home = new BackOffice.Web.Controllers.T4MVC_HomeController();
+    public static BackOffice.Web.Controllers.InsuranceController Insurance = new BackOffice.Web.Controllers.T4MVC_InsuranceController();
+    public static BackOffice.Web.Controllers.ProfileController Profile = new BackOffice.Web.Controllers.T4MVC_ProfileController();
+    public static BackOffice.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Controllers.T4MVC_SpecialtyController();
+    public static BackOffice.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Controllers.T4MVC_TreatmentController();
 }
 
 namespace T4MVC
@@ -47,6 +51,10 @@ namespace T4MVC
     {
         public readonly string Name = "Web";
         public BackOffice.Web.Areas.Web.Controllers.HomeController Home = new BackOffice.Web.Areas.Web.Controllers.T4MVC_HomeController();
+        public BackOffice.Web.Areas.Web.Controllers.InsuranceController Insurance = new BackOffice.Web.Areas.Web.Controllers.T4MVC_InsuranceController();
+        public BackOffice.Web.Areas.Web.Controllers.ProfileController Profile = new BackOffice.Web.Areas.Web.Controllers.T4MVC_ProfileController();
+        public BackOffice.Web.Areas.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Areas.Web.Controllers.T4MVC_SpecialtyController();
+        public BackOffice.Web.Areas.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_TreatmentController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
     }
 }

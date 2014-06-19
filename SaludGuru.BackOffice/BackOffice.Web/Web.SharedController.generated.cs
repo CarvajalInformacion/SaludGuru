@@ -39,10 +39,12 @@ namespace T4MVC.Web
                 public readonly string _L_Header = "_L_Header";
                 public readonly string _L_PrincipalMenu = "_L_PrincipalMenu";
                 public readonly string _Layout = "_Layout";
+                public readonly string _P_ProfileInfo = "_P_ProfileInfo";
             }
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";
             public readonly string _L_PrincipalMenu = "~/Areas/Web/Views/Shared/_L_PrincipalMenu.cshtml";
             public readonly string _Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+            public readonly string _P_ProfileInfo = "~/Areas/Web/Views/Shared/_P_ProfileInfo.cshtml";
         }
     }
 

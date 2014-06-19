@@ -8,7 +8,7 @@ namespace Profile.Test
     public class Autorization
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GetEmailAutorization()
         {
             List<SessionController.Models.Profile.Autorization.AutorizationModel> AutorizationResponse =
                 Profile.Manager.Controller.Autorization.GetEmailAutorization("jairo.guzman@carvajal.com");

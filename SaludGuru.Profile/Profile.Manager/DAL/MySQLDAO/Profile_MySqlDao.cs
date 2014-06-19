@@ -7,6 +7,8 @@ using System.Data;
 using Profile.Manager.Interfaces;
 using SessionController.Models.Profile.Autorization;
 using Profile.Manager.Models;
+using Profile.Manager.Models.General;
+using Profile.Manager.Models.Profile;
 
 namespace Profile.Manager.DAL.MySQLDAO
 {
@@ -153,6 +155,61 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
+        public List<ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryType", categoryType));
+            lstParams.Add(DataInstance.CreateTypedParameter("vParameter", Parameter));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "C_Category_GetAllAdmin",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ICategoryModel> oRetorno = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                if (categoryType == enumCategoryType.Insurance)
+                {
+                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                                select new InsuranceModel()
+                                {
+                                    CategoryId = au.Field<int>("CategoryId"),
+                                    CreateDare = au.Field<DateTime>("CreateDate"),
+                                    LastModify = au.Field<DateTime>("LastModify"),
+                                    Name = au.Field<string>("Name"),
+                                }).ToList<ICategoryModel>();
+                }
+                if (categoryType == enumCategoryType.Specialty)
+                {
+                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                                select new SpecialtyModel()
+                                {
+                                    CategoryId = au.Field<int>("CategoryId"),
+                                    CreateDare = au.Field<DateTime>("CreateDate"),
+                                    LastModify = au.Field<DateTime>("LastModify"),
+                                    Name = au.Field<string>("Name"),
+                                }).ToList<ICategoryModel>();
+                }
+                if (categoryType == enumCategoryType.Treatment)
+                {
+                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                                select new TreatmentModel()
+                                {
+                                    CategoryId = au.Field<int>("CategoryId"),
+                                    CreateDare = au.Field<DateTime>("CreateDate"),
+                                    LastModify = au.Field<DateTime>("LastModify"),
+                                    Name = au.Field<string>("Name"),
+                                }).ToList<ICategoryModel>();
+                }
+            }
+            return oRetorno;
+        }
         #endregion
 
         #region Profile
@@ -313,6 +370,75 @@ namespace Profile.Manager.DAL.MySQLDAO
             });
         }
 
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_SearchProfileAdmin",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturnProfile = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
+                                  select new ProfileModel
+                                  {
+                                      ProfilePublicId = pm.Field<string>("ProfilePublicId"),
+                                      Name = pm.Field<string>("Name"),
+                                      LastName = pm.Field<string>("LastName"),
+                                      ProfileStatus = pm.Field<enumProfileStatus>("Status"),
+                                      ProfileInfo = new List<ProfileInfoModel>() 
+                                      { 
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("Certified"),                                        
+                                        },
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("Email"),                                        
+                                        }
+                                      },
+                                  }).ToList();
+            }
+
+            return oReturnProfile;
+        }
+
+        public List<ItemModel> ProfileGetOptions()
+        {
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetOptions",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = null
+            });
+
+            List<ItemModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from pm in response.DataTableResult.AsEnumerable()
+                           select new ItemModel()
+                           {
+                               CatalogId = pm.Field<int>("CatalogId"),
+                               CatalogName = pm.Field<string>("CatalogName"),
+                               ItemId = pm.Field<int>("ItemId"),
+                               ItemName = pm.Field<string>("ItemName"),
+                           }).ToList();
+            }
+
+            return oReturn;
+        }
         #endregion
 
         #region Office

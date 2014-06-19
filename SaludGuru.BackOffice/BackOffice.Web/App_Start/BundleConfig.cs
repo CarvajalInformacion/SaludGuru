@@ -20,6 +20,13 @@ namespace BackOffice.Web
                             "~/Areas/Web/Scripts/jquery.validate*"));
                 #endregion
 
+                #region Kendo
+
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendo").Include(
+                            "~/Areas/Web/Scripts/kendo/2014.1.416/kendo.core.min.js"));
+
+                #endregion
+
                 #region Modernizr
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Web/Scripts/modernizr-*"));

@@ -11,16 +11,16 @@
                     <a href="">Administrar</a>
                     <ul>
                         <li>
-                            <a href="">Perfil</a>
+                            <a href="@Url.Action(MVC.Profile.ActionNames.Search,MVC.Profile.Name)">Perfil</a>
                         </li>
                         <li>
-                            <a href="">Seguros medicos</a>
+                            <a href="@Url.Action(MVC.Insurance.ActionNames.Search, MVC.Insurance.Name)">Seguros medicos</a>
                         </li>
                         <li>
-                            <a href="">Especialidades</a>
+                            <a href="@Url.Action(MVC.Specialty.ActionNames.Search, MVC.Specialty.Name)">Especialidades</a>
                         </li>
                         <li>
-                            <a href="">Tratamientos</a>
+                            <a href="@Url.Action(MVC.Treatment.ActionNames.Search, MVC.Treatment.Name)">Tratamientos</a>
                         </li>
                     </ul>
                 </li>
@@ -49,7 +49,7 @@
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
             <li>
-                <a href="">Dashboard</a>
+                <a href="@Url.Action(MVC.Home.ActionNames.Dashboard,MVC.Home.Name)">Dashboard</a>
             </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Patient:
@@ -65,5 +65,5 @@
             default:
                 break;
         }
-    };
+    }
 </ul>

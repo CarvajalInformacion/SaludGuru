@@ -1,4 +1,6 @@
 ﻿using Profile.Manager.Models;
+using Profile.Manager.Models.General;
+using Profile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +75,12 @@ namespace Profile.Manager.DAL.Controller
         {
             DataFactory.CategoryInfoDelete(CategoryInfoTypeId);
         }
+
+        public List<Interfaces.ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter)
+        {
+            return DataFactory.CategoryGetAllAdmin(categoryType, Parameter);
+        }
+
         #endregion
 
         #region Profile
@@ -122,6 +130,15 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
 
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+        }
+
+        public List<ItemModel> ProfileGetOptions()
+        {
+            return DataFactory.ProfileGetOptions();
+        }
         #endregion
 
         #region Office
@@ -181,6 +198,12 @@ namespace Profile.Manager.DAL.Controller
             DataFactory.OfficeCategoryInfoDelete(OfficeCategoryInfoId);
         }
 
+        public List<ProfileModel> ProfileSearchInfo(string SearchCriteria, int PageNumber, int RowCount)
+        {
+            List<ProfileModel> oReturn = DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+            return oReturn;
+        }
+
         #endregion
 
         #region Autorization
@@ -201,5 +224,8 @@ namespace Profile.Manager.DAL.Controller
         }
 
         #endregion
+
+
+
     }
 }

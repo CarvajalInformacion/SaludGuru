@@ -12,23 +12,23 @@
                         DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
                     }
                     @*<option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ChangeAutorizationProfile = ua.ProfilePublicId })">*@
-                    <option>    
-                            <img src="@ua.ProfileImage" />
-                            <label>PANCHO @DoctorName</label>
-                            <label>PANCHO2 @ua.RoleName</label>
-                        
+                    <option>
+                        <img src="@ua.ProfileImage" />
+                        <label>PANCHO @DoctorName</label>
+                        <label>PANCHO2 @ua.RoleName</label>
+
                     </option>
-                    <option>    
-                            <img src="@ua.ProfileImage" />
-                            <label>PANCHO @DoctorName</label>
-                            <label>PANCHO2 @ua.RoleName</label>
-                        
+                    <option>
+                        <img src="@ua.ProfileImage" />
+                        <label>PANCHO @DoctorName</label>
+                        <label>PANCHO2 @ua.RoleName</label>
+
                     </option>
-                    <option>    
-                            <img src="@ua.ProfileImage" />
-                            <label>PANCHO @DoctorName</label>
-                            <label>PANCHO2 @ua.RoleName</label>
-                        
+                    <option>
+                        <img src="@ua.ProfileImage" />
+                        <label>PANCHO @DoctorName</label>
+                        <label>PANCHO2 @ua.RoleName</label>
+
                     </option>
                 }
             </select>
@@ -41,29 +41,29 @@
         <div class="userNotificationWrapper">
 
 
-                <!--render notifications-->
-                <div class="notificationsWrapper">
-                    <a href="">14</a>
+            <!--render notifications-->
+            <div class="notificationsWrapper">
+                <a href="">14</a>
+            </div>
+
+
+
+
+            <!--render user options-->
+            <div class="userOptionsWrapper">
+                <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                    <div class="arrowDownUserOptions"></div>
+                    <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
+                    <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
                 </div>
-
-
-
-
-                <!--render user options-->
-                <div class="userOptionsWrapper">
-                    <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                        <div class="arrowDownUserOptions"></div>
-                        <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
-                        <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
-                    </div>
-                    <div id="divUserMenu" style="display:none;">
-                        <ul>
-                            <li>
-                                <a href="">Cerrar sesión</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div id="divUserMenu" style="display:none;">
+                    <ul>
+                        <li>
+                            <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
 
 
 

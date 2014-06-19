@@ -82,6 +82,7 @@ namespace BackOffice.Web.Controllers
             public readonly string Index = "Index";
             public readonly string Dashboard = "Dashboard";
             public readonly string ChangeAutorizationProfile = "ChangeAutorizationProfile";
+            public readonly string LogOutUser = "LogOutUser";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -90,6 +91,7 @@ namespace BackOffice.Web.Controllers
             public const string Index = "Index";
             public const string Dashboard = "Dashboard";
             public const string ChangeAutorizationProfile = "ChangeAutorizationProfile";
+            public const string LogOutUser = "LogOutUser";
         }
 
 
@@ -151,6 +153,17 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeAutorizationProfile);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ChangeAutorizationProfileOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LogOutUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LogOutUser()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOutUser);
+            LogOutUserOverride(callInfo);
             return callInfo;
         }
 
