@@ -208,6 +208,7 @@
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOHeader.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
