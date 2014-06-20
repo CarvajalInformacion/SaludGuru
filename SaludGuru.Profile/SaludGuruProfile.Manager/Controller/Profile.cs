@@ -30,7 +30,12 @@ namespace SaludGuruProfile.Manager.Controller
             return ProfileDataController.Instance.ProfileGetOptions();
         }
 
-        public static ProfileModel UpsertProfileInfo(ProfileModel ProfileToUpSert)
+        /// <summary>
+        /// insert or update profile
+        /// </summary>
+        /// <param name="ProfileToUpSert">profile info to upsert</param>
+        /// <returns>PublicProfileId</returns>
+        public static string UpsertProfileInfo(ProfileModel ProfileToUpSert)
         {
             //upsert profile
             string oPublicProfileId = ProfileToUpSert.ProfilePublicId;
@@ -76,13 +81,10 @@ namespace SaludGuruProfile.Manager.Controller
                 return true;
             });
 
-            //get full profile
-            ProfileModel oRetorno = null;
-
-            return null;
+            return oPublicProfileId;
         }
 
-        #endregion 
+        #endregion
 
         #region Insurance
 
