@@ -56,51 +56,70 @@
                 </select>
             </li>
             <li>
+                @{
+                    var CatInfo_IT = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                           (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationType).
+                           Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? 0 : int.Parse(x.Value.Replace(" ", "")) }).
+                               DefaultIfEmpty(null).
+                               FirstOrDefault();
+                    if (CatInfo_IT != null)
+                    {
+                        <input type="hidden" id="CatId_IdentificationType" name="CatId_IdentificationType" value="@CatInfo_IT.id" />
+                    }
+                }
                 <label>Tipo Identificación</label>
                 <select id="IdentificationType" name="IdentificationType">
-                    @{
-                        int itsel = Model.Profile == null ? 0 :
-                            Model.Profile.ProfileInfo.Where
-                               (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationType).
-                               Select(x => string.IsNullOrEmpty(x.Value) ? 0 : int.Parse(x.Value.Replace(" ", ""))).DefaultIfEmpty(0).FirstOrDefault();
+                    @foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
+                                Model.ProfileOptions.
+                                Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.IdentificationType).
+                                OrderBy(x => x.ItemName)
+                                .ToList())
+                    {
 
-                        foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
-                            Model.ProfileOptions.
-                            Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.IdentificationType).
-                            OrderBy(x => x.ItemName)
-                            .ToList())
+                        if (CatInfo_IT != null && tp.ItemId == CatInfo_IT.val)
                         {
-                            if (tp.ItemId == itsel)
-                            {
-                                <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
-                            }
-                            else
-                            {
-                                <option value="@tp.ItemId">@tp.ItemName</option>
-                            }
+                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                        }
+                        else
+                        {
+                            <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
             </li>
             <li>
+                @{
+                    var CatInfo_IN = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                           (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationNumber).
+                           Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                               DefaultIfEmpty(null).
+                               FirstOrDefault();
+                    if (CatInfo_IN != null)
+                    {
+                        <input type="hidden" id="CatId_IdentificationNumber" name="CatId_IdentificationNumber" value="@CatInfo_IN.id" />
+                    }
+                }
                 <label>Número Identificación</label>
-                <input id="IdentificationNumber" name="IdentificationNumber" value="@(
-                        Model.Profile==null?string.Empty:
-                                Model.Profile.ProfileInfo.
-                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationNumber).
-                                Select(x=>x.Value).
-                                FirstOrDefault())" type="text" />
+                <input id="IdentificationNumber" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" ty type="text" />
             </li>
             <li>
+                @{
+                    var CatInfo_GD = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Gender).
+                            Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_IN != null)
+                    {
+                        <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_IN.id" />
+                    }
+                }
                 <label>Sexo</label>
                 @{
-                    bool gsel = Model.Profile == null ? false :
-                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Gender).
-                            Select(x => string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value)).
-                            DefaultIfEmpty(false).
-                            FirstOrDefault();
-
-                    if (gsel)
+                    if (CatInfo_GD != null && CatInfo_GD.val)
                     {
                         <input type="radio" name="Gender" value="true" checked="checked" /><label>Masculino</label>
                         <input type="radio" name="Gender" value="false" /><label>Femenino</label>
@@ -113,42 +132,69 @@
                 }
             </li>
             <li>
+                @{
+                    var CatInfo_EM = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_EM != null)
+                    {
+                        <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_EM.id" />
+                    }
+                }
                 <label>Correo electronico</label>
-                <input id="Email" name="Email" value="@(
-                        Model.Profile==null?string.Empty:
-                                Model.Profile.ProfileInfo.
-                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).
-                                Select(x=>x.Value).
-                                FirstOrDefault())" type="text" />
+                <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty :CatInfo_IN.val)" type="text" />
             </li>
             <li>
+                @{
+                    var CatInfo_WS = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_WS != null)
+                    {
+                        <input type="hidden" id="CatId_Website" name="CatId_Website" value="@CatInfo_WS.id" />
+                    }
+                }
                 <label>Pagina web</label>
-                <input id="Website" name="Website" value="@(
-                        Model.Profile==null?string.Empty:
-                                Model.Profile.ProfileInfo.
-                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
-                                Select(x=>x.Value).
-                                FirstOrDefault())" type="text" />
+                <input id="Website" name="Website" value="@(CatInfo_WS == null ? string.Empty : CatInfo_WS.val)" type="text" />
             </li>
             <li>
+                @{
+                    var CatInfo_FB = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_FB != null)
+                    {
+                        <input type="hidden" id="CatId_FacebookProfile" name="CatId_FacebookProfile" value="@CatInfo_FB.id" />
+                    }
+                }
                 <label>Perfil de facebook</label>
-                <input id="FacebookProfile" name="FacebookProfile" value="@(
-                        Model.Profile==null?string.Empty:
-                                Model.Profile.ProfileInfo.
-                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
-                                Select(x=>x.Value).
-                                FirstOrDefault())" type="text" />
+                <input id="FacebookProfile" name="FacebookProfile" value="@(CatInfo_FB == null ? string.Empty : CatInfo_FB.val)" type="text" />
             </li>
             <li>
+                @{
+                    var CatInfo_IC = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
+                            Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_IC != null)
+                    {
+                        <input type="hidden" id="CatId_IsCertified" name="CatId_IsCertified" value="@CatInfo_IC.id" />
+                    }
+                }
                 <label>Profesional certificado</label>
                 @{
-                    bool pcsel = Model.Profile == null ? false :
-                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
-                            Select(x => string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value)).
-                            DefaultIfEmpty(false).
-                            FirstOrDefault();
-
-                    if (pcsel)
+                    if (CatInfo_IC != null && CatInfo_IC.val)
                     {
                         <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
                     }
@@ -160,42 +206,66 @@
 
             </li>
             <li>
+                @{
+                    var CatInfo_PT = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_PT != null)
+                    {
+                        <input type="hidden" id="CatId_ProfileText" name="CatId_ProfileText" value="@CatInfo_PT.id" />
+                    }
+                }
                 <label>Texto de perfil</label>
                 <textarea id="ProfileText" name="ProfileText" rows="15" cols="15">
-                    @(Model.Profile == null ? string.Empty :
-                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
-                            Select(x => x.LargeValue).
-                            FirstOrDefault()
-                    )
+                    @(CatInfo_PT == null ? string.Empty : CatInfo_PT.val)
                 </textarea>
             </li>
             <li>
+                @{
+                    var CatInfo_ET = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Education).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_ET != null)
+                    {
+                        <input type="hidden" id="CatId_Education" name="CatId_Education" value="@CatInfo_ET.id" />
+                    }
+                }
                 <label>Educación</label>
                 <textarea id="Education" name="Education" rows="15" cols="15">
-                    @(Model.Profile == null ? string.Empty :
-                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Education).
-                            Select(x => x.LargeValue).
-                            FirstOrDefault()
-                    )
+                    @(CatInfo_ET == null ? string.Empty : CatInfo_ET.val)
                 </textarea>
             </li>
             <li>
+                @{
+                    var CatInfo_AT = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_AT != null)
+                    {
+                        <input type="hidden" id="CatId_Certification" name="CatId_Certification" value="@CatInfo_AT.id" />
+                    }
+                }
                 <label>Acreditaciones</label>
                 <textarea id="Certification" name="Certification" rows="15" cols="15">
-                    @(Model.Profile == null ? string.Empty :
-                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
-                            Select(x => x.LargeValue).
-                            FirstOrDefault()
-                    )
+                    @(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)
                 </textarea>
             </li>
             <li>
                 <!--hiden fields-->
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </li>
-            <li>
-                <input type="submit" />
-            </li>
         </ul>
+        <div>
+            <input type="submit" />
+        </div>
     </form>
 </div>
