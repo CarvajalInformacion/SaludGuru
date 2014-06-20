@@ -20,6 +20,11 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        /// <summary>
+        /// Get full profile information for admin platform
+        /// </summary>
+        /// <param name="ProfilePublicId"></param>
+        /// <returns></returns>
         public static ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
         {
             return DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(ProfilePublicId);

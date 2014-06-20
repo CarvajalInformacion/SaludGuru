@@ -1,0 +1,77 @@
+.BOProfilesGeneralWrapper {
+    display:block;
+    width:93%;
+    height:auto;
+    border:1px solid black;
+    margin:0px auto;
+}
+.BOProfileMenuWrapper, .BOProfileFormWrapper {
+        display:inline-block;
+        vertical-align:top;
+        width:auto;
+}
+    .BOProfileMenuWrapper {
+        border:1px solid red;
+    }
+    .BOProfileFormWrapper {
+        border:1px solid green;
+        margin:0px 0px 0px -8px;
+    }
+/************* COLUMNA DE INFO DEL PERFIL ************/
+
+.BOMenuPrincipalPerfil {
+    display:inline-block;
+    width:309px;
+    border:1px solid red;
+}
+.BOFotoPerfil {
+    display:block;
+    width:133px;
+    height:183px;
+    border:1px solid grey;
+    margin:0px auto;
+}
+.BOMenuPrincipalPerfil div h2 {
+    display:block;
+    width:65%;
+    height:auto;
+    border:1px solid grey;
+    font-size:20px;
+    margin:4px auto;
+}
+.BOMenuPrincipalPerfil div h3{
+    display:block;
+    width:55%;
+    height:auto;
+    border:1px solid grey;
+    font-size:14px;
+    margin:4px auto;
+}
+.BOMenuPrincipalPerfil div ul {
+    display:block;
+    margin:0px;
+    width:auto;
+    height:auto;
+    float:right;
+    border:1px solid yellow;
+}
+.BOMenuPrincipalPerfil div ul li{
+    display:block;
+    margin:0px;
+    padding:10px 0px;
+    width:259px;
+    height:auto;
+    border:1px solid blue;
+    text-align:center;
+}
+.BOMenuPrincipalPerfil  div ul li a{
+    display:block;
+    margin:0px;
+    width:auto;
+    height:auto;
+    border:1px solid green;
+    font-size:18px;
+    font-weight:bold;
+    line-height:15px;
+    vertical-align:middle;
+}

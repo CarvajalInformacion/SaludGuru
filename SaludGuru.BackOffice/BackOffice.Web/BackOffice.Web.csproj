@@ -239,10 +239,12 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
     <Content Include="Areas\Web\Content\Styles\jquery-ui-1.10.4.custom.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOHeader.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOPerfilDoctor.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
     <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.custom.js" />
     <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.custom.min.js" />
@@ -472,6 +474,8 @@
     <Content Include="Content\kendo\2014.1.416\images\kendoui.ttf" />
     <Content Include="Areas\Web\Views\Profile\Specialty.cshtml" />
     <Content Include="Areas\Web\Views\Profile\Insurance.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\EditProfile.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileMenu.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.416\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.416\cultures\kendo.culture.af.min.js" />
