@@ -1,17 +1,15 @@
 .logInMainWrapper{
-	border:none; 
-	width:100%;
-	}
-.logInContentWrapper{
+    display:inline-block;
 	border: none; 
 	width: 100%; 
-	height: auto; 
+	height: 600px;
 	background-image:url('/Areas/Web/Content/Images/logInBackground.png'); 
 	background-repeat: no-repeat; 
 	background-size:1380px;
 	}
 .logoSaludGuru{
-	border:none;
+	display:inline-block;
+    border:none;
 	padding: 0px;
 	margin: 13px 0px 0px 15%;
 	width: 120px; height: 74px;
@@ -46,14 +44,14 @@
 	display:inline-block; 
 	width:24%; 
 	height:160px; 
-	border:1px solid green; 
+	border:none; 
 	margin:27px 0px 0px -3px; 
 	vertical-align:top; 
 	min-width:200px;
 	}
 .logInElementsWrapper span{
 	font-size:20px; 
-	line-height:17px; 
+	line-height:20px; 
 	letter-spacing:-1px;
 	}
 .logInIconsWrapper{
@@ -63,24 +61,24 @@
 	display:inline-block;
 	width:76px;
 	height:76px;
-	border:1px solid grey;
+	border:none;
 	}
 .logInElementsWrapper input [type=checkbox]{
 	display: block;
-	margin:140px auto 4px auto;
+	margin:190px auto 18px auto;
 	width: 50%; 
 	min-width: 400px;
 	text-align: center;
-	border: 1px solid yellow;
+	border: none;
 	font-size: small;
 	}
 .logInCopiright{
 	display: block;
-	margin:140px auto 4px auto;
+	margin:140px auto 68px auto;
 	width: 50%;
 	min-width: 400px;
 	text-align: center;
-	border: 1px solid yellow;
+	    border:none;
 	font-size: small;
 }
 

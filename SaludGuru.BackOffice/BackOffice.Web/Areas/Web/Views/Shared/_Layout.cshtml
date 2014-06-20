@@ -9,7 +9,7 @@
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/css")
 </head>
 <body>
-    <div>
+    <div style="min-width:800px;">
         <div>
             @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn &&
                 BackOffice.Models.General.SessionModel.UserIsAutorized)
