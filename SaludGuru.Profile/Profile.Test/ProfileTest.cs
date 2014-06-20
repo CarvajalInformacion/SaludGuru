@@ -27,7 +27,11 @@ namespace Profile.Test
         //[TestMethod]
         //public void SpecialtyProfileUpsert()
         //{
-        //    SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert("4321", 27, false);
+        //    ProfileModel profile = new ProfileModel();
+        //    profile.ProfilePublicId = "1234";
+        //    profile.DefaultSpecialty.CategoryId = 1;
+        //    profile.DefaultSpecialty.CategoryId = 1;
+        //    SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(profile);
         //}
 
         //[TestMethod]
@@ -39,7 +43,11 @@ namespace Profile.Test
         //[TestMethod]
         //public void InsuranceProfileUpsert()
         //{
-        //    SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert("4321", 1, false);
+        //    ProfileModel profile = new ProfileModel();
+        //    profile.ProfilePublicId = "4321";
+        //    profile.DefaultSpecialty.CategoryId = 1;
+        //    profile.DefaultSpecialty.CategoryId = 1;
+        //    SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(profile);
         //}
 
         //[TestMethod]
