@@ -38,7 +38,9 @@
         Gender = 407,
         FacebookProfile = 408,
         ImageProfile = 409,
-        ImageGeneral = 410
+        ImageGeneral = 410,
+        IdentificationType = 411,
+        IdentificationNumber = 412,
     }
 
     public enum enumOfficeInfoType
@@ -54,5 +56,11 @@
         BeforeCare = 802,
         AfterCare = 803,
         IsDefault = 804,
+    }
+
+    public enum enumIdentificationType
+    {
+        Cedula = 901,
+        Nit = 902
     }
 }

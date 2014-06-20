@@ -20,11 +20,13 @@ namespace SaludGuruProfile.Manager.Models.Profile
 
         public enumProfileStatus ProfileStatus { get; set; }
 
+        public DateTime LastModify { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
         public List<ProfileInfoModel> ProfileInfo { get; set; }
 
         public List<ProfileModel> ChildProfile { get; set; }
-
-        public ProfileModel ParentProfile { get; set; }
 
         public List<InsuranceModel> RelatedInsurance { get; set; }
 

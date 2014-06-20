@@ -12,5 +12,8 @@ namespace SaludGuruProfile.Manager.Models.Profile
         public enumProfileInfoType ProfileInfoType { get; set; }
         public string Value { get; set; }
         public string LargeValue { get; set; }
+        public DateTime LastModify { get; set; }
+        public DateTime CreateDate { get; set; }
+
     }
 }
