@@ -11,6 +11,8 @@ namespace SaludGuruProfile.Manager.Controller
 {
     public class Profile
     {
+        #region Profile
+
         public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
         {
             List<ProfileModel> oReturn = ProfileDataController.Instance.ProfileSearch(SearchCriteria, PageNumber, RowCount);
@@ -18,10 +20,71 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        public static ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
+        {
+            return DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(ProfilePublicId);
+        }
+
         public static List<ItemModel> GetProfileOptions()
         {
             return ProfileDataController.Instance.ProfileGetOptions();
         }
+
+        public static ProfileModel UpsertProfileInfo(ProfileModel ProfileToUpSert)
+        {
+            //upsert profile
+            string oPublicProfileId = ProfileToUpSert.ProfilePublicId;
+            if (string.IsNullOrEmpty(oPublicProfileId))
+            {
+                oPublicProfileId = DAL.Controller.ProfileDataController.Instance.ProfileCreate
+                    (ProfileToUpSert.Name,
+                    ProfileToUpSert.LastName,
+                    ProfileToUpSert.ProfileType,
+                    ProfileToUpSert.ProfileStatus);
+            }
+            else
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileUpdate
+                    (oPublicProfileId,
+                    ProfileToUpSert.Name,
+                    ProfileToUpSert.LastName,
+                    ProfileToUpSert.ProfileType,
+                    ProfileToUpSert.ProfileStatus);
+            }
+
+            //upsert profile info
+            ProfileToUpSert.ProfileInfo.All(pri =>
+            {
+                if (pri.ProfileInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.ProfileDataController.Instance.ProfileInfoCreate
+                        (oPublicProfileId,
+                        pri.ProfileInfoType,
+                        pri.Value,
+                        pri.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.ProfileDataController.Instance.ProfileInfoModify
+                        (pri.ProfileInfoId,
+                        pri.Value,
+                        pri.LargeValue);
+                }
+
+                return true;
+            });
+
+            //get full profile
+            ProfileModel oRetorno = null;
+
+            return null;
+        }
+
+        #endregion
+
+        #region Insurance
 
         public static void InsuranceProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
         {
@@ -33,6 +96,10 @@ namespace SaludGuruProfile.Manager.Controller
             ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
 
+        #endregion
+
+        #region Specialty
+
         public static void SpecialtyProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
         {
             ProfileDataController.Instance.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
@@ -42,5 +109,7 @@ namespace SaludGuruProfile.Manager.Controller
         {
             ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
+
+        #endregion
     }
 }

@@ -8,6 +8,20 @@ namespace Profile.Test
     [TestClass]
     public class ProfileTest
     {
+        #region Profile
+
+        [TestMethod]
+        public void ProfileGetFullAdmin()
+        {
+            string oProfilePublicId = "205ECBD0";
+
+            ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(oProfilePublicId);
+
+            Assert.AreEqual(oProfile.ProfilePublicId, oProfilePublicId);
+        }
+
+        #endregion
+
         //[TestMethod]
         //public void ProfileSearch()
         //{

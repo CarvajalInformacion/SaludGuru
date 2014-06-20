@@ -139,6 +139,12 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         {
             return DataFactory.ProfileGetOptions();
         }
+
+        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
+        {
+            return DataFactory.ProfileGetFullAdmin(ProfilePublicId);
+        }
+
         #endregion
 
         #region Office
