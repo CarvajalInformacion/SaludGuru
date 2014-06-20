@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BackOffice.Models.Profile
 {
-    class ProfileInsuranceModel
+    public class ProfileInsuranceModel
     {
         public ProfileModel Profile { get; set; }
 
