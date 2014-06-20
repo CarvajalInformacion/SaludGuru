@@ -1,15 +1,20 @@
 ﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 
-<div>
-    <form action="@Url.Action(MVC.Profile.ActionNames.Create, MVC.Profile.Name)" method="post">
+<div style="position:absolute;top:350px;">
+    @{string UrlAction = (Model.Profile == null) ?
+            Url.Action(MVC.Profile.ActionNames.Create, MVC.Profile.Name) :
+            Url.Action(MVC.Profile.ActionNames.EditProfile, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
+    }
+    <form action="@UrlAction" method="post">
+        else
         <ul>
             <li>
                 <label>Nombre</label>
-                <input id="Name" name="Name" value="" />
+                <input id="Name" name="Name" value="@(Model.Profile==null?string.Empty:Model.Profile.Name)" type="text" />
             </li>
             <li>
                 <label>Apellido</label>
-                <input id="LastName" name="LastName" value="" />
+                <input id="LastName" name="LastName" value="@(Model.Profile==null?string.Empty:Model.Profile.LastName)" type="text" />
             </li>
             <li>
                 <label>Tipo de perfil</label>
@@ -20,53 +25,177 @@
                         OrderBy(x => x.ItemName)
                         .ToList())
                     {
-                        <option value="@tp.ItemId">@tp.ItemName</option>
+                        if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileType)
+                        {
+                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                        }
+                        else
+                        {
+                            <option value="@tp.ItemId">@tp.ItemName</option>
+                        }
                     }
                 </select>
             </li>
             <li>
                 <label>Estado de perfil</label>
-                <input id="Name" name="Name" value="" />
+                <select id="ProfileStatus" name="ProfileStatus">
+                    @foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
+                        Model.ProfileOptions.
+                        Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.ProfileStatus).
+                        OrderBy(x => x.ItemName)
+                        .ToList())
+                    {
+                        if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileStatus)
+                        {
+                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                        }
+                        else
+                        {
+                            <option value="@tp.ItemId">@tp.ItemName</option>
+                        }
+                    }
+                </select>
             </li>
             <li>
                 <label>Tipo Identificación</label>
-                <input id="Name" name="Name" value="" />
+                <select id="IdentificationType" name="IdentificationType">
+                    @{
+                        int itsel = Model.Profile == null ? 0 :
+                            Model.Profile.ProfileInfo.Where
+                               (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationType).
+                               Select(x => string.IsNullOrEmpty(x.Value) ? 0 : int.Parse(x.Value.Replace(" ", ""))).DefaultIfEmpty(0).FirstOrDefault();
+
+                        foreach (SaludGuruProfile.Manager.Models.General.ItemModel tp in
+                            Model.ProfileOptions.
+                            Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.IdentificationType).
+                            OrderBy(x => x.ItemName)
+                            .ToList())
+                        {
+                            if (tp.ItemId == itsel)
+                            {
+                                <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                            }
+                            else
+                            {
+                                <option value="@tp.ItemId">@tp.ItemName</option>
+                            }
+                        }
+                    }
+                </select>
             </li>
             <li>
                 <label>Número Identificación</label>
-                <input id="Name" name="Name" value="" />
+                <input id="IdentificationNumber" name="IdentificationNumber" value="@(
+                        Model.Profile==null?string.Empty:
+                                Model.Profile.ProfileInfo.
+                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IdentificationNumber).
+                                Select(x=>x.Value).
+                                FirstOrDefault())" type="text" />
             </li>
             <li>
                 <label>Sexo</label>
-                <input id="Name" name="Name" value="" />
+                @{
+                    bool gsel = Model.Profile == null ? false :
+                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Gender).
+                            Select(x => string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value)).
+                            DefaultIfEmpty(false).
+                            FirstOrDefault();
+
+                    if (gsel)
+                    {
+                        <input type="radio" name="Gender" value="true" checked="checked" /><label>Masculino</label>
+                        <input type="radio" name="Gender" value="false" /><label>Femenino</label>
+                    }
+                    else
+                    {
+                        <input type="radio" name="Gender" value="true" /><label>Masculino</label>
+                        <input type="radio" name="Gender" value="false" checked="checked" /><label>Femenino</label>
+                    }
+                }
             </li>
             <li>
                 <label>Correo electronico</label>
-                <input id="Name" name="Name" value="" />
+                <input id="Email" name="Email" value="@(
+                        Model.Profile==null?string.Empty:
+                                Model.Profile.ProfileInfo.
+                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).
+                                Select(x=>x.Value).
+                                FirstOrDefault())" type="text" />
             </li>
             <li>
                 <label>Pagina web</label>
-                <input id="Name" name="Name" value="" />
+                <input id="Website" name="Website" value="@(
+                        Model.Profile==null?string.Empty:
+                                Model.Profile.ProfileInfo.
+                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
+                                Select(x=>x.Value).
+                                FirstOrDefault())" type="text" />
             </li>
             <li>
                 <label>Perfil de facebook</label>
-                <input id="Name" name="Name" value="" />
+                <input id="FacebookProfile" name="FacebookProfile" value="@(
+                        Model.Profile==null?string.Empty:
+                                Model.Profile.ProfileInfo.
+                                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
+                                Select(x=>x.Value).
+                                FirstOrDefault())" type="text" />
             </li>
             <li>
                 <label>Profesional certificado</label>
-                <input id="Name" name="Name" value="" />
+                @{
+                    bool pcsel = Model.Profile == null ? false :
+                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
+                            Select(x => string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value)).
+                            DefaultIfEmpty(false).
+                            FirstOrDefault();
+
+                    if (pcsel)
+                    {
+                        <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="IsCertified" name="IsCertified" />
+                    }
+                }
+
             </li>
             <li>
                 <label>Texto de perfil</label>
-                <input id="Name" name="Name" value="" />
+                <textarea id="ProfileText" name="ProfileText" rows="15" cols="15">
+                    @(Model.Profile == null ? string.Empty :
+                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
+                            Select(x => x.LargeValue).
+                            FirstOrDefault()
+                    )
+                </textarea>
             </li>
             <li>
                 <label>Educación</label>
-                <input id="Name" name="Name" value="" />
+                <textarea id="Education" name="Education" rows="15" cols="15">
+                    @(Model.Profile == null ? string.Empty :
+                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Education).
+                            Select(x => x.LargeValue).
+                            FirstOrDefault()
+                    )
+                </textarea>
             </li>
             <li>
-                <label>Certificaciones</label>
-                <input id="Name" name="Name" value="" />
+                <label>Acreditaciones</label>
+                <textarea id="Certification" name="Certification" rows="15" cols="15">
+                    @(Model.Profile == null ? string.Empty :
+                            Model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
+                            Select(x => x.LargeValue).
+                            FirstOrDefault()
+                    )
+                </textarea>
+            </li>
+            <li>
+                <!--hiden fields-->
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            </li>
+            <li>
+                <input type="submit" />
             </li>
         </ul>
     </form>

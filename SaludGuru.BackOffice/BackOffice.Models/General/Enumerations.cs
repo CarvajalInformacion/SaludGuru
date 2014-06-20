@@ -24,5 +24,6 @@
         CategoryInfoType = 6,
         OfficeInfoType = 7,
         OfficeCategoryInfoType = 8,
+        IdentificationType = 9
     }
 }
