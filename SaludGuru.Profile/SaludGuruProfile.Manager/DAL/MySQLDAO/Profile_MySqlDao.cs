@@ -274,11 +274,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return int.Parse(response.ScalarResult.ToString());
         }
 
-        public void ProfileInfoModify(int ProfileInfoTypeId, string Value, string LargeValue)
+        public void ProfileInfoModify(int ProfileInfoId, string Value, string LargeValue)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfileInfoTypeId", ProfileInfoTypeId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileInfoId", ProfileInfoId));
             lstParams.Add(DataInstance.CreateTypedParameter("vValue", Value));
             lstParams.Add(DataInstance.CreateTypedParameter("vLargeValue", LargeValue));
 
@@ -291,11 +291,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
         }
 
-        public void ProfileInfoDelete(int ProfileInfoTypeId)
+        public void ProfileInfoDelete(int ProfileInfoId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfileInfoTypeId", ProfileInfoTypeId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileInfoId", ProfileInfoId));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {

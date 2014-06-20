@@ -100,14 +100,14 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.ProfileInfoCreate(ProfilePublicId, ProfileInfoType, Value, LargeValue);
         }
 
-        public void ProfileInfoModify(int ProfileInfoTypeId, string Value, string LargeValue)
+        public void ProfileInfoModify(int ProfileInfoId, string Value, string LargeValue)
         {
-            DataFactory.ProfileInfoModify(ProfileInfoTypeId, Value, LargeValue);
+            DataFactory.ProfileInfoModify(ProfileInfoId, Value, LargeValue);
         }
 
-        public void ProfileInfoDelete(int ProfileInfoTypeId)
+        public void ProfileInfoDelete(int ProfileInfoId)
         {
-            DataFactory.ProfileInfoDelete(ProfileInfoTypeId);
+            DataFactory.ProfileInfoDelete(ProfileInfoId);
         }
 
         public void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild)
