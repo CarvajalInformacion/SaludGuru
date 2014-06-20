@@ -22,22 +22,26 @@ namespace Profile.Test
 
         #endregion
 
-        //[TestMethod]
-        //public void ProfileSearch()
-        //{
-        //    SaludGuruProfile.Manager.Controller.Profile profile = new SaludGuruProfile.Manager.Controller.Profile();
-        //    List<ProfileModel> oReturn = profile.ProfileSearch("da mo", 10, 0);
-        //    Assert.AreEqual(oReturn.Count > 0, true);
-        //}
+        #region Profile Search
+        [TestMethod]
+        public void ProfileSearch()
+        {
+            List<ProfileModel> oReturn = SaludGuruProfile.Manager.Controller.Profile.ProfileSearch(" da mo", 10, 0);
+            Assert.AreEqual(oReturn.Count > 0, true);
+        }
+        #endregion
 
-        //[TestMethod]
-        //public void GetProfileOptions()
-        //{
-        //    List<SaludGuruProfile.Manager.Models.General.ItemModel> oResult =
-        //        SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions();
-        //    Assert.AreEqual(oResult.Count > 0, true);
-        //}
+        #region Get Profile Options
+        [TestMethod]
+        public void GetProfileOptions()
+        {
+            List<SaludGuruProfile.Manager.Models.General.ItemModel> oResult =
+                SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions();
+            Assert.AreEqual(oResult.Count > 0, true);
+        }
+        #endregion
 
+        #region Specialty Profile
         //[TestMethod]
         //public void SpecialtyProfileUpsert()
         //{
@@ -53,6 +57,9 @@ namespace Profile.Test
         //{
         //    SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileDelete("4321", 27);
         //}
+        #endregion
+
+        #region Insurance Profile
 
         //[TestMethod]
         //public void InsuranceProfileUpsert()
@@ -69,6 +76,7 @@ namespace Profile.Test
         //{
         //    SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileDelete("4321", 1);
         //}
+        #endregion
 
     }
 }
