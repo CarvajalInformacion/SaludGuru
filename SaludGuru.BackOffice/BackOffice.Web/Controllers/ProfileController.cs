@@ -24,18 +24,37 @@ namespace BackOffice.Web.Controllers
                 Profile = null,
             };
 
-
             return View(Model);
         }
 
 
         public virtual ActionResult Specialty(string ProfilePublicId)
         {
-            return View();
+            ProfileSpecialtyModel Model = new ProfileSpecialtyModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.CategoryGetAllAdmin(string.Empty),
+            };
+            return View(Model);
         }
+
+        //public JsonResult AutoCompleteSpecialty(string term)
+        //{
+        //    List<SaludGuruProfile.Manager.Models.General.SpecialtyModel> Model = ;
+
+        //    var result = (from s in Model
+        //                  where s.Name.Contains(term)
+        //                  select s).ToList();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
 
         public virtual ActionResult Insurance(string ProfilePublicId)
         {
+            ProfileInsuranceModel Model = new ProfileInsuranceModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.CategoryGetAllAdmin(string.Empty),
+            };
             return View();
         }
     }
