@@ -10,13 +10,13 @@
 .profilesListWrapper {
     display:inline-block;
     border:1px solid pink;
-    width:234px;
+    width:28%;
     height:34px;
     vertical-align:top;
 }
     .profilesListWrapper select{
         border:1px solid yellow;
-        width:234px;
+        width:100%;
         height:34px;
         color:#333;
         font-size:12px;
@@ -29,20 +29,22 @@
         display:block;
         background-color:#808080;
     }
-
 .searchBox{
     display:inline-block;
     border:1px solid grey;
-    width:234px;
+    width:22%;
     height:34px;
     margin-left:-5px;
+    background-image:url('/Areas/Web/Content/Images/googleIconSmall.png');
+    background-repeat:repeat-x;
 }
 .searchBox input{
     display:block;
-    border:1px solid green;
-    width:142px;
+    border:1px solid #808080;
+    background-color:#fff;
+    width:80%;
     height:25px;
-    margin:3px 0px 0px 18px;
+    margin:3px 0px 0px 8px;
     border-radius:12px;
 }
 
@@ -71,6 +73,8 @@
         font-size:13px;
         vertical-align:top;
         margin:4px 0px 0px 44px;
+        text-decoration:none;
+        color:red;
     }
     .userOptionsWrapper {
         display:inline-block;
@@ -114,12 +118,102 @@
     #divUserMenu ul li{
         border:1px solid red;
     }
-.logoSaludGur{
-    border:1px solid yellow;
-}
-.logoSaludGur a{
-    border:1px solid red;
-}
 .mainMenuWrapper {
     border:1px solid blue;
+    width:100%;
+    float:right;
+    margin-top:10px;
 }
+
+/*********************** MAIN MENU **********************/
+
+.HeaderLogoSaludGuru {
+    display:inline-block;
+    border:1px solid grey;
+	padding: 0px;
+	margin: 0px 0px 0px 37px;
+	width: 90px; height:57px;
+	background-image:url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
+	background-repeat:no-repeat;
+    background-size:87px 54px;
+}
+.mainMenuItemWrapper{
+    display:block;
+    border:1px solid green;
+    width:auto;
+    height:83px;
+    background-color:#fff;
+    float:right;
+}
+.mainMenuItemWrapper li{
+    border:1px solid grey;
+    display:inline-block;
+    height:54px;
+    padding:2px 6px;
+    margin-left:-5px;
+    vertical-align:top;
+    text-align:center;
+    cursor:pointer;
+        background-image:url('');
+        background-repeat:;
+}
+    .mainMenuItemWrapper li:first-child{
+        margin:0px;
+    }
+.mainMenuItemWrapper li img {
+    display:block;
+    height:32px;
+    margin:0px auto 2px auto;    
+}
+.mainMenuItemWrapper li a{
+    border:1px solid red;
+    display:inline-block;
+    height:55px;
+    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    text-transform:uppercase;
+    font-size:12px;
+    vertical-align:bottom;
+    height:auto;
+    line-height:13px;
+}
+.subMenu{
+    border:1px solid black;
+    position:absolute;
+    border-bottom:4px solid #aad400;
+    top:100px;
+    left:0%;
+    height:30px;
+    width:100%;
+    min-width:800px;
+    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    text-transform:uppercase;
+    font-size:12px;
+}
+    .subMenu ul{
+        text-align:right;
+        margin-right:8%;
+    }
+.subMenu ul li{
+    display:inline-block;
+    margin:0px 0px 0px -3px;
+    padding:7px 12px;
+    height:auto;
+    width:auto;
+    background-color:rgba(255, 255, 255, 0.7);
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: none;
+}
+    div.subMenu ul li>a {
+        margin:0px; padding:0px;
+        border:1px solid green;
+        display:block;
+    }
+
+
+
+
+
+
+
