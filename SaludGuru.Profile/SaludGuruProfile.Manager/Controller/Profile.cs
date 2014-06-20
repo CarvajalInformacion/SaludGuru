@@ -13,7 +13,7 @@ namespace SaludGuruProfile.Manager.Controller
     {
         #region Profile
 
-        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        public static List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
         {
             List<ProfileModel> oReturn = ProfileDataController.Instance.ProfileSearch(SearchCriteria, PageNumber, RowCount);
 
@@ -82,13 +82,21 @@ namespace SaludGuruProfile.Manager.Controller
             return null;
         }
 
-        #endregion
+        #endregion 
 
         #region Insurance
 
-        public static void InsuranceProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
+        public static void InsuranceProfileUpsert(ProfileModel ProfileToUpsert)
         {
-            ProfileDataController.Instance.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
+            ProfileToUpsert.RelatedSpecialty.All(sp =>
+            {
+                ProfileDataController.Instance.ProfileCategoryUpsert
+                    (ProfileToUpsert.ProfilePublicId,
+                    sp.CategoryId,
+                    (ProfileToUpsert.DefaultSpecialty != null && sp.CategoryId == ProfileToUpsert.DefaultSpecialty.CategoryId));
+
+                return true;
+            });
         }
 
         public static void InsuranceProfileDelete(string ProfilePublicId, int CategoryId)
@@ -100,9 +108,17 @@ namespace SaludGuruProfile.Manager.Controller
 
         #region Specialty
 
-        public static void SpecialtyProfileUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
+        public static void SpecialtyProfileUpsert(ProfileModel ProfileToUpsert)
         {
-            ProfileDataController.Instance.ProfileCategoryUpsert(ProfilePublicId, CategoryId, IsDefault);
+            ProfileToUpsert.RelatedSpecialty.All(sp =>
+            {
+                ProfileDataController.Instance.ProfileCategoryUpsert
+                    (ProfileToUpsert.ProfilePublicId,
+                    sp.CategoryId,
+                    (ProfileToUpsert.DefaultSpecialty != null && sp.CategoryId == ProfileToUpsert.DefaultSpecialty.CategoryId));
+
+                return true;
+            });
         }
 
         public static void SpecialtyProfileDelete(string ProfilePublicId, int CategoryId)
