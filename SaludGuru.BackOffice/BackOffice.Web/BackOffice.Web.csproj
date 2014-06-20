@@ -238,9 +238,11 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOHeader.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOPerfilDoctor.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
     <Content Include="Content\kendo\2014.1.416\Black\editor.png" />

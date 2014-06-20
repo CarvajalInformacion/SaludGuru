@@ -1,6 +1,6 @@
 ﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 
-<div>
+<div class="BOPerfilFormWrapper">
     @{string UrlAction = (Model.Profile == null) ?
             Url.Action(MVC.Profile.ActionNames.Create, MVC.Profile.Name) :
             Url.Action(MVC.Profile.ActionNames.EditProfile, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
