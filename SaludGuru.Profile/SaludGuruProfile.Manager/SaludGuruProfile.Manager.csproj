@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Controller\Autorization.cs" />
     <Compile Include="Controller\Insurance.cs" />
+    <Compile Include="Controller\Office.cs" />
     <Compile Include="Controller\Profile.cs" />
     <Compile Include="Controller\Specialty.cs" />
     <Compile Include="Controller\Treatment.cs" />

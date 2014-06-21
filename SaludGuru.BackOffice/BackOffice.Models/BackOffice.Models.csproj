@@ -66,6 +66,7 @@
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\MenuModel.cs" />
     <Compile Include="General\SessionModel.cs" />
+    <Compile Include="Office\OfficeUpsertModel.cs" />
     <Compile Include="Profile\ProfileUpSertModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

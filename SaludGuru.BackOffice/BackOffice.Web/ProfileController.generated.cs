@@ -65,6 +65,18 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditImageProfile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditImageProfile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpsertOffice()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertOffice);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Specialty()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Specialty);
@@ -94,6 +106,8 @@ namespace BackOffice.Web.Controllers
             public readonly string Search = "Search";
             public readonly string Create = "Create";
             public readonly string EditProfile = "EditProfile";
+            public readonly string EditImageProfile = "EditImageProfile";
+            public readonly string UpsertOffice = "UpsertOffice";
             public readonly string Specialty = "Specialty";
             public readonly string Insurance = "Insurance";
         }
@@ -104,6 +118,8 @@ namespace BackOffice.Web.Controllers
             public const string Search = "Search";
             public const string Create = "Create";
             public const string EditProfile = "EditProfile";
+            public const string EditImageProfile = "EditImageProfile";
+            public const string UpsertOffice = "UpsertOffice";
             public const string Specialty = "Specialty";
             public const string Insurance = "Insurance";
         }
@@ -116,6 +132,23 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_EditProfile
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_EditImageProfile s_params_EditImageProfile = new ActionParamsClass_EditImageProfile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditImageProfile EditImageProfileParams { get { return s_params_EditImageProfile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditImageProfile
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_UpsertOffice s_params_UpsertOffice = new ActionParamsClass_UpsertOffice();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpsertOffice UpsertOfficeParams { get { return s_params_UpsertOffice; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpsertOffice
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
         }
         static readonly ActionParamsClass_Specialty s_params_Specialty = new ActionParamsClass_Specialty();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -183,6 +216,31 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProfile);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             EditProfileOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditImageProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditImageProfile(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditImageProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            EditImageProfileOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpsertOfficeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UpsertOffice(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertOffice);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            UpsertOfficeOverride(callInfo, ProfilePublicId, OfficePublicId);
             return callInfo;
         }
 

@@ -1,4 +1,5 @@
-﻿using BackOffice.Models.Profile;
+﻿using BackOffice.Models.Office;
+using BackOffice.Models.Profile;
 using SaludGuruProfile.Manager.Controller;
 using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.Profile;
@@ -67,6 +68,27 @@ namespace BackOffice.Web.Controllers
                 //get updated profile info
                 Model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
             }
+            return View(Model);
+        }
+
+        public virtual ActionResult EditImageProfile(string ProfilePublicId)
+        {
+
+            return View();
+        }
+
+        #endregion
+
+        #region Office
+
+        public virtual ActionResult UpsertOffice(string ProfilePublicId, string OfficePublicId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+
+
             return View(Model);
         }
 

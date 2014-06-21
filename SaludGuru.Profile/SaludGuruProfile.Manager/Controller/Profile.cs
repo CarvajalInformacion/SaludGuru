@@ -30,6 +30,10 @@ namespace SaludGuruProfile.Manager.Controller
             return DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(ProfilePublicId);
         }
 
+        /// <summary>
+        /// get all options for a profile
+        /// </summary>
+        /// <returns>list posible options</returns>
         public static List<ItemModel> GetProfileOptions()
         {
             return ProfileDataController.Instance.ProfileGetOptions();

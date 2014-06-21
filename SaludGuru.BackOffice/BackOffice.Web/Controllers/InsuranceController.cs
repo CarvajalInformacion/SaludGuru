@@ -10,8 +10,7 @@ namespace BackOffice.Web.Controllers
     {
         public virtual ActionResult Search()
         {
-            return View("Search");
+            return View();
         }
-
     }
 }
