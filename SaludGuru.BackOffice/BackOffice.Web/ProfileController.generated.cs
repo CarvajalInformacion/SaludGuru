@@ -59,33 +59,39 @@ namespace BackOffice.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EditProfile()
+        public virtual System.Web.Mvc.ActionResult ProfileEdit()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProfile);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEdit);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EditImageProfile()
+        public virtual System.Web.Mvc.ActionResult ProfileEditImage()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditImageProfile);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEditImage);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpsertOffice()
+        public virtual System.Web.Mvc.ActionResult OfficeList()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertOffice);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeList);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Specialty()
+        public virtual System.Web.Mvc.ActionResult OfficeUpsert()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Specialty);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeUpsert);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Insurance()
+        public virtual System.Web.Mvc.ActionResult SpecialtyProfileList()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Insurance);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InsuranceProfileList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceProfileList);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,66 +109,76 @@ namespace BackOffice.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Search = "Search";
-            public readonly string Create = "Create";
-            public readonly string EditProfile = "EditProfile";
-            public readonly string EditImageProfile = "EditImageProfile";
-            public readonly string UpsertOffice = "UpsertOffice";
-            public readonly string Specialty = "Specialty";
-            public readonly string Insurance = "Insurance";
+            public readonly string ProfileSearch = "ProfileSearch";
+            public readonly string ProfileCreate = "ProfileCreate";
+            public readonly string ProfileEdit = "ProfileEdit";
+            public readonly string ProfileEditImage = "ProfileEditImage";
+            public readonly string OfficeList = "OfficeList";
+            public readonly string OfficeUpsert = "OfficeUpsert";
+            public readonly string SpecialtyProfileList = "SpecialtyProfileList";
+            public readonly string InsuranceProfileList = "InsuranceProfileList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Search = "Search";
-            public const string Create = "Create";
-            public const string EditProfile = "EditProfile";
-            public const string EditImageProfile = "EditImageProfile";
-            public const string UpsertOffice = "UpsertOffice";
-            public const string Specialty = "Specialty";
-            public const string Insurance = "Insurance";
+            public const string ProfileSearch = "ProfileSearch";
+            public const string ProfileCreate = "ProfileCreate";
+            public const string ProfileEdit = "ProfileEdit";
+            public const string ProfileEditImage = "ProfileEditImage";
+            public const string OfficeList = "OfficeList";
+            public const string OfficeUpsert = "OfficeUpsert";
+            public const string SpecialtyProfileList = "SpecialtyProfileList";
+            public const string InsuranceProfileList = "InsuranceProfileList";
         }
 
 
-        static readonly ActionParamsClass_EditProfile s_params_EditProfile = new ActionParamsClass_EditProfile();
+        static readonly ActionParamsClass_ProfileEdit s_params_ProfileEdit = new ActionParamsClass_ProfileEdit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EditProfile EditProfileParams { get { return s_params_EditProfile; } }
+        public ActionParamsClass_ProfileEdit ProfileEditParams { get { return s_params_ProfileEdit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EditProfile
+        public class ActionParamsClass_ProfileEdit
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
-        static readonly ActionParamsClass_EditImageProfile s_params_EditImageProfile = new ActionParamsClass_EditImageProfile();
+        static readonly ActionParamsClass_ProfileEditImage s_params_ProfileEditImage = new ActionParamsClass_ProfileEditImage();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EditImageProfile EditImageProfileParams { get { return s_params_EditImageProfile; } }
+        public ActionParamsClass_ProfileEditImage ProfileEditImageParams { get { return s_params_ProfileEditImage; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EditImageProfile
+        public class ActionParamsClass_ProfileEditImage
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
-        static readonly ActionParamsClass_UpsertOffice s_params_UpsertOffice = new ActionParamsClass_UpsertOffice();
+        static readonly ActionParamsClass_OfficeList s_params_OfficeList = new ActionParamsClass_OfficeList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpsertOffice UpsertOfficeParams { get { return s_params_UpsertOffice; } }
+        public ActionParamsClass_OfficeList OfficeListParams { get { return s_params_OfficeList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpsertOffice
+        public class ActionParamsClass_OfficeList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_OfficeUpsert s_params_OfficeUpsert = new ActionParamsClass_OfficeUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeUpsert OfficeUpsertParams { get { return s_params_OfficeUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeUpsert
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
             public readonly string OfficePublicId = "OfficePublicId";
         }
-        static readonly ActionParamsClass_Specialty s_params_Specialty = new ActionParamsClass_Specialty();
+        static readonly ActionParamsClass_SpecialtyProfileList s_params_SpecialtyProfileList = new ActionParamsClass_SpecialtyProfileList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Specialty SpecialtyParams { get { return s_params_Specialty; } }
+        public ActionParamsClass_SpecialtyProfileList SpecialtyProfileListParams { get { return s_params_SpecialtyProfileList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Specialty
+        public class ActionParamsClass_SpecialtyProfileList
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
-        static readonly ActionParamsClass_Insurance s_params_Insurance = new ActionParamsClass_Insurance();
+        static readonly ActionParamsClass_InsuranceProfileList s_params_InsuranceProfileList = new ActionParamsClass_InsuranceProfileList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Insurance InsuranceParams { get { return s_params_Insurance; } }
+        public ActionParamsClass_InsuranceProfileList InsuranceProfileListParams { get { return s_params_InsuranceProfileList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Insurance
+        public class ActionParamsClass_InsuranceProfileList
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -186,85 +202,97 @@ namespace BackOffice.Web.Controllers
         public T4MVC_ProfileController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ProfileSearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Search()
+        public override System.Web.Mvc.ActionResult ProfileSearch()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            SearchOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileSearch);
+            ProfileSearchOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ProfileCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult ProfileCreate()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileCreate);
+            ProfileCreateOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void EditProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void ProfileEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult EditProfile(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult ProfileEdit(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProfile);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEdit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            EditProfileOverride(callInfo, ProfilePublicId);
+            ProfileEditOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
         [NonAction]
-        partial void EditImageProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void ProfileEditImageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult EditImageProfile(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult ProfileEditImage(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditImageProfile);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEditImage);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            EditImageProfileOverride(callInfo, ProfilePublicId);
+            ProfileEditImageOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
         [NonAction]
-        partial void UpsertOfficeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+        partial void OfficeListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UpsertOffice(string ProfilePublicId, string OfficePublicId)
+        public override System.Web.Mvc.ActionResult OfficeList(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertOffice);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            OfficeListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeUpsert(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
-            UpsertOfficeOverride(callInfo, ProfilePublicId, OfficePublicId);
+            OfficeUpsertOverride(callInfo, ProfilePublicId, OfficePublicId);
             return callInfo;
         }
 
         [NonAction]
-        partial void SpecialtyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void SpecialtyProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Specialty(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult SpecialtyProfileList(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Specialty);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            SpecialtyOverride(callInfo, ProfilePublicId);
+            SpecialtyProfileListOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
         [NonAction]
-        partial void InsuranceOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void InsuranceProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Insurance(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult InsuranceProfileList(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Insurance);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceProfileList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            InsuranceOverride(callInfo, ProfilePublicId);
+            InsuranceProfileListOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

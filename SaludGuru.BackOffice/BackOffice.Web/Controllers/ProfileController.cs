@@ -16,12 +16,12 @@ namespace BackOffice.Web.Controllers
     {
         #region Profile
 
-        public virtual ActionResult Search()
+        public virtual ActionResult ProfileSearch()
         {
             return View();
         }
 
-        public virtual ActionResult Create()
+        public virtual ActionResult ProfileCreate()
         {
             ProfileUpSertModel Model = new ProfileUpSertModel()
             {
@@ -41,12 +41,12 @@ namespace BackOffice.Web.Controllers
                     (ProfileToCreate);
 
                 //return to update view
-                return RedirectToAction(MVC.Profile.ActionNames.EditProfile, MVC.Profile.Name, new { ProfilePublicId = oProfilePublicId });
+                return RedirectToAction(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name, new { ProfilePublicId = oProfilePublicId });
             }
             return View(Model);
         }
 
-        public virtual ActionResult EditProfile(string ProfilePublicId)
+        public virtual ActionResult ProfileEdit(string ProfilePublicId)
         {
             ProfileUpSertModel Model = new ProfileUpSertModel()
             {
@@ -71,7 +71,7 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
-        public virtual ActionResult EditImageProfile(string ProfilePublicId)
+        public virtual ActionResult ProfileEditImage(string ProfilePublicId)
         {
 
             return View();
@@ -81,7 +81,17 @@ namespace BackOffice.Web.Controllers
 
         #region Office
 
-        public virtual ActionResult UpsertOffice(string ProfilePublicId, string OfficePublicId)
+        public virtual ActionResult OfficeList(string ProfilePublicId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+
+            return View(Model);
+        }
+
+        public virtual ActionResult OfficeUpsert(string ProfilePublicId, string OfficePublicId)
         {
             OfficeUpsertModel Model = new OfficeUpsertModel()
             {
@@ -96,7 +106,7 @@ namespace BackOffice.Web.Controllers
 
         #region Specialty
 
-        public virtual ActionResult Specialty(string ProfilePublicId)
+        public virtual ActionResult SpecialtyProfileList(string ProfilePublicId)
         {
             ProfileSpecialtyModel Model = new ProfileSpecialtyModel()
             {
@@ -120,7 +130,7 @@ namespace BackOffice.Web.Controllers
 
         #region Insurance
 
-        public virtual ActionResult Insurance(string ProfilePublicId)
+        public virtual ActionResult InsuranceProfileList(string ProfilePublicId)
         {
             ProfileInsuranceModel Model = new ProfileInsuranceModel()
             {
