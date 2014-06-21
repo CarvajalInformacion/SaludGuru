@@ -10,13 +10,14 @@
         vertical-align:top;
 }
     .BOProfileMenuWrapper {
-        border:1px solid red;
+        border:1px solid purple;
         width:auto;
     }
     .BOProfileFormWrapper {
         border:1px solid green;
         margin:0px 0px 0px -8px;
-        width:auto;
+        width:58%;
+        min-width:58%   ;
     }
 /************* COLUMNA DE INFO DEL PERFIL ************/
 
