@@ -42,7 +42,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
     </Reference>
-    <Reference Include="SaludGuruProfile.Manager">
+    <Reference Include="SaludGuruProfile.Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuruProfile.Manager\developer\SaludGuruProfile.Manager.dll</HintPath>
     </Reference>
     <Reference Include="SessionController">
@@ -67,6 +68,8 @@
     <Compile Include="General\MenuModel.cs" />
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />
+    <Compile Include="Profile\ProfileInsuranceModel.cs" />
+    <Compile Include="Profile\ProfileSpecialtyModel.cs" />
     <Compile Include="Profile\ProfileUpSertModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

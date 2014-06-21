@@ -1,0 +1,33 @@
+.BOFormDataWrapper {
+    display:block;
+    min-width: 428px;
+    width: auto;
+    border:1px solid black;
+}
+.BOFormDataWrapper ul{
+    display:block;
+    border:1px solid blue;
+    margin:23px 0px 0px 106px;
+}
+.BOFormDataWrapper ul li{
+    display:block;
+    padding:10px 14px;
+    width:auto;
+    margin:0px;
+}
+.BOFormDataWrapper ul li label{
+    border:1px solid #999;
+    display:inline-block;
+    line-height:18px;
+    font-weight:bold;
+    background-color:#e6e6e6;
+    padding:4px 0px;
+    width:22%;
+}
+.BOFormDataWrapper ul li input{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+}
