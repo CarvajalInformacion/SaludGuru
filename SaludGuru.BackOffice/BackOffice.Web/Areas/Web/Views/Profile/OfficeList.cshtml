@@ -2,7 +2,35 @@
 @{
     ViewBag.Title = "ListOffice";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
-}
 
-@Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+    //get json office data
+    string oOfficeData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedOffice.
+            Select(x => new
+            {
+                Name = x.Name,
+                CityName = x.City.CityName,
+                IsDefault = x.IsDefault ? "Si" : "No",
+                LastModify = x.LastModify.ToString("yyyy/MM/dd HH:mm"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd HH:mm")
+            }).ToList());
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+</div>
+<div class="BOProfileFormWrapper">
+    <div id="divGridOffice" style="width:800px;"></div>
+    <div style="height:100px;"></div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataOffice = @Html.Raw(oOfficeData)
+        $(document).ready(function () {
+            //start office grid
+            OfficeListGrid('divGridOffice', '@Url.Action(MVC.Profile.ActionNames.OfficeUpsert,MVC.Profile.Name)', vDataOffice);
+        });
+    </script>
+}
 

@@ -1,9 +1,8 @@
 ﻿@model List<BackOffice.Models.General.MenuModel>
 
 
-               <!--home icon-->
-               <a class="HeaderLogoSaludGuru" href="" title="SaludGuru"></a>
-
+<!--home icon-->
+<a class="HeaderLogoSaludGuru" href="" title="SaludGuru"></a>
 
 <!--principal menu-->
 <ul class="mainMenuItemWrapper">
@@ -14,14 +13,14 @@
             case BackOffice.Models.General.enumPrincipalMenu.Administrator:
                 <li>
                     <!--Este es el primer item del menu-->
-                    <img src="/Areas/Web/Content/Images/googleIconSmall.png" title="Administrar" alt="Administrar" />
+                    <img src="@Url.Content("~/Areas/Web/Content/Images/googleIconSmall.png")" title="Administrar" alt="Administrar" />
                     <a href="">Administrar</a>
 
                     <!--Ese es el contenedor de los subitems-->
                     <div class="subMenu">
                         <ul>
                             <li>
-                                <a href="@Url.Action(MVC.Profile.ActionNames.Search,MVC.Profile.Name)">Perfil</a>
+                                <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Perfil</a>
                             </li>
                             <li>
                                 <a href="@Url.Action(MVC.Insurance.ActionNames.Search, MVC.Insurance.Name)">Seguros medicos</a>
@@ -33,34 +32,33 @@
                                 <a href="@Url.Action(MVC.Treatment.ActionNames.Search, MVC.Treatment.Name)">Tratamientos</a>
                             </li>
                         </ul>
-                     </div>
+                    </div>
                 </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Appointment:
             <li>
-                <img src="/Areas/Web/Content/Images/googleIconSmall.png" title="Administrar" alt="Administrar" />
+                <img src="@Url.Content("~/Areas/Web/Content/Images/googleIconSmall.png")" title="Administrar" alt="Administrar" />
                 <a href="">Agenda</a>
 
                 @*<div class="subMenu">
-                    <ul>
-                        <li>
-                            <a href="">Día</a>
-                        </li>
-                        <li>
-                            <a href="">Semana</a>
-                        </li>
-                        <li>
-                            <a href="">Mes</a>
-                        </li>
-                        <li>
-                            <a href="">Lista</a>
-                        </li>
-                        <li>
-                            <a href="">Configuracion</a>
-                        </li>
-                    </ul>
-                </div>*@
-
+                        <ul>
+                            <li>
+                                <a href="">Día</a>
+                            </li>
+                            <li>
+                                <a href="">Semana</a>
+                            </li>
+                            <li>
+                                <a href="">Mes</a>
+                            </li>
+                            <li>
+                                <a href="">Lista</a>
+                            </li>
+                            <li>
+                                <a href="">Configuracion</a>
+                            </li>
+                        </ul>
+                    </div>*@
             </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Dashboard:

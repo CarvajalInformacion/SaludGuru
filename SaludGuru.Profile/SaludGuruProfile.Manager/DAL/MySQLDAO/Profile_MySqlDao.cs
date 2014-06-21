@@ -569,12 +569,23 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                          OfficePublicId = op.Field<string>("OfficePublicId"),
                                          OfficeName = op.Field<string>("OfficeName"),
                                          OfficeIsDefault = op.Field<bool>("OfficeIsDefault"),
+                                         LastModify = op.Field<DateTime>("OfficeLastModify"),
+                                         CreateDate = op.Field<DateTime>("OfficeCreateDate"),
+                                         CityId = op.Field<int>("CityId"),
+                                         CityName = op.Field<string>("CityName"),
                                      } into opg
                                      select new OfficeModel()
                                      {
                                          OfficePublicId = opg.Key.OfficePublicId,
                                          Name = opg.Key.OfficeName,
-                                         IsDefault = opg.Key.OfficeIsDefault
+                                         IsDefault = opg.Key.OfficeIsDefault,
+                                         LastModify = opg.Key.LastModify,
+                                         CreateDate = opg.Key.CreateDate,
+                                         City = new CityModel()
+                                         {
+                                             CityId = opg.Key.CityId,
+                                             CityName = opg.Key.CityName
+                                         }
                                      }).ToList(),
 
                 };

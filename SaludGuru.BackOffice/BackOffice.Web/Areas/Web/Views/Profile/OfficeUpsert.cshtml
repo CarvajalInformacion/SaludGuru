@@ -3,6 +3,11 @@
     ViewBag.Title = "CreateOffice";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+</div>
+<div class="BOProfileFormWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeInfo)
+</div>
 
-@Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 

@@ -491,6 +491,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -554,6 +555,8 @@
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.ttf" />
     <Content Include="Areas\Web\Views\Profile\OfficeList.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeInfo.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

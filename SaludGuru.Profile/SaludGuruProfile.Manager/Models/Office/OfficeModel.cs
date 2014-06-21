@@ -13,6 +13,8 @@ namespace SaludGuruProfile.Manager.Models.Office
         public CityModel City { get; set; }
         public string Name { get; set; }
         public bool IsDefault { get; set; }
+        public DateTime LastModify { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public List<OfficeInfoModel> OfficeInfo { get; set; }
         public List<ScheduleAvailableModel> ScheduleAvailable { get; set; }

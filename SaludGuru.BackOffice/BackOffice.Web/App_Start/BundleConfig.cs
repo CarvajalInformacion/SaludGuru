@@ -23,8 +23,8 @@ namespace BackOffice.Web
 
                 #region Kendo
 
-                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendogrid").Include(
-                             "~/Areas/Web/Scripts/kendo/2014.1.318/kendo.grid.min.js"));
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/kendo").Include(
+                             "~/Areas/Web/Scripts/kendo/2014.1.318/kendo.web.min.js"));
 
                 #endregion
 
