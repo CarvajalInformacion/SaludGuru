@@ -9,7 +9,8 @@
 
         columns: [{
                 field: "Name",
-                title: "Nombre"
+                title: "Nombre",
+                template: '<a href="${UrlToUpdate}">${Name}</a>'
             }, {
                 field: "CityName",
                 title: "Ciudad"

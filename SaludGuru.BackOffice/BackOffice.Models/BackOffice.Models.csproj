@@ -67,6 +67,7 @@
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\MenuModel.cs" />
     <Compile Include="General\SessionModel.cs" />
+    <Compile Include="Office\OfficeMenuModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />
     <Compile Include="Profile\ProfileInsuranceModel.cs" />
     <Compile Include="Profile\ProfileSpecialtyModel.cs" />

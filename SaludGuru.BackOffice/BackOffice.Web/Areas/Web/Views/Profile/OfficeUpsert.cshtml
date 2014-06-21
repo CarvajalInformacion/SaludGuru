@@ -9,7 +9,12 @@
 <div>
     @if (Model.CurrentOffice != null)
     {
-        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu);
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
+            new BackOffice.Models.Office.OfficeMenuModel()
+            {
+                OfficeInfo = Model.CurrentOffice,
+                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.OfficeInfo
+            });
     }
 </div>
 <div class="BOProfileFormWrapper">

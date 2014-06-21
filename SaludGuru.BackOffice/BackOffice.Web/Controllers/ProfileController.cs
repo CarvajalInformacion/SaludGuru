@@ -124,6 +124,11 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult OfficeTreatmentList()
+        {
+            return View();
+        }
+
         #endregion
 
         #region Specialty

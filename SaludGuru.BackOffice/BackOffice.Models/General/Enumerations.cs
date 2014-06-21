@@ -26,4 +26,11 @@
         OfficeCategoryInfoType = 8,
         IdentificationType = 9
     }
+
+    public enum enumOfficeMenu
+    {
+        OfficeInfo,
+        Treatments,
+        ScheduleAvalilable
+    }
 }

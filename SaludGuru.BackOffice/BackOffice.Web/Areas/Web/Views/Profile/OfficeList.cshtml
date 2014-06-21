@@ -8,12 +8,21 @@
         Serialize(Model.Profile.RelatedOffice.
             Select(x => new
             {
+                UrlToUpdate = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+                    new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = x.OfficePublicId }),
                 Name = x.Name,
                 CityName = x.City.CityName,
                 IsDefault = x.IsDefault ? "Si" : "No",
                 LastModify = x.LastModify.ToString("yyyy/MM/dd HH:mm"),
                 CreateDate = x.CreateDate.ToString("yyyy/MM/dd HH:mm")
             }).ToList());
+
+    //get create url
+    string oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+        new
+        {
+            ProfilePublicId = Model.Profile.ProfilePublicId
+        });
 }
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
@@ -29,7 +38,7 @@
         var vDataOffice = @Html.Raw(oOfficeData)
         $(document).ready(function () {
             //start office grid
-            OfficeListGrid('divGridOffice', '@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId})', vDataOffice);
+            OfficeListGrid('divGridOffice', '@oCreateUrl', vDataOffice);
         });
     </script>
 }

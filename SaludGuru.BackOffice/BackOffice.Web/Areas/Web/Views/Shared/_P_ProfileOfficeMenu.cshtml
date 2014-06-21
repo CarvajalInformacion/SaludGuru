@@ -1,14 +1,21 @@
-﻿<div style="top:100px;">
-    <ul>
-        <li>
-            <a href="">Información general</a>
-        </li>
-        <li>
-            <a href="">Tratamientos</a>
-        </li>
-        <li>
-            <a href="">Horarios de atención</a>
-        </li>
-    </ul>
+﻿@model BackOffice.Models.Office.OfficeMenuModel
 
+<div style="top:100px;height:100px;">
+    <div>
+        <label>Nombre</label>:
+        <label>@Model.OfficeInfo.Name</label>
+    </div>
+    <div>
+        <ul>
+            <li>
+                <a href="">Información general</a>
+            </li>
+            <li>
+                <a href="">Tratamientos</a>
+            </li>
+            <li>
+                <a href="">Horarios de atención</a>
+            </li>
+        </ul>
+    </div>
 </div>
