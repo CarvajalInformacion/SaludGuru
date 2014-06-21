@@ -8,14 +8,15 @@
 .BOProfileMenuWrapper, .BOProfileFormWrapper {
         display:inline-block;
         vertical-align:top;
-        width:auto;
 }
     .BOProfileMenuWrapper {
         border:1px solid red;
+        width:auto;
     }
     .BOProfileFormWrapper {
         border:1px solid green;
         margin:0px 0px 0px -8px;
+        width:auto;
     }
 /************* COLUMNA DE INFO DEL PERFIL ************/
 
