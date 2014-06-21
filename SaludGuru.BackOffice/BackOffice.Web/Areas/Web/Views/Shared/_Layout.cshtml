@@ -6,7 +6,8 @@
 
     @*Render bondles styles*@
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/css")
-    @Styles.Render("~/areas/web/content/styles/jquery-ui-1.10.4.custom.css")
+    @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
+    @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
 </head>
 <body>
     <div style="min-width:800px;">
@@ -31,11 +32,9 @@
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/modernizr")
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
-    @*@Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendo")*@
-    <script src="http://localhost:61472/Scripts/kendo/2014.1.318/kendo.grid.min.js"></script>
+    @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendogrid")
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/sitescripts")
 
-    @Scripts.Render("~/Areas/Web/Scripts/jquery-ui-1.10.4.custom.js")
 
     @*Render inline site scripts*@
     @RenderSection("inlinescripts", required: false)

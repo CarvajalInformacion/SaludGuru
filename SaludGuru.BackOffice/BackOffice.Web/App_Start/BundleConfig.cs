@@ -10,27 +10,21 @@ namespace BackOffice.Web
         {
             if (BackOffice.Web.Controllers.BaseController.AreaName == BackOffice.Web.Controllers.BaseController.AreaName)
             {
-                //bundle for web scripts
-
                 #region JQery
+
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
-                            "~/Areas/Web/Scripts/jquery-{version}.js"));
+                            "~/Areas/Web/Scripts/jquery-{version}.js",
+                            "~/Areas/Web/Scripts/jquery-ui-1.10.4.js"));
 
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Models.General.Constants.C_WebAreaName + "/bundles/jqueryval").Include(
                             "~/Areas/Web/Scripts/jquery.validate*"));
+
                 #endregion
 
                 #region Kendo
 
-                //bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendo").IncludeDirectory(
-                //         "~/Areas/Web/Scripts/kendo",
-                //         "*.js",
-                //         true));
-
-                //bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendo").Include(
-                //            "~/Areas/Web/Scripts/kendo/2014.1.416/kendo.core.min.js"));
-                //bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendo").Include(
-                //           "~/Areas/Web/Scripts/kendo/2014.1.416/kendo.core.min.js"));
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/Kendogrid").Include(
+                             "~/Areas/Web/Scripts/kendo/2014.1.318/kendo.grid.min.js"));
 
                 #endregion
 
@@ -53,15 +47,44 @@ namespace BackOffice.Web
                 #endregion
 
                 #region Styles
+
+                #region /web/styles
+
                 bundles.Add(new StyleBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/css").IncludeDirectory(
                           "~/Areas/Web/Content/Styles",
                           "*.css",
                           true));
+
                 #endregion
+
+                #region jquery
+
+                bundles.Add(new StyleBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/jquery/css").IncludeDirectory(
+                          "~/Areas/Web/Content/jquery",
+                          "*.css",
+                          true));
+
+                #endregion
+
+                #region kendo
+
+                bundles.Add(new StyleBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css").Include(
+                          "~/Areas/Web/Content/kendo/2014.1.318/kendo.common.min.css",
+                          "~/Areas/Web/Content/kendo/2014.1.318/kendo.default.min.css"));
+
+                #endregion
+
+                #endregion
+
+
+
             }
             else if (BackOffice.Web.Controllers.BaseController.AreaName == BackOffice.Models.General.Constants.C_MobileAreaName)
             {
             }
+
+            //allow bundles in debug mode
+            bundles.IgnoreList.Clear();
         }
     }
 }
