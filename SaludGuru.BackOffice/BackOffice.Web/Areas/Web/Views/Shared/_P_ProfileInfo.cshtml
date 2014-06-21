@@ -121,13 +121,13 @@
                 @{
                     if (CatInfo_GD != null && CatInfo_GD.val)
                     {
-                        <input type="radio" name="Gender" value="true" checked="checked" /><label>Masculino</label>
-                        <input type="radio" name="Gender" value="false" /><label>Femenino</label>
+                        <input type="radio" name="Gender" value="true" checked="checked" /><p> Masculino </p>
+                        <input type="radio" name="Gender" value="false" /><p> Femenino </p>
                     }
                     else
                     {
-                        <input type="radio" name="Gender" value="true" /><label>Masculino</label>
-                        <input type="radio" name="Gender" value="false" checked="checked" /><label>Femenino</label>
+                        <input type="radio" name="Gender" value="true" /><p> Masculino </p>
+                        <input type="radio" name="Gender" value="false" checked="checked" /><p> Femenino </p>
                     }
                 }
             </li>
@@ -219,7 +219,7 @@
                     }
                 }
                 <label>Texto de perfil</label>
-                <textarea id="ProfileText" name="ProfileText" rows="15" cols="15">
+                <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" >
                     @(CatInfo_PT == null ? string.Empty : CatInfo_PT.val)
                 </textarea>
             </li>
@@ -259,13 +259,14 @@
                     @(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)
                 </textarea>
             </li>
+            
         </ul>
         <div>
-            <!--hiden fields-->
-            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-        </div>
-        <div>
-            <input type="submit" />
-        </div>
+            @*hiden fields*@
+        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
     </form>
 </div>

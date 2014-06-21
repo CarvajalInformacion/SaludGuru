@@ -1,19 +1,21 @@
 .BOFormDataWrapper {
     display:block;
-    min-width: 428px;
     width: auto;
     border:1px solid black;
 }
 .BOFormDataWrapper ul{
     display:block;
     border:1px solid blue;
-    margin:23px 0px 0px 106px;
+    margin:22px 0px 0px 80px;
+    width:72%;
+    min-width:348px;
+    height:auto;
 }
 .BOFormDataWrapper ul li{
     display:block;
     padding:10px 14px;
-    width:auto;
     margin:0px;
+    border:1px solid red;
 }
 .BOFormDataWrapper ul li label{
     border:1px solid #999;
@@ -22,12 +24,47 @@
     font-weight:bold;
     background-color:#e6e6e6;
     padding:4px 0px;
-    width:22%;
+    width:40%;
+    text-align:center;
 }
 .BOFormDataWrapper ul li input{
     display:inline-block;
     border:1px solid #999;
+    padding:5px 0px;
     text-align:left;
     background-color:#fff;
     width:55%;
 }
+.BOFormDataWrapper ul li select{
+    display:inline-block;
+    border:1px solid #999;
+    padding:0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+    height:28px;
+    vertical-align:top;
+}
+.BOFormDataWrapper ul li textarea{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:55%;
+    height:100px;
+    vertical-align:top;
+}
+    .BOFormDataWrapper ul li p{
+        display:inline-block;
+        width:auto;
+        margin:0px 4px;
+    }
+    .BOFormDataWrapper ul li input[type="radio"]{
+        display:inline-block;
+        width:auto;
+    }
+    .BOFormDataWrapper ul li input[type="checkbox"] {
+        display:inline-block;
+        width:auto;
+        margin-left:50px;
+    }
