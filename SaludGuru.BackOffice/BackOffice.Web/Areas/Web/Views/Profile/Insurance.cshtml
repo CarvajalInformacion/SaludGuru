@@ -1,8 +1,39 @@
-﻿
+﻿@model BackOffice.Models.Profile.ProfileInsuranceModel
 @{
     ViewBag.Title = "Insurance";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Insurance</h2>
+<div>
+    <p>
+        Seleccione los seguros: @Html.TextBox("Insurance")
+        <input type="submit" value="Agregar" name="AddInsurance" style="height:26px;" />
+    </p>
+</div>
+<div>
+    @* Agregar grilla.*@
+</div>
 
+@*@Scripts.Render("~/Areas/Web/Scripts/jquery-1.10.2.js")*@
+<script src="~/Areas/Web/Scripts/jquery-ui-1.10.4.custom.js"></script>
+@Styles.Render("~/areas/web/content/styles/jquery-ui-1.10.4.custom.css")
+
+@{
+    var jsonSerialiser = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var jsonr = jsonSerialiser.Serialize(Model.InsuranceToSelect.Select(s => new { s.CategoryId, s.Name }));
+
+}
+
+<script type="text/javascript">
+    var acdata = @(Html.Raw(jsonr));
+    $(document).ready(function () {
+        $("#Insurance").autocomplete({
+            source: acdata,
+            select: Name,
+            messages: {
+                noResults: "",
+                results: ""
+            }
+        });
+    })
+</script>

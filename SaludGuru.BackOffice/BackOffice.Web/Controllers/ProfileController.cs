@@ -105,7 +105,7 @@ namespace BackOffice.Web.Controllers
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.CategoryGetAllAdmin(string.Empty),
             };
-            return View();
+            return View(Model);
         }
 
         #endregion
