@@ -6,8 +6,14 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
+<div>
+    @if (Model.CurrentOffice != null)
+    {
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu);
+    }
+</div>
 <div class="BOProfileFormWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeInfo)
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeInfo, Model)
 </div>
 
 

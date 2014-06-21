@@ -1,5 +1,6 @@
 ﻿using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.General;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using SessionController.Models.Profile.Autorization;
 using System;
@@ -64,6 +65,8 @@ namespace SaludGuruProfile.Manager.Interfaces
         void OfficeCategoryInfoModify(int OfficeCategoryInfoId, string Value, string LargeValue);
         void OfficeCategoryInfoDelete(int OfficeCategoryInfoId);
 
+        OfficeModel OfficeGetFullAdmin(string OfficePublicId);
+
         #endregion
 
         #region Autorization
@@ -73,6 +76,10 @@ namespace SaludGuruProfile.Manager.Interfaces
 
         List<AutorizationModel> GetAutorization(string UserEmail);
 
+        #endregion
+
+        #region City
+        List<CityModel> CityGetAll();
         #endregion
     }
 }

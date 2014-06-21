@@ -11,9 +11,56 @@ namespace SaludGuruProfile.Manager.Controller
     {
         #region Office
 
-        public static string UpsertOfficeInfo(OfficeModel OfficeToUpsert)
+        public static OfficeModel OfficeGetFullAdmin(string OfficePublicId)
         {
-            return string.Empty;
+            return DAL.Controller.ProfileDataController.Instance.OfficeGetFullAdmin(OfficePublicId);
+        }
+
+        public static string UpsertOfficeInfo(string ProfilePublicId, OfficeModel OfficeToUpsert)
+        {
+            //upsert office
+            string oOfficePublicId = OfficeToUpsert.OfficePublicId;
+            if (string.IsNullOrEmpty(oOfficePublicId))
+            {
+                oOfficePublicId = DAL.Controller.ProfileDataController.Instance.OfficeCreate
+                    (ProfilePublicId,
+                    OfficeToUpsert.City.CityId,
+                    OfficeToUpsert.Name,
+                    OfficeToUpsert.IsDefault);
+            }
+            else
+            {
+                DAL.Controller.ProfileDataController.Instance.OfficeUpdate
+                    (OfficeToUpsert.OfficePublicId,
+                    OfficeToUpsert.City.CityId,
+                    OfficeToUpsert.Name,
+                    OfficeToUpsert.IsDefault);
+            }
+
+            //upsert profile info
+            OfficeToUpsert.OfficeInfo.All(ofi =>
+            {
+                if (ofi.OfficeInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.ProfileDataController.Instance.OfficeInfoCreate
+                        (oOfficePublicId,
+                        ofi.OfficeInfoType,
+                        ofi.Value,
+                        ofi.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.ProfileDataController.Instance.OfficeInfoModify
+                        (ofi.OfficeInfoId,
+                        ofi.Value,
+                        ofi.LargeValue);
+                }
+                return true;
+            });
+
+            return oOfficePublicId;
         }
 
         #endregion

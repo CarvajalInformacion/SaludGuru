@@ -1,4 +1,5 @@
-﻿using SaludGuruProfile.Manager.Models.Office;
+﻿using SaludGuruProfile.Manager.Models.General;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace BackOffice.Models.Office
     {
         public ProfileModel Profile { get; set; }
         public OfficeModel CurrentOffice { get; set; }
+        public List<CityModel> CitiesToSel { get; set; }
     }
 }

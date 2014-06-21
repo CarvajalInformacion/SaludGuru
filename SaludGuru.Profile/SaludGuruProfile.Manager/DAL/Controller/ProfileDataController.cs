@@ -1,5 +1,6 @@
 ﻿using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.General;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -206,8 +207,12 @@ namespace SaludGuruProfile.Manager.DAL.Controller
 
         public List<ProfileModel> ProfileSearchInfo(string SearchCriteria, int PageNumber, int RowCount)
         {
-            List<ProfileModel> oReturn = DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
-            return oReturn;
+            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+        }
+
+        public OfficeModel OfficeGetFullAdmin(string OfficePublicId)
+        {
+            return DataFactory.OfficeGetFullAdmin(OfficePublicId);
         }
 
         #endregion
@@ -231,7 +236,12 @@ namespace SaludGuruProfile.Manager.DAL.Controller
 
         #endregion
 
-
+        #region City
+        public List<CityModel> CityGetAll()
+        {
+            return DataFactory.CityGetAll();
+        }
+        #endregion
 
     }
 }

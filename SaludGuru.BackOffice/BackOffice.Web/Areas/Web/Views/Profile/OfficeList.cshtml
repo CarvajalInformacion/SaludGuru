@@ -29,7 +29,7 @@
         var vDataOffice = @Html.Raw(oOfficeData)
         $(document).ready(function () {
             //start office grid
-            OfficeListGrid('divGridOffice', '@Url.Action(MVC.Profile.ActionNames.OfficeUpsert,MVC.Profile.Name)', vDataOffice);
+            OfficeListGrid('divGridOffice', '@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId})', vDataOffice);
         });
     </script>
 }

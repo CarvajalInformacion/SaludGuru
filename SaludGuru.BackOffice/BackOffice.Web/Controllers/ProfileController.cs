@@ -2,6 +2,7 @@
 using BackOffice.Models.Profile;
 using SaludGuruProfile.Manager.Controller;
 using SaludGuruProfile.Manager.Models;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -96,9 +97,30 @@ namespace BackOffice.Web.Controllers
             OfficeUpsertModel Model = new OfficeUpsertModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentOffice = string.IsNullOrEmpty(OfficePublicId) ? null : SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(OfficePublicId),
+                CitiesToSel = SaludGuruProfile.Manager.Controller.City.CityGetAll(),
             };
 
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                //get request model
+                OfficeModel ProfileToCreate = GetProfileOfficeInfoRequestModel();
 
+                //create profile 
+                string oOfficePublicId = SaludGuruProfile.Manager.Controller.Office.UpsertOfficeInfo
+                    (Model.Profile.ProfilePublicId, ProfileToCreate);
+
+                //redirect to update page
+                if (string.IsNullOrEmpty(ProfileToCreate.OfficePublicId))
+                {
+                    return RedirectToAction(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = oOfficePublicId });
+                }
+                else
+                {
+                    Model.CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(oOfficePublicId);
+                }
+            }
             return View(Model);
         }
 
@@ -217,6 +239,48 @@ namespace BackOffice.Web.Controllers
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_Certification"])?0:int.Parse(Request["CatId_Certification"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.Certification,
                             LargeValue = Request["Certification"].ToString(),
+                        },
+                    }
+                };
+
+                return oReturn;
+            }
+            return null;
+        }
+
+        private OfficeModel GetProfileOfficeInfoRequestModel()
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                OfficeModel oReturn = new OfficeModel()
+                {
+                    OfficePublicId = Request["OfficePublicId"],
+                    Name = Request["Name"].ToString(),
+                    City = new SaludGuruProfile.Manager.Models.General.CityModel()
+                    {
+                        CityId = int.Parse(Request["City"].ToString()),
+                    },
+                    IsDefault = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? true : false,
+                    OfficeInfo = new List<OfficeInfoModel>() 
+                    { 
+                        new OfficeInfoModel()
+                        {
+                            OfficeInfoId = string.IsNullOrEmpty(Request["CatId_Address"])?0:int.Parse(Request["CatId_Address"].ToString().Trim()),
+                            OfficeInfoType = enumOfficeInfoType.Address,
+                            Value = Request["Address"].ToString(),
+                        },
+                        new OfficeInfoModel()
+                        {
+                            OfficeInfoId = string.IsNullOrEmpty(Request["CatId_Telephone"])?0:int.Parse(Request["CatId_Telephone"].ToString().Trim()),
+                            OfficeInfoType = enumOfficeInfoType.Telephone,
+                            Value = Request["Telephone"].ToString(),
+                        },
+                        new OfficeInfoModel()
+                        {
+                            OfficeInfoId = string.IsNullOrEmpty(Request["CatId_Geolocation"])?0:int.Parse(Request["CatId_Geolocation"].ToString().Trim()),
+                            OfficeInfoType = enumOfficeInfoType.Geolocation,
+                            Value = Request["Geolocation"].ToString(),
                         },
                     }
                 };

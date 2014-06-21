@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Autorization.cs" />
     <Compile Include="CategoryTest.cs" />
+    <Compile Include="OfficeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProfileTest.cs" />
   </ItemGroup>
