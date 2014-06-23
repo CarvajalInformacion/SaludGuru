@@ -15,7 +15,7 @@ namespace Profile.Test
         [TestMethod]
         public void OfficeGetFullAdmin()
         {
-            string oOfficePublicId = "40C61EE0";
+            string oOfficePublicId = "E1650DA6";
 
             OfficeModel oOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(oOfficePublicId);
 

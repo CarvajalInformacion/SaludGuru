@@ -15,10 +15,12 @@ namespace SaludGuruProfile.Manager.Models.General
 
         public DateTime LastModify { get; set; }
 
-        public DateTime CreateDare { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public enumCategoryType CategoryType { get { return enumCategoryType.Specialty; } }
+        
         public List<CategoryInfoModel> SpecialtyInfo { get; set; }
+        
         public List<SpecialtyModel> SpecialtyChild { get; set; }
     }
 }

@@ -12,7 +12,11 @@ namespace BackOffice.Models.Office
     public class OfficeUpsertModel
     {
         public ProfileModel Profile { get; set; }
+
         public OfficeModel CurrentOffice { get; set; }
         public List<CityModel> CitiesToSel { get; set; }
+
+        public TreatmentOfficeModel CurrentTreatmentOffice { get; set; }
+        public List<TreatmentModel> TreatmentToSel { get; set; }
     }
 }

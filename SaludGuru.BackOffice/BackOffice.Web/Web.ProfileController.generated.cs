@@ -83,6 +83,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeTreatmentList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeTreatmentList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeTreatmentUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeTreatmentUpsert);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult SpecialtyProfileList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
@@ -115,6 +127,8 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfileEditImage = "ProfileEditImage";
             public readonly string OfficeList = "OfficeList";
             public readonly string OfficeUpsert = "OfficeUpsert";
+            public readonly string OfficeTreatmentList = "OfficeTreatmentList";
+            public readonly string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             public readonly string InsuranceProfileList = "InsuranceProfileList";
         }
@@ -128,6 +142,8 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string ProfileEditImage = "ProfileEditImage";
             public const string OfficeList = "OfficeList";
             public const string OfficeUpsert = "OfficeUpsert";
+            public const string OfficeTreatmentList = "OfficeTreatmentList";
+            public const string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
             public const string InsuranceProfileList = "InsuranceProfileList";
         }
@@ -166,6 +182,25 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfilePublicId = "ProfilePublicId";
             public readonly string OfficePublicId = "OfficePublicId";
         }
+        static readonly ActionParamsClass_OfficeTreatmentList s_params_OfficeTreatmentList = new ActionParamsClass_OfficeTreatmentList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeTreatmentList OfficeTreatmentListParams { get { return s_params_OfficeTreatmentList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeTreatmentList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+        }
+        static readonly ActionParamsClass_OfficeTreatmentUpsert s_params_OfficeTreatmentUpsert = new ActionParamsClass_OfficeTreatmentUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeTreatmentUpsert OfficeTreatmentUpsertParams { get { return s_params_OfficeTreatmentUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeTreatmentUpsert
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+            public readonly string TreatmentId = "TreatmentId";
+        }
         static readonly ActionParamsClass_SpecialtyProfileList s_params_SpecialtyProfileList = new ActionParamsClass_SpecialtyProfileList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_SpecialtyProfileList SpecialtyProfileListParams { get { return s_params_SpecialtyProfileList; } }
@@ -194,6 +229,8 @@ namespace BackOffice.Web.Areas.Web.Controllers
             {
                 public readonly string InsuranceProfileList = "InsuranceProfileList";
                 public readonly string OfficeList = "OfficeList";
+                public readonly string OfficeTreatmentList = "OfficeTreatmentList";
+                public readonly string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
                 public readonly string OfficeUpsert = "OfficeUpsert";
                 public readonly string ProfileCreate = "ProfileCreate";
                 public readonly string ProfileEdit = "ProfileEdit";
@@ -203,6 +240,8 @@ namespace BackOffice.Web.Areas.Web.Controllers
             }
             public readonly string InsuranceProfileList = "~/Areas/Web/Views/Profile/InsuranceProfileList.cshtml";
             public readonly string OfficeList = "~/Areas/Web/Views/Profile/OfficeList.cshtml";
+            public readonly string OfficeTreatmentList = "~/Areas/Web/Views/Profile/OfficeTreatmentList.cshtml";
+            public readonly string OfficeTreatmentUpsert = "~/Areas/Web/Views/Profile/OfficeTreatmentUpsert.cshtml";
             public readonly string OfficeUpsert = "~/Areas/Web/Views/Profile/OfficeUpsert.cshtml";
             public readonly string ProfileCreate = "~/Areas/Web/Views/Profile/ProfileCreate.cshtml";
             public readonly string ProfileEdit = "~/Areas/Web/Views/Profile/ProfileEdit.cshtml";
@@ -285,6 +324,33 @@ namespace BackOffice.Web.Areas.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
             OfficeUpsertOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeTreatmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeTreatmentList(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeTreatmentList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            OfficeTreatmentListOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeTreatmentUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId, string TreatmentId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeTreatmentUpsert(string ProfilePublicId, string OfficePublicId, string TreatmentId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeTreatmentUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "TreatmentId", TreatmentId);
+            OfficeTreatmentUpsertOverride(callInfo, ProfilePublicId, OfficePublicId, TreatmentId);
             return callInfo;
         }
 

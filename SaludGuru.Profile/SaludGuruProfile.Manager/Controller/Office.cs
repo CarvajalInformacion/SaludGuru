@@ -64,5 +64,36 @@ namespace SaludGuruProfile.Manager.Controller
         }
 
         #endregion
+
+        #region Office Treatment
+
+        public static void UpsertTreatmentOffice(string OfficePublicId, TreatmentOfficeModel TreatmentOfficeToUpsert)
+        {
+            //upsert office category info
+            TreatmentOfficeToUpsert.TreatmentOfficeInfo.All(toi =>
+            {
+                if (toi.CategoryInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.ProfileDataController.Instance.OfficeCategoryInfoCreate
+                        (OfficePublicId,
+                        TreatmentOfficeToUpsert.CategoryId,
+                        toi.OfficeCategoryInfoType,
+                        toi.Value,
+                        toi.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.ProfileDataController.Instance.OfficeCategoryInfoModify
+                        (toi.CategoryInfoId,
+                        toi.Value,
+                        toi.LargeValue);
+                }
+                return true;
+            });
+        }
+
+        #endregion
     }
 }

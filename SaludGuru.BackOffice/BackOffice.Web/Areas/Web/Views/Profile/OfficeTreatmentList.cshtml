@@ -8,15 +8,12 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 <div>
-    @if (Model.CurrentOffice != null)
-    {
-        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
             new BackOffice.Models.Office.OfficeMenuModel()
             {
                 OfficeInfo = Model.CurrentOffice,
-                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.OfficeInfo
-            });
-    }
+                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
+            })
 </div>
 <div class="BOProfileFormWrapper">
     <div id="divGridOfficeTreatment" style="width:800px;"></div>
@@ -28,29 +25,38 @@
         Serialize(Model.CurrentOffice.RelatedTreatment.
             Select(x => new
             {
-                UrlToUpdate = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
-                    new { ProfilePublicId = Model.Profile.ProfilePublicId }),
+                UrlToUpdate = Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
+                    new
+                    {
+                        ProfilePublicId = Model.Profile.ProfilePublicId,
+                        OfficePublicId = Model.CurrentOffice.OfficePublicId,
+                        TreatmentId = x.CategoryId
+                    }),
                 Name = x.Name,
-                IsDefault = "No",
-                LastModify = "",
-                CreateDate = ""
+                IsDefault = x.TreatmentOfficeInfo.
+                    Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                    Select(z => string.IsNullOrEmpty(z.Value) ? false : bool.Parse(z.Value)).
+                    DefaultIfEmpty(false).
+                    FirstOrDefault(),
+                LastModify = x.TreatmentOfficeInfo.Select(y => y.LastModify.ToString("yyyy/MM/dd HH:mm")).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                CreateDate = x.TreatmentOfficeInfo.Select(y => y.CreateDate.ToString("yyyy/MM/dd HH:mm")).DefaultIfEmpty(string.Empty).FirstOrDefault()
             }).ToList());
 
     //get create url
-    string oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+    string oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
         new
         {
-            ProfilePublicId = Model.Profile.ProfilePublicId
+            ProfilePublicId = Model.Profile.ProfilePublicId,
+            OfficePublicId = Model.CurrentOffice.OfficePublicId,
         });
-    
 }
 @section inlinescripts
 {
     <script type="text/javascript">
-        var vDataOffice = @Html.Raw(oOfficeData)
+        var vDataOfficeTreatment = @Html.Raw(oOfficeTreatmentData)
         $(document).ready(function () {
             //start office grid
-            OfficeListGrid('divGridOffice', '@oCreateUrl', vDataOffice);
+            OfficeTreatmentListGrid('divGridOfficeTreatment', '@oCreateUrl', vDataOfficeTreatment);
         });
     </script>
 }

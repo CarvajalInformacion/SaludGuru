@@ -12,14 +12,11 @@ namespace SaludGuruProfile.Manager.Controller
 {
     public class Specialty
     {
-        #region static crud methods
-
-        #endregion
-
-        public static List<SpecialtyModel> CategoryGetAllAdmin(string Parameter)
+        public static List<SpecialtyModel> GetAllAdmin(string Parameter)
         {
             List<SpecialtyModel> oReturn = new List<SpecialtyModel>();
-            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin(enumCategoryType.Specialty, Parameter);
+            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin
+                (enumCategoryType.Specialty, Parameter);
 
             imodelList.All(im =>
             {

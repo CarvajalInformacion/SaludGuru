@@ -45,28 +45,28 @@
     </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\AppFabric 1.1 para Windows Server\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\AppFabric 1.1 para Windows Server\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.ApplicationServer.Caching.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.DistributedCache, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\AppFabric 1.1 para Windows Server\Microsoft.Web.DistributedCache.dll</HintPath>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.Web.DistributedCache.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsFabric.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\AppFabric 1.1 para Windows Server\Microsoft.WindowsFabric.Common.dll</HintPath>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.WindowsFabric.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsFabric.Data.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\AppFabric 1.1 para Windows Server\Microsoft.WindowsFabric.Data.Common.dll</HintPath>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.WindowsFabric.Data.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -492,6 +492,15 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
+    <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Views\Profile\OfficeUpsert.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -545,18 +554,15 @@
     <Content Include="Areas\Web\Views\Specialty\Search.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\Search.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileCreate.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml" />
     <Content Include="Areas\Web\Views\Profile\SpecialtyProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\InsuranceProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileEdit.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ProfileMenu.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileEditImage.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\OfficeUpsert.cshtml" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.ttf" />
     <Content Include="Areas\Web\Views\Profile\OfficeList.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeInfo.cshtml" />
     <Content Include="Areas\Web\Views\Profile\OfficeTreatmentList.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />

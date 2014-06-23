@@ -20,6 +20,5 @@ namespace SaludGuruProfile.Manager.Models.Office
         public List<ScheduleAvailableModel> ScheduleAvailable { get; set; }
 
         public List<TreatmentOfficeModel> RelatedTreatment { get; set; }
-        public TreatmentModel DefaultTreatment { get; set; }
     }
 }

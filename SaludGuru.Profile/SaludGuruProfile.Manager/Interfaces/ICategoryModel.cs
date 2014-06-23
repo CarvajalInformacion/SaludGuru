@@ -11,6 +11,6 @@ namespace SaludGuruProfile.Manager.Interfaces
         int CategoryId { get; set; }
         string Name { get; set; }
         DateTime LastModify { get; set; }
-        DateTime CreateDare { get; set; }
+        DateTime CreateDate { get; set; }
     }
 }

@@ -107,7 +107,7 @@ namespace BackOffice.Web.Controllers
                 //get request model
                 OfficeModel ProfileToCreate = GetProfileOfficeInfoRequestModel();
 
-                //create profile 
+                //upsert office 
                 string oOfficePublicId = SaludGuruProfile.Manager.Controller.Office.UpsertOfficeInfo
                     (Model.Profile.ProfilePublicId, ProfileToCreate);
 
@@ -124,9 +124,62 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
-        public virtual ActionResult OfficeTreatmentList()
+        public virtual ActionResult OfficeTreatmentList(string ProfilePublicId, string OfficePublicId)
         {
-            return View();
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(OfficePublicId),
+            };
+
+            return View(Model);
+        }
+
+        public virtual ActionResult OfficeTreatmentUpsert(string ProfilePublicId, string OfficePublicId, string TreatmentId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(OfficePublicId),
+                TreatmentToSel = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(string.Empty)
+            };
+
+            //get current treatment
+            if (!string.IsNullOrEmpty(TreatmentId))
+            {
+                Model.CurrentTreatmentOffice = Model.CurrentOffice.RelatedTreatment.Where
+                    (x => x.CategoryId.ToString() == TreatmentId).FirstOrDefault();
+            }
+
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                    && bool.Parse(Request["UpsertAction"]))
+            {
+                //get request model
+                TreatmentOfficeModel TreatmentOfficeToCreate = GetTreatmentOfficeRequestModel();
+
+                //upsert treatment office 
+                SaludGuruProfile.Manager.Controller.Office.UpsertTreatmentOffice
+                    (Model.CurrentOffice.OfficePublicId, TreatmentOfficeToCreate);
+
+                //redirect to update page
+                if (string.IsNullOrEmpty(TreatmentId))
+                {
+                    return RedirectToAction(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name, new
+                        {
+                            ProfilePublicId = Model.Profile.ProfilePublicId,
+                            OfficePublicId = Model.CurrentOffice.OfficePublicId,
+                            TreatmentId = TreatmentOfficeToCreate.CategoryId.ToString()
+                        });
+                }
+                else
+                {
+                    Model.CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(Model.CurrentOffice.OfficePublicId);
+                    Model.CurrentTreatmentOffice = Model.CurrentOffice.RelatedTreatment.Where
+                        (x => x.CategoryId.ToString() == TreatmentId).FirstOrDefault();
+                }
+            }
+
+            return View(Model);
         }
 
         #endregion
@@ -138,20 +191,10 @@ namespace BackOffice.Web.Controllers
             ProfileSpecialtyModel Model = new ProfileSpecialtyModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
-                SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.CategoryGetAllAdmin(string.Empty),
+                SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty),
             };
             return View(Model);
         }
-
-        //public JsonResult AutoCompleteSpecialty(string term)
-        //{
-        //    List<SaludGuruProfile.Manager.Models.General.SpecialtyModel> Model = ;
-
-        //    var result = (from s in Model
-        //                  where s.Name.Contains(term)
-        //                  select s).ToList();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
 
         #endregion
 
@@ -162,7 +205,7 @@ namespace BackOffice.Web.Controllers
             ProfileInsuranceModel Model = new ProfileInsuranceModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
-                InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.CategoryGetAllAdmin(string.Empty),
+                InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty),
             };
             return View(Model);
         }
@@ -290,6 +333,47 @@ namespace BackOffice.Web.Controllers
                     }
                 };
 
+                return oReturn;
+            }
+            return null;
+        }
+
+        private TreatmentOfficeModel GetTreatmentOfficeRequestModel()
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                TreatmentOfficeModel oReturn = new TreatmentOfficeModel()
+                {
+                    CategoryId = int.Parse(Request["Treatment-id"].Trim()),
+                    TreatmentOfficeInfo = new List<TreatmentOfficeInfoModel>() 
+                    { 
+                        new TreatmentOfficeInfoModel()
+                        {
+                            CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_DurationTime"])?0:int.Parse(Request["TrInf_DurationTime"].ToString().Trim()),
+                            OfficeCategoryInfoType = enumOfficeCategoryInfoType.DurationTime,
+                            Value = Request["Treatment-duration"].ToString(),
+                        },
+                        new TreatmentOfficeInfoModel()
+                        {
+                            CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_IsDefault"])?0:int.Parse(Request["TrInf_IsDefault"].ToString().Trim()),
+                            OfficeCategoryInfoType = enumOfficeCategoryInfoType.IsDefault,
+                            Value = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
+                        new TreatmentOfficeInfoModel()
+                        {
+                            CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_AfterCare"])?0:int.Parse(Request["TrInf_AfterCare"].ToString().Trim()),
+                            OfficeCategoryInfoType = enumOfficeCategoryInfoType.AfterCare,
+                            LargeValue = Request["AfterCare"].ToString(),
+                        },
+                        new TreatmentOfficeInfoModel()
+                        {
+                            CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_BeforeCare"])?0:int.Parse(Request["TrInf_BeforeCare"].ToString().Trim()),
+                            OfficeCategoryInfoType = enumOfficeCategoryInfoType.BeforeCare,
+                            LargeValue = Request["BeforeCare"].ToString(),
+                        },
+                    }
+                };
                 return oReturn;
             }
             return null;

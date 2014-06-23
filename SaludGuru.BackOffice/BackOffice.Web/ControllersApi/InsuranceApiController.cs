@@ -19,7 +19,7 @@ namespace BackOffice.Web.ControllersApi
             //{
                 
             //}
-            resultList = SaludGuruProfile.Manager.Controller.Insurance.CategoryGetAllAdmin("o");
+            resultList = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin("o");
            
             return resultList;
         }

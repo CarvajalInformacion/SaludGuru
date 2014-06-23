@@ -10,5 +10,7 @@ namespace SaludGuruProfile.Manager.Models.Office
     public class TreatmentOfficeModel : TreatmentModel
     {
         public List<TreatmentOfficeInfoModel> TreatmentOfficeInfo { get; set; }
+
+        public bool IsDefault { get; set; }
     }
 }

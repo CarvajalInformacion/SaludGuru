@@ -15,7 +15,7 @@ namespace SaludGuruProfile.Manager.Models.General
 
         public DateTime LastModify { get; set; }
 
-        public DateTime CreateDare { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public enumCategoryType CategoryType { get { return enumCategoryType.Treatment; } }
 

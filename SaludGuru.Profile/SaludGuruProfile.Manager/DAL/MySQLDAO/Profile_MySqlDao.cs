@@ -177,40 +177,112 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             {
                 if (categoryType == enumCategoryType.Insurance)
                 {
-                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                    oRetorno = (from i in response.DataTableResult.AsEnumerable()
+                                where i.Field<int?>("CategoryId") != null
+                                group i by
+                                new
+                                {
+                                    CategoryId = i.Field<int>("CategoryId"),
+                                    Name = i.Field<string>("Name"),
+                                    LastModify = i.Field<DateTime>("LastModify"),
+                                    CreateDate = i.Field<DateTime>("CreateDate"),
+                                } into ig
                                 select new InsuranceModel()
                                 {
-                                    CategoryId = au.Field<int>("CategoryId"),
-                                    CreateDare = au.Field<DateTime>("CreateDate"),
-                                    LastModify = au.Field<DateTime>("LastModify"),
-                                    Name = au.Field<string>("Name"),
+                                    CategoryId = ig.Key.CategoryId,
+                                    Name = ig.Key.Name,
+                                    LastModify = ig.Key.LastModify,
+                                    CreateDate = ig.Key.CreateDate,
                                 }).ToList<ICategoryModel>();
                 }
-                if (categoryType == enumCategoryType.Specialty)
+                else if (categoryType == enumCategoryType.Specialty)
                 {
-                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                    oRetorno = (from s in response.DataTableResult.AsEnumerable()
+                                where s.Field<int?>("CategoryId") != null
+                                group s by
+                                new
+                                {
+                                    CategoryId = s.Field<int>("CategoryId"),
+                                    Name = s.Field<string>("Name"),
+                                    LastModify = s.Field<DateTime>("LastModify"),
+                                    CreateDate = s.Field<DateTime>("CreateDate"),
+                                } into sg
                                 select new SpecialtyModel()
                                 {
-                                    CategoryId = au.Field<int>("CategoryId"),
-                                    CreateDare = au.Field<DateTime>("CreateDate"),
-                                    LastModify = au.Field<DateTime>("LastModify"),
-                                    Name = au.Field<string>("Name"),
+                                    CategoryId = sg.Key.CategoryId,
+                                    Name = sg.Key.Name,
+                                    LastModify = sg.Key.LastModify,
+                                    CreateDate = sg.Key.CreateDate,
+                                    SpecialtyInfo = (from si in response.DataTableResult.AsEnumerable()
+                                                     where si.Field<int?>("CategoryInfoId") != null &&
+                                                           si.Field<int>("CategoryId") == sg.Key.CategoryId
+                                                     group si by
+                                                     new
+                                                     {
+                                                         CategoryInfoId = si.Field<int>("CategoryInfoId"),
+                                                         CategoryInfoType = si.Field<int>("CategoryInfoType"),
+                                                         Value = si.Field<string>("Value"),
+                                                         LargeValue = si.Field<string>("LargeValue"),
+                                                         LastModify = si.Field<DateTime>("CategoryInfoLastModify"),
+                                                         CreateDate = si.Field<DateTime>("CategoryInfoCreateDate"),
+                                                     } into sig
+                                                     select new CategoryInfoModel()
+                                                     {
+                                                         CategoryInfoId = sig.Key.CategoryInfoId,
+                                                         CategoryInfoType = (enumCategoryInfoType)sig.Key.CategoryInfoType,
+                                                         Value = sig.Key.Value,
+                                                         LargeValue = sig.Key.LargeValue,
+                                                         LastModify = sig.Key.LastModify,
+                                                         CreateDate = sig.Key.CreateDate,
+                                                     }).ToList(),
                                 }).ToList<ICategoryModel>();
                 }
-                if (categoryType == enumCategoryType.Treatment)
+                else if (categoryType == enumCategoryType.Treatment)
                 {
-                    oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                    oRetorno = (from t in response.DataTableResult.AsEnumerable()
+                                where t.Field<int?>("CategoryId") != null
+                                group t by
+                                new
+                                {
+                                    CategoryId = t.Field<int>("CategoryId"),
+                                    Name = t.Field<string>("Name"),
+                                    LastModify = t.Field<DateTime>("LastModify"),
+                                    CreateDate = t.Field<DateTime>("CreateDate"),
+                                } into tg
                                 select new TreatmentModel()
                                 {
-                                    CategoryId = au.Field<int>("CategoryId"),
-                                    CreateDare = au.Field<DateTime>("CreateDate"),
-                                    LastModify = au.Field<DateTime>("LastModify"),
-                                    Name = au.Field<string>("Name"),
+                                    CategoryId = tg.Key.CategoryId,
+                                    Name = tg.Key.Name,
+                                    LastModify = tg.Key.LastModify,
+                                    CreateDate = tg.Key.CreateDate,
+                                    TreatmentInfo = (from ti in response.DataTableResult.AsEnumerable()
+                                                     where ti.Field<int?>("CategoryInfoId") != null &&
+                                                           ti.Field<int>("CategoryId") == tg.Key.CategoryId
+                                                     group ti by
+                                                     new
+                                                     {
+                                                         CategoryInfoId = ti.Field<int>("CategoryInfoId"),
+                                                         CategoryInfoType = ti.Field<int>("CategoryInfoType"),
+                                                         Value = ti.Field<string>("Value"),
+                                                         LargeValue = ti.Field<string>("LargeValue"),
+                                                         LastModify = ti.Field<DateTime>("CategoryInfoLastModify"),
+                                                         CreateDate = ti.Field<DateTime>("CategoryInfoCreateDate"),
+                                                     } into tig
+                                                     select new CategoryInfoModel()
+                                                     {
+                                                         CategoryInfoId = tig.Key.CategoryInfoId,
+                                                         CategoryInfoType = (enumCategoryInfoType)tig.Key.CategoryInfoType,
+                                                         Value = tig.Key.Value,
+                                                         LargeValue = tig.Key.LargeValue,
+                                                         LastModify = tig.Key.LastModify,
+                                                         CreateDate = tig.Key.CreateDate,
+                                                     }).ToList(),
                                 }).ToList<ICategoryModel>();
                 }
             }
             return oRetorno;
         }
+
         #endregion
 
         #region Profile
@@ -845,17 +917,21 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
                               RelatedTreatment = (from rt in response.DataTableResult.AsEnumerable()
                                                   where rt.Field<int?>("CategoryId") != null &&
-                                                        rt.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
+                                                        rt.Field<int>("CategoryType") == (int)enumCategoryType.Treatment &&
+                                                        rt.Field<int>("CategoryInfoType") == (int)enumOfficeCategoryInfoType.IsDefault
                                                   group rt by
                                                   new
                                                   {
                                                       CategoryId = rt.Field<int>("CategoryId"),
                                                       Name = rt.Field<string>("CategoryName"),
+                                                      IsDefault = rt.Field<string>("OfficeCategoryInfoValue")
                                                   } into rtg
                                                   select new TreatmentOfficeModel()
                                                   {
                                                       CategoryId = rtg.Key.CategoryId,
                                                       Name = rtg.Key.Name,
+                                                      IsDefault = !string.IsNullOrEmpty(rtg.Key.IsDefault) &&
+                                                            rtg.Key.IsDefault.ToLower() == "true" ? true : false,
 
                                                       TreatmentOfficeInfo = (from rti in response.DataTableResult.AsEnumerable()
                                                                              where rti.Field<int?>("OfficeCategoryInfoId") != null &&
@@ -868,7 +944,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                                                  CategoryInfoType = rti.Field<int>("CategoryInfoType"),
                                                                                  Value = rti.Field<string>("OfficeCategoryInfoValue"),
                                                                                  LargeValue = rti.Field<string>("OfficeCategoryInfoLargeValue"),
-
+                                                                                 LastModify = rti.Field<DateTime>("OfficeCategoryLastModify"),
+                                                                                 CreateDate = rti.Field<DateTime>("OfficeCategoryCreateDate"),
                                                                              } into rtig
                                                                              select new TreatmentOfficeInfoModel()
                                                                              {
@@ -876,6 +953,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                                                  OfficeCategoryInfoType = (enumOfficeCategoryInfoType)rtig.Key.CategoryInfoType,
                                                                                  Value = rtig.Key.Value,
                                                                                  LargeValue = rtig.Key.LargeValue,
+                                                                                 LastModify = rtig.Key.LastModify,
+                                                                                 CreateDate = rtig.Key.CreateDate,
                                                                              }).ToList(),
                                                   }).ToList(),
 

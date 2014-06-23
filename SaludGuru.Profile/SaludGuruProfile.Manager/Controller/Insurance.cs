@@ -12,46 +12,16 @@ namespace SaludGuruProfile.Manager.Controller
 {
     public class Insurance
     {
-        //#region static crud methods
-
-        //public static int Create(InsuranceModel NewInsurance)
-        //{
-        //    return ProfileDataController.Instance.CategoryCreate
-        //        (NewInsurance.CategoryType.Value, NewInsurance.Name);
-        //}
-
-        //public static void Modify(InsuranceModel AlterInsurance)
-        //{
-        //    ProfileDataController.Instance.CategoryModify
-        //        (AlterInsurance.InsuranceId, AlterInsurance.Name);
-        //}
-
-        //public static void Delete(int InsuranceId)
-        //{
-        //    ProfileDataController.Instance.CategoryDelete
-        //        (InsuranceId);
-        //}
-
-        //#endregion
-
-        //#region static get methods
-
-        //public static List<Insurance> GetAll()
-        //{
-        //    return null;
-        //}
-
-        //#endregion
-
-        public static List<InsuranceModel> CategoryGetAllAdmin(string Parameter)
+        public static List<InsuranceModel> GetAllAdmin(string Parameter)
         {
             List<InsuranceModel> oReturn = new List<InsuranceModel>();
-            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin(enumCategoryType.Insurance, Parameter);
+            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin
+                (enumCategoryType.Insurance, Parameter);
 
-            imodelList.All(im => 
+            imodelList.All(im =>
             {
                 oReturn.Add((InsuranceModel)im);
-                return true; 
+                return true;
             });
 
             return oReturn;

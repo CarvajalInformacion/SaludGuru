@@ -12,10 +12,11 @@ namespace SaludGuruProfile.Manager.Controller
 {
     public class Treatment
     {
-        public static List<TreatmentModel> CategoryGetAllAdmin(string Parameter)
+        public static List<TreatmentModel> GetAllAdmin(string Parameter)
         {
             List<TreatmentModel> oReturn = new List<TreatmentModel>();
-            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin(enumCategoryType.Treatment, Parameter);
+            List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin
+                (enumCategoryType.Treatment, Parameter);
 
             imodelList.All(im =>
             {

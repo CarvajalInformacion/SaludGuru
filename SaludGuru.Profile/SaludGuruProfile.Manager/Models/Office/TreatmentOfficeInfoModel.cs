@@ -10,5 +10,9 @@ namespace SaludGuruProfile.Manager.Models.Office
     public class TreatmentOfficeInfoModel : CategoryInfoModel
     {
         public enumOfficeCategoryInfoType OfficeCategoryInfoType { get; set; }
+
+        public DateTime TreatmentOfficeLastModify { get; set; }
+
+        public DateTime TreatmentOfficeCreateDate { get; set; }
     }
 }
