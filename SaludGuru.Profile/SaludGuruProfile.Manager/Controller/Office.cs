@@ -95,5 +95,23 @@ namespace SaludGuruProfile.Manager.Controller
         }
 
         #endregion
+
+        #region Schedule Available
+
+        public static void ScheduleAvailableCreate(string OfficePublicId, ScheduleAvailableModel ScheduleToCreate)
+        {
+            DAL.Controller.ProfileDataController.Instance.ScheduleAvailableCreate
+                (OfficePublicId,
+                ScheduleToCreate.Day,
+                ScheduleToCreate.StartTime,
+                ScheduleToCreate.EndTime);
+        }
+
+        public static void ScheduleAvailableRemove(int ScheduleAvailableId)
+        {
+            DAL.Controller.ProfileDataController.Instance.ScheduleAvailableDelete(ScheduleAvailableId);
+        }
+
+        #endregion
     }
 }
