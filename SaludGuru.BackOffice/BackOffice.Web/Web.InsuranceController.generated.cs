@@ -57,6 +57,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InsuranceList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult InsuranceUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceUpsert);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public InsuranceController Actions { get { return MVC.Web.Insurance; } }
@@ -74,15 +86,35 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Search = "Search";
+            public readonly string InsuranceList = "InsuranceList";
+            public readonly string InsuranceUpsert = "InsuranceUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Search = "Search";
+            public const string InsuranceList = "InsuranceList";
+            public const string InsuranceUpsert = "InsuranceUpsert";
         }
 
 
+        static readonly ActionParamsClass_InsuranceList s_params_InsuranceList = new ActionParamsClass_InsuranceList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InsuranceList InsuranceListParams { get { return s_params_InsuranceList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InsuranceList
+        {
+            public readonly string param = "param";
+        }
+        static readonly ActionParamsClass_InsuranceUpsert s_params_InsuranceUpsert = new ActionParamsClass_InsuranceUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InsuranceUpsert InsuranceUpsertParams { get { return s_params_InsuranceUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InsuranceUpsert
+        {
+            public readonly string insuranceId = "insuranceId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -93,9 +125,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Search = "Search";
+                public readonly string InsuranceList = "InsuranceList";
+                public readonly string InsuranceUpsert = "InsuranceUpsert";
             }
-            public readonly string Search = "~/Areas/Web/Views/Insurance/Search.cshtml";
+            public readonly string InsuranceList = "~/Areas/Web/Views/Insurance/InsuranceList.cshtml";
+            public readonly string InsuranceUpsert = "~/Areas/Web/Views/Insurance/InsuranceUpsert.cshtml";
         }
     }
 
@@ -112,6 +146,30 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
             SearchOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InsuranceListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string param);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InsuranceList(string param)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "param", param);
+            InsuranceListOverride(callInfo, param);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InsuranceUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string insuranceId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InsuranceUpsert(string insuranceId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "insuranceId", insuranceId);
+            InsuranceUpsertOverride(callInfo, insuranceId);
             return callInfo;
         }
 

@@ -185,6 +185,7 @@
     <Compile Include="Areas\Web\WebAreaRegistration.cs" />
     <Compile Include="BaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="ControllersApi\InsuranceApiController.cs" />
@@ -199,48 +200,59 @@
     </Compile>
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="InsuranceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mobile.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mobile.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecialtyController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="T4MVC.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="TreatmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.InsuranceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.SpecialtyController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web.TreatmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -491,6 +503,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
     <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">
       <SubType>Code</SubType>
@@ -549,7 +562,7 @@
     <Content Include="Areas\Web\Scripts\_references.js" />
     <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Insurance\Search.cshtml" />
+    <Content Include="Areas\Web\Views\Insurance\InsuranceList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileSearch.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\Search.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\Search.cshtml" />
@@ -564,6 +577,7 @@
     <Content Include="Areas\Web\Views\Profile\OfficeList.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeMenu.cshtml" />
     <Content Include="Areas\Web\Views\Profile\OfficeTreatmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Insurance\InsuranceUpsert.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />
@@ -1052,6 +1066,10 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </Content>
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.min.js" />
@@ -1069,10 +1087,6 @@
     <Content Include="Areas\Web\Views\Home\Index.cshtml" />
     <Content Include="Areas\Web\Views\Home\Dashboard.cshtml" />
     <None Include="T4MVC.tt.hooks.t4" />
-    <None Include="T4MVC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
