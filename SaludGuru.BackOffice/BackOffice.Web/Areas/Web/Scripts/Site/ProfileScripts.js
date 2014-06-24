@@ -76,23 +76,36 @@ function OfficeTreatmentAc(acId, acData) {
 			.append("<a><strong>" + item.label + "</strong></a>")
 			.appendTo(ul);
 	};
-
-    //Duration
-    //debugger;
-    //$('#' + divId).autocomplete({
-    //    surce: acData,
-    //    minLength: 0,
-    //    //_renderItem: function (ul, item) {
-    //    //    return $("<li>")
-    //    //      .attr("data-value", item.Id)
-    //    //      .append($("<a>").text(item.Name))
-    //    //      .appendTo(ul);
-    //    //}
-    //}).data("autocomplete")._renderItem = function (ul, item) {
-    //    debugger;
-    //    return $("<li>").attr("data-value", item.value).append("<a>" + item.label + "</a>").appendTo(ul);
-    //};
 }
+
+//init Schedule Available grid
+function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
+
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: $("#templateCreate").html() }],
+        dataSource: {
+            type: "json",
+            data: vScheduleData,
+        },
+        columns: [{
+            field: "ScheduleDayName",
+            title: "Día",
+        }, {
+            field: "StartTime",
+            title: "Hora inicio"
+        }, {
+            field: "EndTime",
+            title: "Hora fin"
+        }, {
+            field: "CreateDate",
+            title: "Creación"
+        }, {
+            title: "&nbsp;",
+            command: [{ template: $("#templateDelete").html() }],
+        }],
+    });
+}
+
 
 
 

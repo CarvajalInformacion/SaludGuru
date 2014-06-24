@@ -182,6 +182,31 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult OfficeScheduleAvailableList(string ProfilePublicId, string OfficePublicId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(OfficePublicId),
+            };
+
+            return View(Model);
+        }
+
+        public virtual ActionResult OfficeScheduleAvailableCreate(string ProfilePublicId, string OfficePublicId)
+        {
+
+
+            return RedirectToAction(MVC.Profile.ActionNames.OfficeScheduleAvailableList, MVC.Profile.Name,
+                new { ProfilePublicId = ProfilePublicId, OfficePublicId = OfficePublicId });
+        }
+
+        public virtual ActionResult OfficeScheduleAvailableDelete(string ProfilePublicId, string OfficePublicId)
+        {
+            return RedirectToAction(MVC.Profile.ActionNames.OfficeScheduleAvailableList, MVC.Profile.Name,
+                new { ProfilePublicId = ProfilePublicId, OfficePublicId = OfficePublicId });
+        }
+
         #endregion
 
         #region Specialty
@@ -378,6 +403,47 @@ namespace BackOffice.Web.Controllers
             }
             return null;
         }
+
+        //private ScheduleAvailableModel GetScheduleAvailableRequestModel()
+        //{
+        //    if (!string.IsNullOrEmpty(Request["UpsertAction"])
+        //        && bool.Parse(Request["UpsertAction"]))
+        //    {
+        //        TreatmentOfficeModel oReturn = new TreatmentOfficeModel()
+        //        {
+        //            CategoryId = int.Parse(Request["Treatment-id"].Trim()),
+        //            TreatmentOfficeInfo = new List<TreatmentOfficeInfoModel>() 
+        //            { 
+        //                new TreatmentOfficeInfoModel()
+        //                {
+        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_DurationTime"])?0:int.Parse(Request["TrInf_DurationTime"].ToString().Trim()),
+        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.DurationTime,
+        //                    Value = Request["Treatment-duration"].ToString(),
+        //                },
+        //                new TreatmentOfficeInfoModel()
+        //                {
+        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_IsDefault"])?0:int.Parse(Request["TrInf_IsDefault"].ToString().Trim()),
+        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.IsDefault,
+        //                    Value = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? "true" : "false",
+        //                },
+        //                new TreatmentOfficeInfoModel()
+        //                {
+        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_AfterCare"])?0:int.Parse(Request["TrInf_AfterCare"].ToString().Trim()),
+        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.AfterCare,
+        //                    LargeValue = Request["AfterCare"].ToString(),
+        //                },
+        //                new TreatmentOfficeInfoModel()
+        //                {
+        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_BeforeCare"])?0:int.Parse(Request["TrInf_BeforeCare"].ToString().Trim()),
+        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.BeforeCare,
+        //                    LargeValue = Request["BeforeCare"].ToString(),
+        //                },
+        //            }
+        //        };
+        //        return oReturn;
+        //    }
+        //    return null;
+        //}
 
         #endregion
     }
