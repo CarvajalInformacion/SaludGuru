@@ -26,5 +26,22 @@ namespace SaludGuruProfile.Manager.Controller
 
             return oReturn;
         }
+
+        public static int Upsert(InsuranceModel InsuranceToUpsert)
+        {
+            int oInsuranceId = InsuranceToUpsert.CategoryId;
+
+            if (oInsuranceId <= 0)
+            {
+                //create insurance
+                oInsuranceId = DAL.Controller.ProfileDataController.Instance.CategoryCreate(InsuranceToUpsert.CategoryType, InsuranceToUpsert.Name);
+            }
+            else
+            {
+                //update insurance
+                DAL.Controller.ProfileDataController.Instance.CategoryModify(oInsuranceId, InsuranceToUpsert.Name);
+            }
+            return oInsuranceId;
+        }
     }
 }
