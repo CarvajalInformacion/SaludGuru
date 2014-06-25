@@ -220,7 +220,7 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult SpecialtyProfileList(string ProfilePublicId)
         {
-            ProfileSpecialtyModel Model = new ProfileSpecialtyModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty),
@@ -234,13 +234,28 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult InsuranceProfileList(string ProfilePublicId)
         {
-            ProfileInsuranceModel Model = new ProfileInsuranceModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty),
             };
             return View(Model);
         }
+
+        #endregion
+
+        #region Treatment
+
+        public virtual ActionResult TreatmentProfileList(string ProfilePublicId)
+        {
+            ProfileUpSertModel Model = new ProfileUpSertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                TreatmentToSelect = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(string.Empty),
+            };
+            return View(Model);
+        }
+
 
         #endregion
 
