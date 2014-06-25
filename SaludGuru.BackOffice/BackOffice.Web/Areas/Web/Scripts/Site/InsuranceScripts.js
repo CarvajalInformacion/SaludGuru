@@ -1,22 +1,16 @@
 ﻿//init office grid
-function OfficeListGrid(vidDiv, vCreateUrl, vOfficeData) {
+function InsuranceListGrid(vidDiv, oCreateUrl, vInsuranceData) {
 
     $('#' + vidDiv).kendoGrid({
-        toolbar: [{ template: '<a href="' + vCreateUrl + '">Nueva oficina</a>' }],
+        toolbar: [{ template: '<a href="'+ oCreateUrl + '">Nuevo Seguro</a>' }],
         dataSource: {
             type: "json",
-            data: vOfficeData,
+            data: vInsuranceData,
         },
         columns: [{
             field: "Name",
             title: "Nombre",
             template: '<a href="${UrlToUpdate}">${Name}</a>'
-        }, {
-            field: "CityName",
-            title: "Ciudad"
-        }, {
-            field: "IsDefault",
-            title: "Predeterminada"
         }, {
             field: "LastModify",
             title: "Modificación"
@@ -76,56 +70,24 @@ function OfficeTreatmentAc(acId, acData) {
 			.append("<a><strong>" + item.label + "</strong></a>")
 			.appendTo(ul);
 	};
+
+    //Duration
+    //debugger;
+    //$('#' + divId).autocomplete({
+    //    surce: acData,
+    //    minLength: 0,
+    //    //_renderItem: function (ul, item) {
+    //    //    return $("<li>")
+    //    //      .attr("data-value", item.Id)
+    //    //      .append($("<a>").text(item.Name))
+    //    //      .appendTo(ul);
+    //    //}
+    //}).data("autocomplete")._renderItem = function (ul, item) {
+    //    debugger;
+    //    return $("<li>").attr("data-value", item.value).append("<a>" + item.label + "</a>").appendTo(ul);
+    //};
 }
 
-//init Schedule Available grid
-function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
 
-    $('#' + vidDiv).kendoGrid({
-        toolbar: [{ template: $("#templateCreate").html() }],
-        dataSource: {
-            type: "json",
-            data: vScheduleData,
-        },
-        columns: [{
-            field: "ScheduleDayName",
-            title: "Día",
-        }, {
-            field: "StartTime",
-            title: "Hora inicio"
-        }, {
-            field: "EndTime",
-            title: "Hora fin"
-        }, {
-            field: "CreateDate",
-            title: "Creación"
-        }, {
-            field: "ScheduleAvailableId",
-            title: "&nbsp;",
-            template: $("#templateDelete").html()        
-        }],
-    });
-}
 
-//init office grid
-function SpecialtyListGrid(vidDiv, vCreateUrl, vSpecialtyData) {
 
-    $('#' + vidDiv).kendoGrid({
-        toolbar: [{ template: '<a href="' + vCreateUrl + '">Nueva Especialidad</a>' }],
-        dataSource: {
-            type: "json",
-            data: vOfficeData,
-        },
-        columns: [{
-            field: "Name",
-            title: "Nombre",
-            template: '<a href="${UrlToUpdate}">${Name}</a>'
-        }, {
-            field: "LastModify",
-            title: "Modificación"
-        }, {
-            field: "CreateDate",
-            title: "Creación"
-        }]
-    });
-}

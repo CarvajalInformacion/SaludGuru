@@ -1,0 +1,123 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "OfficeScheduleAvailableList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+</div>
+<div>
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
+            new BackOffice.Models.Office.OfficeMenuModel()
+            {
+                OfficeInfo = Model.CurrentOffice,
+                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
+            })
+</div>
+<div class="BOProfileFormWrapper">
+    <div id="divGridShceduleAvailable" style="width:800px;"></div>
+    <div style="height:100px;"></div>
+</div>
+
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableCreate, MVC.Profile.Name,
+                new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId }))">
+            <ul>
+                <li>
+                    <label>Día</label>
+                    <select id="Day" name="Day">
+                        <option value="@(((int)DayOfWeek.Monday).ToString())">Lunes</option>
+                        <option value="@(((int)DayOfWeek.Tuesday).ToString())">Martes</option>
+                        <option value="@(((int)DayOfWeek.Wednesday).ToString())">Miercoles</option>
+                        <option value="@(((int)DayOfWeek.Thursday).ToString())">Jueves</option>
+                        <option value="@(((int)DayOfWeek.Friday).ToString())">Viernes</option>
+                        <option value="@(((int)DayOfWeek.Saturday).ToString())">Sabado</option>
+                        <option value="@(((int)DayOfWeek.Sunday).ToString())">Domingo</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Hora inicio</label>
+                    <select id="hStartDate" name="hStartDate">
+                        @for (int i = 6; i < 13; i++)
+                        {
+                            <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
+                        }
+                        @for (int i = 1; i < 10; i++)
+                        {
+                            <option value="@(i.ToString() + ",PM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) PM</option>
+                        }
+                    </select>
+                    <select id="mStartDate" name="mStartDate">
+                        <option value="00">00</option>
+                        <option value="10">30</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Hora final</label>
+                    <select id="hEndDate" name="hEndDate">
+                        @for (int i = 6; i < 13; i++)
+                        {
+                            <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
+                        }
+                        <option value="12,M">12 M</option>
+                        @for (int i = 1; i < 10; i++)
+                        {
+                            <option value="@(i.ToString() + ",PM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) PM</option>
+                        }
+                    </select>
+                    <select id="mEndDate" name="mEndDate">
+                        <option value="00">00</option>
+                        <option value="10">30</option>
+                    </select>
+                </li>
+                <li>
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId,
+                    OfficePublicId = Model.CurrentOffice.OfficePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="ScheduleAvailableId" name="ScheduleAvailableId" value="${ScheduleAvailableId}" />
+            <input type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
+
+@{
+    //get json office data
+    string oOfficeScheduleAvailable = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentOffice.ScheduleAvailable.
+            Select(x => new
+            {
+                ScheduleAvailableId = x.ScheduleAvailableId,
+                ScheduleDayId = (int)x.Day,
+                ScheduleDayName = x.DayName,
+                StartTime = DateTime.Today.Add(x.StartTime).ToString("hh:mm tt"),
+                EndTime = DateTime.Today.Add(x.EndTime).ToString("hh:mm tt"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd hh:mm tt"),
+            }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataScheduleAvailable = @Html.Raw(oOfficeScheduleAvailable)
+        $(document).ready(function () {
+            //start office grid
+            OfficeScheduleAvailableListGrid('divGridShceduleAvailable', vDataScheduleAvailable);
+        });
+    </script>
+}
+
+

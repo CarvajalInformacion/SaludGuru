@@ -95,6 +95,24 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeScheduleAvailableList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeScheduleAvailableCreate()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableCreate);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeScheduleAvailableDelete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableDelete);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult SpecialtyProfileList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
@@ -129,6 +147,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string OfficeUpsert = "OfficeUpsert";
             public readonly string OfficeTreatmentList = "OfficeTreatmentList";
             public readonly string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
+            public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
+            public readonly string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
+            public readonly string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             public readonly string InsuranceProfileList = "InsuranceProfileList";
         }
@@ -144,6 +165,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string OfficeUpsert = "OfficeUpsert";
             public const string OfficeTreatmentList = "OfficeTreatmentList";
             public const string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
+            public const string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
+            public const string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
+            public const string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
             public const string InsuranceProfileList = "InsuranceProfileList";
         }
@@ -201,6 +225,33 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string OfficePublicId = "OfficePublicId";
             public readonly string TreatmentId = "TreatmentId";
         }
+        static readonly ActionParamsClass_OfficeScheduleAvailableList s_params_OfficeScheduleAvailableList = new ActionParamsClass_OfficeScheduleAvailableList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeScheduleAvailableList OfficeScheduleAvailableListParams { get { return s_params_OfficeScheduleAvailableList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeScheduleAvailableList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+        }
+        static readonly ActionParamsClass_OfficeScheduleAvailableCreate s_params_OfficeScheduleAvailableCreate = new ActionParamsClass_OfficeScheduleAvailableCreate();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeScheduleAvailableCreate OfficeScheduleAvailableCreateParams { get { return s_params_OfficeScheduleAvailableCreate; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeScheduleAvailableCreate
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+        }
+        static readonly ActionParamsClass_OfficeScheduleAvailableDelete s_params_OfficeScheduleAvailableDelete = new ActionParamsClass_OfficeScheduleAvailableDelete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeScheduleAvailableDelete OfficeScheduleAvailableDeleteParams { get { return s_params_OfficeScheduleAvailableDelete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeScheduleAvailableDelete
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+        }
         static readonly ActionParamsClass_SpecialtyProfileList s_params_SpecialtyProfileList = new ActionParamsClass_SpecialtyProfileList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_SpecialtyProfileList SpecialtyProfileListParams { get { return s_params_SpecialtyProfileList; } }
@@ -229,6 +280,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             {
                 public readonly string InsuranceProfileList = "InsuranceProfileList";
                 public readonly string OfficeList = "OfficeList";
+                public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
                 public readonly string OfficeTreatmentList = "OfficeTreatmentList";
                 public readonly string OfficeTreatmentUpsert = "OfficeTreatmentUpsert";
                 public readonly string OfficeUpsert = "OfficeUpsert";
@@ -240,6 +292,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             }
             public readonly string InsuranceProfileList = "~/Areas/Web/Views/Profile/InsuranceProfileList.cshtml";
             public readonly string OfficeList = "~/Areas/Web/Views/Profile/OfficeList.cshtml";
+            public readonly string OfficeScheduleAvailableList = "~/Areas/Web/Views/Profile/OfficeScheduleAvailableList.cshtml";
             public readonly string OfficeTreatmentList = "~/Areas/Web/Views/Profile/OfficeTreatmentList.cshtml";
             public readonly string OfficeTreatmentUpsert = "~/Areas/Web/Views/Profile/OfficeTreatmentUpsert.cshtml";
             public readonly string OfficeUpsert = "~/Areas/Web/Views/Profile/OfficeUpsert.cshtml";
@@ -351,6 +404,45 @@ namespace BackOffice.Web.Areas.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "TreatmentId", TreatmentId);
             OfficeTreatmentUpsertOverride(callInfo, ProfilePublicId, OfficePublicId, TreatmentId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeScheduleAvailableListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeScheduleAvailableList(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            OfficeScheduleAvailableListOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeScheduleAvailableCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeScheduleAvailableCreate(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableCreate);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            OfficeScheduleAvailableCreateOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeScheduleAvailableDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeScheduleAvailableDelete(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeScheduleAvailableDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            OfficeScheduleAvailableDeleteOverride(callInfo, ProfilePublicId, OfficePublicId);
             return callInfo;
         }
 
