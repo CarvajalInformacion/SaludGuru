@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaludGuruProfile.Manager.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BackOffice.Models.Treatment
 {
     public class TreatmentUpsertModel
     {
-        public List<TratmentModel> CurrentTratment = new List<TratmentModel>();
+        public List<TreatmentModel> CurrentTreatment { get; set; }
+        public TreatmentModel TreatmentInfo { get; set; }
     }
 }

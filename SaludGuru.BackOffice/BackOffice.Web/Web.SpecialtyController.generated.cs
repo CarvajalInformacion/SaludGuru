@@ -111,7 +111,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_SpecialtyUpsert
         {
-            public readonly string SpecialtyPublicId = "SpecialtyPublicId";
+            public readonly string specialtyId = "specialtyId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,11 +123,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Search = "Search";
                 public readonly string SpecialtyList = "SpecialtyList";
                 public readonly string SpecialtyUpsert = "SpecialtyUpsert";
             }
-            public readonly string Search = "~/Areas/Web/Views/Specialty/Search.cshtml";
             public readonly string SpecialtyList = "~/Areas/Web/Views/Specialty/SpecialtyList.cshtml";
             public readonly string SpecialtyUpsert = "~/Areas/Web/Views/Specialty/SpecialtyUpsert.cshtml";
         }
@@ -151,14 +149,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
 
         [NonAction]
-        partial void SpecialtyUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialtyPublicId);
+        partial void SpecialtyUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string specialtyId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult SpecialtyUpsert(string SpecialtyPublicId)
+        public override System.Web.Mvc.ActionResult SpecialtyUpsert(string specialtyId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyUpsert);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyPublicId", SpecialtyPublicId);
-            SpecialtyUpsertOverride(callInfo, SpecialtyPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "specialtyId", specialtyId);
+            SpecialtyUpsertOverride(callInfo, specialtyId);
             return callInfo;
         }
 

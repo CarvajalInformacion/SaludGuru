@@ -174,12 +174,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Web\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\Web\Controllers\PatientController.cs" />
     <Compile Include="Areas\Web\Controllers\InsuranceController.cs" />
     <Compile Include="Areas\Web\Controllers\SpecialtyController.cs" />
     <Compile Include="Areas\Web\Controllers\TreatmentController.cs" />
@@ -217,6 +222,9 @@
     <Compile Include="Mobile.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
@@ -235,6 +243,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web.AppointmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Web.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
@@ -242,6 +253,9 @@
     <Compile Include="Web.InsuranceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web.PatientController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.ProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -509,6 +523,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
@@ -571,8 +586,6 @@
     <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
     <Content Include="Areas\Web\Views\Insurance\InsuranceList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileSearch.cshtml" />
-    <Content Include="Areas\Web\Views\Specialty\Search.cshtml" />
-    <Content Include="Areas\Web\Views\Treatment\Search.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileCreate.cshtml" />
     <Content Include="Areas\Web\Views\Profile\SpecialtyProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\InsuranceProfileList.cshtml" />
@@ -592,6 +605,8 @@
     <Content Include="Areas\Web\Views\Patient\Upsert.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

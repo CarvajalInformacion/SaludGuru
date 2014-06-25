@@ -57,6 +57,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult TreatmentList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult TreatmentUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentUpsert);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TreatmentController Actions { get { return MVC.Web.Treatment; } }
@@ -74,15 +86,35 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Search = "Search";
+            public readonly string TreatmentList = "TreatmentList";
+            public readonly string TreatmentUpsert = "TreatmentUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Search = "Search";
+            public const string TreatmentList = "TreatmentList";
+            public const string TreatmentUpsert = "TreatmentUpsert";
         }
 
 
+        static readonly ActionParamsClass_TreatmentList s_params_TreatmentList = new ActionParamsClass_TreatmentList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_TreatmentList TreatmentListParams { get { return s_params_TreatmentList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_TreatmentList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_TreatmentUpsert s_params_TreatmentUpsert = new ActionParamsClass_TreatmentUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_TreatmentUpsert TreatmentUpsertParams { get { return s_params_TreatmentUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_TreatmentUpsert
+        {
+            public readonly string treatmentId = "treatmentId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -93,9 +125,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Search = "Search";
+                public readonly string TreatmentList = "TreatmentList";
+                public readonly string TreatmentUpsert = "TreatmentUpsert";
             }
-            public readonly string Search = "~/Areas/Web/Views/Treatment/Search.cshtml";
+            public readonly string TreatmentList = "~/Areas/Web/Views/Treatment/TreatmentList.cshtml";
+            public readonly string TreatmentUpsert = "~/Areas/Web/Views/Treatment/TreatmentUpsert.cshtml";
         }
     }
 
@@ -112,6 +146,30 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
             SearchOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void TreatmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult TreatmentList(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            TreatmentListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void TreatmentUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string treatmentId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult TreatmentUpsert(string treatmentId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "treatmentId", treatmentId);
+            TreatmentUpsertOverride(callInfo, treatmentId);
             return callInfo;
         }
 

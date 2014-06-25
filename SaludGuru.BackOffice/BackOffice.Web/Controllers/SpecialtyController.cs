@@ -19,7 +19,7 @@ namespace BackOffice.Web.Controllers
             if (!string.IsNullOrWhiteSpace(ProfilePublicId))
                 Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(ProfilePublicId);
             else
-                Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(" ");
+                Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty);
 
             return View(Model);
         }
