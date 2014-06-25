@@ -8,24 +8,26 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 
-<div>
+<div class="BOProfileFormWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
             new BackOffice.Models.Office.OfficeMenuModel()
             {
                 OfficeInfo = Model.CurrentOffice,
                 SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
             })
-</div>
-<div class="BOProfileFormWrapper">
-    <div id="divGridShceduleAvailable" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+
+    <div class="BOOfficeTableWrapper">
+        <h3>Configuración de Horario Disponible</h3>
+        <div id="divGridShceduleAvailable"></div>
+    </div>
+
 </div>
 
 <div id="templates" style="display:none;">
     <div id="templateCreate">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableCreate, MVC.Profile.Name,
                 new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId }))">
-            <ul>
+            <ul class="BOEditDaySetUp">
                 <li>
                     <label>Día</label>
                     <select id="Day" name="Day">
@@ -73,12 +75,15 @@
                         <option value="10">30</option>
                     </select>
                 </li>
-                <li>
+                <li class="BOButtonContainerShort">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input type="submit" value="Agregar" />
+
+                    <input class="BOButtons" type="submit" value="Agregar" />
+
                 </li>
             </ul>
+            
         </form>
     </div>
     <div id="templateDelete">
@@ -91,7 +96,7 @@
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input type="hidden" id="ScheduleAvailableId" name="ScheduleAvailableId" value="${ScheduleAvailableId}" />
-            <input type="submit" value="Borrar" />
+            <input class="BOButtons" type="submit" value="Borrar" />
         </form>
     </div>
 </div>
