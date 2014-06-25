@@ -3,37 +3,72 @@
     ViewBag.Title = "Insurance";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
-
-<div>
-    <p>
-        Seleccione los seguros: @Html.TextBox("Insurance")
-        <input type="submit" value="Agregar" name="AddInsurance" style="height:26px;" />
-    </p>
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
-<div>
-    @* Agregar grilla.*@
+<div class="BOProfileFormWrapper">
+    <div id="divGridAutorization" style="width:800px;"></div>
+    <div style="height:100px;"></div>
 </div>
-
-@*@Scripts.Render("~/Areas/Web/Scripts/jquery-1.10.2.js")*@
-<script src="~/Areas/Web/Scripts/jquery-ui-1.10.4.custom.js"></script>
-@Styles.Render("~/areas/web/content/styles/jquery-ui-1.10.4.custom.css")
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
+                                        new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+            <ul>
+                <li>
+                    <label>Role</label>
+                    <select id="RoleId" name="RoleId">
+                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileAdministrator).ToString())">Administrador de perfil</option>
+                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileOperator).ToString())">Operador</option>
+                        <option value="@(((int)SessionController.Models.Profile.enumRole.ReadOnly).ToString())">Sólo Lectura</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Email</label>
+                    <input type="text" name="UserEmail" id="UserEmail" value=" " />
+                </li>
+                <li>
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+            <input type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
 
 @{
-    var jsonSerialiser = new System.Web.Script.Serialization.JavaScriptSerializer();
-    var jsonr = jsonSerialiser.Serialize(Model.InsuranceToSelect.Select(s => new { s.CategoryId, s.Name }));
-
+    //get json office data
+    //string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+    //    Serialize(Model.CurrentAutorization.
+    //        Select(x => new
+    //        {
+    //            ProfileRoleId = x.ProfileRoleId,
+    //            Role = x.Role,
+    //            UserEmail = x.UserEmail
+    //        }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        $(document).ready(function () {
+            //start office grid
+            ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+        });
+    </script>
 }
 
-<script type="text/javascript">
-    var acdata = @(Html.Raw(jsonr));
-    $(document).ready(function () {
-        $("#Insurance").autocomplete({
-            source: acdata,
-            select: Name,
-            messages: {
-                noResults: "",
-                results: ""
-            }
-        });
-    })
-</script>
+
