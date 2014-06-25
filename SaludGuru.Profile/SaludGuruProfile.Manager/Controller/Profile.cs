@@ -100,20 +100,20 @@ namespace SaludGuruProfile.Manager.Controller
 
         public static void InsuranceProfileUpsert(ProfileModel ProfileToUpsert)
         {
-            ProfileToUpsert.RelatedSpecialty.All(sp =>
+            ProfileToUpsert.RelatedInsurance.All(sp =>
             {
                 ProfileDataController.Instance.ProfileCategoryUpsert
                     (ProfileToUpsert.ProfilePublicId,
                     sp.CategoryId,
-                    (ProfileToUpsert.DefaultSpecialty != null && sp.CategoryId == ProfileToUpsert.DefaultSpecialty.CategoryId));
+                    false);
 
                 return true;
             });
         }
 
-        public static void InsuranceProfileDelete(string ProfilePublicId, int CategoryId)
+        public static void InsuranceProfileDelete(string ProfilePublicId, int InsuranceId)
         {
-            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
+            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, InsuranceId);
         }
 
         #endregion
@@ -133,9 +133,9 @@ namespace SaludGuruProfile.Manager.Controller
             });
         }
 
-        public static void SpecialtyProfileDelete(string ProfilePublicId, int CategoryId)
+        public static void SpecialtyProfileDelete(string ProfilePublicId, int SpecialtyId)
         {
-            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
+            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, SpecialtyId);
         }
 
         #endregion
