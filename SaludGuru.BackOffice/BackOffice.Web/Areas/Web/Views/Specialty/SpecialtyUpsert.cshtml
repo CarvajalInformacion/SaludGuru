@@ -14,7 +14,7 @@
                 </li>
                 <li>
                     @{
-                        var CatInfo_KW = Model.CurrentSpecialty == null ? null :
+                        var CatInfo_KW = Model.SpecialtyInfo == null ? null :
                             Model.SpecialtyInfo.SpecialtyInfo.Where
                             (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
                             Select(x => new { id = x.CategoryInfoId, val = x.LargeValue }).
@@ -34,7 +34,7 @@
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
             <div>
-                <input type="submit" />
+                <input class="BOButtons" type="submit" value="Guardar" />
             </div>
         </form>
     </div>
