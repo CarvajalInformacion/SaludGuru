@@ -21,15 +21,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace BackOffice.Web.Controllers
+namespace BackOffice.Web.Areas.Web.Controllers
 {
-    public partial class TreatmentController
+    public partial class PatientController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TreatmentController() { }
+        public PatientController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected TreatmentController(Dummy d) { }
+        protected PatientController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -59,25 +59,19 @@ namespace BackOffice.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult TreatmentList()
+        public virtual System.Web.Mvc.ActionResult Upsert()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentList);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult TreatmentUpsert()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentUpsert);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upsert);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public TreatmentController Actions { get { return MVC.Treatment; } }
+        public PatientController Actions { get { return MVC.Web.Patient; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
+        public readonly string Area = "Web";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Treatment";
+        public readonly string Name = "Patient";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Treatment";
+        public const string NameConst = "Patient";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,35 +79,25 @@ namespace BackOffice.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Search = "Search";
-            public readonly string TreatmentList = "TreatmentList";
-            public readonly string TreatmentUpsert = "TreatmentUpsert";
+            public readonly string List = "List";
+            public readonly string Upsert = "Upsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Search = "Search";
-            public const string TreatmentList = "TreatmentList";
-            public const string TreatmentUpsert = "TreatmentUpsert";
+            public const string List = "List";
+            public const string Upsert = "Upsert";
         }
 
 
-        static readonly ActionParamsClass_TreatmentList s_params_TreatmentList = new ActionParamsClass_TreatmentList();
+        static readonly ActionParamsClass_Upsert s_params_Upsert = new ActionParamsClass_Upsert();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_TreatmentList TreatmentListParams { get { return s_params_TreatmentList; } }
+        public ActionParamsClass_Upsert UpsertParams { get { return s_params_Upsert; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_TreatmentList
+        public class ActionParamsClass_Upsert
         {
-            public readonly string ProfilePublicId = "ProfilePublicId";
-        }
-        static readonly ActionParamsClass_TreatmentUpsert s_params_TreatmentUpsert = new ActionParamsClass_TreatmentUpsert();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_TreatmentUpsert TreatmentUpsertParams { get { return s_params_TreatmentUpsert; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_TreatmentUpsert
-        {
-            public readonly string treatmentId = "treatmentId";
+            public readonly string PatientPublicId = "PatientPublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -125,47 +109,39 @@ namespace BackOffice.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string List = "List";
+                public readonly string Upsert = "Upsert";
             }
+            public readonly string List = "~/Areas/Web/Views/Patient/List.cshtml";
+            public readonly string Upsert = "~/Areas/Web/Views/Patient/Upsert.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_TreatmentController : BackOffice.Web.Controllers.TreatmentController
+    public partial class T4MVC_PatientController : BackOffice.Web.Areas.Web.Controllers.PatientController
     {
-        public T4MVC_TreatmentController() : base(Dummy.Instance) { }
+        public T4MVC_PatientController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Search()
+        public override System.Web.Mvc.ActionResult List()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            SearchOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+            ListOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void TreatmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void UpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult TreatmentList(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult Upsert(string PatientPublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentList);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            TreatmentListOverride(callInfo, ProfilePublicId);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void TreatmentUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string treatmentId);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult TreatmentUpsert(string treatmentId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentUpsert);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "treatmentId", treatmentId);
-            TreatmentUpsertOverride(callInfo, treatmentId);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
+            UpsertOverride(callInfo, PatientPublicId);
             return callInfo;
         }
 
