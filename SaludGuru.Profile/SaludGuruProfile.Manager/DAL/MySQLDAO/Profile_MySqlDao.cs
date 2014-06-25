@@ -964,7 +964,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                    new
                                                    {
                                                        ScheduleAvailableId = sha.Field<int>("ScheduleAvailableId"),
-                                                       Day = sha.Field<int>("Day"),
+                                                       Day = sha.Field<SByte>("Day"),
                                                        StartTime = sha.Field<TimeSpan>("StartTime"),
                                                        EndTime = sha.Field<TimeSpan>("EndTime"),
                                                        CreateDate = sha.Field<DateTime>("ScheduleCreateDate"),

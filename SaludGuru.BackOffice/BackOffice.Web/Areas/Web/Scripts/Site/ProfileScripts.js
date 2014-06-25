@@ -100,13 +100,32 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
             field: "CreateDate",
             title: "Creación"
         }, {
+            field: "ScheduleAvailableId",
             title: "&nbsp;",
-            command: [{ template: $("#templateDelete").html() }],
+            template: $("#templateDelete").html()        
         }],
     });
 }
 
+//init office grid
+function SpecialtyListGrid(vidDiv, vCreateUrl, vSpecialtyData) {
 
-
-
-
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: '<a href="' + vCreateUrl + '">Nueva Especialidad</a>' }],
+        dataSource: {
+            type: "json",
+            data: vOfficeData,
+        },
+        columns: [{
+            field: "Name",
+            title: "Nombre",
+            template: '<a href="${UrlToUpdate}">${Name}</a>'
+        }, {
+            field: "LastModify",
+            title: "Modificación"
+        }, {
+            field: "CreateDate",
+            title: "Creación"
+        }]
+    });
+}
