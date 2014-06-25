@@ -229,9 +229,30 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
-        public virtual ActionResult ProfileSpecialtyUpsert()
+        public virtual ActionResult ProfileSpecialtyUpsert(string ProfilePublicId)
         {
-            return View();
+            ProfileModel modelToCreate = new ProfileModel();
+            SpecialtyModel modelSpecialtyToCreate = new SpecialtyModel();
+
+            modelToCreate.CreateDate = DateTime.Now;
+
+            modelSpecialtyToCreate.CategoryId = Convert.ToInt32(Request["CategoryId"]);
+            modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.RelatedSpecialty.Add(modelSpecialtyToCreate);
+            SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(modelToCreate);
+
+            return RedirectToAction(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileSpecialtyDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int CategoryId = int.Parse(Request["CategoryId"]);
+                SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileDelete(ProfilePublicId, CategoryId);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
 
         #endregion
