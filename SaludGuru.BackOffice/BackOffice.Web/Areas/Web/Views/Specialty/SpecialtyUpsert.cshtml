@@ -1,118 +1,16 @@
-﻿
+﻿@model SaludGuruProfile.Manager.Models.General.SpecialtyModel
 @{
     ViewBag.Title = "SpecialtyUpsert";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SpecialtyUpsert</h2>
-
-
-@model BackOffice.Models.Office.OfficeUpsertModel
-@{
-    ViewBag.Title = "CreateOffice";
-    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
-}
-<div class="BOProfileMenuWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
-</div>
-<div>
-    @if (Model.CurrentOffice != null)
-    {
-        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
-            new BackOffice.Models.Office.OfficeMenuModel()
-            {
-                OfficeInfo = Model.CurrentOffice,
-                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.OfficeInfo
-            });
-    }
-</div>
 <div class="BOProfileFormWrapper">
     <div>
-        <form action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
+        <form action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.CategoryId })" method="post">
             <ul>
                 <li>
                     <label>Nombre</label>
-                    <input id="Name" name="Name" value="@(Model.CurrentOffice == null ? string.Empty : Model.CurrentOffice.Name)" type="text" />
-                </li>
-                <li>
-                    <label>Ciudad</label>
-                    <select id="City" name="City">
-                        @foreach (SaludGuruProfile.Manager.Models.General.CityModel tp in
-                        Model.CitiesToSel.
-                        OrderBy(x => x.CityName)
-                        .ToList())
-                        {
-                            if (Model.CurrentOffice != null && tp.CityId == (int)Model.CurrentOffice.City.CityId)
-                            {
-                                <option value="@tp.CityId" selected="selected">@tp.CityName</option>
-                            }
-                            else
-                            {
-                                <option value="@tp.CityId">@tp.CityName</option>
-                            }
-                        }
-                    </select>
-                </li>
-                <li>
-                    <label>Sucursal principal</label>
-                    @{
-                        if (Model.CurrentOffice != null && Model.CurrentOffice.IsDefault)
-                        {
-                            <input type="checkbox" id="IsDefault" name="IsDefault" checked="checked" />
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="IsDefault" name="IsDefault" />
-                        }
-                    }
-                </li>
-                <li>
-                    @{
-                        var CatInfo_AD = Model.CurrentOffice == null ? null :
-                            Model.CurrentOffice.OfficeInfo.Where
-                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).
-                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
-                                   DefaultIfEmpty(null).
-                                   FirstOrDefault();
-                        if (CatInfo_AD != null)
-                        {
-                            <input type="hidden" id="CatId_Address" name="CatId_Address" value="@CatInfo_AD.id" />
-                        }
-                    }
-                    <label>Dirección</label>
-                    <input id="Address" name="Address" value="@(CatInfo_AD == null ? string.Empty : CatInfo_AD.val)" type="text" />
-                </li>
-                <li>
-                    @{
-                        var CatInfo_TP = Model.CurrentOffice == null ? null :
-                            Model.CurrentOffice.OfficeInfo.Where
-                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).
-                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
-                                   DefaultIfEmpty(null).
-                                   FirstOrDefault();
-                        if (CatInfo_TP != null)
-                        {
-                            <input type="hidden" id="CatId_Telephone" name="CatId_Telephone" value="@CatInfo_TP.id" />
-                        }
-                    }
-                    <label>Telefono</label>
-                    <input id="Telephone" name="Telephone" value="@(CatInfo_TP == null ? string.Empty : CatInfo_TP.val)" type="text" />
-                </li>
-                <li>
-                    @{
-                        var CatInfo_GL = Model.CurrentOffice == null ? null :
-                            Model.CurrentOffice.OfficeInfo.Where
-                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
-                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
-                                   DefaultIfEmpty(null).
-                                   FirstOrDefault();
-                        if (CatInfo_GL != null)
-                        {
-                            <input type="hidden" id="CatId_Geolocation" name="CatId_Geolocation" value="@CatInfo_GL.id" />
-                        }
-                    }
-                    <label>Geolocalizacion</label>
-                    <input id="Geolocation" name="Geolocation" value="@(CatInfo_GL == null ? string.Empty : CatInfo_GL.val)" type="text" />
+                    <input id="Name" name="Name" value="@(Model.Name == null ? string.Empty : Model.Name)" type="text" />
                 </li>
             </ul>
             <div>
@@ -125,6 +23,3 @@
         </form>
     </div>
 </div>
-
-
-

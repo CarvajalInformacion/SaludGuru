@@ -503,6 +503,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
     <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">

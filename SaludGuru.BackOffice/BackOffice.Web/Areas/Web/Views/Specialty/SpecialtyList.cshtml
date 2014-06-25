@@ -1,27 +1,24 @@
-﻿@model List<BackOffice.Models.Profile.ProfileSpecialtyModel>
+﻿@model List<SaludGuruProfile.Manager.Models.General.SpecialtyModel>
 @{
     ViewBag.Title = "SpecialtyList";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 
+    //get json office data
     string oSpecialtyData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
         Serialize(Model.
-        Select(x => new
-        {
-            UrlToUpdate = Url.Action(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name,
-                    new { SpecialtyPublicId = x.SpecialtyToSelect }),
-            Name = x.Profile.Name
-        }).ToList());
+            Select(x => new
+            {
+                UrlToUpdate = Url.Action(MVC.Specialty.ActionNames.SpecialtyUpsert, MVC.Specialty.Name, new { specialtyId = x.CategoryId }),
+                CategoryId = x.CategoryId,
+                Name = x.Name,
+                LastModify = x.LastModify.ToString("yyyy/MM/dd HH:mm"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd HH:mm")
+            }).ToList());
 
-    string oCreateUrl = Url.Action(MVC.Specialty.ActionNames.Search, MVC.Profile.Name,
-        new
-        {
-            
-        });
+    //get create url
+    string oCreateUrl = Url.Action(MVC.Specialty.ActionNames.SpecialtyUpsert, MVC.Specialty.Name);    
 }
-<div class="BOProfileMenuWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu, null)
-</div>
-<div class="BOProfileFormWrapper">
+<div>
     <div id="divGridSpecialty" style="width:800px;"></div>
     <div style="height:100px;"></div>
 </div>
