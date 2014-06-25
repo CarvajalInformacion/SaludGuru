@@ -195,7 +195,8 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult OfficeScheduleAvailableCreate(string ProfilePublicId, string OfficePublicId)
         {
-
+            ScheduleAvailableModel ScheduleToCreate = GetScheduleAvailableRequestModel();
+            SaludGuruProfile.Manager.Controller.Office.ScheduleAvailableCreate(OfficePublicId, ScheduleToCreate);
 
             return RedirectToAction(MVC.Profile.ActionNames.OfficeScheduleAvailableList, MVC.Profile.Name,
                 new { ProfilePublicId = ProfilePublicId, OfficePublicId = OfficePublicId });
@@ -203,6 +204,12 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult OfficeScheduleAvailableDelete(string ProfilePublicId, string OfficePublicId)
         {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int oScheduleAvailableId = int.Parse(Request["ScheduleAvailableId"].ToString().Trim());
+                SaludGuruProfile.Manager.Controller.Office.ScheduleAvailableRemove(oScheduleAvailableId);
+            }
             return RedirectToAction(MVC.Profile.ActionNames.OfficeScheduleAvailableList, MVC.Profile.Name,
                 new { ProfilePublicId = ProfilePublicId, OfficePublicId = OfficePublicId });
         }
@@ -404,47 +411,29 @@ namespace BackOffice.Web.Controllers
             return null;
         }
 
-        //private ScheduleAvailableModel GetScheduleAvailableRequestModel()
-        //{
-        //    if (!string.IsNullOrEmpty(Request["UpsertAction"])
-        //        && bool.Parse(Request["UpsertAction"]))
-        //    {
-        //        TreatmentOfficeModel oReturn = new TreatmentOfficeModel()
-        //        {
-        //            CategoryId = int.Parse(Request["Treatment-id"].Trim()),
-        //            TreatmentOfficeInfo = new List<TreatmentOfficeInfoModel>() 
-        //            { 
-        //                new TreatmentOfficeInfoModel()
-        //                {
-        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_DurationTime"])?0:int.Parse(Request["TrInf_DurationTime"].ToString().Trim()),
-        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.DurationTime,
-        //                    Value = Request["Treatment-duration"].ToString(),
-        //                },
-        //                new TreatmentOfficeInfoModel()
-        //                {
-        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_IsDefault"])?0:int.Parse(Request["TrInf_IsDefault"].ToString().Trim()),
-        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.IsDefault,
-        //                    Value = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? "true" : "false",
-        //                },
-        //                new TreatmentOfficeInfoModel()
-        //                {
-        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_AfterCare"])?0:int.Parse(Request["TrInf_AfterCare"].ToString().Trim()),
-        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.AfterCare,
-        //                    LargeValue = Request["AfterCare"].ToString(),
-        //                },
-        //                new TreatmentOfficeInfoModel()
-        //                {
-        //                    CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_BeforeCare"])?0:int.Parse(Request["TrInf_BeforeCare"].ToString().Trim()),
-        //                    OfficeCategoryInfoType = enumOfficeCategoryInfoType.BeforeCare,
-        //                    LargeValue = Request["BeforeCare"].ToString(),
-        //                },
-        //            }
-        //        };
-        //        return oReturn;
-        //    }
-        //    return null;
-        //}
+        private ScheduleAvailableModel GetScheduleAvailableRequestModel()
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                ScheduleAvailableModel oReturn = new ScheduleAvailableModel()
+                {
+                    Day = (DayOfWeek)int.Parse(Request["Day"].ToString()),
+                    StartTime = new TimeSpan(GetPersonalizedHour(Request["hStartDate"].ToString()), int.Parse(Request["mStartDate"].ToString()), 0),
+                    EndTime = new TimeSpan(GetPersonalizedHour(Request["hEndDate"].ToString()), int.Parse(Request["mEndDate"].ToString()), 0),
+                };
+                return oReturn;
+            }
+            return null;
+        }
 
+        private int GetPersonalizedHour(string strHourToEval)
+        {
+            int oReturn = int.Parse(strHourToEval.Split(',')[0].Trim());
+            if (strHourToEval.Split(',')[1].ToLower() == "pm" && oReturn <= 12)
+                oReturn = oReturn + 12;
+            return oReturn;
+        }
         #endregion
     }
 }

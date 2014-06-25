@@ -100,8 +100,9 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
             field: "CreateDate",
             title: "Creación"
         }, {
+            field: "ScheduleAvailableId",
             title: "&nbsp;",
-            command: [{ template: $("#templateDelete").html() }],
+            template: $("#templateDelete").html()        
         }],
     });
 }
