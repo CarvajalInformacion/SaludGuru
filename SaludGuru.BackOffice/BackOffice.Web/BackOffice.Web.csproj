@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\ADO.dll</HintPath>
     </Reference>
+    <Reference Include="MedicalCalendar.Manager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
@@ -188,6 +191,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsuranceController.cs" />
@@ -583,6 +588,9 @@
     <Content Include="Areas\Web\Views\Profile\OfficeScheduleAvailableList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\List.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\Upsert.cshtml" />
+    <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />
