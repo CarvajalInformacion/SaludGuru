@@ -26,5 +26,44 @@ namespace SaludGuruProfile.Manager.Controller
 
             return oReturn;
         }
+
+        public static int Upsert(TreatmentModel TreatmentToUpsert)
+        {
+            int oTreatmentId = TreatmentToUpsert.CategoryId;
+
+            if(oTreatmentId <= 0)
+            {
+                //Create Treatment
+                oTreatmentId = DAL.Controller.ProfileDataController.Instance.CategoryCreate(TreatmentToUpsert.CategoryType, TreatmentToUpsert.Name);
+            }
+            else
+            {
+                //Update Treatment
+                DAL.Controller.ProfileDataController.Instance.CategoryModify(TreatmentToUpsert.CategoryId, TreatmentToUpsert.Name);
+            }
+
+            TreatmentToUpsert.TreatmentInfo.All(info =>
+               {
+                   if (info.CategoryInfoId <= 0)
+                   {
+                       //create info
+                       DAL.Controller.ProfileDataController.Instance.CategoryInfoCreate
+                           (TreatmentToUpsert.CategoryId,
+                           info.CategoryInfoType,
+                           info.Value,
+                           info.LargeValue);
+                   }
+                   else
+                   {
+                       //update info
+                       DAL.Controller.ProfileDataController.Instance.CategoryInfoModify
+                           (info.CategoryInfoId,
+                           info.Value,
+                           info.LargeValue);
+                   }
+                   return true;
+            });
+            return oTreatmentId;
+        }
     }
 }
