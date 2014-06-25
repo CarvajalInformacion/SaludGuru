@@ -41,6 +41,29 @@ namespace SaludGuruProfile.Manager.Controller
                 //update specialty
                 DAL.Controller.ProfileDataController.Instance.CategoryModify(oSpecialtyId, SpecialtyToUpsert.Name);
             }
+
+            //Upsert specialty info
+            SpecialtyToUpsert.SpecialtyInfo.All(info =>
+            {
+                if (info.CategoryInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.ProfileDataController.Instance.CategoryInfoCreate
+                        (info.CategoryInfoId,
+                        info.CategoryInfoType,
+                        "",
+                        info.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.ProfileDataController.Instance.CategoryInfoModify
+                        (info.CategoryInfoId,
+                        "",
+                        info.LargeValue);
+                }
+                return true;
+            });
             return oSpecialtyId;
         }
     }
