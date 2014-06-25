@@ -71,4 +71,11 @@
     font-size:18px;
 }
 
+/************* CONFIGURACION DE LA AGENDA ************/
 
+.BOEditDaySetUp li{
+    display:inline-block;
+    border:1px solid red;
+    vertical-align:middle;
+    margin-right:12px;
+}

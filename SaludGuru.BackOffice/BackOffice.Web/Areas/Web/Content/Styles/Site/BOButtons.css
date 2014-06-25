@@ -5,6 +5,13 @@
     height:38px;
     margin:10px auto;
 }
+.BOButtonContainerShort {
+    display:inline-block;
+    border:1px solid red;
+    width:auto;
+    height:38px;
+    margin:10px auto;
+}
 .BOButtons {
     display:block;
     float:right;
@@ -21,7 +28,6 @@
     box-shadow:#000 2px 2px 3px;
     vertical-align:top;
 }
-
 .BOButtons:hover {
     background-color:#ddff55;
     color:#333;
