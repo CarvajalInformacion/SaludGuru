@@ -1,0 +1,38 @@
+﻿@model List<BackOffice.Models.Profile.ProfileSpecialtyModel>
+@{
+    ViewBag.Title = "SpecialtyList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    string oSpecialtyData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.
+        Select(x => new
+        {
+            UrlToUpdate = Url.Action(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name,
+                    new { SpecialtyPublicId = x.SpecialtyToSelect }),
+            Name = x.Profile.Name
+        }).ToList());
+
+    string oCreateUrl = Url.Action(MVC.Specialty.ActionNames.Search, MVC.Profile.Name,
+        new
+        {
+            
+        });
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu, null)
+</div>
+<div class="BOProfileFormWrapper">
+    <div id="divGridSpecialty" style="width:800px;"></div>
+    <div style="height:100px;"></div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataSpecialty = @Html.Raw(oSpecialtyData)
+            $(document).ready(function () {
+                //Start specialty grid
+                SpecialtyListGrid('divGridSpecialty', '@oCreateUrl', vDataSpecialty);
+            });
+    </script>
+}
