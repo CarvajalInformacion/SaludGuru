@@ -2,6 +2,7 @@
 using BackOffice.Models.Profile;
 using SaludGuruProfile.Manager.Controller;
 using SaludGuruProfile.Manager.Models;
+using SaludGuruProfile.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
@@ -257,6 +258,31 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult InsuranceProfileUpsert(string ProfilePublicId)
+        {
+            ProfileModel modelToCreate = new ProfileModel();
+            InsuranceModel modelInsutranceToCreate = new InsuranceModel();
+
+            modelToCreate.CreateDate = DateTime.Now;
+
+            modelInsutranceToCreate.CategoryId = Convert.ToInt32(Request["CategoryId"]);
+            modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);            
+            SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert(modelToCreate);
+
+            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult InsuranceProfileDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int CategoryIdId = int.Parse(Request["CategoryId"]);
+                SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileDelete(ProfilePublicId, CategoryIdId);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
         #endregion
 
         #region Treatment
