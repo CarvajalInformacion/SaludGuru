@@ -246,8 +246,46 @@ namespace BackOffice.Web.Controllers
 
         #region Autorization
 
+        public virtual ActionResult AutorizationProfileList(string ProfilePublicId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentAutorization = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(ProfilePublicId),
+            };
+            if (Model.CurrentAutorization == null)
+                Model.CurrentAutorization = new List<ProfileAutorizationModel>();
 
+            return View(Model);
+        }
 
+        public virtual ActionResult ProfileAutorizationUpsert(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId)
+        {
+            int result = 0;
+
+            ProfileAutorizationModel modelToCreate = new ProfileAutorizationModel();
+            modelToCreate.CreateDate = DateTime.Now;
+
+            //modelToCreate.ProfileRoleId = ProfilePublicId;
+            modelToCreate.Role = RoleId;
+            modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.UserEmail = Request["UserEmail"];
+
+            result = SaludGuruProfile.Manager.Controller.Profile.ProfileAutorizationUpsert(modelToCreate);
+
+            return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileAutorizationDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int profileRoleId = int.Parse(Request["ProfileRoleId"].ToString().Trim());
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileAutorization(profileRoleId);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
         #endregion
 
         #region private methods

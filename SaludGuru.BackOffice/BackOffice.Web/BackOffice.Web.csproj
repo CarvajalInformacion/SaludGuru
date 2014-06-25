@@ -584,6 +584,7 @@
     <Content Include="Areas\Web\Views\Profile\OfficeScheduleAvailableList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

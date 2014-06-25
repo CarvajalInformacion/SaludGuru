@@ -123,6 +123,24 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceProfileList);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AutorizationProfileList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutorizationProfileList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileAutorizationUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationUpsert);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileAutorizationDelete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Web.Profile; } }
@@ -152,6 +170,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             public readonly string InsuranceProfileList = "InsuranceProfileList";
+            public readonly string AutorizationProfileList = "AutorizationProfileList";
+            public readonly string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
+            public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -170,6 +191,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
             public const string InsuranceProfileList = "InsuranceProfileList";
+            public const string AutorizationProfileList = "AutorizationProfileList";
+            public const string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
+            public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
         }
 
 
@@ -268,6 +292,31 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
+        static readonly ActionParamsClass_AutorizationProfileList s_params_AutorizationProfileList = new ActionParamsClass_AutorizationProfileList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AutorizationProfileList AutorizationProfileListParams { get { return s_params_AutorizationProfileList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AutorizationProfileList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_ProfileAutorizationUpsert s_params_ProfileAutorizationUpsert = new ActionParamsClass_ProfileAutorizationUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileAutorizationUpsert ProfileAutorizationUpsertParams { get { return s_params_ProfileAutorizationUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileAutorizationUpsert
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string RoleId = "RoleId";
+        }
+        static readonly ActionParamsClass_ProfileAutorizationDelete s_params_ProfileAutorizationDelete = new ActionParamsClass_ProfileAutorizationDelete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileAutorizationDelete ProfileAutorizationDeleteParams { get { return s_params_ProfileAutorizationDelete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileAutorizationDelete
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -278,6 +327,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string AutorizationProfileList = "AutorizationProfileList";
                 public readonly string InsuranceProfileList = "InsuranceProfileList";
                 public readonly string OfficeList = "OfficeList";
                 public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
@@ -290,6 +340,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
                 public readonly string ProfileSearch = "ProfileSearch";
                 public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             }
+            public readonly string AutorizationProfileList = "~/Areas/Web/Views/Profile/AutorizationProfileList.cshtml";
             public readonly string InsuranceProfileList = "~/Areas/Web/Views/Profile/InsuranceProfileList.cshtml";
             public readonly string OfficeList = "~/Areas/Web/Views/Profile/OfficeList.cshtml";
             public readonly string OfficeScheduleAvailableList = "~/Areas/Web/Views/Profile/OfficeScheduleAvailableList.cshtml";
@@ -467,6 +518,43 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceProfileList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             InsuranceProfileListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AutorizationProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AutorizationProfileList(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutorizationProfileList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            AutorizationProfileListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileAutorizationUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileAutorizationUpsert(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RoleId", RoleId);
+            ProfileAutorizationUpsertOverride(callInfo, ProfilePublicId, RoleId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileAutorizationDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileAutorizationDelete(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ProfileAutorizationDeleteOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
