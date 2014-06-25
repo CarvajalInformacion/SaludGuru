@@ -11,7 +11,7 @@ namespace BackOffice.Models.Specialty
 {
     public class SpecialtyUpsertModel
     {
-        public ProfileModel Profile { get; set; }
-        public SpecialtyModel CurrentSpecialty { get; set; }
+        public List<SpecialtyModel> CurrentSpecialty { get; set; }
+        public SpecialtyModel SpecialtyInfo { get; set; }
     }
 }
