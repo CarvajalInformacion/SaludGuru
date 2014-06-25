@@ -523,6 +523,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
@@ -585,8 +586,6 @@
     <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
     <Content Include="Areas\Web\Views\Insurance\InsuranceList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileSearch.cshtml" />
-    <Content Include="Areas\Web\Views\Specialty\Search.cshtml" />
-    <Content Include="Areas\Web\Views\Treatment\Search.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileCreate.cshtml" />
     <Content Include="Areas\Web\Views\Profile\SpecialtyProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Profile\InsuranceProfileList.cshtml" />
@@ -606,6 +605,8 @@
     <Content Include="Areas\Web\Views\Patient\Upsert.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

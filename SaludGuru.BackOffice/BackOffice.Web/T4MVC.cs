@@ -59,6 +59,8 @@ namespace T4MVC
         public BackOffice.Web.Areas.Web.Controllers.ProfileController Profile = new BackOffice.Web.Areas.Web.Controllers.T4MVC_ProfileController();
         public BackOffice.Web.Areas.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Areas.Web.Controllers.T4MVC_SpecialtyController();
         public BackOffice.Web.Areas.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_TreatmentController();
+        public T4MVC.Web.AppointmentController Appointment = new T4MVC.Web.AppointmentController();
+        public T4MVC.Web.PatientController Patient = new T4MVC.Web.PatientController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
     }
 }
