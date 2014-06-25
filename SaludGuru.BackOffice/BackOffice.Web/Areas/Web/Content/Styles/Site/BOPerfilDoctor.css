@@ -5,7 +5,7 @@
     border:1px solid black;
     margin:0px auto;
 }
-.BOProfileMenuWrapper, .BOProfileFormWrapper {
+.BOProfileMenuWrapper, .BOProfileFormWrapper, .BOProfileTableWrapper{
         display:inline-block;
         vertical-align:top;
 }
@@ -17,7 +17,7 @@
         border:1px solid green;
         margin:0px 0px 0px -8px;
         width:58%;
-        min-width:58%   ;
+        min-width:58%;
     }
 /************* COLUMNA DE INFO DEL PERFIL ************/
 

@@ -1,21 +1,23 @@
 ﻿@model BackOffice.Models.Office.OfficeMenuModel
 
-<div style="top:100px;height:100px;">
-    <div>
-        <label>Nombre</label>:
-        <label>@Model.OfficeInfo.Name</label>
-    </div>
-    <div>
+<div class="BOInfoOfficeWrapper">
+
+
+    <label class="BOInfoOfficeLabel">Nombre: @Model.OfficeInfo.Name</label>
+
+    <div class="BOInfoOfficeListContainer">
         <ul>
             <li>
                 <a href="">Información general</a>
             </li>
-            <li>
+            <li style="display:block; border:1px solid black; height:auto; width:auto; line-height:18px; font-size:18px;">
                 <a href="">Tratamientos</a>
             </li>
-            <li>
+            <li style="display:block; border:1px solid black; height:auto; width:auto; line-height:18px; font-size:18px;">
                 <a href="">Horarios de atención</a>
             </li>
         </ul>
     </div>
+
+
 </div>
