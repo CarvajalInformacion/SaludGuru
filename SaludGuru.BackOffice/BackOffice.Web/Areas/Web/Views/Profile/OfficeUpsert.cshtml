@@ -21,6 +21,7 @@
     }
 
     <div class="BOFormDataWrapper">
+        <label class="BOInfoOfficeLabel">Crear Nueva Oficina</label>
         <form action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
             <ul>
                 <li>
@@ -113,7 +114,7 @@
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
             <div class="BOButtonContainerLong">
-                <input class="BOButtons" type="submit" value="pichurria" />
+                <input class="BOButtons" type="submit" value="guardar" />
             </div>
         </form>
     </div>

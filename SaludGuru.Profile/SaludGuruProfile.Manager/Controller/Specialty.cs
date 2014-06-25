@@ -49,9 +49,9 @@ namespace SaludGuruProfile.Manager.Controller
                 {
                     //create info
                     DAL.Controller.ProfileDataController.Instance.CategoryInfoCreate
-                        (info.CategoryInfoId,
+                        (SpecialtyToUpsert.CategoryId,                        
                         info.CategoryInfoType,
-                        "",
+                        info.Value,
                         info.LargeValue);
                 }
                 else
@@ -59,7 +59,7 @@ namespace SaludGuruProfile.Manager.Controller
                     //update info
                     DAL.Controller.ProfileDataController.Instance.CategoryInfoModify
                         (info.CategoryInfoId,
-                        "",
+                        info.Value,
                         info.LargeValue);
                 }
                 return true;
