@@ -1,6 +1,7 @@
 ﻿using SaludGuruProfile.Manager.DAL.Controller;
 using SaludGuruProfile.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Profile;
+using SessionController.Models.Profile.Autorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,6 +137,27 @@ namespace SaludGuruProfile.Manager.Controller
         {
             ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
+
+        #endregion
+
+        #region Autorization
+
+        public static List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId)
+        {
+            return DAL.Controller.ProfileDataController.Instance.GetProfileAutorization(ProfilePublicId);
+        }
+
+        public static int ProfileAutorizationUpsert(ProfileAutorizationModel ProfileAutorizationToUpsert)
+        {
+            //DAL.Controller.ProfileDataController.Instance.ProfileRoleCreate()
+            return 0;
+        }
+
+        public static void GetProfileAutorization(int ProfileRoleId)
+        {
+            DAL.Controller.ProfileDataController.Instance.ProfileRoleDelete(ProfileRoleId);
+        }
+
 
         #endregion
     }

@@ -76,6 +76,8 @@ namespace SaludGuruProfile.Manager.Interfaces
 
         List<AutorizationModel> GetAutorization(string UserEmail);
 
+        List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId);
+
         #endregion
 
         #region City

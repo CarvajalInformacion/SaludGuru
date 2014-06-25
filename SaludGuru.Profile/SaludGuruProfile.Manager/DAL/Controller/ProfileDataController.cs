@@ -2,6 +2,7 @@
 using SaludGuruProfile.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
+using SessionController.Models.Profile.Autorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -232,6 +233,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         public List<SessionController.Models.Profile.Autorization.AutorizationModel> GetAutorization(string UserEmail)
         {
             return DataFactory.GetAutorization(UserEmail);
+        }
+
+        public List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId)
+        {
+            return DataFactory.GetProfileAutorization(ProfilePublicId);
         }
 
         #endregion

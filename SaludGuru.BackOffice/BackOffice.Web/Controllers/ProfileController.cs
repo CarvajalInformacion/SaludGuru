@@ -244,6 +244,12 @@ namespace BackOffice.Web.Controllers
 
         #endregion
 
+        #region Autorization
+
+
+
+        #endregion
+
         #region private methods
 
         private ProfileModel GetProfileInfoRequestModel()

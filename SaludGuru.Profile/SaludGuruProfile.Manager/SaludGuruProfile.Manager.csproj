@@ -78,6 +78,7 @@
     <Compile Include="Models\Office\OfficeModel.cs" />
     <Compile Include="Models\Office\ScheduleAvailableModel.cs" />
     <Compile Include="Models\Office\TreatmentOfficeModel.cs" />
+    <Compile Include="Models\Profile\ProfileAutorizationModel.cs" />
     <Compile Include="Models\Profile\ProfileInfoModel.cs" />
     <Compile Include="Models\Profile\ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

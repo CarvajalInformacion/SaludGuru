@@ -18,5 +18,8 @@ namespace BackOffice.Models.Office
 
         public TreatmentOfficeModel CurrentTreatmentOffice { get; set; }
         public List<TreatmentModel> TreatmentToSel { get; set; }
+
+        public List<ProfileAutorizationModel> CurrentAutorization { get; set; }
+
     }
 }

@@ -1056,6 +1056,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
         }
 
+        public List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId)
+        {
+            return null;
+        }
+
         #endregion
 
         #region City
