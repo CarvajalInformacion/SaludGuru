@@ -28,11 +28,10 @@ namespace BackOffice.Web.Controllers
         {
             SpecialtyUpsertModel Model = new SpecialtyUpsertModel()
             {
-                CurrentSpecialty = string.IsNullOrEmpty(specialtyId) ? null : SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(specialtyId),                
+                SpecialtyInfo = string.IsNullOrEmpty(specialtyId) ? null :
+                    SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(specialtyId).
+                        Where(x => x.CategoryId.ToString() == specialtyId).FirstOrDefault(),
             };
-
-            if (!string.IsNullOrEmpty(specialtyId))
-                Model.SpecialtyInfo = Model.CurrentSpecialty.FirstOrDefault();
 
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
@@ -44,17 +43,18 @@ namespace BackOffice.Web.Controllers
                 int oSpecialtyId = SaludGuruProfile.Manager.Controller.Specialty.Upsert
                     (modelList);
 
-                //modelList.CategoryId = Convert.ToInt32(specialtyId);
-                //int idReturn = SaludGuruProfile.Manager.Controller.Specialty.Upsert(Model);
-
                 //redirect to upgrade page
                 if (string.IsNullOrEmpty(modelList.CategoryId.ToString()))
                 {
-                    return RedirectToAction(MVC.Specialty.ActionNames.SpecialtyUpsert, MVC.Specialty.Name);
+                    //new
+                    return RedirectToAction(MVC.Specialty.ActionNames.SpecialtyUpsert, MVC.Specialty.Name, new { specialtyId = oSpecialtyId });
                 }
                 else
                 {
-                    Model.CurrentSpecialty = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(oSpecialtyId.ToString());
+                    //update
+                    Model.SpecialtyInfo = string.IsNullOrEmpty(specialtyId) ? null :
+                        SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(specialtyId).
+                            Where(x => x.CategoryId.ToString() == specialtyId).FirstOrDefault();
                 }
             }
             return View(Model);
@@ -72,13 +72,14 @@ namespace BackOffice.Web.Controllers
                 SpecialtyModel oReturn = new SpecialtyModel()
                 {
                     Name = Request["Name"].ToString(),
+                    CategoryId = Convert.ToInt32(Request["SpecialtyId"]),
                     SpecialtyInfo = new List<CategoryInfoModel>
                     {
                         new CategoryInfoModel()
                         {
-                            CategoryInfoId = string.IsNullOrEmpty(Request["CatId_Keyword"])?0:int.Parse(Request["CatId_Keyword"].ToString().Trim()),
+                            CategoryInfoId = Convert.ToInt32(Request["CatId_Keyword"]),
                             CategoryInfoType = enumCategoryInfoType.Keyword,
-                            LargeValue = Request["Keyword"].ToString(),                            
+                            LargeValue = Request["Keyword"].ToString(),
                         },
                     }
                 };
