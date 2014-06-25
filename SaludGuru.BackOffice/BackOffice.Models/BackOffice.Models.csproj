@@ -72,8 +72,6 @@
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Office\OfficeMenuModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />
-    <Compile Include="Profile\ProfileInsuranceModel.cs" />
-    <Compile Include="Profile\ProfileSpecialtyModel.cs" />
     <Compile Include="Profile\ProfileUpSertModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specialty\SpecialtyUpsertModel.cs" />

@@ -16,5 +16,11 @@ namespace Profile.Test
             Assert.IsNotNull(AutorizationResponse);
             Assert.AreEqual((bool)(AutorizationResponse.Count > 0), true);
         }
+        
+        [TestMethod]
+        public void GetProfileAutorization()
+        {
+            SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization("2C1D2510");
+        }
     }
 }

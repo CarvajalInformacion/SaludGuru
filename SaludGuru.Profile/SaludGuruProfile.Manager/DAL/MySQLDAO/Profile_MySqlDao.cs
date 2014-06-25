@@ -1078,7 +1078,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                             select new ProfileAutorizationModel()
                             {
                                 ProfileRoleId = au.Field<int>("ProfileRoleId"),
-                                ProfilePublicId = au.Field<string>("ProfileId"),
+                                //ProfileId = au.Field<string>("ProfileId"),
                                 Role = (SessionController.Models.Profile.enumRole)au.Field<int>("RoleId"),
                                 UserEmail = au.Field<string>("UserEmail"),
                                 CreateDate = au.Field<DateTime>("CreateDate"),                                                                
