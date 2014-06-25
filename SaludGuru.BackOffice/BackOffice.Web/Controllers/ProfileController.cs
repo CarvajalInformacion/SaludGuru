@@ -228,6 +228,21 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult ProfileSpecialtyUpsert()
+        {
+            return View();
+        }
+
+        public virtual ActionResult ProfileSpecialtyDelete(string ProfilePublicId)
+        {
+            if(!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int profileSpecialtyId = int.Parse(Request["ProfileSpecialtyId"].ToString().Trim());
+                
+            }
+        }
+
         #endregion
 
         #region Insurance
