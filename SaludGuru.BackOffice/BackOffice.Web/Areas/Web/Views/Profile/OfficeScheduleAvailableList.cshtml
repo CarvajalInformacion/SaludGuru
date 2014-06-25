@@ -22,10 +22,11 @@
 
 <div id="templates" style="display:none;">
     <div id="templateCreate">
-        <form action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableCreate, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableCreate, MVC.Profile.Name,
                 new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId }))">
             <ul>
                 <li>
+                    <label>Día</label>
                     <select id="Day" name="Day">
                         <option value="@(((int)DayOfWeek.Monday).ToString())">Lunes</option>
                         <option value="@(((int)DayOfWeek.Tuesday).ToString())">Martes</option>
@@ -37,31 +38,59 @@
                     </select>
                 </li>
                 <li>
-                    <div class="input-append bootstrap-timepicker">
-                        <input id="timepicker1" type="text" class="input-small">
-                        <span class="add-on"><i class="icon-time"><img src="" width="50" height="50"/></i></span>
-                    </div>
+                    <label>Hora inicio</label>
+                    <select id="hStartDate" name="hStartDate">
+                        @for (int i = 6; i < 13; i++)
+                        {
+                            <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
+                        }
+                        @for (int i = 1; i < 10; i++)
+                        {
+                            <option value="@(i.ToString() + ",PM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) PM</option>
+                        }
+                    </select>
+                    <select id="mStartDate" name="mStartDate">
+                        <option value="00">00</option>
+                        <option value="10">30</option>
+                    </select>
                 </li>
                 <li>
-                    @*<div id="dpEndDate" class="input-append">
-                        <input id="EndDate" name="EndDate" data-format="hh:mm:ss" type="text" />
-                        <span class="add-on">
-                            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                <img src="" height="50" width="50" />
-                            </i>
-                        </span>
-                    </div>*@
+                    <label>Hora final</label>
+                    <select id="hEndDate" name="hEndDate">
+                        @for (int i = 6; i < 13; i++)
+                        {
+                            <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
+                        }
+                        <option value="12,M">12 M</option>
+                        @for (int i = 1; i < 10; i++)
+                        {
+                            <option value="@(i.ToString() + ",PM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) PM</option>
+                        }
+                    </select>
+                    <select id="mEndDate" name="mEndDate">
+                        <option value="00">00</option>
+                        <option value="10">30</option>
+                    </select>
                 </li>
                 <li>
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
                     <input type="submit" value="Agregar" />
                 </li>
             </ul>
         </form>
     </div>
     <div id="templateDelete">
-        <form action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableDelete, MVC.Profile.Name,
-                new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId }))">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId,
+                    OfficePublicId = Model.CurrentOffice.OfficePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input type="hidden" id="ScheduleAvailableId" name="ScheduleAvailableId" value="${ScheduleAvailableId}" />
+            <input type="submit" value="Borrar" />
         </form>
     </div>
 </div>
@@ -75,9 +104,9 @@
                 ScheduleAvailableId = x.ScheduleAvailableId,
                 ScheduleDayId = (int)x.Day,
                 ScheduleDayName = x.DayName,
-                StartTime = x.StartTime.ToString("hh:mm t"),
-                EndTime = x.EndTime.ToString("hh:mm t"),
-                CreateDate = x.CreateDate.ToString("yyyy/MM/dd hh:mm t"),
+                StartTime = DateTime.Today.Add(x.StartTime).ToString("hh:mm tt"),
+                EndTime = DateTime.Today.Add(x.EndTime).ToString("hh:mm tt"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd hh:mm tt"),
             }).ToList());
 }
 @section inlinescripts
@@ -87,9 +116,6 @@
         $(document).ready(function () {
             //start office grid
             OfficeScheduleAvailableListGrid('divGridShceduleAvailable', vDataScheduleAvailable);
-            //$('#timepicker1').timepicker();
-            //$('#dpStartDate').datetimepicker({ pickDate: false });
-            //$('#dpEndDate').datetimepicker({ pickDate: false });
         });
     </script>
 }
