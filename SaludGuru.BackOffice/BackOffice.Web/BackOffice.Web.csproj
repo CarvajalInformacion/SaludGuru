@@ -188,7 +188,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
-    <Compile Include="ControllersApi\InsuranceApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsuranceController.cs" />
