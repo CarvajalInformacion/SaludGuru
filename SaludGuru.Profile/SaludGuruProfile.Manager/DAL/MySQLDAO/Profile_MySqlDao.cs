@@ -1058,7 +1058,33 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
         public List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId)
         {
-            return null;
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("V_ProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "A_ProfileRole_GetProfileAutorization",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileAutorizationModel> oRetorno = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oRetorno = (from au in response.DataTableResult.AsEnumerable()
+                            select new ProfileAutorizationModel()
+                            {
+                                ProfileRoleId = au.Field<int>("ProfileRoleId"),
+                                ProfilePublicId = au.Field<string>("ProfileId"),
+                                Role = (SessionController.Models.Profile.enumRole)au.Field<int>("RoleId"),
+                                UserEmail = au.Field<string>("UserEmail"),
+                                CreateDate = au.Field<DateTime>("CreateDate"),                                                                
+                            }).ToList();
+            }
+            return oRetorno;
         }
 
         #endregion
