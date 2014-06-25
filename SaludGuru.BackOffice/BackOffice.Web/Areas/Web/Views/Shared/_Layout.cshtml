@@ -10,7 +10,7 @@
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
 </head>
 <body>
-    <div style="min-width:800px;">
+
         <div>
             @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn &&
                 BackOffice.Models.General.SessionModel.UserIsAutorized)
@@ -25,7 +25,7 @@
         <div>
             @RenderBody()
         </div>
-    </div>
+   
 
     @*Render boundles scripts*@
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jquery")

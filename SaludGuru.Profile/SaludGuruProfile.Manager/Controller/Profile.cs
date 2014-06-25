@@ -149,15 +149,13 @@ namespace SaludGuruProfile.Manager.Controller
 
         public static int ProfileAutorizationUpsert(ProfileAutorizationModel ProfileAutorizationToUpsert)
         {
-            //DAL.Controller.ProfileDataController.Instance.ProfileRoleCreate()
-            return 0;
+            return DAL.Controller.ProfileDataController.Instance.ProfileRoleCreate(ProfileAutorizationToUpsert.ProfilePublicId, ProfileAutorizationToUpsert.Role, ProfileAutorizationToUpsert.UserEmail);
         }
 
-        public static void GetProfileAutorization(int ProfileRoleId)
+        public static void DeleteProfileAutorization(int ProfileRoleId)
         {
             DAL.Controller.ProfileDataController.Instance.ProfileRoleDelete(ProfileRoleId);
         }
-
 
         #endregion
     }
