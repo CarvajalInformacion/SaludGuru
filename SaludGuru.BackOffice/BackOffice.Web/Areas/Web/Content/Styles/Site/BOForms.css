@@ -53,6 +53,8 @@
     width:55%;
     height:100px;
     vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
 }
     .BOFormDataWrapper ul li p{
         display:inline-block;

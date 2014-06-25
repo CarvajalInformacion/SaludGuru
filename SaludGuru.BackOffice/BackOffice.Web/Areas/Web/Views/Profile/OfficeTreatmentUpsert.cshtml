@@ -6,16 +6,18 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
-<div>
+<div class="BOProfileFormWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
             new BackOffice.Models.Office.OfficeMenuModel()
             {
                 OfficeInfo = Model.CurrentOffice,
                 SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
             })
-</div>
-<div class="BOProfileFormWrapper">
-    <div>
+
+
+
+
+    <div class="BOFormDataWrapper">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
                 new
                 {
@@ -104,7 +106,7 @@
                         }
                     }
                     <label>Cuidados previos</label>
-                    <textarea name="AfterCare" id="AfterCare" rows="15" cols="15" style="width:100px;height:100px;">
+                    <textarea name="AfterCare" id="AfterCare" rows="15" cols="15">
                         @(TrInf_AC == null ? string.Empty : TrInf_AC.val)
                     </textarea>
                 </li>
@@ -126,7 +128,7 @@
                         }
                     }
                     <label>Cuidados posteriores</label>
-                    <textarea name="BeforeCare" id="BeforeCare" rows="15" cols="15" style="width:100px;height:100px;">
+                    <textarea name="BeforeCare" id="BeforeCare" rows="15" cols="15">
                         @(TrInf_BC == null ? string.Empty : TrInf_BC.val)
                     </textarea>
                 </li>
@@ -135,12 +137,12 @@
                 <!--hiden fields-->
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
-            <div>
-                <input type="submit" />
+            <div class="BOButtonContainerLong">
+                <input class="BOButtons" type="submit" value="guardar"/>
             </div>
         </form>
     </div>
-    <div style="height:500px;"></div>
+
 </div>
 
 @section inlinescripts
