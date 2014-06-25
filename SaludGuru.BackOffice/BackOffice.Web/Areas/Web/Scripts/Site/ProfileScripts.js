@@ -106,3 +106,26 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
         }],
     });
 }
+
+//init Schedule Available grid
+function ProfileAutorizationListGrid(vidDiv, vProfileData) {
+
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: $("#templateCreate").html() }],
+        dataSource: {
+            type: "json",
+            data: vProfileData,
+        },
+        columns: [{
+            field: "Role",
+            title: "Role",
+        }, {
+            field: "UserEmail",
+            title: "Email"
+        }, {
+            field: "ProfileRoleId",
+            title: "&nbsp;",
+            template: $("#templateDelete").html()
+        }],
+    });
+}

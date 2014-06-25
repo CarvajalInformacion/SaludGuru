@@ -220,7 +220,7 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult SpecialtyProfileList(string ProfilePublicId)
         {
-            ProfileSpecialtyModel Model = new ProfileSpecialtyModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty),
@@ -234,7 +234,7 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult InsuranceProfileList(string ProfilePublicId)
         {
-            ProfileInsuranceModel Model = new ProfileInsuranceModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 InsuranceToSelect = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty),
@@ -244,10 +244,63 @@ namespace BackOffice.Web.Controllers
 
         #endregion
 
+        #region Treatment
+
+        public virtual ActionResult TreatmentProfileList(string ProfilePublicId)
+        {
+            ProfileUpSertModel Model = new ProfileUpSertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                TreatmentToSelect = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(string.Empty),
+            };
+            return View(Model);
+        }
+
+
+        #endregion
+
         #region Autorization
 
+        public virtual ActionResult AutorizationProfileList(string ProfilePublicId)
+        {
+            OfficeUpsertModel Model = new OfficeUpsertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                CurrentAutorization = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(ProfilePublicId),
+            };
+            if (Model.CurrentAutorization == null)
+                Model.CurrentAutorization = new List<ProfileAutorizationModel>();
 
+            return View(Model);
+        }
 
+        public virtual ActionResult ProfileAutorizationUpsert(string ProfilePublicId, SessionController.Models.Profile.enumRole RoleId)
+        {
+            int result = 0;
+
+            ProfileAutorizationModel modelToCreate = new ProfileAutorizationModel();
+            modelToCreate.CreateDate = DateTime.Now;
+
+            //modelToCreate.ProfileRoleId = ProfilePublicId;
+            modelToCreate.Role = RoleId;
+            modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.UserEmail = Request["UserEmail"];
+
+            result = SaludGuruProfile.Manager.Controller.Profile.ProfileAutorizationUpsert(modelToCreate);
+
+            return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileAutorizationDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int profileRoleId = int.Parse(Request["ProfileRoleId"].ToString().Trim());
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileAutorization(profileRoleId);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
         #endregion
 
         #region private methods

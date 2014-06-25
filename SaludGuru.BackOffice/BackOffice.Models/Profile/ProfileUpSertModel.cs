@@ -13,5 +13,11 @@ namespace BackOffice.Models.Profile
         public ProfileModel Profile { get; set; }
 
         public List<ItemModel> ProfileOptions { get; set; }
+
+        public List<SpecialtyModel> SpecialtyToSelect { get; set; }
+
+        public List<InsuranceModel> InsuranceToSelect { get; set; }
+
+        public List<TreatmentModel> TreatmentToSelect { get; set; }
     }
 }
