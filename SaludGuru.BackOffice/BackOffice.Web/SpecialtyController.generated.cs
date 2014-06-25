@@ -111,7 +111,7 @@ namespace BackOffice.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_SpecialtyUpsert
         {
-            public readonly string SpecialtyPublicId = "SpecialtyPublicId";
+            public readonly string specialtyId = "specialtyId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -145,14 +145,14 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void SpecialtyUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialtyPublicId);
+        partial void SpecialtyUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string specialtyId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult SpecialtyUpsert(string SpecialtyPublicId)
+        public override System.Web.Mvc.ActionResult SpecialtyUpsert(string specialtyId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyUpsert);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyPublicId", SpecialtyPublicId);
-            SpecialtyUpsertOverride(callInfo, SpecialtyPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "specialtyId", specialtyId);
+            SpecialtyUpsertOverride(callInfo, specialtyId);
             return callInfo;
         }
 

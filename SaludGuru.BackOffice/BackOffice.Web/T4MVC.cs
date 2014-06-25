@@ -29,9 +29,11 @@ public static partial class MVC
     public static MobileClass Mobile { get { return s_Mobile; } }
     static readonly WebClass s_Web = new WebClass();
     public static WebClass Web { get { return s_Web; } }
+    public static BackOffice.Web.Controllers.AppointmentController Appointment = new BackOffice.Web.Controllers.T4MVC_AppointmentController();
     public static BackOffice.Web.Controllers.BaseController Base = new BackOffice.Web.Controllers.T4MVC_BaseController();
     public static BackOffice.Web.Controllers.HomeController Home = new BackOffice.Web.Controllers.T4MVC_HomeController();
     public static BackOffice.Web.Controllers.InsuranceController Insurance = new BackOffice.Web.Controllers.T4MVC_InsuranceController();
+    public static BackOffice.Web.Controllers.PatientController Patient = new BackOffice.Web.Controllers.T4MVC_PatientController();
     public static BackOffice.Web.Controllers.ProfileController Profile = new BackOffice.Web.Controllers.T4MVC_ProfileController();
     public static BackOffice.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Controllers.T4MVC_SpecialtyController();
     public static BackOffice.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Controllers.T4MVC_TreatmentController();
@@ -55,6 +57,8 @@ namespace T4MVC
         public BackOffice.Web.Areas.Web.Controllers.ProfileController Profile = new BackOffice.Web.Areas.Web.Controllers.T4MVC_ProfileController();
         public BackOffice.Web.Areas.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Areas.Web.Controllers.T4MVC_SpecialtyController();
         public BackOffice.Web.Areas.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_TreatmentController();
+        public T4MVC.Web.AppointmentController Appointment = new T4MVC.Web.AppointmentController();
+        public T4MVC.Web.PatientController Patient = new T4MVC.Web.PatientController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
     }
 }
@@ -70,19 +74,6 @@ namespace T4MVC
 }
 
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult
-{
-    public T4MVC_System_Web_Mvc_PartialViewResult(string area, string controller, string action, string protocol = null): base()
-    {
-        this.InitMVCT4Result(area, controller, action, protocol);
-    }
-    
-    public string Controller { get; set; }
-    public string Action { get; set; }
-    public string Protocol { get; set; }
-    public RouteValueDictionary RouteValueDictionary { get; set; }
-}
-[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_ActionResult(string area, string controller, string action, string protocol = null): base()
@@ -91,6 +82,19 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     }
      
     public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_PartialViewResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
     
     public string Controller { get; set; }
     public string Action { get; set; }

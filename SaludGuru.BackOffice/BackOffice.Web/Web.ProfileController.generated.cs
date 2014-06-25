@@ -125,6 +125,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult TreatmentProfileList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentProfileList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult AutorizationProfileList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AutorizationProfileList);
@@ -170,6 +176,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             public readonly string InsuranceProfileList = "InsuranceProfileList";
+            public readonly string TreatmentProfileList = "TreatmentProfileList";
             public readonly string AutorizationProfileList = "AutorizationProfileList";
             public readonly string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
@@ -191,6 +198,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
             public const string InsuranceProfileList = "InsuranceProfileList";
+            public const string TreatmentProfileList = "TreatmentProfileList";
             public const string AutorizationProfileList = "AutorizationProfileList";
             public const string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
@@ -289,6 +297,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public ActionParamsClass_InsuranceProfileList InsuranceProfileListParams { get { return s_params_InsuranceProfileList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_InsuranceProfileList
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_TreatmentProfileList s_params_TreatmentProfileList = new ActionParamsClass_TreatmentProfileList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_TreatmentProfileList TreatmentProfileListParams { get { return s_params_TreatmentProfileList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_TreatmentProfileList
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -518,6 +534,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InsuranceProfileList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             InsuranceProfileListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void TreatmentProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult TreatmentProfileList(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.TreatmentProfileList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            TreatmentProfileListOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
