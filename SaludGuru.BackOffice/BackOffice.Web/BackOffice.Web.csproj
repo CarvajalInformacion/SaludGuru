@@ -266,6 +266,8 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BODoctorOffice.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
     <Content Include="Areas\Web\Content\Styles\jquery-ui-1.10.4.custom.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />

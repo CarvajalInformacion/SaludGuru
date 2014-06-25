@@ -85,7 +85,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Search = "Search";
             public readonly string InsuranceList = "InsuranceList";
             public readonly string InsuranceUpsert = "InsuranceUpsert";
         }
@@ -93,7 +92,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Search = "Search";
             public const string InsuranceList = "InsuranceList";
             public const string InsuranceUpsert = "InsuranceUpsert";
         }
@@ -137,17 +135,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
     public partial class T4MVC_InsuranceController : BackOffice.Web.Areas.Web.Controllers.InsuranceController
     {
         public T4MVC_InsuranceController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Search()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            SearchOverride(callInfo);
-            return callInfo;
-        }
 
         [NonAction]
         partial void InsuranceListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string param);

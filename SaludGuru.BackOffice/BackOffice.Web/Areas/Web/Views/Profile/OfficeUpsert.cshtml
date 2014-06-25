@@ -6,7 +6,10 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
-<div>
+
+
+<div class="BOProfileFormWrapper">
+
     @if (Model.CurrentOffice != null)
     {
         Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
@@ -16,9 +19,8 @@
                 SelectedMenu = BackOffice.Models.General.enumOfficeMenu.OfficeInfo
             });
     }
-</div>
-<div class="BOProfileFormWrapper">
-    <div>
+
+    <div class="BOFormDataWrapper">
         <form action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
             <ul>
                 <li>
@@ -110,8 +112,8 @@
                 <!--hiden fields-->
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
-            <div>
-                <input type="submit" />
+            <div class="BOButtonContainerLong">
+                <input class="BOButtons" type="submit" value="pichurria" />
             </div>
         </form>
     </div>
