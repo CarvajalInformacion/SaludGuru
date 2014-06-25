@@ -8,6 +8,6 @@ namespace BackOffice.Models.Treatment
 {
     public class TreatmentUpsertModel
     {
-        public List<TratmentModel> CurrentTratment = new List<TratmentModel>();
+        //public List<TratmentModel> CurrentTratment = new List<TratmentModel>();
     }
 }
