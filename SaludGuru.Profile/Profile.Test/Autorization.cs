@@ -20,7 +20,7 @@ namespace Profile.Test
         [TestMethod]
         public void GetProfileAutorization()
         {
-            SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization("2C1D2510");
+            Assert.IsNotNull(SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization("2C1D2510"));
         }
     }
 }
