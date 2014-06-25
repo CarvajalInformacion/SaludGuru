@@ -27,9 +27,15 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
-<div class="BOProfileFormWrapper">
-    <div id="divGridOffice" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+<div class="BOProfileTableWrapper" style="border:1px solid black;
+     margin:0px 0px 0px -8px;
+     width:74%;
+     min-width:58%;">
+
+    <h3 style="border:1px solid red; width:auto; margin:10px 0px 10px 14px; font-size:20px;">Listado de Consultorios</h3>
+
+    <div id="divGridOffice" style="margin:14px;"></div>
+
 </div>
 
 @section inlinescripts

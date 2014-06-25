@@ -1,9 +1,4 @@
-﻿using BackOffice.Models.General;
-using BackOffice.Models.Specialty;
-using SaludGuruProfile.Manager.Controller;
-using SaludGuruProfile.Manager.Models;
-using SaludGuruProfile.Manager.Models.General;
-using SaludGuruProfile.Manager.Models.Profile;
+﻿using SaludGuruProfile.Manager.Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +17,26 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult SpecialtyList(string ProfilePublicId)
         {
             List<SpecialtyModel> Model = new List<SpecialtyModel>();
-
-            Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(ProfilePublicId);
-           
+            if (!string.IsNullOrWhiteSpace(ProfilePublicId))
+                Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(ProfilePublicId);
+            else
+                Model = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(" ");
+                        
             return View(Model);
         }
 
-        public virtual ActionResult SpecialtyUpsert(string SpecialtyPublicId, string ProfilePublicId)
+        public virtual ActionResult SpecialtyUpsert(string SpecialtyPublicId)
         {
-            //SpecialtyUpsertModel Model = new SpecialtyUpsertModel()
-            //{
-            //    Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
-            //    CurrentSpecialty = string.IsNullOrEmpty(SpecialtyPublicId) ? null : SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(SpecialtyPublicId),
-            //};
+            SpecialtyModel Model = new SpecialtyModel();
 
-            return View();
+            if(!string.IsNullOrEmpty(Request["UpsertAction"]) 
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                //int idReturn = SaludGuruProfile.Manager.Controller.Specialty.
+                
+            }
+
+            return null;
         }
 
 
