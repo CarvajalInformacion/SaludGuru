@@ -1,0 +1,64 @@
+/************* LISTAS DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
+
+.BOInsuranceTableWrapper {
+    display:block;
+    border:1px solid black;
+    margin:0px auto;
+    width:74%;
+    min-width:58%;
+}
+.BOInsuranceTableWrapper h3{
+    border:1px solid red; 
+    width:auto; 
+    margin:10px 0px 10px 14px;
+    font-size:20px;
+}
+
+/************* INCLUIR INFO EN LISTA DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
+
+.BOIncludeNewInsurance li{
+    display:inline-block;
+    border:1px solid red;
+    margin:0px 0px 0px 14px;
+    vertical-align:top;
+    width:auto;
+}
+.BOIncludeNewInsurance li label{
+    display:inline-block;
+    border:1px solid #999;
+    padding:15px 20px;
+    text-align:left;
+    background-color:#E6E6E6;
+    line-height:inherit;
+}
+
+.BOIncludeNewInsurance li input[type="text"]{
+    display:inline-block;
+    border:1px solid #999;
+    padding:5px 2px;
+    text-align:left;
+    background-color:#fff;
+    width:200px;
+    height:30px;
+}
+.BOIncludeNewInsurance li select{
+    display:inline-block;
+    border:1px solid #999;
+    padding:0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+    height:28px;
+    vertical-align:top;
+}
+.BOIncludeNewInsurance li textarea{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:200px;
+    height:120px;
+    vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
+}
