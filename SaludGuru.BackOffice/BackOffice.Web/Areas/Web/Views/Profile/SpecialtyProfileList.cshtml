@@ -31,6 +31,10 @@
                     }
                 </li>
                 <li>
+                    <label>Principal</label>
+                    <input type="checkbox" name="IsDefault" id="IsDefault" checked="checked" />
+                </li>
+                <li>
                     <!-- hiden fields -->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
                     <input type="submit" value="Agregar" />
@@ -55,7 +59,7 @@
 @{
     //get json office data
     string oSpecialtyProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.Profile.RelatedInsurance.
+        Serialize(Model.Profile.RelatedSpecialty.
             Select(x => new
             {
                 CategoryId = x.CategoryId,
