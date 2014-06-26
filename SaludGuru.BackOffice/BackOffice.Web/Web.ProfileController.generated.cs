@@ -59,6 +59,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileSearch()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileSearch);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ProfileEdit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEdit);
@@ -253,6 +259,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_ProfileSearch s_params_ProfileSearch = new ActionParamsClass_ProfileSearch();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileSearch ProfileSearchParams { get { return s_params_ProfileSearch; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileSearch
+        {
+            public readonly string SearchParam = "SearchParam";
+        }
         static readonly ActionParamsClass_ProfileEdit s_params_ProfileEdit = new ActionParamsClass_ProfileEdit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ProfileEdit ProfileEditParams { get { return s_params_ProfileEdit; } }
@@ -475,13 +489,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public T4MVC_ProfileController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ProfileSearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ProfileSearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SearchParam);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ProfileSearch()
+        public override System.Web.Mvc.ActionResult ProfileSearch(string SearchParam)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileSearch);
-            ProfileSearchOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
+            ProfileSearchOverride(callInfo, SearchParam);
             return callInfo;
         }
 
