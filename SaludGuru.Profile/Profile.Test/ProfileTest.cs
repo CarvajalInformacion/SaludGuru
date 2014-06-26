@@ -13,7 +13,7 @@ namespace Profile.Test
         [TestMethod]
         public void ProfileGetFullAdmin()
         {
-            string oProfilePublicId = "205ECBD0";
+            string oProfilePublicId = "2C1D2510";
 
             ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(oProfilePublicId);
 
