@@ -290,6 +290,9 @@ function ProfileSpecialtyListGrid(vidDiv, vSpecialtyData) {
             field: "Name",
             title: "Tratamiento"
         }, {
+            field: "IsDefault",
+            title: "Predeterminada"
+        }, {
             field: "CategoryId",
             title: "&nbsp;",
             template: $("#templateDelete").html()

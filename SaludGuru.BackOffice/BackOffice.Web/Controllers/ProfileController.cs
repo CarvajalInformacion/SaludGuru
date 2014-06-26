@@ -240,6 +240,13 @@ namespace BackOffice.Web.Controllers
             modelSpecialtyToCreate.CategoryId = Convert.ToInt32(Request["Specialty-id"]);
             modelToCreate.ProfilePublicId = ProfilePublicId;
             modelToCreate.Name = Request["Specialty"];
+            bool IsDefaul = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? true : false;
+            if (IsDefaul)
+            {
+                modelToCreate.DefaultSpecialty = new SpecialtyModel();
+                modelToCreate.DefaultSpecialty.CategoryId = Convert.ToInt32(Request["Specialty-id"]);
+                modelToCreate.DefaultSpecialty.Name = Request["Specialty"];
+            }
 
             modelToCreate.RelatedSpecialty.Add(modelSpecialtyToCreate);
             SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(modelToCreate);
