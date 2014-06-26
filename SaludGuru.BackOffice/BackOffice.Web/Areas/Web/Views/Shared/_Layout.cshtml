@@ -10,8 +10,9 @@
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
 </head>
 <body>
-
+    
         <div>
+            
             @if (BackOffice.Models.General.SessionModel.UserIsLoggedIn &&
                 BackOffice.Models.General.SessionModel.UserIsAutorized)
             {
