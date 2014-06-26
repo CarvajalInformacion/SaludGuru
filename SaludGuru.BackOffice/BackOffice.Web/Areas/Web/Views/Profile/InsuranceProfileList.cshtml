@@ -7,25 +7,28 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 <div class="BOProfileFormWrapper">
-    <div id="divGridAutorization" style="width:800px;"></div>
+    <div id="divGridInsuranceProfile" style="width:800px;"></div>
     <div style="height:100px;"></div>
 </div>
 <div id="templates" style="display:none;">
     <div id="templateCreate">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
             <ul>
                 <li>
-                    <label>Role</label>
-                    <select id="RoleId" name="RoleId">
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileAdministrator).ToString())">Administrador de perfil</option>
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileOperator).ToString())">Operador</option>
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ReadOnly).ToString())">Sólo Lectura</option>
-                    </select>
-                </li>
-                <li>
-                    <label>Email</label>
-                    <input type="text" name="UserEmail" id="UserEmail" value=" " />
+                    <label>Especialidad</label>
+                    <input type="hidden" id="Insurance-id" name="Insurance-id" value="" />
+                    <input type="text" id="Insurance" name="Insurance" value="" />
+                    @{
+                        //get json treatment
+                        string oInsuranceData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.InsuranceToSelect.
+                                Select(x => new
+                                {
+                                    label = x.Name,
+                                    value = x.CategoryId,
+                                }).ToList());                        
+                    }
                 </li>
                 <li>
                     <!--hiden fields-->
@@ -36,14 +39,14 @@
         </form>
     </div>
     <div id="templateDelete">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationDelete, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileDelete, MVC.Profile.Name,
                 new
                 {
                     ProfilePublicId = Model.Profile.ProfilePublicId
                 }))">
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+            <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
             <input type="submit" value="Borrar" />
         </form>
     </div>
@@ -51,22 +54,30 @@
 
 @{
     //get json office data
-    //string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-    //    Serialize(Model.CurrentAutorization.
-    //        Select(x => new
-    //        {
-    //            ProfileRoleId = x.ProfileRoleId,
-    //            Role = x.Role,
-    //            UserEmail = x.UserEmail
-    //        }).ToList());
+    string oInsuranceProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedInsurance.
+            Select(x => new
+            {
+                CategoryId = x.CategoryId,
+                Name = x.Name
+            }).ToList());
 }
 @section inlinescripts
 {
     <script type="text/javascript">
-        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        var vDataAutorizationProfile = @Html.Raw(oInsuranceProfile)
+        $(document).ready(function () {
+            debugger;
+            //start office grid
+            ProfileInsuranceListGrid('divGridInsuranceProfile', vDataAutorizationProfile);
+        });
+    </script>
+
+    <script type="text/javascript">
+        var vDataInsurance = @Html.Raw(oInsuranceData)
         $(document).ready(function () {
             //start office grid
-            ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+            OfficeInsuranceAc('Insurance', vDataInsurance);
         });
     </script>
 }
