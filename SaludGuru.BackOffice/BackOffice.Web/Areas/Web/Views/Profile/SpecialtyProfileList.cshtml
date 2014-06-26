@@ -3,36 +3,80 @@
     ViewBag.Title = "Specialty";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
-
-<div>
-    <p>
-        Seleccione su especialidad: @Html.TextBox("Specialty")
-        <input type="submit" value="Agregar" name="AddSpecialty" style="height:26px;"/>     
-    </p>
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
-<div>
-    
+<div class="BOProfileFormWrapper">
+    <div id="divGridSpecialtyProfile" style="width:800px;"></div>
+    <div style="height:100px;"></div>
 </div>
-
-@*@Scripts.Render("~/Areas/Web/Scripts/jquery-1.10.2.js")*@
-<script src="~/Areas/Web/Scripts/jquery-ui-1.10.4.custom.js"></script>
-@Styles.Render("~/areas/web/content/styles/jquery-ui-1.10.4.custom.css")
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form method="post" action="@Url.Action(MVC.Profile.ActionNames.ProfileSpecialtyUpsert, MVC.Profile.Name,
+                                    new { ProfilePublicId = Model.Profile.ProfilePublicId })">
+            <ul>
+                <li>
+                    <label>Especialidad</label>
+                    <input type="hidden" id="Specialty-id" name="Specialty-id" value="" />
+                    <input type="text" id="Specialty" name="Specialty" value="" />
+                    @{
+                        //get json treatment
+                        string oSpecialtyData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.SpecialtyToSelect.
+                            Select(x => new
+                            {
+                                label = x.Name,
+                                value = x.CategoryId,
+                            }).ToList());
+                    }
+                </li>
+                <li>
+                    <!-- hiden fields -->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileSpecialtyDelete, MVC.Profile.Name,
+                                    new
+                                    {
+                                        ProfilePublicId = Model.Profile.ProfilePublicId
+                                    }))">
+            <!-- hiden fields -->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
+            <input type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
 
 @{
-    var jsonSerialiser = new System.Web.Script.Serialization.JavaScriptSerializer();
-    var jsonr = jsonSerialiser.Serialize(Model.SpecialtyToSelect.Select(s => new { s.CategoryId, s.Name }));
-    
+    //get json office data
+    string oSpecialtyProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedInsurance.
+            Select(x => new
+            {
+                CategoryId = x.CategoryId,
+                Name = x.Name
+            }).ToList());
 }
-
-<script type="text/javascript">
-    var acdata = @(Html.Raw(jsonr));
-    $(document).ready(function () {
-        $("#Specialty").autocomplete({
-            source: acdata,
-            messages: {
-                noResults: "",
-                results: ""
-            }
-        });
-    })
-</script>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oSpecialtyProfile)
+            $(document).ready(function () {
+                debugger;
+                //start office grid
+                ProfileSpecialtyListGrid('divGridSpecialtyProfile', vDataAutorizationProfile);
+            });
+    </script>
+    <script type="text/javascript">
+        var vDataSpecialty = @Html.Raw(oSpecialtyData)
+            $(document).ready(function () {
+                //start office grid
+                OfficeSpecialtyAc('Specialty', vDataSpecialty);
+            });
+    </script>
+}
