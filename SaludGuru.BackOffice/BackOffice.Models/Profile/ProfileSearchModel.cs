@@ -13,7 +13,6 @@ namespace BackOffice.Models.Profile
 
         public string ProfilePublicId { get; set; }
         public string Name { get; set; }
-        public string LastName { get; set; }
         public string ProfileStatus { get; set; }
         public string Certified { get; set; }
         public string Email { get; set; }

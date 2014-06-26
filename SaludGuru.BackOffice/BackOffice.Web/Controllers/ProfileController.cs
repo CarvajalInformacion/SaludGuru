@@ -18,7 +18,7 @@ namespace BackOffice.Web.Controllers
     {
         #region Profile
 
-        public virtual ActionResult ProfileSearch()
+        public virtual ActionResult ProfileSearch(string SearchParam)
         {
             return View();
         }

@@ -7,16 +7,16 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 <div class="BOProfileFormWrapper">
-    <div id="divGridInsuranceProfile" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+    <div id="divGridInsuranceProfile"></div>
 </div>
+
 <div id="templates" style="display:none;">
     <div id="templateCreate">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
-            <ul>
+            <ul class="BOEditDaySetUp">
                 <li>
-                    <label>Especialidad</label>
+                    <label>Seguro</label>
                     <input type="hidden" id="Insurance-id" name="Insurance-id" value="" />
                     <input type="text" id="Insurance" name="Insurance" value="" />
                     @{
@@ -27,13 +27,13 @@
                                 {
                                     label = x.Name,
                                     value = x.CategoryId,
-                                }).ToList());                        
+                                }).ToList());
                     }
                 </li>
-                <li>
+                <li class="BOButtonContainerShort">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input type="submit" value="Agregar" />
+                    <input class="BOButtons" type="submit" value="Agregar" />
                 </li>
             </ul>
         </form>
@@ -47,7 +47,7 @@
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
-            <input type="submit" value="Borrar" />
+            <input class="BOButtons" type="submit" value="Borrar" />
         </form>
     </div>
 </div>

@@ -3,5 +3,28 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<a href="@Url.Action(MVC.Profile.ActionNames.ProfileCreate,MVC.Profile.Name)">Nuevo</a>
+<div>
+    <h3>Listado de Perfiles</h3>
+    <div id="divGridProfile"></div>
+</div>
 
+<div id="template" style="display:none;">
+    <div id="templateHeader">
+        <input type="text" id="divGridProfile-txtSearch" name="divGridProfile-txtSearch" value="@(string.IsNullOrEmpty(Request["SearchParam"])?string.Empty:Request["SearchParam"])" />
+        <input type="button" id="divGridProfile-Search" value="Buscar" />
+        <a href="@Url.Action(MVC.Profile.ActionNames.ProfileCreate,MVC.Profile.Name)">Nuevo</a>
+    </div>
+    <div id="templateName">
+        <a href="@(Url.Action(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name) + "?ProfilePublicId=${ProfilePublicId}")">${Name}</a>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //start office grid
+            ProfileSearchGrid('divGridProfile');
+        });
+    </script>
+}
