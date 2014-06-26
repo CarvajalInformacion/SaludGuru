@@ -246,12 +246,15 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult InsuranceProfileUpsert(string ProfilePublicId)
         {
             ProfileModel modelToCreate = new ProfileModel();
+            modelToCreate.RelatedInsurance = new List<InsuranceModel>();
             InsuranceModel modelInsutranceToCreate = new InsuranceModel();
 
             modelToCreate.CreateDate = DateTime.Now;
 
-            modelInsutranceToCreate.CategoryId = Convert.ToInt32(Request["CategoryId"]);
+            modelInsutranceToCreate.CategoryId = Convert.ToInt32(Request["Insurance-id"]);
             modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.Name = Request["Insurance"];
+
             modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);            
             SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert(modelToCreate);
 
