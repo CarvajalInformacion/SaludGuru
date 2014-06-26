@@ -1,33 +1,33 @@
 ﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 @{
-    ViewBag.Title = "Insurance";
+    ViewBag.Title = "TreatmentProfileList";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 <div class="BOProfileFormWrapper">
-    <div id="divGridInsuranceProfile" style="width:800px;"></div>
+    <div id="divGridTreatmentProfile" style="width:800px;"></div>
     <div style="height:100px;"></div>
 </div>
 <div id="templates" style="display:none;">
     <div id="templateCreate">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileUpsert, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
             <ul>
                 <li>
-                    <label>Especialidad</label>
-                    <input type="hidden" id="Insurance-id" name="Insurance-id" value="" />
-                    <input type="text" id="Insurance" name="Insurance" value="" />
+                    <label>Tratamientos</label>
+                    <input type="hidden" id="Treatment-id" name="Treatment-id" value="" />
+                    <input type="text" id="Treatment" name="Treatment" value="" />
                     @{
                         //get json treatment
-                        string oInsuranceData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                            Serialize(Model.InsuranceToSelect.
+                        string oTreatmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.TreatmentToSelect.
                                 Select(x => new
                                 {
                                     label = x.Name,
                                     value = x.CategoryId,
-                                }).ToList());                        
+                                }).ToList());
                     }
                 </li>
                 <li>
@@ -39,7 +39,7 @@
         </form>
     </div>
     <div id="templateDelete">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileDelete, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileDelete, MVC.Profile.Name,
                 new
                 {
                     ProfilePublicId = Model.Profile.ProfilePublicId
@@ -54,8 +54,8 @@
 
 @{
     //get json office data
-    string oInsuranceProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.Profile.RelatedInsurance.
+    string oTreatmentProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedTreatment.
             Select(x => new
             {
                 CategoryId = x.CategoryId,
@@ -65,21 +65,19 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        var vDataAutorizationProfile = @Html.Raw(oInsuranceProfile)
+        var vDataTreatmentProfile = @Html.Raw(oTreatmentProfile)
         $(document).ready(function () {
             debugger;
             //start office grid
-            ProfileInsuranceListGrid('divGridInsuranceProfile', vDataAutorizationProfile);
+            ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
         });
     </script>
 
     <script type="text/javascript">
-        var vDataInsurance = @Html.Raw(oInsuranceData)
+        var oTreatmentData = @Html.Raw(oTreatmentData)
         $(document).ready(function () {
             //start office grid
-            OfficeInsuranceAc('Insurance', vDataInsurance);
+            ProfileTreatmentAc('Treatment', oTreatmentData);
         });
     </script>
 }
-
-

@@ -88,7 +88,7 @@ namespace BackOffice.Web.Controllers
 
                         new CategoryInfoModel()
                         {
-                            CategoryInfoId = Convert.ToInt32(Request["DurationTime"]),
+                            CategoryInfoId = Convert.ToInt32(Request["CatId_DurationTime"]),
                             CategoryInfoType = enumCategoryInfoType.DurationTime,
                             LargeValue = Request["DurationTime"].ToString(),
                         },
