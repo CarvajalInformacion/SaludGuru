@@ -477,11 +477,13 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                       { 
                                         new ProfileInfoModel()
                                         {
-                                            Value = pm.Field<string>("Certified"),                                        
+                                            Value = pm.Field<string>("IsCertified"),                                        
+                                            ProfileInfoType = enumProfileInfoType.IsCertified
                                         },
                                         new ProfileInfoModel()
                                         {
-                                            Value = pm.Field<string>("Email"),                                        
+                                            Value = pm.Field<string>("Email"),               
+                                            ProfileInfoType = enumProfileInfoType.Email
                                         }
                                       },
                                   }).ToList();
