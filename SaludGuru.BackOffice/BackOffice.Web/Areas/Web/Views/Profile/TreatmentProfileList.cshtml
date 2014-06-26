@@ -7,14 +7,14 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 <div class="BOProfileFormWrapper">
-    <div id="divGridTreatmentProfile" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+    <div id="divGridTreatmentProfile"></div>
 </div>
+
 <div id="templates" style="display:none;">
     <div id="templateCreate">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
-            <ul>
+            <ul class="BOEditDaySetUp">
                 <li>
                     <label>Tratamientos</label>
                     <input type="hidden" id="Treatment-id" name="Treatment-id" value="" />
@@ -30,10 +30,10 @@
                                 }).ToList());
                     }
                 </li>
-                <li>
+                <li class="BOButtonContainerShort">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input type="submit" value="Agregar" />
+                    <input class="BOButtons" type="submit" value="Agregar" />
                 </li>
             </ul>
         </form>
@@ -47,7 +47,7 @@
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
-            <input type="submit" value="Borrar" />
+            <input class="BOButtons" type="submit" value="Borrar" />
         </form>
     </div>
 </div>
