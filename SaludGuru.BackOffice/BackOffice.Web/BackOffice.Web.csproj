@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="ControllersApi\CalendarController.cs" />
+    <Compile Include="ControllersApi\ProfileApiController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
