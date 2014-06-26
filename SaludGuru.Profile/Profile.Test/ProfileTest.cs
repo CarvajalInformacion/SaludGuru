@@ -26,7 +26,8 @@ namespace Profile.Test
         [TestMethod]
         public void ProfileSearch()
         {
-            List<ProfileModel> oReturn = SaludGuruProfile.Manager.Controller.Profile.ProfileSearch(" da mo", 10, 0);
+            int TotalRows;
+            List<ProfileModel> oReturn = SaludGuruProfile.Manager.Controller.Profile.ProfileSearch(" da mo", 0, 10, out TotalRows);
             Assert.AreEqual(oReturn.Count > 0, true);
         }
         #endregion

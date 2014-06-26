@@ -42,7 +42,7 @@ namespace SaludGuruProfile.Manager.Interfaces
         void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault);
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 
-        List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount);
+        List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows);
         List<ItemModel> ProfileGetOptions();
 
         ProfileModel ProfileGetFullAdmin(string ProfilePublicId);

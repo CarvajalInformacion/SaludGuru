@@ -132,9 +132,9 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             DataFactory.ProfileCategoryDelete(ProfilePublicId, CategoryId);
         }
 
-        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
         {
-            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
         public List<ItemModel> ProfileGetOptions()
@@ -206,9 +206,9 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             DataFactory.OfficeCategoryInfoDelete(OfficeCategoryInfoId);
         }
 
-        public List<ProfileModel> ProfileSearchInfo(string SearchCriteria, int PageNumber, int RowCount)
+        public List<ProfileModel> ProfileSearchInfo(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
         {
-            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+            return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
         public OfficeModel OfficeGetFullAdmin(string OfficePublicId)

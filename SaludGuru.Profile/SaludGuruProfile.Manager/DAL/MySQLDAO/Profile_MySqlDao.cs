@@ -443,7 +443,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
         }
 
-        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        public List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
@@ -459,9 +459,13 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
 
             List<ProfileModel> oReturnProfile = null;
+            TotalRows = 0;
+
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
+                TotalRows = response.DataTableResult.Rows[0].Field<int>("TotalRows");
+
                 oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
                                   select new ProfileModel
                                   {
@@ -1081,7 +1085,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                 //ProfileId = au.Field<string>("ProfileId"),
                                 Role = (SessionController.Models.Profile.enumRole)au.Field<int>("RoleId"),
                                 UserEmail = au.Field<string>("UserEmail"),
-                                CreateDate = au.Field<DateTime>("CreateDate"),                                                                
+                                CreateDate = au.Field<DateTime>("CreateDate"),
                             }).ToList();
             }
             return oRetorno;
