@@ -33,7 +33,7 @@
                         var CatInfo_DT = Model.TreatmentInfo == null ? null :
                             Model.TreatmentInfo.TreatmentInfo.Where
                             (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.DurationTime).
-                            Select(x => new { id = x.CategoryInfoId, val = x.Value.ToString() }).
+                            Select(x => new { id = x.CategoryInfoId, val = x.LargeValue.ToString() }).
                             DefaultIfEmpty(null).
                             FirstOrDefault();
                         if (CatInfo_DT != null)
