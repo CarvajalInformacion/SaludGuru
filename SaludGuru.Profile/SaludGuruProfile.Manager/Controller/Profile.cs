@@ -14,9 +14,9 @@ namespace SaludGuruProfile.Manager.Controller
     {
         #region Profile
 
-        public static List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount)
+        public static List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
         {
-            List<ProfileModel> oReturn = ProfileDataController.Instance.ProfileSearch(SearchCriteria, PageNumber, RowCount);
+            List<ProfileModel> oReturn = ProfileDataController.Instance.ProfileSearch(SearchCriteria, PageNumber, RowCount, out TotalRows);
 
             return oReturn;
         }
