@@ -314,19 +314,19 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult TreatmentProfileUpsert(string ProfilePublicId)
         {
             ProfileModel modelToCreate = new ProfileModel();
-            modelToCreate.RelatedInsurance = new List<InsuranceModel>();
-            InsuranceModel modelInsutranceToCreate = new InsuranceModel();
+            modelToCreate.RelatedTreatment = new List<TreatmentModel>();
+            TreatmentModel modelTreatmentToCreate = new TreatmentModel();
 
             modelToCreate.CreateDate = DateTime.Now;
 
-            modelInsutranceToCreate.CategoryId = Convert.ToInt32(Request["Insurance-id"]);
+            modelTreatmentToCreate.CategoryId = Convert.ToInt32(Request["Treatment-id"]);
             modelToCreate.ProfilePublicId = ProfilePublicId;
-            modelToCreate.Name = Request["Insurance"];
+            modelToCreate.Name = Request["Treatment"];
 
-            modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);
-            SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert(modelToCreate);
+            modelToCreate.RelatedTreatment.Add(modelTreatmentToCreate);
+            SaludGuruProfile.Manager.Controller.Profile.TreatmentProfileUpsert(modelToCreate);
 
-            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+            return RedirectToAction(MVC.Profile.ActionNames.TreatmentProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
 
         public virtual ActionResult TreatmentProfileDelete(string ProfilePublicId)
@@ -337,7 +337,7 @@ namespace BackOffice.Web.Controllers
                 int CategoryIdId = int.Parse(Request["CategoryId"]);
                 SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileDelete(ProfilePublicId, CategoryIdId);
             }
-            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+            return RedirectToAction(MVC.Profile.ActionNames.TreatmentProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
         #endregion
 
