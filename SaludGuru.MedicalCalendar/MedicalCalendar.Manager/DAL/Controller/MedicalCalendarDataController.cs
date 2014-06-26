@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalCalendar.Manager.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,15 @@ namespace MedicalCalendar.Manager.DAL.Controller
             MedicalCalendarDataFactory factory = new MedicalCalendarDataFactory();
             DataFactory = factory.GetMedicalCalendarInstance();
         }
+        #endregion
+
+        #region Calendar
+
+        public List<HolidayModel> HolidayGetByCountry(int CountryId)
+        {
+            return DataFactory.HolidayGetByCountry(CountryId);
+        }
+
         #endregion
 
         #region Patient

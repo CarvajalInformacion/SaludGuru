@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalCalendar.Manager.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,24 @@ namespace MedicalCalendar.Manager.Controller
 {
     public class Appointment
     {
+        public static List<SpecialDayModel> GetSpecialDays
+            (int CountryId, string ProfilePublicId, string OfficePublicId, DateTime StartDate, DateTime EndDate)
+        {
+            List<SpecialDayModel> oReturn = new List<SpecialDayModel>();
+
+            //get special holiday
+            oReturn.AddRange(Holiday.GetByCountry(CountryId).Select(x =>
+                new SpecialDayModel()
+                {
+                    SpecialDayType = Models.enumSpecialDayType.Holiday,
+                    SpecialDay = x.Day,
+                }).ToList());
+
+            //get not available days
+
+            return oReturn;
+        }
+
+
     }
 }

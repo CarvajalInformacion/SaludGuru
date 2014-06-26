@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Appointment.cs" />
+    <Compile Include="Controller\Holiday.cs" />
     <Compile Include="Controller\Patient.cs" />
     <Compile Include="DAL\Controller\MedicalCalendarDataController.cs" />
     <Compile Include="DAL\Controller\MedicalCalendarDataFactory.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="Models\Appointment\AppointmentModel.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Enumerations.cs" />
+    <Compile Include="Models\General\HolidayModel.cs" />
+    <Compile Include="Models\General\SpecialDayModel.cs" />
     <Compile Include="Models\Patient\PatientInfoModel.cs" />
     <Compile Include="Models\Patient\PatientModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

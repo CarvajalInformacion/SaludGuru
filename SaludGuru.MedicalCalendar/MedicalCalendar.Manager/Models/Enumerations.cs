@@ -29,4 +29,10 @@
         Attendance = 1205,
         NotAttendance = 1206
     }
+
+    public enum enumSpecialDayType
+    {
+        Holiday = 1,
+        NotAvailable = 2,
+    }
 }

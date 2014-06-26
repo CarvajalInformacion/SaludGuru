@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MedicalCalendar.Manager.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace MedicalCalendar.Manager.DAL.MySQLDAO
 {
@@ -13,6 +15,43 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
         {
             DataInstance = new ADO.MYSQL.MySqlImplement(MedicalCalendar.Manager.Models.Constants.C_MedicalCalendarConnectionName);
         }
+
+        #region Calendar
+
+        public List<HolidayModel> HolidayGetByCountry(int CountryId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vCountryId", CountryId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "U_Holiday_GetByCountry",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<HolidayModel> oReturn = new List<HolidayModel>();
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from hd in response.DataTableResult.AsEnumerable()
+                           where hd.Field<int?>("HolidayId") != null
+                           select new HolidayModel()
+                           {
+                               HolidayId = hd.Field<int>("HolidayId"),
+                               CountryId = hd.Field<int>("CountryId"),
+                               Day = hd.Field<DateTime>("Day"),
+                               CreateDate = hd.Field<DateTime>("CreateDate"),
+                           }).ToList();
+            }
+
+            return oReturn;
+        }
+
+        #endregion
 
         #region Patient
 
