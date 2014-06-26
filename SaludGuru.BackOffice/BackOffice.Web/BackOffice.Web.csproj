@@ -196,6 +196,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
+    <Compile Include="ControllersApi\CalendarController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOPerfilDoctor.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
+    <Content Include="Areas\Web\Scripts\Site\AppointmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Black\editor.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Black\imagebrowser.png" />
@@ -607,6 +609,7 @@
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

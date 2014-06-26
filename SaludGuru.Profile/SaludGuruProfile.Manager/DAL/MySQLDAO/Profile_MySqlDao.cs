@@ -580,7 +580,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                     DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
                                         where sp.Field<int?>("CategoryType") != null &&
                                                 sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
-                                                sp.Field<bool>("IsDefault") == true
+                                                sp.Field<UInt64>("CategoryIsDefault") == 1
                                         select new SpecialtyModel()
                                         {
                                             CategoryId = sp.Field<int>("CategoryId"),

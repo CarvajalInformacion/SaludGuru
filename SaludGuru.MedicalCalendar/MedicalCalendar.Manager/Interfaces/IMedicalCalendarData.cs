@@ -1,4 +1,5 @@
 ﻿using MedicalCalendar.Manager.Models;
+using MedicalCalendar.Manager.Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace MedicalCalendar.Manager.Interfaces
 {
     internal interface IMedicalCalendarData
     {
+        //calendar
+        List<HolidayModel> HolidayGetByCountry(int CountryId);
+
         //patinet
         string PatientCreate(string Name, string LastName, string ProfilePublicId, string UserPublicId);
         void PatientModify(string PatientPublicId, string Name, string LastName);
