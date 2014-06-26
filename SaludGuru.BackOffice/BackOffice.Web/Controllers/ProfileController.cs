@@ -311,7 +311,34 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult TreatmentProfileUpsert(string ProfilePublicId)
+        {
+            ProfileModel modelToCreate = new ProfileModel();
+            modelToCreate.RelatedInsurance = new List<InsuranceModel>();
+            InsuranceModel modelInsutranceToCreate = new InsuranceModel();
 
+            modelToCreate.CreateDate = DateTime.Now;
+
+            modelInsutranceToCreate.CategoryId = Convert.ToInt32(Request["Insurance-id"]);
+            modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.Name = Request["Insurance"];
+
+            modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);
+            SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert(modelToCreate);
+
+            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult TreatmentProfileDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                int CategoryIdId = int.Parse(Request["CategoryId"]);
+                SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileDelete(ProfilePublicId, CategoryIdId);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
         #endregion
 
         #region Autorization

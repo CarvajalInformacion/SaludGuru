@@ -140,6 +140,28 @@ namespace SaludGuruProfile.Manager.Controller
 
         #endregion
 
+        #region Treatment
+
+        public static void TreatmentProfileUpsert(ProfileModel ProfileToUpsert)
+        {
+            ProfileToUpsert.RelatedTreatment.All(sp =>
+            {
+                ProfileDataController.Instance.ProfileCategoryUpsert
+                    (ProfileToUpsert.ProfilePublicId,
+                    sp.CategoryId,
+                    false);
+
+                return true;
+            });
+        }
+
+        public static void TreatmentProfileDelete(string ProfilePublicId, int TreatmentId)
+        {
+            ProfileDataController.Instance.ProfileCategoryDelete(ProfilePublicId, TreatmentId);
+        }
+
+        #endregion
+
         #region Autorization
 
         public static List<ProfileAutorizationModel> GetProfileAutorization(string ProfilePublicId)
