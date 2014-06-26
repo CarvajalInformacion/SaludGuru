@@ -275,7 +275,7 @@ function ProfileTreatmentAc(acId, acData) {
 	};
 }
 
-function ProfileSpceiltyListGrid(vidDiv, vTreatmentData) {
+function ProfileSpecialtyListGrid(vidDiv, vSpecialtyData) {
 
     $('#' + vidDiv).kendoGrid({
         toolbar: [{ template: $("#templateCreate").html() }],
