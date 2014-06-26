@@ -153,7 +153,7 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
         }, {
             field: "ScheduleAvailableId",
             title: "&nbsp;",
-            template: $("#templateDelete").html()        
+            template: $("#templateDelete").html()
         }],
     });
 }
@@ -228,7 +228,8 @@ function ProfileInsuranceListGrid(vidDiv, vInsuranceData) {
     });
 }
 
-function ProfileTreatmentListGrid(vidDiv, vTreatmentData) {
+
+function ProfileTreatmentListGrid(vidDiv, vInsuranceData) {
 
     $('#' + vidDiv).kendoGrid({
         toolbar: [{ template: $("#templateCreate").html() }],
