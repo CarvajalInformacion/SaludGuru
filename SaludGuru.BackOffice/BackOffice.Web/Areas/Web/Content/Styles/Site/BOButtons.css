@@ -5,7 +5,7 @@
     height:38px;
     margin:10px auto;
 }
-.BOButtonContainerShort {
+.BOButtonContainerShort, li.BOButtonContainerShort{
     display:inline-block;
     border:1px solid red;
     width:auto;
