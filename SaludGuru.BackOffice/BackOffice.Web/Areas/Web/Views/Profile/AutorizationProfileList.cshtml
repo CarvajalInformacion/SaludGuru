@@ -6,15 +6,17 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
+
 <div class="BOProfileFormWrapper">
-    <div id="divGridAutorization" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+    <h3>Configuración de Horario Disponible</h3>
+    <div id="divGridAutorization"></div>
 </div>
+
 <div id="templates" style="display:none;">
     <div id="templateCreate">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
-            <ul>          
+            <ul class="BOEditDaySetUp">
                 <li>
                     <label>Role</label>
                     <select id="RoleId" name="RoleId">
@@ -25,12 +27,12 @@
                 </li>
                 <li>
                     <label>Email</label>
-                    <input type="text" name="UserEmail" id="UserEmail" value=" " />                    
-                </li>               
-                <li>
+                    <input type="text" name="UserEmail" id="UserEmail" value=" " />
+                </li>
+                <li class="BOButtonContainerShort">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input type="submit" value="Agregar" />
+                    <input class="BOButtons" type="submit" value="Agregar" />
                 </li>
             </ul>
         </form>
@@ -44,7 +46,7 @@
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
-            <input type="submit" value="Borrar" />
+            <input class="BOButtons" type="submit" value="Borrar" />
         </form>
     </div>
 </div>

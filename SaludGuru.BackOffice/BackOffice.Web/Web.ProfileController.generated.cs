@@ -187,6 +187,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
             public readonly string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
+            public readonly string ProfileSpecialtyUpsert = "ProfileSpecialtyUpsert";
             public readonly string InsuranceProfileList = "InsuranceProfileList";
             public readonly string InsuranceProfileUpsert = "InsuranceProfileUpsert";
             public readonly string InsuranceProfileDelete = "InsuranceProfileDelete";
@@ -211,6 +212,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
             public const string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
+            public const string ProfileSpecialtyUpsert = "ProfileSpecialtyUpsert";
             public const string InsuranceProfileList = "InsuranceProfileList";
             public const string InsuranceProfileUpsert = "InsuranceProfileUpsert";
             public const string InsuranceProfileDelete = "InsuranceProfileDelete";
@@ -554,6 +556,17 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             SpecialtyProfileListOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileSpecialtyUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileSpecialtyUpsert()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileSpecialtyUpsert);
+            ProfileSpecialtyUpsertOverride(callInfo);
             return callInfo;
         }
 
