@@ -232,14 +232,17 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult ProfileSpecialtyUpsert(string ProfilePublicId)
         {
             ProfileModel modelToCreate = new ProfileModel();
+            modelToCreate.RelatedSpecialty = new List<SpecialtyModel>();
             SpecialtyModel modelSpecialtyToCreate = new SpecialtyModel();
 
             modelToCreate.CreateDate = DateTime.Now;
 
-            modelSpecialtyToCreate.CategoryId = Convert.ToInt32(Request["CategoryId"]);
+            modelSpecialtyToCreate.CategoryId = Convert.ToInt32(Request["Specialty-id"]);
             modelToCreate.ProfilePublicId = ProfilePublicId;
+            modelToCreate.Name = Request["Specialty"];
+
             modelToCreate.RelatedSpecialty.Add(modelSpecialtyToCreate);
-            SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(modelToCreate);
+            SaludGuruProfile.Manager.Controller.Profile.TreatmentProfileUpsert(modelToCreate);
 
             return RedirectToAction(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
