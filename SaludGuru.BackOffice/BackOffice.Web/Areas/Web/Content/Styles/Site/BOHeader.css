@@ -31,24 +31,30 @@
     }
 .searchBox{
     display:inline-block;
-    border:1px solid grey;
+                border:none;
     width:22%;
     height:34px;
     margin-left:-5px;
-    background-image:url('/Areas/Web/Content/Images/googleIconSmall.png');
-    background-repeat:repeat-x;
+    background-image:url('/Areas/Web/Content/Images/BOTopBarLeftTipLong.png');
+background-repeat: no-repeat;
+background-position:98% -1px;
+background-size: 450px 34px;
 }
 .searchBox input{
-    display:block;
+    display:inline-block;
     border:1px solid #808080;
     background-color:#fff;
     width:80%;
     height:25px;
-    margin:3px 0px 0px 8px;
+    margin:4px 0px 0px 6px;
     border-radius:12px;
+    background-image:url('/Areas/Web/Content/Images/magGlassSmall.png');
+    background-repeat:no-repeat;
+    background-position:95% 1px;
+    background-size:25px 20px;
+    padding:0px 0px 0px 10px;
+    vertical-align:top;
 }
-
-
 .userNotificationWrapper{
     float:right;
     width:auto;
@@ -58,47 +64,61 @@
 }
     .notificationsWrapper{
         display:inline-block;
-        border:1px solid blue;
+border:none;
         width:66px;
         height:34px;
         margin:0px -6px 0px 0px;
         vertical-align:top;
+background-image:url('/Areas/Web/Content/Images/BOTopBar3.png');
+background-repeat:no-repeat;
+background-position:0px 0px;
+background-size:66px 34px;
     }
     .notificationsWrapper a{
         display:inline-block;
-        border:1px solid blue;
-        width:14px;
-        height:18px;
+border:none;
+        width:26px;
+        height:27px;
         font-weight:bold;
         font-size:13px;
         vertical-align:top;
-        margin:4px 0px 0px 44px;
+        margin:4px 0px 0px 30px;
         text-decoration:none;
         color:red;
+background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+background-repeat:no-repeat;
+background-position:-250px -216px;
+background-size:auto auto;
+text-align:right;
+line-height: 6px;
     }
     .userOptionsWrapper {
         display:inline-block;
-        border:1px solid blue;
+border:none;
         width:268px;
         height:34px;
         margin:0px 0px 0px 0px;
         vertical-align:top;
+background-image:url('/Areas/Web/Content/Images/BOTopBar4.png');
+background-repeat:repeat-x;
     }
     .userOptionsWrapper div{
-        border:1px solid blue;
-
+border:none;
     }
         .arrowDownUserOptions {
             display:inline-block;
-            width:18px;
-            height:18px;
+            width:16px;
+            height:17px;
             vertical-align:top;
-            margin:6px 3px 4px 6px;
+            margin:8px 3px 4px 6px;
+background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+background-repeat:no-repeat;
+background-position:-41px -6px;
         }
         .userOptionsWrapper label{
             display:inline-block;
-            border:1px solid red;
-            margin:6px 0px;
+border:none;
+            margin:10px 0px 0px 0px;
             vertical-align:top;
             color:#4d4d4d;
             font-size:14px;
@@ -109,30 +129,47 @@ white-space: nowrap;
 line-height: 14px;
         }
         .userOptionsWrapper img{
-            border:1px solid green;
+border:none;
             width:28px;
             height:28px;
-            margin:2px 0px 0px 12px;
+            margin:3px 0px 0px 12px;
         }
 
 #divUserMenu {
     border:1px solid grey;
-}
-#divUserMenu ul, #divUserMenu li{
-    border:1px solid green;
+    width:120px;
+    height:auto;
+    position:relative;
+    z-index:10;
+    background-color:#fff;
 }
     #divUserMenu ul li{
-        border:1px solid red;
+border:none;
+        border-bottom:1px solid #333;
+        height:auto;
+        cursor:pointer;
     }
+    #divUserMenu ul li:hover{
+        background-color:#e6e6e6;
+    }
+    #divUserMenu ul li a{
+    font-size:13px;
+    line-height:33px;
+    color:#4d4d4d;
+    display: block;
+    margin-left:5px;
+    }
+    #divUserMenu ul li a:hover{text-decoration:none;}
+
+
+/*********************** MAIN MENU **********************/
+
 .mainMenuWrapper {
     border:1px solid blue;
     width:100%;
     float:right;
     margin-top:10px;
 }
-
-/*********************** MAIN MENU **********************/
-
 .HeaderLogoSaludGuru {
     display:inline-block;
     border:1px solid grey;
