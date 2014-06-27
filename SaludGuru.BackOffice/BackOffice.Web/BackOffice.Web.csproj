@@ -279,12 +279,16 @@
   <ItemGroup>
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\logInBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInBandBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInDoctorSmall.png" />
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
+    <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
