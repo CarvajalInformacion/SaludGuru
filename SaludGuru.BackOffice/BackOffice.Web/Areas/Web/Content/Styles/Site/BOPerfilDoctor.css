@@ -19,6 +19,13 @@
         width:58%;
         min-width:58%;
     }
+    .BOProfileFormWrapper h3{
+        display:block;
+        margin:10px 0px 10px 10px;
+        width:auto;
+        font-size:20px;
+        line-height:20px;
+    }
 /************* COLUMNA DE INFO DEL PERFIL ************/
 
 .BOMenuPrincipalPerfil {
