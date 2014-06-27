@@ -94,6 +94,8 @@ namespace BackOffice.Web.Controllers
             public readonly string Search = "Search";
             public readonly string Upsert = "Upsert";
             public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
+            public readonly string PatientCreate = "PatientCreate";
+            public readonly string PatientEdit = "PatientEdit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -102,6 +104,8 @@ namespace BackOffice.Web.Controllers
             public const string Search = "Search";
             public const string Upsert = "Upsert";
             public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
+            public const string PatientCreate = "PatientCreate";
+            public const string PatientEdit = "PatientEdit";
         }
 
 
@@ -183,6 +187,28 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicPatientId", PublicPatientId);
             PatientGetAllByPublicPatientIdOverride(callInfo, PublicPatientId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PatientCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PatientCreate()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientCreate);
+            PatientCreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PatientEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PatientEdit()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientEdit);
+            PatientEditOverride(callInfo);
             return callInfo;
         }
 
