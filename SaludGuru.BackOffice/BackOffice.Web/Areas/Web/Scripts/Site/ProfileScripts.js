@@ -288,7 +288,10 @@ function ProfileSpecialtyListGrid(vidDiv, vSpecialtyData) {
             title: "Id",
         }, {
             field: "Name",
-            title: "Tratamiento"
+            title: "Especialidad"
+        }, {
+            field: "IsDefault",
+            title: "Predeterminada"
         }, {
             field: "CategoryId",
             title: "&nbsp;",

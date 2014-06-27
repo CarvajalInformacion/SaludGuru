@@ -240,9 +240,16 @@ namespace BackOffice.Web.Controllers
             modelSpecialtyToCreate.CategoryId = Convert.ToInt32(Request["Specialty-id"]);
             modelToCreate.ProfilePublicId = ProfilePublicId;
             modelToCreate.Name = Request["Specialty"];
+            bool IsDefaul = (!string.IsNullOrEmpty(Request["IsDefault"]) && Request["IsDefault"].ToString().ToLower() == "on") ? true : false;
+            if (IsDefaul)
+            {
+                modelToCreate.DefaultSpecialty = new SpecialtyModel();
+                modelToCreate.DefaultSpecialty.CategoryId = Convert.ToInt32(Request["Specialty-id"]);
+                modelToCreate.DefaultSpecialty.Name = Request["Specialty"];
+            }
 
             modelToCreate.RelatedSpecialty.Add(modelSpecialtyToCreate);
-            SaludGuruProfile.Manager.Controller.Profile.TreatmentProfileUpsert(modelToCreate);
+            SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileUpsert(modelToCreate);
 
             return RedirectToAction(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
@@ -255,7 +262,7 @@ namespace BackOffice.Web.Controllers
                 int CategoryId = int.Parse(Request["CategoryId"]);
                 SaludGuruProfile.Manager.Controller.Profile.SpecialtyProfileDelete(ProfilePublicId, CategoryId);
             }
-            return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+            return RedirectToAction(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
 
         #endregion

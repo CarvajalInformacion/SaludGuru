@@ -3,17 +3,19 @@
     ViewBag.Title = "TreatmentUpsert";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
-<div class="BOProfileFormWrapper">
-    <div>
+<div class="BOInsuranceTableWrapper">
+    
+        <h3>Incluir un Nuevo Tratamiento</h3>
+
         <form action="@Url.Action("TreatmentUpsert", "Treatment", new { TreatmentId = Model.TreatmentInfo.CategoryId })" method="post">
-            <ul>
+            <ul class="BOIncludeNewInsurance">
                 <li>
                     <label>Nombre</label>
                     <input id="Name" name="Name" value="@(Model.TreatmentInfo.Name == null ? string.Empty : Model.TreatmentInfo.Name)" type="text" />
                 </li>
                 <li>
                     @{
-                        
+
                         var CatInfo_KW = Model.TreatmentInfo == null ? null :
                             Model.TreatmentInfo.TreatmentInfo.Where
                             (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
@@ -44,14 +46,12 @@
                     <label>Duration Time</label>
                     <input id="DurationTime" name="DurationTime" value="@(CatInfo_DT == null ? string.Empty : CatInfo_DT.val)" type="text" />
                 </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Guardar" />
+                </li>
             </ul>
-            <div>
-                <!--hiden fields-->
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            </div>
-            <div>
-                <input class="BOButtons" type="submit" value="Guardar" />
-            </div>
         </form>
-    </div>
+
 </div>

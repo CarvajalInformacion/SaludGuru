@@ -68,6 +68,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.PatientInfoModify(PatientInfoId, Value, LargeValue);
         }
 
+        public Models.Patient.PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
+        {
+            return DataFactory.PatientGetAllByPublicPatientId(PatientPublicId);
+        }
+
         #endregion
 
         #region Appointment
@@ -102,6 +107,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.AppointmentPatientDelete(AppointmentPublicId, PatientPublicId);
         }
 
-        #endregion
+        #endregion       
     }
 }
