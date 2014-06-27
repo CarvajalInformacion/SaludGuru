@@ -231,6 +231,11 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                       {
                                           new PatientInfoModel()
                                           {
+                                              Value = pm.Field<string>("Identification"),
+                                              PatientInfoType = enumPatientInfoType.IdentificationNumber
+                                          },
+                                          new PatientInfoModel()
+                                          {
                                               Value = pm.Field<string>("Email"),
                                             PatientInfoType = enumPatientInfoType.Email
                                           },

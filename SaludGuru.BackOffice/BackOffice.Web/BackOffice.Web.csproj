@@ -626,6 +626,8 @@
     <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

@@ -12,10 +12,11 @@
     <div id="templateHeader">
         <input type="text" id="divGridPatient-txtSearch" name="divGridPatient-txtSearch" value="@(string.IsNullOrEmpty(Request["SearchParam"])?string.Empty:Request["SearchParam"])">
         <input type="button" id="divGridPatient-Search" value="Buscar" />
+        <input type="hidden" id="divGridPatient-PublicProfileId" name="divGridPatient-PublicProfileId" />
         <a href="@Url.Action(MVC.Patient.ActionNames.Upsert, MVC.Patient.Name)">Nuevo</a>
     </div>
     <div id="templateName">
-        <a href="@(Url.Action(MVC.Patient.ActionNames.Upsert, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">${Name}</a>
+        <a href="@(Url.Action(MVC.Patient.ActionNames.PatientEdit, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">${Name}</a>
     </div>
 </div>
 
