@@ -289,6 +289,7 @@
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorOffice.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOInsuranceSpecialityTreatments.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
     <Content Include="Areas\Web\Content\Styles\jquery-ui-1.10.4.custom.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOGeneralStyle.css" />
@@ -607,7 +608,7 @@
     <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Patient\List.cshtml" />
-    <Content Include="Areas\Web\Views\Patient\Upsert.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\PatientUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
@@ -1153,7 +1154,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>15357</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

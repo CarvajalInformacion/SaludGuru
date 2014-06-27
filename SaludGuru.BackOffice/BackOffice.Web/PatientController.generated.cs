@@ -69,6 +69,12 @@ namespace BackOffice.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upsert);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult PatientGetAllByPublicPatientId()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PatientController Actions { get { return MVC.Patient; } }
@@ -87,6 +93,7 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string List = "List";
             public readonly string Upsert = "Upsert";
+            public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,6 +101,7 @@ namespace BackOffice.Web.Controllers
         {
             public const string List = "List";
             public const string Upsert = "Upsert";
+            public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
         }
 
 
@@ -112,6 +120,14 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Upsert
         {
             public readonly string PatientPublicId = "PatientPublicId";
+        }
+        static readonly ActionParamsClass_PatientGetAllByPublicPatientId s_params_PatientGetAllByPublicPatientId = new ActionParamsClass_PatientGetAllByPublicPatientId();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PatientGetAllByPublicPatientId PatientGetAllByPublicPatientIdParams { get { return s_params_PatientGetAllByPublicPatientId; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PatientGetAllByPublicPatientId
+        {
+            public readonly string PublicPatientId = "PublicPatientId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -153,6 +169,18 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
             UpsertOverride(callInfo, PatientPublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PatientGetAllByPublicPatientIdOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PublicPatientId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PatientGetAllByPublicPatientId(string PublicPatientId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicPatientId", PublicPatientId);
+            PatientGetAllByPublicPatientIdOverride(callInfo, PublicPatientId);
             return callInfo;
         }
 

@@ -4,10 +4,13 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div class="BOProfileFormWrapper">
-    <div>
+<div class="BOInsuranceTableWrapper">
+    
+        <h3>Incluir una Nueva Especialidad</h3>
+        
+    
         <form action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.SpecialtyInfo.CategoryId })" method="post">
-            <ul>
+            <ul class="BOIncludeNewInsurance">
                 <li>
                     <label>Nombre</label>
                     <input id="Name" name="Name" value="@(Model.SpecialtyInfo.Name == null ? string.Empty : Model.SpecialtyInfo.Name)" type="text" />
@@ -20,22 +23,20 @@
                             Select(x => new { id = x.CategoryInfoId, val = x.LargeValue }).
                             DefaultIfEmpty(null).
                             FirstOrDefault();
-                        if(CatInfo_KW != null)
+                        if (CatInfo_KW != null)
                         {
-                            <input type="hidden" id="CatId_Keyword" name="CatId_Keyword" value="@CatInfo_KW.id"/>
+                            <input type="hidden" id="CatId_Keyword" name="CatId_Keyword" value="@CatInfo_KW.id" />
                         }
                     }
                     <label>Keywords</label>
                     <textarea id="Keyword" name="Keyword">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val)</textarea>
                 </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Guardar" />
+                </li>
             </ul>
-            <div>
-                <!--hiden fields-->
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            </div>
-            <div>
-                <input class="BOButtons" type="submit" value="Guardar" />
-            </div>
         </form>
-    </div>
+    
 </div>

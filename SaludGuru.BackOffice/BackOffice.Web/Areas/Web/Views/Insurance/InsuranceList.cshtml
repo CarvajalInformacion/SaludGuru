@@ -18,10 +18,11 @@
     //get create url
     string oCreateUrl = Url.Action(MVC.Insurance.ActionNames.InsuranceUpsert, MVC.Insurance.Name);    
 }
-<div class="BOInsurance">
-    <div id="divGridInsurance" style="width:800px;"></div>
-    <div style="height:100px;"></div>
+<div class="BOInsuranceTableWrapper">
+    <h3>Listado de Seguros</h3>
+    <div id="divGridInsurance"></div>
 </div>
+
 @section inlinescripts
 {
     <script type="text/javascript">
