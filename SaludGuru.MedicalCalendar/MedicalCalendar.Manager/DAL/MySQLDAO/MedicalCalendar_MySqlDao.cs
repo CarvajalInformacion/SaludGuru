@@ -199,6 +199,53 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<PatientModel> PatientSearch(string ProfilePublicId, string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vPublicProfileId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+                {
+                    CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                    CommandText = "PT_Patient_SearchPatientAdmin",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Parameters = lstParams
+                });
+            List<PatientModel> oReturnPatient = null;
+            TotalRows = 0;
+
+            if (response.DataTableResult != null && response.DataTableResult.Rows.Count > 0)
+            {
+                TotalRows = response.DataTableResult.Rows[0].Field<int>("TotalRows");
+
+                oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
+                                  select new PatientModel
+                                  {
+                                      PatientPublicId = pm.Field<string>("PatientPublicId"),
+                                      Name = pm.Field<string>("Name"),
+                                      LastName = pm.Field<string>("LastName"),
+                                      PatientInfo = new List<PatientInfoModel>() 
+                                      {
+                                          new PatientInfoModel()
+                                          {
+                                              Value = pm.Field<string>("Email"),
+                                            PatientInfoType = enumPatientInfoType.Email
+                                          },
+                                          new PatientInfoModel()
+                                          {
+                                              Value = pm.Field<string>("Telephone"),
+                                              PatientInfoType = enumPatientInfoType.Telephone
+                                          }
+                                      },
+                                  }).ToList();
+            }
+
+            return oReturnPatient;
+        }
+
         #endregion
 
         #region Appointment

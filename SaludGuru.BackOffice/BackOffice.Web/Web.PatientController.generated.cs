@@ -59,9 +59,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult List()
+        public virtual System.Web.Mvc.ActionResult Search()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,7 +91,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string List = "List";
+            public readonly string Search = "Search";
             public readonly string Upsert = "Upsert";
             public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
         }
@@ -99,18 +99,19 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string List = "List";
+            public const string Search = "Search";
             public const string Upsert = "Upsert";
             public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
         }
 
 
-        static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
+        static readonly ActionParamsClass_Search s_params_Search = new ActionParamsClass_Search();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_List ListParams { get { return s_params_List; } }
+        public ActionParamsClass_Search SearchParams { get { return s_params_Search; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_List
+        public class ActionParamsClass_Search
         {
+            public readonly string PatientPublicId = "PatientPublicId";
             public readonly string SearchParam = "SearchParam";
         }
         static readonly ActionParamsClass_Upsert s_params_Upsert = new ActionParamsClass_Upsert();
@@ -139,11 +140,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string List = "List";
-                public readonly string Upsert = "Upsert";
+                public readonly string PatientUpsert = "PatientUpsert";
+                public readonly string Search = "Search";
             }
-            public readonly string List = "~/Areas/Web/Views/Patient/List.cshtml";
-            public readonly string Upsert = "~/Areas/Web/Views/Patient/Upsert.cshtml";
+            public readonly string PatientUpsert = "~/Areas/Web/Views/Patient/PatientUpsert.cshtml";
+            public readonly string Search = "~/Areas/Web/Views/Patient/Search.cshtml";
         }
     }
 
@@ -153,14 +154,15 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public T4MVC_PatientController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SearchParam);
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string SearchParam);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult List(string SearchParam)
+        public override System.Web.Mvc.ActionResult Search(string PatientPublicId, string SearchParam)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
-            ListOverride(callInfo, SearchParam);
+            SearchOverride(callInfo, PatientPublicId, SearchParam);
             return callInfo;
         }
 

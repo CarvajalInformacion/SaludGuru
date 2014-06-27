@@ -72,6 +72,7 @@
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Office\OfficeMenuModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />
+    <Compile Include="Patient\PatientSearchModel.cs" />
     <Compile Include="Profile\ProfileSearchModel.cs" />
     <Compile Include="Profile\ProfileUpSertModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
