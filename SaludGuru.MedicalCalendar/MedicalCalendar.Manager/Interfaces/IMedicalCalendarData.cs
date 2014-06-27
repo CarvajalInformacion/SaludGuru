@@ -1,5 +1,6 @@
 ﻿using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.General;
+using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace MedicalCalendar.Manager.Interfaces
         //patient info
         int PatientInfoCreate(string PatientPublicId, enumPatientInfoType PatientInfoType, string Value, string LargeValue);
         void PatientInfoModify(int PatientInfoId, string Value, string LargeValue);
+        PatientModel PatientGetAllByPublicPatientId(string PatientPublicId);
 
         //appointment
         string AppointmentCreate(string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate);
