@@ -609,7 +609,7 @@
     <Content Include="Areas\Web\Views\Profile\OfficeScheduleAvailableList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
-    <Content Include="Areas\Web\Views\Patient\List.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\Search.cshtml" />
     <Content Include="Areas\Web\Views\Patient\PatientUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />

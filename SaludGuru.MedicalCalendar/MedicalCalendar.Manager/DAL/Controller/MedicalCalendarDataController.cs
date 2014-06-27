@@ -1,4 +1,5 @@
 ﻿using MedicalCalendar.Manager.Models.General;
+using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
         public Models.Patient.PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
         {
             return DataFactory.PatientGetAllByPublicPatientId(PatientPublicId);
+        }
+
+        public List<PatientModel> PatientSearch(string ProfilePublicId, string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
+        {
+            return DataFactory.PatientSearch(ProfilePublicId, SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
         #endregion
