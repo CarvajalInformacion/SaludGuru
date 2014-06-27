@@ -35,7 +35,7 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult PatientEdit()
+        public virtual ActionResult PatientEdit(string PatientPublicId, string ProfilePublicId)
         {
             PatientUpSertModel Model = new PatientUpSertModel();
 
@@ -43,14 +43,13 @@ namespace BackOffice.Web.Controllers
                 && bool.Parse(Request["UpsertAction"]))
             {
                 //get request model
-                //PatientModel ProfileToCreate = GetProfileInfoRequestModel();
+                PatientModel PatientToCreate = GetPatientInfoRequestModel();
 
-                ////create profile 
-                //string oProfilePublicId = SaludGuruProfile.Manager.Controller.Profile.UpsertProfileInfo
-                //    (ProfileToCreate);
+                //create patient 
+                string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, "12514785");
 
-                ////get updated profile info
-                //Model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+                //get updated profile info
+                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
             }
             return View(Model);
         }
@@ -83,9 +82,9 @@ namespace BackOffice.Web.Controllers
                         },
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_IdentificationNumber"])?0:int.Parse(Request["CatId_IdentificationNumber"].ToString().Trim()),
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Telephone"])?0:int.Parse(Request["CatId_Telephone"].ToString().Trim()),
                             PatientInfoType = enumPatientInfoType.IdentificationNumber,
-                            Value = Request["IdentificationNumber"].ToString(),
+                            Value = Request["Telefono"].ToString(),
                         },
                     }
                 };
