@@ -42,6 +42,8 @@ namespace T4MVC.Web
                 public readonly string _P_ProfileInfo = "_P_ProfileInfo";
                 public readonly string _P_ProfileMenu = "_P_ProfileMenu";
                 public readonly string _P_ProfileOfficeMenu = "_P_ProfileOfficeMenu";
+                public readonly string _PA_PatientInfo = "_PA_PatientInfo";
+                public readonly string _PA_PatientMenu = "_PA_PatientMenu";
             }
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";
             public readonly string _L_PrincipalMenu = "~/Areas/Web/Views/Shared/_L_PrincipalMenu.cshtml";
@@ -49,6 +51,8 @@ namespace T4MVC.Web
             public readonly string _P_ProfileInfo = "~/Areas/Web/Views/Shared/_P_ProfileInfo.cshtml";
             public readonly string _P_ProfileMenu = "~/Areas/Web/Views/Shared/_P_ProfileMenu.cshtml";
             public readonly string _P_ProfileOfficeMenu = "~/Areas/Web/Views/Shared/_P_ProfileOfficeMenu.cshtml";
+            public readonly string _PA_PatientInfo = "~/Areas/Web/Views/Shared/_PA_PatientInfo.cshtml";
+            public readonly string _PA_PatientMenu = "~/Areas/Web/Views/Shared/_PA_PatientMenu.cshtml";
         }
     }
 

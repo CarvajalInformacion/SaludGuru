@@ -282,12 +282,16 @@
     <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarCopy.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\iconosSprite1.png" />
     <Content Include="Areas\Web\Content\Images\logInBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInBandBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInDoctorSmall.png" />
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
+    <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
@@ -620,6 +624,8 @@
     <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />

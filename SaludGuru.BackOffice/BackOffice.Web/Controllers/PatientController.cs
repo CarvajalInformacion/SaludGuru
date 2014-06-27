@@ -26,5 +26,17 @@ namespace BackOffice.Web.Controllers
             modelToReturn = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PublicPatientId);
             return View(modelToReturn);
         }
+
+        public virtual ActionResult PatientCreate()
+        {
+
+            return View();
+        }
+
+        public virtual ActionResult PatientEdit()
+        {
+
+            return View();
+        }
     }
 }
