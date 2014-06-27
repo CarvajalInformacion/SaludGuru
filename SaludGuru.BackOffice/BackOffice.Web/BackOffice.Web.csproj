@@ -286,6 +286,8 @@
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\iconosMainMenu.png" />
+    <Content Include="Areas\Web\Content\Images\iconosMainMenuHover.png" />
     <Content Include="Areas\Web\Content\Images\iconosSprite1.png" />
     <Content Include="Areas\Web\Content\Images\logInBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInBandBackground.png" />
