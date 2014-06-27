@@ -539,6 +539,8 @@
     <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.css" />
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.print.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -1099,6 +1101,13 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\gcal.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment-with-langs.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment-with-langs.min.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment.min.js" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>

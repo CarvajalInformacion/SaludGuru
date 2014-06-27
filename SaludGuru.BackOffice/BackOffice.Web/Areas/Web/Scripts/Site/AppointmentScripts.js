@@ -39,7 +39,7 @@ function renderAsyncCalendar(objCalendar) {
 }
 
 function setCalendarOptions(objCalendar, lstSpecialDay) {
-    
+
     if (objCalendar.Type == 'day') {
 
         //load calendar by day
@@ -99,5 +99,36 @@ function setCalendarOptions(objCalendar, lstSpecialDay) {
     }
 }
 
-
+//render day calendar
+function renderDayCalendar(DivId) {
+    $('#' + DivId).fullCalendar({
+        defaultView: 'agendaDay',
+        //defaultView: 'agendaWeek',
+        //defaultView: 'month',
+        header: {
+            left: '',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay',
+        },
+        titleFormat: '\'Consultorío 1\'',
+        weekNumbers: false,        columnFormat: {
+            month: 'dddd',
+            week: 'dddd',
+            day: 'dddd'
+        },        editable: true,        dayClick: function (date, jsEvent, view) {
+            alert(date);
+        },
+        eventClick: function (event, jsEvent, view) {
+            alert(event);
+        },
+        events: [{
+            //title: 'Meeting',
+            //start: '2014-06-26T10:30:00',
+            //end: '2014-06-26T11:30:00'
+            //url: 'http://google.com/',
+            title: 'Click for Google',
+            start: '2014-06-28'
+        }],
+    });
+}
 
