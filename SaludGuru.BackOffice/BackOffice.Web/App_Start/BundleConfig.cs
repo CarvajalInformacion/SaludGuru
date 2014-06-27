@@ -28,6 +28,26 @@ namespace BackOffice.Web
 
                 #endregion
 
+                #region moment
+
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/moment").Include(
+                        "~/Areas/Web/Scripts/moment/moment.js"));
+
+                #endregion
+
+                #region fullcalendar
+
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/fullcalendar").Include(
+                        "~/Areas/Web/Scripts/fullcalendar/fullcalendar.js",
+                        "~/Areas/Web/Scripts/fullcalendar/gcal.js"));
+
+                #endregion
+
+                #region Fullcalendar
+
+
+                #endregion
+
                 #region Modernizr
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Web/Scripts/modernizr-*"));
@@ -75,9 +95,6 @@ namespace BackOffice.Web
                 #endregion
 
                 #endregion
-
-
-
             }
             else if (BackOffice.Web.Controllers.BaseController.AreaName == BackOffice.Models.General.Constants.C_MobileAreaName)
             {

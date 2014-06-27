@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="ControllersApi\CalendarController.cs" />
+    <Compile Include="ControllersApi\PatientApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
@@ -527,6 +528,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\PatientScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
@@ -540,6 +542,8 @@
     <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.css" />
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.print.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Rsx-BackOffice.xml">
@@ -606,7 +610,7 @@
     <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
     <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Patient\List.cshtml" />
-    <Content Include="Areas\Web\Views\Patient\Upsert.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\PatientUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
     <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
@@ -1100,6 +1104,13 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\gcal.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment-with-langs.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment-with-langs.min.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment.js" />
+    <Content Include="Areas\Web\Scripts\moment\moment.min.js" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
@@ -1152,7 +1163,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>15357</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

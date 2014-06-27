@@ -9,7 +9,7 @@ namespace MedicalCalendar.Manager.Controller
 {
     public class Patient
     {
-        public PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
+        public static PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
         {
             return DAL.Controller.MedicalCalendarDataController.Instance.PatientGetAllByPublicPatientId(PatientPublicId);
         }

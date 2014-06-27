@@ -1,8 +1,30 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "List";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List</h2>
+<div>
+    <h3>Listado de Pacientes</h3>
+    <div id="divGridPatient"></div>
+</div>
 
+<div id="template" style="display:none;">
+    <div id="templateHeader">
+        <input type="text" id="divGridPatient-txtSearch" name="divGridPatient-txtSearch" value="@(string.IsNullOrEmpty(Request["SearchParam"])?string.Empty:Request["SearchParam"])">
+        <input type="button" id="divGridPatient-Search" value="Buscar" />
+        <a href="@Url.Action(MVC.Patient.ActionNames.Upsert, MVC.Patient.Name)">Nuevo</a>
+    </div>
+    <div id="templateName">
+        <a href="@(Url.Action(MVC.Patient.ActionNames.Upsert, MVC.Patient.Name) + "?PublicPatientId=${PublicPatientId}")">${Name}</a>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Start patient grid
+            PatientListGrid('divGridPatient');
+        })
+    </script>
+}
