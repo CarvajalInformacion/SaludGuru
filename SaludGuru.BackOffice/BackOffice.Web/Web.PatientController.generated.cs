@@ -59,6 +59,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult List()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Upsert()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upsert);
@@ -91,6 +97,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_List ListParams { get { return s_params_List; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_List
+        {
+            public readonly string SearchParam = "SearchParam";
+        }
         static readonly ActionParamsClass_Upsert s_params_Upsert = new ActionParamsClass_Upsert();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Upsert UpsertParams { get { return s_params_Upsert; } }
@@ -123,13 +137,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public T4MVC_PatientController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SearchParam);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult List()
+        public override System.Web.Mvc.ActionResult List(string SearchParam)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
-            ListOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
+            ListOverride(callInfo, SearchParam);
             return callInfo;
         }
 

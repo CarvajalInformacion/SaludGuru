@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="ControllersApi\CalendarController.cs" />
+    <Compile Include="ControllersApi\PatientApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
@@ -526,6 +527,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Areas\Web\Scripts\Site\PatientScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
