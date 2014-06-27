@@ -12,12 +12,12 @@ namespace BackOffice.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public List<BackOffice.Models.Patient.PatientSearchModel> PatientSearch
-            ( string SearchCriteria, int PageNumber, int RowCount)
+            (string PublicProfileId, string SearchCriteria, int PageNumber, int RowCount)
         {
             int oTotalCount;
             List<MedicalCalendar.Manager.Models.Patient.PatientModel> SearchPatient =
                 MedicalCalendar.Manager.Controller.Patient.PatientSearch
-                ("205ECBD0",
+                (PublicProfileId,
                 SearchCriteria == null ? string.Empty : SearchCriteria,
                 PageNumber,
                 RowCount,
@@ -31,6 +31,10 @@ namespace BackOffice.Web.ControllersApi
                         SearchPatientCount = oTotalCount,
                         PatientPublicId = x.PatientPublicId,
                         Name = x.Name + " " + x.LastName,
+                        Identification = x.PatientInfo.
+                            Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IdentificationNumber).
+                            Select(y => y.Value).
+                            DefaultIfEmpty(string.Empty).FirstOrDefault(),
                         Email = x.PatientInfo.
                             Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Email).
                             Select(y => y.Value).
