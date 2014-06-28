@@ -20,11 +20,10 @@ function PatientListGrid(vidDiv) {
                 read: function (options) {
 
                     var oSearchCriteria = $('#' + vidDiv + '-txtSearch').val();
-                    var oPublicProfileId = $('#' + vidDiv + '-PublicPofileId').val();
-                    //var oProfilePublicId = $('#' + vidDiv + '-txtSearch').val();
-
+                    var oPublicProfileId = $('#' + vidDiv + '-PublicProfileId').val();
+                    //var oProfilePublicId = $('#' + vidDiv + '-txtSearch').val();                    
                     $.ajax({
-                        url: '/api/PatientApi?PublicProfileId=' + oPublicProfileId + 'SearchCriteria=' + oSearchCriteria + '&PageNumber=' + (new Number(options.data.page) - 1) + '&RowCount=' + options.data.pageSize,
+                        url: '/api/PatientApi?PublicProfileId=' + oPublicProfileId + '&SearchCriteria=' + oSearchCriteria + '&PageNumber=' + (new Number(options.data.page) - 1) + '&RowCount=' + options.data.pageSize,
                         dataType: "json",
                         type: "POST",
                         success: function (result) {
