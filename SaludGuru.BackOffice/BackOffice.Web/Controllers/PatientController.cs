@@ -17,11 +17,6 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult Upsert(string PatientPublicId)
-        {
-            return View();
-        }
-
         public virtual ActionResult PatientGetAllByPublicPatientId(string PublicPatientId)
         {
             PatientModel modelToReturn = new PatientModel();
