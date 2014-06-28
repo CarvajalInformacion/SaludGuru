@@ -72,3 +72,6 @@ h5,h6
 }
 .buttons:hover{}
 ol, ul, li{}
+body {
+    min-width:800px;
+}

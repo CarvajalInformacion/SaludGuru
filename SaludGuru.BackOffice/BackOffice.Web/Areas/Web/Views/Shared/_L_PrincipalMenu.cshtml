@@ -11,33 +11,34 @@
         switch (PrincipalM.PrincipalMenu)
         {
             case BackOffice.Models.General.enumPrincipalMenu.Administrator:
-                <li>
+                <li class="admin">
                     <!--Este es el primer item del menu-->
-                    <img src="@Url.Content("~/Areas/Web/Content/Images/googleIconSmall.png")" title="Administrar" alt="Administrar" />
                     <a href="">Administrar</a>
-
-                    <!--Ese es el contenedor de los subitems-->
-                    <div class="subMenu">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Perfil</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action(MVC.Insurance.ActionNames.InsuranceList, MVC.Insurance.Name)">Seguros medicos</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action(MVC.Specialty.ActionNames.SpecialtyList, MVC.Specialty.Name)">Especialidades</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
+
+                <!--Ese es el contenedor de los subitems-->
+                    <ul class="subMenu">
+                        <li>
+                            <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Perfil</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.Insurance.ActionNames.InsuranceList, MVC.Insurance.Name)">Seguros medicos</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.Specialty.ActionNames.SpecialtyList, MVC.Specialty.Name)">Especialidades</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
+                        </li>
+                    </ul>
+
+
+
+
+
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Appointment:
-            <li>
-                <img src="@Url.Content("~/Areas/Web/Content/Images/googleIconSmall.png")" title="Administrar" alt="Administrar" />
+            <li class="agenda">
                 <a href="">Agenda</a>
 
                 @*<div class="subMenu">
@@ -62,20 +63,17 @@
             </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
-            <li>
-                <img src="/Areas/Web/Content/Images/googleIconSmall.png" title="Administrar" alt="Administrar" />
+            <li class="dashboard">
                 <a href="@Url.Action(MVC.Home.ActionNames.Dashboard,MVC.Home.Name)">Dashboard</a>
             </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Patient:
-            <li>
-                <img src="/Areas/Web/Content/Images/googleIconSmall.png" title="Administrar" alt="Administrar" />
+            <li class="pacientes">
                 <a href="">Pacientes</a>
             </li>
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Profile:
-            <li>
-                <img src="/Areas/Web/Content/Images/googleIconSmall.png" title="Administrar" alt="Administrar" />
+            <li class="perfil">
                 <a href="">Perfil</a>
             </li>
                 break;
