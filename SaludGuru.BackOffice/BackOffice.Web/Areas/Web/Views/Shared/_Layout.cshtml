@@ -40,5 +40,24 @@
 
     @*Render inline site scripts*@
     @RenderSection("inlinescripts", required: false)
+
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".admin").hover(function () {
+            $(".subMenu").fadeIn();
+            $(".subMenuAgenda").fadeOut();
+        });
+        $(".agenda").hover(function () {
+            $(".subMenuAgenda").fadeIn();
+            $(".subMenu").fadeOut();
+        });
+
+
+    });
+
+    </script>
+
 </body>
 </html>

@@ -31,36 +31,31 @@
                             <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
                         </li>
                     </ul>
-
-
-
-
-
+    
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Appointment:
             <li class="agenda">
                 <a href="">Agenda</a>
-
-                @*<div class="subMenu">
-                        <ul>
-                            <li>
-                                <a href="">Día</a>
-                            </li>
-                            <li>
-                                <a href="">Semana</a>
-                            </li>
-                            <li>
-                                <a href="">Mes</a>
-                            </li>
-                            <li>
-                                <a href="">Lista</a>
-                            </li>
-                            <li>
-                                <a href="">Configuracion</a>
-                            </li>
-                        </ul>
-                    </div>*@
             </li>
+
+                <ul class="subMenuAgenda">
+                    <li>
+                        <a href="">Día</a>
+                    </li>
+                    <li>
+                        <a href="">Semana</a>
+                    </li>
+                    <li>
+                        <a href="">Mes</a>
+                    </li>
+                    <li>
+                        <a href="">Lista</a>
+                    </li>
+                    <li>
+                        <a href="">Configuracion</a>
+                    </li>
+                </ul>
+
                 break;
             case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
             <li class="dashboard">
@@ -82,3 +77,4 @@
         }
     }
 </ul>
+

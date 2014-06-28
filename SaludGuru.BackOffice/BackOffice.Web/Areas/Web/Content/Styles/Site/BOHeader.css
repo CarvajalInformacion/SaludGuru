@@ -322,7 +322,8 @@ background-size:50px 509px;
     margin:0px auto 2px auto;    
 }*/
 
-.subMenu{
+.subMenu, .subMenuAgenda{
+    display:none;
     border:1px solid black;
     position:absolute;
     border-bottom:4px solid #aad400;
@@ -337,7 +338,7 @@ background-size:50px 509px;
         text-align:right;
         margin-right:8%;
 }
-.subMenu li, .subMenu li:hover, .subMenu li:active{
+.subMenu li, .subMenu li:hover, .subMenu li:active, .subMenuAgenda li, .subMenuAgenda li:hover, .subMenuAgenda li:active{
     display:inline-block;
     margin:0px 0px 0px -3px;
     padding:7px 12px;
@@ -349,20 +350,21 @@ background-size:50px 509px;
     border-bottom: none;
     background-color:rgba(255, 255, 255, 0.7);
 }
-    .subMenu li:hover, .subMenu li:active {
+    .subMenu li:hover, .subMenu li:active, .subMenuAgenda li:hover, .subMenuAgenda li:active {
         box-shadow:none;
         background-color:#fff;
     }
 
-    .subMenu li>a {
+    .subMenu li>a, .subMenuAgenda li>a{
         margin:0px; padding:0px;
 border:none;
         line-height:18px;
         display:block;
-        text-decoration:none;
         color:#333;
     }
-
+    .subMenu li>a:hover, .subMenuAgenda li>a:hover {
+        text-decoration:underline;
+    }
 
 
 
