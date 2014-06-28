@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using MedicalCalendar.Manager.Models.Patient;
 using MedicalCalendar.Manager.Models;
+using MedicalCalendar.Manager.Models.Appointment;
 
 namespace MedicalCalendar.Manager.DAL.MySQLDAO
 {
@@ -237,7 +238,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                           new PatientInfoModel()
                                           {
                                               Value = pm.Field<string>("Email"),
-                                            PatientInfoType = enumPatientInfoType.Email
+                                              PatientInfoType = enumPatientInfoType.Email
                                           },
                                           new PatientInfoModel()
                                           {
@@ -360,6 +361,52 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
+        }
+
+        public List<AppointmentModel> AppointmentSearch(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRows)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vPublicProfileId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "AP_Appointment_SearchAppointmentAdmin",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AppointmentModel> oReturnPatient = null;
+            TotalRows = 0;
+
+            if (response.DataTableResult != null && response.DataTableResult.Rows.Count > 0)
+            {
+                TotalRows = response.DataTableResult.Rows[0].Field<int>("TotalRows");
+
+                oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
+                                  select new AppointmentModel
+                                  {
+                                      AppointmentInfo = new List<AppointmentInfoModel>()
+                                      {
+                                          new AppointmentInfoModel()
+                                          {
+                                              Value = pm.Field<string>("State"),
+                                              AppointmentInfoType = enumAppointmentInfoType.Category,
+                                          }
+                                      },
+                                      CreateDate = pm.Field<DateTime>("CreateDate"),
+                                      RelatedPatient = new List<PatientModel>
+                                      {
+                                          new PatientModel()
+                                          {
+                                              PatientPublicId = pm.Field<string>("PatientPublicId")
+                                          },
+                                      },
+                                  }).ToList();
+            }
+            return oReturnPatient;
         }
 
         #endregion

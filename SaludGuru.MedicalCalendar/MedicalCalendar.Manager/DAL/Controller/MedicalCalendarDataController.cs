@@ -1,4 +1,5 @@
-﻿using MedicalCalendar.Manager.Models.General;
+﻿using MedicalCalendar.Manager.Models.Appointment;
+using MedicalCalendar.Manager.Models.General;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
         public void AppointmentPatientDelete(string AppointmentPublicId, string PatientPublicId)
         {
             DataFactory.AppointmentPatientDelete(AppointmentPublicId, PatientPublicId);
+        }
+
+        public List<AppointmentModel> AppointmentSearch(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRow )
+        {
+            return DataFactory.AppointmentSearch(ProfilePublicId, PageNumber, RowCount, out TotalRow);
         }
 
         #endregion       

@@ -176,8 +176,7 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicProfileId", PublicProfileId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
-            SearchOverride(callInfo, PublicProfileId, SearchParam);
-            SearchOverride(callInfo, PublicProfileId, SearchParam);
+            SearchOverride(callInfo, PatientPublicId, SearchParam);
             return callInfo;
         }
 

@@ -1,4 +1,6 @@
-﻿using MedicalCalendar.Manager.Models.General;
+﻿using MedicalCalendar.Manager.DAL.Controller;
+using MedicalCalendar.Manager.Models.Appointment;
+using MedicalCalendar.Manager.Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,11 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
+        public List<AppointmentModel> AppointmentSearch(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRow)
+        {
+            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentSearch(ProfilePublicId, PageNumber, RowCount, out TotalRow);
 
+            return oReturn;
+        }
     }
 }
