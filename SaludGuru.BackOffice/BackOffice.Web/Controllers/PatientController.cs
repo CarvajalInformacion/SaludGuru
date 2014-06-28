@@ -30,7 +30,7 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult PatientEdit(string PatientPublicId, string ProfilePublicId)
+        public virtual ActionResult PatientUpsert(string PatientPublicId, string ProfilePublicId)
         {
             PatientUpSertModel Model = new PatientUpSertModel();
 
@@ -44,6 +44,10 @@ namespace BackOffice.Web.Controllers
                 string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, "12514785");
 
                 //get updated profile info
+                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
+            }
+            else
+            {
                 Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
             }
             return View(Model);

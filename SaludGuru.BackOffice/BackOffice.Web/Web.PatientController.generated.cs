@@ -71,9 +71,9 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PatientEdit()
+        public virtual System.Web.Mvc.ActionResult PatientUpsert()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientEdit);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientUpsert);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,7 +94,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string Search = "Search";
             public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
             public readonly string PatientCreate = "PatientCreate";
-            public readonly string PatientEdit = "PatientEdit";
+            public readonly string PatientUpsert = "PatientUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,7 +103,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string Search = "Search";
             public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
             public const string PatientCreate = "PatientCreate";
-            public const string PatientEdit = "PatientEdit";
+            public const string PatientUpsert = "PatientUpsert";
         }
 
 
@@ -124,11 +124,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public readonly string PublicPatientId = "PublicPatientId";
         }
-        static readonly ActionParamsClass_PatientEdit s_params_PatientEdit = new ActionParamsClass_PatientEdit();
+        static readonly ActionParamsClass_PatientUpsert s_params_PatientUpsert = new ActionParamsClass_PatientUpsert();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PatientEdit PatientEditParams { get { return s_params_PatientEdit; } }
+        public ActionParamsClass_PatientUpsert PatientUpsertParams { get { return s_params_PatientUpsert; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PatientEdit
+        public class ActionParamsClass_PatientUpsert
         {
             public readonly string PatientPublicId = "PatientPublicId";
             public readonly string ProfilePublicId = "ProfilePublicId";
@@ -193,15 +193,15 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
 
         [NonAction]
-        partial void PatientEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string ProfilePublicId);
+        partial void PatientUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PatientEdit(string PatientPublicId, string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult PatientUpsert(string PatientPublicId, string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientEdit);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            PatientEditOverride(callInfo, PatientPublicId, ProfilePublicId);
+            PatientUpsertOverride(callInfo, PatientPublicId, ProfilePublicId);
             return callInfo;
         }
 
