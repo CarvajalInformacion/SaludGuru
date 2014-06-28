@@ -3,7 +3,7 @@
 <div class="BOFormDataWrapper">
     @{string UrlAction = (Model.Patient == null) ?
             Url.Action(MVC.Patient.ActionNames.PatientCreate, MVC.Patient.Name) :
-            Url.Action(MVC.Patient.ActionNames.PatientEdit, MVC.Patient.Name, new { ProfilePublicId = Model.Patient.PatientPublicId });
+            Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
     }
     <form action="@UrlAction" method="post">
         <ul>

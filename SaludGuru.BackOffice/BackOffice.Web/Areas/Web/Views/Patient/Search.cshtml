@@ -13,10 +13,10 @@
         <input type="text" id="divGridPatient-txtSearch" name="divGridPatient-txtSearch" value="@(string.IsNullOrEmpty(Request["SearchParam"])?string.Empty:Request["SearchParam"])">
         <input type="button" id="divGridPatient-Search" value="Buscar" />
         <input type="text" id="divGridPatient-PublicProfileId" name="divGridPatient-PublicProfileId" value="@(string.IsNullOrEmpty(Request["PublicProfileId"]) ? string.Empty : Request["PublicProfileId"])">
-        <a href="@Url.Action(MVC.Patient.ActionNames.PatientEdit, MVC.Patient.Name)">Nuevo</a>        
+        <a href="@Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name)">Nuevo</a>
     </div>
     <div id="templateName">
-        <a href="@(Url.Action(MVC.Patient.ActionNames.PatientEdit, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">${Name}</a>
+        <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">${Name}</a>
     </div>
 </div>
 
@@ -25,7 +25,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //Start patient grid
-            debugger;
             PatientListGrid('divGridPatient');
         })
     </script>
