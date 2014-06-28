@@ -75,6 +75,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult PatientEdit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientEdit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PatientController Actions { get { return MVC.Web.Patient; } }
@@ -115,7 +121,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Search
         {
-            public readonly string PatientPublicId = "PatientPublicId";
+            public readonly string PublicProfileId = "PublicProfileId";
             public readonly string SearchParam = "SearchParam";
         }
         static readonly ActionParamsClass_Upsert s_params_Upsert = new ActionParamsClass_Upsert();
@@ -133,6 +139,15 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public class ActionParamsClass_PatientGetAllByPublicPatientId
         {
             public readonly string PublicPatientId = "PublicPatientId";
+        }
+        static readonly ActionParamsClass_PatientEdit s_params_PatientEdit = new ActionParamsClass_PatientEdit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PatientEdit PatientEditParams { get { return s_params_PatientEdit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PatientEdit
+        {
+            public readonly string PatientPublicId = "PatientPublicId";
+            public readonly string ProfilePublicId = "ProfilePublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -158,15 +173,15 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public T4MVC_PatientController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string SearchParam);
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PublicProfileId, string SearchParam);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Search(string PatientPublicId, string SearchParam)
+        public override System.Web.Mvc.ActionResult Search(string PublicProfileId, string SearchParam)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicProfileId", PublicProfileId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
-            SearchOverride(callInfo, PatientPublicId, SearchParam);
+            SearchOverride(callInfo, PublicProfileId, SearchParam);
             return callInfo;
         }
 
@@ -206,13 +221,15 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
 
         [NonAction]
-        partial void PatientEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void PatientEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PatientEdit()
+        public override System.Web.Mvc.ActionResult PatientEdit(string PatientPublicId, string ProfilePublicId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientEdit);
-            PatientEditOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            PatientEditOverride(callInfo, PatientPublicId, ProfilePublicId);
             return callInfo;
         }
 
