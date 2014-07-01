@@ -24,14 +24,10 @@ namespace BackOffice.Web.Controllers
             return View(modelToReturn);
         }
 
-        public virtual ActionResult PatientCreate()
+        public virtual ActionResult PatientUpsert(string PatientPublicId)
         {
+            string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
 
-            return View();
-        }
-
-        public virtual ActionResult PatientUpsert(string PatientPublicId, string ProfilePublicId)
-        {
             PatientUpSertModel Model = new PatientUpSertModel();
 
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
@@ -41,15 +37,27 @@ namespace BackOffice.Web.Controllers
                 PatientModel PatientToCreate = GetPatientInfoRequestModel();
 
                 //create patient 
-                string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, "12514785");
+                string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
 
                 //get updated profile info
-                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
+                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oProfilePublicId);
+                return RedirectToAction(MVC.Patient.ActionNames.Search, MVC.Patient.Name, new { PublicProfileId = ProfilePublicId });
             }
             else
             {
+                //get request model
+                PatientModel PatientToCreate = GetPatientInfoRequestModel();
+                if (PatientToCreate != null)
+                {
+                    //create patient 
+                    string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, "12514785");
+                }
                 Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
             }
+
+            //if (Model.Patient == null )
+            //    Model.Patient = new PatientModel();
+
             return View(Model);
         }
 
@@ -82,7 +90,7 @@ namespace BackOffice.Web.Controllers
                         new PatientInfoModel()
                         {
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_Telephone"])?0:int.Parse(Request["CatId_Telephone"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.IdentificationNumber,
+                            PatientInfoType = enumPatientInfoType.Telephone,
                             Value = Request["Telefono"].ToString(),
                         },
                     }

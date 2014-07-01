@@ -74,12 +74,14 @@ namespace BackOffice.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Day = "Day";
+            public readonly string AppointmentList = "AppointmentList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Day = "Day";
+            public const string AppointmentList = "AppointmentList";
         }
 
 
@@ -110,6 +112,17 @@ namespace BackOffice.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Day);
             DayOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AppointmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AppointmentList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
+            AppointmentListOverride(callInfo);
             return callInfo;
         }
 
