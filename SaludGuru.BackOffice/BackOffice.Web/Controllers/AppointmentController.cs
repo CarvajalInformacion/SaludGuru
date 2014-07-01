@@ -13,5 +13,10 @@ namespace BackOffice.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult AppointmentList()
+        {
+            return View();
+        }
     }
 }

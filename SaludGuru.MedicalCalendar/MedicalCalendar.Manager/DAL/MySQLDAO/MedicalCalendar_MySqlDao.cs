@@ -363,7 +363,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             });
         }
 
-        public List<AppointmentModel> AppointmentSearch(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRows)
+        public List<AppointmentModel> AppointmentList(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRows)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vPublicProfileId", ProfilePublicId));
