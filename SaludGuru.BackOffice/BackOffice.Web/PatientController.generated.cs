@@ -93,7 +93,6 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string Search = "Search";
             public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
-            public readonly string PatientCreate = "PatientCreate";
             public readonly string PatientUpsert = "PatientUpsert";
         }
 
@@ -102,7 +101,6 @@ namespace BackOffice.Web.Controllers
         {
             public const string Search = "Search";
             public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
-            public const string PatientCreate = "PatientCreate";
             public const string PatientUpsert = "PatientUpsert";
         }
 
@@ -131,7 +129,6 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_PatientUpsert
         {
             public readonly string PatientPublicId = "PatientPublicId";
-            public readonly string ProfilePublicId = "ProfilePublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -178,26 +175,14 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void PatientCreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void PatientUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult PatientCreate()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientCreate);
-            PatientCreateOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void PatientUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string ProfilePublicId);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult PatientUpsert(string PatientPublicId, string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult PatientUpsert(string PatientPublicId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            PatientUpsertOverride(callInfo, PatientPublicId, ProfilePublicId);
+            PatientUpsertOverride(callInfo, PatientPublicId);
             return callInfo;
         }
 

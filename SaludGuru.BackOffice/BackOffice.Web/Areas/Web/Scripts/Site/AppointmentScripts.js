@@ -122,13 +122,72 @@ function renderDayCalendar(DivId) {
             alert(event);
         },
         events: [{
-            //title: 'Meeting',
-            //start: '2014-06-26T10:30:00',
-            //end: '2014-06-26T11:30:00'
-            //url: 'http://google.com/',
-            title: 'Click for Google',
-            start: '2014-06-28'
+            id: 'ABCDEF01',
+            title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
+            start: '2014-07-01T10:30:00',
+            end: '2014-07-01T11:30:00',
+            allDay: false,
+            durationEditable: true,
+            className: 'claseEvento_1',
         }],
+        eventRender: function (event, element) {
+            debugger;
+            element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+            //element.addClass('claseEvento_1');
+        }
+    });
+}
+
+//init appointment grid
+function AppointmentListGrid(vidDiv) {
+
+    //configure grid
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: $("#templateHeader").html() }],
+        pageable: true,
+        dataSource: {
+            pageSize: 2,
+            serverPaging: true,
+            schema: {
+                total: function (data) {
+                    if (data && data.length > 0) {
+                        return data[0].SearchProfileCount;
+                    }
+                    return 0;
+                }
+            },
+            transport: {
+                read: function (options) {
+                    var oProfilePublicId = $('#' + vidDiv + '-ProfilePublicId').val();
+                    $ajax({
+                        url: '/api/AppointmentApi?ProfilePublicId=' + oProfilePublicId + '&PageNumber=' + (new Number(options.data.page) - 1) + '&RowCount=' + options.data.pageSize,
+                        dataType: "json",
+                        success: function (result) {
+                            options.success(result);
+                        },
+                        error: function (result) {
+                            options.error(result);
+                        }
+                    });
+                }
+            },
+        },
+        columns: [{
+            field: "AppointmentId",
+            title: " ",
+            template: $("#templateName").html()
+        }, {
+            field: "CreateDate",
+            title: " ",
+        }, {
+            field: "Status",
+            title: " ",
+        }],
+    });
+
+    //add search button event
+    $('#' + vidDiv + '-Search').click(function () {
+        $('#' + vidDiv).getKendoGrid().dataSource.read();
     });
 }
 

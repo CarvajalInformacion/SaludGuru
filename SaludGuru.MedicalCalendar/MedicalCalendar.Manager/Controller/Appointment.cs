@@ -29,9 +29,9 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
-        public List<AppointmentModel> AppointmentList(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRow)
+        public static List<AppointmentModel> AppointmentList(string ProfilePublicId)
         {
-            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(ProfilePublicId, PageNumber, RowCount, out TotalRow);
+            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(ProfilePublicId);
 
             return oReturn;
         }

@@ -1,4 +1,5 @@
 ﻿using BackOffice.Models.General;
+using MedicalCalendar.Manager.Models.Appointment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult AppointmentList()
+        public virtual ActionResult AppointmentList(string PublicProfileId)
         {
             return View();
         }

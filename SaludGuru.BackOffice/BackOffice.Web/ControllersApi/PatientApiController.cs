@@ -6,18 +6,18 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace BackOffice.Web.ControllersApi
-{    
+{
     public class PatientApiController : BaseApiController
     {
         [HttpPost]
         [HttpGet]
         public List<BackOffice.Models.Patient.PatientSearchModel> PatientSearch
-            (string PublicProfileId, string SearchCriteria, int PageNumber, int RowCount)
+            (string SearchCriteria, int PageNumber, int RowCount)
         {
             int oTotalCount;
             List<MedicalCalendar.Manager.Models.Patient.PatientModel> SearchPatient =
                 MedicalCalendar.Manager.Controller.Patient.PatientSearch
-                (PublicProfileId,
+                (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId,
                 SearchCriteria == null ? string.Empty : SearchCriteria,
                 PageNumber,
                 RowCount,
