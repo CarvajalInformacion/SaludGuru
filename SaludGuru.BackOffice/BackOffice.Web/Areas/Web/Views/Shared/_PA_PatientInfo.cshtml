@@ -2,7 +2,7 @@
 
 <div class="BOFormDataWrapper">
     @{string UrlAction = (Model.Patient == null) ?
-            Url.Action(MVC.Patient.ActionNames.PatientCreate, MVC.Patient.Name) :
+            Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) :
             Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
     }
     <form action="@UrlAction" method="post">
@@ -47,14 +47,14 @@
             </li>
             <li>
                 <label>Correo electrónico</label>
-                <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty :CatInfo_IN.val)" type="text" />
+                <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
             <li>
                 @{
                     var CatInfo_AT = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
                             (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Telephone).
-                            Select(x => new { id = x.PatientInfoId, val = x.LargeValue }).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
                     if (CatInfo_AT != null)
@@ -65,7 +65,7 @@
             </li>
             <li>
                 <label>Teléfono</label>
-                <input id="Telefono" name="Telefono" value="@(CatInfo_IN == null ? string.Empty :CatInfo_IN.val)" type="text" />
+                <input id="Telefono" name="Telefono" value="@(CatInfo_IN == null ? string.Empty : CatInfo_AT.val)" type="text" />
             </li>  
 
         </ul>

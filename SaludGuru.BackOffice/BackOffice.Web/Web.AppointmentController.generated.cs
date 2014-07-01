@@ -91,8 +91,10 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string AppointmentList = "AppointmentList";
                 public readonly string Day = "Day";
             }
+            public readonly string AppointmentList = "~/Areas/Web/Views/Appointment/AppointmentList.cshtml";
             public readonly string Day = "~/Areas/Web/Views/Appointment/Day.cshtml";
         }
     }

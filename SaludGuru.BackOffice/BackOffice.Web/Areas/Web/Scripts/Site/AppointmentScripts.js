@@ -111,27 +111,30 @@ function renderDayCalendar(DivId) {
             right: 'month,agendaWeek,agendaDay',
         },
         titleFormat: '\'Consultorío 1\'',
-        weekNumbers: false,
-        columnFormat: {
+        weekNumbers: false,        columnFormat: {
             month: 'dddd',
             week: 'dddd',
             day: 'dddd'
-        },
-        editable: true,
-        dayClick: function (date, jsEvent, view) {
+        },        editable: true,        dayClick: function (date, jsEvent, view) {
             alert(date);
         },
         eventClick: function (event, jsEvent, view) {
             alert(event);
         },
         events: [{
-            //title: 'Meeting',
-            //start: '2014-06-26T10:30:00',
-            //end: '2014-06-26T11:30:00'
-            //url: 'http://google.com/',
-            title: 'Click for Google',
-            start: '2014-06-28'
+            id: 'ABCDEF01',
+            title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
+            start: '2014-07-01T10:30:00',
+            end: '2014-07-01T11:30:00',
+            allDay: false,
+            durationEditable: true,
+            className: 'claseEvento_1',
         }],
+        eventRender: function (event, element) {
+            debugger;
+            element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+            //element.addClass('claseEvento_1');
+        }
     });
 }
 
