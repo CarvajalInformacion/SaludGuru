@@ -75,7 +75,9 @@
 
 .BOEditDaySetUp li{
     display:inline-block;
-    border:1px solid red;
+
+border:none;
+
     vertical-align:middle;
     margin-right:12px;
 }

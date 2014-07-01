@@ -285,6 +285,7 @@
     <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarCopy.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
+    <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenu.png" />
@@ -307,6 +308,7 @@
     <Content Include="Areas\Web\Content\Styles\Site\BOHeader.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOLogin.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOPerfilDoctor.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOPerfilPatient.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
     <Content Include="Areas\Web\Scripts\Site\AppointmentScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
