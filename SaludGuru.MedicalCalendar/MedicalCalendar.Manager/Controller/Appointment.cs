@@ -29,7 +29,7 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
-        public List<AppointmentModel> AppointmentSearch(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRow)
+        public List<AppointmentModel> AppointmentList(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRow)
         {
             List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(ProfilePublicId, PageNumber, RowCount, out TotalRow);
 
