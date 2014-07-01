@@ -1,0 +1,84 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "TreatmentProfileList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+</div>
+<div class="BOProfileFormWrapper">
+    <h3>Agregar Tratamientos para este Profesional</h3>
+    <div id="divGridTreatmentProfile"></div>
+</div>
+
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileUpsert, MVC.Profile.Name,
+                                        new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+            <ul class="BOEditDaySetUp">
+                <li>
+                    <label>Tratamientos</label>
+                    <input type="hidden" id="Treatment-id" name="Treatment-id" value="" />
+                    <input type="text" id="Treatment" name="Treatment" value="" />
+                    @{
+                        //get json treatment
+                        string oTreatmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.TreatmentToSelect.
+                                Select(x => new
+                                {
+                                    label = x.Name,
+                                    value = x.CategoryId,
+                                }).ToList());
+                    }
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
+            <input class="BOButtons" type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
+
+@{
+    //get json office data
+    string oTreatmentProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedTreatment.
+            Select(x => new
+            {
+                CategoryId = x.CategoryId,
+                Name = x.Name
+            }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataTreatmentProfile = @Html.Raw(oTreatmentProfile)
+        $(document).ready(function () {
+            debugger;
+            //start office grid
+            ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
+        });
+    </script>
+
+    <script type="text/javascript">
+        var oTreatmentData = @Html.Raw(oTreatmentData)
+        $(document).ready(function () {
+            //start office grid
+            ProfileTreatmentAc('Treatment', oTreatmentData);
+        });
+    </script>
+}

@@ -1,0 +1,121 @@
+﻿using Message.Interfaces;
+using Message.Models;
+using MessageModule.Controller;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace Message.Manager
+{
+    public class MessageProcess
+    {
+        #region Variables Privadas
+        /// <summary>
+        /// Variable para el acceso a funciones DAL
+        /// </summary>
+        private MessageDataController _controller = new MessageDataController();
+        #endregion
+
+        #region Funciones Publicas
+
+        /// <summary>
+        /// Función que inicia el proceso
+        /// </summary>
+        public void StartProcess()
+        {
+            //read queue
+            List<MessageQueueModel> messageQueueList = new List<MessageQueueModel>();
+            messageQueueList = this._controller.GetQueueMessage();
+            if (messageQueueList.Count > 0)
+            {
+                foreach (MessageQueueModel item in messageQueueList)
+                    this.ProcessMesage(item);
+            }
+        }
+
+        public void AddResend(int messageQueueId)
+        { 
+
+        }
+
+        #endregion
+
+        #region Funciones Privadas
+
+        /// <summary>
+        /// Funcion que se encarga de llamar los metodos que desarrollan el proceso de envío
+        /// </summary>
+        /// <param name="QueueItemToProcess">Mensaje para enviar, tomado de la cola</param>
+        /// <returns>Modelo con info del mensaje enviado</returns>
+        private Message.Models.MessageModel ProcessMesage(Message.Models.MessageQueueModel QueueItemToProcess)
+        {
+            MessageModel oMsjReturn = new MessageModel();
+            //validate config
+            Message.Models.AgentModel oAgentConfig = new AgentModel()
+            {
+                QueueItemToProcess = QueueItemToProcess,
+                MessageConfig = this.GetMessageConfig(QueueItemToProcess.MessageType),
+            };
+            oAgentConfig.AgentConfig = GetAgentConfig(oAgentConfig.MessageConfig["Agent"]);
+
+            //invoque message agent
+            Message.Interfaces.IAgent Agent = this.GetAgentInstance(oAgentConfig.AgentConfig["Assemblie"]);
+
+            oMsjReturn = Agent.SendMessage(oAgentConfig);
+
+            if (oMsjReturn != null)
+            {
+                //TODO: VERIFICAR SI HAY UN RESEND Y HACER LA OPERACION
+            }
+
+            /*trace log message*/
+            return oMsjReturn;
+        }
+
+        /// <summary>
+        /// Función que obtiene la configuración desde el XML de acuerdo al tipo de mensaje
+        /// </summary>
+        /// <param name="MessageType">Tipo de mensaje a consultar</param>
+        /// <returns>Llave y valor de la correspondiente configuración</returns>
+        private Dictionary<string, string> GetMessageConfig(string MessageType)
+        {
+            XDocument xDocMessType = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Params_" + MessageType].Value);
+            Dictionary<string, string> MessageConfig = xDocMessType.Descendants("Message").Descendants("key").ToDictionary(k => k.Attribute("name").Value, v => v.Value);
+            XDocument xDocMessBody = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
+            MessageConfig.Add("Body", SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
+
+            //MessageConfig.Add()
+            return MessageConfig;
+        }
+
+        /// <summary>
+        /// Función que obtiene la configuración del agente de envio
+        /// </summary>
+        /// <param name="QueueItemToProcess">Nombre del agente del cual se requiere la configuración</param>
+        /// <returns>Llave y valor correspondiente al agente</returns>
+        private Dictionary<string, string> GetAgentConfig(string AgentName)
+        {
+            XDocument xDoc = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"][AgentName].Value);
+            Dictionary<string, string> AgentConfig = xDoc.Descendants("Agent").Descendants("key").ToDictionary(k => k.Attribute("name").Value, v => v.Value);
+
+            return AgentConfig;
+        }
+
+        /// <summary>
+        /// Función que levanta una instancia de una fabrica de acuerdo al assembli devuelto en la configuración
+        /// </summary>
+        /// <param name="AgentType">Tipo de agente de envío</param>
+        /// <returns>Instancia de mi interfaz agente</returns>
+        private Message.Interfaces.IAgent GetAgentInstance(string AgentType)
+        {
+            Type typetoreturn = Type.GetType(AgentType.Replace(" ", ""));
+            Message.Interfaces.IAgent oRetorno = (Message.Interfaces.IAgent)Activator.CreateInstance(typetoreturn);
+            return oRetorno;
+        }
+
+        #endregion
+    }
+}

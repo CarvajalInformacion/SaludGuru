@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <BackOffice>
+
+    <!--Login Module-->
+    <key name="Web_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <!--Menu-->
+    <!--<key name="PrincipalMenu_101">Administrator,Write;</key>-->
+    <key name="PrincipalMenu_101">Administrator,Write;Profile,Write;Appointment,Write;Patient,Write;</key>
+    <key name="PrincipalMenu_102">Profile,Write;Appointment,Write;Patient,Write;</key>
+    <key name="PrincipalMenu_103">Profile,Read;Appointment,Write;Patient,Write;</key>
+    <key name="PrincipalMenu_104">Profile,Read;Appointment,Read;Patient,Read;</key>
+  </BackOffice>
+</Settings>
+

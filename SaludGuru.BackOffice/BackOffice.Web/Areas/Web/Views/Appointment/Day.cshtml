@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Day";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<!--Calendar by month-->
+<div>
+    <div>
+        <a href="">Anterior</a>
+        <a href="">Siguiente</a>
+    </div>
+    <div id="Calendar-Left"></div>
+    <div id="Calendar-Right"></div>
+</div>
+<!--Day Calendar-->
+<div>
+    <div id="DayCalendar">
+    </div>
+</div>
+<div style="height:100px;"></div>
+
+
+@section inlinescripts
+{
+    <style>
+        .ui-datepicker-week-end a.ui-state-default {
+            background: #00ffff;
+        }
+        /*holiday*/
+        .specialDay_1 a.ui-state-default {
+            background: #ff0000;
+        }
+        /*not available day*/
+        .specialDay_2 a.ui-state-default {
+            background: #0026ff;
+        }
+        /*hide next and preview*/
+        #Calendar-Left .ui-datepicker-prev {
+            display: none;
+        }
+
+        #Calendar-Right .ui-datepicker-prev {
+            display: none;
+        }
+
+        #Calendar-Left .ui-datepicker-next {
+            display: none;
+        }
+
+        #Calendar-Right .ui-datepicker-next {
+            display: none;
+        }
+
+        /*hide calendar all day event*/
+        /*#DayCalendar .fc-agenda-allday {
+            display: none;
+        }
+
+        #DayCalendar .fc-agenda-divider {
+            display: none;
+        }*/
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //render calendar by month
+            renderAsyncCalendar({
+                DivId: 'Calendar',
+                CountryId: '1',
+                ProfilePublicId: 'vProfilePublicId',
+                OfficePublicId: 'vOfficePublicId',
+                FirstDate: new Date('@DateTime.Now.Year.ToString()', '@((DateTime.Now.Month - 1).ToString())', '@DateTime.Now.Day'),
+                SecondDate: new Date('@DateTime.Now.AddMonths(1).Year.ToString()', '@((DateTime.Now.AddMonths(1).Month - 1).ToString())', '1'),
+                Type: 'day'
+            });
+
+            //render day calendar
+            renderDayCalendar('DayCalendar');
+        });
+    </script>
+}
+

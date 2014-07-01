@@ -1,0 +1,57 @@
+﻿@model BackOffice.Models.Treatment.TreatmentUpsertModel
+@{
+    ViewBag.Title = "TreatmentUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOInsuranceTableWrapper">
+    
+        <h3>Incluir un Nuevo Tratamiento</h3>
+
+        <form action="@Url.Action("TreatmentUpsert", "Treatment", new { TreatmentId = Model.TreatmentInfo.CategoryId })" method="post">
+            <ul class="BOIncludeNewInsurance">
+                <li>
+                    <label>Nombre</label>
+                    <input id="Name" name="Name" value="@(Model.TreatmentInfo.Name == null ? string.Empty : Model.TreatmentInfo.Name)" type="text" />
+                </li>
+                <li>
+                    @{
+
+                        var CatInfo_KW = Model.TreatmentInfo == null ? null :
+                            Model.TreatmentInfo.TreatmentInfo.Where
+                            (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
+                            Select(x => new { id = x.CategoryInfoId, val = x.LargeValue }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                        if (CatInfo_KW != null)
+                        {
+                            <input type="hidden" id="CatId_Keyword" name="CatId_Keyword" value="@CatInfo_KW.id" />
+                        }
+                    }
+                    <label>Keywords</label>
+                    <input id="Keyword" name="Keyword" value="@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val)" type="text" />
+                </li>
+                <li>
+                    @{
+                        var CatInfo_DT = Model.TreatmentInfo == null ? null :
+                            Model.TreatmentInfo.TreatmentInfo.Where
+                            (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.DurationTime).
+                            Select(x => new { id = x.CategoryInfoId, val = x.LargeValue.ToString() }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                        if (CatInfo_DT != null)
+                        {
+                            <input type="hidden" id="CatId_DurationTime" name="CatId_DurationTime" value="@CatInfo_DT.id" />
+                        }
+                    }
+                    <label>Duration Time</label>
+                    <input id="DurationTime" name="DurationTime" value="@(CatInfo_DT == null ? string.Empty : CatInfo_DT.val)" type="text" />
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Guardar" />
+                </li>
+            </ul>
+        </form>
+
+</div>

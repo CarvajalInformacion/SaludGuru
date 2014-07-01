@@ -1,0 +1,25 @@
+﻿@model SaludGuruProfile.Manager.Models.General.InsuranceModel
+@{
+    ViewBag.Title = "InsuranceUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOInsuranceTableWrapper">
+    
+    <h3>Incluir un Nuevo Seguro</h3>
+
+    <form action="@Url.Action("InsuranceUpsert","Insurance", new { InsuranceId = Model.CategoryId })" method="post">
+        <ul class="BOIncludeNewInsurance">
+            <li>
+                <label>Nombre</label>
+                <input id="Name" name="Name" value="@(Model.Name == null ? string.Empty : Model.Name)" type="text" />
+            </li>
+            <li class="BOButtonContainerShort">
+                <!--hiden fields-->
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input class="BOButtons" type="submit" value="guardar"/>
+            </li>
+        </ul>
+    </form>
+
+</div>

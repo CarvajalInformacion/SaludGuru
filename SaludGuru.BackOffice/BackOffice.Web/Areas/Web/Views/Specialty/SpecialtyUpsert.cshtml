@@ -1,0 +1,42 @@
+﻿@model BackOffice.Models.Specialty.SpecialtyUpsertModel
+@{
+    ViewBag.Title = "SpecialtyUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOInsuranceTableWrapper">
+    
+        <h3>Incluir una Nueva Especialidad</h3>
+        
+    
+        <form action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.SpecialtyInfo.CategoryId })" method="post">
+            <ul class="BOIncludeNewInsurance">
+                <li>
+                    <label>Nombre</label>
+                    <input id="Name" name="Name" value="@(Model.SpecialtyInfo.Name == null ? string.Empty : Model.SpecialtyInfo.Name)" type="text" />
+                </li>
+                <li>
+                    @{
+                        var CatInfo_KW = Model.SpecialtyInfo == null ? null :
+                            Model.SpecialtyInfo.SpecialtyInfo.Where
+                            (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
+                            Select(x => new { id = x.CategoryInfoId, val = x.LargeValue }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                        if (CatInfo_KW != null)
+                        {
+                            <input type="hidden" id="CatId_Keyword" name="CatId_Keyword" value="@CatInfo_KW.id" />
+                        }
+                    }
+                    <label>Keywords</label>
+                    <textarea id="Keyword" name="Keyword">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val)</textarea>
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Guardar" />
+                </li>
+            </ul>
+        </form>
+    
+</div>

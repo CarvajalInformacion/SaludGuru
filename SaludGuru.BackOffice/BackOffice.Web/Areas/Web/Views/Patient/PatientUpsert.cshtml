@@ -1,0 +1,14 @@
+﻿@model BackOffice.Models.Patient.PatientUpSertModel
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._PA_PatientMenu, null)
+    </div>
+    <div class="BOProfileFormWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._PA_PatientInfo, Model)
+    </div>
+</div>

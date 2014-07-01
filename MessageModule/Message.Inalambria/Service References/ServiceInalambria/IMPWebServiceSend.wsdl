@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="soa.inalambria.com" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="soa.inalambria.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="soa.inalambria.com">
+      <s:element name="Send">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TicketTGS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Provider" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TicketKdc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTransaction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Detail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateArrived" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateSend" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Validation" type="tns:ResponseValidation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResponseValidation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="tns:ArrayOfValidationPhoneResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Part" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumError" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfValidationPhoneResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ValidationPhoneResult" nillable="true" type="tns:ValidationPhoneResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ValidationPhoneResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodeBilling" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageBilling" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodeMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Part" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendWithHash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Provider" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendWithHashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendWithHashResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendWithUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Provider" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendWithUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendWithUserResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TicketTGS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketSMS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelTicketResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicketWithHash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketSMS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicketWithHashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelTicketWithHashResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicketWithUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketSMS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelTicketWithUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelTicketWithUserResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transaction" type="tns:Transaction" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendSoapIn">
+    <wsdl:part name="parameters" element="tns:Send" />
+  </wsdl:message>
+  <wsdl:message name="SendSoapOut">
+    <wsdl:part name="parameters" element="tns:SendResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashSoapIn">
+    <wsdl:part name="parameters" element="tns:SendWithHash" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashSoapOut">
+    <wsdl:part name="parameters" element="tns:SendWithHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserSoapIn">
+    <wsdl:part name="parameters" element="tns:SendWithUser" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserSoapOut">
+    <wsdl:part name="parameters" element="tns:SendWithUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelTicket" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelTicketWithHash" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelTicketWithHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelTicketWithUser" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelTicketWithUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendHttpGetIn">
+    <wsdl:part name="TicketTGS" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashHttpGetIn">
+    <wsdl:part name="Hash" type="s:string" />
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserHttpGetIn">
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketHttpGetIn">
+    <wsdl:part name="TicketTGS" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashHttpGetIn">
+    <wsdl:part name="Hash" type="s:string" />
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserHttpGetIn">
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="SendHttpPostIn">
+    <wsdl:part name="TicketTGS" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashHttpPostIn">
+    <wsdl:part name="Hash" type="s:string" />
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendWithHashHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserHttpPostIn">
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="DeviceNumber" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="DateMessage" type="s:string" />
+    <wsdl:part name="Provider" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendWithUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketHttpPostIn">
+    <wsdl:part name="TicketTGS" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashHttpPostIn">
+    <wsdl:part name="Hash" type="s:string" />
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithHashHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserHttpPostIn">
+    <wsdl:part name="User" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="TicketSMS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelTicketWithUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:Transaction" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSendSoap">
+    <wsdl:operation name="Send">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Kerberos KDC</wsdl:documentation>
+      <wsdl:input message="tns:SendSoapIn" />
+      <wsdl:output message="tns:SendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Hash</wsdl:documentation>
+      <wsdl:input message="tns:SendWithHashSoapIn" />
+      <wsdl:output message="tns:SendWithHashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With User and Password</wsdl:documentation>
+      <wsdl:input message="tns:SendWithUserSoapIn" />
+      <wsdl:output message="tns:SendWithUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketSoapIn" />
+      <wsdl:output message="tns:CancelTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with Hash</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithHashSoapIn" />
+      <wsdl:output message="tns:CancelTicketWithHashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with User and Password</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithUserSoapIn" />
+      <wsdl:output message="tns:CancelTicketWithUserSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceSendHttpGet">
+    <wsdl:operation name="Send">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Kerberos KDC</wsdl:documentation>
+      <wsdl:input message="tns:SendHttpGetIn" />
+      <wsdl:output message="tns:SendHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Hash</wsdl:documentation>
+      <wsdl:input message="tns:SendWithHashHttpGetIn" />
+      <wsdl:output message="tns:SendWithHashHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With User and Password</wsdl:documentation>
+      <wsdl:input message="tns:SendWithUserHttpGetIn" />
+      <wsdl:output message="tns:SendWithUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketHttpGetIn" />
+      <wsdl:output message="tns:CancelTicketHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with Hash</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithHashHttpGetIn" />
+      <wsdl:output message="tns:CancelTicketWithHashHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with User and Password</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithUserHttpGetIn" />
+      <wsdl:output message="tns:CancelTicketWithUserHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceSendHttpPost">
+    <wsdl:operation name="Send">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Kerberos KDC</wsdl:documentation>
+      <wsdl:input message="tns:SendHttpPostIn" />
+      <wsdl:output message="tns:SendHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With Hash</wsdl:documentation>
+      <wsdl:input message="tns:SendWithHashHttpPostIn" />
+      <wsdl:output message="tns:SendWithHashHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Message SMS Platform IMP With User and Password</wsdl:documentation>
+      <wsdl:input message="tns:SendWithUserHttpPostIn" />
+      <wsdl:output message="tns:SendWithUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketHttpPostIn" />
+      <wsdl:output message="tns:CancelTicketHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with Hash</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithHashHttpPostIn" />
+      <wsdl:output message="tns:CancelTicketWithHashHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel Ticket Message SMS Platform IMP with User and Password</wsdl:documentation>
+      <wsdl:input message="tns:CancelTicketWithUserHttpPostIn" />
+      <wsdl:output message="tns:CancelTicketWithUserHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSendSoap" type="tns:ServiceSendSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Send">
+      <soap:operation soapAction="soa.inalambria.com/Send" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <soap:operation soapAction="soa.inalambria.com/SendWithHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <soap:operation soapAction="soa.inalambria.com/SendWithUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <soap:operation soapAction="soa.inalambria.com/CancelTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <soap:operation soapAction="soa.inalambria.com/CancelTicketWithHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <soap:operation soapAction="soa.inalambria.com/CancelTicketWithUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSendSoap12" type="tns:ServiceSendSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Send">
+      <soap12:operation soapAction="soa.inalambria.com/Send" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <soap12:operation soapAction="soa.inalambria.com/SendWithHash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <soap12:operation soapAction="soa.inalambria.com/SendWithUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <soap12:operation soapAction="soa.inalambria.com/CancelTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <soap12:operation soapAction="soa.inalambria.com/CancelTicketWithHash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <soap12:operation soapAction="soa.inalambria.com/CancelTicketWithUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSendHttpGet" type="tns:ServiceSendHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Send">
+      <http:operation location="/Send" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <http:operation location="/SendWithHash" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <http:operation location="/SendWithUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <http:operation location="/CancelTicket" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <http:operation location="/CancelTicketWithHash" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <http:operation location="/CancelTicketWithUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSendHttpPost" type="tns:ServiceSendHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Send">
+      <http:operation location="/Send" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithHash">
+      <http:operation location="/SendWithHash" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendWithUser">
+      <http:operation location="/SendWithUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicket">
+      <http:operation location="/CancelTicket" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithHash">
+      <http:operation location="/CancelTicketWithHash" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelTicketWithUser">
+      <http:operation location="/CancelTicketWithUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceSend">
+    <wsdl:port name="ServiceSendSoap" binding="tns:ServiceSendSoap">
+      <soap:address location="https://soa.inalambria.com/IMPWebServiceSend.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSendSoap12" binding="tns:ServiceSendSoap12">
+      <soap12:address location="https://soa.inalambria.com/IMPWebServiceSend.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSendHttpGet" binding="tns:ServiceSendHttpGet">
+      <http:address location="https://soa.inalambria.com/IMPWebServiceSend.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSendHttpPost" binding="tns:ServiceSendHttpPost">
+      <http:address location="https://soa.inalambria.com/IMPWebServiceSend.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

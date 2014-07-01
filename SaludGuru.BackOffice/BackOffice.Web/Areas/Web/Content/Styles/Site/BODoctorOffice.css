@@ -1,0 +1,81 @@
+.BOInfoOfficeWrapper{
+	width: 100%;
+	height: auto;
+	border: 1px solid #008000;
+	display: inline-block;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+}
+.BOInfoOfficeLabel{
+	display: inline-block;
+	font-size: 18px;
+	line-height: 16px;
+	margin: 14px 0px 14px 22px;
+}
+.BOInfoOfficeSubmenu{
+	display:block; 
+	border:1px solid grey;
+	width:90%;
+	height:auto;
+	margin-left:22px;
+}
+.BOInfoOfficeSubmenu ul li{
+	display:inline-block; 
+    border:1px solid black; 
+    height:28px; 
+    width:32%; 
+    line-height:18px; 
+    font-size:18px;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:0px;
+    margin:0px 0px 0px 6px;
+    text-align:center;
+    background-color:#ddff55;
+}
+.BOInfoOfficeSubmenu ul li a{
+    margin-top: 4px;
+    padding:0px;
+    vertical-align:middle;
+    font-size:16px;
+    line-height:16px;
+    display: block;
+    width:auto;
+    color:#333;
+}
+    .BOInfoOfficeSubmenu ul li a:hover {text-decoration:none;}
+    .BOInfoOfficeSubmenu ul li:hover {background-color:#eeffaa; cursor:pointer;}
+
+/************* LISTAS DE OFICINAS TRATAMIENTOS HORARIOS ************/
+
+.BOProfileTableWrapper {
+    border:1px solid black;
+    margin:0px 0px 0px -8px;
+    width:74%;
+    min-width:58%;
+}
+.BOProfileTableWrapper h3{
+    border:1px solid red; 
+    width:auto; 
+    margin:10px 0px 10px 14px;
+    font-size:20px;
+}
+#divGridOffice {
+    margin:14px;
+}
+
+.BOOfficeTableWrapper h3{
+    width:auto; 
+    margin:10px 0px 10px 14px;
+    font-size:18px;
+}
+
+/************* CONFIGURACION DE LA AGENDA ************/
+
+.BOEditDaySetUp li{
+    display:inline-block;
+    border:1px solid red;
+    vertical-align:middle;
+    margin-right:12px;
+}
