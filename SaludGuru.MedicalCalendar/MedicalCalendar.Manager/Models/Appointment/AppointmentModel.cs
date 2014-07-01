@@ -24,5 +24,8 @@ namespace MedicalCalendar.Manager.Models.Appointment
 
         public List<MedicalCalendar.Manager.Models.Patient.PatientModel> RelatedPatient { get; set; }
 
+        public string OfficePublicId { get; set; }
+        public string OfficeName { get; set; }
+
     }
 }

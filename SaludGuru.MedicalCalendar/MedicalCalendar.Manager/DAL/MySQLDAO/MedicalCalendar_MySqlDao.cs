@@ -363,40 +363,41 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             });
         }
 
-        public List<AppointmentModel> AppointmentList(string ProfilePublicId, int PageNumber, int RowCount, out int TotalRows)
+        public List<AppointmentModel> AppointmentList(string PatientPublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vPublicProfileId", ProfilePublicId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
-            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicId", PatientPublicId));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "AP_Appointment_SearchAppointmentAdmin",
+                CommandText = "AP_Appointment_GetByPatientId",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
 
             List<AppointmentModel> oReturnPatient = null;
-            TotalRows = 0;
 
             if (response.DataTableResult != null && response.DataTableResult.Rows.Count > 0)
             {
-                TotalRows = response.DataTableResult.Rows[0].Field<int>("TotalRows");
 
                 oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
                                   select new AppointmentModel
                                   {
-                                      CreateDate = pm.Field<DateTime>("CreateDate"),
-                                      RelatedPatient = new List<PatientModel>
-                                      {
-                                          new PatientModel()
-                                          {
-                                              PatientPublicId = pm.Field<string>("PatientPublicId")
-                                          },
-                                      },
+                                      AppointmentPublicId = pm.Field<string>("AppointmentPublicId"),
                                       Status = pm.Field<enumAppointmentStatus>("Status"),
+                                      StartDate = pm.Field<DateTime>("StartDate"),
+                                      EndDate = pm.Field<DateTime>("EndDate"),
+                                      CreateDate = pm.Field<DateTime>("CreateDate"),
+                                      AppointmentInfo = new List<AppointmentInfoModel>()
+                                      {
+                                          new AppointmentInfoModel()
+                                          {
+                                              Value = pm.Field<string>("StatusName"),
+                                          }
+                                      },
+                                      OfficePublicId = pm.Field<string>("OfficePublicId"),
+                                      OfficeName = pm.Field<string>("Name"),
                                   }).ToList();
             }
             return oReturnPatient;
