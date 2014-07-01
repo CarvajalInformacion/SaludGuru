@@ -37,13 +37,7 @@ namespace BackOffice.Models.General
             }
         }
 
-        public static SessionController.Models.Profile.Autorization.AutorizationModel CurrentUserAutorization
-        {
-            get
-            {
-                return UserAutorization.Where(x => x.Selected == true).FirstOrDefault();
-            }
-        }
+        public static SessionController.Models.Profile.Autorization.AutorizationModel CurrentUserAutorization { get { return UserAutorization.Where(x => x.Selected == true).FirstOrDefault(); } }
 
         public static bool UserIsAutorized { get { return (UserAutorization != null && UserAutorization.Count > 0); } }
     }

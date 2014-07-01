@@ -65,9 +65,7 @@ namespace BackOffice.Web.Controllers
             HeaderModel Model = new HeaderModel();
 
             //get autorized menus
-            Model.Menu = GetMenuPermisions(
-                SessionModel.UserAutorization.Where(x => x.Selected == true).FirstOrDefault().Role,
-                null);
+            Model.Menu = GetMenuPermisions(SessionModel.CurrentUserAutorization.Role, null);
 
             return PartialView(Model);
         }

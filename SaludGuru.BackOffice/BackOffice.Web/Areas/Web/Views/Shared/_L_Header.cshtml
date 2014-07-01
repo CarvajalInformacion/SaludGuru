@@ -11,22 +11,22 @@
                     {
                         DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
                     }
-                    @*<option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ChangeAutorizationProfile = ua.ProfilePublicId })">*@
-                    <option>
-                        <img src="@ua.ProfileImage" />
-                        <label>PANCHO @DoctorName</label>
-                        <label>PANCHO2 @ua.RoleName</label>
-                    </option>
-                    <option>
-                        <img src="@ua.ProfileImage" />
-                        <label>PANCHO @DoctorName</label>
-                        <label>PANCHO2 @ua.RoleName</label>
-                    </option>
-                    <option>
-                        <img src="@ua.ProfileImage" />
-                        <label>PANCHO @DoctorName</label>
-                        <label>PANCHO2 @ua.RoleName</label>
-                    </option>
+                    if (ua.Selected)
+                    {
+                        <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" selected="selected">
+                            <img src="@ua.ProfileImage" />
+                            <label>@DoctorName</label>
+                            <label>@ua.RoleName</label>
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })">
+                            <img src="@ua.ProfileImage" />
+                            <label>@DoctorName</label>
+                            <label>@ua.RoleName</label>
+                        </option>
+                    }
                 }
             </select>
         </div>
