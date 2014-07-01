@@ -67,6 +67,8 @@ namespace SaludGuruProfile.Manager.Interfaces
 
         OfficeModel OfficeGetFullAdmin(string OfficePublicId);
 
+        ProfileModel OfficeGetScheduleSettings(string ProfilePublicId);
+
         #endregion
 
         #region Autorization
