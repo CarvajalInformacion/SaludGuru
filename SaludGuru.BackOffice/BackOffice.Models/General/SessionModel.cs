@@ -48,3 +48,5 @@ namespace BackOffice.Models.General
         public static bool UserIsAutorized { get { return (UserAutorization != null && UserAutorization.Count > 0); } }
     }
 }
+
+

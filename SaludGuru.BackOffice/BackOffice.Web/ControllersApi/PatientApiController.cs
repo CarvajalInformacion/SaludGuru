@@ -13,7 +13,7 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public List<BackOffice.Models.Patient.PatientSearchModel> PatientSearch
             (string PublicProfileId, string SearchCriteria, int PageNumber, int RowCount)
-         {
+        {
             int oTotalCount;
             List<MedicalCalendar.Manager.Models.Patient.PatientModel> SearchPatient =
                 MedicalCalendar.Manager.Controller.Patient.PatientSearch
