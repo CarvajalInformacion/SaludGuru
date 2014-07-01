@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\AppointmentListModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\HeaderModel.cs" />
