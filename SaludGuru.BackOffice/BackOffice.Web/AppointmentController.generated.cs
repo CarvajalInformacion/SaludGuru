@@ -57,6 +57,12 @@ namespace BackOffice.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AppointmentList()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AppointmentController Actions { get { return MVC.Appointment; } }
@@ -85,6 +91,14 @@ namespace BackOffice.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_AppointmentList s_params_AppointmentList = new ActionParamsClass_AppointmentList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AppointmentList AppointmentListParams { get { return s_params_AppointmentList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AppointmentList
+        {
+            public readonly string PublicProfileId = "PublicProfileId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -116,13 +130,14 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void AppointmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void AppointmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PublicProfileId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult AppointmentList()
+        public override System.Web.Mvc.ActionResult AppointmentList(string PublicProfileId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
-            AppointmentListOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicProfileId", PublicProfileId);
+            AppointmentListOverride(callInfo, PublicProfileId);
             return callInfo;
         }
 

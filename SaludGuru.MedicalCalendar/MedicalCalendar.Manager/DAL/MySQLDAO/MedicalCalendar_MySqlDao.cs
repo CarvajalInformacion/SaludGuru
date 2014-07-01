@@ -388,14 +388,6 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                 oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
                                   select new AppointmentModel
                                   {
-                                      AppointmentInfo = new List<AppointmentInfoModel>()
-                                      {
-                                          new AppointmentInfoModel()
-                                          {
-                                              Value = pm.Field<string>("State"),
-                                              AppointmentInfoType = enumAppointmentInfoType.Category,
-                                          }
-                                      },
                                       CreateDate = pm.Field<DateTime>("CreateDate"),
                                       RelatedPatient = new List<PatientModel>
                                       {
@@ -404,6 +396,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                               PatientPublicId = pm.Field<string>("PatientPublicId")
                                           },
                                       },
+                                      Status = pm.Field<enumAppointmentStatus>("Status"),
                                   }).ToList();
             }
             return oReturnPatient;

@@ -111,14 +111,11 @@ function renderDayCalendar(DivId) {
             right: 'month,agendaWeek,agendaDay',
         },
         titleFormat: '\'Consultorío 1\'',
-        weekNumbers: false,
-        columnFormat: {
+        weekNumbers: false,        columnFormat: {
             month: 'dddd',
             week: 'dddd',
             day: 'dddd'
-        },
-        editable: true,
-        dayClick: function (date, jsEvent, view) {
+        },        editable: true,        dayClick: function (date, jsEvent, view) {
             alert(date);
         },
         eventClick: function (event, jsEvent, view) {
@@ -138,6 +135,59 @@ function renderDayCalendar(DivId) {
             element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             //element.addClass('claseEvento_1');
         }
+    });
+}
+
+//init appointment grid
+function AppointmentListGrid(vidDiv) {
+
+    //configure grid
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: $("#templateHeader").html() }],
+        pageable: true,
+        dataSource: {
+            pageSize: 2,
+            serverPaging: true,
+            schema: {
+                total: function (data) {
+                    if (data && data.length > 0) {
+                        return data[0].SearchProfileCount;
+                    }
+                    return 0;
+                }
+            },
+            transport: {
+                read: function (options) {
+                    var oProfilePublicId = $('#' + vidDiv + '-ProfilePublicId').val();
+                    $ajax({
+                        url: '/api/AppointmentApi?ProfilePublicId=' + oProfilePublicId + '&PageNumber=' + (new Number(options.data.page) - 1) + '&RowCount=' + options.data.pageSize,
+                        dataType: "json",
+                        success: function (result) {
+                            options.success(result);
+                        },
+                        error: function (result) {
+                            options.error(result);
+                        }
+                    });
+                }
+            },
+        },
+        columns: [{
+            field: "AppointmentId",
+            title: " ",
+            template: $("#templateName").html()
+        }, {
+            field: "CreateDate",
+            title: " ",
+        }, {
+            field: "Status",
+            title: " ",
+        }],
+    });
+
+    //add search button event
+    $('#' + vidDiv + '-Search').click(function () {
+        $('#' + vidDiv).getKendoGrid().dataSource.read();
     });
 }
 
