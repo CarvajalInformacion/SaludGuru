@@ -4,9 +4,10 @@
     @{string UrlAction = (Model.Profile == null) ?
             Url.Action(MVC.Profile.ActionNames.ProfileCreate, MVC.Profile.Name) :
             Url.Action(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
-    }
-    <form action="@UrlAction" method="post">
+    }    
+    <form action="@UrlAction" method="post">        
         <ul>
+            <h3>Datos del Perfil</h3>
             <li>
                 <label>Nombre</label>
                 <input id="Name" name="Name" value="@(Model.Profile==null?string.Empty:Model.Profile.Name)" type="text" />

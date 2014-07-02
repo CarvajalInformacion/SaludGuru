@@ -7,11 +7,16 @@
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
 }
-.BOInfoOfficeLabel{
+.BOInfoOfficeLabel, .BOCreateOfficeLabel{
 	display: inline-block;
 	font-size: 18px;
 	line-height: 16px;
-	margin: 14px 0px 14px 22px;
+}
+.BOInfoOfficeLabel{
+	margin:10px 0px 10px 14px;
+}
+.BOCreateOfficeLabel{
+	margin:0px 0px 0px 14px;
 }
 .BOInfoOfficeSubmenu{
 	display:block; 
@@ -69,7 +74,7 @@ border:none;
     margin:10px 0px 10px 14px;
     font-size:20px;
 }
-#divGridOffice {
+#divGridOffice, #divGridAutorization{
     margin:14px;
 }
 
