@@ -108,14 +108,12 @@
                     <label>Geolocalizacion</label>
                     <input id="Geolocation" name="Geolocation" value="@(CatInfo_GL == null ? string.Empty : CatInfo_GL.val)" type="text" />
                 </li>
+                <li class="BOButtonContainerLong">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="guardar" />
+                </li>
             </ul>
-            <div>
-                <!--hiden fields-->
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            </div>
-            <div class="BOButtonContainerLong">
-                <input class="BOButtons" type="submit" value="guardar" />
-            </div>
         </form>
     </div>
 </div>

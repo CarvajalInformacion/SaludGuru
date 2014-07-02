@@ -1,8 +1,10 @@
 .BOProfilesGeneralWrapper {
     display:block;
-    width:93%;
+    width:auto;
     height:auto;
-    border:1px solid black;
+
+border:none;
+
     margin:0px auto;
 }
 .BOProfileMenuWrapper, .BOProfileFormWrapper, .BOProfileTableWrapper{
@@ -15,7 +17,7 @@
         display: inline-block;
         padding-bottom:20px;
     }
-    .BOProfileFormWrapper {
+    .BOProfileFormWrapper, .BOProfileTableWrapper {
         border-top:2px solid #999;
         border-bottom:2px solid #999;
         border-left: 2px solid #999;

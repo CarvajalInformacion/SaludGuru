@@ -1,7 +1,8 @@
 .BOInfoOfficeWrapper{
 	width: 100%;
 	height: auto;
-	border: 1px solid #008000;
+	border-bottom: 1px solid #333;
+
 	display: inline-block;
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
@@ -14,10 +15,13 @@
 }
 .BOInfoOfficeSubmenu{
 	display:block; 
-	border:1px solid grey;
-	width:90%;
+
+border:none;
+	
+    width:90%;
 	height:auto;
 	margin-left:22px;
+    margin-bottom:-1px;
 }
 .BOInfoOfficeSubmenu ul li{
 	display:inline-block; 
@@ -50,13 +54,17 @@
 /************* LISTAS DE OFICINAS TRATAMIENTOS HORARIOS ************/
 
 .BOProfileTableWrapper {
-    border:1px solid black;
+
+border:none;
+
     margin:0px 0px 0px -8px;
     width:74%;
     min-width:58%;
 }
 .BOProfileTableWrapper h3{
-    border:1px solid red; 
+
+border:none; 
+    
     width:auto; 
     margin:10px 0px 10px 14px;
     font-size:20px;

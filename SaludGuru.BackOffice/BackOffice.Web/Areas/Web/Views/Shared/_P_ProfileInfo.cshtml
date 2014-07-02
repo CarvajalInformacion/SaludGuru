@@ -258,14 +258,11 @@
                     @(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)
                 </textarea>
             </li>
-            
-        </ul>
-        <div>
-            @*hiden fields*@
-        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-    </div>
-    <div>
-        <input type="submit" />
-    </div>
+            <li class="BOButtonContainerShort">
+                @*hiden fields*@
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input class="BOButtons" type="submit" value="guardar" />
+            </li>
+        </ul>        
     </form>
 </div>

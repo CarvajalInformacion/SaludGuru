@@ -1,6 +1,8 @@
 .BOButtonContainerLong {
     display:block;
-    border:1px solid red;
+
+border:none;
+    
     width:90%;
     height:38px;
     margin:10px auto;
@@ -14,7 +16,7 @@ border:none;
     height:38px;
     margin:10px auto;
 }
-.BOButtons {
+.BOButtons, .BOFormDataWrapper ul li input.BOButtons {
     display:block;
     float:right;
     border:1px solid #333;
@@ -30,7 +32,10 @@ border:none;
     box-shadow:#000 2px 2px 3px;
     vertical-align:top;
 }
-.BOButtons:hover {
+.BOFormDataWrapper ul li input.BOButtons {
+width:auto;
+}
+.BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover {
     background-color:#ddff55;
     color:#333;
 }

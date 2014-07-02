@@ -1,11 +1,15 @@
 .BOFormDataWrapper {
     display:block;
     width: auto;
-    border:1px solid black;
+
+border:none;
+
 }
 .BOFormDataWrapper ul{
     display:block;
-    border:1px solid blue;
+
+border:none;
+
     margin:22px 0px 0px 80px;
     width:72%;
     min-width:348px;
@@ -15,7 +19,9 @@
     display:block;
     padding:10px 14px;
     margin:0px;
-    border:1px solid red;
+
+border:none;
+
 }
 .BOFormDataWrapper ul li label{
     border:1px solid #999;
