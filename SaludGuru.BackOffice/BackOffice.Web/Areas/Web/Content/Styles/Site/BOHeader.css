@@ -12,21 +12,39 @@ border:none;
 .profilesListWrapper {
     display:inline-block;
 border:none;
-    width:28%;
+    width:22%;
     height:34px;
     vertical-align:top;
 }
     .profilesListWrapper select{
-        border:1px solid yellow;
+        border-top:none;
+        border-bottom:1px solid #999;
         width:100%;
-        height:34px;
-        color:#333;
-        font-size:12px;
+        height:33px;
+        font-family:"MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+        font-size:16px;
+        padding:4px 12px;
+        color:#666;
+        background-image:url('/Areas/Web/Content/Images/BOTopBar4.png');
+        background-repeat:repeat-x;
     }
-    .profilesListWrapper select option{
-        display:block;
-        background-color:red;
-    }
+        .profilesListWrapper select option.option1, 
+        .profilesListWrapper select option.option2, 
+        .profilesListWrapper select option.option3,
+        .profilesListWrapper select option.option4{
+            display:block;
+            width:auto;
+            height:32px;
+            font-family:"MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-size:16px;
+            padding:4px 12px;
+            color:#666;
+        }
+        .profilesListWrapper select option.option1 {background-color:#ffb380;}
+        .profilesListWrapper select option.option2 {background-color:#55ddff;}
+        .profilesListWrapper select option.option3 {background-color:#ffaacc;}
+        .profilesListWrapper select option.option4 {background-color:#80ffb3;}
+        .profilesListWrapper select option.option5 {background-color:#deee9c;}
     .profilesListWrapper select option:hover{
         display:block;
         background-color:#808080;
@@ -67,7 +85,7 @@ border:none;
     .notificationsWrapper{
         display:inline-block;
 border:none;
-        width:66px;
+        width:68px;
         height:34px;
         margin:0px -6px 0px 0px;
         vertical-align:top;
@@ -120,16 +138,22 @@ background-position:-41px -6px;
         .userOptionsWrapper label{
             display:inline-block;
 border:none;
-            margin:10px 0px 0px 0px;
+            margin:1px 0px 0px 0px;
             vertical-align:top;
             color:#4d4d4d;
             font-size:14px;
-            width:175px;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-line-height: 14px;
+            width:200px;
+            height:32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height:32px;
+            padding: 0px 0px 0px 8px;
+            cursor:pointer;
         }
+.userOptionsWrapper label:hover {
+    background-color:#f2f2f2;
+}
         .userOptionsWrapper img{
 border:none;
             width:28px;

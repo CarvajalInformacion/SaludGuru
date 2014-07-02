@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\ADO.dll</HintPath>
     </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>
@@ -80,6 +84,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SaludGuruProfile.Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuruProfile.Manager\developer\SaludGuruProfile.Manager.dll</HintPath>
@@ -94,9 +102,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -104,13 +112,37 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -129,48 +161,15 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="T4MVCExtensions">
       <HintPath>..\packages\T4MVCExtensions.3.9.1\lib\net40\T4MVCExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +296,27 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\jquery-ui.css" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.structure.css" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.theme.css" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.structure.min.css" />
+    <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
@@ -310,8 +330,6 @@
     <Content Include="Areas\Web\Content\Styles\Site\BOPerfilDoctor.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOPerfilPatient.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOReset.css" />
-    <Content Include="Areas\Web\Scripts\Site\AppointmentScripts.js" />
-    <Content Include="Areas\Web\Scripts\Site\General.js" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Black\editor.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Black\imagebrowser.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Black\indeterminate.gif" />
@@ -479,21 +497,6 @@
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\slider-v.gif" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\jquery-ui.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.accordion.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.all.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.autocomplete.css" />
@@ -509,7 +512,6 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.slider.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.spinner.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.theme.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\jquery.ui.tooltip.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -525,7 +527,6 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\images\ui-icons_454545_256x240.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\images\ui-icons_888888_256x240.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery-ui.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.accordion.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.autocomplete.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.button.min.css" />
@@ -539,100 +540,22 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.spinner.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
-    <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="Areas\Web\Scripts\Site\PatientScripts.js" />
-    <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
-    <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
-    <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
-    <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
-    <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Areas\Web\Views\Profile\OfficeUpsert.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Areas\Web\Content\Styles\fullcalendar.css" />
-    <Content Include="Areas\Web\Content\Styles\fullcalendar.print.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
-    <Content Include="Rsx-BackOffice.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Rsx-SettingsConfig.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Mobile\Views\web.config" />
-    <Content Include="Areas\Web\Views\web.config" />
-    <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.eot" />
-    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.otf" />
-    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.ttf" />
-    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.woff" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.eot" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.otf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.ttf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.woff" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCondIt.otf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.eot" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.otf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.ttf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.woff" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-CondIt.otf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.eot" />
-    <Content Include="Areas\Web\Content\Fonts\MYRIADPRO-REGULAR.OTF" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.ttf" />
-    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.woff" />
-    <None Include="Areas\Web\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Areas\Web\Scripts\jquery-1.10.2.js" />
-    <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Web\Scripts\fullcalendar\gcal.js" />
+    <None Include="Areas\Web\Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Areas\Web\Scripts\jquery-2.1.1.js" />
+    <Content Include="Areas\Web\Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Areas\Web\Scripts\jquery-ui-1.11.0.js" />
+    <Content Include="Areas\Web\Scripts\jquery-ui-1.11.0.min.js" />
     <None Include="Areas\Web\Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.min.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Areas\Web\Scripts\modernizr-2.6.2.js" />
-    <Content Include="Areas\Web\Scripts\respond.js" />
-    <Content Include="Areas\Web\Scripts\respond.min.js" />
-    <Content Include="Areas\Web\Scripts\_references.js" />
-    <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Insurance\InsuranceList.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\ProfileSearch.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\ProfileCreate.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\SpecialtyProfileList.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\InsuranceProfileList.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\ProfileEdit.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_P_ProfileMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\ProfileEditImage.cshtml" />
-    <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.woff" />
-    <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.ttf" />
-    <Content Include="Areas\Web\Views\Profile\OfficeList.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\OfficeTreatmentList.cshtml" />
-    <Content Include="Areas\Web\Views\Insurance\InsuranceUpsert.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\OfficeScheduleAvailableList.cshtml" />
-    <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
-    <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
-    <Content Include="Areas\Web\Views\Patient\Search.cshtml" />
-    <Content Include="Areas\Web\Views\Patient\PatientUpsert.cshtml" />
-    <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
-    <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
-    <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
-    <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Appointment\AppointmentList.cshtml" />
-    <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.af.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\cultures\kendo.culture.am-ET.min.js" />
@@ -1054,86 +977,168 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.validator.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.userevents.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.upload.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.treeview.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.tooltip.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.timepicker.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.tabstrip.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.splitter.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.sortable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.slider.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.selectable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.view.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.recurrence.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.monthview.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.dayview.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.agendaview.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.router.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.resizable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.reorderable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.progressbar.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.popup.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.panelbar.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.pager.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.numerictextbox.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.notification.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.multiselect.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.view.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.shim.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.scroller.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.popover.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.pane.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.loader.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.application.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.actionsheet.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.menu.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.maskedtextbox.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.listview.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.list.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.imagebrowser.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.groupable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.grid.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.fx.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.filtermenu.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.editor.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.editable.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.dropdownlist.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.draganddrop.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.datetimepicker.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.datepicker.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.xml.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.signalr.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.odata.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.core.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.combobox.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.columnmenu.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.colorpicker.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.calendar.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.button.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
-    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
-    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.js" />
-    <Content Include="Areas\Web\Scripts\fullcalendar\fullcalendar.min.js" />
-    <Content Include="Areas\Web\Scripts\fullcalendar\gcal.js" />
+    <Content Include="Areas\Web\Scripts\modernizr-2.7.2.js" />
     <Content Include="Areas\Web\Scripts\moment\moment-with-langs.js" />
     <Content Include="Areas\Web\Scripts\moment\moment-with-langs.min.js" />
     <Content Include="Areas\Web\Scripts\moment\moment.js" />
     <Content Include="Areas\Web\Scripts\moment\moment.min.js" />
+    <Content Include="Areas\Web\Scripts\respond.js" />
+    <Content Include="Areas\Web\Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Areas\Web\Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Areas\Web\Scripts\respond.min.js" />
+    <Content Include="Areas\Web\Scripts\Site\AppointmentScripts.js" />
+    <Content Include="Areas\Web\Scripts\Site\General.js" />
+    <Content Include="Areas\Web\Scripts\Site\InsuranceScripts.js" />
+    <Content Include="Areas\Web\Scripts\Site\PatientScripts.js" />
+    <Content Include="Areas\Web\Scripts\Site\ProfileScripts.js" />
+    <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
+    <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
+    <None Include="Areas\Web\Scripts\_references.js" />
+    <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Views\Profile\OfficeUpsert.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.css" />
+    <Content Include="Areas\Web\Content\Styles\fullcalendar.print.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Rsx-BackOffice.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Rsx-SettingsConfig.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Mobile\Views\web.config" />
+    <Content Include="Areas\Web\Views\web.config" />
+    <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-CondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MYRIADPRO-REGULAR.OTF" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.woff" />
+    <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_PrincipalMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Insurance\InsuranceList.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfileSearch.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfileCreate.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\SpecialtyProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\InsuranceProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfileEdit.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfileEditImage.cshtml" />
+    <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.woff" />
+    <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.ttf" />
+    <Content Include="Areas\Web\Views\Profile\OfficeList.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileOfficeMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\OfficeTreatmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Insurance\InsuranceUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\OfficeScheduleAvailableList.cshtml" />
+    <Content Include="Areas\Web\Views\Specialty\SpecialtyList.cshtml" />
+    <Content Include="Areas\Web\Views\Specialty\SpecialtyUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\Search.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\PatientUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Appointment\Day.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\AutorizationProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Treatment\TreatmentUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
+    <Content Include="Areas\Web\Views\Appointment\AppointmentList.cshtml" />
+    <Content Include="Areas\Web\Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.button.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.calendar.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.colorpicker.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.columnmenu.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.combobox.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.core.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.odata.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.signalr.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.data.xml.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.datepicker.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.datetimepicker.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.draganddrop.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.dropdownlist.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.editable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.editor.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.filtermenu.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.fx.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.grid.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.groupable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.imagebrowser.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.list.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.listview.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.maskedtextbox.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.menu.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.actionsheet.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.application.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.loader.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.pane.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.popover.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.scroller.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.shim.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.mobile.view.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.multiselect.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.notification.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.numerictextbox.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.pager.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.panelbar.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.popup.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.progressbar.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.reorderable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.resizable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.router.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.agendaview.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.dayview.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.monthview.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.recurrence.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.scheduler.view.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.selectable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.slider.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.sortable.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.splitter.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.tabstrip.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.timepicker.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.tooltip.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.treeview.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.upload.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.userevents.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.validator.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
+    <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
+    <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </Content>
     <None Include="T4MVC.tt.settings.xml" />
-    <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.js" />
-    <Content Include="Areas\Web\Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1143,7 +1148,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\Web\Scripts\jquery-1.10.2.min.map" />
     <Content Include="Areas\Web\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Web\Views\Home\Index.cshtml" />
     <Content Include="Areas\Web\Views\Home\Dashboard.cshtml" />

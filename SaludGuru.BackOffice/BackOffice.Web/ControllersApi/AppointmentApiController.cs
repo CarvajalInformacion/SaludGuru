@@ -18,7 +18,7 @@ namespace BackOffice.Web.ControllersApi
                 (
                     PatientPublicId
                 );
-            if(ListAppointment != null && ListAppointment.Count > 0)
+            if (ListAppointment != null && ListAppointment.Count > 0)
             {
                 List<BackOffice.Models.Appointment.AppointmentListModel> oReturn = ListAppointment.
                     Select(x => new BackOffice.Models.Appointment.AppointmentListModel()
@@ -29,7 +29,7 @@ namespace BackOffice.Web.ControllersApi
                         EndDate = x.EndDate.ToString(),
                         CreateDate = x.CreateDate.ToString(),
                         OfficePublicId = x.OfficePublicId,
-                        OfficeName = x.OfficeName,      
+                        OfficeName = x.OfficeName,
                     }).ToList();
 
                 return oReturn;

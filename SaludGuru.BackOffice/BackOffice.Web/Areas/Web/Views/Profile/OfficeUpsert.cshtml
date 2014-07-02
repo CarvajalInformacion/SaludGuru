@@ -21,9 +21,11 @@
     }
 
     <div class="BOFormDataWrapper">
-        <label class="BOInfoOfficeLabel">Crear Nueva Oficina</label>
         <form action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
             <ul>
+
+                    <h3 class="BOCreateOfficeLabel">Crear Nueva Oficina</h3>
+
                 <li>
                     <label>Nombre</label>
                     <input id="Name" name="Name" value="@(Model.CurrentOffice == null ? string.Empty : Model.CurrentOffice.Name)" type="text" />
