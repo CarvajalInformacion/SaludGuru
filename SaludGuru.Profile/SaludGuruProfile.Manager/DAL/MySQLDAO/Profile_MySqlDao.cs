@@ -1018,15 +1018,15 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                      group of by
                                      new
                                      {
-                                         OfficePublicId = response.DataTableResult.Rows[0].Field<string>("OfficePublicId"),
-                                         Name = response.DataTableResult.Rows[0].Field<string>("OfficeName"),
-                                         IsDefault = response.DataTableResult.Rows[0].Field<UInt64>("IsDefault") == 1 ? true : false,
-                                         CityId = response.DataTableResult.Rows[0].Field<int>("CityId"),
-                                         CityName = response.DataTableResult.Rows[0].Field<string>("CityName"),
-                                         StateId = response.DataTableResult.Rows[0].Field<int>("StateId"),
-                                         StateName = response.DataTableResult.Rows[0].Field<string>("StateName"),
-                                         CountryId = response.DataTableResult.Rows[0].Field<int>("CountryId"),
-                                         CountryName = response.DataTableResult.Rows[0].Field<string>("CountryName"),
+                                         OfficePublicId = of.Field<string>("OfficePublicId"),
+                                         Name = of.Field<string>("OfficeName"),
+                                         IsDefault = of.Field<UInt64>("IsDefault") == 1 ? true : false,
+                                         CityId = of.Field<int>("CityId"),
+                                         CityName = of.Field<string>("CityName"),
+                                         StateId = of.Field<int>("StateId"),
+                                         StateName = of.Field<string>("StateName"),
+                                         CountryId = of.Field<int>("CountryId"),
+                                         CountryName = of.Field<string>("CountryName"),
                                      } into ofg
                                      select new OfficeModel()
                                      {
