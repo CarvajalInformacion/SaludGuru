@@ -989,6 +989,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
+        {
+            return null;
+        }
+
         #endregion
 
         #region Autorization
