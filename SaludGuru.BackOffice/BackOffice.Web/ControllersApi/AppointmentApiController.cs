@@ -11,33 +11,36 @@ namespace BackOffice.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public List<BackOffice.Models.Appointment.AppointmentListModel> AppointmentList
-            (string PatientPublicId)
+            (string ProfilePublicId, int PageNumber, int RowCount)
         {
+            int oTotalRowCount;
             List<MedicalCalendar.Manager.Models.Appointment.AppointmentModel> ListAppointment =
                 MedicalCalendar.Manager.Controller.Appointment.AppointmentList
                 (
-                    PatientPublicId
+                    ProfilePublicId,
+                    PageNumber,
+                    RowCount,
+                    out oTotalRowCount
                 );
             if(ListAppointment != null && ListAppointment.Count > 0)
             {
                 List<BackOffice.Models.Appointment.AppointmentListModel> oReturn = ListAppointment.
                     Select(x => new BackOffice.Models.Appointment.AppointmentListModel()
                     {
-                        AppointmentPublicId = x.AppointmentPublicId,
-                        //Status = x.Status,
-                        StartDate = x.StartDate.ToString(),
-                        EndDate = x.EndDate.ToString(),
+                        SearchAppointmentCount = oTotalRowCount,
                         CreateDate = x.CreateDate.ToString(),
-                        OfficePublicId = x.OfficePublicId,
-                        OfficeName = x.OfficeName,      
+                        Status = x.AppointmentInfo.
+                        Where(y => y.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category).
+                        Select(y => y.Value).
+                        DefaultIfEmpty(string.Empty).FirstOrDefault(),                        
                     }).ToList();
 
-                return oReturn;
-            }
-            else
-            {
-                return new List<Models.Appointment.AppointmentListModel>();
-            }
-        }
+    //            return oReturn;
+    //        }
+    //        else
+    //        {
+    //            return new List<Models.Appointment.AppointmentListModel>();
+    //        }
+    //    }
     }
 }
