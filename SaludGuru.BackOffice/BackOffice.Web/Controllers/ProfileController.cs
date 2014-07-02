@@ -376,7 +376,7 @@ namespace BackOffice.Web.Controllers
             //modelToCreate.ProfileRoleId = ProfilePublicId;
             modelToCreate.Role = RoleId;
             modelToCreate.ProfilePublicId = ProfilePublicId;
-            modelToCreate.UserEmail = Request["UserEmail"];
+            modelToCreate.UserEmail = Request["UserEmail"].Trim();
 
             result = SaludGuruProfile.Manager.Controller.Profile.ProfileAutorizationUpsert(modelToCreate);
 
