@@ -991,7 +991,143 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
         public ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
         {
-            return null;
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Office_GetScheduleSettings",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+                    Name = response.DataTableResult.Rows[0].Field<string>("ProfileName"),
+                    LastName = response.DataTableResult.Rows[0].Field<string>("ProfileLastName"),
+
+                    RelatedOffice = (from of in response.DataTableResult.AsEnumerable()
+                                     where !string.IsNullOrEmpty(of.Field<string>("OfficePublicId"))
+                                     group of by
+                                     new
+                                     {
+                                         OfficePublicId = response.DataTableResult.Rows[0].Field<string>("OfficePublicId"),
+                                         Name = response.DataTableResult.Rows[0].Field<string>("OfficeName"),
+                                         IsDefault = response.DataTableResult.Rows[0].Field<UInt64>("IsDefault") == 1 ? true : false,
+                                         CityId = response.DataTableResult.Rows[0].Field<int>("CityId"),
+                                         CityName = response.DataTableResult.Rows[0].Field<string>("CityName"),
+                                         StateId = response.DataTableResult.Rows[0].Field<int>("StateId"),
+                                         StateName = response.DataTableResult.Rows[0].Field<string>("StateName"),
+                                         CountryId = response.DataTableResult.Rows[0].Field<int>("CountryId"),
+                                         CountryName = response.DataTableResult.Rows[0].Field<string>("CountryName"),
+                                     } into ofg
+                                     select new OfficeModel()
+                                     {
+                                         OfficePublicId = ofg.Key.OfficePublicId,
+                                         Name = ofg.Key.Name,
+                                         IsDefault = ofg.Key.IsDefault,
+                                         City = new CityModel()
+                                         {
+                                             CityId = ofg.Key.CityId,
+                                             CityName = ofg.Key.CityName,
+                                             StateId = ofg.Key.StateId,
+                                             StateName = ofg.Key.StateName,
+                                             CountryId = ofg.Key.CountryId,
+                                             CountryName = ofg.Key.CountryName,
+                                         },
+
+                                         OfficeInfo = (from oi in response.DataTableResult.AsEnumerable()
+                                                       where oi.Field<int?>("OfficeInfoId") != null &&
+                                                             oi.Field<string>("OfficePublicId") == ofg.Key.OfficePublicId
+                                                       group oi by
+                                                       new
+                                                       {
+                                                           OfficeInfoId = oi.Field<int>("OfficeInfoId"),
+                                                           OfficeInfoType = oi.Field<int>("OfficeInfoType"),
+                                                           Value = oi.Field<string>("OfficeInfoValue"),
+                                                           LargeValue = oi.Field<string>("OfficeInfoLargeValue"),
+                                                       } into oig
+                                                       select new OfficeInfoModel()
+                                                       {
+                                                           OfficeInfoId = oig.Key.OfficeInfoId,
+                                                           OfficeInfoType = (enumOfficeInfoType)oig.Key.OfficeInfoType,
+                                                           Value = oig.Key.Value,
+                                                           LargeValue = oig.Key.LargeValue
+                                                       }).ToList(),
+
+                                         RelatedTreatment = (from rt in response.DataTableResult.AsEnumerable()
+                                                             where rt.Field<int?>("CategoryId") != null &&
+                                                                   rt.Field<string>("OfficePublicId") == ofg.Key.OfficePublicId &&
+                                                                   rt.Field<int>("CategoryType") == (int)enumCategoryType.Treatment &&
+                                                                   rt.Field<int>("CategoryInfoType") == (int)enumOfficeCategoryInfoType.IsDefault
+                                                             group rt by
+                                                             new
+                                                             {
+                                                                 CategoryId = rt.Field<int>("CategoryId"),
+                                                                 Name = rt.Field<string>("CategoryName"),
+                                                                 IsDefault = rt.Field<string>("OfficeCategoryInfoValue")
+                                                             } into rtg
+                                                             select new TreatmentOfficeModel()
+                                                             {
+                                                                 CategoryId = rtg.Key.CategoryId,
+                                                                 Name = rtg.Key.Name,
+                                                                 IsDefault = !string.IsNullOrEmpty(rtg.Key.IsDefault) &&
+                                                                       rtg.Key.IsDefault.ToLower() == "true" ? true : false,
+
+                                                                 TreatmentOfficeInfo = (from rti in response.DataTableResult.AsEnumerable()
+                                                                                        where rti.Field<int?>("OfficeCategoryInfoId") != null &&
+                                                                                              rti.Field<string>("OfficePublicId") == ofg.Key.OfficePublicId &&
+                                                                                              rti.Field<int>("CategoryType") == (int)enumCategoryType.Treatment &&
+                                                                                              rti.Field<int>("CategoryId") == rtg.Key.CategoryId
+                                                                                        group rti by
+                                                                                        new
+                                                                                        {
+                                                                                            CategoryInfoId = rti.Field<int>("OfficeCategoryInfoId"),
+                                                                                            CategoryInfoType = rti.Field<int>("CategoryInfoType"),
+                                                                                            Value = rti.Field<string>("OfficeCategoryInfoValue"),
+                                                                                            LargeValue = rti.Field<string>("OfficeCategoryInfoLargeValue"),
+                                                                                        } into rtig
+                                                                                        select new TreatmentOfficeInfoModel()
+                                                                                        {
+                                                                                            CategoryInfoId = rtig.Key.CategoryInfoId,
+                                                                                            OfficeCategoryInfoType = (enumOfficeCategoryInfoType)rtig.Key.CategoryInfoType,
+                                                                                            Value = rtig.Key.Value,
+                                                                                            LargeValue = rtig.Key.LargeValue,
+                                                                                        }).ToList(),
+                                                             }).ToList(),
+
+                                         ScheduleAvailable = (from sha in response.DataTableResult.AsEnumerable()
+                                                              where sha.Field<int?>("ScheduleAvailableId") != null &&
+                                                                    sha.Field<string>("OfficePublicId") == ofg.Key.OfficePublicId
+                                                              group sha by
+                                                              new
+                                                              {
+                                                                  ScheduleAvailableId = sha.Field<int>("ScheduleAvailableId"),
+                                                                  Day = sha.Field<SByte>("Day"),
+                                                                  StartTime = sha.Field<TimeSpan>("StartTime"),
+                                                                  EndTime = sha.Field<TimeSpan>("EndTime"),
+                                                              } into shag
+                                                              select new ScheduleAvailableModel()
+                                                              {
+                                                                  ScheduleAvailableId = shag.Key.ScheduleAvailableId,
+                                                                  Day = (DayOfWeek)shag.Key.Day,
+                                                                  StartTime = shag.Key.StartTime,
+                                                                  EndTime = shag.Key.EndTime,
+                                                              }).ToList(),
+
+                                     }).ToList(),
+
+                };
+            }
+
+            return oReturn;
         }
 
         #endregion
