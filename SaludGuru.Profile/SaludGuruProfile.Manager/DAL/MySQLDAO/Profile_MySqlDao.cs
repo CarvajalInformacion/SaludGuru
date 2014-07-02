@@ -1196,7 +1196,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                 ProfileName = au.Field<string>("Name"),
                                 ProfileLastName = au.Field<string>("LastName"),
                                 ProfileImage = au.Field<string>("ImageProfile"),
-                                ProfileGender = au.Field<bool?>("Gender"),
+                                ProfileGender = au.Field<string>("Gender") == "true" ? true : false,
                             }).ToList();
             }
             return oRetorno;
