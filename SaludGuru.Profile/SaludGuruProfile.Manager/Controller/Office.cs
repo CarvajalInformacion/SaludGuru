@@ -1,4 +1,5 @@
 ﻿using SaludGuruProfile.Manager.Models.Office;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,11 @@ namespace SaludGuruProfile.Manager.Controller
             });
 
             return oOfficePublicId;
+        }
+
+        public static ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
+        {
+            return DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettings(ProfilePublicId);
         }
 
         #endregion

@@ -15,7 +15,7 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult AppointmentList(string PublicProfileId)
+        public virtual ActionResult AppointmentList(string PatientPublicId)
         {
             return View();
         }

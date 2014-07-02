@@ -9,10 +9,13 @@ namespace BackOffice.Models.Appointment
 {
     public class AppointmentListModel
     {
-        public int SearchAppointmentCount { get; set; }
-
-        public string PatientPublicId { get; set; }
+        public string AppointmentPublicId { get; set; }
         public string Status { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
         public string CreateDate { get; set; }
+        public string StatusName { get; set; }
+        public string OfficePublicId { get; set; }
+        public string OfficeName { get; set; }
     }
 }
