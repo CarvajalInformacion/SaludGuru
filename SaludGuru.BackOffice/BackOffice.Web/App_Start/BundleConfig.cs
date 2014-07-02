@@ -14,7 +14,7 @@ namespace BackOffice.Web
 
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
                             "~/Areas/Web/Scripts/jquery-{version}.js",
-                            "~/Areas/Web/Scripts/jquery-ui-1.10.4.js"));
+                            "~/Areas/Web/Scripts/jquery-ui-{version}.js"));
 
                 bundles.Add(new ScriptBundle("~/" + BackOffice.Models.General.Constants.C_WebAreaName + "/bundles/jqueryval").Include(
                             "~/Areas/Web/Scripts/jquery.validate*"));

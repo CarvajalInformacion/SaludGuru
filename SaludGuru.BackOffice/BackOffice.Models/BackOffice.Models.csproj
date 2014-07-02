@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment\AppointmentListModel.cs" />
+    <Compile Include="Appointment\SchedulingModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\HeaderModel.cs" />

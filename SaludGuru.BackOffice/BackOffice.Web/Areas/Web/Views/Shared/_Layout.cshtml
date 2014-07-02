@@ -41,22 +41,10 @@
     @*Render inline site scripts*@
     @RenderSection("inlinescripts", required: false)
 
-
     <script type="text/javascript">
-
-    $(document).ready(function () {
-        $(".admin").hover(function () {
-            $(".subMenuAdministrar").fadeIn();
-            $(".subMenuAgenda").fadeOut();
+        $(document).ready(function () {
+            InitGlobalPagesControls();
         });
-        $(".agenda").hover(function () {
-            $(".subMenuAgenda").fadeIn();
-            $(".subMenuAdministrar").fadeOut();
-        });
-
-
-    });
-
     </script>
 
 </body>

@@ -2,33 +2,53 @@
 <div class="headerMainWrapper">
     <div class="headerTopWrapper">
         <!--render autorized profiles-->
-        <div class="profilesListWrapper">
-            <select onchange="javascript: Header_ChangeProfile(this);">
-                @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
-                {
-                    string DoctorName = string.Empty;
-                    if (!string.IsNullOrEmpty(ua.ProfileName))
+        <div class="profilesListWrapper" style="left:50px;">
+            @{
+                string SelDrShowName = string.Empty, selDoctorImageUrl = string.Empty;
+                <select id="ddAutorizationProfiles">
+
+                    @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
                     {
-                        DoctorName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
-                    }
-                    if (ua.Selected)
-                    {
-                        <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" selected="selected">
-                            <img src="@ua.ProfileImage" />
-                            <label>@DoctorName</label>
-                            <label>@ua.RoleName</label>
+                        //get doctor name
+                        string DrShowName = string.Empty;
+                        if (!string.IsNullOrEmpty(ua.ProfileName))
+                        {
+                            DrShowName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
+                        }
+                        if (!string.IsNullOrEmpty(DrShowName))
+                        {
+                            DrShowName += " - ";
+                        }
+                        DrShowName += ua.RoleName;
+
+                        //get doctor image url
+                        string DoctorImageUrl = ua.ProfileImage;
+                        if (string.IsNullOrEmpty(DoctorImageUrl))
+                        {
+                            DoctorImageUrl = "https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg";
+                        }
+
+                        string strSelected = string.Empty;
+                        if (ua.Selected)
+                        {
+                            SelDrShowName = DrShowName;
+                            selDoctorImageUrl = DoctorImageUrl;
+                            strSelected = "selected='selected'";
+                        }
+                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })"
+                                data-style="background-image: url(&apos;@(DoctorImageUrl)&apos;);">
+                            @DrShowName
                         </option>
                     }
-                    else
-                    {
-                        <option value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })">
-                            <img src="@ua.ProfileImage" />
-                            <label>@DoctorName</label>
-                            <label>@ua.RoleName</label>
-                        </option>
-                    }
-                }
-            </select>
+                </select>
+                <div id="templateAutorization" style="display:none;">
+                    <div id="SelAutorization">
+                        <span style="background-image: url('@(selDoctorImageUrl)');"></span>
+                        @SelDrShowName
+                    </div>
+                </div>
+
+            }
         </div>
         <!--render search box-->
         <div class="searchBox">
