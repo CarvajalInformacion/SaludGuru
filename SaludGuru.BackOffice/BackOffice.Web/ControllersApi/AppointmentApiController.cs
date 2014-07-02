@@ -11,28 +11,25 @@ namespace BackOffice.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public List<BackOffice.Models.Appointment.AppointmentListModel> AppointmentList
-            (string ProfilePublicId, int PageNumber, int RowCount)
+            (string PatientPublicId)
         {
-            int oTotalRowCount;
             List<MedicalCalendar.Manager.Models.Appointment.AppointmentModel> ListAppointment =
                 MedicalCalendar.Manager.Controller.Appointment.AppointmentList
                 (
-                    ProfilePublicId,
-                    PageNumber,
-                    RowCount,
-                    out oTotalRowCount
+                    PatientPublicId
                 );
             if(ListAppointment != null && ListAppointment.Count > 0)
             {
                 List<BackOffice.Models.Appointment.AppointmentListModel> oReturn = ListAppointment.
                     Select(x => new BackOffice.Models.Appointment.AppointmentListModel()
                     {
-                        SearchAppointmentCount = oTotalRowCount,
+                        AppointmentPublicId = x.AppointmentPublicId,
+                        //Status = x.Status,
+                        StartDate = x.StartDate.ToString(),
+                        EndDate = x.EndDate.ToString(),
                         CreateDate = x.CreateDate.ToString(),
-                        Status = x.AppointmentInfo.
-                        Where(y => y.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category).
-                        Select(y => y.Value).
-                        DefaultIfEmpty(string.Empty).FirstOrDefault(),                        
+                        OfficePublicId = x.OfficePublicId,
+                        OfficeName = x.OfficeName,      
                     }).ToList();
 
                 return oReturn;

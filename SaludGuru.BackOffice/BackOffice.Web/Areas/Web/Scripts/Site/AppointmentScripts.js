@@ -111,11 +111,14 @@ function renderDayCalendar(DivId) {
             right: 'month,agendaWeek,agendaDay',
         },
         titleFormat: '\'Consultorío 1\'',
-        weekNumbers: false,        columnFormat: {
+        weekNumbers: false,
+        columnFormat: {
             month: 'dddd',
             week: 'dddd',
             day: 'dddd'
-        },        editable: true,        dayClick: function (date, jsEvent, view) {
+        },
+        editable: true,
+        dayClick: function (date, jsEvent, view) {
             alert(date);
         },
         eventClick: function (event, jsEvent, view) {
