@@ -17,9 +17,7 @@ namespace MedicalCalendar.Manager.Controller
 
         public static List<PatientModel> PatientSearch(string ProfilePublicId, string SearchCriteria, int PageNumber, int RowCount, out int TotalRows)
         {
-            List<PatientModel> oReturn = MedicalCalendarDataController.Instance.PatientSearch(ProfilePublicId, SearchCriteria, PageNumber, RowCount, out TotalRows);
-
-            return oReturn;
+            return MedicalCalendarDataController.Instance.PatientSearch(ProfilePublicId, SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
         public static string UpsertPatientInfo(PatientModel PatientToUpsert, string ProfilePublicId, string UserPublicId)

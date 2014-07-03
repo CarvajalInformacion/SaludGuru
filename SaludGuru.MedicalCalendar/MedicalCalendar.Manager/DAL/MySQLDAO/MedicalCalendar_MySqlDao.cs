@@ -223,29 +223,38 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                 TotalRows = response.DataTableResult.Rows[0].Field<int>("TotalRows");
 
                 oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
-                                  select new PatientModel
+                                  where !string.IsNullOrEmpty(pm.Field<string>("PatientPublicId"))
+                                  group pm by
+                                  new
                                   {
                                       PatientPublicId = pm.Field<string>("PatientPublicId"),
                                       Name = pm.Field<string>("Name"),
                                       LastName = pm.Field<string>("LastName"),
-                                      PatientInfo = new List<PatientInfoModel>() 
-                                      {
-                                          new PatientInfoModel()
-                                          {
-                                              Value = pm.Field<string>("Identification"),
-                                              PatientInfoType = enumPatientInfoType.IdentificationNumber
-                                          },
-                                          new PatientInfoModel()
-                                          {
-                                              Value = pm.Field<string>("Email"),
-                                              PatientInfoType = enumPatientInfoType.Email
-                                          },
-                                          new PatientInfoModel()
-                                          {
-                                              Value = pm.Field<string>("Telephone"),
-                                              PatientInfoType = enumPatientInfoType.Telephone
-                                          }
-                                      },
+                                  } into pmg
+                                  select new PatientModel
+                                  {
+                                      PatientPublicId = pmg.Key.PatientPublicId,
+                                      Name = pmg.Key.Name,
+                                      LastName = pmg.Key.LastName,
+
+                                      PatientInfo = (from pi in response.DataTableResult.AsEnumerable()
+                                                     where pi.Field<int?>("PatientInfoId") != null &&
+                                                            pi.Field<string>("PatientPublicId") == pmg.Key.PatientPublicId
+                                                     group pi by
+                                                     new
+                                                     {
+                                                         PatientInfoId = pi.Field<int>("PatientInfoId"),
+                                                         PatientInfoType = pi.Field<int>("PatientInfoType"),
+                                                         Value = pi.Field<string>("Value"),
+                                                         LargeValue = pi.Field<string>("LargeValue"),
+                                                     } into pig
+                                                     select new PatientInfoModel()
+                                                     {
+                                                         PatientInfoId = pig.Key.PatientInfoId,
+                                                         PatientInfoType = (enumPatientInfoType)pig.Key.PatientInfoType,
+                                                         Value = pig.Key.Value,
+                                                         LargeValue = pig.Key.LargeValue,
+                                                     }).ToList(),
                                   }).ToList();
             }
 
