@@ -157,56 +157,27 @@ function InitCreateAppointment(vOfficeData, vDate) {
 }
 
 
+
+
 //init appointment grid
-function AppointmentListGrid(vidDiv) {
+function PatientAppointmentListGrid(vidDiv, vDataAppointment) {
 
     //configure grid
     $('#' + vidDiv).kendoGrid({
-        toolbar: [{ template: $("#templateHeader").html() }],
-        pageable: true,
         dataSource: {
-            pageSize: 2,
-            serverPaging: true,
-            schema: {
-                total: function (data) {
-                    if (data && data.length > 0) {
-                        return data[0].SearchProfileCount;
-                    }
-                    return 0;
-                }
-            },
-            transport: {
-                read: function (options) {
-                    var oProfilePublicId = $('#' + vidDiv + '-ProfilePublicId').val();
-                    $ajax({
-                        url: '/api/AppointmentApi?ProfilePublicId=' + oProfilePublicId + '&PageNumber=' + (new Number(options.data.page) - 1) + '&RowCount=' + options.data.pageSize,
-                        dataType: "json",
-                        success: function (result) {
-                            options.success(result);
-                        },
-                        error: function (result) {
-                            options.error(result);
-                        }
-                    });
-                }
-            },
+            type: "json",
+            data: vDataAppointment
         },
         columns: [{
-            field: "AppointmentId",
-            title: " ",
+            field: "AppointmentPublicId",
+            title: "Appointment ",
             template: $("#templateName").html()
         }, {
             field: "CreateDate",
-            title: " ",
+            title: "CreateDate",
         }, {
-            field: "Status",
-            title: " ",
+            field: "StatusName",
+            title: "Status",
         }],
     });
-
-    //add search button event
-    $('#' + vidDiv + '-Search').click(function () {
-        $('#' + vidDiv).getKendoGrid().dataSource.read();
-    });
 }
-

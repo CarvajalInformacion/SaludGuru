@@ -1,6 +1,7 @@
 ﻿using BackOffice.Models.General;
 using BackOffice.Models.Patient;
 using MedicalCalendar.Manager.Models;
+using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
@@ -100,5 +101,30 @@ namespace BackOffice.Web.Controllers
             }
             return null;
         }
+
+        #region Appointment
+
+        public virtual ActionResult AppointmentList(string PatientPublicId)
+        {
+            List<AppointmentModel> ListAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId);
+            List<BackOffice.Models.Appointment.AppointmentListModel> Model = new List<Models.Appointment.AppointmentListModel>();
+            if (ListAppointment != null && ListAppointment.Count > 0)
+            {
+                Model = ListAppointment.
+                    Select(x => new BackOffice.Models.Appointment.AppointmentListModel()
+                    {
+                        AppointmentPublicId = x.AppointmentPublicId,
+                        StatusName = x.Status.ToString(),
+                        StartDate = x.StartDate.ToString(),
+                        EndDate = x.EndDate.ToString(),
+                        CreateDate = x.CreateDate.ToString(),
+                        OfficePublicId = x.OfficePublicId,
+                        OfficeName = x.OfficeName,
+                    }).ToList();
+            }
+            return View(Model);
+        }
+
+        #endregion
     }
 }
