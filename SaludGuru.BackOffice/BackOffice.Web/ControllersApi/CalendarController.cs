@@ -22,14 +22,13 @@ namespace BackOffice.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public List<MedicalCalendar.Manager.Models.General.SpecialDayModel> GetSpecialDayList
-            (int CountryId, string ProfilePublicId, string OfficePublicId, string Date)
+            (int CountryId, string ProfilePublicId, string Date)
         {
             DateTime StartDate = DateTime.Parse(Date);
 
             return MedicalCalendar.Manager.Controller.Appointment.GetSpecialDays
                 (CountryId,
                 ProfilePublicId,
-                OfficePublicId,
                 StartDate,
                 StartDate.AddMonths(1));
         }

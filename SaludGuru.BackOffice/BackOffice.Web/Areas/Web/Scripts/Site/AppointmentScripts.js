@@ -29,7 +29,7 @@ function renderAsyncCalendar(objCalendar) {
     //make ajax for special days
     $.ajax({
         type: "POST",
-        url: '/api/Calendar?CountryId=' + objCalendar.CountryId + '&ProfilePublicId=' + objCalendar.ProfilePublicId + '&OfficePublicId=' + objCalendar.OfficePublicId + '&Date=' + objCalendar.FirstDate.getFullYear() + '-' + ((new Number(objCalendar.FirstDate.getMonth())) + 1) + '-1'
+        url: '/api/Calendar?CountryId=' + objCalendar.CountryId + '&ProfilePublicId=' + objCalendar.ProfilePublicId + '&Date=' + objCalendar.FirstDate.getFullYear() + '-' + ((new Number(objCalendar.FirstDate.getMonth())) + 1) + '-1'
     }).done(function (data) {
         //left date picker
         setCalendarOptions(objCalendar, data);
@@ -99,18 +99,16 @@ function setCalendarOptions(objCalendar, lstSpecialDay) {
     }
 }
 
-//render day calendar
-function renderDayCalendar(DivId) {
-    $('#' + DivId).fullCalendar({
+/*render day calendar*/
+function renderDayCalendar(objCalendarDay) {
+    $('#' + objCalendarDay.DivId).fullCalendar({
         defaultView: 'agendaDay',
-        //defaultView: 'agendaWeek',
-        //defaultView: 'month',
         header: {
             left: '',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay',
+            right: '',
         },
-        titleFormat: '\'Consultorío 1\'',
+        titleFormat: objCalendarDay.titleFormat,
         weekNumbers: false,
         columnFormat: {
             month: 'dddd',
@@ -119,27 +117,45 @@ function renderDayCalendar(DivId) {
         },
         editable: true,
         dayClick: function (date, jsEvent, view) {
-            alert(date);
+            InitCreateAppointment(objCalendarDay.OfficeData, date)
         },
         eventClick: function (event, jsEvent, view) {
             alert(event);
         },
-        events: [{
-            id: 'ABCDEF01',
-            title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
-            start: '2014-07-01T10:30:00',
-            end: '2014-07-01T11:30:00',
-            allDay: false,
-            durationEditable: true,
-            className: 'claseEvento_1',
-        }],
-        eventRender: function (event, element) {
-            debugger;
-            element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-            //element.addClass('claseEvento_1');
-        }
+        //events: [{
+        //    id: 'ABCDEF01',
+        //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
+        //    start: '2014-07-01T10:30:00',
+        //    end: '2014-07-01T11:30:00',
+        //    allDay: false,
+        //    durationEditable: true,
+        //    className: 'claseEvento_1',
+        //}],
+        //eventRender: function (event, element) {
+        //    debugger;
+        //    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+        //    //element.addClass('claseEvento_1');
+        //}
     });
 }
+
+function InitCreateAppointment(vOfficeData, vDate) {
+    
+    //load office
+    $('#selOffice').find('option').remove();
+
+    $.each(vOfficeData.OfficeList, function (index, value) {
+        $('#selOffice').append($('<option/>', {
+            value: value.OfficePublicId,
+            text: value.OfficeName,
+            selected: value.Selected
+        }));
+    });
+
+    //load treatment
+
+}
+
 
 //init appointment grid
 function AppointmentListGrid(vidDiv) {

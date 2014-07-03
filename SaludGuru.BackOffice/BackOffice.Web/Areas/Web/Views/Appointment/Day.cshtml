@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Day";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    System.Text.StringBuilder sbDayCalendarStart = new System.Text.StringBuilder();
 }
 
 <!--Calendar by month-->
@@ -15,9 +17,89 @@
 </div>
 <!--Day Calendar-->
 <div>
-    <div id="DayCalendar">
-    </div>
+    @if (Model.CurrentProfile.RelatedOffice != null)
+    {
+        <ul>
+
+            @foreach (SaludGuruProfile.Manager.Models.Office.OfficeModel oOffice in Model.CurrentProfile.RelatedOffice.OrderBy(x => x.IsDefault).ToList())
+            {
+                string oOfficeData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                        Serialize(new
+                        {
+                            ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
+                            OfficeList = Model.CurrentProfile.RelatedOffice.Select(x => new
+                            {
+                                OfficePublicId = x.OfficePublicId,
+                                OfficeName = x.Name,
+                                Selected = (x.OfficePublicId == oOffice.OfficePublicId)
+                            }).OrderBy(y => y.OfficeName).ToList(),
+                            TreatmentList = oOffice.RelatedTreatment.Select(x => new
+                            {
+                                TreatmentId = x.CategoryId,
+                                TreatmentName = x.Name,
+                                Duration = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("0").FirstOrDefault(),
+                                AfterCare = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                                BeforeCare = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                            }),
+                        });
+
+                sbDayCalendarStart.AppendLine("renderDayCalendar({" +
+                                    "DivId:'DayCalendar_" + oOffice.OfficePublicId + "'," +
+                                    "titleFormat: '\\'" + oOffice.Name + "\\''," +
+                                    "OfficeData: " + oOfficeData + "});");
+
+                <li style="width:700px;">
+                    <div id="DayCalendar_@oOffice.OfficePublicId">
+                    </div>
+                </li>
+            }
+
+        </ul>
+    }
 </div>
+
+<!--create edit appointment-->
+<div id="AppointmentUpsert">
+    <form action="" method="post">
+        <ul>
+            <li>
+                <label>Datos de la cita</label>
+            </li>
+            <li>
+                <label>Consultorio:</label>
+                <select id="selOffice" name="selOffice"></select>
+            </li>
+            <li>
+                <label>Tipo de tratamiento:</label>
+                <select id="selTreatment" name="selTreatment"></select>
+            </li>
+            <li>
+                <label>Fecha de inicio:</label>
+                <input type="text" id="StartDate" name="StartDate" />
+                <input type="text" id="StartHour" name="StartHour" />
+            </li>
+            <li>
+                <label>Duración:</label>
+                <input type="text" id="Duration" name="Duration" />
+            </li>
+            <li>
+                <label>Asignar paciente(s):</label>
+                <input type="text" id="Patient" name="Patient" />
+            </li>
+            <li>
+                <label>Paciente(s) asignados a la cita</label>
+            </li>
+            <li>
+                <ul id="lstPatient"></ul>
+            </li>
+        </ul>
+        <div>
+            <a href="">cancelar</a>
+            <a href="">guardar</a>
+        </div>
+    </form>
+</div>
+
 <div style="height:100px;"></div>
 
 
@@ -72,17 +154,17 @@
             //render calendar by month
             renderAsyncCalendar({
                 DivId: 'Calendar',
-                CountryId: '1',
-                ProfilePublicId: 'vProfilePublicId',
-                OfficePublicId: 'vOfficePublicId',
-                FirstDate: new Date('@DateTime.Now.Year.ToString()', '@((DateTime.Now.Month - 1).ToString())', '@DateTime.Now.Day'),
-                SecondDate: new Date('@DateTime.Now.AddMonths(1).Year.ToString()', '@((DateTime.Now.AddMonths(1).Month - 1).ToString())', '1'),
+                CountryId: '@(Model.CurrentProfile.RelatedOffice== null?1: Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
+                ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
+                FirstDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)'),
+                SecondDate: new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'),
                 Type: 'day'
             });
 
             //render day calendar
-            renderDayCalendar('DayCalendar');
+            @Html.Raw(sbDayCalendarStart.ToString())
         });
     </script>
 }
+
 

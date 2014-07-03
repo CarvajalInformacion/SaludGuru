@@ -12,7 +12,7 @@ namespace MedicalCalendar.Manager.Controller
     public class Appointment
     {
         public static List<SpecialDayModel> GetSpecialDays
-            (int CountryId, string ProfilePublicId, string OfficePublicId, DateTime StartDate, DateTime EndDate)
+            (int CountryId, string ProfilePublicId, DateTime StartDate, DateTime EndDate)
         {
             List<SpecialDayModel> oReturn = new List<SpecialDayModel>();
 
@@ -24,7 +24,7 @@ namespace MedicalCalendar.Manager.Controller
                     SpecialDay = x.Day,
                 }).ToList());
 
-            //get not available days
+            //get not available days for profile
 
             return oReturn;
         }

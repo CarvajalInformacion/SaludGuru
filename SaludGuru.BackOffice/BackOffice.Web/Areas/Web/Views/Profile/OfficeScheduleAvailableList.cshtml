@@ -43,10 +43,11 @@
                 <li>
                     <label>Hora inicio</label>
                     <select id="hStartDate" name="hStartDate">
-                        @for (int i = 6; i < 13; i++)
+                        @for (int i = 6; i < 12; i++)
                         {
                             <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
                         }
+                        <option value="12,M">12 M</option>
                         @for (int i = 1; i < 10; i++)
                         {
                             <option value="@(i.ToString() + ",PM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) PM</option>
@@ -60,7 +61,7 @@
                 <li>
                     <label>Hora final</label>
                     <select id="hEndDate" name="hEndDate">
-                        @for (int i = 6; i < 13; i++)
+                        @for (int i = 6; i < 12; i++)
                         {
                             <option value="@(i.ToString() + ",AM")">@(i.ToString().Length == 1 ? "0" + i.ToString() : i.ToString()) AM</option>
                         }

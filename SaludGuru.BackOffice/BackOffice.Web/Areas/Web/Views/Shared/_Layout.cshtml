@@ -5,7 +5,9 @@
     <title>@ViewBag.Title</title>
 
     @*Render bondles styles*@
-    @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/css")
+    @*@Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/css")*@
+    <link href="~/Areas/Web/Content/Styles/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Areas/Web/Content/Styles/fullcalendar.print.css" rel="stylesheet" />
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
     @Styles.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
 </head>
