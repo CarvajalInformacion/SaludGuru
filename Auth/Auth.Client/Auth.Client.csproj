@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EB22D2E8-1F3D-40C6-BE1E-8BD8BA87D971}</ProjectGuid>
+    <ProjectGuid>{4305EF63-CDED-43DB-8525-8ABA78A76B48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SaludGuru.Notifications</RootNamespace>
-    <AssemblyName>SaludGuru.Notifications</AssemblyName>
+    <RootNamespace>Auth.Client</RootNamespace>
+    <AssemblyName>Auth.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\MySql.Web.dll</HintPath>
     </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,20 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Notification.cs" />
-    <Compile Include="DAL\Controller\NotificationDataController.cs" />
-    <Compile Include="DAL\Controller\NotificationDataFactory.cs" />
-    <Compile Include="DAL\MySQLDAO\Notifications_MySqlDao.cs" />
-    <Compile Include="Interfaces\INotificationsData.cs" />
+    <Compile Include="Controller\Client.cs" />
+    <Compile Include="DAL\Controller\ClientDataController.cs" />
+    <Compile Include="DAL\Controller\ClientDataFactory.cs" />
+    <Compile Include="DAL\MySQLDAO\Client_MySqlDao.cs" />
+    <Compile Include="Interfaces\IClientData.cs" />
     <Compile Include="Models\Constants.cs" />
-    <Compile Include="Models\Enumerations.cs" />
-    <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)*.dll" "\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Notifications\developer\" /y</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)*.dll" "\\ProjectAssemblies\Assemblies\SaludGuru\Auth.Client\developer\" /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
