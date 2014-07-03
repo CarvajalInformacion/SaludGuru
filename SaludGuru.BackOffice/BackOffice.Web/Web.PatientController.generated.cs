@@ -140,9 +140,11 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string AppointmentList = "AppointmentList";
                 public readonly string PatientUpsert = "PatientUpsert";
                 public readonly string Search = "Search";
             }
+            public readonly string AppointmentList = "~/Areas/Web/Views/Patient/AppointmentList.cshtml";
             public readonly string PatientUpsert = "~/Areas/Web/Views/Patient/PatientUpsert.cshtml";
             public readonly string Search = "~/Areas/Web/Views/Patient/Search.cshtml";
         }

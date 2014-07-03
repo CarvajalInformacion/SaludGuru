@@ -32,10 +32,5 @@ namespace BackOffice.Web.Controllers
 
             return View(oModel);
         }
-
-        public virtual ActionResult AppointmentList(string PatientPublicId)
-        {
-            return View();
-        }
     }
 }
