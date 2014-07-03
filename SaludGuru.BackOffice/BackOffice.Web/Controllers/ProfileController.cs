@@ -394,7 +394,16 @@ namespace BackOffice.Web.Controllers
             }
             return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
-        #endregion        
+        #endregion
+
+        #region Appointment
+
+        public virtual ActionResult AppointmentList(string PatientPublicId)
+        {
+            return View();
+        }
+
+        #endregion
 
         #region private methods
 
@@ -595,6 +604,11 @@ namespace BackOffice.Web.Controllers
             List<NotificationModel> modelList = new List<NotificationModel>();
             string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
             modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, Convert.ToInt32(""));
+
+            foreach (var item in modelList)
+            {
+                item.
+            }
             return View();
         }
 
