@@ -205,6 +205,12 @@ var MeetingObject = {
             $('#Duration').val($(this).find(':selected').attr('duration'));
         });
 
+        //init duration spinner
+        $('#Duration').spinner({
+            min: 10,
+            step: 5,
+        });
+
         //load start date
         $('#StartDate').datepicker({
             altFormat: "yy-mm-dd"
@@ -229,6 +235,39 @@ var MeetingObject = {
         else {
             $('#StartTime').val((vDate.getHours() - 12) + ':' + vMin + ' PM');
         }
+
+        //load patient autocomplete
+        $('#getPatient').autocomplete(
+	    {
+	        //source: acData,
+	        source: function (request, response) {
+	            $.ajax({
+	                url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
+	                dataType: 'json',
+	                //data: {
+	                //    q: request.term
+	                //},
+	                success: function (data) {
+	                    response(data);
+	                }
+	            });
+	        },
+	        minLength: 0,
+	        focus: function (event, ui) {
+	            //$('#' + acId).val(ui.item.label);
+	            return false;
+	        },
+	        select: function (event, ui) {
+	            //$('#' + acId).val(ui.item.label);
+	            //$('#' + acId + '-id').val(ui.item.value);
+	            return false;
+	        }
+	    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+	        return $("<li></li>")
+			    .data("ui-autocomplete-item", item)
+			    .append("<a><strong>" + item.Name + "</strong></a>")
+			    .appendTo(ul);
+	    };
     },
 };
 

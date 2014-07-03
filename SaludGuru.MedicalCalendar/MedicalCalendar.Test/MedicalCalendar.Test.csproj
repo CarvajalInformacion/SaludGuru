@@ -57,6 +57,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalCalendar.Manager\MedicalCalendar.Manager.csproj">
+      <Project>{765bf96b-449a-4f63-a1c3-98c4392cc964}</Project>
+      <Name>MedicalCalendar.Manager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
