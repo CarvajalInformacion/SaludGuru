@@ -38,16 +38,24 @@ namespace SaludGuru.Notifications.DAL.MySQLDAO
             return int.Parse(response.ScalarResult.ToString());
         }
 
-        public List<NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int vStatus)
+        public List<NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int? vStatus)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vPublicUserId", vPublicUserId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)vStatus));
+            if (vStatus == null)
+            {
+                vStatus = 0;
+                lstParams.Add(DataInstance.CreateTypedParameter("vStatus", vStatus));
+            }
+            else
+            {
+                lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)vStatus));
+            }           
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "AP_Appointment_GetByPatientId",
+                CommandText = "N_Notifiation_GetByUserAndStatus",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });

@@ -1140,7 +1140,7 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
-    <Content Include="Areas\Web\Views\Profile\NotificationProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\NotificationsProfileList.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

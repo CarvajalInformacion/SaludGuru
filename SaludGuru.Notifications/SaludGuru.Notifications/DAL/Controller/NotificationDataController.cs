@@ -37,7 +37,7 @@ namespace SaludGuru.Notifications.DAL.Controller
             return DataFactory.NotificationCreate(vPublicUserId, vPublicUserFrom, vStatus, title, body);
         }
 
-        public List<Models.NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int vStatus)
+        public List<Models.NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int? vStatus)
         {
             return DataFactory.Notifiation_GetByUserAndStatus(vPublicUserId, vStatus);
         }

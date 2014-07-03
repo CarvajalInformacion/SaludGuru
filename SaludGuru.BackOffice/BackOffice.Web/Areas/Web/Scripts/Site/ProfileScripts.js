@@ -384,9 +384,9 @@ function ProfileSearchGrid(vidDiv) {
 
     //init Notifications grid
     function ProfileNotificationsListGrid(vidDiv, vProfileData) {
-
+        debugger;
         $('#' + vidDiv).kendoGrid({
-            toolbar: [{ template: $("#templateCreate").html() }],
+            //toolbar: [{ template: $("#templateCreate").html() }],
             dataSource: {
                 type: "json",
                 data: vProfileData,
