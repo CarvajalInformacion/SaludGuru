@@ -56,11 +56,15 @@
     <Compile Include="DAL\MySQLDAO\Notifications_MySqlDao.cs" />
     <Compile Include="Interfaces\INotificationsData.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Enumerations.cs" />
     <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)*.dll" "\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Notifications\developer\" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
