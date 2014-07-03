@@ -1,0 +1,33 @@
+﻿@model List<SaludGuru.Notifications.Models.NotificationModel>
+@{
+    ViewBag.Title = "NotificationProfileList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileFormWrapper">
+    <h3>Notificaciones</h3>
+    <div id="divGridNotifications"></div>
+</div>
+@{
+    //get json office data
+    string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.
+            Select(x => new
+            {
+                CreateDate = x.CreateDate,
+                PublicUserIdFrom = x.PublicUserIdFrom,
+                Body = x.Body
+            }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        $(document).ready(function () {
+            //start office grid
+            ProfileNotificationsListGrid('divGridNotifications', vDataAutorizationProfile);
+        });
+    </script>
+}
+
+

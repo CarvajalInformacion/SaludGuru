@@ -88,6 +88,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SaludGuru.Notifications">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Notifications\developer\SaludGuru.Notifications.dll</HintPath>
+    </Reference>
     <Reference Include="SaludGuruProfile.Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuruProfile.Manager\developer\SaludGuruProfile.Manager.dll</HintPath>
@@ -194,7 +197,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControllersApi\AppointmentApiController.cs" />
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="ControllersApi\CalendarController.cs" />
     <Compile Include="ControllersApi\PatientApiController.cs" />
@@ -1067,7 +1069,7 @@
     <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Appointment\AppointmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\AppointmentList.cshtml" />
     <Content Include="Areas\Web\Scripts\jquery-2.1.1.min.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
@@ -1135,6 +1137,7 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
+    <Content Include="Areas\Web\Views\Profile\NotificationProfileList.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -1,5 +1,6 @@
 ﻿using BackOffice.Models.Office;
 using BackOffice.Models.Profile;
+using SaludGuru.Notifications.Models;
 using SaludGuruProfile.Manager.Controller;
 using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.General;
@@ -291,7 +292,7 @@ namespace BackOffice.Web.Controllers
             modelToCreate.ProfilePublicId = ProfilePublicId;
             modelToCreate.Name = Request["Insurance"];
 
-            modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);            
+            modelToCreate.RelatedInsurance.Add(modelInsutranceToCreate);
             SaludGuruProfile.Manager.Controller.Profile.InsuranceProfileUpsert(modelToCreate);
 
             return RedirectToAction(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
@@ -393,6 +394,15 @@ namespace BackOffice.Web.Controllers
             }
             return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
+        #endregion
+
+        #region Appointment
+
+        public virtual ActionResult AppointmentList(string PatientPublicId)
+        {
+            return View();
+        }
+
         #endregion
 
         #region private methods
@@ -585,6 +595,23 @@ namespace BackOffice.Web.Controllers
                 oReturn = oReturn + 12;
             return oReturn;
         }
+        #endregion
+
+        #region Notifications
+
+        public virtual ActionResult NotificationsProfileList()
+        {
+            List<NotificationModel> modelList = new List<NotificationModel>();
+            string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
+            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, Convert.ToInt32(""));
+
+            foreach (var item in modelList)
+            {
+                item.
+            }
+            return View();
+        }
+
         #endregion
     }
 }

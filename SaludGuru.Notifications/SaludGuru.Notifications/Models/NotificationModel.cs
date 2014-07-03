@@ -16,5 +16,9 @@ namespace SaludGuru.Notifications.Models
         public string Body { get; set; }
         public DateTime LastModify { get; set; }
         public DateTime CreateDate { get; set; }
+
+        //Extra Data
+        public string UserName { get; set; }
+        public string Picture { get; set; }
     }
 }

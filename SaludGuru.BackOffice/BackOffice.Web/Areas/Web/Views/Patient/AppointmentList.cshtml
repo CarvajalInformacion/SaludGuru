@@ -1,0 +1,31 @@
+﻿@model List<BackOffice.Models.Appointment.AppointmentListModel>
+@{
+    ViewBag.Title = "AppointmentList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    string oAppointmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.
+        Select(x => new
+        {
+            AppointmentPublicId = x.AppointmentPublicId,
+            CreateDate = x.CreateDate,
+            StatusName = x.StatusName
+        }).ToList());
+}
+
+<div>
+    <h3>Listado de Citas</h3>
+    <div id="divGridAppointment"></div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAppointment = @Html.Raw(oAppointmentData)
+        $(document).ready(function () {
+            debugger;
+            //Start appointment grid
+            PatientAppointmentListGrid('divGridAppointment', vDataAppointment);
+        })
+    </script>
+}
