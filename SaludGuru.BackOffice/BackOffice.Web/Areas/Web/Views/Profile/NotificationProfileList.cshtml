@@ -10,22 +10,23 @@
 </div>
 @{
     //get json office data
-    string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+    string oNotifications = (new System.Web.Script.Serialization.JavaScriptSerializer()).
         Serialize(Model.
             Select(x => new
             {
                 CreateDate = x.CreateDate,
                 PublicUserIdFrom = x.PublicUserIdFrom,
-                Body = x.Body
+                Body = x.Body,
+                UserName = x.UserName
             }).ToList());
 }
 @section inlinescripts
 {
     <script type="text/javascript">
-        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        var vDataNotifications = @Html.Raw(oNotifications)
         $(document).ready(function () {
             //start office grid
-            ProfileNotificationsListGrid('divGridNotifications', vDataAutorizationProfile);
+            ProfileNotificationsListGrid('divGridNotifications', vDataNotifications);
         });
     </script>
 }

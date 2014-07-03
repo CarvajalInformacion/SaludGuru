@@ -6,6 +6,7 @@ using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
+using SessionController.Models.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -601,15 +602,36 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult NotificationsProfileList()
         {
-            List<NotificationModel> modelList = new List<NotificationModel>();
+            List<NotificationModel> modelList = new List<NotificationModel>();            
+            string arrayToConsult = "";
+
             string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
-            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, Convert.ToInt32(""));
+            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, null);
+
+            for (int i = 0; i < modelList.Count; i++)
+            {
+                if (i == modelList.Count - 1)
+                {
+                    arrayToConsult += modelList[i].PublicUserIdFrom;
+                }
+                else
+                {
+                    arrayToConsult += modelList[i].PublicUserIdFrom + ",";
+                }
+            }
+
+            List<User> userList = new List<User>();
+
+            userList = Auth.Client.Controller.Client.GetUserList(arrayToConsult);
 
             foreach (var item in modelList)
             {
-                item.
+                List<User> userToLoad = new List<User>();
+                userToLoad = userList.Where(x => x.UserPublicId == item.PublicUserIdFrom).ToList();
+                item.UserName = userToLoad.FirstOrDefault().Name + userToLoad.FirstOrDefault().LastName;                
             }
-            return View();
+
+            return View(modelList);
         }
 
         #endregion
