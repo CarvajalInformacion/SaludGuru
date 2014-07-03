@@ -100,62 +100,137 @@ function setCalendarOptions(objCalendar, lstSpecialDay) {
 }
 
 /*render day calendar*/
-function renderDayCalendar(objCalendarDay) {
-    $('#' + objCalendarDay.DivId).fullCalendar({
-        defaultView: 'agendaDay',
-        header: {
-            left: '',
-            center: 'title',
-            right: '',
-        },
-        titleFormat: objCalendarDay.titleFormat,
-        weekNumbers: false,
-        columnFormat: {
-            month: 'dddd',
-            week: 'dddd',
-            day: 'dddd'
-        },
-        editable: true,
-        dayClick: function (date, jsEvent, view) {
-            InitCreateAppointment(objCalendarDay.OfficeData, date)
-        },
-        eventClick: function (event, jsEvent, view) {
-            alert(event);
-        },
-        //events: [{
-        //    id: 'ABCDEF01',
-        //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
-        //    start: '2014-07-01T10:30:00',
-        //    end: '2014-07-01T11:30:00',
-        //    allDay: false,
-        //    durationEditable: true,
-        //    className: 'claseEvento_1',
-        //}],
-        //eventRender: function (event, element) {
-        //    debugger;
-        //    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-        //    //element.addClass('claseEvento_1');
-        //}
-    });
-}
+var MeetingObject = {
 
-function InitCreateAppointment(vOfficeData, vDate) {
-    
-    //load office
-    $('#selOffice').find('option').remove();
+    /*office info*/
+    lstOffice: new Array(),
 
-    $.each(vOfficeData.OfficeList, function (index, value) {
-        $('#selOffice').append($('<option/>', {
-            value: value.OfficePublicId,
-            text: value.OfficeName,
-            selected: value.Selected
-        }));
-    });
+    /*init meeting variables*/
+    InitMeeting: function (vlstOffice) {
 
-    //load treatment
+        $.each(vlstOffice, function (index, value) {
+            MeetingObject.lstOffice[value.OfficePublicId] = value;
+        });
+    },
 
-}
+    /*init meeting calendar by day*/
+    InitByDay: function (DivId) {
+        for (var item in this.lstOffice) {
+            //create div to put a calendar
+            this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
+            $('#' + DivId).append($('#divMetting').html().replace('divOfficePublicId', this.lstOffice[item].OfficeDivId));
 
+            //init calendar
+            this.InitOfficeByDay(this.lstOffice[item].OfficePublicId);
+        }
+    },
+
+    InitOfficeByDay: function (vOfficePublicId) {
+
+        //init one office calendar by day
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
+            defaultView: 'agendaDay',
+            header: {
+                left: '',
+                center: 'title',
+                right: '',
+            },
+            titleFormat: '\'' + this.lstOffice[vOfficePublicId].OfficeName + '\'',
+            weekNumbers: false,
+            columnFormat: {
+                month: 'dddd',
+                week: 'dddd',
+                day: 'dddd'
+            },
+            editable: true,
+            dayClick: function (date, jsEvent, view) {
+                MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
+            },
+            eventClick: function (event, jsEvent, view) {
+                alert(event);
+            },
+            //events: [{
+            //    id: 'ABCDEF01',
+            //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
+            //    start: '2014-07-01T10:30:00',
+            //    end: '2014-07-01T11:30:00',
+            //    allDay: false,
+            //    durationEditable: true,
+            //    className: 'claseEvento_1',
+            //}],
+            //eventRender: function (event, element) {
+            //    debugger;
+            //    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+            //    //element.addClass('claseEvento_1');
+            //}
+        });
+    },
+
+    RenderCreateAppointment: function (vDate, vOfficePublicId) {
+        //load office
+        $('#selOffice').find('option').remove();
+        $('#selOffice').unbind('change');
+        for (var item in this.lstOffice) {
+
+            $('#selOffice').append($('<option/>', {
+                value: this.lstOffice[item].OfficePublicId,
+                text: this.lstOffice[item].OfficeName,
+                selected: (this.lstOffice[item].OfficePublicId == vOfficePublicId)
+            }));
+        }
+
+        $('#selOffice').change(function () {
+            debugger;
+            MeetingObject.RenderCreateAppointment(vDate, $(this).val());
+        });
+
+        //load treatment
+        $('#selTreatment').find('option').remove();
+        $('#selTreatment').unbind('change');
+        $.each(this.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
+            $('#selTreatment').append($('<option/>', {
+                value: value.TreatmentId,
+                text: value.TreatmentName,
+                selected: value.Default,
+                duration: value.Duration,
+            }));
+
+            //set default duration
+            if (value.Default == true) {
+                $('#Duration').val(value.Duration);
+            }
+        });
+
+        $('#selTreatment').change(function () {
+            $('#Duration').val($(this).find(':selected').attr('duration'));
+        });
+
+        //load start date
+        $('#StartDate').datepicker({
+            altFormat: "yy-mm-dd"
+        });
+
+        $('#StartDate').datepicker("setDate", vDate);
+
+        //load start time
+        $('#StartTime').ptTimeSelect({
+            hoursLabel: 'Hora',
+            minutesLabel: 'Minutos',
+            setButtonLabel: 'Aceptar',
+        });
+        var vMin = vDate.getMinutes();
+        if (vMin < 10) {
+            vMin = '0' + vDate.getMinutes();
+        }
+
+        if (vDate.getHours() <= 12) {
+            $('#StartTime').val(vDate.getHours() + ':' + vMin + 'AM');
+        }
+        else {
+            $('#StartTime').val((vDate.getHours() - 12) + ':' + vMin + ' PM');
+        }
+    },
+};
 
 
 
