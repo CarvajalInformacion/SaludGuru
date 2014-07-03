@@ -1065,7 +1065,7 @@
     <Content Include="Areas\Web\Views\Profile\TreatmentProfileList.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_PA_PatientInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_PA_PatientMenu.cshtml" />
-    <Content Include="Areas\Web\Views\Appointment\AppointmentList.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\AppointmentList.cshtml" />
     <Content Include="Areas\Web\Scripts\jquery-2.1.1.min.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />

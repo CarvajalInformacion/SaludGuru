@@ -395,6 +395,15 @@ namespace BackOffice.Web.Controllers
         }
         #endregion
 
+        #region Appointment
+
+        public virtual ActionResult AppointmentList(string PatientPublicId)
+        {
+            return View();
+        }
+
+        #endregion
+
         #region private methods
 
         private ProfileModel GetProfileInfoRequestModel()

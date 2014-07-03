@@ -63,12 +63,6 @@ namespace BackOffice.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Day);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult AppointmentList()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AppointmentController Actions { get { return MVC.Appointment; } }
@@ -86,14 +80,12 @@ namespace BackOffice.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Day = "Day";
-            public readonly string AppointmentList = "AppointmentList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Day = "Day";
-            public const string AppointmentList = "AppointmentList";
         }
 
 
@@ -104,14 +96,6 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Day
         {
             public readonly string Date = "Date";
-        }
-        static readonly ActionParamsClass_AppointmentList s_params_AppointmentList = new ActionParamsClass_AppointmentList();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AppointmentList AppointmentListParams { get { return s_params_AppointmentList; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AppointmentList
-        {
-            public readonly string PatientPublicId = "PatientPublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,18 +125,6 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Day);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             DayOverride(callInfo, Date);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AppointmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AppointmentList(string PatientPublicId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
-            AppointmentListOverride(callInfo, PatientPublicId);
             return callInfo;
         }
 
