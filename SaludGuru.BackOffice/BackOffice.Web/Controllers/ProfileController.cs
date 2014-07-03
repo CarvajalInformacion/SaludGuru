@@ -606,7 +606,7 @@ namespace BackOffice.Web.Controllers
             string arrayToConsult = "";
 
             string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
-            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, 0);
+            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, null);
 
             for (int i = 0; i < modelList.Count; i++)
             {

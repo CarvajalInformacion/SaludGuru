@@ -11,7 +11,7 @@ namespace SaludGuru.Notifications.Interfaces
     {
         int NotificationCreate(string vPublicUserId, string vPublicUserFrom, int vStatus, string title, string body);
 
-        List<NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int vStatus);
+        List<NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int? vStatus);
 
         void UpdateStatus(int vStatus, int vNotificationId);
     }
