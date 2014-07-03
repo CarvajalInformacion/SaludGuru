@@ -2,7 +2,7 @@
 <div class="headerMainWrapper">
     <div class="headerTopWrapper">
         <!--render autorized profiles-->
-        <div class="profilesListWrapper" style="left:50px;">
+        <div class="profilesListWrapper">
             @{
                 string SelDrShowName = string.Empty, selDoctorImageUrl = string.Empty;
                 <select id="ddAutorizationProfiles">
@@ -35,16 +35,15 @@
                             selDoctorImageUrl = DoctorImageUrl;
                             strSelected = "selected='selected'";
                     }
-                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })"
-                                data-style="background-image: url(&apos;@(DoctorImageUrl)&apos;);">
+                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" data-style="background-image: url(&apos;@(DoctorImageUrl)&apos;);">
                             @DrShowName
                         </option>
                     }
             </select>
                 <div id="templateAutorization" style="display:none;">
                     <div id="SelAutorization">
-                        <span style="background-image: url('@(selDoctorImageUrl)');"></span>
-                        @SelDrShowName
+                        <span class="selectedProfilePicture" style="background-image: url('@(selDoctorImageUrl)');"></span>
+                        <span class="selectedProfileName">@SelDrShowName hola</span>
                     </div>
                 </div>
 
