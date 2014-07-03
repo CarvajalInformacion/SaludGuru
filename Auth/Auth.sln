@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.DAL", "Auth.DAL\Auth.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Interfaces", "Auth.Interfaces\Auth.Interfaces.csproj", "{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Client", "Auth.Client\Auth.Client.csproj", "{4305EF63-CDED-43DB-8525-8ABA78A76B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthTest", "AuthTest\AuthTest.csproj", "{BD5FD85B-2D84-498A-A2F6-9D205CF7BDB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3BBDF3E-3654-40D4-B100-D75AC5D53AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4305EF63-CDED-43DB-8525-8ABA78A76B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4305EF63-CDED-43DB-8525-8ABA78A76B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4305EF63-CDED-43DB-8525-8ABA78A76B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4305EF63-CDED-43DB-8525-8ABA78A76B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD5FD85B-2D84-498A-A2F6-9D205CF7BDB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5FD85B-2D84-498A-A2F6-9D205CF7BDB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5FD85B-2D84-498A-A2F6-9D205CF7BDB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5FD85B-2D84-498A-A2F6-9D205CF7BDB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
