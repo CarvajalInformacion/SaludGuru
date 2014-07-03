@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "Day";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
-
-    System.Text.StringBuilder sbDayCalendarStart = new System.Text.StringBuilder();
 }
 
 <!--Calendar by month-->
@@ -15,93 +13,81 @@
     <div id="Calendar-Left"></div>
     <div id="Calendar-Right"></div>
 </div>
-<!--Day Calendar-->
-<div>
-    @if (Model.CurrentProfile.RelatedOffice != null)
-    {
-        <ul>
+<!--Meeting Calendar-->
+<div id="divMeetingCalendar">
+</div>
 
-            @foreach (SaludGuruProfile.Manager.Models.Office.OfficeModel oOffice in Model.CurrentProfile.RelatedOffice.OrderBy(x => x.IsDefault).ToList())
-            {
-                string oOfficeData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                        Serialize(new
-                        {
-                            ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
-                            OfficeList = Model.CurrentProfile.RelatedOffice.Select(x => new
-                            {
-                                OfficePublicId = x.OfficePublicId,
-                                OfficeName = x.Name,
-                                Selected = (x.OfficePublicId == oOffice.OfficePublicId)
-                            }).OrderBy(y => y.OfficeName).ToList(),
-                            TreatmentList = oOffice.RelatedTreatment.Select(x => new
-                            {
-                                TreatmentId = x.CategoryId,
-                                TreatmentName = x.Name,
-                                Duration = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("0").FirstOrDefault(),
-                                AfterCare = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                                BeforeCare = x.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                            }),
-                        });
-
-                sbDayCalendarStart.AppendLine("renderDayCalendar({" +
-                                    "DivId:'DayCalendar_" + oOffice.OfficePublicId + "'," +
-                                    "titleFormat: '\\'" + oOffice.Name + "\\''," +
-                                    "OfficeData: " + oOfficeData + "});");
-
-                <li style="width:700px;">
-                    <div id="DayCalendar_@oOffice.OfficePublicId">
-                    </div>
+<div id="templates">
+    <div id="divMetting">
+        <div id="divOfficePublicId" class="selMetting"></div>
+    </div>
+    <!--create edit appointment-->
+    <div id="AppointmentUpsert">
+        <form action="" method="post">
+            <ul>
+                <li>
+                    <label>Datos de la cita</label>
                 </li>
-            }
-
-        </ul>
-    }
+                <li>
+                    <label>Consultorio:</label>
+                    <select id="selOffice" name="selOffice"></select>
+                </li>
+                <li>
+                    <label>Tipo de tratamiento:</label>
+                    <select id="selTreatment" name="selTreatment"></select>
+                </li>
+                <li>
+                    <label>Fecha de inicio:</label>
+                    <input type="text" id="StartDate" name="StartDate" />
+                </li>
+                <li>
+                    <label>Hora de inicio:</label>
+                    <input type="text" id="StartTime" name="StartTime" />
+                </li>
+                <li>
+                    <label>Duración:</label>
+                    <input type="text" id="Duration" name="Duration" />
+                </li>
+                <li>
+                    <label>Asignar paciente(s):</label>
+                    <input type="text" id="Patient" name="Patient" />
+                </li>
+                <li>
+                    <label>Paciente(s) asignados a la cita:</label>
+                </li>
+                <li>
+                    <ul id="lstPatient"></ul>
+                </li>
+            </ul>
+            <div>
+                <a href="">cancelar</a>
+                <a href="">guardar</a>
+            </div>
+        </form>
+    </div>
 </div>
-
-<!--create edit appointment-->
-<div id="AppointmentUpsert">
-    <form action="" method="post">
-        <ul>
-            <li>
-                <label>Datos de la cita</label>
-            </li>
-            <li>
-                <label>Consultorio:</label>
-                <select id="selOffice" name="selOffice"></select>
-            </li>
-            <li>
-                <label>Tipo de tratamiento:</label>
-                <select id="selTreatment" name="selTreatment"></select>
-            </li>
-            <li>
-                <label>Fecha de inicio:</label>
-                <input type="text" id="StartDate" name="StartDate" />
-                <input type="text" id="StartHour" name="StartHour" />
-            </li>
-            <li>
-                <label>Duración:</label>
-                <input type="text" id="Duration" name="Duration" />
-            </li>
-            <li>
-                <label>Asignar paciente(s):</label>
-                <input type="text" id="Patient" name="Patient" />
-            </li>
-            <li>
-                <label>Paciente(s) asignados a la cita</label>
-            </li>
-            <li>
-                <ul id="lstPatient"></ul>
-            </li>
-        </ul>
-        <div>
-            <a href="">cancelar</a>
-            <a href="">guardar</a>
-        </div>
-    </form>
-</div>
-
 <div style="height:100px;"></div>
 
+@{
+    //create office calendar object
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
+                        new
+                        {
+                            OfficePublicId = of.OfficePublicId,
+                            OfficeName = of.Name,
+                            OfficeDivId = string.Empty,
+                            TreatmentList = of.RelatedTreatment.Select(tr => new
+                            {
+                                TreatmentId = tr.CategoryId,
+                                TreatmentName = tr.Name,
+                                Default = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
+                                Duration = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
+                                AfterCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                                BeforeCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                            }).OrderBy(tro => tro.TreatmentName).ToList(),
+                        }).OrderBy(ofo => ofo.OfficeName).ToList());
+}
 
 @section inlinescripts
 {
@@ -135,11 +121,11 @@
         }
 
         /*hide calendar all day event*/
-        #DayCalendar .fc-agenda-allday {
+        #divMeetingCalendar .fc-agenda-allday {
             display: none;
         }
 
-        #DayCalendar .fc-agenda-divider {
+        #divMeetingCalendar .fc-agenda-divider {
             display: none;
         }
 
@@ -162,7 +148,8 @@
             });
 
             //render day calendar
-            @Html.Raw(sbDayCalendarStart.ToString())
+            MeetingObject.InitMeeting(@Html.Raw(oOfficeInfo));
+            MeetingObject.InitByDay('divMeetingCalendar');
         });
     </script>
 }

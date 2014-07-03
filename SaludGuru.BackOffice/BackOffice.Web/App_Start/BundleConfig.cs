@@ -43,8 +43,10 @@ namespace BackOffice.Web
 
                 #endregion
 
-                #region Fullcalendar
+                #region ptTimeSelect
 
+                bundles.Add(new ScriptBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/pttimeselect").Include(
+                        "~/Areas/Web/Scripts/ptTimeSelect/jquery.ptTimeSelect.js"));
 
                 #endregion
 
@@ -91,6 +93,13 @@ namespace BackOffice.Web
                 bundles.Add(new StyleBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/kendo/css").Include(
                           "~/Areas/Web/Content/kendo/2014.1.318/kendo.common.min.css",
                           "~/Areas/Web/Content/kendo/2014.1.318/kendo.default.min.css"));
+
+                #endregion
+
+                #region ptTimeSelect
+
+                bundles.Add(new StyleBundle("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/content/pttimeselect/css").Include(
+                          "~/Areas/Web/Content/ptTimeSelect/jquery.ptTimeSelect.css"));
 
                 #endregion
 

@@ -317,6 +317,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery-ui.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.structure.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Areas\Web\Content\ptTimeSelect\jquery.ptTimeSelect.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
@@ -552,6 +553,7 @@
     <Content Include="Areas\Web\Scripts\jquery-ui-1.11.0.js" />
     <Content Include="Areas\Web\Scripts\jquery-ui-1.11.0.min.js" />
     <None Include="Areas\Web\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\Web\Scripts\ptTimeSelect\jquery.ptTimeSelect.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.min.js" />
     <Content Include="Areas\Web\Scripts\jquery.validate.unobtrusive.js" />
