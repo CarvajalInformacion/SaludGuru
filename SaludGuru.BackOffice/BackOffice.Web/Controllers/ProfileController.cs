@@ -394,16 +394,7 @@ namespace BackOffice.Web.Controllers
             }
             return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
-        #endregion
-
-        #region Appointment
-
-        public virtual ActionResult AppointmentList(string PatientPublicId)
-        {
-            return View();
-        }
-
-        #endregion
+        #endregion        
 
         #region private methods
 
