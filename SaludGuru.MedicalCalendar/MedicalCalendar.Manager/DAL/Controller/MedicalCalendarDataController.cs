@@ -93,9 +93,9 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentCreate(OfficePublicId, Status, StartDate, EndDate);
         }
 
-        public void AppointmentModify(string AppointmentPublicId, MedicalCalendar.Manager.Models.enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
+        public void AppointmentModify(string AppointmentPublicId, string OfficePublicId, MedicalCalendar.Manager.Models.enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
         {
-            DataFactory.AppointmentCreate(AppointmentPublicId, Status, StartDate, EndDate);
+            DataFactory.AppointmentModify(AppointmentPublicId, OfficePublicId, Status, StartDate, EndDate);
         }
 
         public int AppointmentInfoCreate(string AppointmentPublicId, MedicalCalendar.Manager.Models.enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue)
@@ -123,6 +123,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentList(ProfilePublicId);
         }
 
-        #endregion               
+        #endregion
     }
 }

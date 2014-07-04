@@ -311,11 +311,12 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return response.ScalarResult.ToString();
         }
 
-        public void AppointmentModify(string AppointmentPublicId, Models.enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
+        public void AppointmentModify(string AppointmentPublicId, string OfficePublicId, Models.enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
             lstParams.Add(DataInstance.CreateTypedParameter("vAppointmentPublicId", AppointmentPublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
             lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)Status));
             lstParams.Add(DataInstance.CreateTypedParameter("vStartDate", StartDate));
             lstParams.Add(DataInstance.CreateTypedParameter("vEndDate", EndDate));

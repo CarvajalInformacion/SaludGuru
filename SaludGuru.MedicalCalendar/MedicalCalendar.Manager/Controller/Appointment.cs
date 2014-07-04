@@ -1,6 +1,7 @@
 ﻿using MedicalCalendar.Manager.DAL.Controller;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.General;
+using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,75 @@ namespace MedicalCalendar.Manager.Controller
             List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(ProfilePublicId);
 
             return oReturn;
+        }
+
+        public static string UpsertAppointmentInfo(AppointmentModel AppointmentToUpSert, List<PatientModel> PatientToRemove)
+        {
+            //upsert appointment
+            string oAppointmentPublicId = AppointmentToUpSert.AppointmentPublicId;
+            if (string.IsNullOrEmpty(oAppointmentPublicId))
+            {
+                oAppointmentPublicId = DAL.Controller.MedicalCalendarDataController.Instance.AppointmentCreate
+                    (AppointmentToUpSert.OfficePublicId,
+                    AppointmentToUpSert.Status,
+                    AppointmentToUpSert.StartDate,
+                    AppointmentToUpSert.EndDate);
+            }
+            else
+            {
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentModify
+                    (AppointmentToUpSert.AppointmentPublicId,
+                    AppointmentToUpSert.OfficePublicId,
+                    AppointmentToUpSert.Status,
+                    AppointmentToUpSert.StartDate,
+                    AppointmentToUpSert.EndDate);
+            }
+
+            //upsert appointment info
+            AppointmentToUpSert.AppointmentInfo.All(api =>
+            {
+                if (api.AppointmentInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.MedicalCalendarDataController.Instance.AppointmentInfoCreate
+                        (AppointmentToUpSert.AppointmentPublicId,
+                        api.AppointmentInfoType,
+                        api.Value,
+                        api.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.MedicalCalendarDataController.Instance.AppointmentInfoModify
+                        (api.AppointmentInfoId,
+                        api.Value,
+                        api.LargeValue);
+                }
+
+                return true;
+            });
+
+            //delete patient
+            PatientToRemove.All(ptr =>
+            {
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
+                    (AppointmentToUpSert.AppointmentPublicId,
+                    ptr.PatientPublicId);
+
+                return true;
+            });
+
+            //upsert patient
+            AppointmentToUpSert.RelatedPatient.All(ptu =>
+            {
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
+                    (AppointmentToUpSert.AppointmentPublicId,
+                    ptu.PatientPublicId);
+
+                return true;
+            });
+
+            return oAppointmentPublicId;
         }
     }
 }
