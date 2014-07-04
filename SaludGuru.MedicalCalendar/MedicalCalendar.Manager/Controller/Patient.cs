@@ -1,4 +1,5 @@
 ﻿using MedicalCalendar.Manager.DAL.Controller;
+using MedicalCalendar.Manager.Models.General;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,11 @@ namespace MedicalCalendar.Manager.Controller
                 return true;
             });
             return oPublicPatientId;
+        }
+
+        public static List<ItemModel> GetPatientOptions()
+        {
+            return MedicalCalendarDataController.Instance.PatientGetOptions();
         }
     }
 }

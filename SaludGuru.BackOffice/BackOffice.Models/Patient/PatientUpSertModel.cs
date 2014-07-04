@@ -11,5 +11,6 @@ namespace BackOffice.Models.Patient
     public class PatientUpSertModel
     {
         public PatientModel Patient { get; set; }
+        public List<ItemModel> PatientOptions { get; set; }
     }
 }
