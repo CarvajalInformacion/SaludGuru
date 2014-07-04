@@ -7,6 +7,7 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
 </div>
 
+
 @{
     //get json office data
     string oNotifications = (new System.Web.Script.Serialization.JavaScriptSerializer()).
@@ -34,7 +35,7 @@
             debugger;
             ProfileNotificationsListGrid('divGridNotifications', vDataNotifications);
         });
-    </script>
+    </script>   
 }
 
 

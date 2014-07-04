@@ -7,14 +7,14 @@
                 string SelDrShowName = string.Empty, selDoctorImageUrl = string.Empty;
                 <select id="ddAutorizationProfiles">
 
-                @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
-                {
+                    @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+                    {
                         //get doctor name
                         string DrShowName = string.Empty;
-                    if (!string.IsNullOrEmpty(ua.ProfileName))
-                    {
+                        if (!string.IsNullOrEmpty(ua.ProfileName))
+                        {
                             DrShowName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
-                    }
+                        }
                         if (!string.IsNullOrEmpty(DrShowName))
                         {
                             DrShowName += " - ";
@@ -29,17 +29,17 @@
                         }
 
                         string strSelected = string.Empty;
-                    if (ua.Selected)
-                    {
+                        if (ua.Selected)
+                        {
                             SelDrShowName = DrShowName;
                             selDoctorImageUrl = DoctorImageUrl;
                             strSelected = "selected='selected'";
-                    }
+                        }
                         <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" data-style="background-image: url(&apos;@(DoctorImageUrl)&apos;);">
                             @DrShowName
                         </option>
                     }
-            </select>
+                </select>
                 <div id="templateAutorization" style="display:none;">
                     <div id="SelAutorization">
                         <span class="selectedProfilePicture" style="background-image: url('@(selDoctorImageUrl)');"></span>
@@ -58,7 +58,13 @@
 
             <!--render notifications-->
             <div class="notificationsWrapper">
-                <a href="">14</a>
+                <a id="aNotifyCount" href=""></a>
+                <div>
+                    <ul id="ulNotificationList" style="display:none;"></ul>
+                </div>
+                <ul id="NotificationTemplate" style="display:none;">
+                    <li>{NotificationText}</li>
+                </ul>
             </div>
 
             <!--render user options-->

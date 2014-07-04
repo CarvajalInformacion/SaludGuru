@@ -13,6 +13,9 @@ function InitGlobalPagesControls() {
 
     //init autorization options menu
     InitAutorizationMenu();
+
+    //init user notifications
+    NotificationObject.InitUserNotifications();
 }
 
 /*init autorization menu*/
@@ -49,6 +52,37 @@ function InitAutorizationMenu() {
 
 }
 
+/*init user notifications*/
+var NotificationObject = {
+
+    NotificationList: new Array(),
+
+    InitUserNotifications: function () {
+        setInterval(function () { TimerEvent() }, 3000);
+    },
+
+    TimerEvent: function () {
+        $. Ajax ({
+            url: "test.html",
+            Type: "GET",            
+            dataType: "Json"            
+        }).done(function(data){
+            
+            
+            //var oReturn
+        })
+        
+        //NotificationObject.NotificationList
+    },
+
+    RenderNotifications: function () {
+        //this.NotificationList
+
+        //$('#aNotifyCount').html('5');
+        //$('#ulNotificationList').html('hola mundo');
+        //NotificationTemplate
+    },
+};
 
 /*change profile*/
 function Header_ChangeProfile(urlToChange) {

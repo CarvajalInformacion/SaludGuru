@@ -204,6 +204,7 @@
     <Compile Include="ControllersApi\AppointmentApiController.cs" />
     <Compile Include="ControllersApi\CalendarController.cs" />
     <Compile Include="ControllersApi\PatientApiController.cs" />
+    <Compile Include="ControllersApi\NotificationApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
