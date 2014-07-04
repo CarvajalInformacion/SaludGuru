@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MedicalCalendar.Manager.Models.Appointment;
+using MedicalCalendar.Manager.Models.Patient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace BackOffice.Web.ControllersApi
@@ -13,19 +16,87 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public string UpsertAppointment(string UpsertAction)
         {
-            //(string selOffice,
-            //string AppointmentPublicId,
-            //string PatientAppointment,
-            //string StartTime,
-            //string StartDate,
-            //string selTreatment,
-            //string Duration,
-            //string AfterCare,
-            //string BeforeCare)
+            List<PatientModel> PatientToRemove;
 
-            //System.Web.HttpContext.Current.Request.Form
+            AppointmentModel AppointmentToUpsert = GetAppointmentInfoRequestModel(out PatientToRemove);
 
-            return string.Empty;
+            string AppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
+
+            return AppointmentPublicId;
         }
+
+        #region Private Methods
+
+        private AppointmentModel GetAppointmentInfoRequestModel(out List<PatientModel> PatientToRemove)
+        {
+            PatientToRemove = new List<PatientModel>();
+
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request["UpsertAction"])
+                && bool.Parse(HttpContext.Current.Request["UpsertAction"]))
+            {
+                AppointmentModel oReturn = new AppointmentModel()
+                {
+                    AppointmentPublicId = string.IsNullOrEmpty(HttpContext.Current.Request["AppointmentPublicId"]) ? null : HttpContext.Current.Request["AppointmentPublicId"].ToString(),
+                    OfficePublicId = HttpContext.Current.Request["OfficePublicId"].ToString(),
+                    Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
+                    StartDate = GetRequestDateTime(HttpContext.Current.Request["StartDate"], HttpContext.Current.Request["StartTime"]),
+                    EndDate = GetRequestDateTime(HttpContext.Current.Request["StartDate"], HttpContext.Current.Request["StartTime"]).AddMinutes(int.Parse(HttpContext.Current.Request["Duration"])),
+
+                    AppointmentInfo = new List<AppointmentInfoModel>() 
+                    { 
+                        //treatment
+                        new AppointmentInfoModel()
+                        {
+                            AppointmentInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_TreatmentId"])?0:int.Parse(HttpContext.Current.Request["CatId_TreatmentId"].ToString().Trim()),
+                            AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category,
+                            Value = HttpContext.Current.Request["TreatmentId"],
+                        },
+                        //After Care
+                        new AppointmentInfoModel()
+                        {
+                            AppointmentInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_AfterCare"])?0:int.Parse(HttpContext.Current.Request["CatId_AfterCare"].ToString().Trim()),
+                            AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare,
+                            LargeValue = HttpContext.Current.Request["AfterCare"],
+                        },
+                        new AppointmentInfoModel()
+                        {
+                            AppointmentInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_BeforeCare"])?0:int.Parse(HttpContext.Current.Request["CatId_BeforeCare"].ToString().Trim()),
+                            AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare,
+                            LargeValue = HttpContext.Current.Request["BeforeCare"],
+                        },
+                    },
+
+                    RelatedPatient = HttpContext.Current.Request["PatientAppointmentCreate"].Split(',').
+                        Where(x => !string.IsNullOrEmpty(x) && x.Replace(" ", "").Length > 5).
+                        Select(x => new PatientModel()
+                        {
+                            PatientPublicId = x.Replace(" ", "")
+                        }).ToList(),
+                };
+
+                PatientToRemove = HttpContext.Current.Request["PatientAppointmentDelete"].Split(',').
+                        Where(x => !string.IsNullOrEmpty(x) && x.Replace(" ", "").Length > 5).
+                        Select(x => new PatientModel()
+                        {
+                            PatientPublicId = x.Replace(" ", "")
+                        }).ToList();
+
+
+                return oReturn;
+            }
+            return null;
+        }
+
+        private DateTime GetRequestDateTime(string Date, string Time)
+        {
+            DateTime oRetorno = DateTime.ParseExact
+                (Date.Replace(" ", "") + "T" + Time.Replace(" ", ""),
+                "dd/MM/yyyyTh:mmtt",
+                System.Globalization.CultureInfo.InvariantCulture);
+
+            return oRetorno;
+        }
+
+        #endregion
     }
 }

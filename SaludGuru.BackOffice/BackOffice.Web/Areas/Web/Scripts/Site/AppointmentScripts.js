@@ -24,31 +24,43 @@ jQuery(function ($) {
 
 
 /*calendar render method*/
+var MettingCalendarObject = {
 
-function renderAsyncCalendar(objCalendar) {
-    //make ajax for special days
-    $.ajax({
-        type: "POST",
-        url: '/api/Calendar?CountryId=' + objCalendar.CountryId + '&ProfilePublicId=' + objCalendar.ProfilePublicId + '&Date=' + objCalendar.FirstDate.getFullYear() + '-' + ((new Number(objCalendar.FirstDate.getMonth())) + 1) + '-1'
-    }).done(function (data) {
-        //left date picker
-        setCalendarOptions(objCalendar, data);
-    }).fail(function () {
-        alert("error");
-    });
-}
+    /*calendar info*/
+    DivId: '',
+    CountryId: '',
+    ProfilePublicId: '',
+    CurrentDate: new Date(),
 
-function setCalendarOptions(objCalendar, lstSpecialDay) {
+    /*init meeting calendar variables*/
+    InitMettingCalendar: function (vInitObject) {
+        this.DivId = vInitObject.DivId;
+        this.CountryId = vInitObject.CountryId;
+        this.ProfilePublicId = vInitObject.ProfilePublicId;
+        this.CurrentDate = vInitObject.CurrentDate;
+    },
 
-    if (objCalendar.Type == 'day') {
+    InitMettingCalendarDoubleByDayAsync: function (vSecondDate) {
+        //make ajax for special days
+        $.ajax({
+            type: "POST",
+            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId + '&Date=' + this.CurrentDate.getFullYear() + '-' + ((new Number(this.CurrentDate.getMonth())) + 1) + '-1'
+        }).done(function (data) {
+            //left date picker
+            MettingCalendarObject.InitMettingCalendarDoubleByDay(vSecondDate, data);
+        }).fail(function () {
+            alert("se ha generado un error en el render del calendario");
+        });
+    },
 
+    InitMettingCalendarDoubleByDay: function (vSecondDate, lstSpecialDay) {
         //load calendar by day
 
         //left
-        $('#' + objCalendar.DivId + '-Left').datepicker({
+        $('#' + this.DivId + '-Left').datepicker({
             dateFormat: 'yy-mm-dd',
             locale: $.datepicker.regional['es'],
-            defaultDate: objCalendar.FirstDate,
+            defaultDate: this.CurrentDate,
             beforeShowDay: function (date) {
                 //eval special day
                 var oReturn = [true, ''];
@@ -63,17 +75,17 @@ function setCalendarOptions(objCalendar, lstSpecialDay) {
             },
             onSelect: function (date) {
                 //delete selected style in continuos calendar
-                $('#' + objCalendar.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
+                $('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
 
                 alert(date);
             },
         });
 
         //right
-        $('#' + objCalendar.DivId + '-Right').datepicker({
+        $('#' + this.DivId + '-Right').datepicker({
             dateFormat: 'yy-mm-dd',
             locale: $.datepicker.regional['es'],
-            defaultDate: objCalendar.SecondDate,
+            defaultDate: vSecondDate,
             beforeShowDay: function (date) {
                 //eval special day
                 var oReturn = [true, ''];
@@ -88,16 +100,16 @@ function setCalendarOptions(objCalendar, lstSpecialDay) {
             },
             onSelect: function (date) {
                 //delete selected style in continuos calendar
-                $('#' + objCalendar.DivId + '-Left .ui-state-active').removeClass('ui-state-active ui-state-hover');
+                $('#' + this.DivId + '-Left .ui-state-active').removeClass('ui-state-active ui-state-hover');
 
                 alert(date);
             },
         });
 
         //delete selected style on right calendar
-        $('#' + objCalendar.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
-    }
-}
+        $('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
+    },
+};
 
 /*render day calendar*/
 var MeetingObject = {
@@ -118,7 +130,7 @@ var MeetingObject = {
         for (var item in this.lstOffice) {
             //create div to put a calendar
             this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
-            $('#' + DivId).append($('#divMetting').html().replace('divOfficePublicId', this.lstOffice[item].OfficeDivId));
+            $('#' + DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
 
             //init calendar
             this.InitOfficeByDay(this.lstOffice[item].OfficePublicId);
@@ -173,26 +185,26 @@ var MeetingObject = {
 
 
         //load office
-        $('#selOffice').find('option').remove();
-        $('#selOffice').unbind('change');
+        $('#OfficePublicId').find('option').remove();
+        $('#OfficePublicId').unbind('change');
         for (var item in this.lstOffice) {
 
-            $('#selOffice').append($('<option/>', {
+            $('#OfficePublicId').append($('<option/>', {
                 value: this.lstOffice[item].OfficePublicId,
                 text: this.lstOffice[item].OfficeName,
                 selected: (this.lstOffice[item].OfficePublicId == vOfficePublicId)
             }));
         }
 
-        $('#selOffice').change(function () {
+        $('#OfficePublicId').change(function () {
             MeetingObject.RenderCreateAppointment(vDate, $(this).val());
         });
 
         //load treatment
-        $('#selTreatment').find('option').remove();
-        $('#selTreatment').unbind('change');
+        $('#TreatmentId').find('option').remove();
+        $('#TreatmentId').unbind('change');
         $.each(this.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
-            $('#selTreatment').append($('<option/>', {
+            $('#TreatmentId').append($('<option/>', {
                 value: value.TreatmentId,
                 text: value.TreatmentName,
                 selected: value.Default,
@@ -209,7 +221,7 @@ var MeetingObject = {
             }
         });
 
-        $('#selTreatment').change(function () {
+        $('#TreatmentId').change(function () {
             //get treatment id
             var ovTreatmentId = $(this).val();
             var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
@@ -226,6 +238,8 @@ var MeetingObject = {
                 }
             });
         });
+
+        $('#CatId_TreatmentId').val('0');
 
         //init duration spinner
         $('#Duration').spinner({
@@ -260,7 +274,8 @@ var MeetingObject = {
 
         //load patient autocomplete
         $('#lstPatient').html('');
-        $('#PatientAppointment').val('');
+        $('#PatientAppointmentCreate').val('');
+        $('#PatientAppointmentDelete').val('');
         $('#getPatient').autocomplete(
 	    {
 	        //source: acData,
@@ -294,10 +309,10 @@ var MeetingObject = {
 	    }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
 	        var RenderItem = $('#divPatientAcItem').html();
-	        RenderItem = RenderItem.replace('{ProfileImage}', item.ProfileImage);
-	        RenderItem = RenderItem.replace('{Name}', item.Name);
-	        RenderItem = RenderItem.replace('{IdentificationNumber}', item.IdentificationNumber);
-	        RenderItem = RenderItem.replace('{Mobile}', item.Mobile);
+	        RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
+	        RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
+	        RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
+	        RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
 
 	        return $("<li></li>")
 			    .data("ui-autocomplete-item", item)
@@ -312,20 +327,28 @@ var MeetingObject = {
         $('#AppointmentUpsert').fadeIn('slow');
     },
     AddPatientAppointment: function (vPatientModel) {
-        var ApPatHtml = $('#ulPatientAppointment').html();
-        ApPatHtml = ApPatHtml.replace('{ProfileImage}', vPatientModel.ProfileImage);
-        ApPatHtml = ApPatHtml.replace('{Name}', vPatientModel.Name);
-        ApPatHtml = ApPatHtml.replace('{IdentificationNumber}', vPatientModel.IdentificationNumber);
-        ApPatHtml = ApPatHtml.replace('{Mobile}', vPatientModel.Mobile);
-        ApPatHtml = ApPatHtml.replace('{Email}', vPatientModel.Email);
-        ApPatHtml = ApPatHtml.replace('{PatientPublicId}', vPatientModel.PatientPublicId);
-
-        $('#lstPatient').append(ApPatHtml);
-        $('#PatientAppointment').val($('#PatientAppointment').val() + ',' + vPatientModel.PatientPublicId);
+        if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
+            var ApPatHtml = $('#ulPatientAppointment').html();
+            ApPatHtml = ApPatHtml.replace(/{ProfileImage}/gi, vPatientModel.ProfileImage);
+            ApPatHtml = ApPatHtml.replace(/{Name}/gi, vPatientModel.Name);
+            ApPatHtml = ApPatHtml.replace(/{IdentificationNumber}/gi, vPatientModel.IdentificationNumber);
+            ApPatHtml = ApPatHtml.replace(/{Mobile}/gi, vPatientModel.Mobile);
+            ApPatHtml = ApPatHtml.replace(/{Email}/gi, vPatientModel.Email);
+            ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
+            $('#lstPatient').append(ApPatHtml);
+            $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val() + ',' + vPatientModel.PatientPublicId);
+            $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
+        }
+    },
+    RemovePatientAppointment: function (vPatientPublicId) {
+        $('#lstPatient').find('#' + vPatientPublicId).remove();
+        $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
+        $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
     },
     SaveAppointment: function () {
-
+        debugger;
         $("#frmAppointment").submit(function (e) {
+            debugger;
             var postData = $(this).serializeArray();
             var formURL = $(this).attr("action");
             $.ajax(
@@ -335,11 +358,10 @@ var MeetingObject = {
                 data: postData,
                 success: function (data, textStatus, jqXHR) {
                     debugger;
-                    //data: return data from server
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     debugger;
-                    //if fails      
+                    alert('Se ha generado un error creando la cita.');
                 }
             });
             e.preventDefault(); //STOP default action
@@ -347,15 +369,6 @@ var MeetingObject = {
         });
 
         $("#frmAppointment").submit();
-
-        //$.ajax({
-        //    url: '/api/AppointmentApi',
-        //    dataType: 'json',
-        //    success: function (data) {
-        //        response(data);
-        //    }
-        //});
-
     }
 };
 
