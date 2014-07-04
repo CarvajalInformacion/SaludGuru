@@ -80,6 +80,10 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.PatientSearch(ProfilePublicId, SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
+        public List<ItemModel> PatientGetOptions()
+        {
+            return DataFactory.PatientGetOptions();
+        }
         #endregion
 
         #region Appointment
@@ -119,6 +123,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentList(ProfilePublicId);
         }
 
-        #endregion       
+        #endregion               
     }
 }

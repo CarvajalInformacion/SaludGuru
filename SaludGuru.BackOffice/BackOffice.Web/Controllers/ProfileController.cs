@@ -610,14 +610,18 @@ namespace BackOffice.Web.Controllers
 
             for (int i = 0; i < modelList.Count; i++)
             {
-                if (i == modelList.Count - 1)
+                if (modelList[i].PublicUserIdFrom != null )
                 {
-                    arrayToConsult += modelList[i].PublicUserIdFrom;
-                }
-                else
-                {
-                    arrayToConsult += modelList[i].PublicUserIdFrom + ",";
-                }
+                    modelList[i].CreateDate.ToString();
+                    if (i == modelList.Count - 1)
+                    {
+                        arrayToConsult += modelList[i].PublicUserIdFrom;
+                    }
+                    else
+                    {
+                        arrayToConsult += modelList[i].PublicUserIdFrom + ",";
+                    }
+                }                
             }
 
             List<User> userList = new List<User>();
@@ -628,6 +632,7 @@ namespace BackOffice.Web.Controllers
             {
                 List<User> userToLoad = new List<User>();
                 userToLoad = userList.Where(x => x.UserPublicId == item.PublicUserIdFrom).ToList();
+                //item.CreateDate.ToString();
                 item.UserName = userToLoad.FirstOrDefault().Name + userToLoad.FirstOrDefault().LastName;                
             }
 

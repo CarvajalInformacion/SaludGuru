@@ -10,7 +10,7 @@
         Serialize(Model.
             Select(x => new
             {
-                CreateDate = x.CreateDate,
+                CreateDate = x.CreateDate.ToString(),
                 PublicUserIdFrom = x.PublicUserIdFrom,
                 Body = x.Body,
                 UserName = x.UserName

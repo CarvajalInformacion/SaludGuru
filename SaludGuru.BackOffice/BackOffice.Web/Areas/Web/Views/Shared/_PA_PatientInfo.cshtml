@@ -17,6 +17,39 @@
             </li>
             <li>
                 @{
+                    var CatInfo_IT = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                           (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IdentificationType).
+                           Select(x => new { id = x.PatientInfoId, val = string.IsNullOrEmpty(x.Value) ? 0 : int.Parse(x.Value.Replace(" ", "")) }).
+                               DefaultIfEmpty(null).
+                               FirstOrDefault();
+                    if (CatInfo_IT != null)
+                    {
+                        <input type="hidden" id="CatId_IdentificationType" name="CatId_IdentificationType" value="@CatInfo_IT.id" />
+                    }
+                }
+                <label>Tipo Identificación</label>
+                <select id="IdentificationType" name="IdentificationType">
+                    @foreach (MedicalCalendar.Manager.Models.General.ItemModel tp in
+                                Model.PatientOptions.
+                                Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.IdentificationType).
+                                OrderBy(x => x.ItemName)
+                                .ToList())
+                    {
+                        if (CatInfo_IT != null && tp.ItemId == CatInfo_IT.val)
+                        {
+                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                        }
+                        else
+                        {
+                            <option value="@tp.ItemId">@tp.ItemName</option>
+                        }
+                    }
+                </select>
+            </li>
+
+            <li>
+                @{
                     var CatInfo_IN = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IdentificationNumber).
@@ -31,6 +64,7 @@
                 <label>Número Identificación</label>
                 <input id="IdentificationNumber" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" type="text" />
             </li>
+
             <li>
                 @{
                     var CatInfo_EM = Model.Patient == null ? null :
@@ -47,8 +81,9 @@
             </li>
             <li>
                 <label>Correo electrónico</label>
-                <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
+                <input id="Email" name="Email" value="@(CatInfo_EM == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
+
             <li>
                 @{
                     var CatInfo_AT = Model.Patient == null ? null :
@@ -65,9 +100,74 @@
             </li>
             <li>
                 <label>Teléfono</label>
-                <input id="Telefono" name="Telefono" value="@(CatInfo_IN == null ? string.Empty : CatInfo_AT.val)" type="text" />
-            </li>  
+                <input id="Telefono" name="Telefono" value="@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)" type="text" />
+            </li> 
+             
+            <li>
+                @{
+                    var CatInfo_MB = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Mobile).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_MB != null)
+                    {
+                        <input type="hidden" id="CatId_Mobile" name="CatId_Mobile" value="@CatInfo_MB.id" />
+                    }
+                }
+            </li>
+            <li>
+                <label>Teléfono móvil</label>
+                <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
+            </li> 
 
+            <li>
+                @{
+                    var CatInfo_BD = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Birthday).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_BD != null)
+                    {
+                        <input type="hidden" id="CatId_Birthday" name="CatId_Birthday" value="@CatInfo_BD.id" />
+                    }
+                }
+            </li>
+            <li>
+                <label>Fecha de nacimiento</label>
+                <input id="Birthday" name="Birthday" value="@(CatInfo_BD == null ? string.Empty : CatInfo_BD.val)" type="text" />
+            </li>
+
+            <li>
+                @{
+                    var CatInfo_GD = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Gender).
+                            Select(x => new { id = x.PatientInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_GD != null)
+                    {
+                        <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_GD.id" />
+                    }
+                }
+                <label>Sexo</label>
+                @{
+                    if (CatInfo_GD != null && CatInfo_GD.val)
+                    {
+                        <input type="radio" name="Gender" value="true" checked="checked" /><p> Masculino </p>
+                        <input type="radio" name="Gender" value="false" /><p> Femenino </p>
+                    }
+                    else
+                    {
+                        <input type="radio" name="Gender" value="true" /><p> Masculino </p>
+                        <input type="radio" name="Gender" value="false" checked="checked" /><p> Femenino </p>
+                    }
+                }
+            </li>
         </ul>
         <div>
             @*hiden fields*@

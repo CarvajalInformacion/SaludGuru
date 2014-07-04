@@ -380,27 +380,25 @@ function ProfileSearchGrid(vidDiv) {
     //add search button event
     $('#' + vidDiv + '-Search').click(function () {
         $('#' + vidDiv).getKendoGrid().dataSource.read();
+    });   
+}
+//init Notifications grid
+function ProfileNotificationsListGrid(vidDiv, vProfileData) {
+    $('#' + vidDiv).kendoGrid({
+        //toolbar: [{ template: $("#templateCreate").html() }],        
+        dataSource: {            
+            type: "json",
+            data: vProfileData,
+        },
+        columns: [{
+            field: "CreateDate",
+            title: "Fecha",
+        }, {
+            field: "UserName",
+            title: "Enviado Por"
+        }, {
+            field: "Body",
+            title: "Notificación"
+        }],
     });
-
-    //init Notifications grid
-    function ProfileNotificationsListGrid(vidDiv, vProfileData) {
-        debugger;
-        $('#' + vidDiv).kendoGrid({
-            //toolbar: [{ template: $("#templateCreate").html() }],
-            dataSource: {
-                type: "json",
-                data: vProfileData,
-            },
-            columns: [{
-                field: "CreateDate",
-                title: "Fecha",
-            }, {
-                field: "UserName",
-                title: "Enviado Por"
-            }, {
-                field: "Body",
-                title: "Notificación"
-            }],
-        });
-    }
 }

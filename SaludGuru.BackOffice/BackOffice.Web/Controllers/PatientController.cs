@@ -30,7 +30,7 @@ namespace BackOffice.Web.Controllers
             string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
 
             PatientUpSertModel Model = new PatientUpSertModel();
-
+            Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
@@ -51,7 +51,7 @@ namespace BackOffice.Web.Controllers
                 if (PatientToCreate != null)
                 {
                     //create patient 
-                    string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, "12514785");
+                    string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, SessionController.SessionManager.Auth_UserLogin.UserPublicId);
                 }
                 Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
             }
@@ -94,6 +94,24 @@ namespace BackOffice.Web.Controllers
                             PatientInfoType = enumPatientInfoType.Telephone,
                             Value = Request["Telefono"].ToString(),
                         },
+                         new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Mobile"])?0:int.Parse(Request["CatId_Mobile"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Mobile,
+                            Value = Request["Mobile"].ToString(),
+                        },                        
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Birthday"])?0:int.Parse(Request["CatId_Birthday"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Birthday,
+                            Value = Request["Birthday"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Gender"])?0:int.Parse(Request["CatId_Gender"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Gender,
+                            Value = Request["Gender"].ToString(),
+                        }                   
                     }
                 };
 
