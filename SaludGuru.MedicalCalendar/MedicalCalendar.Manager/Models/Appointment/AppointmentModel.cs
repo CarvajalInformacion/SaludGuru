@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalCalendar.Manager.Models.Patient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,10 @@ namespace MedicalCalendar.Manager.Models.Appointment
 
         public List<AppointmentInfoModel> AppointmentInfo { get; set; }
 
-        public List<MedicalCalendar.Manager.Models.Patient.PatientModel> RelatedPatient { get; set; }
+        public List<PatientModel> RelatedPatient { get; set; }
 
         public string OfficePublicId { get; set; }
+
         public string OfficeName { get; set; }
 
     }
