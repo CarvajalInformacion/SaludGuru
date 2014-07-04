@@ -53,6 +53,7 @@ namespace MedicalCalendar.Manager.Controller
             {
                 DAL.Controller.MedicalCalendarDataController.Instance.AppointmentModify
                     (AppointmentToUpSert.AppointmentPublicId,
+                    AppointmentToUpSert.OfficePublicId,
                     AppointmentToUpSert.Status,
                     AppointmentToUpSert.StartDate,
                     AppointmentToUpSert.EndDate);
