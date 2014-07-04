@@ -29,20 +29,36 @@ namespace BackOffice.Web.ControllersApi
                     Select(x => new BackOffice.Models.Patient.PatientSearchModel()
                     {
                         SearchPatientCount = oTotalCount,
+
                         PatientPublicId = x.PatientPublicId,
+
                         Name = x.Name + " " + x.LastName,
-                        Identification = x.PatientInfo.
+
+                        ProfileImage = x.PatientInfo.
+                            Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
+                            Select(y => y.Value).
+                            DefaultIfEmpty(string.Empty).FirstOrDefault(),
+
+                        IdentificationNumber = x.PatientInfo.
                             Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IdentificationNumber).
                             Select(y => y.Value).
                             DefaultIfEmpty(string.Empty).FirstOrDefault(),
+
+                        Mobile = x.PatientInfo.
+                            Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Mobile).
+                            Select(y => y.Value).
+                            DefaultIfEmpty(string.Empty).FirstOrDefault(),
+
+                        Telephone = x.PatientInfo.
+                            Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Telephone).
+                            Select(y => y.Value).
+                            DefaultIfEmpty(string.Empty).FirstOrDefault(),
+
                         Email = x.PatientInfo.
                             Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Email).
                             Select(y => y.Value).
                             DefaultIfEmpty(string.Empty).FirstOrDefault(),
-                        Telephone = x.PatientInfo.
-                        Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Telephone).
-                        Select(y => y.Value).
-                        DefaultIfEmpty(string.Empty).FirstOrDefault(),
+
                     }).ToList();
 
                 return oReturn;

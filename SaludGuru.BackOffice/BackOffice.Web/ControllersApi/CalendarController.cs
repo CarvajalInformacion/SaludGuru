@@ -9,16 +9,6 @@ namespace BackOffice.Web.ControllersApi
 {
     public class CalendarController : BaseApiController
     {
-
-        /// <summary>
-        /// get special days for an specific office or profile for two months
-        /// </summary>
-        /// <param name="CountryId"></param>
-        /// <param name="ProfilePublicId"></param>
-        /// <param name="OfficePublicId"></param>
-        /// <param name="Year"></param>
-        /// <param name="Month"></param>
-        /// <returns></returns>
         [HttpPost]
         [HttpGet]
         public List<MedicalCalendar.Manager.Models.General.SpecialDayModel> GetSpecialDayList

@@ -167,6 +167,11 @@ var MeetingObject = {
     },
 
     RenderCreateAppointment: function (vDate, vOfficePublicId) {
+
+        //hidde create appointment form
+        $('#AppointmentUpsert').hide();
+
+
         //load office
         $('#selOffice').find('option').remove();
         $('#selOffice').unbind('change');
@@ -180,7 +185,6 @@ var MeetingObject = {
         }
 
         $('#selOffice').change(function () {
-            debugger;
             MeetingObject.RenderCreateAppointment(vDate, $(this).val());
         });
 
@@ -192,17 +196,35 @@ var MeetingObject = {
                 value: value.TreatmentId,
                 text: value.TreatmentName,
                 selected: value.Default,
-                duration: value.Duration,
+                officepublicid: vOfficePublicId,
             }));
 
-            //set default duration
             if (value.Default == true) {
+                //set duration
                 $('#Duration').val(value.Duration);
+                //set aftercare
+                $('#AfterCare').val(value.AfterCare);
+                //set beforecare
+                $('#BeforeCare').val(value.BeforeCare);
             }
         });
 
         $('#selTreatment').change(function () {
-            $('#Duration').val($(this).find(':selected').attr('duration'));
+            //get treatment id
+            var ovTreatmentId = $(this).val();
+            var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
+
+            //set input dependencies
+            $.each(MeetingObject.lstOffice[ovOfficePublicId].TreatmentList, function (index, value) {
+                if (value.TreatmentId == ovTreatmentId) {
+                    //set duration
+                    $('#Duration').val(value.Duration);
+                    //set aftercare
+                    $('#AfterCare').val(value.AfterCare);
+                    //set beforecare
+                    $('#BeforeCare').val(value.BeforeCare);
+                }
+            });
         });
 
         //init duration spinner
@@ -237,6 +259,8 @@ var MeetingObject = {
         }
 
         //load patient autocomplete
+        $('#lstPatient').html('');
+        $('#PatientAppointment').val('');
         $('#getPatient').autocomplete(
 	    {
 	        //source: acData,
@@ -244,9 +268,6 @@ var MeetingObject = {
 	            $.ajax({
 	                url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
 	                dataType: 'json',
-	                //data: {
-	                //    q: request.term
-	                //},
 	                success: function (data) {
 	                    response(data);
 	                }
@@ -254,21 +275,88 @@ var MeetingObject = {
 	        },
 	        minLength: 0,
 	        focus: function (event, ui) {
-	            //$('#' + acId).val(ui.item.label);
+	            $('#getPatient').val(ui.item.Name);
 	            return false;
 	        },
 	        select: function (event, ui) {
-	            //$('#' + acId).val(ui.item.label);
-	            //$('#' + acId + '-id').val(ui.item.value);
+	            MeetingObject.AddPatientAppointment({
+	                ProfileImage: ui.item.ProfileImage,
+	                Name: ui.item.Name,
+	                IdentificationNumber: ui.item.IdentificationNumber,
+	                Mobile: ui.item.Mobile,
+	                Email: ui.item.Email,
+	                PatientPublicId: ui.item.PatientPublicId
+	            });
+
+	            $('#getPatient').val('');
 	            return false;
 	        }
 	    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+	        var RenderItem = $('#divPatientAcItem').html();
+	        RenderItem = RenderItem.replace('{ProfileImage}', item.ProfileImage);
+	        RenderItem = RenderItem.replace('{Name}', item.Name);
+	        RenderItem = RenderItem.replace('{IdentificationNumber}', item.IdentificationNumber);
+	        RenderItem = RenderItem.replace('{Mobile}', item.Mobile);
+
 	        return $("<li></li>")
 			    .data("ui-autocomplete-item", item)
-			    .append("<a><strong>" + item.Name + "</strong></a>")
+			    .append("<a><strong>" + RenderItem + "</strong></a>")
 			    .appendTo(ul);
 	    };
+
+        //set appointment id
+        $('#AppointmentPublicId').val('');
+
+        //display create appointment form
+        $('#AppointmentUpsert').fadeIn('slow');
     },
+    AddPatientAppointment: function (vPatientModel) {
+        var ApPatHtml = $('#ulPatientAppointment').html();
+        ApPatHtml = ApPatHtml.replace('{ProfileImage}', vPatientModel.ProfileImage);
+        ApPatHtml = ApPatHtml.replace('{Name}', vPatientModel.Name);
+        ApPatHtml = ApPatHtml.replace('{IdentificationNumber}', vPatientModel.IdentificationNumber);
+        ApPatHtml = ApPatHtml.replace('{Mobile}', vPatientModel.Mobile);
+        ApPatHtml = ApPatHtml.replace('{Email}', vPatientModel.Email);
+        ApPatHtml = ApPatHtml.replace('{PatientPublicId}', vPatientModel.PatientPublicId);
+
+        $('#lstPatient').append(ApPatHtml);
+        $('#PatientAppointment').val($('#PatientAppointment').val() + ',' + vPatientModel.PatientPublicId);
+    },
+    SaveAppointment: function () {
+
+        $("#frmAppointment").submit(function (e) {
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                    debugger;
+                    //data: return data from server
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    debugger;
+                    //if fails      
+                }
+            });
+            e.preventDefault(); //STOP default action
+            e.unbind(); //unbind. to stop multiple form submit.
+        });
+
+        $("#frmAppointment").submit();
+
+        //$.ajax({
+        //    url: '/api/AppointmentApi',
+        //    dataType: 'json',
+        //    success: function (data) {
+        //        response(data);
+        //    }
+        //});
+
+    }
 };
 
 

@@ -13,8 +13,10 @@ namespace BackOffice.Models.Patient
 
         public string PatientPublicId { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
+        public string ProfileImage { get; set; }
+        public string IdentificationNumber { get; set; }
+        public string Mobile { get; set; }
         public string Telephone { get; set; }
-        public string Identification { get; set; }
+        public string Email { get; set; }
     }
 }
