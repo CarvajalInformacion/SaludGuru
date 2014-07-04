@@ -10,7 +10,7 @@
         
     
         <form action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.SpecialtyInfo.CategoryId })" method="post">
-            <ul class="BOIncludeNewInsurance">
+            <ul class="BOIncludeNewSpecialty">
                 <li>
                     <label>Nombre</label>
                     <input id="Name" name="Name" value="@(Model.SpecialtyInfo.Name == null ? string.Empty : Model.SpecialtyInfo.Name)" type="text" />

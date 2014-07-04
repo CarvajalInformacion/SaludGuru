@@ -57,6 +57,13 @@ namespace BackOffice.Web.Controllers
                             Where(x => x.CategoryId.ToString() == specialtyId).FirstOrDefault();
                 }
             }
+            if(Model.SpecialtyInfo == null)
+            {
+                Model.SpecialtyInfo = new SpecialtyModel()
+                {
+                    SpecialtyInfo = new List<CategoryInfoModel>()
+                };
+            }
             return View(Model);
         }
 

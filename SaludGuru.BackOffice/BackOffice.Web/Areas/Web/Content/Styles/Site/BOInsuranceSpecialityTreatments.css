@@ -2,28 +2,49 @@
 
 .BOInsuranceTableWrapper {
     display:block;
-    border:1px solid black;
-    margin:0px auto;
-    width:74%;
+
+border:1px solid #b3b3b3;
+    
+    margin:5px auto 0px auto;
+    width:100%;
     min-width:58%;
+    background-color:#fff;
+    padding:0px 6% 20px 6%;
 }
 .BOInsuranceTableWrapper h3{
-    border:1px solid red; 
+
+border:none; 
+    
     width:auto; 
     margin:10px 0px 10px 14px;
     font-size:20px;
 }
+#divGridInsurance div a, #divGridInsurance div.k-grid-content a,
+#divGridSpecialty div a, #divGridSpecialty div.k-grid-content a{
+    color:#a33683;
+}
 
 /************* INCLUIR INFO EN LISTA DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
 
-.BOIncludeNewInsurance li{
+.BOIncludeNewInsurance, .BOIncludeNewSpecialty li{
+    display:block;
+
+border:1px solid #b3b3b3;
+    
+    margin:5px auto 0px auto;
+    width:100%;
+    min-width:58%;
+    background-color:#fff;
+    padding:20px 6% 15px 6%;
+}
+.BOIncludeNewInsurance li, .BOIncludeNewSpecialty li{
     display:inline-block;
-    border:1px solid red;
+border:none;
     margin:0px 0px 0px 14px;
     vertical-align:top;
     width:auto;
 }
-.BOIncludeNewInsurance li label{
+.BOIncludeNewInsurance li label, .BOIncludeNewSpecialty li label{
     display:inline-block;
     border:1px solid #999;
     padding:15px 20px;
@@ -31,8 +52,7 @@
     background-color:#E6E6E6;
     line-height:inherit;
 }
-
-.BOIncludeNewInsurance li input[type="text"]{
+.BOIncludeNewInsurance li input[type="text"], .BOIncludeNewSpecialty li input[type="text"]{
     display:inline-block;
     border:1px solid #999;
     padding:5px 2px;
@@ -41,7 +61,7 @@
     width:200px;
     height:30px;
 }
-.BOIncludeNewInsurance li select{
+.BOIncludeNewInsurance li select, BOIncludeNewSpecialty li select{
     display:inline-block;
     border:1px solid #999;
     padding:0px;
@@ -51,7 +71,7 @@
     height:28px;
     vertical-align:top;
 }
-.BOIncludeNewInsurance li textarea{
+.BOIncludeNewInsurance li textarea, BOIncludeNewSpecialty li textarea{
     display:inline-block;
     border:1px solid #999;
     text-align:justify;
@@ -62,3 +82,9 @@
     line-height: 15px;
     font-size: 14px;
 }
+
+/****************** FORMULARIO VERTICAL DE EDICION *********************/
+
+    .BOIncludeNewSpecialty{
+        border:1px solid green;
+    }

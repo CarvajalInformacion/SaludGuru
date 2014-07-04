@@ -48,7 +48,7 @@ namespace SaludGuruProfile.Manager.Controller
                    {
                        //create info
                        DAL.Controller.ProfileDataController.Instance.CategoryInfoCreate
-                           (TreatmentToUpsert.CategoryId,
+                           (oTreatmentId,
                            info.CategoryInfoType,
                            info.Value,
                            info.LargeValue);
