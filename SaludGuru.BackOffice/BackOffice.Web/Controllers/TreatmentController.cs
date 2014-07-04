@@ -61,6 +61,13 @@ namespace BackOffice.Web.Controllers
                             Where(x => x.CategoryId.ToString() == treatmentId).FirstOrDefault();
                 }
             }
+            if(Model.TreatmentInfo == null)
+            {
+                Model.TreatmentInfo = new TreatmentModel()
+                {
+                    TreatmentInfo = new List<CategoryInfoModel>()
+                };
+            }
             return View(Model);
         }
 
