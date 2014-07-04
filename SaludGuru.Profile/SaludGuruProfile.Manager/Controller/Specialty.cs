@@ -49,7 +49,7 @@ namespace SaludGuruProfile.Manager.Controller
                 {
                     //create info
                     DAL.Controller.ProfileDataController.Instance.CategoryInfoCreate
-                        (SpecialtyToUpsert.CategoryId,                        
+                        (oSpecialtyId,                        
                         info.CategoryInfoType,
                         info.Value,
                         info.LargeValue);

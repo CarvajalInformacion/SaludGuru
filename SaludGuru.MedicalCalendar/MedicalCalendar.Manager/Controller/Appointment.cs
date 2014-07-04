@@ -53,6 +53,7 @@ namespace MedicalCalendar.Manager.Controller
             {
                 DAL.Controller.MedicalCalendarDataController.Instance.AppointmentModify
                     (AppointmentToUpSert.AppointmentPublicId,
+                    AppointmentToUpSert.OfficePublicId,
                     AppointmentToUpSert.Status,
                     AppointmentToUpSert.StartDate,
                     AppointmentToUpSert.EndDate);
@@ -65,7 +66,7 @@ namespace MedicalCalendar.Manager.Controller
                 {
                     //create info
                     DAL.Controller.MedicalCalendarDataController.Instance.AppointmentInfoCreate
-                        (AppointmentToUpSert.AppointmentPublicId,
+                        (oAppointmentPublicId,
                         api.AppointmentInfoType,
                         api.Value,
                         api.LargeValue);
@@ -86,7 +87,7 @@ namespace MedicalCalendar.Manager.Controller
             PatientToRemove.All(ptr =>
             {
                 DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
-                    (AppointmentToUpSert.AppointmentPublicId,
+                    (oAppointmentPublicId,
                     ptr.PatientPublicId);
 
                 return true;
@@ -96,7 +97,7 @@ namespace MedicalCalendar.Manager.Controller
             AppointmentToUpSert.RelatedPatient.All(ptu =>
             {
                 DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
-                    (AppointmentToUpSert.AppointmentPublicId,
+                    (oAppointmentPublicId,
                     ptu.PatientPublicId);
 
                 return true;

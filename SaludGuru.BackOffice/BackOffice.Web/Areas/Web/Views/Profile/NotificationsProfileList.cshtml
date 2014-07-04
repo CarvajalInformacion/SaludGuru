@@ -3,6 +3,10 @@
     ViewBag.Title = "NotificationProfileList";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, null)
+</div>
+
 
 @{
     //get json office data
@@ -31,7 +35,7 @@
             debugger;
             ProfileNotificationsListGrid('divGridNotifications', vDataNotifications);
         });
-    </script>
+    </script>   
 }
 
 
