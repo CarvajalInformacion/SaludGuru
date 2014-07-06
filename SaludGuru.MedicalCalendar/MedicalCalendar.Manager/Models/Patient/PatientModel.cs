@@ -14,6 +14,8 @@ namespace MedicalCalendar.Manager.Models.Patient
 
         public string LastName { get; set; }
 
+        public bool IsProfilePatient { get; set; }
+
         public DateTime LastModify { get; set; }
 
         public DateTime CreateDate { get; set; }

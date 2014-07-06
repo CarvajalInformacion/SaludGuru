@@ -30,6 +30,7 @@ namespace MedicalCalendar.Manager.Interfaces
         string AppointmentCreate(string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate);
         void AppointmentModify(string AppointmentPublicId, string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate);
         List<Models.Appointment.AppointmentModel> AppointmentList(string PatientPublicId);
+        List<Models.Appointment.AppointmentModel> AppointmentGetByProfileId(string ProfilePublicId, DateTime StartDateTime, DateTime EndDateTime);
 
         //appointment info
         int AppointmentInfoCreate(string AppointmentPublicId, enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue);

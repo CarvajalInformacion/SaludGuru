@@ -114,13 +114,22 @@ var MettingCalendarObject = {
 /*render day calendar*/
 var MeetingObject = {
 
+    /*meeting info*/
+    StartDateTime: new Date(),
+    EndDateTime: new Date(),
+
     /*office info*/
     lstOffice: new Array(),
 
     /*init meeting variables*/
-    InitMeeting: function (vlstOffice) {
+    InitMeeting: function (vInitObject) {
 
-        $.each(vlstOffice, function (index, value) {
+        //init meeting info
+        this.StartDateTime = vInitObject.StartDateTime;
+        this.EndDateTime = vInitObject.EndDateTime;
+
+        //init office info object array
+        $.each(vInitObject.OfficeInfo, function (index, value) {
             MeetingObject.lstOffice[value.OfficePublicId] = value;
         });
     },
@@ -141,40 +150,42 @@ var MeetingObject = {
 
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
+            defaultDate: this.StartDateTime,
             defaultView: 'agendaDay',
+            allDaySlot: false,
+            allDayText: '',
+            titleFormat: '\'' + this.lstOffice[vOfficePublicId].OfficeName + '\'',
+            weekNumbers: false,
+            editable: true,
             header: {
                 left: '',
                 center: 'title',
                 right: '',
             },
-            titleFormat: '\'' + this.lstOffice[vOfficePublicId].OfficeName + '\'',
-            weekNumbers: false,
             columnFormat: {
                 month: 'dddd',
                 week: 'dddd',
                 day: 'dddd'
             },
-            editable: true,
             dayClick: function (date, jsEvent, view) {
                 MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
             },
             eventClick: function (event, jsEvent, view) {
                 alert(event);
             },
-            //events: [{
-            //    id: 'ABCDEF01',
-            //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
-            //    start: '2014-07-01T10:30:00',
-            //    end: '2014-07-01T11:30:00',
-            //    allDay: false,
-            //    durationEditable: true,
-            //    className: 'claseEvento_1',
-            //}],
-            //eventRender: function (event, element) {
-            //    debugger;
-            //    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-            //    //element.addClass('claseEvento_1');
-            //}
+            eventRender: function (event, element) {
+                element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+                element.addClass('claseEvento_1');
+            },
+            events: [{
+                id: 'ABCDEF01',
+                title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
+                start: '2014-07-05T10:30:00',
+                end: '2014-07-05T11:30:00',
+                allDay: false,
+                //durationEditable: true,
+                //className: 'claseEvento_1',
+            }],
         });
     },
 

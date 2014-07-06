@@ -1,4 +1,5 @@
-﻿using MedicalCalendar.Manager.Models.Appointment;
+﻿using BackOffice.Models.Appointment;
+using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,28 @@ namespace BackOffice.Web.ControllersApi
 {
     public class AppointmentApiController : BaseApiController
     {
+        [HttpPost]
+        [HttpGet]
+        public Dictionary<string, AppointmentModel> GetAppoinmentLoginUser(string StartDateTime, string EndDateTime)
+        {
+            List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByProfileId
+                (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId,
+                DateTime.ParseExact(StartDateTime.Replace(" ", ""), "dd/MM/yyyyTh:mmtt", System.Globalization.CultureInfo.InvariantCulture),
+                DateTime.ParseExact(EndDateTime.Replace(" ", ""), "dd/MM/yyyyTh:mmtt", System.Globalization.CultureInfo.InvariantCulture));
+
+            return null;
+            //return lstAppointment;
+            //List<ScheduleEventModel> oReturn =
+            //    lstAppointment.Select(x => new ScheduleEventModel()
+            //    {
+            //        //title 
+
+            //    }).ToList();
+            ////BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
+            //return new List<ScheduleEventModel>();
+        }
+
+
         [HttpPost]
         [HttpGet]
         public string UpsertAppointment(string UpsertAction)

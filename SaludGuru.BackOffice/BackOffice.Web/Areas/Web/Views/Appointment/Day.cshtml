@@ -101,6 +101,14 @@
             <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
         </li>
     </ul>
+
+    <!--appointment template-->
+    <div id="divAppointmentTemplate">
+        <div>
+            <img src="{AppointmentImage}" />
+            <label>{AppointmentName}</label>
+        </div>
+    </div>
 </div>
 <div style="height:100px;"></div>
 
@@ -183,7 +191,11 @@
             MettingCalendarObject.InitMettingCalendarDoubleByDayAsync(new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'));
 
             //render day calendar
-            MeetingObject.InitMeeting(@Html.Raw(oOfficeInfo));
+            MeetingObject.InitMeeting({
+                StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
+                EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
+                OfficeInfo:@(Html.Raw(oOfficeInfo)),
+            });
             MeetingObject.InitByDay('divMeetingCalendar');
         });
     </script>

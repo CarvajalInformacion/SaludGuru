@@ -105,5 +105,12 @@ namespace MedicalCalendar.Manager.Controller
 
             return oAppointmentPublicId;
         }
+
+        public static List<AppointmentModel> AppointmentGetByProfileId
+            (string ProfilePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByProfileId
+                (ProfilePublicId, StartDateTime, EndDateTime);
+        }
     }
 }
