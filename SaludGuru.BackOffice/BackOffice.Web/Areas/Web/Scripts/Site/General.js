@@ -63,31 +63,30 @@ function InitAutorizationMenu() {
 
 /*init user notifications*/
 var NotificationObject = {
-    
-    NotificationList:[],   
+
+    NotificationList: [],
 
     InitUserNotifications: function () {
-            setInterval(function () { NotificationObject.TimerEvent() }, 50000);        
+        NotificationObject.TimerEvent();
+        setInterval(function () { NotificationObject.TimerEvent() }, 50000);
 
         $('#aNotifyCount').click(function () {
             $("#ulNotificationList").toggle();
         });
     },
-    TimerEvent: function () {        
+    TimerEvent: function () {
         $.ajax({
             url: "/api/NotificationApi",
             Type: "GET",
             dataType: "Json"
         }).done(function (data) {
             this.NotificationList = data;
-            //debugger;
-            if (this.NotificationList != null && data != null && this.NotificationList.length != data. length) {
+            if (this.NotificationList != null && data != null && this.NotificationList.length != data.length) {
                 this.NotificationList = data;
-            }           
+            }
             NotificationObject.RenderNotifications(this.NotificationList)
             //var oReturn
         });
-        //NotificationObject.NotificationList
     },
 
     RenderNotifications: function (NotificationList) {
@@ -96,26 +95,20 @@ var NotificationObject = {
         if (NotificationList.length > 0) {
             //set notification alert icon
         }
-
         //set notification content
-        
+
         //delete all current notifications
-        //ulNotificationList
         $("#ulNotificationList").html('');
 
         $.each(NotificationList, function (i, item) {
-            if (NotificationList != null) {
-                //get html notification template                 
-                var valSet = $("#NotificationTemplate").html();
-                valSet = valSet.replace('{NotificationImage}', '~/Content/Images/facebookIconSmall.png');
-                valSet = valSet.replace('{NotificationText}', NotificationList[i].Body);
-                //ulNotificationList
-                $("#ulNotificationList").append(valSet);      
-            }
-        })                
+            //get html notification template                 
+            var valSet = $("#NotificationTemplate").html();
+            valSet = valSet.replace('{NotificationImage}', '~/Content/Images/Notification_' + item.Status + '.jpg');
+            valSet = valSet.replace('{NotificationText}', item.Body);
+            //ulNotificationList
+            $("#ulNotificationList").append(valSet);
+        })
     },
-
-
 };
 
 /*change profile*/
