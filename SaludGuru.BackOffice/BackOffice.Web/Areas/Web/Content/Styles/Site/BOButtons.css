@@ -16,6 +16,7 @@ border:none;
     height:38px;
     margin:10px auto;
 }
+.BOIncludeNewSpecialty li.BOButtonContainerShort { min-width: 641px; margin-top: -12px;}
 .BOButtons, .BOFormDataWrapper ul li input.BOButtons {
     display:block;
     float:right;

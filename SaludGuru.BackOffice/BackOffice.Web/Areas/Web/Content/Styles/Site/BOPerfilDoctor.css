@@ -143,3 +143,41 @@ border:none;
     .BOMenuPrincipalPerfil div ul li a:hover {
         text-decoration:none;
     }
+
+/*********** ESTILOS DE LA TABLA DE ADMIN DE DOCS. *************/
+#divGridProfile-txtSearch{
+    margin: 12px 0px 10px 7px;
+    border: 1px solid #808080;
+    background-color: #fff;
+    min-height: 28px;
+    min-width: 250px;
+}
+#divGridProfile-Search {
+    display: inline-block;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #99C21D;
+    text-transform: uppercase;
+    font-family: "MuseoSans100";
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFF;
+    box-shadow: 2px 2px 2px #000;
+    vertical-align:middle;
+    margin: -5px 10px 0px 10px;
+}
+    #divGridProfile-Search:hover, #divGridProfile-Search:active {
+        background-color:#ddff55;
+        color:#333;        
+    }
+
+
+
+
+
+
+
+
+
