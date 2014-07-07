@@ -74,6 +74,7 @@ namespace SaludGuru.Notifications.DAL.MySQLDAO
                                       Status = pm.Field<int>("Status"),
                                       Title = pm.Field<string>("Title"),
                                       Body = pm.Field<string>("Body"),
+                                      NotificationType = (SaludGuru.Notifications.Models.Enumerations.enumNoticaficationType)pm.Field<int>("NotificationType"),
                                       LastModify = pm.Field<DateTime>("LastModify"),
                                       CreateDate = pm.Field<DateTime>("CreateDate"),      
                                   }).ToList();

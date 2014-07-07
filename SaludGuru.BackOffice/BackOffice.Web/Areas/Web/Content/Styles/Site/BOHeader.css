@@ -193,7 +193,7 @@ background-repeat:no-repeat;
 background-position:0px 0px;
 background-size:66px 34px;
     }
-    .notificationsWrapper a{
+    .notificationsWrapper span{
         display:inline-block;
 border:none;
         width:26px;
