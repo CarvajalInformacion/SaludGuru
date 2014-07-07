@@ -56,62 +56,45 @@ namespace BackOffice.Web.Controllers
 
         #endregion
 
-        #region _Layout
+        #region Menu Methods
 
-        #region Header
-
-        public virtual PartialViewResult _L_Header()
-        {
-            HeaderModel Model = new HeaderModel();
-
-            //get autorized menus
-            Model.Menu = GetMenuPermisions(SessionModel.CurrentUserAutorization.Role, null);
-
-            return PartialView(Model);
-        }
-
-        private List<MenuModel> GetMenuPermisions
-            (SessionController.Models.Profile.enumRole RoleToEval,
-            BackOffice.Models.General.enumPrincipalMenu? SelectedMenu)
+        public static List<MenuModel> GetMenuPermisions()
         {
             List<MenuModel> oRetorno = new List<MenuModel>();
 
-            //add default dasahboard
-            oRetorno.Add(new MenuModel()
-            {
-                PrincipalMenu = enumPrincipalMenu.Dashboard,
-                EditPermision = enumEditPermision.Read,
-                IsSelected = (SelectedMenu == null)
-            });
+            ////add default dasahboard
+            //oRetorno.Add(new MenuModel()
+            //{
+            //    PrincipalMenu = enumPrincipalMenu.Dashboard,
+            //    EditPermision = enumEditPermision.Read,
+            //    IsSelected = (SelectedMenu == null)
+            //});
 
-            //get all permited modules
-            BackOffice.Models.General.InternalSettings.Instance[
-                BackOffice.Models.General.Constants.C_Settings_PrincipalMenu.
-                Replace("{{RoleId}}", ((int)RoleToEval).ToString())].Value.
-                Split(';').
-                All(pm =>
-                {
-                    string[] pmDesc = pm.Split(',');
-                    if (pmDesc.Length == 2)
-                    {
-                        enumPrincipalMenu CurrentPm = (enumPrincipalMenu)Enum.Parse(typeof(enumPrincipalMenu), pmDesc[0].Replace(" ", ""));
-                        enumEditPermision CurrentEp = (enumEditPermision)Enum.Parse(typeof(enumEditPermision), pmDesc[1].Replace(" ", ""));
-                        oRetorno.Add(new MenuModel()
-                        {
-                            PrincipalMenu = CurrentPm,
-                            EditPermision = CurrentEp,
-                            IsSelected = (SelectedMenu != null && SelectedMenu.Value == CurrentPm)
-                        });
-                    }
-                    return true;
-                });
+            ////get all permited modules
+            //BackOffice.Models.General.InternalSettings.Instance[
+            //    BackOffice.Models.General.Constants.C_Settings_PrincipalMenu.
+            //    Replace("{{RoleId}}", ((int)RoleToEval).ToString())].Value.
+            //    Split(';').
+            //    All(pm =>
+            //    {
+            //        string[] pmDesc = pm.Split(',');
+            //        if (pmDesc.Length == 2)
+            //        {
+            //            enumPrincipalMenu CurrentPm = (enumPrincipalMenu)Enum.Parse(typeof(enumPrincipalMenu), pmDesc[0].Replace(" ", ""));
+            //            enumEditPermision CurrentEp = (enumEditPermision)Enum.Parse(typeof(enumEditPermision), pmDesc[1].Replace(" ", ""));
+            //            oRetorno.Add(new MenuModel()
+            //            {
+            //                PrincipalMenu = CurrentPm,
+            //                EditPermision = CurrentEp,
+            //                IsSelected = (SelectedMenu != null && SelectedMenu.Value == CurrentPm)
+            //            });
+            //        }
+            //        return true;
+            //    });
 
             return oRetorno;
         }
 
         #endregion
-
-        #endregion
-
     }
 }
