@@ -96,7 +96,7 @@ namespace MedicalCalendar.Manager.Controller
             //upsert patient
             AppointmentToUpSert.RelatedPatient.All(ptu =>
             {
-                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientCreate
                     (oAppointmentPublicId,
                     ptu.PatientPublicId);
 
@@ -106,11 +106,11 @@ namespace MedicalCalendar.Manager.Controller
             return oAppointmentPublicId;
         }
 
-        public static List<AppointmentModel> AppointmentGetByProfileId
-            (string ProfilePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        public static List<AppointmentModel> AppointmentGetByOfficeId
+            (string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
-            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByProfileId
-                (ProfilePublicId, StartDateTime, EndDateTime);
+            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeId
+                (OfficePublicId, StartDateTime, EndDateTime);
         }
     }
 }

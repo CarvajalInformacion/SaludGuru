@@ -150,7 +150,7 @@ var MeetingObject = {
 
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            defaultDate: this.StartDateTime,
+            defaultDate: this.CurrentDateTime,
             defaultView: 'agendaDay',
             allDaySlot: false,
             allDayText: '',
@@ -175,36 +175,10 @@ var MeetingObject = {
             },
             eventRender: function (event, element) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-                element.addClass('claseEvento_1');
             },
-            events: function (start, end, timezone, callback) {
-                debugger;
-                $.ajax({
-                    url: '/api/AppointmentApi?StartDateTime=' + serverDateTimeToString(start) + '&EndDateTime=' + serverDateTimeToString(end),
-                    dataType: 'json',
-                    type: "POST",
-                    success: function (doc) {
-                        debugger;
-                        var events = [];
-                        $(doc).find('event').each(function () {
-                            events.push({
-                                title: $(this).attr('title'),
-                                start: $(this).attr('start') // will be parsed
-                            });
-                        });
-                        callback(events);
-                    }
-                });
+            events: {
+                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
             },
-            //events: [{
-            //    id: 'ABCDEF01',
-            //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
-            //    start: '2014-07-05T10:30:00',
-            //    end: '2014-07-05T11:30:00',
-            //    allDay: false,
-            //    //durationEditable: true,
-            //    //className: 'claseEvento_1',
-            //}],
         });
     },
 
@@ -356,6 +330,7 @@ var MeetingObject = {
         //display create appointment form
         $('#AppointmentUpsert').fadeIn('slow');
     },
+
     AddPatientAppointment: function (vPatientModel) {
         if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
             var ApPatHtml = $('#ulPatientAppointment').html();
@@ -370,11 +345,13 @@ var MeetingObject = {
             $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
         }
     },
+
     RemovePatientAppointment: function (vPatientPublicId) {
         $('#lstPatient').find('#' + vPatientPublicId).remove();
         $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
         $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
     },
+
     SaveAppointment: function () {
         debugger;
         $("#frmAppointment").submit(function (e) {
