@@ -15,23 +15,25 @@ namespace BackOffice.Web.ControllersApi
     {
         [HttpPost]
         [HttpGet]
-        public Dictionary<string, AppointmentModel> GetAppoinmentLoginUser(string StartDateTime, string EndDateTime)
+        public Dictionary<string, List<AppointmentModel>> GetAppoinmentLoginUser(string StartDateTime, string EndDateTime)
         {
             List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByProfileId
                 (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId,
-                DateTime.ParseExact(StartDateTime.Replace(" ", ""), "dd/MM/yyyyTh:mmtt", System.Globalization.CultureInfo.InvariantCulture),
-                DateTime.ParseExact(EndDateTime.Replace(" ", ""), "dd/MM/yyyyTh:mmtt", System.Globalization.CultureInfo.InvariantCulture));
+                DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTh:m", System.Globalization.CultureInfo.InvariantCulture),
+                DateTime.ParseExact(EndDateTime.Replace(" ", ""), "yyyy-M-dTh:m", System.Globalization.CultureInfo.InvariantCulture));
 
-            return null;
-            //return lstAppointment;
-            //List<ScheduleEventModel> oReturn =
-            //    lstAppointment.Select(x => new ScheduleEventModel()
-            //    {
-            //        //title 
+            Dictionary<string, List<AppointmentModel>> oReturn = new Dictionary<string, List<AppointmentModel>>();
 
-            //    }).ToList();
-            ////BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
-            //return new List<ScheduleEventModel>();
+            lstAppointment.All(apmt =>
+            {
+                if (!oReturn.ContainsKey(apmt.OfficePublicId))
+                    oReturn[apmt.OfficePublicId] = new List<AppointmentModel>();
+
+                oReturn[apmt.OfficePublicId].Add(apmt);
+                return true;
+            });
+
+            return oReturn;
         }
 
 

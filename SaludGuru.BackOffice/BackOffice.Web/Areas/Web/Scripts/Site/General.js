@@ -1,4 +1,13 @@
-﻿/*function start global pages controls*/
+﻿/*manage date and time conversions*/
+function serverDateToString(vDate) {
+    return vDate.getFullYear() + '-' + ((new Number(vDate.getMonth())) + 1) + '-' + vDate.getDate();
+}
+
+function serverDateTimeToString(vDate) {
+    return vDate.getFullYear() + '-' + ((new Number(vDate.getMonth())) + 1) + '-' + vDate.getDate() + 'T' + vDate.getHours() + ':' + vDate.getMinutes();
+}
+
+/*function start global pages controls*/
 function InitGlobalPagesControls() {
 
     //init hover menu
@@ -58,20 +67,20 @@ var NotificationObject = {
     NotificationList: new Array(),
 
     InitUserNotifications: function () {
-        setInterval(function () { TimerEvent() }, 3000);
+        setInterval(function () { this.TimerEvent() }, 300000);
     },
 
     TimerEvent: function () {
-        $. Ajax ({
+        $.Ajax({
             url: "test.html",
-            Type: "GET",            
-            dataType: "Json"            
-        }).done(function(data){
-            
-            
+            Type: "GET",
+            dataType: "Json"
+        }).done(function (data) {
+
+
             //var oReturn
         })
-        
+
         //NotificationObject.NotificationList
     },
 
