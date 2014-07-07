@@ -64,32 +64,50 @@ function InitAutorizationMenu() {
 /*init user notifications*/
 var NotificationObject = {
 
-    NotificationList: new Array(),
+    NotificationList: [],
 
     InitUserNotifications: function () {
-        setInterval(function () { this.TimerEvent() }, 300000);
-    },
+        NotificationObject.TimerEvent();
+        setInterval(function () { NotificationObject.TimerEvent() }, 50000);
 
+        $('#aNotifyCount').click(function () {
+            $("#ulNotificationList").toggle();
+        });
+    },
     TimerEvent: function () {
-        $.Ajax({
-            url: "test.html",
+        $.ajax({
+            url: "/api/NotificationApi",
             Type: "GET",
             dataType: "Json"
         }).done(function (data) {
-
-
+            this.NotificationList = data;
+            if (this.NotificationList != null && data != null && this.NotificationList.length != data.length) {
+                this.NotificationList = data;
+            }
+            NotificationObject.RenderNotifications(this.NotificationList)
             //var oReturn
-        })
-
-        //NotificationObject.NotificationList
+        });
     },
 
-    RenderNotifications: function () {
-        //this.NotificationList
+    RenderNotifications: function (NotificationList) {
+        //set notification count
+        $('#aNotifyCount').html(NotificationList.length);
+        if (NotificationList.length > 0) {
+            //set notification alert icon
+        }
+        //set notification content
 
-        //$('#aNotifyCount').html('5');
-        //$('#ulNotificationList').html('hola mundo');
-        //NotificationTemplate
+        //delete all current notifications
+        $("#ulNotificationList").html('');
+
+        $.each(NotificationList, function (i, item) {
+            //get html notification template                 
+            var valSet = $("#NotificationTemplate").html();
+            valSet = valSet.replace('{NotificationImage}', '~/Content/Images/Notification_' + item.Status + '.jpg');
+            valSet = valSet.replace('{NotificationText}', item.Body);
+            //ulNotificationList
+            $("#ulNotificationList").append(valSet);
+        })
     },
 };
 
