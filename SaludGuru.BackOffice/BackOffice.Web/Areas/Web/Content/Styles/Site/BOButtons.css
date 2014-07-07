@@ -7,12 +7,12 @@ border:none;
     height:38px;
     margin:10px auto;
 }
-.BOButtonContainerShort, li.BOButtonContainerShort{
+.BOButtonContainerShort{
     display:inline-block;
 
 border:none;
     
-    width:auto;
+    width:95.7%;
     height:38px;
     margin:10px auto;
 }
