@@ -1227,6 +1227,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                 ProfileRoleId = au.Field<int>("ProfileRoleId"),
                                 //ProfileId = au.Field<string>("ProfileId"),
                                 Role = (SessionController.Models.Profile.enumRole)au.Field<int>("RoleId"),
+                                RoleName = au.Field<string>("Value"),
                                 UserEmail = au.Field<string>("UserEmail"),
                                 CreateDate = au.Field<DateTime>("CreateDate"),
                             }).ToList();

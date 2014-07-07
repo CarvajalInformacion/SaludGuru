@@ -115,7 +115,8 @@ var MettingCalendarObject = {
 var MeetingObject = {
 
     /*meeting info*/
-    CurrentDateTime: new Date(),
+    StartDateTime: new Date(),
+    EndDateTime: new Date(),
 
     /*office info*/
     lstOffice: new Array(),
@@ -124,7 +125,8 @@ var MeetingObject = {
     InitMeeting: function (vInitObject) {
 
         //init meeting info
-        this.CurrentDateTime = vInitObject.CurrentDateTime;
+        this.StartDateTime = vInitObject.StartDateTime;
+        this.EndDateTime = vInitObject.EndDateTime;
 
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
@@ -173,37 +175,10 @@ var MeetingObject = {
             },
             eventRender: function (event, element) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-                element.addClass('claseEvento_1');
             },
-            events: function (start, end, timezone, callback) {
-                $.ajax({
-                    url: '/api/AppointmentApi?PublicOfficeId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(start) + '&EndDateTime=' + serverDateTimeToString(end),
-                    dataType: 'json',
-                    type: "POST",
-                    //success: function (doc) {
-                    //    debugger;
-                    //    var events = [];
-                    //    $(doc).find('event').each(function () {
-                    //        events.push({
-                    //            title: $(this).attr('title'),
-                    //            start: $(this).attr('start') // will be parsed
-                    //        });
-                    //    });
-                    //    callback(events);
-                    //}
-                }).done(function (data, textStatus, jqXHR) {
-                    debugger;
-                });
+            events: {
+                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
             },
-            //events: [{
-            //    id: 'ABCDEF01',
-            //    title: '<div id=\'div1j\'><img src=\'https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg\'/><div>Mario Casallas Garcia</div><div>Cedula: 80456258</div></div>',
-            //    start: '2014-07-05T10:30:00',
-            //    end: '2014-07-05T11:30:00',
-            //    allDay: false,
-            //    //durationEditable: true,
-            //    //className: 'claseEvento_1',
-            //}],
         });
     },
 

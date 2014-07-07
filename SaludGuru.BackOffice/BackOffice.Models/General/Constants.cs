@@ -25,6 +25,15 @@
 
         #endregion
 
+        #region Appointment Settings
+
+        public const string C_Settings_AppointmentImageEmpty = "AppointmentImageEmpty";
+        public const string C_Settings_AppointmentImageGroup = "AppointmentImageGroup";
+
+        public const string C_Settings_AppointmentTitleTemplate = "AppointmentTitleTemplate_{{StatusId}}";
+
+        #endregion
+
         #endregion
     }
 }

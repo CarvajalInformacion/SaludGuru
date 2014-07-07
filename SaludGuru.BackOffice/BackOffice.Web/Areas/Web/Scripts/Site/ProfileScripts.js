@@ -168,7 +168,7 @@ function ProfileAutorizationListGrid(vidDiv, vProfileData) {
             data: vProfileData,
         },
         columns: [{
-            field: "Role",
+            field: "RoleName",
             title: "Role",
         }, {
             field: "UserEmail",

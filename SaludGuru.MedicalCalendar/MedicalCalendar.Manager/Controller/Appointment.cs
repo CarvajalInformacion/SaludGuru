@@ -96,7 +96,7 @@ namespace MedicalCalendar.Manager.Controller
             //upsert patient
             AppointmentToUpSert.RelatedPatient.All(ptu =>
             {
-                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientDelete
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentPatientCreate
                     (oAppointmentPublicId,
                     ptu.PatientPublicId);
 
