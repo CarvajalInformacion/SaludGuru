@@ -13,6 +13,20 @@
     <div id="Calendar-Left"></div>
     <div id="Calendar-Right"></div>
 </div>
+<!--Appointment actions-->
+<div>
+    <ul>
+        <li>
+            <a href="">Crear nueva cita</a>
+        </li>
+        <li>
+            <a href="">Citas canceladas</a>
+        </li>
+        <li>
+            <a href="">Bloquear horario</a>
+        </li>
+    </ul>
+</div>
 
 <!--create edit appointment-->
 <div id="AppointmentUpsert" style="display:none;">
@@ -73,10 +87,11 @@
 <div id="divMeetingCalendar">
 </div>
 
+<!--templates-->
 <div id="templates" style="display:none;">
     <!--metting calendar-->
     <div id="divMetting">
-        <div id="divOfficePublicId" class="selMetting"></div>
+        <div id="divOfficePublicId"></div>
     </div>
 
     <!--patient autocomplete-->
@@ -96,12 +111,11 @@
             <label>{Name}</label>
             <label>Ident: {IdentificationNumber}</label>
             <label>Cel: {Mobile}</label>
-            <label>Cel: {Email}</label>
+            <label>Email: {Email}</label>
             <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
             <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
         </li>
     </ul>
-
 </div>
 <div style="height:100px;"></div>
 
@@ -128,74 +142,6 @@
 
 @section inlinescripts
 {
-    <style>
-        .ui-datepicker-week-end a.ui-state-default {
-            background: #00ffff;
-        }
-        /*holiday*/
-        .specialDay_1 a.ui-state-default {
-            background: #ff0000;
-        }
-        /*not available day*/
-        .specialDay_2 a.ui-state-default {
-            background: #0026ff;
-        }
-        /*hide next and preview*/
-        #Calendar-Left .ui-datepicker-prev {
-            display: none;
-        }
-
-        #Calendar-Right .ui-datepicker-prev {
-            display: none;
-        }
-
-        #Calendar-Left .ui-datepicker-next {
-            display: none;
-        }
-
-        #Calendar-Right .ui-datepicker-next {
-            display: none;
-        }
-
-        /*hide calendar all day event*/
-        #divMeetingCalendar .fc-agenda-allday {
-            display: none;
-        }
-
-        #divMeetingCalendar .fc-agenda-divider {
-            display: none;
-        }
-
-        /*event personalized style*/
-        .AppointmentStatus_1201 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1202 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1203 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1204 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1205 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1206 {
-            background-color: #0026ff;
-        }
-
-        .AppointmentStatus_1207 {
-            background-color: #0026ff;
-        }
-    </style>
-
     <script type="text/javascript">
         $(document).ready(function () {
             //render calendar by month
