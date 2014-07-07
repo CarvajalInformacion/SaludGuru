@@ -136,6 +136,9 @@ var MeetingObject = {
 
     /*init meeting calendar by day*/
     InitByDay: function (DivId) {
+
+        var TotalCalendars = 0;
+
         for (var item in this.lstOffice) {
             //create div to put a calendar
             this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
@@ -143,7 +146,13 @@ var MeetingObject = {
 
             //init calendar
             this.InitOfficeByDay(this.lstOffice[item].OfficePublicId);
+
+            //add calendars count
+            TotalCalendars = TotalCalendars + 1;
         }
+
+        //recalc div width
+        $('#' + DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
     },
 
     InitOfficeByDay: function (vOfficePublicId) {
