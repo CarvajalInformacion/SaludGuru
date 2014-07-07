@@ -70,7 +70,7 @@ var NotificationObject = {
         NotificationObject.TimerEvent();
         setInterval(function () { NotificationObject.TimerEvent() }, 50000);
 
-        $('#aNotifyCount').click(function () {
+        $('#notificationsWrapper').click(function () {
             $("#ulNotificationList").toggle();
         });
     },
@@ -94,16 +94,13 @@ var NotificationObject = {
         $('#aNotifyCount').html(NotificationList.length);
         if (NotificationList.length > 0) {
             //set notification alert icon
-        }
-        //set notification content
-
-        //delete all current notifications
+        }       
         $("#ulNotificationList").html('');
 
         $.each(NotificationList, function (i, item) {
             //get html notification template                 
             var valSet = $("#NotificationTemplate").html();
-            valSet = valSet.replace('{NotificationImage}', '~/Content/Images/Notification_' + item.Status + '.jpg');
+            valSet = valSet.replace('{NotificationImage}', '~/Content/Images/Notification_' + item.NotificationType + '.jpg');
             valSet = valSet.replace('{NotificationText}', item.Body);
             //ulNotificationList
             $("#ulNotificationList").append(valSet);

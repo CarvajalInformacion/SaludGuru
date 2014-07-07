@@ -1,22 +1,25 @@
-﻿@model List<BackOffice.Models.General.MenuModel>
+﻿@{
+    //get current menu to show
+    List<BackOffice.Models.General.MenuModel> CurrentMenu = BackOffice.Web.Controllers.BaseController.GetMenuPermisions();
+}
 
 
 <!--home icon-->
 <a class="HeaderLogoSaludGuru" href="" title="SaludGuru"></a>
 
 <!--principal menu-->
-<ul class="mainMenuItemWrapper">
-    @foreach (BackOffice.Models.General.MenuModel PrincipalM in Model)
-    {
-        switch (PrincipalM.PrincipalMenu)
+@*<ul class="mainMenuItemWrapper">
+        @foreach (BackOffice.Models.General.MenuModel PrincipalM in Model)
         {
-            case BackOffice.Models.General.enumPrincipalMenu.Administrator:
-                <li class="admin">
-                    <!--Este es el primer item del menu-->
-                    <a href="">Administrar</a>
-                </li>
+            switch (PrincipalM.PrincipalMenu)
+            {
+                case BackOffice.Models.General.enumPrincipalMenu.Administrator:
+                    <li class="admin">
+                        <!--Este es el primer item del menu-->
+                        <a href="">Administrar</a>
+                    </li>
 
-                <!--Ese es el contenedor de los subitems-->
+                    <!--Ese es el contenedor de los subitems-->
                     <ul class="subMenuAdministrar">
                         <li>
                             <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Perfil</a>
@@ -31,12 +34,12 @@
                             <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
                         </li>
                     </ul>
-    
-                break;
-            case BackOffice.Models.General.enumPrincipalMenu.Appointment:
-            <li class="agenda">
-                <a href="">Agenda</a>
-            </li>
+
+                    break;
+                case BackOffice.Models.General.enumPrincipalMenu.Appointment:
+                <li class="agenda">
+                    <a href="">Agenda</a>
+                </li>
 
                 <ul class="subMenuAgenda">
                     <li>
@@ -56,25 +59,25 @@
                     </li>
                 </ul>
 
-                break;
-            case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
-            <li class="dashboard">
-                <a href="@Url.Action(MVC.Home.ActionNames.Dashboard,MVC.Home.Name)">Dashboard</a>
-            </li>
-                break;
-            case BackOffice.Models.General.enumPrincipalMenu.Patient:
-            <li class="pacientes">
-                <a href="">Pacientes</a>
-            </li>
-                break;
-            case BackOffice.Models.General.enumPrincipalMenu.Profile:
-            <li class="perfil">
-                <a href="">Perfil</a>
-            </li>
-                break;
-            default:
-                break;
+                    break;
+                case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
+                <li class="dashboard">
+                    <a href="@Url.Action(MVC.Home.ActionNames.Dashboard,MVC.Home.Name)">Dashboard</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumPrincipalMenu.Patient:
+                <li class="pacientes">
+                    <a href="">Pacientes</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumPrincipalMenu.Profile:
+                <li class="perfil">
+                    <a href="">Perfil</a>
+                </li>
+                    break;
+                default:
+                    break;
+            }
         }
-    }
-</ul>
+    </ul>*@
 

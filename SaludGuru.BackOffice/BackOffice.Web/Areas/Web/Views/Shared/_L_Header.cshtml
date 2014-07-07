@@ -1,5 +1,4 @@
-﻿@model BackOffice.Models.General.HeaderModel
-<div class="headerMainWrapper">
+﻿<div class="headerMainWrapper">
     <div class="headerTopWrapper">
         <!--render autorized profiles-->
         <div class="profilesListWrapper">
@@ -57,8 +56,8 @@
         <div class="userNotificationWrapper">
 
             <!--render notifications-->
-            <div class="notificationsWrapper">
-                <a id="aNotifyCount" href=""></a>
+            <div id="notificationsWrapper" class="notificationsWrapper">
+                    <span id="aNotifyCount"></span>                
                 <div>
                     <ul id="ulNotificationList" style="display:none;"></ul>
                 </div>
@@ -98,6 +97,6 @@
     </div>
     <!--menu-->
     <div class="mainMenuWrapper">
-        @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu, Model.Menu)
+        @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu)
     </div>
 </div>
