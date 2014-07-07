@@ -67,7 +67,7 @@ var NotificationObject = {
     NotificationList:[],   
 
     InitUserNotifications: function () {
-            setInterval(function () { NotificationObject.TimerEvent() }, 10000);        
+            setInterval(function () { NotificationObject.TimerEvent() }, 50000);        
 
         $('#aNotifyCount').click(function () {
             $("#ulNotificationList").toggle();
