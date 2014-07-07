@@ -192,8 +192,7 @@
 
             //render day calendar
             MeetingObject.InitMeeting({
-                StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
-                EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
+                CurrentDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
                 OfficeInfo:@(Html.Raw(oOfficeInfo)),
             });
             MeetingObject.InitByDay('divMeetingCalendar');

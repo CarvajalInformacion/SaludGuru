@@ -115,8 +115,7 @@ var MettingCalendarObject = {
 var MeetingObject = {
 
     /*meeting info*/
-    StartDateTime: new Date(),
-    EndDateTime: new Date(),
+    CurrentDateTime: new Date(),
 
     /*office info*/
     lstOffice: new Array(),
@@ -125,8 +124,7 @@ var MeetingObject = {
     InitMeeting: function (vInitObject) {
 
         //init meeting info
-        this.StartDateTime = vInitObject.StartDateTime;
-        this.EndDateTime = vInitObject.EndDateTime;
+        this.CurrentDateTime = vInitObject.CurrentDateTime;
 
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
@@ -150,7 +148,7 @@ var MeetingObject = {
 
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            defaultDate: this.StartDateTime,
+            defaultDate: this.CurrentDateTime,
             defaultView: 'agendaDay',
             allDaySlot: false,
             allDayText: '',
@@ -178,22 +176,23 @@ var MeetingObject = {
                 element.addClass('claseEvento_1');
             },
             events: function (start, end, timezone, callback) {
-                debugger;
                 $.ajax({
-                    url: '/api/AppointmentApi?StartDateTime=' + serverDateTimeToString(start) + '&EndDateTime=' + serverDateTimeToString(end),
+                    url: '/api/AppointmentApi?PublicOfficeId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(start) + '&EndDateTime=' + serverDateTimeToString(end),
                     dataType: 'json',
                     type: "POST",
-                    success: function (doc) {
-                        debugger;
-                        var events = [];
-                        $(doc).find('event').each(function () {
-                            events.push({
-                                title: $(this).attr('title'),
-                                start: $(this).attr('start') // will be parsed
-                            });
-                        });
-                        callback(events);
-                    }
+                    //success: function (doc) {
+                    //    debugger;
+                    //    var events = [];
+                    //    $(doc).find('event').each(function () {
+                    //        events.push({
+                    //            title: $(this).attr('title'),
+                    //            start: $(this).attr('start') // will be parsed
+                    //        });
+                    //    });
+                    //    callback(events);
+                    //}
+                }).done(function (data, textStatus, jqXHR) {
+                    debugger;
                 });
             },
             //events: [{
@@ -356,6 +355,7 @@ var MeetingObject = {
         //display create appointment form
         $('#AppointmentUpsert').fadeIn('slow');
     },
+
     AddPatientAppointment: function (vPatientModel) {
         if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
             var ApPatHtml = $('#ulPatientAppointment').html();
@@ -370,11 +370,13 @@ var MeetingObject = {
             $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
         }
     },
+
     RemovePatientAppointment: function (vPatientPublicId) {
         $('#lstPatient').find('#' + vPatientPublicId).remove();
         $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
         $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
     },
+
     SaveAppointment: function () {
         debugger;
         $("#frmAppointment").submit(function (e) {
