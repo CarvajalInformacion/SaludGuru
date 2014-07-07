@@ -439,17 +439,17 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturnPatient;
         }
 
-        public List<AppointmentModel> AppointmentGetByProfileId(string ProfilePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        public List<AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
             lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDateTime));
             lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDateTime));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "AP_Appointment_GetByProfileId",
+                CommandText = "AP_Appointment_GetByOfficeId",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });

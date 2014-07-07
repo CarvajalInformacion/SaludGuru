@@ -123,9 +123,9 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentList(ProfilePublicId);
         }
 
-        public List<AppointmentModel> AppointmentGetByProfileId(string ProfilePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        public List<AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
-            return DataFactory.AppointmentGetByProfileId(ProfilePublicId, StartDateTime, EndDateTime);
+            return DataFactory.AppointmentGetByOfficeId(OfficePublicId, StartDateTime, EndDateTime);
         }
 
         #endregion

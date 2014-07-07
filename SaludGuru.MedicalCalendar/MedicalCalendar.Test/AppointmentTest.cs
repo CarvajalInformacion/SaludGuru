@@ -11,8 +11,8 @@ namespace MedicalCalendar.Test
         public void AppointmentGetByProfileId()
         {
             List<MedicalCalendar.Manager.Models.Appointment.AppointmentModel> result =
-                MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByProfileId
-                ("2C1D2510", 
+                MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeId
+                ("91917194", 
                 new DateTime(2014, 1, 1), 
                 new DateTime(2014, 12, 31));
 
