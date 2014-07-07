@@ -513,7 +513,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                  PatientPublicId = pt.Field<string>("PatientPublicId"),
                                  Name = pt.Field<string>("PatientName"),
                                  LastName = pt.Field<string>("PatientLastName"),
-                                 IsProfilePatient = pt.Field<int>("IsProfilePatient") == 1 ? true : false,
+                                 IsProfilePatient = pt.Field<Int64>("IsProfilePatient") == 1 ? true : false,
                              } into ptg
                              select new PatientModel()
                              {

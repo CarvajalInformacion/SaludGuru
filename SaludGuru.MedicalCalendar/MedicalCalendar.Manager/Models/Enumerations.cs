@@ -27,7 +27,8 @@
         Canceled = 1203,
         PendientAsistance = 1204,
         Attendance = 1205,
-        NotAttendance = 1206
+        NotAttendance = 1206,
+        BlockCalendar = 1207,
     }
 
     public enum enumSpecialDayType

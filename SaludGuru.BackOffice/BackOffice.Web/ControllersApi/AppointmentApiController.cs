@@ -15,16 +15,17 @@ namespace BackOffice.Web.ControllersApi
     {
         [HttpPost]
         [HttpGet]
-        public List<AppointmentModel> GetAppoinmentLoginUser(string OfficePublicId, string StartDateTime, string EndDateTime)
+        public List<ScheduleEventModel> GetAppoinmentLoginUser(string OfficePublicId, string StartDateTime, string EndDateTime)
         {
             List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeId
                 (OfficePublicId,
-                DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTh:m", System.Globalization.CultureInfo.InvariantCulture),
-                DateTime.ParseExact(EndDateTime.Replace(" ", ""), "yyyy-M-dTh:m", System.Globalization.CultureInfo.InvariantCulture));
+                DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture),
+                DateTime.ParseExact(EndDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture));
 
-            return lstAppointment;
+            List<ScheduleEventModel> oReturn = MapAppointment(lstAppointment);
+
+            return oReturn;
         }
-
 
         [HttpPost]
         [HttpGet]
@@ -109,6 +110,69 @@ namespace BackOffice.Web.ControllersApi
                 System.Globalization.CultureInfo.InvariantCulture);
 
             return oRetorno;
+        }
+
+        private List<ScheduleEventModel> MapAppointment(List<AppointmentModel> lstAppointment)
+        {
+            List<ScheduleEventModel> oReturn = new List<ScheduleEventModel>();
+
+            if (lstAppointment != null && lstAppointment.Count > 0)
+            {
+
+                lstAppointment.All(apmt =>
+                {
+                    //get appointment title
+                    string AppointmentTitle = BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_AppointmentTitleTemplate.Replace("{{StatusId}}", ((int)apmt.Status).ToString())].Value;
+
+                    if (apmt.RelatedPatient == null || apmt.RelatedPatient.Count == 0)
+                    {
+                        //no patients over appointment
+                        AppointmentTitle = AppointmentTitle.
+                            Replace("{AppointmentName}", "Esta cita no tiene pacientes.").
+                            Replace("{AppointmentImage}",
+                            BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_AppointmentImageEmpty].Value);
+                    }
+                    else if (apmt.RelatedPatient.Count == 1)
+                    {
+                        //one patient over appointment
+                        AppointmentTitle = AppointmentTitle.
+                            Replace("{AppointmentName}", apmt.RelatedPatient.Select(x => x.Name + " " + x.LastName).FirstOrDefault()).
+                            Replace("{AppointmentImage}",
+                                apmt.RelatedPatient.
+                                    Select(x => x.PatientInfo.
+                                        Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
+                                        Select(y => !string.IsNullOrEmpty(y.Value) ? y.Value :
+                                                        BackOffice.Models.General.InternalSettings.Instance
+                                                            [BackOffice.Models.General.Constants.C_Settings_AppointmentImageEmpty].Value).
+                                        DefaultIfEmpty(BackOffice.Models.General.InternalSettings.Instance
+                                                            [BackOffice.Models.General.Constants.C_Settings_AppointmentImageEmpty].Value).
+                                        FirstOrDefault()).FirstOrDefault());
+                    }
+                    else if (apmt.RelatedPatient.Count > 1)
+                    {
+                        //more than one patient
+                        AppointmentTitle = AppointmentTitle.
+                            Replace("{AppointmentName}", "Esta cita tiene varios pacientes asociados.").
+                            Replace("{AppointmentImage}",
+                            BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_AppointmentImageGroup].Value);
+                    }
+
+                    oReturn.Add(new ScheduleEventModel()
+                    {
+                        id = apmt.AppointmentPublicId,
+                        start = apmt.StartDate,
+                        end = apmt.EndDate,
+                        title = AppointmentTitle,
+                        className = "AppointmentStatus_" + ((int)apmt.Status).ToString(),
+                        RelatedAppointment = apmt,
+                    });
+
+                    return true;
+                });
+            }
+
+            return oReturn;
         }
 
         #endregion

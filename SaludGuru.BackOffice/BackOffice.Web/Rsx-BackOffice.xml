@@ -15,6 +15,82 @@
     <key name="PrincipalMenu_102">Profile,Write;Appointment,Write;Patient,Write;</key>
     <key name="PrincipalMenu_103">Profile,Read;Appointment,Write;Patient,Write;</key>
     <key name="PrincipalMenu_104">Profile,Read;Appointment,Read;Patient,Read;</key>
+
+
+    <!--Appointment templates-->
+    <key name="AppointmentImageEmpty">http://2.bp.blogspot.com/_EZ16vWYvHHg/S-Bl2fuyyWI/AAAAAAAAMKc/DNayYJK8mEo/s400/www.BancodeImagenesGratuitas.com-Fantasticas-20.jpg</key>
+    <key name="AppointmentImageGroup">http://www.madrimasd.org/blogs/matematicas/2008/blogs/matematicas/wp-content/blogs.dir/69/files/1219/o_imagen146.jpg</key>
+
+    <!--New-->
+    <key name="AppointmentTitleTemplate_1201">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Confirmed-->
+    <key name="AppointmentTitleTemplate_1202">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Canceled-->
+    <key name="AppointmentTitleTemplate_1203">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--PendientAsistance-->
+    <key name="AppointmentTitleTemplate_1204">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Attendance-->
+    <key name="AppointmentTitleTemplate_1205">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--NotAttendance-->
+    <key name="AppointmentTitleTemplate_1206">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--BlockCalendar-->
+    <key name="AppointmentTitleTemplate_1207">
+      <![CDATA[
+      <div>
+        <label>Agenda bloqueada</label>
+      </div>
+    ]]>
+    </key>
+
+
   </BackOffice>
 </Settings>
 

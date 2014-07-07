@@ -11,13 +11,15 @@ namespace BackOffice.Models.Appointment
     {
         public string id { get; set; }
 
-        public string AppointmentImage { get; set; }
+        public string title { get; set; }
 
-        public string AppointmentName { get; set; }
+        public DateTime start { get; set; }
 
-        public string start { get; set; }
+        public DateTime end { get; set; }
 
-        public string end { get; set; }
+        public string className { get; set; }
+
+        public bool allDay { get { return false; } }
 
         public AppointmentModel RelatedAppointment { get; set; }
     }
