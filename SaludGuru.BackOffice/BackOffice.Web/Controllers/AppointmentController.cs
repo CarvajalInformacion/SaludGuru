@@ -32,5 +32,20 @@ namespace BackOffice.Web.Controllers
 
             return View(oModel);
         }
+
+        public virtual ActionResult Week()
+        {
+            return View();
+        }
+
+        public virtual ActionResult Month()
+        {
+            return View();
+        }
+
+        public virtual ActionResult List()
+        {
+            return View();
+        }
     }
 }

@@ -80,12 +80,18 @@ namespace BackOffice.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Day = "Day";
+            public readonly string Week = "Week";
+            public readonly string Month = "Month";
+            public readonly string List = "List";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Day = "Day";
+            public const string Week = "Week";
+            public const string Month = "Month";
+            public const string List = "List";
         }
 
 
@@ -125,6 +131,39 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Day);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             DayOverride(callInfo, Date);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void WeekOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Week()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Week);
+            WeekOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Month()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
+            MonthOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult List()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+            ListOverride(callInfo);
             return callInfo;
         }
 

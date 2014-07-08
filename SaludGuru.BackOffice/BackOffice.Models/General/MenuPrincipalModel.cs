@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace BackOffice.Models.General
 {
-    public class MenuModel
+    public class MenuPrincipalModel
     {
-        public enumPrincipalMenu PrincipalMenu { get; set; }
+        public enumMenuPrincipal Menu { get; set; }
         public enumEditPermision EditPermision { get; set; }
         public bool IsSelected { get; set; }
+        public List<MenuSecundaryModel> RelatedMenu { get; set; }
     }
 }

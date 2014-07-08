@@ -13,7 +13,7 @@ namespace BackOffice.Web.Controllers
 {
     public partial class PatientController : BaseController
     {
-        public virtual ActionResult Search(string PublicProfileId, string SearchParam)
+        public virtual ActionResult Search(string SearchParam)
         {
             return View();
         }

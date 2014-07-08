@@ -119,7 +119,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Search
         {
-            public readonly string PublicProfileId = "PublicProfileId";
             public readonly string SearchParam = "SearchParam";
         }
         static readonly ActionParamsClass_PatientGetAllByPublicPatientId s_params_PatientGetAllByPublicPatientId = new ActionParamsClass_PatientGetAllByPublicPatientId();
@@ -172,15 +171,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public T4MVC_PatientController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PublicProfileId, string SearchParam);
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SearchParam);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Search(string PublicProfileId, string SearchParam)
+        public override System.Web.Mvc.ActionResult Search(string SearchParam)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicProfileId", PublicProfileId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
-            SearchOverride(callInfo, PublicProfileId, SearchParam);
+            SearchOverride(callInfo, SearchParam);
             return callInfo;
         }
 

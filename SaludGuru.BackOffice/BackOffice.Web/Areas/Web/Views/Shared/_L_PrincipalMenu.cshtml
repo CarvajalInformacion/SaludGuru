@@ -1,83 +1,106 @@
 ﻿@{
     //get current menu to show
-    List<BackOffice.Models.General.MenuModel> CurrentMenu = BackOffice.Web.Controllers.BaseController.GetMenuPermisions();
+    List<BackOffice.Models.General.MenuPrincipalModel> MenuInfo = BackOffice.Web.Controllers.BaseController.GetPrincipalMenu();
 }
-
 
 <!--home icon-->
 <a class="HeaderLogoSaludGuru" href="" title="SaludGuru"></a>
 
 <!--principal menu-->
-@*<ul class="mainMenuItemWrapper">
-        @foreach (BackOffice.Models.General.MenuModel PrincipalM in Model)
+<ul class="mainMenuItemWrapper">
+    @foreach (BackOffice.Models.General.MenuPrincipalModel PrincipalM in MenuInfo)
+    {
+        switch (PrincipalM.Menu)
         {
-            switch (PrincipalM.PrincipalMenu)
-            {
-                case BackOffice.Models.General.enumPrincipalMenu.Administrator:
-                    <li class="admin">
-                        <!--Este es el primer item del menu-->
-                        <a href="">Administrar</a>
-                    </li>
-
-                    <!--Ese es el contenedor de los subitems-->
-                    <ul class="subMenuAdministrar">
-                        <li>
-                            <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Perfil</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.Insurance.ActionNames.InsuranceList, MVC.Insurance.Name)">Seguros medicos</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.Specialty.ActionNames.SpecialtyList, MVC.Specialty.Name)">Especialidades</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
-                        </li>
-                    </ul>
-
-                    break;
-                case BackOffice.Models.General.enumPrincipalMenu.Appointment:
-                <li class="agenda">
-                    <a href="">Agenda</a>
-                </li>
-
-                <ul class="subMenuAgenda">
-                    <li>
-                        <a href="">Día</a>
-                    </li>
-                    <li>
-                        <a href="">Semana</a>
-                    </li>
-                    <li>
-                        <a href="">Mes</a>
-                    </li>
-                    <li>
-                        <a href="">Lista</a>
-                    </li>
-                    <li>
-                        <a href="">Configuracion</a>
-                    </li>
-                </ul>
-
-                    break;
-                case BackOffice.Models.General.enumPrincipalMenu.Dashboard:
-                <li class="dashboard">
+            case BackOffice.Models.General.enumMenuPrincipal.Dashboard:
+                <li class="dashboard @(PrincipalM.IsSelected?"selected":string.Empty)">
                     <a href="@Url.Action(MVC.Home.ActionNames.Dashboard,MVC.Home.Name)">Dashboard</a>
                 </li>
+                break;
+            case BackOffice.Models.General.enumMenuPrincipal.Administrator:
+            <li class="admin @(PrincipalM.IsSelected?"selected":string.Empty)">
+                <!--Este es el primer item del menu-->
+                <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch,MVC.Profile.Name)">Administrar</a>
+            </li>
+                break;
+            case BackOffice.Models.General.enumMenuPrincipal.Profile:
+            <li class="perfil @(PrincipalM.IsSelected?"selected":string.Empty)">
+                <a href="@Url.Action(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name, new { ProfilePublicId=BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId })">Perfil</a>
+            </li>
+                break;
+            case BackOffice.Models.General.enumMenuPrincipal.Appointment:
+            <li class="agenda @(PrincipalM.IsSelected?"selected":string.Empty)">
+                <a href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name)">Agenda</a>
+            </li>
+                break;
+            case BackOffice.Models.General.enumMenuPrincipal.Patient:
+            <li class="pacientes @(PrincipalM.IsSelected?"selected":string.Empty)">
+                <a href="@Url.Action(MVC.Patient.ActionNames.Search, MVC.Patient.Name)">PaciPacientes</a>
+            </li>
+                break;
+            default:
+                break;
+        }
+    }
+</ul>
+
+<ul class="subMenu_@(MenuInfo.Where(x => x.IsSelected == true).Select(x => x.Menu).DefaultIfEmpty(BackOffice.Models.General.enumMenuPrincipal.Dashboard).FirstOrDefault().ToString())">
+
+    @if (MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault() != null && MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault().RelatedMenu != null)
+    {
+        foreach (BackOffice.Models.General.MenuSecundaryModel SecundaryM in MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault().RelatedMenu)
+        {
+            switch (SecundaryM.Menu)
+            {
+                case BackOffice.Models.General.enumMenuSecundary.Ad_Insurance:
+                    <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                        <a href="@Url.Action(MVC.Insurance.ActionNames.InsuranceList, MVC.Insurance.Name)">Seguros</a>
+                    </li>
                     break;
-                case BackOffice.Models.General.enumPrincipalMenu.Patient:
-                <li class="pacientes">
-                    <a href="">Pacientes</a>
+                case BackOffice.Models.General.enumMenuSecundary.Ad_Profile:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Profile.ActionNames.ProfileSearch, MVC.Profile.Name)">Perfiles</a>
                 </li>
                     break;
-                case BackOffice.Models.General.enumPrincipalMenu.Profile:
-                <li class="perfil">
-                    <a href="">Perfil</a>
+                case BackOffice.Models.General.enumMenuSecundary.Ad_Specialty:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Specialty.ActionNames.SpecialtyList, MVC.Specialty.Name)">Especialidades</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumMenuSecundary.Ad_Treatment:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Treatment.ActionNames.TreatmentList, MVC.Treatment.Name)">Tratamientos</a>
+                </li>
+                    break;
+
+                case BackOffice.Models.General.enumMenuSecundary.Ap_Day:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name)">Día</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumMenuSecundary.Ap_Week:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Appointment.ActionNames.Week, MVC.Appointment.Name)">Semana</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumMenuSecundary.Ap_Month:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name)">Mes</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumMenuSecundary.Ap_List:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Appointment.ActionNames.List, MVC.Appointment.Name)">Lista</a>
+                </li>
+                    break;
+                case BackOffice.Models.General.enumMenuSecundary.Ap_ShceduleAvailable:
+                <li class="@(SecundaryM.IsSelected?"selected":string.Empty)">
+                    <a href="@Url.Action(MVC.Profile.ActionNames.OfficeList, MVC.Profile.Name, new { ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId })">Configurar</a>
                 </li>
                     break;
                 default:
                     break;
             }
         }
-    </ul>*@
-
+    }
+</ul>

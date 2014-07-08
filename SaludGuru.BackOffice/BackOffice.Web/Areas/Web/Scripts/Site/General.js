@@ -10,16 +10,6 @@ function serverDateTimeToString(vDate) {
 /*function start global pages controls*/
 function InitGlobalPagesControls() {
 
-    //init hover menu
-    $(".admin").hover(function () {
-        $(".subMenuAdministrar").fadeIn();
-        $(".subMenuAgenda").fadeOut();
-    });
-    $(".agenda").hover(function () {
-        $(".subMenuAgenda").fadeIn();
-        $(".subMenuAdministrar").fadeOut();
-    });
-
     //init autorization options menu
     InitAutorizationMenu();
 

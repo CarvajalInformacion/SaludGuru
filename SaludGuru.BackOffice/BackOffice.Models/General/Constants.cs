@@ -22,6 +22,7 @@
         #region Menu
 
         public const string C_Settings_PrincipalMenu = "PrincipalMenu_{{RoleId}}";
+        public const string C_Settings_SecundaryMenu = "SecundaryMenu_{{MenuPrincipal}}";
 
         #endregion
 

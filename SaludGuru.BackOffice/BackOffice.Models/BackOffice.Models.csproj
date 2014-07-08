@@ -69,9 +69,13 @@
     <Compile Include="Appointment\SchedulingModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\Enumerations.cs" />
-    <Compile Include="General\HeaderModel.cs" />
     <Compile Include="General\InternalSettings.cs" />
-    <Compile Include="General\MenuModel.cs" />
+    <Compile Include="General\MenuOfficeModel.cs" />
+    <Compile Include="General\MenuPrincipalModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="General\MenuProfileModel.cs" />
+    <Compile Include="General\MenuSecundaryModel.cs" />
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Office\OfficeMenuModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />

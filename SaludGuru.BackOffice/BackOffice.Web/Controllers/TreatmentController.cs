@@ -11,21 +11,9 @@ namespace BackOffice.Web.Controllers
 {
     public partial class TreatmentController : BaseController
     {
-        public virtual ActionResult Search()
+        public virtual ActionResult TreatmentList()
         {
-            return View();
-        }
-
-        #region Treatment
-
-        public virtual ActionResult TreatmentList(string ProfilePublicId)
-        {
-            List<TreatmentModel> Model = new List<TreatmentModel>();
-            if (!string.IsNullOrEmpty(ProfilePublicId))
-                Model = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(ProfilePublicId);
-            else
-                Model = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(string.Empty);
-
+            List<TreatmentModel> Model = SaludGuruProfile.Manager.Controller.Treatment.GetAllAdmin(string.Empty);
             return View(Model);
         }
 
@@ -61,7 +49,7 @@ namespace BackOffice.Web.Controllers
                             Where(x => x.CategoryId.ToString() == treatmentId).FirstOrDefault();
                 }
             }
-            if(Model.TreatmentInfo == null)
+            if (Model.TreatmentInfo == null)
             {
                 Model.TreatmentInfo = new TreatmentModel()
                 {
@@ -70,8 +58,6 @@ namespace BackOffice.Web.Controllers
             }
             return View(Model);
         }
-
-        #endregion
 
         #region private methods
 

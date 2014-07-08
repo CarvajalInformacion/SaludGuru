@@ -406,6 +406,49 @@ namespace BackOffice.Web.Controllers
 
         #endregion
 
+        #region Notifications
+
+        public virtual ActionResult NotificationsProfileList()
+        {
+            List<NotificationModel> modelList = new List<NotificationModel>();
+            string arrayToConsult = "";
+
+            string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
+            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, null);
+
+            for (int i = 0; i < modelList.Count; i++)
+            {
+                if (modelList[i].PublicUserIdFrom != null)
+                {
+                    modelList[i].CreateDate.ToString();
+                    if (i == modelList.Count - 1)
+                    {
+                        arrayToConsult += modelList[i].PublicUserIdFrom;
+                    }
+                    else
+                    {
+                        arrayToConsult += modelList[i].PublicUserIdFrom + ",";
+                    }
+                }
+            }
+
+            List<User> userList = new List<User>();
+
+            userList = Auth.Client.Controller.Client.GetUserList(arrayToConsult);
+
+            foreach (var item in modelList)
+            {
+                List<User> userToLoad = new List<User>();
+                userToLoad = userList.Where(x => x.UserPublicId == item.PublicUserIdFrom).ToList();
+                //item.CreateDate.ToString();
+                item.UserName = userToLoad.FirstOrDefault().Name + userToLoad.FirstOrDefault().LastName;
+            }
+
+            return View(modelList);
+        }
+
+        #endregion
+
         #region private methods
 
         private ProfileModel GetProfileInfoRequestModel()
@@ -598,47 +641,5 @@ namespace BackOffice.Web.Controllers
         }
         #endregion
 
-        #region Notifications
-
-        public virtual ActionResult NotificationsProfileList()
-        {
-            List<NotificationModel> modelList = new List<NotificationModel>();            
-            string arrayToConsult = "";
-
-            string UserPublicId = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserPublicId;
-            modelList = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus(UserPublicId, null);
-
-            for (int i = 0; i < modelList.Count; i++)
-            {
-                if (modelList[i].PublicUserIdFrom != null )
-                {
-                    modelList[i].CreateDate.ToString();
-                    if (i == modelList.Count - 1)
-                    {
-                        arrayToConsult += modelList[i].PublicUserIdFrom;
-                    }
-                    else
-                    {
-                        arrayToConsult += modelList[i].PublicUserIdFrom + ",";
-                    }
-                }                
-            }
-
-            List<User> userList = new List<User>();
-
-            userList = Auth.Client.Controller.Client.GetUserList(arrayToConsult);
-
-            foreach (var item in modelList)
-            {
-                List<User> userToLoad = new List<User>();
-                userToLoad = userList.Where(x => x.UserPublicId == item.PublicUserIdFrom).ToList();
-                //item.CreateDate.ToString();
-                item.UserName = userToLoad.FirstOrDefault().Name + userToLoad.FirstOrDefault().LastName;                
-            }
-
-            return View(modelList);
-        }
-
-        #endregion
     }
 }

@@ -22,6 +22,22 @@ namespace BackOffice.Web.Controllers
             }
         }
 
+        public static string CurrentControllerName
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+            }
+        }
+
+        public static string CurrentActionName
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
+            }
+        }
+
         #endregion
 
         #region Session methods
@@ -58,41 +74,164 @@ namespace BackOffice.Web.Controllers
 
         #region Menu Methods
 
-        public static List<MenuModel> GetMenuPermisions()
+        public static List<MenuPrincipalModel> GetPrincipalMenu()
         {
-            List<MenuModel> oRetorno = new List<MenuModel>();
+            List<MenuPrincipalModel> oRetorno = new List<MenuPrincipalModel>();
 
-            ////add default dasahboard
-            //oRetorno.Add(new MenuModel()
-            //{
-            //    PrincipalMenu = enumPrincipalMenu.Dashboard,
-            //    EditPermision = enumEditPermision.Read,
-            //    IsSelected = (SelectedMenu == null)
-            //});
+            enumMenuPrincipal CurrentSelected = SelectedPrincipalMenu();
 
-            ////get all permited modules
-            //BackOffice.Models.General.InternalSettings.Instance[
-            //    BackOffice.Models.General.Constants.C_Settings_PrincipalMenu.
-            //    Replace("{{RoleId}}", ((int)RoleToEval).ToString())].Value.
-            //    Split(';').
-            //    All(pm =>
-            //    {
-            //        string[] pmDesc = pm.Split(',');
-            //        if (pmDesc.Length == 2)
-            //        {
-            //            enumPrincipalMenu CurrentPm = (enumPrincipalMenu)Enum.Parse(typeof(enumPrincipalMenu), pmDesc[0].Replace(" ", ""));
-            //            enumEditPermision CurrentEp = (enumEditPermision)Enum.Parse(typeof(enumEditPermision), pmDesc[1].Replace(" ", ""));
-            //            oRetorno.Add(new MenuModel()
-            //            {
-            //                PrincipalMenu = CurrentPm,
-            //                EditPermision = CurrentEp,
-            //                IsSelected = (SelectedMenu != null && SelectedMenu.Value == CurrentPm)
-            //            });
-            //        }
-            //        return true;
-            //    });
+            //add default dasahboard
+            oRetorno.Add(new MenuPrincipalModel()
+            {
+                Menu = enumMenuPrincipal.Dashboard,
+                EditPermision = enumEditPermision.Read,
+                IsSelected = (enumMenuPrincipal.Dashboard == CurrentSelected),
+                RelatedMenu = GetSecundaryMenu(enumMenuPrincipal.Dashboard, enumEditPermision.Read),
+            });
+
+            //get all permited modules
+            BackOffice.Models.General.InternalSettings.Instance[
+                BackOffice.Models.General.Constants.C_Settings_PrincipalMenu.
+                Replace("{{RoleId}}", ((int)SessionModel.CurrentUserAutorization.Role).ToString())].Value.
+                Split(';').
+                All(pm =>
+                {
+                    string[] pmDesc = pm.Replace(" ", "").Split(',');
+                    if (pmDesc.Length == 2)
+                    {
+                        enumMenuPrincipal oCurrent = (enumMenuPrincipal)Enum.Parse(typeof(enumMenuPrincipal), pmDesc[0]);
+                        enumEditPermision oPermision = (enumEditPermision)Enum.Parse(typeof(enumEditPermision), pmDesc[1]);
+
+                        oRetorno.Add(new MenuPrincipalModel()
+                        {
+                            Menu = oCurrent,
+                            EditPermision = oPermision,
+                            IsSelected = (CurrentSelected == oCurrent),
+                            RelatedMenu = GetSecundaryMenu(oCurrent, oPermision),
+                        });
+                    }
+                    return true;
+                });
 
             return oRetorno;
+        }
+
+        public static List<MenuProfileModel> GetProfileMenu()
+        {
+            List<MenuProfileModel> oRetorno = new List<MenuProfileModel>();
+            return oRetorno;
+        }
+
+        public static List<MenuOfficeModel> GetOfficeMenu()
+        {
+            List<MenuOfficeModel> oRetorno = new List<MenuOfficeModel>();
+            return oRetorno;
+        }
+
+        private static List<MenuSecundaryModel> GetSecundaryMenu(enumMenuPrincipal MenuToEval, enumEditPermision EditPermisions)
+        {
+            List<MenuSecundaryModel> oReturn = new List<MenuSecundaryModel>();
+
+            enumMenuSecundary CurrentSelected = SelectedSecundaryMenu();
+
+            BackOffice.Models.General.InternalSettings.Instance[
+                BackOffice.Models.General.Constants.C_Settings_SecundaryMenu.
+                Replace("{{MenuPrincipal}}", MenuToEval.ToString())].Value.
+                Split(',').
+                Where(x => !string.IsNullOrEmpty(x)).
+                All(pm =>
+                {
+                    enumMenuSecundary oCurrent = (enumMenuSecundary)Enum.Parse(typeof(enumMenuSecundary), pm.Replace(" ", ""));
+
+                    oReturn.Add(new MenuSecundaryModel()
+                    {
+                        Menu = oCurrent,
+                        EditPermision = EditPermisions,
+                        IsSelected = (CurrentSelected == oCurrent)
+                    });
+
+                    return true;
+                });
+            return oReturn;
+        }
+
+        private static enumMenuPrincipal SelectedPrincipalMenu()
+        {
+            enumMenuPrincipal oReturn = enumMenuPrincipal.Dashboard;
+
+            if (MVC.Home.ActionNames.Dashboard == CurrentActionName &&
+                MVC.Home.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuPrincipal.Dashboard;
+            }
+            else if (MVC.Insurance.Name == CurrentControllerName ||
+                        (MVC.Profile.Name == CurrentControllerName &&
+                        MVC.Profile.ActionNames.ProfileSearch == CurrentActionName) ||
+                    MVC.Specialty.Name == CurrentControllerName ||
+                    MVC.Treatment.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuPrincipal.Administrator;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuPrincipal.Profile;
+            }
+            else if (MVC.Appointment.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuPrincipal.Appointment;
+            }
+            else if (MVC.Patient.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuPrincipal.Patient;
+            }
+
+            return oReturn;
+        }
+
+        private static enumMenuSecundary SelectedSecundaryMenu()
+        {
+            enumMenuSecundary oReturn = enumMenuSecundary.None;
+
+            if (MVC.Insurance.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuSecundary.Ad_Insurance;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuSecundary.Ad_Profile;
+            }
+            else if (MVC.Specialty.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuSecundary.Ad_Specialty;
+            }
+            else if (MVC.Treatment.Name == CurrentControllerName)
+            {
+                oReturn = enumMenuSecundary.Ad_Treatment;
+            }
+
+
+            else if (MVC.Appointment.Name == CurrentControllerName &&
+                    MVC.Appointment.ActionNames.Day == CurrentActionName)
+            {
+                oReturn = enumMenuSecundary.Ap_Day;
+            }
+            else if (MVC.Appointment.Name == CurrentControllerName &&
+                    MVC.Appointment.ActionNames.Week == CurrentActionName)
+            {
+                oReturn = enumMenuSecundary.Ap_Week;
+            }
+            else if (MVC.Appointment.Name == CurrentControllerName &&
+                    MVC.Appointment.ActionNames.Month == CurrentActionName)
+            {
+                oReturn = enumMenuSecundary.Ap_Month;
+            }
+            else if (MVC.Appointment.Name == CurrentControllerName &&
+                    MVC.Appointment.ActionNames.List == CurrentActionName)
+            {
+                oReturn = enumMenuSecundary.Ap_List;
+            }
+
+            return oReturn;
         }
 
         #endregion

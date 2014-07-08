@@ -1,6 +1,6 @@
 ﻿namespace BackOffice.Models.General
 {
-    public enum enumPrincipalMenu
+    public enum enumMenuPrincipal
     {
         Dashboard,
         Administrator,
@@ -8,6 +8,41 @@
         Appointment,
         Patient
     }
+
+    public enum enumMenuSecundary
+    {
+        None,
+
+        Ad_Insurance,
+        Ad_Profile,
+        Ad_Specialty,
+        Ad_Treatment,
+
+        Ap_Day,
+        Ap_Week,
+        Ap_Month,
+        Ap_List,
+        Ap_ShceduleAvailable
+    }
+
+    public enum enumMenuProfile
+    {
+        ProfileInfo,
+        Autorization,
+        Office,
+        Specialty,
+        Insurance,
+        Treatment,
+        Notifications
+    }
+
+    public enum enumMenuOffice
+    {
+        OfficeInfo,
+        Treatments,
+        ScheduleAvalilable
+    }
+
     public enum enumEditPermision
     {
         Read,
