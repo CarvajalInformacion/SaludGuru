@@ -15,10 +15,12 @@ namespace BackOffice.Web.ControllersApi
         public List<NotificationModel> GetNotificationsBySessionUser()
         {
             List<NotificationModel> result = new List<NotificationModel>();
-            result = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus
+            if (SessionController.SessionManager.Auth_UserLogin != null)
+            {
+                result = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus
                 (SessionController.SessionManager.Auth_UserLogin.UserPublicId,
                 (int)SaludGuru.Notifications.Models.Enumerations.enumNotificationStatus.No_Leida);
-
+            }
             return result;
         }
 

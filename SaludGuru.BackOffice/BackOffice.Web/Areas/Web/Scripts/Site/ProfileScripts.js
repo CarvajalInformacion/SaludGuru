@@ -332,7 +332,7 @@ function ProfileSearchGrid(vidDiv) {
         toolbar: [{ template: $("#templateHeader").html() }],
         pageable: true,
         dataSource: {
-            pageSize: 2,
+            pageSize: 20,
             serverPaging: true,
             schema: {
                 total: function (data) {

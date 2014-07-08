@@ -90,14 +90,14 @@ namespace BackOffice.Web.Controllers
                         {
                             CategoryInfoId = Convert.ToInt32(Request["CatId_Keyword"]),
                             CategoryInfoType = enumCategoryInfoType.Keyword,
-                            LargeValue = Request["Keyword"].ToString(),
+                            Value = Request["Keyword"].ToString(),
                         },
 
                         new CategoryInfoModel()
                         {
                             CategoryInfoId = Convert.ToInt32(Request["CatId_DurationTime"]),
                             CategoryInfoType = enumCategoryInfoType.DurationTime,
-                            LargeValue = Request["DurationTime"].ToString(),
+                            Value = Request["DurationTime"].ToString(),
                         },
                     }
                 };
