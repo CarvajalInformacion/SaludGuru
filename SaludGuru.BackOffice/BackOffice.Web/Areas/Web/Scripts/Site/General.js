@@ -80,11 +80,12 @@ var NotificationObject = {
     },
 
     RenderNotifications: function (NotificationList) {
-        //set notification count
+        //set notification count background-image
         $('#aNotifyCount').html(NotificationList.length);
         if (NotificationList.length > 0) {
+            $('#aNotifyCount').css('background-image', 'url(/Areas/Web/Content/Images/icono campana sonando.png)');
             //set notification alert icon
-        }       
+        }
         $("#ulNotificationList").html('');
 
         $.each(NotificationList, function (i, item) {
