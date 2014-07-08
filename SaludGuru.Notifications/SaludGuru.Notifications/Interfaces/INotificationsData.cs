@@ -9,10 +9,10 @@ namespace SaludGuru.Notifications.Interfaces
 {
     interface INotificationsData
     {
-        int NotificationCreate(string vPublicUserId, string vPublicUserFrom, int vStatus, string title, string body);
+        int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNoticaficationType NotificationType, string Title, string Body);
 
-        List<NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int? vStatus);
+        void UpdateStatus(enumNotificationStatus Status, int NotificationId);
 
-        void UpdateStatus(int vStatus, int vNotificationId);
+        List<NotificationModel> NotifiationGetByUserAndStatus(string PublicUserId, enumNotificationStatus? Status);
     }
 }

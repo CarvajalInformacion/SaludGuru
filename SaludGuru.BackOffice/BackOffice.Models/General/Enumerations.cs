@@ -28,12 +28,12 @@
     public enum enumMenuProfile
     {
         ProfileInfo,
+        ProfileImages,
         Autorization,
         Office,
         Specialty,
         Insurance,
-        Treatment,
-        Notifications
+        Treatment
     }
 
     public enum enumMenuOffice

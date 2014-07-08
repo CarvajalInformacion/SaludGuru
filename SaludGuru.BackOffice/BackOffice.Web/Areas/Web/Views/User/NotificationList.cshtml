@@ -1,0 +1,52 @@
+﻿@model List<SaludGuru.Notifications.Models.NotificationModel>
+@{
+    ViewBag.Title = "NotificationList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <label>Notificaciones</label>
+</div>
+@{
+    //get json office data
+    string oNotificationData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.
+            Select(x => new
+            {
+                NotificationType = (int)x.NotificationType,
+                UserFromName = x.UserFrom == null ? string.Empty : x.UserFrom.Name + " " + x.UserFrom.LastName,
+                UserFromImage = x.UserFrom == null ? string.Empty : x.UserFrom.ExtraData.
+                        Where(y => y.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).
+                        Select(y => y.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd"),
+                Body = x.Body,
+            }).ToList());
+}
+
+<div class="BOProfileFormWrapper">
+    <h3>Notificaciones</h3>
+    <div id="divGridNotifications"></div>
+</div>
+<div id="templates" style="display:none;">
+    <div id="TemplateNotificationType">
+        <img src="NotificationType_${NotificationType}" />
+        <label>${CreateDate}</label>
+    </div>
+    <div id="TemplateUserFrom">
+        <img src="${UserFromImage}" />
+        <label>${UserFromName}</label>
+    </div>
+</div>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataNotifications = @Html.Raw(oNotificationData)
+        $(document).ready(function () {
+            //start office grid
+            UserNotificationsListGrid('divGridNotifications', vDataNotifications);
+        });
+    </script>
+}
+
+

@@ -189,6 +189,7 @@
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Web\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\Web\Controllers\UserController.cs" />
     <Compile Include="Areas\Web\Controllers\PatientController.cs" />
     <Compile Include="Areas\Web\Controllers\InsuranceController.cs" />
     <Compile Include="Areas\Web\Controllers\SpecialtyController.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="ControllersApi\PatientApiController.cs" />
     <Compile Include="ControllersApi\NotificationApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -253,6 +255,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Web.AppointmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -281,6 +286,9 @@
     <Compile Include="Web.TreatmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web.UserController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1004,6 +1012,7 @@
     <Content Include="Areas\Web\Scripts\Site\SpecialtyScripts.js" />
     <Content Include="Areas\Web\Scripts\Site\TreatmentScripts.js" />
     <None Include="Areas\Web\Scripts\_references.js" />
+    <Content Include="Areas\Web\Scripts\Site\UserScripts.js" />
     <Content Include="Areas\Web\Views\Profile\OfficeTreatmentUpsert.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -1143,7 +1152,7 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.view.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.web.min.js.map" />
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
-    <Content Include="Areas\Web\Views\Profile\NotificationsProfileList.cshtml" />
+    <Content Include="Areas\Web\Views\User\NotificationList.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Week.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Month.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\List.cshtml" />

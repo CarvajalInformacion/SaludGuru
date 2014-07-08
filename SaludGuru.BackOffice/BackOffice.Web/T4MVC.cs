@@ -37,6 +37,7 @@ public static partial class MVC
     public static BackOffice.Web.Controllers.ProfileController Profile = new BackOffice.Web.Controllers.T4MVC_ProfileController();
     public static BackOffice.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Controllers.T4MVC_SpecialtyController();
     public static BackOffice.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Controllers.T4MVC_TreatmentController();
+    public static BackOffice.Web.Controllers.UserController User = new BackOffice.Web.Controllers.T4MVC_UserController();
 }
 
 namespace T4MVC
@@ -60,6 +61,7 @@ namespace T4MVC
         public BackOffice.Web.Areas.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Areas.Web.Controllers.T4MVC_SpecialtyController();
         public BackOffice.Web.Areas.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_TreatmentController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
+        public T4MVC.Web.UserController User = new T4MVC.Web.UserController();
     }
 }
 

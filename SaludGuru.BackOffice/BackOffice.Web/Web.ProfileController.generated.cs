@@ -189,12 +189,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult AppointmentList()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Web.Profile; } }
@@ -234,8 +228,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string AutorizationProfileList = "AutorizationProfileList";
             public readonly string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
-            public readonly string AppointmentList = "AppointmentList";
-            public readonly string NotificationsProfileList = "NotificationsProfileList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -264,8 +256,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string AutorizationProfileList = "AutorizationProfileList";
             public const string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
-            public const string AppointmentList = "AppointmentList";
-            public const string NotificationsProfileList = "NotificationsProfileList";
         }
 
 
@@ -453,14 +443,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
-        static readonly ActionParamsClass_AppointmentList s_params_AppointmentList = new ActionParamsClass_AppointmentList();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AppointmentList AppointmentListParams { get { return s_params_AppointmentList; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AppointmentList
-        {
-            public readonly string PatientPublicId = "PatientPublicId";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -473,7 +455,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
             {
                 public readonly string AutorizationProfileList = "AutorizationProfileList";
                 public readonly string InsuranceProfileList = "InsuranceProfileList";
-                public readonly string NotificationsProfileList = "NotificationsProfileList";
                 public readonly string OfficeList = "OfficeList";
                 public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
                 public readonly string OfficeTreatmentList = "OfficeTreatmentList";
@@ -488,7 +469,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
             }
             public readonly string AutorizationProfileList = "~/Areas/Web/Views/Profile/AutorizationProfileList.cshtml";
             public readonly string InsuranceProfileList = "~/Areas/Web/Views/Profile/InsuranceProfileList.cshtml";
-            public readonly string NotificationsProfileList = "~/Areas/Web/Views/Profile/NotificationsProfileList.cshtml";
             public readonly string OfficeList = "~/Areas/Web/Views/Profile/OfficeList.cshtml";
             public readonly string OfficeScheduleAvailableList = "~/Areas/Web/Views/Profile/OfficeScheduleAvailableList.cshtml";
             public readonly string OfficeTreatmentList = "~/Areas/Web/Views/Profile/OfficeTreatmentList.cshtml";
@@ -788,29 +768,6 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ProfileAutorizationDeleteOverride(callInfo, ProfilePublicId);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AppointmentListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AppointmentList(string PatientPublicId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
-            AppointmentListOverride(callInfo, PatientPublicId);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void NotificationsProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult NotificationsProfileList()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NotificationsProfileList);
-            NotificationsProfileListOverride(callInfo);
             return callInfo;
         }
 

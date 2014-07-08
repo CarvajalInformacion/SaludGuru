@@ -119,6 +119,21 @@ namespace BackOffice.Web.Controllers
         public static List<MenuProfileModel> GetProfileMenu()
         {
             List<MenuProfileModel> oRetorno = new List<MenuProfileModel>();
+
+            enumMenuProfile CurrentSelected = SelectedProfileMenu();
+
+            enumEditPermision CurrentPermision = GetPrincipalMenu().Where(x => x.IsSelected == true).Select(x => x.EditPermision).DefaultIfEmpty(enumEditPermision.Read).FirstOrDefault();
+
+            foreach (enumMenuProfile CurrentMenu in (enumMenuProfile[])Enum.GetValues(typeof(enumMenuProfile)))
+            {
+                oRetorno.Add(new MenuProfileModel()
+                {
+                    Menu = CurrentMenu,
+                    EditPermision = CurrentPermision,
+                    IsSelected = (CurrentMenu == CurrentSelected),
+                });
+            }
+
             return oRetorno;
         }
 
@@ -231,6 +246,52 @@ namespace BackOffice.Web.Controllers
                 oReturn = enumMenuSecundary.Ap_List;
             }
 
+            return oReturn;
+        }
+
+        private static enumMenuProfile SelectedProfileMenu()
+        {
+            enumMenuProfile oReturn = enumMenuProfile.ProfileInfo;
+
+            if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.ProfileEdit == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.ProfileInfo;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.ProfileEditImage == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.ProfileImages;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.AutorizationProfileList == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Autorization;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                (MVC.Profile.ActionNames.OfficeList == CurrentActionName ||
+                MVC.Profile.ActionNames.OfficeUpsert == CurrentActionName ||
+                MVC.Profile.ActionNames.OfficeTreatmentList == CurrentActionName ||
+                MVC.Profile.ActionNames.OfficeTreatmentUpsert == CurrentActionName ||
+                MVC.Profile.ActionNames.OfficeScheduleAvailableList == CurrentActionName))
+            {
+                oReturn = enumMenuProfile.Office;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.SpecialtyProfileList == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Specialty;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.InsuranceProfileList == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Insurance;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.TreatmentProfileList == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Treatment;
+            }
             return oReturn;
         }
 

@@ -57,3 +57,27 @@ function PatientListGrid(vidDiv) {
         $('#' + vidDiv).getKendoGrid().dataSource.read();
     });
 }
+
+
+//init appointment grid
+function PatientAppointmentListGrid(vidDiv, vDataAppointment) {
+
+    //configure grid
+    $('#' + vidDiv).kendoGrid({
+        dataSource: {
+            type: "json",
+            data: vDataAppointment
+        },
+        columns: [{
+            field: "AppointmentPublicId",
+            title: "Appointment ",
+            template: $("#templateName").html()
+        }, {
+            field: "CreateDate",
+            title: "CreateDate",
+        }, {
+            field: "StatusName",
+            title: "Status",
+        }],
+    });
+}

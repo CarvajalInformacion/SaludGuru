@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SessionController.Models.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,12 @@ namespace SaludGuru.Notifications.Models
     {
         public int NotificationId { get; set; }
         public string PublicUserId { get; set; }
-        public string PublicUserIdFrom { get; set; }
-        public int Status { get; set; }
+        public User UserFrom { get; set; }
+        public enumNotificationStatus Status { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime LastModify { get; set; }
         public DateTime CreateDate { get; set; }
-        public SaludGuru.Notifications.Models.Enumerations.enumNoticaficationType NotificationType { get; set; }
-
-        //Extra Data
-        public string UserName { get; set; }
-        public string Picture { get; set; }
+        public enumNoticaficationType NotificationType { get; set; }
     }
 }

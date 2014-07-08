@@ -35,19 +35,36 @@ namespace Auth.Client.DAL.MySQLDAO
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
-                oRetorno = (from s in response.DataTableResult.AsEnumerable()
+                oRetorno = (from u in response.DataTableResult.AsEnumerable()
+                            where !string.IsNullOrEmpty(u.Field<string>("UserPublicId"))
+                            group u by
+                            new
+                            {
+                                UserPublicId = u.Field<string>("UserPublicId"),
+                                Name = u.Field<string>("Name"),
+                                LastName = u.Field<string>("LastName"),
+                            } into ug
                             select new User
                             {
-                                UserPublicId = s.Field<string>("UserPublicId"),
-                                Name = s.Field<string>("Name"),
-                                LastName = s.Field<string>("LastName"),
-                                ExtraData = new List<UserInfo>()
-                            { 
-                                new UserInfo()
-                                {
-                                    Value = s.Field<string>("Picture")
-                                }
-                            },
+                                UserPublicId = ug.Key.UserPublicId,
+                                Name = ug.Key.Name,
+                                LastName = ug.Key.LastName,
+                                ExtraData = (from ui in response.DataTableResult.AsEnumerable()
+                                             where ui.Field<int?>("UserInfoId") != null &&
+                                                   ui.Field<string>("UserPublicId") == ug.Key.UserPublicId
+                                             group ui by
+                                             new
+                                             {
+                                                 UserInfoId = ui.Field<int>("UserInfoId"),
+                                                 InfoTypeId = ui.Field<SByte>("InfoTypeId"),
+                                                 Value = ui.Field<string>("Value"),
+                                             } into uig
+                                             select new UserInfo()
+                                             {
+                                                 UserInfoId = uig.Key.UserInfoId,
+                                                 InfoType = (enumUserInfoType)uig.Key.InfoTypeId,
+                                                 Value = uig.Key.Value
+                                             }).ToList(),
                             }).ToList();
             }
             return oRetorno;

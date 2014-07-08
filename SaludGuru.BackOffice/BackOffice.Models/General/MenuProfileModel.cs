@@ -8,7 +8,7 @@ namespace BackOffice.Models.General
 {
     public class MenuProfileModel
     {
-        public enumMenuProfile PrincipalMenu { get; set; }
+        public enumMenuProfile Menu { get; set; }
         public enumEditPermision EditPermision { get; set; }
         public bool IsSelected { get; set; }
     }

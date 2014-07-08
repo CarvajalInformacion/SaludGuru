@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaludGuru.Notifications.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,19 +33,19 @@ namespace SaludGuru.Notifications.DAL.Controller
 
         #endregion
 
-        public int NotificationCreate(string vPublicUserId, string vPublicUserFrom, int vStatus, string title, string body)
+        public int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNoticaficationType NotificationType, string Title, string Body)
         {
-            return DataFactory.NotificationCreate(vPublicUserId, vPublicUserFrom, vStatus, title, body);
+            return DataFactory.NotificationCreate(PublicUserId, PublicUserFrom, NotificationStatus, NotificationType, Title, Body);
         }
 
-        public List<Models.NotificationModel> Notifiation_GetByUserAndStatus(string vPublicUserId, int? vStatus)
+        public void UpdateStatus(enumNotificationStatus Status, int NotificationId)
         {
-            return DataFactory.Notifiation_GetByUserAndStatus(vPublicUserId, vStatus);
+            DataFactory.UpdateStatus(Status, NotificationId);
         }
 
-        public void UpdateStatus(int vStatus, int vNotificationId)
+        public List<Models.NotificationModel> NotifiationGetByUserAndStatus(string PublicUserId, enumNotificationStatus? Status)
         {
-            DataFactory.UpdateStatus(vStatus, vNotificationId);
+            return DataFactory.NotifiationGetByUserAndStatus(PublicUserId, Status);
         }
     }
 }

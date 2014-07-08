@@ -19,7 +19,7 @@ namespace BackOffice.Web.ControllersApi
             {
                 result = SaludGuru.Notifications.Controller.Notification.Notifiation_GetByUserAndStatus
                 (SessionController.SessionManager.Auth_UserLogin.UserPublicId,
-                (int)SaludGuru.Notifications.Models.Enumerations.enumNotificationStatus.No_Leida);
+                enumNotificationStatus.No_Leida);
             }
             return result;
         }
