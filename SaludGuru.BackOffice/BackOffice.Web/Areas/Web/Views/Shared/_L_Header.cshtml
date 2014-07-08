@@ -65,16 +65,16 @@
             <!--render notifications-->
             <div id="notificationsWrapper" class="notificationsWrapper" style="height:100%">
                     <span id="aNotifyCount"></span>                
-                <div class="ui-front ui-selectmenu-open" style="top: 33px; left: 0px;">
+                <div  style="top: 33px; left: 0px;" >
                     <ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ulNotificationList"
                         class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox"
-                        tabindex="2" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 600px;
-                        display: block; left: -420%; margin-left: 20px;"></ul>
+                        tabindex="2" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 260px ;
+                        display:none; left: -420%; margin-left: 92px; z-index:20" ></ul>
                 </div>
-                <ul id="NotificationTemplate" style="display:none; " class="ui-menu-item ui-state-focus">
-                    <li>
-                        <img src="{NotificationImage}" />
-                        <label>{NotificationText}</label>
+                <ul id="NotificationTemplate" style="display:none;">
+                    <li >
+                        <img src="{NotificationImage}" width="28" height="30"/>
+                        <label style="vertical-align: middle; display:inline-block; width:220px; height:31px; line-height:14px; font-size:12px; font-weight: normal  " >{NotificationText}</label>
                     </li>
                 </ul>
             </div>

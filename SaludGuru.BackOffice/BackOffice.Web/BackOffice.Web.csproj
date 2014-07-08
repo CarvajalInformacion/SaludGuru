@@ -303,6 +303,9 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1501.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1502.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1503.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
