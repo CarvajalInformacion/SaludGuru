@@ -265,7 +265,7 @@ border:none;
     width:120px;
     height:auto;
     position:relative;
-    z-index:10;
+    z-index:20;
     background-color:#fff;
 }
     #divUserMenu ul li{

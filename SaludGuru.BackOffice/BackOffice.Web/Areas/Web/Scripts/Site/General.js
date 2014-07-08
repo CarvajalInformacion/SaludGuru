@@ -8,13 +8,16 @@ function serverDateTimeToString(vDate) {
 }
 
 /*function start global pages controls*/
-function InitGlobalPagesControls() {
+function InitGlobalPagesControls(InitModel) {
 
     //init autorization options menu
     InitAutorizationMenu();
 
     //init user notifications
     NotificationObject.InitUserNotifications();
+
+    //init search box
+    InitGlobalSearchBox(InitModel.IsUserAdmin);
 }
 
 /*init autorization menu*/
@@ -107,4 +110,23 @@ function Header_ChangeProfile(urlToChange) {
 function Header_ShowHideUserMenu(divId) {
 
     $('#' + divId).toggle('slow');
+}
+
+/*init search box*/
+function InitGlobalSearchBox(IsUserAdmin) {
+
+    if (IsUserAdmin == true) {
+        $('#ipGlobalSearchBox').keyup(function (e) {
+            if (e.keyCode == 13) {
+                window.location = '/Profile/ProfileSearch?SearchParam=' + $('#ipGlobalSearchBox').val();
+            }
+        });
+    }
+    else {
+        $('#ipGlobalSearchBox').keyup(function (e) {
+            if (e.keyCode == 13) {
+                window.location = '/Patient/Search?SearchParam=' + $('#ipGlobalSearchBox').val();
+            }
+        });
+    }
 }
