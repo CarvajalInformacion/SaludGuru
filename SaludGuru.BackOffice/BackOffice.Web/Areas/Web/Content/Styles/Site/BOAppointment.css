@@ -3,6 +3,7 @@
 .BOAgendaModuleGreatWrapper{
 	display:block;
 	width:100%; height:auto;
+    min-width:800px;
 	text-align:center;
     border:1px solid PURPLE;
 }
@@ -40,7 +41,7 @@
 	width:390px;
 	height:auto;
 	vertical-align:top;
-	margin-left:13px;
+	margin:0px;
     display:inline-block;
 }
 .BOAgendaSideMonthsWrapper{
@@ -159,7 +160,7 @@ color: #666;
         }
 /*************************CONTENEDOR CREACION DE CITAS**************************/
 div#AppointmentUpsert{
-    border:1px solid pink;
+    border:1px solid purple;
     display:block;    
     width:inherit;
 }
@@ -170,9 +171,8 @@ div#divMeetingCalendar {
 	margin:0px 0px 0px -2px;
 	vertical-align:top;
     width: 70% !important;
+    float:right;
 }
-
-
 	.BOAgendaCalendarViewWrapper1024{width:66%;}
 	.BOAgendaCalendarViewWrapper800{45%}
 	.BOAgendaCalendarViewWrapper768{30%}

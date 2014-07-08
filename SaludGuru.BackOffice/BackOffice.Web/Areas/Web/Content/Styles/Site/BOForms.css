@@ -89,33 +89,46 @@ border:none;
     }
 
     /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
-
-    .BOAppointmentsFormDataWrapper {
+div#AppointmentUpsert ul{
     display:block;
-    width: auto;
-
-border:none;
-
-}
-.BOAppointmentsFormDataWrapper ul{
-    display:block;
-
-border:none;
-
-    margin:22px 0px 0px 80px;
-    width:72%;
+    margin:2px 0px;
+    width:100%;
     min-width:348px;
     height:auto;
 }
-.BOAppointmentsFormDataWrapper ul li{
+div#AppointmentUpsert ul li{
     display:block;
-    padding:10px 14px;
+    padding:4px 0px;
     margin:0px;
-
-border:none;
-
+border:1px solid grey;
 }
-.BOAppointmentsFormDataWrapper ul li label{
+                div#AppointmentUpsert ul li:first-child{
+                    background-color:#800066;
+                    width:100%; height:28px;
+                    padding:0px;
+                }
+    div#AppointmentUpsert ul > li > span{
+        font-size:14px;
+        color:#fff;
+        line-height:26px;
+    }
+    div#AppointmentUpsert ul > li > span:first-child {
+        float:left; margin-left:16px;
+    }
+    div#AppointmentUpsert ul > li > span:nth-child(2n) {
+        float:right; margin-right:16px;
+    }
+    div#AppointmentUpsert ul > li > h4{
+        display:block;
+        border-bottom:1px solid #800066;
+        color:#800066;
+        line-height:15px;
+        text-align:left;
+        margin-left:12px;
+        width:94%;
+        height:20px;
+    }
+div#AppointmentUpsert ul li label{
     border:1px solid #999;
     display:inline-block;
     line-height:18px;
@@ -125,7 +138,7 @@ border:none;
     width:40%;
     text-align:center;
 }
-.BOAppointmentsFormDataWrapper ul li input{
+div#AppointmentUpsert ul li input{
     display:inline-block;
     border:1px solid #999;
     padding:5px 0px;
@@ -133,7 +146,7 @@ border:none;
     background-color:#fff;
     width:55%;
 }
-.BOAppointmentsFormDataWrapper ul li select{
+div#AppointmentUpsert ul li select{
     display:inline-block;
     border:1px solid #999;
     padding:0px;
@@ -143,7 +156,7 @@ border:none;
     height:28px;
     vertical-align:top;
 }
-.BOAppointmentsFormDataWrapper ul li textarea{
+div#AppointmentUpsert ul li textarea{
     display:inline-block;
     border:1px solid #999;
     text-align:justify;
@@ -154,14 +167,30 @@ border:none;
     line-height: 15px;
     font-size: 14px;
 }
-    .BOAppointmentsFormDataWrapper ul h3{
+        div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands{
+            background-color:#f2f2f2;
+            display:block;
+            height:26px;
+            width:100%;
+        }
+            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands a{
+                background-image:url('');
+                display:inline-block;
+                height:26px;
+                width:auto;
+                border:1px solid pink;
+                margin:0px 6px;
+                text-align:right;
+                padding-left:30px;
+            }
+    div#AppointmentUpsert ul h3{
         display: block;
         margin: 0px 0px 0px 16px;
         width: auto;
         font-size: 20px;
         line-height: 20px;
     }
-    .BOAppointmentsFormDataWrapper ul li p{
+    div#AppointmentUpsert ul li p{
         display:inline-block;
         width:auto;
         margin:0px 4px;

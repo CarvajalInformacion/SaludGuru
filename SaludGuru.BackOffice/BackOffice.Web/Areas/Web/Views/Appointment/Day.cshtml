@@ -33,12 +33,13 @@
             </div>
 
             <!--create edit appointment-->
-            <div id="AppointmentUpsert" class="BOAppointmentsFormDataWrapper" style="display:none;">
+            <div id="AppointmentUpsert" style="display:none;">
                 <form action="/api/AppointmentApi?UpsertAction=true" method="post" id="frmAppointment" name="frmAppointment">
                     <ul>
                         <li>
-                            <h3>Datos de la cita</h3>
+                            <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
                         </li>
+                        <li><h4>Datos de la Cita</h4></li>
                         <li>
                             <label>Consultorio:</label>
                             <select id="OfficePublicId" name="OfficePublicId"></select>
@@ -71,7 +72,9 @@
                             <ul id="lstPatient"></ul>
                         </li>
                     </ul>
-                    <div>
+                    <div class="BOAgendaCalendarAppointmentCommands">
+                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
+                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
                         <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
                     </div>
                     <!--hidden fields-->
@@ -135,7 +138,6 @@
             </li>
         </ul>
     </div>
-    <div style="height:100px;"></div>
 </div>
     @{
         //create office calendar object
