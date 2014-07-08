@@ -18,76 +18,88 @@
                 <div id="Calendar-Right"></div>
             </div>
             <!--Appointment actions-->    
-            <div>
+            <div class="BOAgendaAppointmentActions">
                 <ul>
-                    <li>
+                    <li class="BOActionCreate">
                         <a href="">Crear nueva cita</a>
                     </li>
-                    <li>
+                    <li class="BOActionCancel">
                         <a href="">Citas canceladas</a>
                     </li>
-                    <li>
+                    <li class="BOActionBlock">
                         <a href="">Bloquear horario</a>
                     </li>
                 </ul>
             </div>
+
+            <!--create edit appointment-->
+            <div id="AppointmentUpsert" class="BOAppointmentsFormDataWrapper" style="display:none;">
+                <form action="/api/AppointmentApi?UpsertAction=true" method="post" id="frmAppointment" name="frmAppointment">
+                    <ul>
+                        <li>
+                            <h3>Datos de la cita</h3>
+                        </li>
+                        <li>
+                            <label>Consultorio:</label>
+                            <select id="OfficePublicId" name="OfficePublicId"></select>
+                        </li>
+                        <li>
+                            <label>Tipo de tratamiento:</label>
+                            <select id="TreatmentId" name="TreatmentId"></select>
+                            <input type="hidden" id="CatId_TreatmentId" name="CatId_TreatmentId" />
+                        </li>
+                        <li>
+                            <label>Fecha de inicio:</label>
+                            <input type="text" id="StartDate" name="StartDate" />
+                        </li>
+                        <li>
+                            <label>Hora de inicio:</label>
+                            <input type="text" id="StartTime" name="StartTime" />
+                        </li>
+                        <li>
+                            <label>Duración:</label>
+                            <input type="text" id="Duration" name="Duration" />
+                        </li>
+                        <li>
+                            <label>Asignar paciente(s):</label>
+                            <input type="text" id="getPatient" name="getPatient" />
+                        </li>
+                        <li>
+                            <label>Paciente(s) asignados a la cita:</label>
+                        </li>
+                        <li>
+                            <ul id="lstPatient"></ul>
+                        </li>
+                    </ul>
+                    <div>
+                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
+                    </div>
+                    <!--hidden fields-->
+                    <div style="display:none;">
+                        <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
+                        <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
+                        <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
+                        <input type="hidden" id="AfterCare" name="AfterCare" />
+                        <input type="hidden" id="CatId_AfterCare" name="CatId_AfterCare" />
+                        <input type="hidden" id="BeforeCare" name="BeforeCare" />
+                        <input type="hidden" id="CatId_BeforeCare" name="CatId_BeforeCare" />
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+
+
         </div>
     
 
-    <!--create edit appointment-->
-    <div id="AppointmentUpsert" style="display:none;">
-        <form action="/api/AppointmentApi?UpsertAction=true" method="post" id="frmAppointment" name="frmAppointment">
-            <ul>
-                <li>
-                    <label>Datos de la cita</label>
-                </li>
-                <li>
-                    <label>Consultorio:</label>
-                    <select id="OfficePublicId" name="OfficePublicId"></select>
-                </li>
-                <li>
-                    <label>Tipo de tratamiento:</label>
-                    <select id="TreatmentId" name="TreatmentId"></select>
-                    <input type="hidden" id="CatId_TreatmentId" name="CatId_TreatmentId" />
-                </li>
-                <li>
-                    <label>Fecha de inicio:</label>
-                    <input type="text" id="StartDate" name="StartDate" />
-                </li>
-                <li>
-                    <label>Hora de inicio:</label>
-                    <input type="text" id="StartTime" name="StartTime" />
-                </li>
-                <li>
-                    <label>Duración:</label>
-                    <input type="text" id="Duration" name="Duration" />
-                </li>
-                <li>
-                    <label>Asignar paciente(s):</label>
-                    <input type="text" id="getPatient" name="getPatient" />
-                </li>
-                <li>
-                    <label>Paciente(s) asignados a la cita:</label>
-                </li>
-                <li>
-                    <ul id="lstPatient"></ul>
-                </li>
-            </ul>
-            <div>
-                <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
-            </div>
-            <!--hidden fields-->
-            <div style="display:none;">
-                <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
-                <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
-                <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
-                <input type="hidden" id="AfterCare" name="AfterCare" />
-                <input type="hidden" id="CatId_AfterCare" name="CatId_AfterCare" />
-                <input type="hidden" id="BeforeCare" name="BeforeCare" />
-                <input type="hidden" id="CatId_BeforeCare" name="CatId_BeforeCare" />
-            </div>
-        </form>
-    </div>
+    
 
     <!--Meeting Calendar-->
     <div id="divMeetingCalendar">

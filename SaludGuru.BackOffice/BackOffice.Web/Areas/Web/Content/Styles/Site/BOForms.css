@@ -87,3 +87,95 @@ border:none;
         width:auto;
         margin-left:50px;
     }
+
+    /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
+
+    .BOAppointmentsFormDataWrapper {
+    display:block;
+    width: auto;
+
+border:none;
+
+}
+.BOAppointmentsFormDataWrapper ul{
+    display:block;
+
+border:none;
+
+    margin:22px 0px 0px 80px;
+    width:72%;
+    min-width:348px;
+    height:auto;
+}
+.BOAppointmentsFormDataWrapper ul li{
+    display:block;
+    padding:10px 14px;
+    margin:0px;
+
+border:none;
+
+}
+.BOAppointmentsFormDataWrapper ul li label{
+    border:1px solid #999;
+    display:inline-block;
+    line-height:18px;
+    font-weight:bold;
+    background-color:#e6e6e6;
+    padding:4px 0px;
+    width:40%;
+    text-align:center;
+}
+.BOAppointmentsFormDataWrapper ul li input{
+    display:inline-block;
+    border:1px solid #999;
+    padding:5px 0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+}
+.BOAppointmentsFormDataWrapper ul li select{
+    display:inline-block;
+    border:1px solid #999;
+    padding:0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+    height:28px;
+    vertical-align:top;
+}
+.BOAppointmentsFormDataWrapper ul li textarea{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:55%;
+    height:100px;
+    vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
+}
+    .BOAppointmentsFormDataWrapper ul h3{
+        display: block;
+        margin: 0px 0px 0px 16px;
+        width: auto;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    .BOAppointmentsFormDataWrapper ul li p{
+        display:inline-block;
+        width:auto;
+        margin:0px 4px;
+    }
+    .BOAppointmentsFormDataWrapper ul li input[type="radio"]{
+        display:inline-block;
+        width:auto;
+    }
+    .BOAppointmentsFormDataWrapper ul li input[type="checkbox"] {
+        display:inline-block;
+        width:auto;
+        margin-left:50px;
+    }
+
+
+
+
