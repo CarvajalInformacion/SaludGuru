@@ -302,6 +302,7 @@
     <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\icono campana sonando.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenu.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenuHover.png" />
     <Content Include="Areas\Web\Content\Images\iconosSprite1.png" />
@@ -311,6 +312,9 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1501.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1502.png" />
+    <Content Include="Areas\Web\Content\Images\Notification_1503.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
