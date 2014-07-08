@@ -17,13 +17,14 @@ namespace SaludGuruProfile.Manager.Controller
             List<SpecialtyModel> oReturn = new List<SpecialtyModel>();
             List<ICategoryModel> imodelList = ProfileDataController.Instance.CategoryGetAllAdmin
                 (enumCategoryType.Specialty, Parameter);
-
-            imodelList.All(im =>
+            if (imodelList != null)
             {
-                oReturn.Add((SpecialtyModel)im);
-                return true;
-            });
-
+                imodelList.All(im =>
+                {
+                    oReturn.Add((SpecialtyModel)im);
+                    return true;
+                });   
+            }            
             return oReturn;
         }
 

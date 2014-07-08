@@ -1,5 +1,62 @@
-﻿/******************************Calendar by month*************************************/
+﻿/******************* GENERAL WRAPPERS *********************/
 
+.BOAgendaModuleGreatWrapper{
+	display:block;
+	width:100%;	
+	text-align:center;
+    border:1px solid PURPLE ;
+}
+
+.BOAgendaDateSelector{
+	border:1px solid green;
+	display:block;
+	width:40%;
+	height:25px;
+	margin:14px auto 10px auto;
+	text-align:center;
+}
+	.BOAgendaDateSelectorLeft{
+		display:inline-block;
+		border:1px solid grey;
+		width:20px;
+		height:20px;
+		vertical-align:middle;
+	}
+	.BOAgendaDateSelectorRight{
+		display:inline-block;
+		border:1px solid grey;
+		width:20px;
+		height:20px;
+		vertical-align:middle;
+		margin:0px;
+	}
+
+.BOAgendaCalendarWrapper{
+	border:1px solid red;
+	float:left;
+	width:390px;
+	height:auto;
+	vertical-align:top;
+	margin-left:13px;
+}
+.BOAgendaCalendarViewWrapper{
+	display:inline-block;
+	border:1px solid green;
+	margin:0px 0px 0px -5px;
+	vertical-align:top;
+}
+	.BOAgendaCalendarViewWrapper1024{width:66%;}
+	.BOAgendaCalendarViewWrapper800{45%}
+	.BOAgendaCalendarViewWrapper768{30%}
+	.BOAgendaCalendarViewWrapper600{20%}
+.BOAgendaSideMonthsWrapper{
+	display:block;
+	border:1px solid orange;
+	width:auto;
+	height:auto;
+}
+
+/******************************Calendar by month*************************************/
 /*weekends calendar*/
 .ui-datepicker-week-end a.ui-state-default {
     background: #00ffff;
@@ -28,12 +85,6 @@
 #Calendar-Right .ui-datepicker-next {
     display: none;
 }
-
-
-
-
-
-
 
 /*hide calendar all day event*/
 #divMeetingCalendar .fc-agenda-allday {
