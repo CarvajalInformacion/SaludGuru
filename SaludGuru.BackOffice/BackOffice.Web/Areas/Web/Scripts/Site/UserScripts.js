@@ -7,7 +7,7 @@ function UserNotificationsListGrid(vidDiv, vNotificationData) {
         },
         columns: [{
             field: "CreateDate",
-            title: "Fecha",
+            title: "Fecha, Hora",
             template: $('#TemplateNotificationType').html(),
         }, {
             field: "UserFromName",
