@@ -36,7 +36,7 @@
                     break;
                 case BackOffice.Models.General.enumMenuPrincipal.Patient:
                 <li class="pacientes @(PrincipalM.IsSelected?"selected":string.Empty)">
-                    <a href="@Url.Action(MVC.Patient.ActionNames.Search, MVC.Patient.Name)">PaciPacientes</a>
+                    <a href="@Url.Action(MVC.Patient.ActionNames.Search, MVC.Patient.Name)">Pacientes</a>
                 </li>
                     break;
                 default:
@@ -45,8 +45,8 @@
         }
     </ul>
 </div>
-<div class="subMenu_@(MenuInfo.Where(x => x.IsSelected == true).Select(x => x.Menu).DefaultIfEmpty(BackOffice.Models.General.enumMenuPrincipal.Dashboard).FirstOrDefault().ToString())">
-    <ul>
+<div>
+    <ul class="subMenu subMenu_@(MenuInfo.Where(x => x.IsSelected == true).Select(x => x.Menu).DefaultIfEmpty(BackOffice.Models.General.enumMenuPrincipal.Dashboard).FirstOrDefault().ToString())">
         @if (MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault() != null && MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault().RelatedMenu != null)
         {
             foreach (BackOffice.Models.General.MenuSecundaryModel SecundaryM in MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault().RelatedMenu)

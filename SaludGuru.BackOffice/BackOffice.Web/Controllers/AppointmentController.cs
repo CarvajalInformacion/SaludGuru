@@ -33,17 +33,17 @@ namespace BackOffice.Web.Controllers
             return View(oModel);
         }
 
-        public virtual ActionResult Week()
+        public virtual ActionResult Week(string Date)
         {
             return View();
         }
 
-        public virtual ActionResult Month()
+        public virtual ActionResult Month(string Date)
         {
             return View();
         }
 
-        public virtual ActionResult List()
+        public virtual ActionResult List(string Date)
         {
             return View();
         }

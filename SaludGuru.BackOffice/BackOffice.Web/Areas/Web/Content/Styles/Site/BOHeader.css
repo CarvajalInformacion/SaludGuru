@@ -309,11 +309,8 @@ border:none;
 }
 .mainMenuItemWrapper{
     display:block;
-
-border:none;
-
+    border:none;
     width:auto;
-    height:83px;
     background-color:#fff;
     float:right;
 }
@@ -329,7 +326,7 @@ border:none;
     background-color:#fff;
     
 }
-.mainMenuItemWrapper li:hover, .mainMenuItemWrapper li:active{
+.mainMenuItemWrapper li:hover, .mainMenuItemWrapper li:active, .mainMenuItemWrapper li.selected{
     border:1px solid grey;
     display:inline-block;
     height:58px;
@@ -361,7 +358,7 @@ background-repeat:no-repeat;
 background-position:13px -387px;
 background-size:50px 509px;
 }
-.mainMenuItemWrapper li.admin a:hover, .mainMenuItemWrapper li.admin a:active{
+.mainMenuItemWrapper li.admin a:hover, .mainMenuItemWrapper li.admin a:active, .mainMenuItemWrapper li.selected a{
     background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
 }
 /* DASHBOARD */
@@ -380,7 +377,7 @@ background-repeat:no-repeat;
 background-position:12px -315px;
 background-size:50px 509px;
 }
-.mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active{
+.mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active, .mainMenuItemWrapper li.selected a{
     background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
 }
 /* PERFIL */
@@ -400,7 +397,7 @@ background-repeat:no-repeat;
 background-position:5px -12px;
 background-size:50px 509px;
 }
-.mainMenuItemWrapper li.perfil a:hover, .mainMenuItemWrapper li.perfil a:active{
+.mainMenuItemWrapper li.perfil a:hover, .mainMenuItemWrapper li.perfil a:active, .mainMenuItemWrapper li.selected a{
     background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
 }
 /* AGENDA */
@@ -420,7 +417,7 @@ background-repeat:no-repeat;
 background-position:5px -177px;
 background-size:50px 509px;
 }
-.mainMenuItemWrapper li.agenda a:hover, .mainMenuItemWrapper li.agenda a:active{
+.mainMenuItemWrapper li.agenda a:hover, .mainMenuItemWrapper li.agenda a:active, .mainMenuItemWrapper li.selected a{
     background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
 }
 /*PACIENTES*/
@@ -439,39 +436,40 @@ background-repeat:no-repeat;
 background-position:6px -91px;
 background-size:50px 509px;
 }
-.mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active{
+.mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active, .mainMenuItemWrapper li.selected a{
     background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
 }
-    /*.mainMenuItemWrapper li:first-child{
-        margin:0px;
-    }*/
-/*.mainMenuItemWrapper li img {
-    display:block;
-    height:32px;
-    margin:0px auto 2px auto;    
-}*/
 
-.subMenuAdministrar {
+/*Secondary menu*/
+.subMenu_Administrator {
    border-bottom:4px solid #9d046f;
 } 
-.subMenuAgenda {
+.subMenu_Appointment {
    border-bottom:4px solid #99d50e;
 }
-.subMenuAdministrar, .subMenuAgenda{
-    display:none;
-    position:absolute;
-    top:100px;
+.subMenu_Dashboard {
+   border-bottom:4px solid #0E9090;
+}
+.subMenu_Profile {
+   border-bottom:4px solid #03AAC2;
+}
+.subMenu_Patient {
+   border-bottom:4px solid #F07600;
+}
+
+.subMenu{
     left:0%;
-    height:30px;
+    min-height:1px;
+    max-height:30px;
     width:100%;
     min-width:800px;
     font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
     text-transform:uppercase;
     font-size:12px;
-        text-align:right;
-        margin-right:8%;
+    text-align:right;
+    margin-right:8%;
 }
-.subMenuAdministrar li, .subMenuAdministrar li:hover, .subMenuAdministrar li:active, .subMenuAgenda li, .subMenuAgenda li:hover, .subMenuAgenda li:active{
+.subMenu li, .subMenu li:hover, .subMenu li:active{
     display:inline-block;
     margin:0px 0px 0px -3px;
     padding:7px 12px;
@@ -483,19 +481,19 @@ background-size:50px 509px;
     border-bottom: none;
     background-color:rgba(255, 255, 255, 0.7);
 }
-    .subMenuAdministrar li:hover, .subMenuAdministrar li:active, .subMenuAgenda li:hover, .subMenuAgenda li:active {
+    .subMenu li.selected, .subMenu li:hover, .subMenu li:active{
         box-shadow:none;
         background-color:#fff;
     }
 
-    .subMenuAdministrar li>a, .subMenuAgenda li>a{
+    .subMenu li>a{
         margin:0px; padding:0px;
-border:none;
+        border:none;
         line-height:18px;
         display:block;
         color:#333;
     }
-    .subMenuAdministrar li>a:hover, .subMenuAgenda li>a:hover {
+    .subMenu li>a:hover{
         text-decoration:underline;
     }
 
