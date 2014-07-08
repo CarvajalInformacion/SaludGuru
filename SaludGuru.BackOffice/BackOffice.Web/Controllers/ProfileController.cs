@@ -77,8 +77,12 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult ProfileEditImage(string ProfilePublicId)
         {
+            ProfileUpSertModel Model = new ProfileUpSertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
 
-            return View();
+            return View(Model);
         }
 
         #endregion

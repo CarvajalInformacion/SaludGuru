@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BackOffice.Models.General
 {
-    public class MenuOfficeModel
+    public class MenuPatientModel
     {
-        public enumMenuOffice Menu { get; set; }
+        public enumMenuPatient Menu { get; set; }
         public enumEditPermision EditPermision { get; set; }
         public bool IsSelected { get; set; }
     }

@@ -50,21 +50,13 @@
         </div>
         <!--render search box-->
         <div class="searchBox">
-            <input type="text" />
+            <input id="ipGlobalSearchBox" type="text" />
         </div>
 
         <div class="userNotificationWrapper">
-
-            @*<ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ddAutorizationProfiles-menu" class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox" tabindex="0" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 301px;">
-                    <li class="ui-menu-item ui-state-focus" id="ui-id-1" tabindex="-1" role="option">
-                        Administrador Sistema
-                        <span style="background-image: url('https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg');" class="ui-icon undefined"></span>
-                    </li>
-                </ul>*@
-
             <!--render notifications-->
             <div id="notificationsWrapper" class="notificationsWrapper" style="height:100%; ">
-                <span id="aNotifyCount"></span>
+                    <span id="aNotifyCount"></span>                
                 <div style="top: 33px; left: 0px;">
                     <ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ulNotificationList"
                         class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox"
@@ -82,7 +74,6 @@
             <!--render user options-->
             <div class="userOptionsWrapper">
                 <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                    @*<div class="arrowDownUserOptions"></div>*@
                     <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
                     <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
                 </div>
@@ -90,10 +81,7 @@
                 <div id="divUserMenu" style="display:none;">
                     <ul>
                         <li>
-                            <a href="">Opciones de Cuenta</a>
-                        </li>
-                        <li>
-                            <a href="">Configuracio'n</a>
+                            <a href="@Url.Action(MVC.User.ActionNames.NotificationList,MVC.User.Name)">Mis notificaciones</a>
                         </li>
                         <li>
                             <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
@@ -110,14 +98,13 @@
         @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu)
     </div>
 </div>
-
-
 <style type="text/css">
-    #ddAutorizationProfiles-button {
-        border-top: 1px solid #999;
-        border-bottom: 1px solid #999;
-        border-right: none;
-        border-left: none;
+    
+#ddAutorizationProfiles-button{
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+    border-right: none;
+    border-left: none;
         display: inline-block;
         width: 100% !important;
         height: 34px;
@@ -125,19 +112,19 @@
         border-radius: 0px;
         background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
         background-repeat: repeat-x;
-        margin: -1px 0px 0px 0px;
+    margin: -1px 0px 0px 0px;
     }
 
-    span.ui-selectmenu-text {
-        height: 32px;
-        padding: 0px 0px 0px 20px !important;
-        width: 91%;
-        font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
-        font-size: 15px;
-        font-weight: normal;
-        line-height: 32px !important;
-        color: #333;
-    }
+span.ui-selectmenu-text {
+    height: 32px;
+    padding: 0px 0px 0px 20px !important;
+    width: 91%;
+    font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 32px !important;
+    color: #333;
+}
 
     span.selectedProfilePicture {
         display: inline-block;
@@ -166,11 +153,11 @@
         left: 16px !important;
     }
 
-    #ddAutorizationProfiles-menu {
-        border: 1px solid #333;
-        width: 300px !important;
-        height: auto;
-        border-radius: 0px;
+#ddAutorizationProfiles-menu {
+    border: 1px solid #333;
+    width: 300px !important;
+    height: auto;
+    border-radius: 0px;
         padding: 8px 0px;
         background-color: #fff !important;
         background-image: none;
@@ -179,5 +166,5 @@
     #notificationsWrapper ul li:hover {
             background-color: white;
             text-decoration: none;
-        }
+}
 </style>

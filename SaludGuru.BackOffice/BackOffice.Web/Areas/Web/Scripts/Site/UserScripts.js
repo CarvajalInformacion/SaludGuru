@@ -1,6 +1,5 @@
 ﻿//init Notifications grid
 function UserNotificationsListGrid(vidDiv, vNotificationData) {
-    debugger;
     $('#' + vidDiv).kendoGrid({
         dataSource: {
             type: "json",

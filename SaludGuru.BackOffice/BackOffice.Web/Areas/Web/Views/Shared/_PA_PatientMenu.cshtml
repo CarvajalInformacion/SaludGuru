@@ -1,29 +1,41 @@
-﻿<div class="BOMenuPrincipalPerfil">
+﻿@model BackOffice.Models.Patient.PatientUpSertModel
+
+@{
+    List<BackOffice.Models.General.MenuPatientModel> PatientMenu = BackOffice.Web.Controllers.BaseController.GetPatientMenu();
+}
+<div class="BOMenuPrincipalPerfil">
     <div>
         <img class="BOFotoPerfil" src="" alt="" title="" />
-        <h2>Nombre del Profesional</h2>
-        <h3>Oftalmologia y Astrologia</h3>
+        <h2>@(Model.Patient.Name + " " + Model.Patient.LastName)</h2>
     </div>
     <div>
         <ul>
-            <li>
-                <a href="" title="">Datos basicos</a>
-            </li>
-            <li>
-                <a href="" title="">Citas</a>
-            </li>
-            @*<li>
-                <a href="" title="">Consultorios</a>
-            </li>
-            <li>
-                <a href="" title="">Seguros</a>
-            </li>
-            <li>
-                <a href="" title="">Especialidades</a>
-            </li>
-            <li>
-                <a href="" title="">Tratamientos</a>
-            </li>*@
+            @foreach (BackOffice.Models.General.MenuPatientModel oMenu in PatientMenu)
+            {
+                string strAction = string.Empty;
+                string strStyle = string.Empty;
+                string strName = string.Empty;
+
+                switch (oMenu.Menu)
+                {
+                    case BackOffice.Models.General.enumMenuPatient.PatientInfo:
+                        strAction = Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Datos basicos";
+                        break;
+                    case BackOffice.Models.General.enumMenuPatient.Appointment:
+                        strAction = Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Citas";
+                        break;
+                    default:
+                        break;
+                }
+
+                <li class="@strStyle">
+                    <a href="@strAction">@strName</a>
+                </li>
+            }
         </ul>
     </div>
 </div>

@@ -21,10 +21,67 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC.Web
+namespace BackOffice.Web.Areas.Web.Controllers
 {
-    public class UserController
+    public partial class UserController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public UserController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected UserController(Dummy d) { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public UserController Actions { get { return MVC.Web.User; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "Web";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "User";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "User";
+
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string NotificationList = "NotificationList";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string NotificationList = "NotificationList";
+        }
+
 
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -42,6 +99,23 @@ namespace T4MVC.Web
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_UserController : BackOffice.Web.Areas.Web.Controllers.UserController
+    {
+        public T4MVC_UserController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void NotificationListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult NotificationList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NotificationList);
+            NotificationListOverride(callInfo);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC

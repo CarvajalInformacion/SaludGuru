@@ -7,15 +7,7 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
 </div>
 <div class="BOProfileFormWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
-            new BackOffice.Models.Office.OfficeMenuModel()
-            {
-                OfficeInfo = Model.CurrentOffice,
-                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
-            })
-
-
-
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model)
 
     <div class="BOFormDataWrapper">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
@@ -138,7 +130,7 @@
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
             <div class="BOButtonContainerLong">
-                <input class="BOButtons" type="submit" value="guardar"/>
+                <input class="BOButtons" type="submit" value="guardar" />
             </div>
         </form>
     </div>
