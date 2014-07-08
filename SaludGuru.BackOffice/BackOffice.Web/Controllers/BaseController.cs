@@ -140,6 +140,42 @@ namespace BackOffice.Web.Controllers
         public static List<MenuOfficeModel> GetOfficeMenu()
         {
             List<MenuOfficeModel> oRetorno = new List<MenuOfficeModel>();
+
+            enumMenuOffice CurrentSelected = SelectedOfficeMenu();
+
+            enumEditPermision CurrentPermision = GetPrincipalMenu().Where(x => x.IsSelected == true).Select(x => x.EditPermision).DefaultIfEmpty(enumEditPermision.Read).FirstOrDefault();
+
+            foreach (enumMenuOffice CurrentMenu in (enumMenuOffice[])Enum.GetValues(typeof(enumMenuOffice)))
+            {
+                oRetorno.Add(new MenuOfficeModel()
+                {
+                    Menu = CurrentMenu,
+                    EditPermision = CurrentPermision,
+                    IsSelected = (CurrentMenu == CurrentSelected),
+                });
+            }
+
+            return oRetorno;
+        }
+
+        public static List<MenuPatientModel> GetPatientMenu()
+        {
+            List<MenuPatientModel> oRetorno = new List<MenuPatientModel>();
+
+            enumMenuPatient CurrentSelected = SelectedPatientMenu();
+
+            enumEditPermision CurrentPermision = GetPrincipalMenu().Where(x => x.IsSelected == true).Select(x => x.EditPermision).DefaultIfEmpty(enumEditPermision.Read).FirstOrDefault();
+
+            foreach (enumMenuPatient CurrentMenu in (enumMenuPatient[])Enum.GetValues(typeof(enumMenuPatient)))
+            {
+                oRetorno.Add(new MenuPatientModel()
+                {
+                    Menu = CurrentMenu,
+                    EditPermision = CurrentPermision,
+                    IsSelected = (CurrentMenu == CurrentSelected),
+                });
+            }
+
             return oRetorno;
         }
 
@@ -291,6 +327,46 @@ namespace BackOffice.Web.Controllers
                 MVC.Profile.ActionNames.TreatmentProfileList == CurrentActionName)
             {
                 oReturn = enumMenuProfile.Treatment;
+            }
+            return oReturn;
+        }
+
+        private static enumMenuOffice SelectedOfficeMenu()
+        {
+            enumMenuOffice oReturn = enumMenuOffice.OfficeInfo;
+
+            if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.OfficeUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuOffice.OfficeInfo;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.OfficeScheduleAvailableList == CurrentActionName)
+            {
+                oReturn = enumMenuOffice.ScheduleAvalilable;
+            }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                (MVC.Profile.ActionNames.OfficeTreatmentList == CurrentActionName ||
+                MVC.Profile.ActionNames.OfficeTreatmentUpsert == CurrentActionName))
+            {
+                oReturn = enumMenuOffice.Treatments;
+            }
+            return oReturn;
+        }
+
+        private static enumMenuPatient SelectedPatientMenu()
+        {
+            enumMenuPatient oReturn = enumMenuPatient.PatientInfo;
+
+            if (MVC.Patient.Name == CurrentControllerName &&
+                MVC.Patient.ActionNames.PatientUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuPatient.PatientInfo;
+            }
+            else if (MVC.Patient.Name == CurrentControllerName &&
+                MVC.Patient.ActionNames.AppointmentList == CurrentActionName)
+            {
+                oReturn = enumMenuPatient.Appointment;
             }
             return oReturn;
         }

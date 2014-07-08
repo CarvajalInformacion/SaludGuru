@@ -43,6 +43,12 @@
         ScheduleAvalilable
     }
 
+    public enum enumMenuPatient
+    {
+        PatientInfo,
+        Appointment
+    }
+
     public enum enumEditPermision
     {
         Read,
@@ -60,12 +66,5 @@
         OfficeInfoType = 7,
         OfficeCategoryInfoType = 8,
         IdentificationType = 9
-    }
-
-    public enum enumOfficeMenu
-    {
-        OfficeInfo,
-        Treatments,
-        ScheduleAvalilable
     }
 }

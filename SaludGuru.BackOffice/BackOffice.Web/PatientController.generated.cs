@@ -65,12 +65,6 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PatientGetAllByPublicPatientId()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult PatientUpsert()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientUpsert);
@@ -98,7 +92,6 @@ namespace BackOffice.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Search = "Search";
-            public readonly string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
             public readonly string PatientUpsert = "PatientUpsert";
             public readonly string AppointmentList = "AppointmentList";
         }
@@ -107,7 +100,6 @@ namespace BackOffice.Web.Controllers
         public class ActionNameConstants
         {
             public const string Search = "Search";
-            public const string PatientGetAllByPublicPatientId = "PatientGetAllByPublicPatientId";
             public const string PatientUpsert = "PatientUpsert";
             public const string AppointmentList = "AppointmentList";
         }
@@ -120,14 +112,6 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Search
         {
             public readonly string SearchParam = "SearchParam";
-        }
-        static readonly ActionParamsClass_PatientGetAllByPublicPatientId s_params_PatientGetAllByPublicPatientId = new ActionParamsClass_PatientGetAllByPublicPatientId();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PatientGetAllByPublicPatientId PatientGetAllByPublicPatientIdParams { get { return s_params_PatientGetAllByPublicPatientId; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PatientGetAllByPublicPatientId
-        {
-            public readonly string PublicPatientId = "PublicPatientId";
         }
         static readonly ActionParamsClass_PatientUpsert s_params_PatientUpsert = new ActionParamsClass_PatientUpsert();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -173,18 +157,6 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
             SearchOverride(callInfo, SearchParam);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void PatientGetAllByPublicPatientIdOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PublicPatientId);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult PatientGetAllByPublicPatientId(string PublicPatientId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientGetAllByPublicPatientId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublicPatientId", PublicPatientId);
-            PatientGetAllByPublicPatientIdOverride(callInfo, PublicPatientId);
             return callInfo;
         }
 

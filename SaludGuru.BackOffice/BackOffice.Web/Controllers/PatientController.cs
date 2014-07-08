@@ -18,13 +18,6 @@ namespace BackOffice.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult PatientGetAllByPublicPatientId(string PublicPatientId)
-        {
-            PatientModel modelToReturn = new PatientModel();
-            modelToReturn = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PublicPatientId);
-            return View(modelToReturn);
-        }
-
         public virtual ActionResult PatientUpsert(string PatientPublicId)
         {
             string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
@@ -55,12 +48,20 @@ namespace BackOffice.Web.Controllers
                 }
                 Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
             }
-
-            //if (Model.Patient == null )
-            //    Model.Patient = new PatientModel();
-
             return View(Model);
         }
+
+        public virtual ActionResult AppointmentList(string PatientPublicId)
+        {
+            PatientUpSertModel Model = new PatientUpSertModel()
+            {
+                Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
+                RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId),
+            };
+            return View(Model);
+        }
+
+        #region Private methods
 
         private PatientModel GetPatientInfoRequestModel()
         {
@@ -118,29 +119,6 @@ namespace BackOffice.Web.Controllers
                 return oReturn;
             }
             return null;
-        }
-
-        #region Appointment
-
-        public virtual ActionResult AppointmentList(string PatientPublicId)
-        {
-            List<AppointmentModel> ListAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId);
-            List<BackOffice.Models.Appointment.AppointmentListModel> Model = new List<Models.Appointment.AppointmentListModel>();
-            if (ListAppointment != null && ListAppointment.Count > 0)
-            {
-                Model = ListAppointment.
-                    Select(x => new BackOffice.Models.Appointment.AppointmentListModel()
-                    {
-                        AppointmentPublicId = x.AppointmentPublicId,
-                        StatusName = x.Status.ToString(),
-                        StartDate = x.StartDate.ToString(),
-                        EndDate = x.EndDate.ToString(),
-                        CreateDate = x.CreateDate.ToString(),
-                        OfficePublicId = x.OfficePublicId,
-                        OfficeName = x.OfficeName,
-                    }).ToList();
-            }
-            return View(Model);
         }
 
         #endregion

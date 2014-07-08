@@ -1,4 +1,5 @@
-﻿using MedicalCalendar.Manager.Models.General;
+﻿using MedicalCalendar.Manager.Models.Appointment;
+using MedicalCalendar.Manager.Models.General;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace BackOffice.Models.Patient
     public class PatientUpSertModel
     {
         public PatientModel Patient { get; set; }
+
         public List<ItemModel> PatientOptions { get; set; }
+
+        public List<AppointmentModel> RelatedAppointment { get; set; }
     }
 }

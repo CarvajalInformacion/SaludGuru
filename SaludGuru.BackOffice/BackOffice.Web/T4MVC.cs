@@ -60,8 +60,8 @@ namespace T4MVC
         public BackOffice.Web.Areas.Web.Controllers.ProfileController Profile = new BackOffice.Web.Areas.Web.Controllers.T4MVC_ProfileController();
         public BackOffice.Web.Areas.Web.Controllers.SpecialtyController Specialty = new BackOffice.Web.Areas.Web.Controllers.T4MVC_SpecialtyController();
         public BackOffice.Web.Areas.Web.Controllers.TreatmentController Treatment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_TreatmentController();
+        public BackOffice.Web.Areas.Web.Controllers.UserController User = new BackOffice.Web.Areas.Web.Controllers.T4MVC_UserController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
-        public T4MVC.Web.UserController User = new T4MVC.Web.UserController();
     }
 }
 

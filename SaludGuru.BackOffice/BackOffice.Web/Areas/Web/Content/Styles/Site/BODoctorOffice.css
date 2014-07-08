@@ -41,7 +41,7 @@ border:none;
     border-bottom-left-radius:0px;
     margin:0px 0px 0px 6px;
     text-align:center;
-    background-color:#ddff55;
+    background-color:#e7e3e0;
 }
 .BOInfoOfficeSubmenu ul li a{
     margin-top: 4px;
@@ -54,7 +54,7 @@ border:none;
     color:#333;
 }
     .BOInfoOfficeSubmenu ul li a:hover {text-decoration:none;}
-    .BOInfoOfficeSubmenu ul li:hover {background-color:#eeffaa; cursor:pointer;}
+    .BOInfoOfficeSubmenu ul li:hover {background-color:#E6E6E6; cursor:pointer;}
 
 /************* LISTAS DE OFICINAS TRATAMIENTOS HORARIOS ************/
 

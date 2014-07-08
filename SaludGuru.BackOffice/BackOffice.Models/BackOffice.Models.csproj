@@ -64,7 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appointment\AppointmentListModel.cs" />
     <Compile Include="Appointment\ScheduleEventModel.cs" />
     <Compile Include="Appointment\SchedulingModel.cs" />
     <Compile Include="General\Constants.cs" />
@@ -74,10 +73,10 @@
     <Compile Include="General\MenuPrincipalModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="General\MenuPatientModel.cs" />
     <Compile Include="General\MenuProfileModel.cs" />
     <Compile Include="General\MenuSecundaryModel.cs" />
     <Compile Include="General\SessionModel.cs" />
-    <Compile Include="Office\OfficeMenuModel.cs" />
     <Compile Include="Office\OfficeUpsertModel.cs" />
     <Compile Include="Patient\PatientSearchModel.cs" />
     <Compile Include="Patient\PatientUpSertModel.cs" />

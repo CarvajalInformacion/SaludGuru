@@ -9,12 +9,7 @@
 </div>
 
 <div class="BOProfileFormWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
-            new BackOffice.Models.Office.OfficeMenuModel()
-            {
-                OfficeInfo = Model.CurrentOffice,
-                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
-            })
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model)
 
     <div class="BOOfficeTableWrapper">
         <h3>Configuración de Horario Disponible</h3>
@@ -84,7 +79,7 @@
 
                 </li>
             </ul>
-            
+
         </form>
     </div>
     <div id="templateDelete">

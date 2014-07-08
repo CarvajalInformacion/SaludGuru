@@ -4,6 +4,12 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+    </div>
+    <div class="BOProfileFormWrapper">
+    </div>
+</div>
 
 

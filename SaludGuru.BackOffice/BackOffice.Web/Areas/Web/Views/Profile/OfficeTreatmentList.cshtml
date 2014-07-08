@@ -10,19 +10,14 @@
 
 @*menu tabs de la oficina*@
 <div class="BOProfileFormWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu,
-            new BackOffice.Models.Office.OfficeMenuModel()
-            {
-                OfficeInfo = Model.CurrentOffice,
-                SelectedMenu = BackOffice.Models.General.enumOfficeMenu.Treatments
-            })
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model)
 
-            <div class="BOOfficeTableWrapper">
+    <div class="BOOfficeTableWrapper">
 
-                <h3>Listado de Tratamientos Asociados</h3>
-                <div id="divGridOfficeTreatment"></div>
+        <h3>Listado de Tratamientos Asociados</h3>
+        <div id="divGridOfficeTreatment"></div>
 
-            </div>
+    </div>
 </div>
 @{
     //get json office data
