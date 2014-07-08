@@ -4,7 +4,7 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <label>Notificaciones</label>
+    <label></label>
 </div>
 @{
     //get json office data
@@ -19,23 +19,23 @@
                         Select(y => y.Value).
                         DefaultIfEmpty(string.Empty).
                         FirstOrDefault(),
-                CreateDate = x.CreateDate.ToString("yyyy/MM/dd"),
+                CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy HH:mm"),
                 Body = x.Body,
             }).ToList());
 }
 
 <div class="BOProfileFormWrapper">
     <h3>Notificaciones</h3>
-    <div id="divGridNotifications"></div>
+    <div id="divGridNotifications" style="left: 130px;"></div>
 </div>
 <div id="templates" style="display:none;">
     <div id="TemplateNotificationType">
-        <img src="NotificationType_${NotificationType}" />
-        <label>${CreateDate}</label>
+        <img src="/Areas/Web/Content/Images/NotificationType_${NotificationType}.png" width="45" height="45" />
+        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${CreateDate}</label>
     </div>
     <div id="TemplateUserFrom">
-        <img src="${UserFromImage}" />
-        <label>${UserFromName}</label>
+        <img src="${UserFromImage}" width="45" height="45" />
+        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
     </div>
 </div>
 @section inlinescripts

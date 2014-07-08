@@ -1,42 +1,42 @@
 .headerMainWrapper {
-
-border:none;
-
-    width:100%;
-    height:130px;
+    border: none;
+    width: 100%;
+    height: 130px;
 }
-.headerTopWrapper{
-border:none;
-    height:34px;
+
+.headerTopWrapper {
+    border: none;
+    height: 34px;
 }
 /*************** DROPDOWN SELECT DE LISTADO DE PERFILES ****************/
 
 #ddAutorizationProfiles {
-    display:none;
+    display: none;
 }
+
 .profilesListWrapper {
-    display:inline-block;
-    width:22%;
-    height:34px;
-    vertical-align:top;
+    display: inline-block;
+    width: 22%;
+    height: 34px;
+    vertical-align: top;
+    border: none;
+}
 
-border:none;
-
-    }
-#ddAutorizationProfiles-button{   
-    border-top:1px solid #999;
-    border-bottom:1px solid #999;
+#ddAutorizationProfiles-button {
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
     border-right: none;
     border-left: none;
-    display:inline-block;
-    width:100% !important;
-    height:34px;
-    vertical-align:top;    
-    border-radius:0px;
-    background-image:url('/Areas/Web/Content/Images/BOTopBar4.png');
-    background-repeat:repeat-x;
+    display: inline-block;
+    width: 100% !important;
+    height: 34px;
+    vertical-align: top;
+    border-radius: 0px;
+    background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
+    background-repeat: repeat-x;
     margin: -1px 0px 0px 0px;
-    }
+}
+
 span.ui-selectmenu-text {
     height: 32px;
     padding: 0px 0px 0px 20px !important;
@@ -47,458 +47,511 @@ span.ui-selectmenu-text {
     line-height: 32px !important;
     color: #333;
 }
-    span.selectedProfilePicture {
-        display:inline-block;
-        background-size:30px 30px;
-        width:30px; height:30px;
-        margin-top:1px;
-    }
-    span.selectedProfileName {
-        display:inline;
-        width:50px;
-        height:32px;
-        font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
-        font-size:14px;
-        font-weight:normal;
-        margin:0px;
-        vertical-align:top;
-    }
-    span.ui-selectmenu-text:hover {
-        background-color:#f2f2f2;
-    }
-.ui-selectmenu-open {left: 16px !important;}
+
+span.selectedProfilePicture {
+    display: inline-block;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 1px;
+}
+
+span.selectedProfileName {
+    display: inline;
+    width: 50px;
+    height: 32px;
+    font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0px;
+    vertical-align: top;
+}
+
+span.ui-selectmenu-text:hover {
+    background-color: #f2f2f2;
+}
+
+.ui-selectmenu-open {
+    left: 16px !important;
+}
+
 #ddAutorizationProfiles-menu {
     border: 1px solid #333;
     width: 300px !important;
     height: auto;
     border-radius: 0px;
-    padding:8px 0px;
-    background-color:#fff !important;
-    background-image:none;
+    padding: 8px 0px;
+    background-color: #fff !important;
+    background-image: none;
 }
+
     #ddAutorizationProfiles-menu li {
-        border-bottom:#666;
-        display:inline-block;
-        width:100%;
-        height:34px;
-        background-color:#f2f2f2;
+        border-bottom: #666;
+        display: inline-block;
+        width: 100%;
+        height: 34px;
+        background-color: #f2f2f2;
         font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
         font-size: 14px;
-        line-height:14px;
-        color:#999;
-        padding-left:44px;
-        margin:2px 0px;
-    }
-    #ddAutorizationProfiles-menu li.ui-state-focus {
-        background-color:#e6e6e6;
-        background-image:none;
-        border:none;
-        color:#333;
-    }
-    #ddAutorizationProfiles-menu li span{
-        border:1px solid #999;
-        display:inline-block;
-        width:32px;
-        height:32px;
-        background-size:32px 32px;
-        
+        line-height: 14px;
+        color: #999;
+        padding-left: 44px;
+        margin: 2px 0px;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .profilesListWrapper select{
-        border-top:none;
-        border-bottom:1px solid #999;
-        width:100%;
-        height:33px;
-        font-family:"MyriadPro","Trebuchet MS", Helvetica, sans-serif;
-        font-size:16px;
-        padding:4px 12px;
-        color:#666;
-    }
-        .profilesListWrapper select option.option1, 
-        .profilesListWrapper select option.option2, 
-        .profilesListWrapper select option.option3,
-        .profilesListWrapper select option.option4{
-            display:block;
-            width:auto;
-            height:32px;
-            font-family:"MyriadPro","Trebuchet MS", Helvetica, sans-serif;
-            font-size:16px;
-            padding:4px 12px;
-            color:#666;
+        #ddAutorizationProfiles-menu li.ui-state-focus {
+            background-color: #e6e6e6;
+            background-image: none;
+            border: none;
+            color: #333;
         }
-        .profilesListWrapper select option.option1 {background-color:#ffb380;}
-        .profilesListWrapper select option.option2 {background-color:#55ddff;}
-        .profilesListWrapper select option.option3 {background-color:#ffaacc;}
-        .profilesListWrapper select option.option4 {background-color:#80ffb3;}
-        .profilesListWrapper select option.option5 {background-color:#deee9c;}
-    .profilesListWrapper select option:hover{
-        display:block;
-        background-color:#808080;
-    }
-.searchBox{
-    display:inline-block;
-                border:none;
-    width:22%;
-    height:34px;
-    margin-left:-5px;
-    background-image:url('/Areas/Web/Content/Images/BOTopBarLeftTipLong.png');
-background-repeat: no-repeat;
-background-position:98% -1px;
-background-size: 450px 34px;
-}
-.searchBox input{
-    display:inline-block;
-    border:1px solid #808080;
-    background-color:#fff;
-    width:80%;
-    height:25px;
-    margin:4px 0px 0px 6px;
-    border-radius:12px;
-    background-image:url('/Areas/Web/Content/Images/magGlassSmall.png');
-    background-repeat:no-repeat;
-    background-position:95% 1px;
-    background-size:25px 20px;
-    padding:0px 0px 0px 10px;
-    vertical-align:top;
-}
-.userNotificationWrapper{
-    float:right;
-    width:auto;
-    height:34px;
-    margin-right:0px;
-border:none;
-}
-    .notificationsWrapper{
-        display:inline-block;
-border:none;
-        width:68px;
-        height:34px;
-        margin:0px -6px 0px 0px;
-        vertical-align:top;
-background-image:url('/Areas/Web/Content/Images/BOTopBar3.png');
-background-repeat:no-repeat;
-background-position:0px 0px;
-background-size:66px 34px;
-    }
-    .notificationsWrapper span{
-        display:inline-block;
-border:none;
-        width:26px;
-        height:27px;
-        font-weight:bold;
-        font-size:13px;
-        vertical-align:top;
-        margin:4px 0px 0px 30px;
-        text-decoration:none;
-        color:red;
-background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
-background-repeat:no-repeat;
-background-position:-250px -216px;
-background-size:auto auto;
-text-align:right;
-line-height: 6px;
-    }
-    .userOptionsWrapper {
-        display:inline-block;
-border:none;
-        width:268px;
-        height:34px;
-        margin:0px 0px 0px 0px;
-        vertical-align:top;
-background-image:url('/Areas/Web/Content/Images/BOTopBar4.png');
-background-repeat:repeat-x;
-    }
-    .userOptionsWrapper div{
-border:none;
-    }
-        .arrowDownUserOptions {
-            display:inline-block;
-            width:16px;
-            height:17px;
-            vertical-align:top;
-            margin:8px 3px 4px 6px;
-background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
-background-repeat:no-repeat;
-background-position:-41px -6px;
+
+        #ddAutorizationProfiles-menu li span {
+            border: 1px solid #999;
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-size: 32px 32px;
         }
-        .userOptionsWrapper label{
-            display:inline-block;
-border:none;
-            margin:1px 0px 0px 0px;
-            vertical-align:top;
-            color:#4d4d4d;
-            font-size:14px;
-            width:200px;
-            height:32px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            line-height:32px;
-            padding: 0px 0px 0px 8px;
-            cursor:pointer;
-        }
-.userOptionsWrapper label:hover {
-    background-color:#f2f2f2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.profilesListWrapper select {
+    border-top: none;
+    border-bottom: 1px solid #999;
+    width: 100%;
+    height: 33px;
+    font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+    font-size: 16px;
+    padding: 4px 12px;
+    color: #666;
 }
-        .userOptionsWrapper img{
-border:none;
-            width:28px;
-            height:28px;
-            margin:3px 0px 0px 12px;
-        }
+
+    .profilesListWrapper select option.option1,
+    .profilesListWrapper select option.option2,
+    .profilesListWrapper select option.option3,
+    .profilesListWrapper select option.option4 {
+        display: block;
+        width: auto;
+        height: 32px;
+        font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+        font-size: 16px;
+        padding: 4px 12px;
+        color: #666;
+    }
+
+    .profilesListWrapper select option.option1 {
+        background-color: #ffb380;
+    }
+
+    .profilesListWrapper select option.option2 {
+        background-color: #55ddff;
+    }
+
+    .profilesListWrapper select option.option3 {
+        background-color: #ffaacc;
+    }
+
+    .profilesListWrapper select option.option4 {
+        background-color: #80ffb3;
+    }
+
+    .profilesListWrapper select option.option5 {
+        background-color: #deee9c;
+    }
+
+    .profilesListWrapper select option:hover {
+        display: block;
+        background-color: #808080;
+    }
+
+.searchBox {
+    display: inline-block;
+    border: none;
+    width: 22%;
+    height: 34px;
+    margin-left: -5px;
+    background-image: url('/Areas/Web/Content/Images/BOTopBarLeftTipLong.png');
+    background-repeat: no-repeat;
+    background-position: 98% -1px;
+    background-size: 450px 34px;
+}
+
+    .searchBox input {
+        display: inline-block;
+        border: 1px solid #808080;
+        background-color: #fff;
+        width: 80%;
+        height: 25px;
+        margin: 4px 0px 0px 6px;
+        border-radius: 12px;
+        background-image: url('/Areas/Web/Content/Images/magGlassSmall.png');
+        background-repeat: no-repeat;
+        background-position: 95% 1px;
+        background-size: 25px 20px;
+        padding: 0px 0px 0px 10px;
+        vertical-align: top;
+    }
+
+.userNotificationWrapper {
+    float: right;
+    width: auto;
+    height: 34px;
+    margin-right: 0px;
+    border: none;
+}
+
+.notificationsWrapper {
+    display: inline-block;
+    border: none;
+    width: 68px;
+    height: 34px;
+    margin: 0px -6px 0px 0px;
+    vertical-align: top;
+    background-image: url('/Areas/Web/Content/Images/BOTopBar3.png');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 66px 34px;
+}
+
+    .notificationsWrapper span {
+        display: inline-block;
+        border: none;
+        width: 26px;
+        height: 27px;
+        font-weight: bold;
+        font-size: 13px;
+        vertical-align: top;
+        margin: 4px 0px 0px 30px;
+        text-decoration: none;
+        color: red;
+        background-image: url('/Areas/Web/Content/Images/iconosSprite1.png');
+        background-repeat: no-repeat;
+        background-position: -250px -216px;
+        background-size: auto auto;
+        text-align: right;
+        line-height: 6px;
+    }
+
+.userOptionsWrapper {
+    display: inline-block;
+    border: none;
+    width: 268px;
+    height: 34px;
+    margin: 0px 0px 0px 0px;
+    vertical-align: top;
+    background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
+    background-repeat: repeat-x;
+}
+
+    .userOptionsWrapper div {
+        border: none;
+    }
+
+.arrowDownUserOptions {
+    display: inline-block;
+    width: 16px;
+    height: 17px;
+    vertical-align: top;
+    margin: 8px 3px 4px 6px;
+    background-image: url('/Areas/Web/Content/Images/iconosSprite1.png');
+    background-repeat: no-repeat;
+    background-position: -41px -6px;
+}
+
+.userOptionsWrapper label {
+    display: inline-block;
+    border: none;
+    margin: 1px 0px 0px 0px;
+    vertical-align: top;
+    color: #4d4d4d;
+    font-size: 14px;
+    width: 200px;
+    height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 32px;
+    padding: 0px 0px 0px 8px;
+    cursor: pointer;
+}
+
+    .userOptionsWrapper label:hover {
+        background-color: #f2f2f2;
+    }
+
+.userOptionsWrapper img {
+    border: none;
+    width: 28px;
+    height: 28px;
+    margin: 3px 0px 0px 12px;
+}
 
 #divUserMenu {
-    border:1px solid grey;
-    width:120px;
-    height:auto;
-    position:relative;
-    z-index:10;
-    background-color:#fff;
+    border: 1px solid grey;
+    width: 120px;
+    height: auto;
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
 }
-    #divUserMenu ul li{
-border:none;
-        border-bottom:1px solid #333;
-        height:auto;
-        cursor:pointer;
+
+    #divUserMenu ul li {
+        border: none;
+        border-bottom: 1px solid #333;
+        height: auto;
+        cursor: pointer;
     }
-    #divUserMenu ul li:hover{
-        background-color:#e6e6e6;
-    }
-    #divUserMenu ul li a{
-    font-size:13px;
-    line-height:33px;
-    color:#4d4d4d;
-    display: block;
-    margin-left:5px;
-    }
-    #divUserMenu ul li a:hover{text-decoration:none;}
+
+        #divUserMenu ul li:hover {
+            background-color: #e6e6e6;
+        }
+
+        #divUserMenu ul li a {
+            font-size: 13px;
+            line-height: 33px;
+            color: #4d4d4d;
+            display: block;
+            margin-left: 5px;
+        }
+
+            #divUserMenu ul li a:hover {
+                text-decoration: none;
+            }
 
 
 /*********************** MAIN MENU **********************/
 
 .mainMenuWrapper {
-
-border:none;
-
-    width:100%;
-    float:right;
-    margin-top:10px;
+    border: none;
+    width: 100%;
+    float: right;
+    margin-top: 10px;
 }
+
 .HeaderLogoSaludGuru {
-    display:inline-block;
-border:none;
-	padding: 0px;
-	margin: 0px 0px 0px 37px;
-	width: 90px; height:57px;
-	background-image:url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
-	background-repeat:no-repeat;
-    background-size:87px 54px;
-}
-.mainMenuItemWrapper{
-    display:block;
-    border:none;
-    width:auto;
-    background-color:#fff;
-    float:right;
-}
-.mainMenuItemWrapper li{
-    border:1px solid grey;
-    display:inline-block;
-    height:54px;
-    padding:2px 6px;
-    margin-left:-5px;
-    vertical-align:top;
-    text-align:center;
-    cursor:pointer;
-    background-color:#fff;
-    
-}
-.mainMenuItemWrapper li:hover, .mainMenuItemWrapper li:active, .mainMenuItemWrapper li.selected{
-    border:1px solid grey;
-    display:inline-block;
-    height:58px;
-    padding:2px 6px;
-    margin:-4px 0px 0px -5px;
-    vertical-align:top;
-    text-align:center;
-    cursor:pointer;
-    box-shadow:2px 2px 2px;
-    position:relative;
-    z-index:10;
+    display: inline-block;
+    border: none;
+    padding: 0px;
+    margin: 0px 0px 0px 37px;
+    width: 90px;
+    height: 57px;
+    background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
+    background-repeat: no-repeat;
+    background-size: 87px 54px;
 }
 
+.mainMenuItemWrapper {
+    display: block;
+    border: none;
+    width: auto;
+    background-color: #fff;
+    float: right;
+}
 
-/**************** ICONO Y LINK PARA CADA CATEGORIA DEL MENU PRINCIPAL ****************/
-/* ADMINISTRAR */
-.mainMenuItemWrapper li.admin a{
-border:none;
-    display:inline-block;
-    height:55px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    line-height:86px;
-    color:#333;
-    text-decoration:none;
-background-image:url('/Areas/Web/Content/Images/iconosMainMenu.png');
-background-repeat:no-repeat;
-background-position:13px -387px;
-background-size:50px 509px;
-}
-.mainMenuItemWrapper li.admin a:hover, .mainMenuItemWrapper li.admin a:active, .mainMenuItemWrapper li.selected a{
-    background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* DASHBOARD */
-.mainMenuItemWrapper li.dashboard a{
-border:none;
-    display:inline-block;
-    height:55px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    line-height:86px;
-    color:#333;
-    text-decoration:none;
-background-image:url('/Areas/Web/Content/Images/iconosMainMenu.png');
-background-repeat:no-repeat;
-background-position:12px -315px;
-background-size:50px 509px;
-}
-.mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active, .mainMenuItemWrapper li.selected a{
-    background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* PERFIL */
-.mainMenuItemWrapper li.perfil a{
-border:none;
-    display:inline-block;
-    width:60px;
-    height:55px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    line-height:86px;
-    color:#333;
-    text-decoration:none;
-background-image:url('/Areas/Web/Content/Images/iconosMainMenu.png');
-background-repeat:no-repeat;
-background-position:5px -12px;
-background-size:50px 509px;
-}
-.mainMenuItemWrapper li.perfil a:hover, .mainMenuItemWrapper li.perfil a:active, .mainMenuItemWrapper li.selected a{
-    background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* AGENDA */
-.mainMenuItemWrapper li.agenda a{
-border:none;
-    display:inline-block;
-    width:60px;
-    height:55px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    line-height:86px;
-    color:#333;
-    text-decoration:none;
-background-image:url('/Areas/Web/Content/Images/iconosMainMenu.png');
-background-repeat:no-repeat;
-background-position:5px -177px;
-background-size:50px 509px;
-}
-.mainMenuItemWrapper li.agenda a:hover, .mainMenuItemWrapper li.agenda a:active, .mainMenuItemWrapper li.selected a{
-    background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/*PACIENTES*/
-.mainMenuItemWrapper li.pacientes a{
-border:none;
-    display:inline-block;
-    height:55px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    line-height:86px;
-    color:#333;
-    text-decoration:none;
-background-image:url('/Areas/Web/Content/Images/iconosMainMenu.png');
-background-repeat:no-repeat;
-background-position:6px -91px;
-background-size:50px 509px;
-}
-.mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active, .mainMenuItemWrapper li.selected a{
-    background-image:url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
+    .mainMenuItemWrapper li {
+        border: 1px solid grey;
+        display: inline-block;
+        height: 54px;
+        padding: 2px 6px;
+        margin-left: -5px;
+        vertical-align: top;
+        text-align: center;
+        cursor: pointer;
+        background-color: #fff;
+    }
+
+        .mainMenuItemWrapper li:hover, .mainMenuItemWrapper li:active, .mainMenuItemWrapper li.selected {
+            border: 1px solid grey;
+            display: inline-block;
+            height: 58px;
+            padding: 2px 6px;
+            margin: -4px 0px 0px -5px;
+            vertical-align: top;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 2px 2px 2px;
+            position: relative;
+            z-index: 10;
+        }
+
+
+        /**************** ICONO Y LINK PARA CADA CATEGORIA DEL MENU PRINCIPAL ****************/
+        /* ADMINISTRAR */
+        .mainMenuItemWrapper li.admin a {
+            border: none;
+            display: inline-block;
+            height: 55px;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 86px;
+            color: #333;
+            text-decoration: none;
+            background-image: url('/Areas/Web/Content/Images/iconosMainMenu.png');
+            background-repeat: no-repeat;
+            background-position: 13px -387px;
+            background-size: 50px 509px;
+        }
+
+            .mainMenuItemWrapper li.admin a:hover, .mainMenuItemWrapper li.admin a:active, .mainMenuItemWrapper li.selected a {
+                background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+            }
+        /* DASHBOARD */
+        .mainMenuItemWrapper li.dashboard a {
+            border: none;
+            display: inline-block;
+            height: 55px;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 86px;
+            color: #333;
+            text-decoration: none;
+            background-image: url('/Areas/Web/Content/Images/iconosMainMenu.png');
+            background-repeat: no-repeat;
+            background-position: 12px -315px;
+            background-size: 50px 509px;
+        }
+
+            .mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active, .mainMenuItemWrapper li.selected a {
+                background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+            }
+        /* PERFIL */
+        .mainMenuItemWrapper li.perfil a {
+            border: none;
+            display: inline-block;
+            width: 60px;
+            height: 55px;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 86px;
+            color: #333;
+            text-decoration: none;
+            background-image: url('/Areas/Web/Content/Images/iconosMainMenu.png');
+            background-repeat: no-repeat;
+            background-position: 5px -12px;
+            background-size: 50px 509px;
+        }
+
+            .mainMenuItemWrapper li.perfil a:hover, .mainMenuItemWrapper li.perfil a:active, .mainMenuItemWrapper li.selected a {
+                background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+            }
+        /* AGENDA */
+        .mainMenuItemWrapper li.agenda a {
+            border: none;
+            display: inline-block;
+            width: 60px;
+            height: 55px;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 86px;
+            color: #333;
+            text-decoration: none;
+            background-image: url('/Areas/Web/Content/Images/iconosMainMenu.png');
+            background-repeat: no-repeat;
+            background-position: 5px -177px;
+            background-size: 50px 509px;
+        }
+
+            .mainMenuItemWrapper li.agenda a:hover, .mainMenuItemWrapper li.agenda a:active, .mainMenuItemWrapper li.selected a {
+                background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+            }
+        /*PACIENTES*/
+        .mainMenuItemWrapper li.pacientes a {
+            border: none;
+            display: inline-block;
+            height: 55px;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 86px;
+            color: #333;
+            text-decoration: none;
+            background-image: url('/Areas/Web/Content/Images/iconosMainMenu.png');
+            background-repeat: no-repeat;
+            background-position: 6px -91px;
+            background-size: 50px 509px;
+        }
+
+            .mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active, .mainMenuItemWrapper li.selected a {
+                background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+            }
 
 /*Secondary menu*/
 .subMenu_Administrator {
-   border-bottom:4px solid #9d046f;
-} 
+    border-bottom: 4px solid #9d046f;
+}
+
 .subMenu_Appointment {
-   border-bottom:4px solid #99d50e;
+    border-bottom: 4px solid #99d50e;
 }
+
 .subMenu_Dashboard {
-   border-bottom:4px solid #0E9090;
+    border-bottom: 4px solid #0E9090;
 }
+
 .subMenu_Profile {
-   border-bottom:4px solid #03AAC2;
+    border-bottom: 4px solid #03AAC2;
 }
+
 .subMenu_Patient {
-   border-bottom:4px solid #F07600;
+    border-bottom: 4px solid #F07600;
 }
 
-.subMenu{
-    left:0%;
-    min-height:1px;
-    max-height:30px;
-    width:100%;
-    min-width:800px;
-    font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-size:12px;
-    text-align:right;
-    margin-right:8%;
+.subMenu {
+    left: 0%;
+    min-height: 1px;
+    max-height: 30px;
+    width: 100%;
+    min-width: 800px;
+    font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: right;
+    margin-right: 8%;
 }
-.subMenu li, .subMenu li:hover, .subMenu li:active{
-    display:inline-block;
-    margin:0px 0px 0px -3px;
-    padding:7px 12px;
-    height:30px;
-    width:auto;
-    border-top: 1px solid #999;
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: none;
-    background-color:rgba(255, 255, 255, 0.7);
-}
-    .subMenu li.selected, .subMenu li:hover, .subMenu li:active{
-        box-shadow:none;
-        background-color:#fff;
+
+    .subMenu li, .subMenu li:hover, .subMenu li:active {
+        display: inline-block;
+        margin: 0px 0px 0px -3px;
+        padding: 7px 12px;
+        height: 30px;
+        width: auto;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+        border-right: 1px solid #999;
+        border-bottom: none;
+        background-color: rgba(255, 255, 255, 0.7);
     }
 
-    .subMenu li>a{
-        margin:0px; padding:0px;
-        border:none;
-        line-height:18px;
-        display:block;
-        color:#333;
-    }
-    .subMenu li>a:hover{
-        text-decoration:underline;
-    }
+        .subMenu li.selected, .subMenu li:hover, .subMenu li:active {
+            box-shadow: none;
+            background-color: #fff;
+        }
 
+        .subMenu li > a {
+            margin: 0px;
+            padding: 0px;
+            border: none;
+            line-height: 18px;
+            display: block;
+            color: #333;
+        }
 
-
-
-
-
+            .subMenu li > a:hover {
+                text-decoration: underline;
+            }

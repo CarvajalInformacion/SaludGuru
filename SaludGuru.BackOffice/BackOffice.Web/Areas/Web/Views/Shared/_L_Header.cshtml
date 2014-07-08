@@ -56,25 +56,25 @@
         <div class="userNotificationWrapper">
 
             @*<ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ddAutorizationProfiles-menu" class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox" tabindex="0" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 301px;">
-                <li class="ui-menu-item ui-state-focus" id="ui-id-1" tabindex="-1" role="option">
-                    Administrador Sistema
-                    <span style="background-image: url('https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg');" class="ui-icon undefined"></span>
-                </li>
-            </ul>*@
+                    <li class="ui-menu-item ui-state-focus" id="ui-id-1" tabindex="-1" role="option">
+                        Administrador Sistema
+                        <span style="background-image: url('https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg');" class="ui-icon undefined"></span>
+                    </li>
+                </ul>*@
 
             <!--render notifications-->
-            <div id="notificationsWrapper" class="notificationsWrapper" style="height:100%">
-                    <span id="aNotifyCount"></span>                
-                <div  style="top: 33px; left: 0px;" >
+            <div id="notificationsWrapper" class="notificationsWrapper" style="height:100%; ">
+                <span id="aNotifyCount"></span>
+                <div style="top: 33px; left: 0px;">
                     <ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ulNotificationList"
                         class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox"
                         tabindex="2" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 260px ;
-                        display:none; left: -420%; margin-left: 92px; z-index:20" ></ul>
+                        display:none; left: -420%; margin-left: 92px; z-index:20"></ul>
                 </div>
-                <ul id="NotificationTemplate" style="display:none;">
-                    <li >
-                        <img src="{NotificationImage}" width="28" height="30"/>
-                        <label style="vertical-align: middle; display:inline-block; width:220px; height:31px; line-height:14px; font-size:12px; font-weight: normal  " >{NotificationText}</label>
+                <ul id="NotificationTemplate" style="display:none;" class="hover">
+                    <li>
+                        <img src="{NotificationImage}" width="28" height="30" />
+                        <label style="vertical-align: middle; display:inline-block; width:220px; height:31px; line-height:14px; font-size:12px; font-weight: normal  ">{NotificationText}</label>
                     </li>
                 </ul>
             </div>
@@ -110,59 +110,74 @@
         @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu)
     </div>
 </div>
+
+
 <style type="text/css">
-    
-#ddAutorizationProfiles-button{
-    border-top:1px solid #999;
-    border-bottom:1px solid #999;
-    border-right: none;
-    border-left: none;
-    display:inline-block;
-    width:100% !important;
-    height:34px;
-    vertical-align:top;
-    border-radius:0px;
-    background-image:url('/Areas/Web/Content/Images/BOTopBar4.png');
-    background-repeat:repeat-x;
-    margin: -1px 0px 0px 0px;
+    #ddAutorizationProfiles-button {
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+        border-right: none;
+        border-left: none;
+        display: inline-block;
+        width: 100% !important;
+        height: 34px;
+        vertical-align: top;
+        border-radius: 0px;
+        background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
+        background-repeat: repeat-x;
+        margin: -1px 0px 0px 0px;
     }
-span.ui-selectmenu-text {
-    height: 32px;
-    padding: 0px 0px 0px 20px !important;
-    width: 91%;
-    font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 32px !important;
-    color: #333;
-}
-    span.selectedProfilePicture {
-        display:inline-block;
-        background-size:30px 30px;
-        width:30px; height:30px;
-        margin-top:1px;
-    }
-    span.selectedProfileName {
-        display:inline;
-        width:50px;
-        height:32px;
+
+    span.ui-selectmenu-text {
+        height: 32px;
+        padding: 0px 0px 0px 20px !important;
+        width: 91%;
         font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
-        font-size:14px;
-        font-weight:normal;
-        margin:0px;
-        vertical-align:top;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 32px !important;
+        color: #333;
     }
+
+    span.selectedProfilePicture {
+        display: inline-block;
+        background-size: 30px 30px;
+        width: 30px;
+        height: 30px;
+        margin-top: 1px;
+    }
+
+    span.selectedProfileName {
+        display: inline;
+        width: 50px;
+        height: 32px;
+        font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0px;
+        vertical-align: top;
+    }
+
     span.ui-selectmenu-text:hover {
-        background-color:#f2f2f2;
+        background-color: #f2f2f2;
     }
-.ui-selectmenu-open {left: 16px !important;}
-#ddAutorizationProfiles-menu {
-    border: 1px solid #333;
-    width: 300px !important;
-    height: auto;
-    border-radius: 0px;
-    padding:8px 0px;
-    background-color:#fff !important;
-    background-image:none;
-}
+
+    .ui-selectmenu-open {
+        left: 16px !important;
+    }
+
+    #ddAutorizationProfiles-menu {
+        border: 1px solid #333;
+        width: 300px !important;
+        height: auto;
+        border-radius: 0px;
+        padding: 8px 0px;
+        background-color: #fff !important;
+        background-image: none;
+    }
+
+    #notificationsWrapper ul li:hover {
+            background-color: white;
+            text-decoration: none;
+        }
 </style>
