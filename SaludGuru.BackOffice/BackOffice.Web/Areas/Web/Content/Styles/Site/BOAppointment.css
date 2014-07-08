@@ -10,27 +10,30 @@
 .BOAgendaDateSelector{
 	border:1px solid green;
 	display:block;
-	width:40%;
+	width:60%;
 	height:25px;
-	margin:14px auto 10px auto;
+	margin:2px auto;
 	text-align:center;
 }
-	.BOAgendaDateSelectorLeft{
-		display:inline-block;
-		border:1px solid grey;
-		width:20px;
-		height:20px;
-		vertical-align:middle;
+	.BOAgendaDateSelectorLeft, .BOAgendaDateSelectorRight{
+		border: 1px solid #808080;
+        vertical-align: middle;
+        display: inline-block;
+        width: auto;
+        text-align: right;
+        line-height: 20px;
+        float: left;
+        min-width: 38%;
+        height: 23px;
+        font-size: 15px;
+        font-weight: normal;
+        color: #666;
 	}
 	.BOAgendaDateSelectorRight{
-		display:inline-block;
-		border:1px solid grey;
-		width:20px;
-		height:20px;
-		vertical-align:middle;
-		margin:0px;
+		float: right;
+        text-align: left;
 	}
-
+/************************CALENDARIOS**************************/
 .BOAgendaCalendarWrapper{
 	border:1px solid red;
 	float:left;
@@ -39,6 +42,25 @@
 	vertical-align:top;
 	margin-left:13px;
 }
+.BOAgendaSideMonthsWrapper{
+	display:block;
+	border:1px solid orange;
+	width:auto;
+	height:auto;
+}
+    .BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline{
+        display: inline-block;
+        width:178px;
+        border-radius: 1px;
+        margin: 0px 4px 0px 8px;
+    }
+            .BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline div.ui-datepicker-header {
+                height: 24px;
+                background-color: #99C21D !important;
+                border: 1px solid #666;
+                border-radius: 2px;
+            }
+
 .BOAgendaCalendarViewWrapper{
 	display:inline-block;
 	border:1px solid green;
@@ -49,12 +71,7 @@
 	.BOAgendaCalendarViewWrapper800{45%}
 	.BOAgendaCalendarViewWrapper768{30%}
 	.BOAgendaCalendarViewWrapper600{20%}
-.BOAgendaSideMonthsWrapper{
-	display:block;
-	border:1px solid orange;
-	width:auto;
-	height:auto;
-}
+
 
 /******************************Calendar by month*************************************/
 /*weekends calendar*/
