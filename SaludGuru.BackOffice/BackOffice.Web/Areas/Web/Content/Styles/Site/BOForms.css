@@ -129,32 +129,34 @@ border:1px solid grey;
         height:20px;
     }
 div#AppointmentUpsert ul li label{
-    border:1px solid #999;
-    display:inline-block;
-    line-height:18px;
-    font-weight:bold;
-    background-color:#e6e6e6;
-    padding:4px 0px;
-    width:40%;
-    text-align:center;
+    display: inline-block;
+    line-height: 18px;
+    font-size: 14px;
+    background-color: #E6E6E6;
+    padding: 1px;
+    width: 38%;
+    text-align: left;
 }
 div#AppointmentUpsert ul li input{
-    display:inline-block;
-    border:1px solid #999;
-    padding:5px 0px;
-    text-align:left;
-    background-color:#fff;
-    width:55%;
+    display: inline-block;
+    border: 1px solid #999;
+    padding: 0px 3px;
+    text-align: left;
+    background-color: #FFF;
+    width: 54%;
+    height: 21px;
+    font-size: 14px;
 }
 div#AppointmentUpsert ul li select{
-    display:inline-block;
-    border:1px solid #999;
-    padding:0px;
-    text-align:left;
-    background-color:#fff;
-    width:55%;
-    height:28px;
-    vertical-align:top;
+    display: inline-block;
+    border: 1px solid #999;
+    padding: 0px;
+    text-align: left;
+    background-color: #FFF;
+    width: 54%;
+    height: 20px;
+    vertical-align: top;
+    font-size: 15px;
 }
 div#AppointmentUpsert ul li textarea{
     display:inline-block;
@@ -167,22 +169,60 @@ div#AppointmentUpsert ul li textarea{
     line-height: 15px;
     font-size: 14px;
 }
+div#AppointmentUpsert ul li > span.ui-spinner{
+    height: 22px;
+    width: 54%;
+    margin: 0px;
+    display: inline-block;
+    padding: 0px;
+    float: none;
+    border-radius: 0px;
+}
+    div#AppointmentUpsert ul li > span.ui-spinner > input#Duration {
+        width: 92%;
+        padding: 0px;
+        height: 20px;
+        margin: -9px 0px 0px -18px;
+        color: #333;
+    }
+
         div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands{
             background-color:#f2f2f2;
             display:block;
-            height:26px;
+            height:34px;
             width:100%;
         }
-            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands a{
-                background-image:url('');
+            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span{
+                background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
                 display:inline-block;
                 height:26px;
                 width:auto;
                 border:1px solid pink;
-                margin:0px 6px;
+                margin:4px 0px;
                 text-align:right;
                 padding-left:30px;
+                line-height:23px;
+                font-size: 15px;
+                color: #333;
             }
+                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
+                    background-position:-278px -346px; background-size:515px auto;
+                }
+                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
+                    background-position:-282px -321px; background-size:527px auto;
+                }
+                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
+                    background-position:-280px -241px; background-size:515px auto;
+                }
+                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
+                    background-position:-278px -278px; background-size:515px auto;
+                }
+            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span > a{
+                background-color: #F2F2F2;
+                height: 24px;
+                display: block;
+            }
+
     div#AppointmentUpsert ul h3{
         display: block;
         margin: 0px 0px 0px 16px;
