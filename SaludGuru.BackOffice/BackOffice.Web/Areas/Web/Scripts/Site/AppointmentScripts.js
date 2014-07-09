@@ -134,7 +134,7 @@ var MeetingObject = {
     },
 
     /*init meeting calendar by day*/
-    InitByDay: function (DivId) {
+    InitByDay: function (DivId, vAgentType) {
 
         var TotalCalendars = 0;
 
@@ -144,7 +144,7 @@ var MeetingObject = {
             $('#' + DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
 
             //init calendar
-            this.InitOfficeByDay(this.lstOffice[item].OfficePublicId);
+            this.InitOfficeByDay(this.lstOffice[item].OfficePublicId, vAgentType);
 
             //add calendars count
             TotalCalendars = TotalCalendars + 1;
@@ -153,13 +153,19 @@ var MeetingObject = {
         //recalc div width
         $('#' + DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
     },
+    GetStartDateMoment: function(){
+    
+        var oReturn;
 
-    InitOfficeByDay: function (vOfficePublicId) {
-        
+        return oReturn;
+    },
+
+    InitOfficeByDay: function (vOfficePublicId, vAgentType) {
+        debugger;
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            defaultDate: MeetingObject.StartDateTime,
-            defaultView: 'agendaDay',
+            defaultDate: MeetingObject.StartDateTime.getFullYear() + '-' + MeetingObject.StartDateTime.getMonth() + '-' + MeetingObject.StartDateTime.getDate(),
+            defaultView: vAgentType,
             allDaySlot: false,
             allDayText: '',
             titleFormat: '\'' + this.lstOffice[vOfficePublicId].OfficeName + '\'',

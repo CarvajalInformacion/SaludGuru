@@ -189,7 +189,7 @@
                 EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
                 OfficeInfo:@(Html.Raw(oOfficeInfo)),
             });
-            MeetingObject.InitByDay('CalendarContent');
+            MeetingObject.InitByDay('CalendarContent','agendaDay');
         });
     </script>
 }
