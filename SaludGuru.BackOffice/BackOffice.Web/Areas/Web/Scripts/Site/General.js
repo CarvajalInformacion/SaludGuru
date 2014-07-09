@@ -86,7 +86,9 @@ var NotificationObject = {
         //set notification count background-image
         $('#aNotifyCount').html(NotificationList.length);
         if (NotificationList.length > 0) {
-            $('#aNotifyCount').css('background-image', 'url(/Areas/Web/Content/Images/icono campana sonando.png)');
+            var imageUrl = "'/Areas/Web/Content/Images/icono campana sonando.png'";
+            //url('/Areas/Web/Content/Images/magGlassSmall.png')
+            //$('#notificationsWrapper').css('background-image', 'url(' + imageUrl + ' )');
             //set notification alert icon
         }
         $("#ulNotificationList").html('');
