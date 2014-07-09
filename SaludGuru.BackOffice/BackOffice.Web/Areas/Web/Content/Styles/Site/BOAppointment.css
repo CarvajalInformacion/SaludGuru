@@ -184,12 +184,36 @@ div#divMeetingCalendar {
     width: 69.8% !important;
     float:right;
 }
-	.BOAgendaCalendarViewWrapper1024{width:66%;}
-	.BOAgendaCalendarViewWrapper800{45%}
-	.BOAgendaCalendarViewWrapper768{30%}
-	.BOAgendaCalendarViewWrapper600{20%}
 
+/*******************AUTOCOMPLETE PACIENTES*******************/
 
+div.autocompletePatients {
+    display:block;
+    border:none;
+    width:300px;
+    height:auto;
+    margin:0px; padding:0px;
+    background-color:#f2f2f2;
+}
+            div.autocompletePatients img {
+                display:inline-block;
+                border:none;
+                width:32px;
+                height:32px;
+                margin:8px 0px 0px 8px; padding:0px;
+                vertical-align:top;
+                box-shadow:1px 1px 1px;
+            }
+            div.autocompletePatients label {
+                display:inline-block;
+                border:none;
+                width:auto;
+                height:auto;
+                font-size:13px;
+                line-height:16px;
+                margin:0px; padding:0px;
+                vertical-align:top;
+            }
 /******************************Calendar by month*************************************/
 /*weekends calendar*/
 .ui-datepicker-week-end a.ui-state-default {
