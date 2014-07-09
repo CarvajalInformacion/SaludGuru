@@ -66,16 +66,25 @@
                             <input type="text" id="getPatient" name="getPatient" />
                         </li>
                         <li>
-                            <label>Paciente(s) asignados a la cita:</label>
+                            <h4>Paciente(s) asignados a la cita:</h4>
                         </li>
                         <li>
                             <ul id="lstPatient"></ul>
                         </li>
                     </ul>
                     <div class="BOAgendaCalendarAppointmentCommands">
-                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
-                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
-                        <a href="javascript:MeetingObject.SaveAppointment()">Guardar</a>
+                        <span class="AppointmentActionsCancel">
+                            <a href="javascript:MeetingObject.SaveAppointment()">Cancelar</a>
+                        </span>
+                        <span class="AppointmentActionsConfirm">
+                            <a href="javascript:MeetingObject.SaveAppointment()">Confirmar</a>
+                        </span>
+                        <span class="AppointmentActionsAccept">
+                            <a href="javascript:MeetingObject.SaveAppointment()">Aceptar</a>
+                        </span>
+                        <span class="AppointmentActionsNew">
+                            <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
+                        </span>
                     </div>
                     <!--hidden fields-->
                     <div style="display:none;">
