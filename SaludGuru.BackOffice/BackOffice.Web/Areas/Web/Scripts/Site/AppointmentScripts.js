@@ -75,9 +75,9 @@ var MettingCalendarObject = {
             },
             onSelect: function (date) {
                 //delete selected style in continuos calendar
-                $('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
-
-                alert(date);
+                //$('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
+                //alert(date + 'jairo');
+                window.location = '/Appointment/Day?Date=' + date;
             },
         });
 
@@ -100,9 +100,8 @@ var MettingCalendarObject = {
             },
             onSelect: function (date) {
                 //delete selected style in continuos calendar
-                $('#' + this.DivId + '-Left .ui-state-active').removeClass('ui-state-active ui-state-hover');
-
-                alert(date);
+                //$('#' + this.DivId + '-Left .ui-state-active').removeClass('ui-state-active ui-state-hover');
+                window.location = '/Appointment/Day?Date=' + date;
             },
         });
 
@@ -156,10 +155,10 @@ var MeetingObject = {
     },
 
     InitOfficeByDay: function (vOfficePublicId) {
-
+        
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            defaultDate: this.CurrentDateTime,
+            defaultDate: MeetingObject.StartDateTime,
             defaultView: 'agendaDay',
             allDaySlot: false,
             allDayText: '',
@@ -174,7 +173,7 @@ var MeetingObject = {
             columnFormat: {
                 month: 'dddd',
                 week: 'dddd',
-                day: 'dddd'
+                day: 'dddd-dd'
             },
             dayClick: function (date, jsEvent, view) {
                 MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
@@ -362,9 +361,7 @@ var MeetingObject = {
     },
 
     SaveAppointment: function () {
-        debugger;
         $("#frmAppointment").submit(function (e) {
-            debugger;
             var postData = $(this).serializeArray();
             var formURL = $(this).attr("action");
             $.ajax(
@@ -373,10 +370,9 @@ var MeetingObject = {
                 type: "POST",
                 data: postData,
                 success: function (data, textStatus, jqXHR) {
-                    debugger;
+                    window.location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    debugger;
                     alert('Se ha generado un error creando la cita.');
                 }
             });

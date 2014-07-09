@@ -92,6 +92,7 @@ div#Calendar-Right table.ui-datepicker-calendar > thead > tr > th{
     padding: 8px 0px;
     border: 1px solid red;  
 }
+
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td{
     font-size: 12px;
@@ -101,6 +102,14 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td{
     padding:0px;
     border: 1px solid blue;  
 }
+
+div#Calendar-Left table.ui-datepicker-calendar .ui-state-active,
+div#Calendar-Right table.ui-datepicker-calendar .ui-state-active{
+    border: solid 1px red;
+    background-image: url('');
+    background-color: #FCF8E3;
+}
+
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td > a,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td > a{
 height: 20px;
@@ -170,7 +179,7 @@ div#divMeetingCalendar {
 	border:1px solid green;
 	margin:0px 0px 0px -2px;
 	vertical-align:top;
-    width: 70% !important;
+    width: 69.8% !important;
     float:right;
 }
 	.BOAgendaCalendarViewWrapper1024{width:66%;}
