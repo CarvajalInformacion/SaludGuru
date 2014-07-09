@@ -153,18 +153,12 @@ var MeetingObject = {
         //recalc div width
         $('#' + DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
     },
-    GetStartDateMoment: function(){
-    
-        var oReturn;
-
-        return oReturn;
-    },
 
     InitOfficeByDay: function (vOfficePublicId, vAgentType) {
-        debugger;
         //init one office calendar by day
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            defaultDate: MeetingObject.StartDateTime.getFullYear() + '-' + MeetingObject.StartDateTime.getMonth() + '-' + MeetingObject.StartDateTime.getDate(),
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
             defaultView: vAgentType,
             allDaySlot: false,
             allDayText: '',
@@ -177,9 +171,9 @@ var MeetingObject = {
                 right: '',
             },
             columnFormat: {
-                month: 'dddd',
-                week: 'dddd',
-                day: 'dddd-dd'
+                month: ' ',
+                week: ' ',
+                day: ' '
             },
             dayClick: function (date, jsEvent, view) {
                 MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
@@ -188,12 +182,15 @@ var MeetingObject = {
                 alert(event);
             },
             eventRender: function (event, element) {
+                //debugger;
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {
                 url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
             },
         });
+
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
     },
 
     RenderCreateAppointment: function (vDate, vOfficePublicId) {
