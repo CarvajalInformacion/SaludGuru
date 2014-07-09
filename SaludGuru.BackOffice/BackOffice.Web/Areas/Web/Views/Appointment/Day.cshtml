@@ -39,7 +39,7 @@
                     <li>
                         <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
                     </li>
-                    <li><h4>Datos de la Cita</h4></li>
+                    <li><h4></h4></li>
                     <li>
                         <label>Consultorio:</label>
                         <select id="OfficePublicId" name="OfficePublicId"></select>
@@ -99,20 +99,7 @@
                 <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
             </span>
         </div>
-
-
-
-
-
-
-
-
-
-
     </div>
-
-
-
 
     <!--Meeting Calendar-->
     <div id="divMeetingCalendar" style="overflow:scroll;">
@@ -144,8 +131,8 @@
                 <label>Ident: {IdentificationNumber}</label>
                 <label>Cel: {Mobile}</label>
                 <label>Email: {Email}</label>
-                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
                 <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
+                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
             </li>
         </ul>
     </div>
@@ -203,21 +190,23 @@
         }
 
         #CalendarContent .fc-event-time {
-            position:absolute;
-            left:5px;
-            margin-top:10px;
+            position: absolute;
+            left: 5px;
+            margin-top: 10px;
         }
-        #CalendarContent .fc-event-title {
-            position:absolute;
-            left:100px;
-            vertical-align:middle;
-        }
-        #CalendarContent .fc-event-title img{
-            width: 20px;
-        }
-        #CalendarContent .fc-event-title label{
 
+        #CalendarContent .fc-event-title {
+            position: absolute;
+            left: 100px;
+            vertical-align: middle;
         }
+
+            #CalendarContent .fc-event-title img {
+                width: 20px;
+            }
+
+            #CalendarContent .fc-event-title label {
+            }
     </style>
 }
 
