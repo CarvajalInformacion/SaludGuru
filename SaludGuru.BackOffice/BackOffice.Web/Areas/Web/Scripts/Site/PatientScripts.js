@@ -6,12 +6,12 @@ function PatientListGrid(vidDiv) {
         toolbar: [{ template: $("#templateHeader").html() }],
         pageable: true,
         dataSource: {
-            pageSize: 2,
+            pageSize: 20,
             serverPaging: true,
             schema: {
                 total: function (data) {
                     if (data && data.length > 0) {
-                        return data[0].SearchProfileCount;
+                        return data[0].SearchPatientCount;
                     }
                     return 0;
                 }

@@ -186,6 +186,18 @@ div#AppointmentUpsert ul li > span.ui-spinner{
         color: #333;
     }
 
+/************************NUEVOS PACIENTES EN LA CITA***********************/
+div#AppointmentUpsert ul > li > ul#lstPatient {
+    display:block;
+    border:1px solid green;
+    width:100%;
+    height:auto;
+    margin:0px; padding:0px;
+}
+
+
+
+/************************BARRITA DE LOS COMANDOS***************************/
         div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands{
             background-color:#f2f2f2;
             display:block;
@@ -200,9 +212,9 @@ div#AppointmentUpsert ul li > span.ui-spinner{
                 border:1px solid pink;
                 margin:4px 0px;
                 text-align:right;
-                padding-left:30px;
-                line-height:23px;
-                font-size: 15px;
+                padding-left: 30px;
+                line-height: 23px;
+                font-size: 14px;
                 color: #333;
             }
                 div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
