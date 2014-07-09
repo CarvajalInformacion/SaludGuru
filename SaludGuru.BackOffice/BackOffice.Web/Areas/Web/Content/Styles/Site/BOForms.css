@@ -194,17 +194,72 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
     height:auto;
     margin:0px; padding:0px;
 }
-
-
+    div#AppointmentUpsert ul > li > ul#lstPatient li {
+        display:block;
+        margin: 10px auto;
+        padding: 0px;
+        border: none;
+             width: 95%;
+        height: 96px;
+        text-align: left;
+        background-color:#e6e6e6;
+    }
+        div#AppointmentUpsert ul > li > ul#lstPatient li img {
+            margin:10px;
+            width:36px; height:auto;
+            float:left;
+        }
+        div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(2) {
+            font-size:17px;
+            display: block;
+            line-height:25px;
+            width: 100%;
+            margin:0px;
+            text-decoration: underline;
+        }
+        div#AppointmentUpsert ul > li > ul#lstPatient li label {
+            font-size: 13px;
+            display: block;
+            line-height:13px;
+            width: 100%;
+            margin:0px 0px 0px;
+            vertical-align:top;
+        }
+        div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(5) {
+            margin-left: 15%; width: 80%;
+        }
+            
+            div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(6){
+                font-size: 12px;
+                display: block;
+                line-height: 12px;
+                width: auto;
+                margin: 4px 0px 0px 54px;
+                color: #008000;
+            }
+            div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(7) {
+                position:relative;
+                display:block;
+                width:18px; height:18px;
+                border:1px solid red;
+                top: -82px;
+                left: 324px;
+                background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+                background-position: -336px -1065px;
+                background-size: 594px auto;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+            }
 
 /************************BARRITA DE LOS COMANDOS***************************/
-        div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands{
+        div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands{
             background-color:#f2f2f2;
             display:block;
             height:34px;
             width:100%;
         }
-            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span{
+            div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span{
                 background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
                 display:inline-block;
                 height:26px;
@@ -217,19 +272,19 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
                 font-size: 14px;
                 color: #333;
             }
-                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
+                div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
                     background-position:-278px -346px; background-size:515px auto;
                 }
-                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
+                div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
                     background-position:-282px -321px; background-size:527px auto;
                 }
-                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
+                div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
                     background-position:-280px -241px; background-size:515px auto;
                 }
-                div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
+                div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
                     background-position:-278px -278px; background-size:515px auto;
                 }
-            div#AppointmentUpsert div.BOAgendaCalendarAppointmentCommands span > a{
+            div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span > a{
                 background-color: #F2F2F2;
                 height: 24px;
                 display: block;

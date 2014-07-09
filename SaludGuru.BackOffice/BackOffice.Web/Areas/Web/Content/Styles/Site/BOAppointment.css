@@ -173,6 +173,7 @@ div#AppointmentUpsert{
     display:block;    
     width:inherit;
     overflow-x:auto;
+    max-height: 289px;
 }
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
