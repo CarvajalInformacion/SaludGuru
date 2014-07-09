@@ -8,7 +8,7 @@
         Select(x => new
         {
             AppointmentPublicId = x.AppointmentPublicId,
-            CreateDate = x.CreateDate,
+            CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy"),
             StatusName = x.Status.ToString()
         }).ToList());
 }

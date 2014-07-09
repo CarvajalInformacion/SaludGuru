@@ -63,7 +63,7 @@
             Select(x => new
             {
                 CategoryId = x.CategoryId,
-                IsDefault = x.CategoryId != null ? Model.Profile.DefaultSpecialty.CategoryId != null ? x.CategoryId == Model.Profile.DefaultSpecialty.CategoryId ? "Si" : "No" : null : null,
+                IsDefault = x.CategoryId != null ? Model.Profile.DefaultSpecialty.CategoryId != null ? x.CategoryId == Model.Profile.DefaultSpecialty.CategoryId ? "Si" : "No" : "No" : "No",
                 Name = x.Name
             }).ToList());
 }

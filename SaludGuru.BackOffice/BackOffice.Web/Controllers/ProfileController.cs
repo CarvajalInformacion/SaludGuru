@@ -232,6 +232,10 @@ namespace BackOffice.Web.Controllers
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty),
             };
+            if(Model.Profile.DefaultSpecialty == null)
+            {
+                Model.Profile.DefaultSpecialty = new SpecialtyModel();
+            }
             return View(Model);
         }
 
