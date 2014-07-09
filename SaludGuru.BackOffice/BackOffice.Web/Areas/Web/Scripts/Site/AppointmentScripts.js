@@ -171,9 +171,9 @@ var MeetingObject = {
                 right: '',
             },
             columnFormat: {
-                month: 'dddd',
-                week: 'dddd',
-                day: 'dddd-dd'
+                month: ' ',
+                week: ' ',
+                day: ' '
             },
             dayClick: function (date, jsEvent, view) {
                 MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
@@ -182,6 +182,7 @@ var MeetingObject = {
                 alert(event);
             },
             eventRender: function (event, element) {
+                //debugger;
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {

@@ -303,7 +303,7 @@ line-height: 6px;
     width: 120px;
     height: auto;
     position: relative;
-    z-index: 10;
+    z-index: 20;
     background-color: #fff;
 }
 
