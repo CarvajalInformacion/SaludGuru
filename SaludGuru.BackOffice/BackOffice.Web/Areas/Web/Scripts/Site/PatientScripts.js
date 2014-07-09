@@ -11,7 +11,7 @@ function PatientListGrid(vidDiv) {
             schema: {
                 total: function (data) {
                     if (data && data.length > 0) {
-                        return data[0].SearchProfileCount;
+                        return data[0].SearchPatientCount;
                     }
                     return 0;
                 }
