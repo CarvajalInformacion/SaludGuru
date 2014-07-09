@@ -172,6 +172,7 @@ div#AppointmentUpsert{
     border:1px solid purple;
     display:block;    
     width:inherit;
+    overflow-x:auto;
 }
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
