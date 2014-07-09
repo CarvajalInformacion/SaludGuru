@@ -70,14 +70,14 @@ function PatientAppointmentListGrid(vidDiv, vDataAppointment) {
         },
         columns: [{
             field: "AppointmentPublicId",
-            title: "Appointment ",
+            title: "id Appointment ",
             template: $("#templateName").html()
         }, {
             field: "CreateDate",
-            title: "CreateDate",
+            title: "Fecha Creación ",
         }, {
             field: "StatusName",
-            title: "Status",
+            title: "Estado Cita ",
         }],
     });
 }
