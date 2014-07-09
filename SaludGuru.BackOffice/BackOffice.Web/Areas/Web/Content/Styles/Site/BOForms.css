@@ -100,7 +100,7 @@ div#AppointmentUpsert ul li{
     display:block;
     padding:4px 0px;
     margin:0px;
-border:1px solid grey;
+border:NONE;
 }
                 div#AppointmentUpsert ul li:first-child{
                     background-color:#800066;

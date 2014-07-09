@@ -39,7 +39,7 @@
                     <li>
                         <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
                     </li>
-                    <li><h4></h4></li>
+                    @*<li><h4>Datos de la Cita</h4></li>*@
                     <li>
                         <label>Consultorio:</label>
                         <select id="OfficePublicId" name="OfficePublicId"></select>
@@ -115,11 +115,12 @@
 
         <!--patient autocomplete-->
         <div id="divPatientAcItem">
-            <div>
+            <div class="autocompletePatients">
                 <img src="{ProfileImage}" />
-                <label>{Name}</label>
-                <label>Ident: {IdentificationNumber}</label>
-                <label>Cel: {Mobile}</label>
+                <label>{Name}<br />
+                    Ident: {IdentificationNumber}<br />
+                    Cel: {Mobile}
+                </label>
             </div>
         </div>
 
@@ -202,11 +203,11 @@
         }
 
             #CalendarContent .fc-event-title img {
-                width: 20px;
-            }
+            width: 20px;
+        }
 
             #CalendarContent .fc-event-title label {
-            }
+        }
     </style>
 }
 
