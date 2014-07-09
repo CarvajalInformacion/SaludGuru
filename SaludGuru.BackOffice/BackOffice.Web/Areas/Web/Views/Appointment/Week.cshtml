@@ -1,6 +1,6 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "Day";
+    ViewBag.Title = "Week";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
@@ -39,7 +39,7 @@
                     <li>
                         <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
                     </li>
-                    <li><h4>Datos de la Cita</h4></li>
+                    @*<li><h4>Datos de la Cita</h4></li>*@
                     <li>
                         <label>Consultorio:</label>
                         <select id="OfficePublicId" name="OfficePublicId"></select>
@@ -72,20 +72,6 @@
                         <ul id="lstPatient"></ul>
                     </li>
                 </ul>
-                <div class="BOAgendaCalendarAppointmentCommands">
-                    <span class="AppointmentActionsCancel">
-                        <a href="javascript:MeetingObject.SaveAppointment()">Cancelar</a>
-                    </span>
-                    <span class="AppointmentActionsConfirm">
-                        <a href="javascript:MeetingObject.SaveAppointment()">Confirmar</a>
-                    </span>
-                    <span class="AppointmentActionsAccept">
-                        <a href="javascript:MeetingObject.SaveAppointment()">Aceptar</a>
-                    </span>
-                    <span class="AppointmentActionsNew">
-                        <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
-                    </span>
-                </div>
                 <!--hidden fields-->
                 <div style="display:none;">
                     <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
@@ -99,19 +85,21 @@
             </form>
         </div>
 
-
-
-
-
-
-
-
-
-
+        <div class="BOAgendaCalendarAppointmentCommands">
+            <span class="AppointmentActionsCancel">
+                <a href="javascript:MeetingObject.SaveAppointment()">Cancelar</a>
+            </span>
+            <span class="AppointmentActionsConfirm">
+                <a href="javascript:MeetingObject.SaveAppointment()">Confirmar</a>
+            </span>
+            <span class="AppointmentActionsAccept">
+                <a href="javascript:MeetingObject.SaveAppointment()">Aceptar</a>
+            </span>
+            <span class="AppointmentActionsNew">
+                <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
+            </span>
+        </div>
     </div>
-
-
-
 
     <!--Meeting Calendar-->
     <div id="divMeetingCalendar" style="overflow:scroll;">
@@ -127,11 +115,13 @@
 
         <!--patient autocomplete-->
         <div id="divPatientAcItem">
-            <div>
+            <div class="autocompletePatients">
                 <img src="{ProfileImage}" />
-                <label>{Name}</label>
-                <label>Ident: {IdentificationNumber}</label>
-                <label>Cel: {Mobile}</label>
+                <label>
+                    {Name}<br />
+                    Ident: {IdentificationNumber}<br />
+                    Cel: {Mobile}
+                </label>
             </div>
         </div>
 
@@ -143,8 +133,8 @@
                 <label>Ident: {IdentificationNumber}</label>
                 <label>Cel: {Mobile}</label>
                 <label>Email: {Email}</label>
-                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
                 <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
+                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
             </li>
         </ul>
     </div>
