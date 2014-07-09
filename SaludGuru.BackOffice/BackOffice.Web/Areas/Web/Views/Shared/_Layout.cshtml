@@ -48,7 +48,7 @@
         $(document).ready(function () {
             InitGlobalPagesControls({
 
-                IsUserAdmin: @(BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role == SessionController.Models.Profile.enumRole.SystemAdministrator ? "true": "false"),
+                IsUserAdmin: @(BackOffice.Models.General.SessionModel.UserIsAutorized && BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role == SessionController.Models.Profile.enumRole.SystemAdministrator ? "true" : "false"),
 
             });
         });
