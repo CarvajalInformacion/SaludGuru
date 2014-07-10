@@ -187,32 +187,68 @@ div#divMeetingCalendar {
 
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
+ul#ui-id-1{
+    top: 562.6px;
+    left: 168px;
+    width: 210px;
+    background-color: #666;
+    padding: 0px;
+    border:1px solid #333;
+    background-image:none;
+}
+
+    ul#ui-id-1 > li.ui-menu, 
+    ul#ui-id-1 > li.ui-menu-item,
+    ul#ui-id-1 > li.ui-state-focus
+     {
+        display: block;
+        width: 210px;
+        margin: 2px 0px;
+        padding: 0px;
+        color:#333;
+        border:none;
+        background:none;
+    }
+        ul#ui-id-1 > li.ui-menu-item:hover, ul#ui-id-1 > li.ui-menu-item:active,
+        ul#ui-id-1 > li.ui-state-focus:hover, ul#ui-id-1 > li.ui-state-focus:active {
+            color:#333;
+            border:none;
+            background:none;
+        }
+        ul.ui-autocomplete > li.ui-menu-item a {
+            margin: 0px;
+            display: block;
+            padding: 0px;
+            }
+
 div.autocompletePatients {
     display:block;
     border:none;
-    width:300px;
+    width:209px;
     height:auto;
     margin:0px; padding:0px;
     background-color:#f2f2f2;
 }
             div.autocompletePatients img {
-                display:inline-block;
-                border:none;
-                width:32px;
-                height:32px;
-                margin:8px 0px 0px 8px; padding:0px;
-                vertical-align:top;
-                box-shadow:1px 1px 1px;
+                display: inline-block;
+                border: medium none;
+                width: 34px;
+                height: 34px;
+                margin: 4px 0px 0px 4px;
+                padding: 0px;
+                vertical-align: top;
+                box-shadow: 1px 1px 1px;
             }
             div.autocompletePatients label {
-                display:inline-block;
-                border:none;
-                width:auto;
-                height:auto;
-                font-size:13px;
-                line-height:16px;
-                margin:0px; padding:0px;
-                vertical-align:top;
+                display: inline-block;
+                border: medium none;
+                width: auto;
+                height: auto;
+                font-size: 13px;
+                line-height: 14px;
+                margin: 0px 0px 0px 2px;
+                padding: 0px;
+                vertical-align: top;
             }
 /******************************Calendar by month*************************************/
 /*weekends calendar*/
