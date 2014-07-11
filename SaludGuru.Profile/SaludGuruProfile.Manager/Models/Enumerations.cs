@@ -69,4 +69,11 @@
         Cedula = 901,
         Nit = 902
     }
+
+    public enum enumMessageType
+    { 
+        Email = 101,
+        Sms = 102,
+        NotificacionesGuru = 103
+    }
 }
