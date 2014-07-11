@@ -197,6 +197,7 @@ var MeetingObject = {
 
         //hidde create appointment form
         $('#AppointmentUpsert').hide();
+        $('#AppointmentUpsertActions').hide();
 
 
         //load office
@@ -340,6 +341,7 @@ var MeetingObject = {
 
         //display create appointment form
         $('#AppointmentUpsert').fadeIn('slow');
+        $('#AppointmentUpsertActions').fadeIn('slow');
     },
 
     AddPatientAppointment: function (vPatientModel) {

@@ -349,7 +349,7 @@ div.fc-event {
 }
 /*hide next and preview*/
 #Calendar-Left .ui-datepicker-prev {
-    display: none;
+    /*display: none;*/
 }
 
 #Calendar-Right .ui-datepicker-prev {
@@ -361,7 +361,7 @@ div.fc-event {
 }
 
 #Calendar-Right .ui-datepicker-next {
-    display: none;
+    /*display: none;*/
 }
 
 /*hide calendar all day event*/

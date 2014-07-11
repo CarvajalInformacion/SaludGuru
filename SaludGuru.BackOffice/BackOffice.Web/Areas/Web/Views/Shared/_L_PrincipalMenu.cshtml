@@ -45,7 +45,7 @@
         }
     </ul>
 </div>
-<div>
+<div class="BOSubMenuWrappper">
     <ul class="subMenu subMenu_@(MenuInfo.Where(x => x.IsSelected == true).Select(x => x.Menu).DefaultIfEmpty(BackOffice.Models.General.enumMenuPrincipal.Dashboard).FirstOrDefault().ToString())">
         @if (MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault() != null && MenuInfo.Where(x => x.IsSelected == true).FirstOrDefault().RelatedMenu != null)
         {
