@@ -35,6 +35,11 @@ namespace FileRepository.S3
         {
             base.CurrentOperations.All(oFileToWork =>
             {
+                //set startup action
+                oFileToWork.ActionResult = enumActionResult.NotStart;
+                //set file upload start up time
+                oFileToWork.StartDate = DateTime.Now;
+
                 //get s3 file model
                 S3FileModel S3File = new S3FileModel()
                 {
@@ -45,16 +50,21 @@ namespace FileRepository.S3
                 {
                     switch (oFileToWork.Operation)
                     {
-                        case eOperation.UploadFile:
+                        case enumOperation.UploadFile:
                             UploadBegin(ref S3File);
                             break;
-                        case eOperation.DeleteFile:
+                        case enumOperation.DeleteFile:
                             DeleteBegin(ref S3File);
                             break;
                     }
                 }
                 catch (Exception e)
                 {
+                    //set end action
+                    oFileToWork.ActionResult = enumActionResult.Error;
+                    //set file upload start up time
+                    oFileToWork.FinishDate = DateTime.Now;
+
                     this.OperationError(oFileToWork, e);
                 }
 
@@ -68,9 +78,6 @@ namespace FileRepository.S3
 
         private void UploadBegin(ref S3FileModel FileDescription)
         {
-            //set file upload start up time
-            FileDescription.RelatedFile.StartDate = DateTime.Now;
-
             //get and validate upload file
             FileInfo FInfo = new FileInfo(FileDescription.RelatedFile.FilePathLocalSystem);
             if (!FInfo.Exists)
@@ -108,20 +115,22 @@ namespace FileRepository.S3
                                 RegionEndpoint.GetBySystemName(Parameters["S3.RegionEndpoint"].Trim())))
                 {
 
-                    //define objeto de envio
+                    //define request object
                     PutObjectRequest S3Request = new PutObjectRequest();
                     S3Request.BucketName = Parameters["S3.BucketName"].Trim();
                     S3Request.Key = FileDescription.RelatedFile.FilePathRemoteSystem.Trim().TrimStart('\\').TrimStart('/').Replace("\\", "/");
                     S3Request.StorageClass = S3StorageClass.FindValue(Parameters["S3.StorageClass"].Trim());
                     S3Request.FilePath = FileDescription.RelatedFile.FilePathLocalSystem;
 
-                    //envia informacion al S3
+                    //upload S3 file
                     PutObjectResponse S3Response = AWSClient.PutObject(S3Request);
 
-                    //setea status al 100%
+                    //status 100%
                     FileDescription.RelatedFile.ProgressProcess = 100;
 
-                    //setea fecha de finalizacion de proceso
+                    //set end action
+                    FileDescription.RelatedFile.ActionResult = enumActionResult.Success;
+                    //set file upload start up time
                     FileDescription.RelatedFile.FinishDate = DateTime.Now;
 
                     //invoca operacion de finalizacion de la transferencia
@@ -131,6 +140,11 @@ namespace FileRepository.S3
             }
             catch (Exception e)
             {
+                //set end action
+                FileDescription.RelatedFile.ActionResult = enumActionResult.Error;
+                //set file upload start up time
+                FileDescription.RelatedFile.FinishDate = DateTime.Now;
+
                 //notifica error
                 this.OperationError(FileDescription.RelatedFile, e);
             }
@@ -167,18 +181,20 @@ namespace FileRepository.S3
                                 Parameters["S3.SecretAccessKey"].Trim(),
                                 RegionEndpoint.GetBySystemName(Parameters["S3.RegionEndpoint"].Trim())))
                 {
-                    //define objeto de borrado
+                    //define request delete object
                     DeleteObjectRequest S3Request = new DeleteObjectRequest();
                     S3Request.BucketName = Parameters["S3.BucketName"].Trim();
                     S3Request.Key = FileDescription.RelatedFile.FilePathRemoteSystem.Trim().TrimStart('\\').TrimStart('/').Replace("\\", "/");
 
-                    //borra el archivo
+                    //delete file
                     DeleteObjectResponse S3Response = AWSClient.DeleteObject(S3Request);
 
-                    //setea status al 100%
+                    //status 100%
                     FileDescription.RelatedFile.ProgressProcess = 100;
 
-                    //setea fecha de finalizacion de proceso
+                    //set end action
+                    FileDescription.RelatedFile.ActionResult = enumActionResult.Success;
+                    //set file upload start up time
                     FileDescription.RelatedFile.FinishDate = DateTime.Now;
 
                     //invoca operacion de finalizacion de la transferencia
@@ -187,6 +203,11 @@ namespace FileRepository.S3
             }
             catch (Exception e)
             {
+                //set end action
+                FileDescription.RelatedFile.ActionResult = enumActionResult.Error;
+                //set file upload start up time
+                FileDescription.RelatedFile.FinishDate = DateTime.Now;
+
                 //notifica error
                 this.OperationError(FileDescription.RelatedFile, e);
             }

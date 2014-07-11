@@ -94,6 +94,86 @@ namespace SaludGuruProfile.Manager.Controller
             return oPublicProfileId;
         }
 
+        /// <summary>
+        /// update profile info specific detail
+        /// </summary>
+        /// <param name="ProfileToUpSert"></param>
+        public static void UpsertProfileDetailInfo(ProfileModel ProfileToUpSert)
+        {
+            //upsert profile info
+            ProfileToUpSert.ProfileInfo.All(pri =>
+            {
+                if (pri.ProfileInfoId <= 0)
+                {
+                    //create info
+                    DAL.Controller.ProfileDataController.Instance.ProfileInfoCreate
+                        (ProfileToUpSert.ProfilePublicId,
+                        pri.ProfileInfoType,
+                        pri.Value,
+                        pri.LargeValue);
+                }
+                else
+                {
+                    //update info
+                    DAL.Controller.ProfileDataController.Instance.ProfileInfoModify
+                        (pri.ProfileInfoId,
+                        pri.Value,
+                        pri.LargeValue);
+                }
+
+                return true;
+            });
+        }
+
+        /// <summary>
+        /// delete profile info specific detail
+        /// </summary>
+        /// <param name="ProfileInfoToDelete"></param>
+        public static void DeleteProfileDetailInfo(List<ProfileInfoModel> ProfileInfoToDelete)
+        {
+            //upsert profile info
+            ProfileInfoToDelete.All(pri =>
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileInfoDelete
+                    (pri.ProfileInfoId);
+
+                return true;
+            });
+        }
+
+        /// <summary>
+        /// insert or update profile small image
+        /// </summary>
+        /// <param name="ProfileToUpsert"></param>
+        /// <param name="ImagePath"></param>
+        public static void UpsertProfileSmallImage(ProfileModel ProfileToUpsert, string ImagePath)
+        {
+
+
+        }
+
+        /// <summary>
+        /// insert or update profile large image
+        /// </summary>
+        /// <param name="ProfileToUpsert"></param>
+        /// <param name="ImagePath"></param>
+        public static void UpsertProfileLargeImage(ProfileModel ProfileToUpsert, string ImagePath)
+        {
+
+
+        }
+
+        /// <summary>
+        /// insert or update profile general images
+        /// </summary>
+        /// <param name="ProfileToUpsert"></param>
+        /// <param name="ImagePath"></param>
+        public static void UpsertProfileGeneralImage(ProfileModel ProfileToUpsert, Dictionary<string, int?> ImagePath)
+        {
+
+
+        }
+
         #endregion
 
         #region Insurance

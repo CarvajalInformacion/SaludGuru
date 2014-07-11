@@ -1,8 +1,15 @@
 ﻿namespace FileRepository.Manager.Models
 {
-    public enum eOperation
+    public enum enumOperation
     {
         UploadFile,
         DeleteFile,
+    }
+
+    public enum enumActionResult
+    {
+        NotStart,
+        Success,
+        Error,
     }
 }
