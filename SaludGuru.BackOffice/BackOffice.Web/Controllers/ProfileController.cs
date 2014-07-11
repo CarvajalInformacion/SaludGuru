@@ -597,5 +597,23 @@ namespace BackOffice.Web.Controllers
         }
         #endregion
 
+        #region Comunications
+
+        public virtual ActionResult ComunicationUpsert(string ProfilePublicId)
+        {
+            ProfileUpSertModel model = new ProfileUpSertModel()
+            {    
+                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            { 
+            };
+            
+            return View(model);
+        }
+
+        #endregion
     }
 }

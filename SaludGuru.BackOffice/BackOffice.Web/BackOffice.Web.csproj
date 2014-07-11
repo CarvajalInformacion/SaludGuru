@@ -1162,6 +1162,7 @@
     <Content Include="Areas\Web\Views\Appointment\Week.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Month.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\List.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ComunicationUpsert.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

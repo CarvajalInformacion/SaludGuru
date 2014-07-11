@@ -189,6 +189,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ComunicationUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ComunicationUpsert);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Web.Profile; } }
@@ -228,6 +234,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string AutorizationProfileList = "AutorizationProfileList";
             public readonly string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
+            public readonly string ComunicationUpsert = "ComunicationUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -256,6 +263,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string AutorizationProfileList = "AutorizationProfileList";
             public const string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
+            public const string ComunicationUpsert = "ComunicationUpsert";
         }
 
 
@@ -443,6 +451,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
+        static readonly ActionParamsClass_ComunicationUpsert s_params_ComunicationUpsert = new ActionParamsClass_ComunicationUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ComunicationUpsert ComunicationUpsertParams { get { return s_params_ComunicationUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ComunicationUpsert
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -454,6 +470,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AutorizationProfileList = "AutorizationProfileList";
+                public readonly string ComunicationUpsert = "ComunicationUpsert";
                 public readonly string InsuranceProfileList = "InsuranceProfileList";
                 public readonly string OfficeList = "OfficeList";
                 public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
@@ -468,6 +485,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
                 public readonly string TreatmentProfileList = "TreatmentProfileList";
             }
             public readonly string AutorizationProfileList = "~/Areas/Web/Views/Profile/AutorizationProfileList.cshtml";
+            public readonly string ComunicationUpsert = "~/Areas/Web/Views/Profile/ComunicationUpsert.cshtml";
             public readonly string InsuranceProfileList = "~/Areas/Web/Views/Profile/InsuranceProfileList.cshtml";
             public readonly string OfficeList = "~/Areas/Web/Views/Profile/OfficeList.cshtml";
             public readonly string OfficeScheduleAvailableList = "~/Areas/Web/Views/Profile/OfficeScheduleAvailableList.cshtml";
@@ -768,6 +786,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileAutorizationDelete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ProfileAutorizationDeleteOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ComunicationUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ComunicationUpsert(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ComunicationUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ComunicationUpsertOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
