@@ -41,6 +41,12 @@
         ImageGeneral = 410,
         IdentificationType = 411,
         IdentificationNumber = 412,
+        AsignacionCita = 413,
+        CancelacionCita = 414,
+        EncuestaSatisfaccion = 415,
+        ModificacionCita = 416,
+        RecordatorioCita = 417,
+        RecordatorioProxCita = 418
     }
 
     public enum enumOfficeInfoType
@@ -62,5 +68,12 @@
     {
         Cedula = 901,
         Nit = 902
+    }
+
+    public enum enumMessageType
+    { 
+        Email = 101,
+        Sms = 102,
+        NotificacionesGuru = 103
     }
 }
