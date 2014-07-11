@@ -511,10 +511,15 @@ line-height: 6px;
 .subMenu_Patient {
     border-bottom: 4px solid #F07600;
 }
-
+.BOSubMenuWrappper {
+       display:block;
+       width:100%;
+       height:auto;
+       border:none;
+       margin:-3px 0px 0px 0px; padding:0px;
+}
 .subMenu {
-    left: 0%;
-    min-height: 1px;
+    display:block;
     max-height: 30px;
     width: 100%;
     min-width: 800px;
@@ -522,9 +527,8 @@ line-height: 6px;
     text-transform: uppercase;
     font-size: 12px;
     text-align: right;
-    margin-right: 8%;
+    margin:0px; padding:0px;
 }
-
     .subMenu li, .subMenu li:hover, .subMenu li:active {
         display: inline-block;
         margin: 0px 0px 0px -3px;
@@ -541,6 +545,7 @@ line-height: 6px;
         .subMenu li.selected, .subMenu li:hover, .subMenu li:active {
             box-shadow: none;
             background-color: #fff;
+            cursor:pointer;
     }
 
         .subMenu li > a {

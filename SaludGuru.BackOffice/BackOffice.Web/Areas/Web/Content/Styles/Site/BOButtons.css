@@ -34,9 +34,31 @@ border:none;
     vertical-align:top;
 }
 .BOFormDataWrapper ul li input.BOButtons {
-width:auto;
+    width:auto;
 }
 .BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover {
     background-color:#ddff55;
     color:#333;
+}
+.BOButtonsErase {
+    display:block;
+    float:right;
+    border:1px solid #333;
+    border-radius:3px;
+    padding:6px 12px;
+    cursor:pointer;
+    background-color:#99c21d;
+    text-transform:uppercase;
+    font-family:'MuseoSans100';
+    font-size:20px;
+    line-height:20px;
+    color:#fff;
+    box-shadow:#000 2px 2px 3px;
+    vertical-align:top;
+    background-image:url('');
+    background-position:1px 1px;
+    background-size:;
+}
+.BOButtonsErase:hover, .BOButtonsErase:active{
+
 }

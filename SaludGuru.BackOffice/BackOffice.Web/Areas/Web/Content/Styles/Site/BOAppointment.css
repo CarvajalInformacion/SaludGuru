@@ -250,6 +250,90 @@ div.autocompletePatients {
                 padding: 0px;
                 vertical-align: top;
             }
+/******************************EVENTOS EN EL CALENDARIO // CITAS*************************************/
+div.fc-event-inner {
+    border-width: 1px 1px 1px 10px;
+    border-style: solid;
+    border-color: #800066;    
+}
+    div.fc-event-inner:hover {
+        background-color:#f7e4f3;
+    }
+div.fc-event {
+    border:none;
+    border-radius:0px;
+    background-color:#fff !important;
+}
+    div.fc-event-inner div.fc-event-time{
+        width: 85px;height: auto;
+        border: none;
+        display:inline-block;
+        line-height:14px;
+        margin:1px 0px 0px 5px;
+        padding:0px;
+        vertical-align:top;
+    }
+    div.fc-event-inner div.fc-event-title {
+        display: inline-block; width:68%;
+    }
+    div.fc-event-inner div.fc-event-title div{
+        width:100%;
+    }
+    div.fc-event-inner div.fc-event-title div img {
+        display:inline-block;
+        width:18px; height:18px;
+        vertical-align:top;
+        margin:0px 4px;
+    }
+    div.fc-event-inner div.fc-event-title div label {
+        display:inline-block;
+        width:82%;
+    }    
+    div.fc-event-inner div.fc-event-time, div.fc-event-inner div.fc-event-title div label{
+        font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif ;
+        font-size:14px;
+        color:#333 !important;
+        line-height: 18px;
+    }
+
+
+/*event personalized style*/
+/*New*/
+.AppointmentStatus_1201 {
+    border-color: #f4c600;
+}
+.AppointmentStatus_1201:hover {background-color: #fef4ca;}
+/*Confirmed*/
+.AppointmentStatus_1202 {
+    border-color: #88aa00;
+}
+.AppointmentStatus_1202:hover {background-color:#f7ffd9;}
+/*Canceled*/
+.AppointmentStatus_1203 {
+    border-color: #d40000;
+}
+.AppointmentStatus_1203:hover {background-color:#ffdede;}
+/*PendientAsistance*/
+.AppointmentStatus_1204 {
+    border-color: #800066;
+}
+.AppointmentStatus_1204:hover {background-color:#f7e4f3;}
+/*Attendance*/
+.AppointmentStatus_1205 {
+    border-color: blue;
+}
+.AppointmentStatus_1205:hover {background-color:#dcdcff;}
+/*NotAttendance*/
+.AppointmentStatus_1206 {
+    border-color: #414143;
+}
+.AppointmentStatus_1206:hover {background-color:#e6e6e6;}
+/*BlockCalendar*/
+.AppointmentStatus_1207 {
+    border-color:#800000;
+    background-color:#ffaaaa;
+}
+
 /******************************Calendar by month*************************************/
 /*weekends calendar*/
 .ui-datepicker-week-end a.ui-state-default {
@@ -265,7 +349,7 @@ div.autocompletePatients {
 }
 /*hide next and preview*/
 #Calendar-Left .ui-datepicker-prev {
-    display: none;
+    /*display: none;*/
 }
 
 #Calendar-Right .ui-datepicker-prev {
@@ -277,7 +361,7 @@ div.autocompletePatients {
 }
 
 #Calendar-Right .ui-datepicker-next {
-    display: none;
+    /*display: none;*/
 }
 
 /*hide calendar all day event*/
@@ -289,32 +373,4 @@ div.autocompletePatients {
     display: none;
 }
 
-/*event personalized style*/
-/*New*/
-.AppointmentStatus_1201 {
-    background-color: #0026ff;
-}
-/*Confirmed*/
-.AppointmentStatus_1202 {
-    background-color: #0026ff;
-}
-/*Canceled*/
-.AppointmentStatus_1203 {
-    background-color: #0026ff;
-}
-/*PendientAsistance*/
-.AppointmentStatus_1204 {
-    background-color: #0026ff;
-}
-/*Attendance*/
-.AppointmentStatus_1205 {
-    background-color: #0026ff;
-}
-/*NotAttendance*/
-.AppointmentStatus_1206 {
-    background-color: #0026ff;
-}
-/*BlockCalendar*/
-.AppointmentStatus_1207 {
-    background-color: #0026ff;
-}
+
