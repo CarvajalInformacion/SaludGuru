@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileRepository.Manager.Models
+namespace SaludGuruProfile.Manager.Models.General
 {
     public class InternalSettings : System.Collections.DictionaryBase
     {
