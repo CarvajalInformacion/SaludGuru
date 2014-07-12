@@ -76,6 +76,7 @@
     <Content Include="img_2822_General.JPG" />
     <Content Include="profile_2822_large.png" />
     <Content Include="profile_2822_small.png" />
+    <Content Include="Rsx-FileRepository.xml" />
     <Content Include="Rsx-Profile.xml" />
     <Content Include="Rsx-SettingsConfig.xml" />
   </ItemGroup>

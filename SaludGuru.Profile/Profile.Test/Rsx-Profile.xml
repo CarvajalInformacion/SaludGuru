@@ -3,7 +3,38 @@
   <Profile>
 
     <!--Image Settings-->
-    <key name="key1">param1</key>
+    <key name="ProfileSmall_Text">www.saludguru.com</key>
+    <key name="ProfileSmall_Font">Trebuchet MS</key>
+    <key name="ProfileSmall_FontSize">10</key>
+    <key name="ProfileSmall_Style">Bold</key>
+    <key name="ProfileSmall_Opacity">50</key>
+    <key name="ProfileSmall_DropShadow">true</key>
+    <key name="ProfileSmall_TextColor">255,255,255</key>
+    <key name="ProfileSmall_Size">106,122</key>
+    <key name="ProfileSmall_Quality">100</key>
+    <key name="ProfileSmall_Center">false</key>
+
+    <key name="ProfileLarge_Text">www.saludguru.com</key>
+    <key name="ProfileLarge_Font">Trebuchet MS</key>
+    <key name="ProfileLarge_FontSize">16</key>
+    <key name="ProfileLarge_Style">Bold</key>
+    <key name="ProfileLarge_Opacity">50</key>
+    <key name="ProfileLarge_DropShadow">true</key>
+    <key name="ProfileLarge_TextColor">255,255,255</key>
+    <key name="ProfileLarge_Size">166,248</key>
+    <key name="ProfileLarge_Quality">100</key>
+    <key name="ProfileLarge_Center">false</key>
+
+    <key name="ProfileGeneral_Text">www.saludguru.com</key>
+    <key name="ProfileGeneral_Font">Trebuchet MS</key>
+    <key name="ProfileGeneral_FontSize">60</key>
+    <key name="ProfileGeneral_Style">Bold</key>
+    <key name="ProfileGeneral_Opacity">50</key>
+    <key name="ProfileGeneral_DropShadow">true</key>
+    <key name="ProfileGeneral_TextColor">255,255,255</key>
+    <key name="ProfileGeneral_Size">800,0</key>
+    <key name="ProfileGeneral_Quality">100</key>
+    <key name="ProfileGeneral_Center">true</key>
 
   </Profile>
 </Settings>
