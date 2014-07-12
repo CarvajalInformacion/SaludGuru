@@ -609,12 +609,20 @@ namespace BackOffice.Web.Controllers
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
-                ProfileModel oCreate = new ProfileModel();
+                ProfileModel oCreate = new ProfileModel();                
+                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+
                 oCreate = GetComunicationRequestModel();
 
+
+                oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
+
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();  
+
+                //Delete ProfileInfo
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
                 //create profile 
-                string oProfilePublicId = SaludGuruProfile.Manager.Controller.Profile.UpsertProfileInfo
-                    (oCreate);
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
 
                 //get updated profile info
                 model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
@@ -630,7 +638,7 @@ namespace BackOffice.Web.Controllers
                 ProfileModel oReturn = new ProfileModel()
               {
                   ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
-                 
+
                   ProfileInfo = new List<ProfileInfoModel>() 
                     { 
                         //Asignacion de cita
