@@ -33,7 +33,8 @@
         Office,
         Specialty,
         Insurance,
-        Treatment
+        Treatment,
+        Comunicaciones
     }
 
     public enum enumMenuOffice

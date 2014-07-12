@@ -232,7 +232,7 @@ namespace BackOffice.Web.Controllers
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 SpecialtyToSelect = SaludGuruProfile.Manager.Controller.Specialty.GetAllAdmin(string.Empty),
             };
-            if(Model.Profile.DefaultSpecialty == null)
+            if (Model.Profile.DefaultSpecialty == null)
             {
                 Model.Profile.DefaultSpecialty = new SpecialtyModel();
             }
@@ -597,5 +597,132 @@ namespace BackOffice.Web.Controllers
         }
         #endregion
 
+        #region Comunications
+
+        public virtual ActionResult ComunicationUpsert(string ProfilePublicId)
+        {
+            ProfileUpSertModel model = new ProfileUpSertModel()
+            {
+                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                ProfileModel oCreate = new ProfileModel();                
+                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+
+                oCreate = GetComunicationRequestModel();
+
+
+                oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
+
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();  
+
+                //Delete ProfileInfo
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+                //create profile 
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
+
+                //get updated profile info
+                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+            }
+            return View(model);
+        }
+
+        private ProfileModel GetComunicationRequestModel()
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+               && bool.Parse(Request["UpsertAction"]))
+            {
+                ProfileModel oReturn = new ProfileModel()
+              {
+                  ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
+
+                  ProfileInfo = new List<ProfileInfoModel>() 
+                    { 
+                        //Asignacion de cita
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsemailAC"])?0:int.Parse(Request["IsemailAC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.AsignacionCita,
+                            Value = (Request["AC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsSmsAC"])?0:int.Parse(Request["IsSmsAC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.AsignacionCita,
+                            Value = (Request["AC_Sms"]!= null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsNotifyAC"])?0:int.Parse(Request["IsNotifyAC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.AsignacionCita,                            
+                            Value = (Request["AC_NotifyGuru"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                        },
+                        //Cancelacion de cita
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isEMailCC"])?0:int.Parse(Request["isEMailCC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            Value = (Request["CC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                        },                        
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isSmsCC"])?0:int.Parse(Request["isSmsCC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            Value = (Request["CC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyCC"])?0:int.Parse(Request["isNotifyCC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            Value = (Request["CC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                        },
+                        //Encuesta Satisfacción
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isEmailEs"])?0:int.Parse(Request["isEmailEs"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            Value = (Request["ES_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isSmsEs"])?0:int.Parse(Request["isSmsEs"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            Value = (Request["ES_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyEs"])?0:int.Parse(Request["isNotifyEs"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            Value = (Request["ES_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                        },
+                        //Modificación de cita
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isEmailMC"])?0:int.Parse(Request["isEmailMC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            Value = (Request["MC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["MC_Sms"])?0:int.Parse(Request["MC_Sms"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            Value = (Request["isSmsMC"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyMC"])?0:int.Parse(Request["isNotifyMC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                       },
+                    }
+              };
+                return oReturn;
+            }
+            return null;
+        }
+        #endregion
     }
 }

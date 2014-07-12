@@ -12,7 +12,9 @@ namespace FileRepository.Manager.Models
 
         public Guid InternalFileId { get { return oInternalFileId; } }
 
-        public eOperation Operation { get; set; }
+        public enumOperation Operation { get; set; }
+
+        public enumActionResult ActionResult { get; set; }
 
         public string FilePathLocalSystem { get; set; }
 

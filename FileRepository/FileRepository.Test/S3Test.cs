@@ -22,7 +22,7 @@ namespace FileRepository.Test
                 {
                     FilePathLocalSystem = @"D:\Proyectos\Github\SaludGuru\FileRepository\FileRepository.Test\imgTest.JPG",
                     FilePathRemoteSystem = "NuevaCarpeta/imagen1.jpg",
-                    Operation = eOperation.UploadFile
+                    Operation = enumOperation.UploadFile
                 });
 
             oFileRepositoryInstance.StartOperation();
@@ -46,7 +46,7 @@ namespace FileRepository.Test
                 new FileModel()
                 {
                     FilePathRemoteSystem = "NuevaCarpeta/imagen1.jpg",
-                    Operation = eOperation.DeleteFile
+                    Operation = enumOperation.DeleteFile
                 });
 
             oFileRepositoryInstance.StartOperation();
