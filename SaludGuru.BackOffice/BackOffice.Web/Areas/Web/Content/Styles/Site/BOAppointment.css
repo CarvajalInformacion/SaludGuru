@@ -8,7 +8,7 @@
     border:1px solid PURPLE;
 }
 
-.BOAgendaDateSelector{
+/*.BOAgendaDateSelector{
 	border:1px solid green;
 	display:block;
 	width:60%;
@@ -33,7 +33,7 @@
 	.BOAgendaDateSelectorRight{
 		float: right;
         text-align: left;
-	}
+	}*/
 /************************CALENDARIOS**************************/
 .BOAgendaCalendarWrapper{
 	border:1px solid red;
@@ -71,7 +71,8 @@
                     border: 1px solid #666;
                     border-radius: 2px;
                 }
-                    div.BOAgendaSideMonthsWrapper div.ui-datepicker-title {
+                    
+                div.BOAgendaSideMonthsWrapper div.ui-datepicker-title {
                         height: 20px;
                         margin: 0px;
                         line-height: 16px;
@@ -127,7 +128,7 @@ color: #666;
     .BOAgendaAppointmentActions ul{
         border:1px solid green;
         display:block;
-        margin:4px auto;
+        margin:2px auto;
         width:auto;height:auto;
     }
         .BOAgendaAppointmentActions ul li{
@@ -348,27 +349,29 @@ div.fc-event {
     background: #0026ff;
 }
 /*hide next and preview*/
-#Calendar-Left .ui-datepicker-prev {
-    /*display: none;*/
+#Calendar-Left .ui-datepicker-prev, #Calendar-Right .ui-datepicker-next {
+    border: none;
+    border-radius:12px;
+    padding: 0px;
+    margin:3px 0px 0px 0px;
+    width:15px;
+    height:15px;
+    cursor: pointer;
 }
-
+#Calendar-Left .ui-datepicker-prev:hover, #Calendar-Right .ui-datepicker-next:hover {
+    background-image:none;
+    background-color:#fff;
+}
 #Calendar-Right .ui-datepicker-prev {
     display: none;
 }
-
 #Calendar-Left .ui-datepicker-next {
-    display: none;
+    display:none;
 }
-
-#Calendar-Right .ui-datepicker-next {
-    /*display: none;*/
-}
-
 /*hide calendar all day event*/
 #divMeetingCalendar .fc-agenda-allday {
     display: none;
 }
-
 #divMeetingCalendar .fc-agenda-divider {
     display: none;
 }
