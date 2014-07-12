@@ -1,4 +1,5 @@
 ﻿using SaludGuruProfile.Manager.DAL.Controller;
+using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Profile;
 using SessionController.Models.Profile.Autorization;
@@ -148,7 +149,7 @@ namespace SaludGuruProfile.Manager.Controller
         /// <param name="ImagePath"></param>
         public static void UpsertProfileSmallImage(ProfileModel ProfileToUpsert, string ImagePath)
         {
-
+            string oImgPrep = SaludGuruProfile.Manager.Image.ImagePreprocesing.ProcessImage(ImagePath, enumImageType.ProfileSmall);
 
         }
 
@@ -159,7 +160,7 @@ namespace SaludGuruProfile.Manager.Controller
         /// <param name="ImagePath"></param>
         public static void UpsertProfileLargeImage(ProfileModel ProfileToUpsert, string ImagePath)
         {
-
+            string oImgPrep = SaludGuruProfile.Manager.Image.ImagePreprocesing.ProcessImage(ImagePath, enumImageType.ProfileLarge);
 
         }
 
@@ -170,7 +171,7 @@ namespace SaludGuruProfile.Manager.Controller
         /// <param name="ImagePath"></param>
         public static void UpsertProfileGeneralImage(ProfileModel ProfileToUpsert, Dictionary<string, int?> ImagePath)
         {
-
+            string oImgPrep = SaludGuruProfile.Manager.Image.ImagePreprocesing.ProcessImage(ImagePath.FirstOrDefault().Key, enumImageType.ProfileGeneral);
 
         }
 

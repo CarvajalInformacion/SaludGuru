@@ -71,9 +71,16 @@
     }
 
     public enum enumMessageType
-    { 
+    {
         Email = 101,
         Sms = 102,
         NotificacionesGuru = 103
+    }
+
+    public enum enumImageType
+    {
+        ProfileSmall,
+        ProfileLarge,
+        ProfileGeneral
     }
 }

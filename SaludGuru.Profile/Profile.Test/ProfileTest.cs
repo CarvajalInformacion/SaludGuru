@@ -54,6 +54,43 @@ namespace Profile.Test
 
             SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(model);
         }
+        [TestMethod]
+        public void UpsertProfileSmallImage()
+        {
+            SaludGuruProfile.Manager.Controller.Profile.UpsertProfileSmallImage
+                (new ProfileModel()
+                    {
+                        ProfilePublicId = "38E35666",
+                    },
+                    @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_small.png"
+                );
+        }
+
+        [TestMethod]
+        public void UpsertProfileLargeImage()
+        {
+            SaludGuruProfile.Manager.Controller.Profile.UpsertProfileLargeImage
+                (new ProfileModel()
+                {
+                    ProfilePublicId = "38E35666",
+                },
+                    @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_large.png"
+                );
+        }
+
+        [TestMethod]
+        public void UpsertProfileGeneralImage()
+        {
+            Dictionary<string, int?> img = new Dictionary<string, int?>();
+            img.Add(@"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\img_2822_General.JPG", null);
+
+            SaludGuruProfile.Manager.Controller.Profile.UpsertProfileGeneralImage
+                (new ProfileModel()
+                        {
+                            ProfilePublicId = "38E35666",
+                        },
+                img);
+        }
         #endregion
 
         #region Profile Search

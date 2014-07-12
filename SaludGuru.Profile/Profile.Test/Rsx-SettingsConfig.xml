@@ -3,4 +3,7 @@
   <Module name="Profile">
     <key name="location">D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\Rsx-Profile.xml</key>
   </Module>
+  <Module name="FileRepository">
+    <key name="location">D:\Proyectos\Github\SaludGuru\FileRepository\FileRepository.Test\Rsx-FileRepository.xml</key>
+  </Module>
 </SettingsConfig>

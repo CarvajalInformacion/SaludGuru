@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,8 @@
     <Compile Include="DAL\Controller\ProfileDataController.cs" />
     <Compile Include="DAL\Controller\ProfileDataFactory.cs" />
     <Compile Include="DAL\MySQLDAO\Profile_MySqlDao.cs" />
+    <Compile Include="Image\ImageLoader.cs" />
+    <Compile Include="Image\ImagePreprocesing.cs" />
     <Compile Include="Interfaces\ICategoryModel.cs" />
     <Compile Include="Interfaces\IProfileData.cs" />
     <Compile Include="Models\Constants.cs" />
@@ -102,9 +105,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Image\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
