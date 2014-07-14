@@ -69,21 +69,21 @@ namespace SaludGuruProfile.Manager.Image
         public void StartUpload()
         {
             //fill file info to load
-            oFileRepositoryInstance.CurrentOperations = new List<FileModel>();
+            FileRepositoryInstance.CurrentOperations = new List<FileModel>();
             FilesToUpload.All(OriginFile =>
             {
-                oFileRepositoryInstance.CurrentOperations.Add(
+                FileRepositoryInstance.CurrentOperations.Add(
                     new FileModel()
                     {
                         FilePathLocalSystem = OriginFile,
-                        FilePathRemoteSystem = RemoteFolder.TrimEnd('/') + "/" + OriginFile.Substring(OriginFile.LastIndexOf("/"), OriginFile.Length),
+                        FilePathRemoteSystem = RemoteFolder.TrimEnd('\\') + "\\" + OriginFile.Substring(OriginFile.LastIndexOf("\\")).TrimStart('\\'),
                         Operation = enumOperation.UploadFile
                     });
 
                 return true;
             });
             //start load
-            oFileRepositoryInstance.StartOperation(false);
+            FileRepositoryInstance.StartOperation(false);
         }
 
         #endregion

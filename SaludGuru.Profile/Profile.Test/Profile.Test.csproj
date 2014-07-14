@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FileRepository.S3">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.S3.dll</HintPath>
+    </Reference>
     <Reference Include="SessionController">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
     </Reference>

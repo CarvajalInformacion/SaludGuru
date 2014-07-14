@@ -2,7 +2,7 @@
 <Settings>
   <Profile>
 
-    <key name="ProfileImage_RemoteFolder">{{ProfilePublicId}}/</key>
+    <key name="ProfileImage_RemoteFolder">{{ProfilePublicId}}\</key>
     
 
     <!--Image Process Settings-->
