@@ -34,7 +34,7 @@
         Specialty,
         Insurance,
         Treatment,
-        Comunicaciones
+        Comunicactions
     }
 
     public enum enumMenuOffice
@@ -42,6 +42,12 @@
         OfficeInfo,
         Treatments,
         ScheduleAvalilable
+    }
+
+    public enum enumMenuComunications
+    {
+        Messaging,
+        Reminders        
     }
 
     public enum enumMenuPatient

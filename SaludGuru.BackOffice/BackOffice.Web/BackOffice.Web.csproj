@@ -1179,6 +1179,8 @@
     <Content Include="Areas\Web\Views\Appointment\Month.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\List.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ComunicationUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfileMessangerUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_ProfileComunicationMenu.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
