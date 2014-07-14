@@ -74,29 +74,88 @@ table.ui-datepicker-calendar > tbody > tr > td {
 /*****************SELECCION DE DURACION DE LA CITA******************/
 
 div#ptTimeSelectCntr {
-
+    width:210px;
+    border-radius: 1px;
+    margin:0px;
 }
     div#ptTimeSelectCntr div.ui-widget {
 
     }
-
 div.ui-widget-header {
+    height: 24px;
+    background-color: #99c21d;
+    background-image:none;
+    border: 1px solid #666;
+    border-radius: 2px;
 }
 div#ptTimeSelectCloseCntr {
+    width: 14px;
+    padding: 0px !important;
+    margin: 0px;
+    height: 14px;
+}
+div#ptTimeSelectCloseCntr a{
+    width: 14px;
+    height: 14px;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+div#ptTimeSelectCloseCntr a span{
+    background-position: -34px -194px;
+    border: 1px solid blue;
+    width: 14px;
+    height: 14px;
+    margin: -4px -4px;
 }
 div#ptTimeSelectCloseCntr a.ui-corner-all {
+    border:1px solid green;
 }
-
 div#ptTimeSelectUserTime {
+    border:1px solid purple;
+    line-height:8px;
+    margin:-2px 0px;
 }
-span#ptTimeSelectUserSelHr {        
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelHr{
+        border: 1px solid #800080;
+        font-size: 14px;
+        line-height: 11px;
+    }
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelMin {
+        border: 1px solid #800080;
+        font-size: 14px;
+        line-height: 11px;
+
+    }
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelAmPm {
+        border: 1px solid #800080;
+        font-size: 14px;
+        line-height: 11px;
+    }
+div.ui-widget-content {
+    border: 1px solid blue;
+    border-radius: 0px;
+    margin: 0px;
+    height: auto; 
 }
-span#ptTimeSelectUserSelHr {
-}
-span#ptTimeSelectUserSelMin {
-}
-div#ptTimeSelectUserSelAmPm {
-}
+    div.ptTimeSelectLeftPane, div.ptTimeSelectRightPane {
+        line-height: 12px;
+    }
+    div#ptTimeSelectSetButton {
+        line-height:14px;
+    }
+        div#ptTimeSelectSetButton a.ui-state-default {
+            line-height:14px;
+            border-color:#666;
+            color:#666;
+        }
+        div#ptTimeSelectSetButton a.ui-state-hover {
+            line-height:14px;
+            border-color:#666;
+            color:#666;
+            background-image:none !important;
+            background-color:#e6e6e6;
+        }
 /*BLOQUE HORA Y MINUTOS*/
 
 

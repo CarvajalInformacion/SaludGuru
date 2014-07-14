@@ -12,6 +12,8 @@
 
         public const string C_Settings_Image_FileModuleName = "S3_SaludGuru";
 
+        public const string C_Settings_Image_ProfileImage_RemoteFolder = "ProfileImage_RemoteFolder";
+
         public const string C_Settings_Image_Text = "{{ImageType}}_Text";
         public const string C_Settings_Image_Font = "{{ImageType}}_Font";
         public const string C_Settings_Image_FontSize = "{{ImageType}}_FontSize";

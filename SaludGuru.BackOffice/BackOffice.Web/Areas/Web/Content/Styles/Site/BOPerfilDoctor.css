@@ -89,7 +89,7 @@ border:none;
     z-index:10;
 }
 .BOMenuPrincipalPerfil div ul li{
-    display:block;
+    display:block; 
     margin:0px;
     padding:10px 0px;
     width:100%;
