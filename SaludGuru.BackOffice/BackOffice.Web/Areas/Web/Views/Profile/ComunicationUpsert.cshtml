@@ -48,7 +48,7 @@
                         }
                         else
                         {
-                            <input type="checkbox" id="AC_EMail" name="AC_EMail" checked="checked" />
+                            <input type="checkbox" id="AC_EMail" name="AC_EMail"  />
                             <input type="hidden" id="IsemailAC" name="IsEmailAC" value="@CatInfo_AC[0].id" />
                         }
 
@@ -124,7 +124,7 @@
                         }
                         else
                         {
-                            <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" checked="checked" />
+                            <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" />
                             <input type="hidden" id="isNotifyCC" name="isNotifyCC" value="@CatInfo_CC[0].id" />
                         }
                     }
@@ -188,7 +188,7 @@
                 @{
                     var CatInfo_MC = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.EncuestaSatisfaccion).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ModificacionCita).
                             Select(x => new { id = x.ProfileInfoId, x.Value }).
                                      DefaultIfEmpty(null).
                                    ToList();

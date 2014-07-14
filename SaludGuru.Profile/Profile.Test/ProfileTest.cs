@@ -2,6 +2,7 @@
 using SaludGuruProfile.Manager.Models.Profile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using SaludGuruProfile.Manager.Models;
 
 namespace Profile.Test
 {
@@ -20,6 +21,39 @@ namespace Profile.Test
             Assert.AreEqual(oProfile.ProfilePublicId, oProfilePublicId);
         }
 
+        [TestMethod]
+        public void UpsertProfileDetailInfo()
+        {
+            ProfileModel model = new ProfileModel();
+            ProfileInfoModel info = new ProfileInfoModel();
+            ProfileInfoModel info2 = new ProfileInfoModel();
+            ProfileInfoModel info3 = new ProfileInfoModel();
+
+            model.ProfileInfo = new List<ProfileInfoModel>();
+
+            info.ProfileInfoId = 136;
+            info.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            info.Value = "101";
+
+            model.ProfileInfo.Add(info);
+
+            info2.ProfileInfoId = 137;
+            info2.ProfileInfoType = enumProfileInfoType.CancelacionCita;
+            info2.Value = "101";
+
+            model.ProfileInfo.Add(info2);
+
+            info3.ProfileInfoId = 138;
+            info3.ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion;
+            info3.Value = "101";
+
+            model.ProfileInfo.Add(info3);
+
+            model.ProfilePublicId = "2C1D2510";
+
+
+            SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(model);
+        }
         [TestMethod]
         public void UpsertProfileSmallImage()
         {

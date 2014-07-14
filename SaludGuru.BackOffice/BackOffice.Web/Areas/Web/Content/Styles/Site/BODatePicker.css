@@ -1,0 +1,105 @@
+div#ui-datepicker-div {
+    width:210px;
+    border-radius: 1px;
+    margin:0px;
+}
+    div.ui-datepicker-header {
+        height: 24px;
+        background-color: #99c21d;
+        background-image:none;
+        border: 1px solid #666;
+        border-radius: 2px;
+    }
+    div.ui-datepicker-header a.ui-datepicker-prev, div.ui-datepicker-header a.ui-datepicker-next{
+        border: none;
+        border-radius:12px;
+        padding: 0px;
+        margin:3px 0px 0px 0px;
+        width:15px;
+        height:15px;
+        cursor: pointer;
+    }
+    div.ui-datepicker-header a.ui-datepicker-prev:hover, div.ui-datepicker-header a.ui-datepicker-next:hover {
+        background-image:none;
+        background-color:#fff;
+    }
+        div.ui-datepicker-header div.ui-datepicker-title{
+            line-height: 16px;
+        }
+    div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title span.ui-datepicker-year{
+        height: 20px;
+        margin: 0px;
+        line-height: 16px;
+    }
+        div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title ui-datepicker-year {
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 16px;
+        }
+/**********************DATOS DEL DIA FECHA ETC**************************/
+
+table.ui-datepicker-calendar > thead > tr > th{
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding: 8px 0px;
+    border: 1px solid red;  
+}
+
+table.ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end {
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding: 8px 0px;
+    border: 1px solid red;  
+}
+table.ui-datepicker-calendar > tbody > tr > td {
+    font-size: 12px;
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding:0px;
+    border: 1px solid blue;
+}
+    table.ui-datepicker-calendar > tbody > tr > td > a {
+        height: 20px;
+        margin: 0px auto;
+        width: auto;
+        border: 1px solid gray;
+        text-align: center;
+        vertical-align: baseline;
+        line-height: 12px;
+        color: #666;
+    }
+/*****************SELECCION DE DURACION DE LA CITA******************/
+
+div#ptTimeSelectCntr {
+
+}
+    div#ptTimeSelectCntr div.ui-widget {
+
+    }
+
+div.ui-widget-header {
+}
+div#ptTimeSelectCloseCntr {
+}
+div#ptTimeSelectCloseCntr a.ui-corner-all {
+}
+
+div#ptTimeSelectUserTime {
+}
+span#ptTimeSelectUserSelHr {        
+}
+span#ptTimeSelectUserSelHr {
+}
+span#ptTimeSelectUserSelMin {
+}
+div#ptTimeSelectUserSelAmPm {
+}
+/*BLOQUE HORA Y MINUTOS*/
+
+
+
+
+

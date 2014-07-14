@@ -91,26 +91,26 @@ border:none;
     /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
 div#AppointmentUpsert ul{
     display:block;
-    margin:2px 0px;
+    margin:0px;
     width:100%;
     min-width:348px;
     height:auto;
 }
 div#AppointmentUpsert ul li{
     display:block;
-    padding:4px 0px;
+    padding:2px 0px;
     margin:0px;
 border:NONE;
 }
                 div#AppointmentUpsert ul li:first-child{
                     background-color:#800066;
-                    width:100%; height:28px;
+                    width:100%; height:20px;
                     padding:0px;
                 }
     div#AppointmentUpsert ul > li > span{
-        font-size:14px;
+        font-size:13px;
         color:#fff;
-        line-height:26px;
+        line-height:18px;
     }
     div#AppointmentUpsert ul > li > span:first-child {
         float:left; margin-left:16px;
@@ -130,7 +130,7 @@ border:NONE;
     }
 div#AppointmentUpsert ul li label{
     display: inline-block;
-    line-height: 18px;
+    line-height: 15px;
     font-size: 14px;
     background-color: #E6E6E6;
     padding: 1px;
@@ -144,8 +144,9 @@ div#AppointmentUpsert ul li input{
     text-align: left;
     background-color: #FFF;
     width: 54%;
-    height: 21px;
-    font-size: 14px;
+    height:18px;
+    font-size:14px;
+    line-height:14px;
 }
 div#AppointmentUpsert ul li select{
     display: inline-block;
@@ -154,9 +155,10 @@ div#AppointmentUpsert ul li select{
     text-align: left;
     background-color: #FFF;
     width: 54%;
-    height: 20px;
+    height:18px;
     vertical-align: top;
-    font-size: 15px;
+    font-size:14px;
+    line-height:14px;
 }
 div#AppointmentUpsert ul li textarea{
     display:inline-block;
@@ -182,7 +184,7 @@ div#AppointmentUpsert ul li > span.ui-spinner{
         width: 92%;
         padding: 0px;
         height: 20px;
-        margin: -9px 0px 0px -18px;
+        margin: 0px 0px 0px -16px;
         color: #333;
     }
 
@@ -192,27 +194,27 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
     border:1px solid green;
     width:100%;
     height:auto;
-    margin:0px; padding:0px;
+    margin:-4px 0px; padding:0px;
 }
     div#AppointmentUpsert ul > li > ul#lstPatient li {
         display:block;
-        margin: 10px auto;
+        margin:5px auto;
         padding: 0px;
         border: none;
              width: 95%;
-        height: 96px;
+        height: 84px;
         text-align: left;
         background-color:#e6e6e6;
     }
         div#AppointmentUpsert ul > li > ul#lstPatient li img {
-            margin:10px;
+            margin:6px;
             width:36px; height:auto;
             float:left;
         }
         div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(2) {
-            font-size:17px;
+            font-size:14px;
             display: block;
-            line-height:25px;
+            line-height:20px;
             width: 100%;
             margin:0px;
             text-decoration: underline;
@@ -222,11 +224,11 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
             display: block;
             line-height:13px;
             width: 100%;
-            margin:0px 0px 0px;
+            margin:-2px 0px 0px 0px;
             vertical-align:top;
         }
         div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(5) {
-            margin-left: 15%; width: 80%;
+            margin-left:47px; width: 80%;
         }
             
             div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(6){
@@ -234,7 +236,7 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
                 display: block;
                 line-height: 12px;
                 width: auto;
-                margin: 4px 0px 0px 54px;
+                margin: 4px 0px 0px 48px;
                 color: #008000;
             }
             div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(7) {
@@ -242,7 +244,7 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
                 display:block;
                 width:18px; height:18px;
                 border:1px solid red;
-                top: -82px;
+                top: -75px;
                 left: 324px;
                 background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
                 background-position: -336px -1065px;
@@ -311,7 +313,5 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
         width:auto;
         margin-left:50px;
     }
-
-
 
 
