@@ -184,7 +184,7 @@ div#divMeetingCalendar {
 	vertical-align:top;
     width: 69.8% !important;
     height:510px;
-    float:right;
+    float:right; 
 }
 
 /*******************AUTOCOMPLETE PACIENTES*******************/
