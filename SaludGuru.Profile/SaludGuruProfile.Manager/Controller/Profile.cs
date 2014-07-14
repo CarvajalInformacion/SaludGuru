@@ -149,7 +149,66 @@ namespace SaludGuruProfile.Manager.Controller
         /// <param name="ImagePath"></param>
         public static void UpsertProfileSmallImage(ProfileModel ProfileToUpsert, string ImagePath)
         {
-            string oImgPrep = SaludGuruProfile.Manager.Image.ImagePreprocesing.ProcessImage(ImagePath, enumImageType.ProfileSmall);
+            //process image
+            string oPublicImage = SaludGuruProfile.Manager.Image.ImagePreprocesing.ProcessImage(ImagePath, enumImageType.ProfileSmall);
+
+            //upload images
+            SaludGuruProfile.Manager.Image.ImageLoader oLoader = new Image.ImageLoader()
+            {
+                FilesToUpload = new List<string>() { ImagePath, oPublicImage },
+                RemoteFolder = SaludGuruProfile.Manager.Models.General.InternalSettings.Instance[SaludGuruProfile.Manager.Models.Constants.C_Settings_Image_ProfileImage_RemoteFolder].Value,
+            };
+
+            oLoader.StartUpload();
+
+            //save urls to database model
+
+            //get profile info id
+            int ProfileInfoId = ProfileToUpsert.ProfileInfo.
+                Where(x => x.ProfileInfoType == enumProfileInfoType.ImageProfileSmall).
+                Select(x => x.ProfileInfoId).
+                DefaultIfEmpty(0).
+                FirstOrDefault();
+
+            //upsert public image
+            if (ProfileInfoId <= 0)
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileInfoCreate
+                    (ProfileToUpsert.ProfilePublicId,
+                    enumProfileInfoType.ImageProfileSmall,
+                    oLoader.UploadedFiles.Where(x => x.FilePathLocalSystem.IndexOf(oPublicImage) > 0).Select(x => x.FilePathRemoteSystem).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                    null);
+            }
+            else
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileInfoModify
+                    (ProfileInfoId,
+                    oLoader.UploadedFiles.Where(x => x.FilePathLocalSystem.IndexOf(oPublicImage) > 0).Select(x => x.FilePathRemoteSystem).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                    null);
+            }
+
+            //upsert original image
+            ProfileInfoId = ProfileToUpsert.ProfileInfo.
+                Where(x => x.ProfileInfoType == enumProfileInfoType.ImageProfileSmallOriginal).
+                Select(x => x.ProfileInfoId).
+                DefaultIfEmpty(0).
+                FirstOrDefault();
+
+            if (ProfileInfoId <= 0)
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileInfoCreate
+                    (ProfileToUpsert.ProfilePublicId,
+                    enumProfileInfoType.ImageProfileSmallOriginal,
+                    oLoader.UploadedFiles.Where(x => x.FilePathLocalSystem.IndexOf(ImagePath) > 0).Select(x => x.FilePathRemoteSystem).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                    null);
+            }
+            else
+            {
+                DAL.Controller.ProfileDataController.Instance.ProfileInfoModify
+                    (ProfileInfoId,
+                    oLoader.UploadedFiles.Where(x => x.FilePathLocalSystem.IndexOf(ImagePath) > 0).Select(x => x.FilePathRemoteSystem).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                    null);
+            }
 
         }
 

@@ -2,7 +2,10 @@
 <Settings>
   <Profile>
 
-    <!--Image Settings-->
+    <key name="ProfileImage_RemoteFolder">{{ProfilePublicId}}/</key>
+    
+
+    <!--Image Process Settings-->
     <key name="ProfileSmall_Text">www.saludguru.com</key>
     <key name="ProfileSmall_Font">Trebuchet MS</key>
     <key name="ProfileSmall_FontSize">10</key>
