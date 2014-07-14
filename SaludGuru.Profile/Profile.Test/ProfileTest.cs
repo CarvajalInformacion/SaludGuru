@@ -54,6 +54,21 @@ namespace Profile.Test
 
             SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(model);
         }
+
+        [TestMethod]
+        public void DeleteProfileDetailInfo()
+        {
+            List<ProfileInfoModel> list = new List<ProfileInfoModel>();
+            ProfileInfoModel item = new ProfileInfoModel();
+
+            item.ProfileInfoId = 274;
+            item.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            item.Value = "102";
+
+            list.Add(item);
+            SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(list);
+        }
+
         [TestMethod]
         public void UpsertProfileSmallImage()
         {
@@ -61,6 +76,19 @@ namespace Profile.Test
                 (new ProfileModel()
                     {
                         ProfilePublicId = "38E35666",
+                        ProfileInfo = new List<ProfileInfoModel>() 
+                        { 
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = 337,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileSmall,
+                    },
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = 338,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileSmallOriginal,
+                            },
+                        },
                     },
                     @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_small.png"
                 );
@@ -73,23 +101,26 @@ namespace Profile.Test
                 (new ProfileModel()
                 {
                     ProfilePublicId = "38E35666",
+                        ProfileInfo = new List<ProfileInfoModel>(),
                 },
                     @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_large.png"
                 );
         }
 
         [TestMethod]
-        public void UpsertProfileGeneralImage()
+        public void InsertProfileGeneralImage()
         {
-            Dictionary<string, int?> img = new Dictionary<string, int?>();
-            img.Add(@"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\img_2822_General.JPG", null);
-
-            SaludGuruProfile.Manager.Controller.Profile.UpsertProfileGeneralImage
+            SaludGuruProfile.Manager.Controller.Profile.InsertProfileGeneralImage
                 (new ProfileModel()
                         {
                             ProfilePublicId = "38E35666",
+                        ProfileInfo = new List<ProfileInfoModel>(),
                         },
-                img);
+                new List<string>() 
+                    { 
+                    @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\img_2822_General.JPG",
+                    }
+                );
         }
         #endregion
 

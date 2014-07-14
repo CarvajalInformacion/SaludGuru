@@ -609,18 +609,16 @@ namespace BackOffice.Web.Controllers
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
-                ProfileModel oCreate = new ProfileModel();                
+                ProfileModel oCreate = new ProfileModel();
                 List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
 
                 oCreate = GetComunicationRequestModel();
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oCreate.ProfileInfo);
+                
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
+                var list = oCreate.ProfileInfo.Select(c => { c.ProfileInfoId = 0; return c; }).ToList();
 
-
-                oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
-
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();  
-
-                //Delete ProfileInfo
-                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+                oCreate.ProfileInfo = list;
                 //create profile 
                 SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
 
@@ -707,9 +705,9 @@ namespace BackOffice.Web.Controllers
                         },
                         new ProfileInfoModel()
                         {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["MC_Sms"])?0:int.Parse(Request["MC_Sms"].ToString().Trim()),
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isSmsMC"])?0:int.Parse(Request["isSmsMC"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.ModificacionCita,
-                            Value = (Request["isSmsMC"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                            Value = (Request["MC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {

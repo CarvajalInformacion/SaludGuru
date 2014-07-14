@@ -48,7 +48,7 @@
                         }
                         else
                         {
-                            <input type="checkbox" id="AC_EMail" name="AC_EMail"  />
+                            <input type="checkbox" id="AC_EMail" name="AC_EMail" />
                             <input type="hidden" id="IsemailAC" name="IsEmailAC" value="@CatInfo_AC[0].id" />
                         }
 
@@ -73,6 +73,12 @@
                             <input type="checkbox" id="AC_NotifyGuru" name="AC_NotifyGuru" />
                             <input type="hidden" id="IsNotifyAC" name="IsNotifyAC" value="@CatInfo_AC[0].id" />
                         }
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="AC_EMail" name="AC_EMail" />
+                        <input type="checkbox" id="AC_Sms" name="AC_Sms" />
+                        <input type="checkbox" id="AC_NotifyGuru" name="AC_NotifyGuru" />                        
                     }
                 }
             </li>
@@ -128,6 +134,12 @@
                             <input type="hidden" id="isNotifyCC" name="isNotifyCC" value="@CatInfo_CC[0].id" />
                         }
                     }
+                    else
+                    {
+                        <input type="checkbox" id="CC_EMail" name="CC_EMail" />
+                        <input type="checkbox" id="CC_Sms" name="CC_Sms" />
+                        <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" />
+                    }
                 }
             </li>
             <li>
@@ -181,6 +193,12 @@
                             <input type="hidden" id="isNotifyEs" name="isNotifyEs" value="@CatInfo_ES[0].id" />
                         }
                     }
+                    else
+                    {
+                        <input type="checkbox" id="ES_EMail" name="ES_EMail" />
+                        <input type="checkbox" id="ES_Sms" name="ES_Sms" />
+                        <input type="checkbox" id="ES_GuruNotify" name="ES_GuruNotify" />
+                    }
                 }
             </li>
             <li>
@@ -211,12 +229,12 @@
                         }
                         else
                         {
-                            <input type="checkbox" id="ES_EMail" name="ES_EMail" />
+                            <input type="checkbox" id="MC_EMail" name="MC_EMail" />
                             <input type="hidden" id="isEmailMC" name="isEmailMC" value="@CatInfo_MC[0].id" />
                         }
                         if (oLoadedSms_MC != null)
                         {
-                            <input type="checkbox" id="MC_Sms" name="ES_Sms" checked="checked" />
+                            <input type="checkbox" id="MC_Sms" name="MC_Sms" checked="checked" />
                             <input type="hidden" id="isSmsMC" name="isSmsMC" value="@oLoadedSms_MC.id" />
                         }
                         else
@@ -234,6 +252,12 @@
                             <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
                             <input type="hidden" id="isNotifyMC" name="isNotifyMC" value="@CatInfo_MC[0].id" />
                         }
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="MC_EMail" name="MC_EMail" />
+                        <input type="checkbox" id="MC_Sms" name="MC_Sms" />
+                        <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
                     }
                 }
             </li>
