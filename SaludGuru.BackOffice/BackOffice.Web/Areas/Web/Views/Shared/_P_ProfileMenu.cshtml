@@ -53,8 +53,8 @@
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Tratamientos";
                         break;
-                    case BackOffice.Models.General.enumMenuProfile.Comunicaciones:
-                        strAction = Url.Action(MVC.Profile.ActionNames.ComunicationUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                    case BackOffice.Models.General.enumMenuProfile.Comunicactions:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Comunicaciones";
                         break;

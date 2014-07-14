@@ -761,7 +761,7 @@ namespace BackOffice.Web.Controllers
 
         #region Comunications
 
-        public virtual ActionResult ComunicationUpsert(string ProfilePublicId)
+        public virtual ActionResult ProfileMessangerUpsert(string ProfilePublicId)
         {
             ProfileUpSertModel model = new ProfileUpSertModel()
             {
@@ -776,24 +776,11 @@ namespace BackOffice.Web.Controllers
 
                 oCreate = GetComunicationRequestModel();
 
-                oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
-
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
-
-                model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == enumProfileInfoType.AsignacionCita
-                                                && x.ProfileInfoType == enumProfileInfoType.CancelacionCita
-                                                && x.ProfileInfoType == enumProfileInfoType.EncuestaSatisfaccion).Select(x => x).ToList();
-
-
-
-                var list = oCreate.ProfileInfo.Select(c => { c.ProfileInfoId = 0; return c; }).ToList();
-
-                //model.Profile.ProfileInfo 
-
-                oCreate.ProfileInfo = list;
-
-                //Delete ProfileInfo
+                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
                 SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();              
+
                 //create profile 
                 SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
 

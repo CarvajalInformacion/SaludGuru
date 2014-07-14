@@ -371,6 +371,50 @@ namespace BackOffice.Web.Controllers
             return oReturn;
         }
 
+        public static List<MenuComunicationModel> GetComunicationMenu()
+        {
+            List<MenuComunicationModel> oRetorno = new List<MenuComunicationModel>();
+
+            enumMenuComunications CurrentSelected = SelectedComunicationMenu();
+
+            enumEditPermision CurrentPermision = GetPrincipalMenu().Where(x => x.IsSelected == true).Select(x => x.EditPermision).DefaultIfEmpty(enumEditPermision.Read).FirstOrDefault();
+
+            foreach (enumMenuComunications CurrentMenu in (enumMenuComunications[])Enum.GetValues(typeof(enumMenuComunications)))
+            {
+                oRetorno.Add(new MenuComunicationModel()
+                {
+                    Menu = CurrentMenu,
+                    EditPermision = CurrentPermision,
+                    IsSelected = (CurrentMenu == CurrentSelected),
+                });
+            }
+
+            return oRetorno;
+        }
+
+        private static enumMenuComunications SelectedComunicationMenu()
+        {
+            enumMenuComunications oReturn = enumMenuComunications.Messaging;
+
+            if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.ProfileMessangerUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuComunications.Messaging;
+            }
+            //else if (MVC.Profile.Name == CurrentControllerName &&
+            //    MVC.Profile.ActionNames.OfficeScheduleAvailableList == CurrentActionName)
+            //{
+            //    oReturn = enumMenuOffice.ScheduleAvalilable;
+            //}
+            //else if (MVC.Profile.Name == CurrentControllerName &&
+            //    (MVC.Profile.ActionNames.OfficeTreatmentList == CurrentActionName ||
+            //    MVC.Profile.ActionNames.OfficeTreatmentUpsert == CurrentActionName))
+            //{
+            //    oReturn = enumMenuOffice.Treatments;
+            //}
+            return oReturn;
+        }
+
         #endregion
     }
 }

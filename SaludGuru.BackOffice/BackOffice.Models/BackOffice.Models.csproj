@@ -69,6 +69,7 @@
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\InternalSettings.cs" />
+    <Compile Include="General\MenuComunicationModel.cs" />
     <Compile Include="General\MenuOfficeModel.cs" />
     <Compile Include="General\MenuPrincipalModel.cs">
       <SubType>Code</SubType>

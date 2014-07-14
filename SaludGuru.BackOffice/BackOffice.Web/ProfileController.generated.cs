@@ -215,9 +215,9 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ComunicationUpsert()
+        public virtual System.Web.Mvc.ActionResult ProfileMessangerUpsert()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ComunicationUpsert);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileMessangerUpsert);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -262,7 +262,7 @@ namespace BackOffice.Web.Controllers
             public readonly string AutorizationProfileList = "AutorizationProfileList";
             public readonly string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
-            public readonly string ComunicationUpsert = "ComunicationUpsert";
+            public readonly string ProfileMessangerUpsert = "ProfileMessangerUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -295,7 +295,7 @@ namespace BackOffice.Web.Controllers
             public const string AutorizationProfileList = "AutorizationProfileList";
             public const string ProfileAutorizationUpsert = "ProfileAutorizationUpsert";
             public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
-            public const string ComunicationUpsert = "ComunicationUpsert";
+            public const string ProfileMessangerUpsert = "ProfileMessangerUpsert";
         }
 
 
@@ -518,11 +518,11 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
-        static readonly ActionParamsClass_ComunicationUpsert s_params_ComunicationUpsert = new ActionParamsClass_ComunicationUpsert();
+        static readonly ActionParamsClass_ProfileMessangerUpsert s_params_ProfileMessangerUpsert = new ActionParamsClass_ProfileMessangerUpsert();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ComunicationUpsert ComunicationUpsertParams { get { return s_params_ComunicationUpsert; } }
+        public ActionParamsClass_ProfileMessangerUpsert ProfileMessangerUpsertParams { get { return s_params_ProfileMessangerUpsert; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ComunicationUpsert
+        public class ActionParamsClass_ProfileMessangerUpsert
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -880,14 +880,14 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void ComunicationUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void ProfileMessangerUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ComunicationUpsert(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult ProfileMessangerUpsert(string ProfilePublicId)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ComunicationUpsert);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileMessangerUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            ComunicationUpsertOverride(callInfo, ProfilePublicId);
+            ProfileMessangerUpsertOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
