@@ -50,6 +50,15 @@
     <Reference Include="Auth.Client">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\Auth.Client\developer\Auth.Client.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="FileRepository.Manager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="FileRepository.S3">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.S3.dll</HintPath>
+    </Reference>
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>
@@ -1037,6 +1046,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Rsx-FileRepository.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Rsx-Profile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Rsx-SettingsConfig.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1204,6 +1219,9 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -1230,7 +1248,9 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)Rsx-SettingsConfig.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y
-XCOPY "$(ProjectDir)$(OutDir)Rsx-BackOffice.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y</PostBuildEvent>
+XCOPY "$(ProjectDir)$(OutDir)Rsx-BackOffice.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y
+XCOPY "$(ProjectDir)$(OutDir)Rsx-FileRepository.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y
+XCOPY "$(ProjectDir)$(OutDir)Rsx-Profile.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\BackOffice.Web\" /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
