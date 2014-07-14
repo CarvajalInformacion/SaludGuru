@@ -31,7 +31,7 @@ namespace FileRepository.S3
 
         #region Implemented methods
 
-        public override void StartOperation()
+        public override void StartOperation(bool IsAsync)
         {
             base.CurrentOperations.All(oFileToWork =>
             {
@@ -51,10 +51,10 @@ namespace FileRepository.S3
                     switch (oFileToWork.Operation)
                     {
                         case enumOperation.UploadFile:
-                            UploadBegin(ref S3File);
+                            UploadBegin(ref S3File, IsAsync);
                             break;
                         case enumOperation.DeleteFile:
-                            DeleteBegin(ref S3File);
+                            DeleteBegin(ref S3File, IsAsync);
                             break;
                     }
                 }
@@ -76,7 +76,7 @@ namespace FileRepository.S3
 
         #region Upload operation
 
-        private void UploadBegin(ref S3FileModel FileDescription)
+        private void UploadBegin(ref S3FileModel FileDescription, bool IsAsync)
         {
             //get and validate upload file
             FileInfo FInfo = new FileInfo(FileDescription.RelatedFile.FilePathLocalSystem);
@@ -96,9 +96,16 @@ namespace FileRepository.S3
                 (Parameters["S3.Publish"].Trim().TrimEnd('/') + "/" +
                  FileDescription.RelatedFile.FilePathRemoteSystem.Trim().TrimStart('\\').TrimStart('/').Replace("\\", "/"));
 
-            //startup async upload
-            Thread Tarea = new Thread(new ParameterizedThreadStart(UploadFile));
-            Tarea.Start(FileDescription);
+            if (IsAsync)
+            {
+                //startup async upload
+                Thread Tarea = new Thread(new ParameterizedThreadStart(UploadFile));
+                Tarea.Start(FileDescription);
+            }
+            else
+            {
+                UploadFile(FileDescription);
+            }
         }
 
         public void UploadFile(object FileToProccess)
@@ -154,7 +161,7 @@ namespace FileRepository.S3
 
         #region Delete operation
 
-        private void DeleteBegin(ref S3FileModel FileDescription)
+        private void DeleteBegin(ref S3FileModel FileDescription, bool IsAsync)
         {
             //get loaded file
             FileDescription.RelatedFile.UploadedFile = new Uri
@@ -166,9 +173,16 @@ namespace FileRepository.S3
                 (Parameters["S3.Publish"].Trim().TrimEnd('/') + "/" +
                  FileDescription.RelatedFile.FilePathRemoteSystem.Trim().TrimStart('\\').TrimStart('/').Replace("\\", "/"));
 
-            //start async delete
-            Thread Tarea = new Thread(new ParameterizedThreadStart(DeleteFile));
-            Tarea.Start(FileDescription);
+            if (IsAsync)
+            {
+                //start async delete
+                Thread Tarea = new Thread(new ParameterizedThreadStart(DeleteFile));
+                Tarea.Start(FileDescription);
+            }
+            else
+            {
+                DeleteFile(FileDescription);
+            }
         }
 
         private void DeleteFile(object FileToProccess)

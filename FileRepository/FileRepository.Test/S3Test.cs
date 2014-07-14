@@ -25,11 +25,9 @@ namespace FileRepository.Test
                     Operation = enumOperation.UploadFile
                 });
 
-            oFileRepositoryInstance.StartOperation();
-            do
-            {
-                System.Threading.Thread.Sleep(600);
-            } while (oFileRepositoryInstance.GetProgressProcess(oFileRepositoryInstance.CurrentOperations[0].InternalFileId) < 100);
+            oFileRepositoryInstance.StartOperation(false);
+
+            Assert.AreEqual(true, oFileRepositoryInstance.CurrentOperations[0].ActionResult == enumActionResult.Success);
 
         }
 
@@ -49,12 +47,9 @@ namespace FileRepository.Test
                     Operation = enumOperation.DeleteFile
                 });
 
-            oFileRepositoryInstance.StartOperation();
-            do
-            {
-                System.Threading.Thread.Sleep(600);
-            } while (oFileRepositoryInstance.GetProgressProcess(oFileRepositoryInstance.CurrentOperations[0].InternalFileId) < 100);
+            oFileRepositoryInstance.StartOperation(false);
 
+            Assert.AreEqual(true, oFileRepositoryInstance.CurrentOperations[0].ActionResult == enumActionResult.Success);
         }
 
         private void OperationFinish(Manager.Models.FileModel FileDescription)
