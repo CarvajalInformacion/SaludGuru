@@ -54,6 +54,21 @@ namespace Profile.Test
 
             SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(model);
         }
+
+        [TestMethod]
+        public void DeleteProfileDetailInfo()
+        {
+            List<ProfileInfoModel> list = new List<ProfileInfoModel>();
+            ProfileInfoModel item = new ProfileInfoModel();
+
+            item.ProfileInfoId = 274;
+            item.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            item.Value = "102";
+
+            list.Add(item);
+            SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(list);
+        }
+
         [TestMethod]
         public void UpsertProfileSmallImage()
         {
