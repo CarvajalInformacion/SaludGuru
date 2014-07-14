@@ -613,25 +613,12 @@ namespace BackOffice.Web.Controllers
                 List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
 
                 oCreate = GetComunicationRequestModel();
-
-                oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
-
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();              
-
-                model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == enumProfileInfoType.AsignacionCita
-                                                && x.ProfileInfoType == enumProfileInfoType.CancelacionCita
-                                                && x.ProfileInfoType == enumProfileInfoType.EncuestaSatisfaccion).Select(x => x).ToList();
-
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oCreate.ProfileInfo);
                 
-
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
                 var list = oCreate.ProfileInfo.Select(c => { c.ProfileInfoId = 0; return c; }).ToList();
 
-                //model.Profile.ProfileInfo 
-
                 oCreate.ProfileInfo = list;
-
-                //Delete ProfileInfo
-                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
                 //create profile 
                 SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
 
