@@ -85,6 +85,168 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult ProfileUpsertSmall(string ProfilePublicId, HttpPostedFileBase UploadFile)
+        {
+            if (UploadFile != null && UploadFile.ContentLength > 0)
+            {
+                //get request profile info id
+                int ProfileInfoId_Public = Convert.ToInt32(Request["ProfileInfoId_ImageProfileSmall"]);
+                int ProfileInfoId_Original = Convert.ToInt32(Request["ProfileInfoId_ImageProfileSmallOriginal"]);
+
+                //eval folder destination
+                string oFolder = BackOffice.Models.General.InternalSettings.Instance
+                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_TempDirectory].Value.TrimEnd('\\') + "\\";
+
+                if (!System.IO.Directory.Exists(oFolder))
+                    System.IO.Directory.CreateDirectory(oFolder);
+
+                //get file name
+                string oImageName = enumImageType.ProfileSmall.ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") +
+                    UploadFile.FileName.Substring(UploadFile.FileName.LastIndexOf("."));
+
+                //save file into server
+                UploadFile.SaveAs(oFolder + oImageName);
+
+                //save image into s3 and database
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileSmallImage
+                    (new ProfileModel()
+                    {
+                        ProfilePublicId = ProfilePublicId,
+                        ProfileInfo = new List<ProfileInfoModel>()
+                        {
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = ProfileInfoId_Public,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileSmall
+                            },
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = ProfileInfoId_Original,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileSmallOriginal
+                            }
+                        }
+                    },
+                    oFolder + oImageName);
+            }
+
+            return RedirectToAction(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileUpsertLarge(string ProfilePublicId, HttpPostedFileBase UploadFile)
+        {
+            if (UploadFile != null && UploadFile.ContentLength > 0)
+            {
+                //get request profile info id
+                int ProfileInfoId_Public = Convert.ToInt32(Request["ProfileInfoId_ImageProfileLarge"]);
+                int ProfileInfoId_Original = Convert.ToInt32(Request["ProfileInfoId_ImageProfileLargeOriginal"]);
+
+                //eval folder destination
+                string oFolder = BackOffice.Models.General.InternalSettings.Instance
+                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_TempDirectory].Value.TrimEnd('\\') + "\\";
+
+                if (!System.IO.Directory.Exists(oFolder))
+                    System.IO.Directory.CreateDirectory(oFolder);
+
+                //get file name
+                string oImageName = enumImageType.ProfileLarge.ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") +
+                    UploadFile.FileName.Substring(UploadFile.FileName.LastIndexOf("."));
+
+                //save file into server
+                UploadFile.SaveAs(oFolder + oImageName);
+
+                //save image into s3 and database
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileLargeImage
+                    (new ProfileModel()
+                    {
+                        ProfilePublicId = ProfilePublicId,
+                        ProfileInfo = new List<ProfileInfoModel>()
+                        {
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = ProfileInfoId_Public,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileLarge
+                            },
+                            new ProfileInfoModel()
+                            {
+                                ProfileInfoId = ProfileInfoId_Original,
+                                ProfileInfoType = enumProfileInfoType.ImageProfileLargeOriginal
+                            }
+                        }
+                    },
+                    oFolder + oImageName);
+            }
+
+            return RedirectToAction(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileUpsertGeneral(string ProfilePublicId, List<HttpPostedFileBase> lstUploadFile)
+        {
+            if (lstUploadFile != null)
+            {
+                //eval folder destination
+                string oFolder = BackOffice.Models.General.InternalSettings.Instance
+                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_TempDirectory].Value.TrimEnd('\\') + "\\";
+
+                if (!System.IO.Directory.Exists(oFolder))
+                    System.IO.Directory.CreateDirectory(oFolder);
+
+                List<string> lstFilesToProccess = new List<string>();
+
+                lstUploadFile.All(UploadFile =>
+                {
+                    if (UploadFile != null && UploadFile.ContentLength > 0)
+                    {
+
+                        //get file name
+                        string oImageName = string.Empty;
+                        do
+                        {
+                            oImageName = enumImageType.ProfileGeneral.ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmssff") +
+                                UploadFile.FileName.Substring(UploadFile.FileName.LastIndexOf("."));
+
+                        } while (lstFilesToProccess.Any(x => x.IndexOf(oImageName) >= 0));
+
+                        //save file into server
+                        UploadFile.SaveAs(oFolder + oImageName);
+
+                        //get save image name
+                        lstFilesToProccess.Add(oFolder + oImageName);
+                    }
+                    return true;
+                });
+
+
+                //save image into s3 and database
+                SaludGuruProfile.Manager.Controller.Profile.InsertProfileGeneralImage
+                    (new ProfileModel() { ProfilePublicId = ProfilePublicId, }, lstFilesToProccess);
+            }
+
+            return RedirectToAction(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
+        public virtual ActionResult ProfileDeleteGeneral(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["chk_DeleteGeneral"]))
+            {
+                List<ProfileInfoModel> pinfToDelete = new List<ProfileInfoModel>();
+
+                Request["chk_DeleteGeneral"].
+                    Split(',').
+                    Where(x => !string.IsNullOrEmpty(x)).
+                    All(pinfid =>
+                    {
+                        pinfToDelete.Add(new ProfileInfoModel()
+                        {
+                            ProfileInfoId = Convert.ToInt32(pinfid.Replace(" ", "")),
+                        });
+                        return true;
+                    });
+
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(pinfToDelete);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
         #endregion
 
         #region Office
@@ -616,13 +778,13 @@ namespace BackOffice.Web.Controllers
 
                 oDeleteList = oCreate.ProfileInfo.Where(x => x.Value == string.Empty).Select(x => x).ToList();
 
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();              
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
 
                 model.Profile.ProfileInfo.Where(x => x.ProfileInfoType == enumProfileInfoType.AsignacionCita
                                                 && x.ProfileInfoType == enumProfileInfoType.CancelacionCita
                                                 && x.ProfileInfoType == enumProfileInfoType.EncuestaSatisfaccion).Select(x => x).ToList();
 
-                
+
 
                 var list = oCreate.ProfileInfo.Select(c => { c.ProfileInfoId = 0; return c; }).ToList();
 
