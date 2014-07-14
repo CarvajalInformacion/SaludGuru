@@ -37,7 +37,7 @@
         Website = 406,
         Gender = 407,
         FacebookProfile = 408,
-        ImageProfile = 409,
+        ImageProfileSmall = 409,
         ImageGeneral = 410,
         IdentificationType = 411,
         IdentificationNumber = 412,
@@ -46,7 +46,12 @@
         EncuestaSatisfaccion = 415,
         ModificacionCita = 416,
         RecordatorioCita = 417,
-        RecordatorioProxCita = 418
+        RecordatorioProxCita = 418,
+
+        ImageProfileLarge = 420,
+        ImageProfileSmallOriginal = 421,
+        ImageProfileLargeOriginal = 422,
+        ImageGeneralOriginal = 423,
     }
 
     public enum enumOfficeInfoType

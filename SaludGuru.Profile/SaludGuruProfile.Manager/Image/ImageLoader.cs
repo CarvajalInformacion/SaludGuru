@@ -83,7 +83,7 @@ namespace SaludGuruProfile.Manager.Image
                 return true;
             });
             //start load
-            oFileRepositoryInstance.StartOperation();
+            oFileRepositoryInstance.StartOperation(false);
         }
 
         #endregion

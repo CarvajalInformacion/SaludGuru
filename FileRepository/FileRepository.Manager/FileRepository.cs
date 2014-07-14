@@ -43,11 +43,9 @@ namespace FileRepository.Manager
         public List<FileModel> CurrentOperations { get; set; }
 
         /// <summary>
-        /// Start operation method
+        /// Start operation sync
         /// </summary>
-        /// <param name="Operation"></param>
-        /// <param name="FileDescription"></param>
-        public abstract void StartOperation();
+        public abstract void StartOperation(bool IsAsync);
 
         /// <summary>
         /// Get dictionary file params
