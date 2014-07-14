@@ -56,6 +56,20 @@ namespace Profile.Test
         }
 
         [TestMethod]
+        public void DeleteProfileDetailInfo()
+        {
+            List<ProfileInfoModel> list = new List<ProfileInfoModel>();
+            ProfileInfoModel item = new ProfileInfoModel();
+
+            item.ProfileInfoId = 274;
+            item.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            item.Value = "102";
+
+            list.Add(item);
+            SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(list);
+        }
+
+        [TestMethod]
         public void UpsertProfileSmallImage()
         {
             SaludGuruProfile.Manager.Controller.Profile.UpsertProfileSmallImage
@@ -68,7 +82,7 @@ namespace Profile.Test
                             {
                                 ProfileInfoId = 337,
                                 ProfileInfoType = enumProfileInfoType.ImageProfileSmall,
-                            },
+                    },
                             new ProfileInfoModel()
                             {
                                 ProfileInfoId = 338,
@@ -85,10 +99,10 @@ namespace Profile.Test
         {
             SaludGuruProfile.Manager.Controller.Profile.UpsertProfileLargeImage
                 (new ProfileModel()
-                    {
-                        ProfilePublicId = "38E35666",
+                {
+                    ProfilePublicId = "38E35666",
                         ProfileInfo = new List<ProfileInfoModel>(),
-                    },
+                },
                     @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_large.png"
                 );
         }
@@ -98,10 +112,10 @@ namespace Profile.Test
         {
             SaludGuruProfile.Manager.Controller.Profile.InsertProfileGeneralImage
                 (new ProfileModel()
-                    {
-                        ProfilePublicId = "38E35666",
+                        {
+                            ProfilePublicId = "38E35666",
                         ProfileInfo = new List<ProfileInfoModel>(),
-                    },
+                        },
                 new List<string>() 
                     { 
                     @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\img_2822_General.JPG",
