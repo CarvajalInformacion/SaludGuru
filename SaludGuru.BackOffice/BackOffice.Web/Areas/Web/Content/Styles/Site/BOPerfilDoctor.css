@@ -35,7 +35,7 @@ border:none;
         font-size:20px;
         line-height:20px;
     }
-        .BOProfileFormWrapper #divGridSpecialtyProfile{
+        .BOProfileFormWrapper #divGridSpecialtyProfile, .BOProfileFormWrapper #divGridInsuranceProfile, .BOProfileFormWrapper #divGridTreatmentProfile{
             display:block;
             width:98%;
             margin:0px auto;
