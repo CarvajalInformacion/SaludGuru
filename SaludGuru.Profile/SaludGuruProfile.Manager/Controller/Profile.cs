@@ -223,6 +223,10 @@ namespace SaludGuruProfile.Manager.Controller
                         FirstOrDefault(),
                     null);
             }
+
+            //delete temporal images
+            System.IO.File.Delete(oPublicImage);
+            System.IO.File.Delete(ImagePath);
         }
 
         /// <summary>
@@ -306,6 +310,11 @@ namespace SaludGuruProfile.Manager.Controller
                         FirstOrDefault(),
                     null);
             }
+
+            //delete temporal images
+            System.IO.File.Delete(oPublicImage);
+            System.IO.File.Delete(ImagePath);
+
         }
 
         /// <summary>
@@ -353,6 +362,10 @@ namespace SaludGuruProfile.Manager.Controller
                         DefaultIfEmpty(string.Empty).
                         FirstOrDefault(),
                     null);
+
+                //delete temporal images
+                System.IO.File.Delete(oPublicImage);
+                System.IO.File.Delete(ImagePath);
 
                 return true;
             });

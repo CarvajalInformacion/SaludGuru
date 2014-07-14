@@ -26,6 +26,12 @@
 
         #endregion
 
+        #region Profile Images
+
+        public const string C_Settings_ProfileImage_TempDirectory = "ProfileImage_TempDirectory";
+
+        #endregion
+
         #region Appointment Settings
 
         public const string C_Settings_AppointmentImageEmpty = "AppointmentImageEmpty";

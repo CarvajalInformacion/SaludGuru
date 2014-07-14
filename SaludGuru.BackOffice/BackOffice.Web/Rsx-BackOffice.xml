@@ -22,6 +22,9 @@
     <key name="SecundaryMenu_Appointment">Ap_Day,Ap_Week,Ap_Month,Ap_List,Ap_ShceduleAvailable</key>
     <key name="SecundaryMenu_Patient"></key>
 
+    <!--Image uploader-->
+    <key name="ProfileImage_TempDirectory">D:\Proyectos\Github\SaludGuru\SaludGuru.BackOffice\BackOffice.Web\TmpImg\</key>
+    
     <!--Appointment templates-->
     <key name="AppointmentImageEmpty">http://2.bp.blogspot.com/_EZ16vWYvHHg/S-Bl2fuyyWI/AAAAAAAAMKc/DNayYJK8mEo/s400/www.BancodeImagenesGratuitas.com-Fantasticas-20.jpg</key>
     <key name="AppointmentImageGroup">http://www.madrimasd.org/blogs/matematicas/2008/blogs/matematicas/wp-content/blogs.dir/69/files/1219/o_imagen146.jpg</key>
