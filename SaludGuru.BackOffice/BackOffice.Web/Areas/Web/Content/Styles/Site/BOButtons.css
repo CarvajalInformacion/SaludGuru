@@ -12,7 +12,7 @@ border:none;
 
 border:none;
     
-    width:57.6%;
+    width:63.6%;
     height:38px;
     margin:10px auto;
 }
@@ -41,7 +41,7 @@ border:none;
     color:#333;
 }
 
-.BOButtonsErase {
+.BOButtonsErase, .BOButtonsImagesErase {
     display:block;
     float:right;
     border:1px solid #333;
@@ -59,9 +59,50 @@ border:none;
     background-position:-142px -332px;
     background-size:572px auto;
 }
+.BOButtonsImagesErase {
+    float:none;
+    margin:0px auto;
+}
+
     .BOButtonsErase:hover, .BOButtonsErase:active {
         box-shadow:#000 1px 1px 2px;
     }
+.BOButtonContainerProfileImages {
+    display: inline-block;
+    border: medium none;
+    width: 12%;
+    height: 33px;
+    margin: 4px auto;
+    vertical-align:bottom;
+}
+.BOButtonContainerProfileImagesErase {
+    display:block;
+    border: medium none;
+    width: 97%;
+    height: 33px;
+    margin: 4px auto;
+    vertical-align:bottom;
+    text-align:center;
+}
+.BOProfileImagesButtons {
+    display:block;
+    float:right;
+    border:1px solid #333;
+    border-radius:3px;
+    padding:2px 12px;
+    cursor:pointer;
+    background-color:#5c9b00;
+    text-transform:uppercase;
+    font-family:'MuseoSans100';
+    font-size:20px;
+    line-height:20px;
+    color:#fff;
+    box-shadow:#000 2px 2px 3px;
+    vertical-align:top;
+}
+.BOProfileImagesButtons:hover {
+    background-color:#73c100;
+}
 /**********PESTANAS ACTIVAS Y SUBMENUS**********/
 
 .BOMenuPrincipalPerfil div ul li.selected{
@@ -70,3 +111,9 @@ border:none;
     border-right: medium none #FFF;
     position: relative;
 }
+    .BOMenuPrincipalPerfil div ul li.selected:first-child {
+        background-color: #FFF;
+        z-index: 10;
+        border-right: medium none #FFF;
+        position: relative;
+    }

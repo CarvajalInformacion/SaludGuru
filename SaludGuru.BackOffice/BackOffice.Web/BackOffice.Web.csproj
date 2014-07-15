@@ -354,6 +354,7 @@
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODatePicker.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorComunicados.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BODoctorImagenes.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorOffice.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOInsuranceSpecialityTreatments.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
@@ -1183,6 +1184,7 @@
     <Content Include="Areas\Web\Views\Profile\ProfileMessangerUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ProfileComunicationMenu.cshtml" />
     <Content Include="Areas\Web\Views\Profile\ProfileReminderUpsert.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_Calendar.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
