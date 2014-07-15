@@ -101,8 +101,8 @@
             <li>
                 <label>Teléfono</label>
                 <input id="Telefono" name="Telefono" value="@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)" type="text" />
-            </li> 
-             
+            </li>
+
             <li>
                 @{
                     var CatInfo_MB = Model.Patient == null ? null :
@@ -120,7 +120,7 @@
             <li>
                 <label>Teléfono móvil</label>
                 <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
-            </li> 
+            </li>
 
             <li>
                 @{
@@ -178,3 +178,16 @@
         </div>
     </form>
 </div>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        var pickerOpts = {
+            showAnim: "drop"
+        };
+        $("#Birthday").datepicker(pickerOpts);       
+    });
+</script>
+
+
+
