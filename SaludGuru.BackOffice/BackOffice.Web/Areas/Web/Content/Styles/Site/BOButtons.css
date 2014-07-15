@@ -12,7 +12,7 @@ border:none;
 
 border:none;
     
-    width:95.7%;
+    width:57.6%;
     height:38px;
     margin:10px auto;
 }
@@ -24,7 +24,7 @@ border:none;
     border-radius:3px;
     padding:6px 12px;
     cursor:pointer;
-    background-color:#99c21d;
+    background-color:#5c9b00;
     text-transform:uppercase;
     font-family:'MuseoSans100';
     font-size:20px;
@@ -37,7 +37,7 @@ border:none;
     width:auto;
 }
 .BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover {
-    background-color:#ddff55;
+    background-color:#73c100;
     color:#333;
 }
 
@@ -62,3 +62,11 @@ border:none;
     .BOButtonsErase:hover, .BOButtonsErase:active {
         box-shadow:#000 1px 1px 2px;
     }
+/**********PESTANAS ACTIVAS Y SUBMENUS**********/
+
+.BOMenuPrincipalPerfil div ul li.selected{
+    background-color: #FFF;
+    z-index: 10;
+    border-right: medium none #FFF;
+    position: relative;
+}

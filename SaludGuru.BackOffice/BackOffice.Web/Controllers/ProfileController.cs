@@ -567,6 +567,39 @@ namespace BackOffice.Web.Controllers
         }
         #endregion
 
+        #region Comunications
+
+        public virtual ActionResult ProfileMessangerUpsert(string ProfilePublicId)
+        {
+            ProfileUpSertModel model = new ProfileUpSertModel()
+            {
+                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                ProfileModel oCreate = new ProfileModel();
+                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+
+                oCreate = GetComunicationRequestModel();
+
+                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
+
+                //create profile 
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
+
+                //get updated profile info
+                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+            }
+            return View(model);
+        }
+        
+        #endregion
+
         #region private methods
 
         private ProfileModel GetProfileInfoRequestModel()
@@ -757,38 +790,6 @@ namespace BackOffice.Web.Controllers
                 oReturn = oReturn + 12;
             return oReturn;
         }
-        #endregion
-
-        #region Comunications
-
-        public virtual ActionResult ProfileMessangerUpsert(string ProfilePublicId)
-        {
-            ProfileUpSertModel model = new ProfileUpSertModel()
-            {
-                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
-                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
-            };
-            if (!string.IsNullOrEmpty(Request["UpsertAction"])
-                && bool.Parse(Request["UpsertAction"]))
-            {
-                ProfileModel oCreate = new ProfileModel();
-                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
-
-                oCreate = GetComunicationRequestModel();
-
-                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
-                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
-
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();              
-
-                //create profile 
-                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
-
-                //get updated profile info
-                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
-            }
-            return View(model);
-        }
 
         private ProfileModel GetComunicationRequestModel()
         {
@@ -796,10 +797,10 @@ namespace BackOffice.Web.Controllers
                && bool.Parse(Request["UpsertAction"]))
             {
                 ProfileModel oReturn = new ProfileModel()
-              {
-                  ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
+                {
+                    ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
 
-                  ProfileInfo = new List<ProfileInfoModel>() 
+                    ProfileInfo = new List<ProfileInfoModel>() 
                     { 
                         //Asignacion de cita
                         new ProfileInfoModel()
@@ -878,11 +879,12 @@ namespace BackOffice.Web.Controllers
                             Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
                        },
                     }
-              };
+                };
                 return oReturn;
             }
             return null;
         }
+
         #endregion
     }
 }
