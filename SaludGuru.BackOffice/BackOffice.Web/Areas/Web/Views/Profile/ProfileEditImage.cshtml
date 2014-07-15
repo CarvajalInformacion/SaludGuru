@@ -9,11 +9,12 @@
         @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
     </div>
     <div class="BOProfileFormWrapper">
-        <ul>
-            <li style="height:300px;">
-                <label>
+        <h3>Administracion de Imagenes</h3>
+        <ul class="BOAdminImagesProfile">
+            <li>
+                <h4>
                     Imagen de perfil pequeña
-                </label>
+                </h4>
                 <img src="@(Model.Profile.ProfileInfo.
                     Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
                     Select(x=>x.Value).
@@ -43,13 +44,15 @@
                                     Select(x=>x.ProfileInfoId).
                                     DefaultIfEmpty(0).
                                     FirstOrDefault())" />
-                    <input type="submit" value="Guardar" />
+                    <div class="BOButtonContainerProfileImages">
+                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                    </div>
                 </form>
             </li>
-            <li style="height:300px;">
-                <label>
+            <li>
+                <h4>
                     Imagen de perfil grande
-                </label>
+                </h4>
                 <img src="@(Model.Profile.ProfileInfo.
                     Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
                     Select(x=>x.Value).
@@ -79,35 +82,43 @@
                                     Select(x=>x.ProfileInfoId).
                                     DefaultIfEmpty(0).
                                     FirstOrDefault())" />
-                    <input type="submit" value="Guardar" />
+
+                    <div class="BOButtonContainerProfileImages">
+                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                    </div>
                 </form>
             </li>
-            <li style="height:300px;">
-                <label>
+            <li class="BOImageGalleryBlock">
+                <h4>
                     Imagenes descriptivas
-                </label>
+                </h4>
 
                 <form method="post" enctype="multipart/form-data" action="@Url.Action(MVC.Profile.ActionNames.ProfileUpsertGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
                     <input type="file" id="lstUploadFile" name="lstUploadFile" multiple />
-                    <input type="submit" value="Guardar" />
+                    <div class="BOButtonContainerProfileImages">
+                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                    </div>
+
                 </form>
 
                 <form method="post" action="@Url.Action(MVC.Profile.ActionNames.ProfileDeleteGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
                     @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel pinf in Model.Profile.
                     ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral))
                     {
-                        <img src="@pinf.Value" style="width:200px" />
+                        <img src="@pinf.Value"/>
                         <input type="checkbox" name="chk_DeleteGeneral" value="@pinf.ProfileInfoId" />
                     }
                     @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel pinf in Model.Profile.
                     ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneralOriginal))
                     {
-                        <img src="@pinf.Value" style="width:200px" />
+                        <img src="@pinf.Value"/>
                         <input type="checkbox" name="chk_DeleteGeneral" value="@pinf.ProfileInfoId" />
                     }
                     @if (Model.Profile.ProfileInfo.Count(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral) > 0)
                     {
-                        <input type="submit" value="Borrar seleccionadas" />
+                        <div class="BOButtonContainerProfileImagesErase">
+                            <input class="BOButtonsImagesErase" type="submit" value="Borrar seleccionadas" />
+                        </div>
                     }
                 </form>
             </li>

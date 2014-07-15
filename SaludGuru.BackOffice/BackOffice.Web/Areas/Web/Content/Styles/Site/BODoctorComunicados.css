@@ -12,10 +12,15 @@ div.BOFormDataWrapper ul.BOCommunicationActions {
     }
     ul.BOCommunicationActions li.BOComActionsTableHeading label{
         display:inline-block;
-        width:auto;
-        padding: 2px 24px;
+        padding: 2px 8px;
         border-radius: 0px 12px 0px 0px;
         background-color: #8ed0e0;
+        height: 34px;
+        font-size: 14px;
+        text-align: center;
+        line-height: 13px;
+        width: 114px;
+        vertical-align: top;
     }    
     ul.BOCommunicationActions li.BOComActionsTableCells label{
         display:inline-block;
@@ -28,11 +33,11 @@ div.BOFormDataWrapper ul.BOCommunicationActions {
     }
     ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
         display:inline-block;
-        width:46px;
+        width:116px;
         border:1px solid purple;
     }
     ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(6){
         display:inline-block;
-        width:136px;
+        width:15px;
         border:1px solid purple;
     }
