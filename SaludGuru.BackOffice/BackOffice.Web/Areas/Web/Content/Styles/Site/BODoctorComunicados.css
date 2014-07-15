@@ -1,11 +1,38 @@
-.BOComunicationActions {
+div.BOFormDataWrapper ul.BOCommunicationActions {
     width: 90%;
 }
-    .BOComunicationActions li {
+    ul.BOCommunicationActions li.BOComActionsTableHeading {
+        display:inline-block;
+        width:auto;
     }
-     .BOComunicationActions li label {
-         width: auto;
-         padding: 2px 24px;
-
+    ul.BOCommunicationActions li.BOComActionsTableHeading div{
+        display:inline-block;
+        width:206px;
+        border:none;
     }
-
+    ul.BOCommunicationActions li.BOComActionsTableHeading label{
+        display:inline-block;
+        width:auto;
+        padding: 2px 24px;
+        border-radius: 0px 12px 0px 0px;
+        background-color: #8ed0e0;
+    }    
+    ul.BOCommunicationActions li.BOComActionsTableCells label{
+        display:inline-block;
+        width:206px;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(2){
+        display:inline-block;
+        width:0px;
+        border:1px solid purple;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
+        display:inline-block;
+        width:46px;
+        border:1px solid purple;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(6){
+        display:inline-block;
+        width:136px;
+        border:1px solid purple;
+    }

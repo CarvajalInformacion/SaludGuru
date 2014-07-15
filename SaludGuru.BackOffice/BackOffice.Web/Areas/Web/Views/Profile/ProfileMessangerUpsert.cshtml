@@ -22,14 +22,15 @@
                 {
                     ProfilePublicId = Model.Profile.ProfilePublicId,
                 }))">
-            <ul class="BOComunicationActions">
+            <ul class="BOCommunicationActions">
 
-                <li>
+                <li class="BOComActionsTableHeading">
+                    <div></div>
                     <label>E-Mail</label>
                     <label>SMS</label>
                     <label>Notificaciones Gurú</label>
                 </li>
-                <li>
+                <li class="BOComActionsTableCells">
                     <label>Asignación de cita</label>
                     @{
                         var CatInfo_AC = Model.Profile == null ? null :
@@ -91,7 +92,7 @@
                         }
                     }
                 </li>
-                <li>
+                <li class="BOComActionsTableCells">
                     <label>Cancelación de cita</label>
                     @{
                         var CatInfo_CC = Model.Profile == null ? null :
@@ -151,7 +152,7 @@
                         }
                     }
                 </li>
-                <li>
+                <li class="BOComActionsTableCells">
                     <label>Encuesta de satisfacción</label>
                     @{
                         var CatInfo_ES = Model.Profile == null ? null :
@@ -210,7 +211,7 @@
                         }
                     }
                 </li>
-                <li>
+                <li class="BOComActionsTableCells">
                     <label>Modificación de cita</label>
                     @{
                         var CatInfo_MC = Model.Profile == null ? null :
@@ -269,13 +270,13 @@
                             <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
                         }
                     }
-                </li>
-                <li class="BOButtonContainerShort">
-                    @*hiden fields*@
-                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input class="BOButtons" type="submit" value="guardar" />
-                </li>
+                </li>                
             </ul>
+            <div class="BOButtonContainerShort">
+                @*hiden fields*@
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input class="BOButtons" type="submit" value="guardar" />
+            </div>
         </form>
     </div>
 </div>
