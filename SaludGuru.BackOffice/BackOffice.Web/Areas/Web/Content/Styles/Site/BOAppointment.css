@@ -122,6 +122,18 @@ vertical-align: baseline;
 line-height: 12px;
 color: #666;
 }
+
+div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected,
+div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected{
+    background-image:none;
+    background-color:purple;
+}
+
+div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected > a,
+div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
+    background-image:none;
+    background-color:purple;
+}
 /************************ ACCIONES DE LA CITA **************************/
 
 .BOAgendaAppointmentActions {border:1px solid #99c21d; display:block; box-shadow:2px 2px 2px; background-color:#F2F2F2;}
