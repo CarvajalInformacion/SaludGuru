@@ -1,215 +1,22 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "Week";
+    ViewBag.Title = "SaludGuru - agenda semana";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
 }
 
 <div class="BOAgendaModuleGreatWrapper">
-    <!--Calendar by month-->
     <div class="BOAgendaCalendarWrapper">
-
-        <div class="BOAgendaDateSelector">
-            <a class="BOAgendaDateSelectorLeft" href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-2).ToString("yyyy-MM-dd") })">Anterior</a>
-            <a class="BOAgendaDateSelectorRight" href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(+2).ToString("yyyy-MM-dd") })">Siguiente</a>
-        </div>
-
-        <div class="BOAgendaSideMonthsWrapper">
-            <div id="Calendar-Left"></div>
-            <div id="Calendar-Right"></div>
-        </div>
-        <!--Appointment actions-->
-        <div class="BOAgendaAppointmentActions">
-            <ul>
-                <li class="BOActionCreate">
-                    <a href="">Crear nueva cita</a>
-                </li>
-                <li class="BOActionCancel">
-                    <a href="">Citas canceladas</a>
-                </li>
-                <li class="BOActionBlock">
-                    <a href="">Bloquear horario</a>
-                </li>
-            </ul>
-        </div>
-
-        <!--create edit appointment-->
-        <div id="AppointmentUpsert" style="display:none;">
-            <form action="/api/AppointmentApi?UpsertAction=true" method="post" id="frmAppointment" name="frmAppointment">
-                <ul>
-                    <li>
-                        <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
-                    </li>
-                    @*<li><h4>Datos de la Cita</h4></li>*@
-                    <li>
-                        <label>Consultorio:</label>
-                        <select id="OfficePublicId" name="OfficePublicId"></select>
-                    </li>
-                    <li>
-                        <label>Tipo de tratamiento:</label>
-                        <select id="TreatmentId" name="TreatmentId"></select>
-                        <input type="hidden" id="CatId_TreatmentId" name="CatId_TreatmentId" />
-                    </li>
-                    <li>
-                        <label>Fecha de inicio:</label>
-                        <input type="text" id="StartDate" name="StartDate" />
-                    </li>
-                    <li>
-                        <label>Hora de inicio:</label>
-                        <input type="text" id="StartTime" name="StartTime" />
-                    </li>
-                    <li>
-                        <label>Duración:</label>
-                        <input type="text" id="Duration" name="Duration" />
-                    </li>
-                    <li>
-                        <label>Asignar paciente(s):</label>
-                        <input type="text" id="getPatient" name="getPatient" />
-                    </li>
-                    <li>
-                        <h4>Paciente(s) asignados a la cita:</h4>
-                    </li>
-                    <li>
-                        <ul id="lstPatient"></ul>
-                    </li>
-                </ul>
-                <!--hidden fields-->
-                <div style="display:none;">
-                    <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
-                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
-                    <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
-                    <input type="hidden" id="AfterCare" name="AfterCare" />
-                    <input type="hidden" id="CatId_AfterCare" name="CatId_AfterCare" />
-                    <input type="hidden" id="BeforeCare" name="BeforeCare" />
-                    <input type="hidden" id="CatId_BeforeCare" name="CatId_BeforeCare" />
-                </div>
-            </form>
-        </div>
-
-        <div class="BOAgendaCalendarAppointmentCommands">
-            <span class="AppointmentActionsCancel">
-                <a href="javascript:MeetingObject.SaveAppointment()">Cancelar</a>
-            </span>
-            <span class="AppointmentActionsConfirm">
-                <a href="javascript:MeetingObject.SaveAppointment()">Confirmar</a>
-            </span>
-            <span class="AppointmentActionsAccept">
-                <a href="javascript:MeetingObject.SaveAppointment()">Aceptar</a>
-            </span>
-            <span class="AppointmentActionsNew">
-                <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
-            </span>
-        </div>
-    </div>
-
-    <!--Meeting Calendar-->
-    <div id="divMeetingCalendar" style="overflow:scroll;">
-        <div id="CalendarContent"></div>
-    </div>
-
-    <!--templates-->
-    <div id="templates" style="display:none;">
-        <!--metting calendar-->
-        <div id="divMetting">
-            <div id="divOfficePublicId" style="width:700px;float:left;"></div>
-        </div>
-
-        <!--patient autocomplete-->
-        <div id="divPatientAcItem">
-            <div class="autocompletePatients">
-                <img src="{ProfileImage}" />
-                <label>
-                    {Name}<br />
-                    Ident: {IdentificationNumber}<br />
-                    Cel: {Mobile}
-                </label>
-            </div>
-        </div>
-
-        <!--patient appointment-->
-        <ul id="ulPatientAppointment">
-            <li id="{PatientPublicId}">
-                <img src="{ProfileImage}" />
-                <label>{Name}</label>
-                <label>Ident: {IdentificationNumber}</label>
-                <label>Cel: {Mobile}</label>
-                <label>Email: {Email}</label>
-                <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
-                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
-            </li>
-        </ul>
+        <!--Calendar by month-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
     </div>
 </div>
-@{
-    //create office calendar object
-    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
-                        new
-                        {
-                            OfficePublicId = of.OfficePublicId,
-                            OfficeName = of.Name,
-                            OfficeDivId = string.Empty,
-                            TreatmentList = of.RelatedTreatment.Select(tr => new
-                            {
-                                TreatmentId = tr.CategoryId,
-                                TreatmentName = tr.Name,
-                                Default = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
-                                Duration = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
-                                AfterCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                                BeforeCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                            }).OrderBy(tro => tro.TreatmentName).ToList(),
-                        }).OrderBy(ofo => ofo.OfficeName).ToList());
-}
 
 @section inlinescripts
 {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //render calendar by month
-            MettingCalendarObject.InitMettingCalendar({
-                DivId: 'Calendar',
-                CountryId: '@(Model.CurrentProfile.RelatedOffice== null?1: Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
-                ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
-                CurrentDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)'),
-            });
-            MettingCalendarObject.InitMettingCalendarDoubleByDayAsync(new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'));
-
-            //render day calendar
-            MeetingObject.InitMeeting({
-                StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
-                EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
-                OfficeInfo:@(Html.Raw(oOfficeInfo)),
-            });
-            MeetingObject.InitByDay('CalendarContent','agendaWeek');
-        });
-    </script>
-
-    <style type="text/css">
-        #CalendarContent .AppointmentStatus_1201 {
-            background-color: #99D50E !important;
-        }
-
-        #CalendarContent .fc-event-inner {
-        }
-
-        #CalendarContent .fc-event-time {
-            position: absolute;
-            left: 5px;
-            margin-top: 10px;
-        }
-
-        #CalendarContent .fc-event-title {
-            position: absolute;
-            left: 100px;
-            vertical-align: middle;
-        }
-
-            #CalendarContent .fc-event-title img {
-                width: 20px;
-            }
-
-            #CalendarContent .fc-event-title label {
-            }
-    </style>
+    @(Model.RenderScripts = true)
+    @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
 }
 
 

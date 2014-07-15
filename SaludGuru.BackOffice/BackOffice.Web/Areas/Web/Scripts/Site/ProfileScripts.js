@@ -382,3 +382,12 @@ function ProfileSearchGrid(vidDiv) {
         $('#' + vidDiv).getKendoGrid().dataSource.read();
     });   
 }
+
+function ReminderSetControlSpinner(control) {
+    //init duration spinner
+    $('#'+ control).spinner({
+        min: 1,
+        step: 2,
+    });
+
+}

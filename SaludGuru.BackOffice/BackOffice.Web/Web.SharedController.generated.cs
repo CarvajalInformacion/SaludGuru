@@ -36,6 +36,7 @@ namespace T4MVC.Web
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _AP_Calendar = "_AP_Calendar";
                 public readonly string _L_Header = "_L_Header";
                 public readonly string _L_PrincipalMenu = "_L_PrincipalMenu";
                 public readonly string _Layout = "_Layout";
@@ -46,6 +47,7 @@ namespace T4MVC.Web
                 public readonly string _PA_PatientInfo = "_PA_PatientInfo";
                 public readonly string _PA_PatientMenu = "_PA_PatientMenu";
             }
+            public readonly string _AP_Calendar = "~/Areas/Web/Views/Shared/_AP_Calendar.cshtml";
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";
             public readonly string _L_PrincipalMenu = "~/Areas/Web/Views/Shared/_L_PrincipalMenu.cshtml";
             public readonly string _Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";

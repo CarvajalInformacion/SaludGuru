@@ -597,7 +597,35 @@ namespace BackOffice.Web.Controllers
             }
             return View(model);
         }
-        
+
+        public virtual ActionResult ProfileReminderUpsert(string ProfilePublicId)
+        {
+            ProfileUpSertModel model = new ProfileUpSertModel()
+            {
+                ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                ProfileModel oCreate = new ProfileModel();
+                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+
+                oCreate = GetReminderRequestModel();
+
+                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+
+                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
+
+                //create profile 
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
+
+                //get updated profile info
+                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+            }
+            return View(model);
+        }
         #endregion
 
         #region private methods
@@ -878,6 +906,69 @@ namespace BackOffice.Web.Controllers
                             ProfileInfoType = enumProfileInfoType.ModificacionCita,
                             Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
                        },
+                    }
+                };
+                return oReturn;
+            }
+            return null;
+        }
+
+        private ProfileModel GetReminderRequestModel()
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+               && bool.Parse(Request["UpsertAction"]))
+            {
+                ProfileModel oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
+
+                    ProfileInfo = new List<ProfileInfoModel>() 
+                    { 
+                        //Recordatorio cita
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsemailRC"])?0:int.Parse(Request["IsemailRC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,
+                            Value = (Request["RC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsSmsRC"])?0:int.Parse(Request["IsSmsRC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,
+                            Value = (Request["RC_Sms"]!= null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["IsNotifyRC"])?0:int.Parse(Request["IsNotifyRC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,                            
+                            Value = (Request["RC_NotifyGuru"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
+                        },                       
+
+                        //Recordatorio Prox. de cita
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isEMailRPC"])?0:int.Parse(Request["isEMailRPC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
+                            Value = (Request["RPC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
+                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
+                        },                        
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isSmsRPC"])?0:int.Parse(Request["isSmsRPC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
+                            Value = (Request["RPC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
+                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyRPC"])?0:int.Parse(Request["isNotifyRPC"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
+                            Value = (Request["RPC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
+                        },                        
                     }
                 };
                 return oReturn;

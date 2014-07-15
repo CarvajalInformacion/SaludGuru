@@ -15,17 +15,18 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get date
+            DateTime dtAux = DateTime.Now;
+
             if (!string.IsNullOrEmpty(Date))
             {
-                DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 23, 59, 59);
+                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             }
-            else
-            {
-                oModel.CurrentStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
-            }
+
+            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
+            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.AddDays(1).Day, 0, 0, 0);
+
+            //set current appointment type
+            oModel.AppointmentType = enumAppointmentType.Day;
 
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
@@ -38,17 +39,25 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get date
+            DateTime dtAux = DateTime.Now;
+
             if (!string.IsNullOrEmpty(Date))
             {
-                DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 23, 59, 59);
+                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             }
-            else
-            {
-                oModel.CurrentStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
-            }
+
+            //get start week date
+            int intAuxDayAdd = dtAux.DayOfWeek - DayOfWeek.Monday;
+            if (intAuxDayAdd < 0)
+                intAuxDayAdd = intAuxDayAdd + 7;
+
+            dtAux = dtAux.AddDays((-1) * intAuxDayAdd);
+
+            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
+            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day + 7, 0, 0, 0);
+
+            //set current appointment type
+            oModel.AppointmentType = enumAppointmentType.Week;
 
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
@@ -61,17 +70,18 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get date
+            DateTime dtAux = DateTime.Now;
+
             if (!string.IsNullOrEmpty(Date))
             {
-                DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 23, 59, 59);
+                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             }
-            else
-            {
-                oModel.CurrentStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
-            }
+
+            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, 1, 0, 0, 0);
+            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.AddMonths(1).Month, 1, 0, 0, 0);
+
+            //set current appointment type
+            oModel.AppointmentType = enumAppointmentType.Month;
 
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);

@@ -1,71 +1,62 @@
-﻿/* Inicialización en español para la extensión 'UI date picker' para jQuery. */
-jQuery(function ($) {
-    $.datepicker.regional['es'] = {
-        closeText: 'Cerrar',
-        prevText: '&#x3c;Ant',
-        nextText: 'Sig&#x3e;',
-        currentText: 'Hoy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-        'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
-        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute;', 'Juv', 'Vie', 'S&aacute;b'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute;'],
-        weekHeader: 'Sm',
-        dateFormat: 'dd/mm/yy',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: ''
-    };
-    $.datepicker.setDefaults($.datepicker.regional['es']);
-});
-
-
-/*calendar render method*/
+﻿/*calendar render method*/
 var MettingCalendarObject = {
 
     /*calendar info*/
     DivId: '',
     CountryId: '',
     ProfilePublicId: '',
-    CurrentDate: new Date(),
+    StartDate: new Date(),
+    EndDate: new Date(),
+    FirstDate: new Date(),
+    SecondDate: new Date(),
 
     /*init meeting calendar variables*/
-    InitMettingCalendar: function (vInitObject) {
+    Init: function (vInitObject) {
         this.DivId = vInitObject.DivId;
         this.CountryId = vInitObject.CountryId;
         this.ProfilePublicId = vInitObject.ProfilePublicId;
-        this.CurrentDate = vInitObject.CurrentDate;
+        this.StartDate = vInitObject.StartDate;
+        this.EndDate = vInitObject.EndDate;
+        this.FirstDate = vInitObject.FirstDate;
+        this.SecondDate = vInitObject.SecondDate;
     },
 
-    InitMettingCalendarDoubleByDayAsync: function (vSecondDate) {
+    RenderAsync: function () {
         //make ajax for special days
         $.ajax({
             type: "POST",
-            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId + '&Date=' + this.CurrentDate.getFullYear() + '-' + ((new Number(this.CurrentDate.getMonth())) + 1) + '-1'
+            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId + '&StartDate=' + serverDateToString(this.StartDate) + '&EndDate=' + serverDateToString(this.EndDate)
         }).done(function (data) {
+
             //left date picker
-            MettingCalendarObject.InitMettingCalendarDoubleByDay(vSecondDate, data);
+            MettingCalendarObject.RenderCalendar('-Left', data, MettingCalendarObject.FirstDate);
+            //right date picker
+            MettingCalendarObject.RenderCalendar('-Right', data, MettingCalendarObject.SecondDate);
+
         }).fail(function () {
-            alert("se ha generado un error en el render del calendario");
+            alert("se ha generado un error en el calendario");
         });
     },
 
-    InitMettingCalendarDoubleByDay: function (vSecondDate, lstSpecialDay) {
-        //load calendar by day
+    RenderCalendar: function (vDivId, vlstSpecialDay, vCurrentDate) {
 
-        //left
-        $('#' + this.DivId + '-Left').datepicker({
+        //render calendar
+        $('#' + this.DivId + vDivId).datepicker({
             dateFormat: 'yy-mm-dd',
             locale: $.datepicker.regional['es'],
-            defaultDate: this.CurrentDate,
+            defaultDate: vCurrentDate,
             beforeShowDay: function (date) {
-                //eval special day
+
                 var oReturn = [true, ''];
-                if (lstSpecialDay != null) {
-                    $(lstSpecialDay).each(function (index, value) {
+
+                //eval selected date
+                if (date.getFullYear() >= MettingCalendarObject.StartDate.getFullYear() && date.getMonth() >= MettingCalendarObject.StartDate.getMonth() && date.getDate() >= MettingCalendarObject.StartDate.getDate() && date.getFullYear() <= MettingCalendarObject.EndDate.getFullYear() && date.getMonth() <= MettingCalendarObject.EndDate.getMonth() && date.getDate() < MettingCalendarObject.EndDate.getDate()) {
+                    oReturn = [true, ' selected'];
+                }
+
+                //eval special day
+                if (vlstSpecialDay != null) {
+                    $(vlstSpecialDay).each(function (index, value) {
                         if (value.Year == date.getFullYear() && value.Month == (date.getMonth() + 1) && value.Day == date.getDate()) {
                             oReturn = [true, 'specialDay_' + value.SpecialDayType];
                         }
@@ -77,36 +68,13 @@ var MettingCalendarObject = {
                 //delete selected style in continuos calendar
                 //$('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
                 //alert(date + 'jairo');
-                window.location = '/Appointment/Day?Date=' + date;
+                //window.location = '/Appointment/Day?Date=' + date;
             },
         });
 
-        //right
-        $('#' + this.DivId + '-Right').datepicker({
-            dateFormat: 'yy-mm-dd',
-            locale: $.datepicker.regional['es'],
-            defaultDate: vSecondDate,
-            beforeShowDay: function (date) {
-                //eval special day
-                var oReturn = [true, ''];
-                if (lstSpecialDay != null) {
-                    $(lstSpecialDay).each(function (index, value) {
-                        if (value.Year == date.getFullYear() && value.Month == (date.getMonth() + 1) && value.Day == date.getDate()) {
-                            oReturn = [true, 'specialDay_' + value.SpecialDayType];
-                        }
-                    });
-                }
-                return oReturn;
-            },
-            onSelect: function (date) {
-                //delete selected style in continuos calendar
-                //$('#' + this.DivId + '-Left .ui-state-active').removeClass('ui-state-active ui-state-hover');
-                window.location = '/Appointment/Day?Date=' + date;
-            },
-        });
-
-        //delete selected style on right calendar
-        $('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
+        //delete selected style on calendar
+        $('#' + this.DivId + vDivId + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
+        $('#' + this.DivId + vDivId + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
     },
 };
 

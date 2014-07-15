@@ -20,7 +20,7 @@
                         strName = "Mensajería";
                         break;
                     case BackOffice.Models.General.enumMenuComunications.Reminders:
-                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileReminderUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Recordatorios";
                         break;
