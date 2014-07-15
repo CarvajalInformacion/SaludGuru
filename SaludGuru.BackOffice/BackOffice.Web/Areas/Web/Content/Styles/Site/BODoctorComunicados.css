@@ -28,7 +28,7 @@ div.BOFormDataWrapper ul.BOCommunicationActions {
     }
     ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(2){
         display:inline-block;
-        width:0px;
+        width:auto;
         border:1px solid purple;
     }
     ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
