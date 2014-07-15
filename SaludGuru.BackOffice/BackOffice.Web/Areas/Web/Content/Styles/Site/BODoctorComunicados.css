@@ -1,0 +1,11 @@
+.BOComunicationActions {
+    width: 90%;
+}
+    .BOComunicationActions li {
+    }
+     .BOComunicationActions li label {
+         width: auto;
+         padding: 2px 24px;
+
+    }
+

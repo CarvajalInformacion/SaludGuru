@@ -24,7 +24,7 @@ border:none;
     border-radius:3px;
     padding:6px 12px;
     cursor:pointer;
-    background-color:#99c21d;
+    background-color:#5c9b00;
     text-transform:uppercase;
     font-family:'MuseoSans100';
     font-size:20px;
@@ -37,7 +37,7 @@ border:none;
     width:auto;
 }
 .BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover {
-    background-color:#ddff55;
+    background-color:#73c100;
     color:#333;
 }
 

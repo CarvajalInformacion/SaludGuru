@@ -7,19 +7,23 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
 </div>
-@if (Model.Profile.ProfileInfo != null)
-{
-    Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileComunicationMenu, Model);
-}
 
 <div class="BOProfileFormWrapper">
-    <div class ="BOFormDataWrapper">
+    <h3 class="BOCreateOfficeLabel">Administrar Comunicaciones</h3>
+
+    @if (Model.Profile.ProfileInfo != null)
+    {
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileComunicationMenu, Model);
+    }
+
+    <div class="BOFormDataWrapper">
         <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name,
                 new
                 {
                     ProfilePublicId = Model.Profile.ProfilePublicId,
                 }))">
-            <ul>
+            <ul class="BOComunicationActions">
+
                 <li>
                     <label>E-Mail</label>
                     <label>SMS</label>
@@ -115,7 +119,7 @@
                             else
                             {
                                 <input type="checkbox" id="CC_EMail" name="CC_EMail" />
-                                <input type="hidden" id="isEMailCC" name="isEMailCC"  />
+                                <input type="hidden" id="isEMailCC" name="isEMailCC" />
                             };
                             if (oLoadedSms_CC != null)
                             {
@@ -125,7 +129,7 @@
                             else
                             {
                                 <input type="checkbox" id="CC_Sms" name="CC_Sms" />
-                                <input type="hidden" id="isSmsCC" name="isSmsCC"  />
+                                <input type="hidden" id="isSmsCC" name="isSmsCC" />
                             };
 
                             if (oLoadedNotifyGuru_CC != null)
@@ -185,7 +189,7 @@
                             else
                             {
                                 <input type="checkbox" id="ES_Sms" name="ES_Sms" />
-                                <input type="hidden" id="isSmsEs" name="isSmsEs"  />
+                                <input type="hidden" id="isSmsEs" name="isSmsEs" />
                             }
                             if (oLoadedNotifyGuru_ES != null)
                             {
@@ -235,7 +239,7 @@
                             else
                             {
                                 <input type="checkbox" id="MC_EMail" name="MC_EMail" />
-                                <input type="hidden" id="isEmailMC" name="isEmailMC"  />
+                                <input type="hidden" id="isEmailMC" name="isEmailMC" />
                             }
                             if (oLoadedSms_MC != null)
                             {
@@ -255,7 +259,7 @@
                             else
                             {
                                 <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
-                                <input type="hidden" id="isNotifyMC" name="isNotifyMC"/>
+                                <input type="hidden" id="isNotifyMC" name="isNotifyMC" />
                             }
                         }
                         else
@@ -273,5 +277,5 @@
                 </li>
             </ul>
         </form>
-</div>
+    </div>
 </div>

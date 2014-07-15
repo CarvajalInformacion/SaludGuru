@@ -328,6 +328,11 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuProfile.Treatment;
             }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.ProfileMessangerUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Comunicactions;
+            }
             return oReturn;
         }
 
