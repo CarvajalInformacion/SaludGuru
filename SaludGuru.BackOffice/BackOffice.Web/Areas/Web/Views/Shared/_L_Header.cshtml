@@ -24,7 +24,12 @@
                         string ImgProfile = ua.ProfileImage;
                         if (string.IsNullOrEmpty(ImgProfile))
                         {
-                            if (ua.ProfileGender != null && ua.ProfileGender.Value)
+                            if (ua.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Admin].Value;
+                            }
+                            else if (ua.ProfileGender != null && ua.ProfileGender.Value)
                             {
                                 ImgProfile = BackOffice.Models.General.InternalSettings.Instance
                                     [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
