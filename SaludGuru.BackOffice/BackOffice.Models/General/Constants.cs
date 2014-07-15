@@ -36,6 +36,13 @@
 
         #endregion
 
+        #region Patient Images
+
+        public const string C_Settings_PatientImage_Man = "PatientImage_Man";
+        public const string C_Settings_PatientImage_Woman = "PatientImage_Woman";
+
+        #endregion
+
         #region Appointment Settings
 
         public const string C_Settings_AppointmentImageEmpty = "AppointmentImageEmpty";

@@ -47,7 +47,7 @@
     public enum enumMenuComunications
     {
         Messaging,
-        Reminders        
+        Reminders
     }
 
     public enum enumMenuPatient
@@ -73,5 +73,13 @@
         OfficeInfoType = 7,
         OfficeCategoryInfoType = 8,
         IdentificationType = 9
+    }
+
+    public enum enumAppointmentType
+    {
+        Day,
+        Week,
+        List,
+        Month,
     }
 }

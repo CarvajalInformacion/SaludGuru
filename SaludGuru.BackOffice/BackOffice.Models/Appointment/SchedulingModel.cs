@@ -1,4 +1,5 @@
-﻿using SaludGuruProfile.Manager.Models.Profile;
+﻿using BackOffice.Models.General;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace BackOffice.Models.Appointment
         public DateTime CurrentStartDate { get; set; }
 
         public DateTime CurrentEndDate { get; set; }
+
+        public enumAppointmentType AppointmentType { get; set; }
+
+        public bool RenderScripts { get; set; }
 
     }
 }

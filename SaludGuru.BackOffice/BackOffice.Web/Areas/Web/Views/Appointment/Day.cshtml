@@ -1,36 +1,15 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "Day";
+    ViewBag.Title = "SaludGuru - agenda día";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
 }
 
 <div class="BOAgendaModuleGreatWrapper">
-    <!--Calendar by month-->
     <div class="BOAgendaCalendarWrapper">
-
-        @*<div class="BOAgendaDateSelector">
-            <a class="BOAgendaDateSelectorLeft" href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-2).ToString("yyyy-MM-dd") })">Anterior</a>
-            <a class="BOAgendaDateSelectorRight" href="@Url.Action(MVC.Appointment.ActionNames.Day, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(+2).ToString("yyyy-MM-dd") })">Siguiente</a>
-        </div>*@
-
-        <div class="BOAgendaSideMonthsWrapper">
-            <div id="Calendar-Left"></div>
-            <div id="Calendar-Right"></div>
-        </div>
-        <!--Appointment actions-->
-        <div class="BOAgendaAppointmentActions">
-            <ul>
-                <li class="BOActionCreate">
-                    <a href="">Crear nueva cita</a>
-                </li>
-                <li class="BOActionCancel">
-                    <a href="">Citas canceladas</a>
-                </li>
-                <li class="BOActionBlock">
-                    <a href="">Bloquear horario</a>
-                </li>
-            </ul>
-        </div>
+        <!--Calendar by month-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
 
         <!--create edit appointment-->
         <div id="AppointmentUpsert" style="display:none;">
@@ -118,12 +97,13 @@
         <div id="divPatientAcItem">
             <div class="autocompletePatients">
                 <img src="{ProfileImage}" />
-                <label>{Name}<br />
+                <label>
+                    {Name}<br />
                     Ident: {IdentificationNumber}<br />
                     Cel: {Mobile}
                 </label>
             </div>
-        </div>  
+        </div>
 
         <!--patient appointment-->
         <ul id="ulPatientAppointment">
@@ -162,17 +142,11 @@
 
 @section inlinescripts
 {
+    @(Model.RenderScripts = true)
+    @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+
     <script type="text/javascript">
         $(document).ready(function () {
-            //render calendar by month
-            MettingCalendarObject.InitMettingCalendar({
-                DivId: 'Calendar',
-                CountryId: '@(Model.CurrentProfile.RelatedOffice== null?1: Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
-                ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
-                CurrentDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)'),
-            });
-            MettingCalendarObject.InitMettingCalendarDoubleByDayAsync(new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'));
-
             //render day calendar
             MeetingObject.InitMeeting({
                 StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),

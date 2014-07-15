@@ -117,7 +117,7 @@
                                     FirstOrDefault();
                         if (CatInfo_IN != null)
                         {
-                            <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_IN.id" />
+                            <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_GD.id" />
                         }
                     }
                     <label>Sexo</label>
@@ -148,7 +148,7 @@
                         }
                     }
                     <label>Correo electronico</label>
-                    <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty :CatInfo_IN.val)" type="text" />
+                    <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
                 </li>
                 <li>
                     @{
@@ -221,7 +221,7 @@
                         }
                     }
                     <label>Texto de perfil</label>
-                    <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val)</textarea>
+                    <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
                 </li>
                 <li>
                     @{
