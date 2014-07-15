@@ -54,10 +54,6 @@ border:none;
     height:183px;
     border:2px solid #01a9c2;
     margin:0px auto;
-    background-image:url('/Areas/Web/Content/Images/doctorTest.jpg');
-    background-repeat:no-repeat;
-    background-size: 196px auto;
-    background-position: -39px -1px;
 }
 .BOMenuPrincipalPerfil div h2 {
     display:block;

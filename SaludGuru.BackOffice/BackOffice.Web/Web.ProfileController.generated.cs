@@ -77,6 +77,30 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileUpsertSmall()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertSmall);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileUpsertLarge()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertLarge);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileUpsertGeneral()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertGeneral);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfileDeleteGeneral()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileDeleteGeneral);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult OfficeList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeList);
@@ -215,6 +239,10 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfileCreate = "ProfileCreate";
             public readonly string ProfileEdit = "ProfileEdit";
             public readonly string ProfileEditImage = "ProfileEditImage";
+            public readonly string ProfileUpsertSmall = "ProfileUpsertSmall";
+            public readonly string ProfileUpsertLarge = "ProfileUpsertLarge";
+            public readonly string ProfileUpsertGeneral = "ProfileUpsertGeneral";
+            public readonly string ProfileDeleteGeneral = "ProfileDeleteGeneral";
             public readonly string OfficeList = "OfficeList";
             public readonly string OfficeUpsert = "OfficeUpsert";
             public readonly string OfficeTreatmentList = "OfficeTreatmentList";
@@ -244,6 +272,10 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string ProfileCreate = "ProfileCreate";
             public const string ProfileEdit = "ProfileEdit";
             public const string ProfileEditImage = "ProfileEditImage";
+            public const string ProfileUpsertSmall = "ProfileUpsertSmall";
+            public const string ProfileUpsertLarge = "ProfileUpsertLarge";
+            public const string ProfileUpsertGeneral = "ProfileUpsertGeneral";
+            public const string ProfileDeleteGeneral = "ProfileDeleteGeneral";
             public const string OfficeList = "OfficeList";
             public const string OfficeUpsert = "OfficeUpsert";
             public const string OfficeTreatmentList = "OfficeTreatmentList";
@@ -288,6 +320,41 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public ActionParamsClass_ProfileEditImage ProfileEditImageParams { get { return s_params_ProfileEditImage; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ProfileEditImage
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_ProfileUpsertSmall s_params_ProfileUpsertSmall = new ActionParamsClass_ProfileUpsertSmall();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileUpsertSmall ProfileUpsertSmallParams { get { return s_params_ProfileUpsertSmall; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileUpsertSmall
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string UploadFile = "UploadFile";
+        }
+        static readonly ActionParamsClass_ProfileUpsertLarge s_params_ProfileUpsertLarge = new ActionParamsClass_ProfileUpsertLarge();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileUpsertLarge ProfileUpsertLargeParams { get { return s_params_ProfileUpsertLarge; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileUpsertLarge
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string UploadFile = "UploadFile";
+        }
+        static readonly ActionParamsClass_ProfileUpsertGeneral s_params_ProfileUpsertGeneral = new ActionParamsClass_ProfileUpsertGeneral();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileUpsertGeneral ProfileUpsertGeneralParams { get { return s_params_ProfileUpsertGeneral; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileUpsertGeneral
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string lstUploadFile = "lstUploadFile";
+        }
+        static readonly ActionParamsClass_ProfileDeleteGeneral s_params_ProfileDeleteGeneral = new ActionParamsClass_ProfileDeleteGeneral();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfileDeleteGeneral ProfileDeleteGeneralParams { get { return s_params_ProfileDeleteGeneral; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfileDeleteGeneral
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -552,6 +619,57 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileEditImage);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ProfileEditImageOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileUpsertSmallOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, System.Web.HttpPostedFileBase UploadFile);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileUpsertSmall(string ProfilePublicId, System.Web.HttpPostedFileBase UploadFile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertSmall);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UploadFile", UploadFile);
+            ProfileUpsertSmallOverride(callInfo, ProfilePublicId, UploadFile);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileUpsertLargeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, System.Web.HttpPostedFileBase UploadFile);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileUpsertLarge(string ProfilePublicId, System.Web.HttpPostedFileBase UploadFile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertLarge);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UploadFile", UploadFile);
+            ProfileUpsertLargeOverride(callInfo, ProfilePublicId, UploadFile);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileUpsertGeneralOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, System.Collections.Generic.List<System.Web.HttpPostedFileBase> lstUploadFile);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileUpsertGeneral(string ProfilePublicId, System.Collections.Generic.List<System.Web.HttpPostedFileBase> lstUploadFile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileUpsertGeneral);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lstUploadFile", lstUploadFile);
+            ProfileUpsertGeneralOverride(callInfo, ProfilePublicId, lstUploadFile);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileDeleteGeneralOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileDeleteGeneral(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileDeleteGeneral);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ProfileDeleteGeneralOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
