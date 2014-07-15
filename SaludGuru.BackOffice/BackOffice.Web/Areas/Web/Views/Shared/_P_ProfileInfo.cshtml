@@ -221,9 +221,7 @@
                         }
                     }
                     <label>Texto de perfil</label>
-                    <textarea id="ProfileText" name="ProfileText" rows="15" cols="15">
-                        @(CatInfo_PT == null ? string.Empty : CatInfo_PT.val)
-                    </textarea>
+                    <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val)</textarea>
                 </li>
                 <li>
                     @{
@@ -239,9 +237,7 @@
                         }
                     }
                     <label>Educación</label>
-                    <textarea id="Education" name="Education" rows="15" cols="15">
-                        @(CatInfo_ET == null ? string.Empty : CatInfo_ET.val)
-                    </textarea>
+                    <textarea id="Education" name="Education" rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
                 </li>
                 <li>
                     @{
@@ -257,9 +253,7 @@
                         }
                     }
                     <label>Acreditaciones</label>
-                    <textarea id="Certification" name="Certification" rows="15" cols="15">
-                        @(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)
-                    </textarea>
+                    <textarea id="Certification" name="Certification" rows="15" cols="15">@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val.TrimStart())</textarea>
                 </li>
                 <li class="BOButtonContainerShort">
                     @*hiden fields*@
