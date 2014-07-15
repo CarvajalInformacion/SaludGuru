@@ -183,7 +183,8 @@
 <script>
     $(function () {
         var pickerOpts = {
-            showAnim: "drop"
+            showAnim: "drop",
+            duration: jQuery.support.boxModel ? 'normal' : 'slow'
         };
         $("#Birthday").datepicker(pickerOpts);       
     });

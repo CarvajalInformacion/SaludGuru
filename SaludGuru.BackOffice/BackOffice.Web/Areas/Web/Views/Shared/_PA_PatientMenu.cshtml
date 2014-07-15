@@ -2,10 +2,36 @@
 
 @{
     List<BackOffice.Models.General.MenuPatientModel> PatientMenu = BackOffice.Web.Controllers.BaseController.GetPatientMenu();
+
+
+    //get image profile
+    string ImgPatient = Model.Patient.PatientInfo.
+        Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
+        Select(x => x.Value).
+        DefaultIfEmpty(string.Empty).
+        FirstOrDefault();
+
+    if (string.IsNullOrEmpty(ImgPatient))
+    {
+        if (Model.Patient.PatientInfo.
+                Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Gender).
+                Select(x => x.Value == "true" ? true : false).
+                DefaultIfEmpty(false).
+                FirstOrDefault())
+        {
+            ImgPatient = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value;
+        }
+        else
+        {
+            ImgPatient = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_PatientImage_Woman].Value;
+        }
+    }
 }
 <div class="BOMenuPrincipalPerfil">
     <div>
-        <img class="BOFotoPerfil" src="" alt="" title="" />
+        <img class="BOFotoPerfil" src="@ImgPatient" alt="" title="" />
         <h2>@(Model.Patient.Name + " " + Model.Patient.LastName)</h2>
     </div>
     <div>
