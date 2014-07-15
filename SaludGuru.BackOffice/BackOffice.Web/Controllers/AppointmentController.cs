@@ -84,7 +84,7 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get date
-            if (!string.IsNullOrEmpty(Date))
+            if(!string.IsNullOrEmpty(Date))
             {
                 DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
@@ -96,7 +96,7 @@ namespace BackOffice.Web.Controllers
                 oModel.CurrentEndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
             }
 
-            //get schedule config
+            //get Schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
             return View(oModel);
