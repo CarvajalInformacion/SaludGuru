@@ -1,10 +1,35 @@
 ﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 @{
     List<BackOffice.Models.General.MenuProfileModel> ProfileMenu = BackOffice.Web.Controllers.BaseController.GetProfileMenu();
+
+    //get image profile
+    string ImgProfile = Model.ProfileInfo.
+        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+        Select(x => x.Value).
+        DefaultIfEmpty(string.Empty).
+        FirstOrDefault();
+
+    if (string.IsNullOrEmpty(ImgProfile))
+    {
+        if (Model.ProfileInfo.
+                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Gender).
+                Select(x => x.Value == "true" ? true : false).
+                DefaultIfEmpty(false).
+                FirstOrDefault())
+        {
+            ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
+        }
+        else
+        {
+            ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
+        }
+    }
 }
 <div class="BOMenuPrincipalPerfil">
     <div>
-        <img class="BOFotoPerfil" src="" alt="" title="" />
+        <img class="BOFotoPerfil" src="@ImgProfile" />
         <h2>@(Model.Name + " " + Model.LastName)</h2>
         <h3>@(Model.DefaultSpecialty != null ? Model.DefaultSpecialty.Name : string.Empty)</h3>
     </div>

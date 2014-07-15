@@ -21,20 +21,29 @@
                         DrShowName += ua.RoleName;
 
                         //get doctor image url
-                        string DoctorImageUrl = ua.ProfileImage;
-                        if (string.IsNullOrEmpty(DoctorImageUrl))
+                        string ImgProfile = ua.ProfileImage;
+                        if (string.IsNullOrEmpty(ImgProfile))
                         {
-                            DoctorImageUrl = "https://lh6.googleusercontent.com/-8MajLkkygS0/AAAAAAAAAAI/AAAAAAAAADM/FBzd750qjbg/photo.jpg";
+                            if (ua.ProfileGender != null && ua.ProfileGender.Value)
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
+                            }
+                            else
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
+                            }
                         }
 
                         string strSelected = string.Empty;
                         if (ua.Selected)
                         {
                             SelDrShowName = DrShowName;
-                            selDoctorImageUrl = DoctorImageUrl;
+                            selDoctorImageUrl = ImgProfile;
                             strSelected = "selected='selected'";
                         }
-                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" data-style="background-image: url(&apos;@(DoctorImageUrl)&apos;);">
+                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" data-style="background-image: url(&apos;@(ImgProfile)&apos;);">
                             @DrShowName
                         </option>
                     }
@@ -56,13 +65,13 @@
         <div class="userNotificationWrapper">
             <!--render notifications-->
             <div id="notificationsWrapper" class="notificationsWrapper" style="height:100%; ">
-                <span id="aNotifyCount" class="notificationsWrapper2"></span>                
-                        <div style="top: 33px; left: 0px;">
-                            <ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ulNotificationList"
-                                class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox"
-                                tabindex="2" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 260px ;
+                <span id="aNotifyCount" class="notificationsWrapper2"></span>
+                <div style="top: 33px; left: 0px;">
+                    <ul aria-hidden="false" aria-labelledby="ddAutorizationProfiles-button" id="ulNotificationList"
+                        class="ui-menu ui-widget ui-widget-content ui-corner-bottom ui-menu-icons" role="listbox"
+                        tabindex="2" aria-activedescendant="ui-id-1" aria-disabled="false" style="width: 260px ;
                                 display:none; left: -420%; margin-left: 92px; z-index:20"></ul>
-                        </div>
+                </div>
                 <ul id="NotificationTemplate" style="display:none;" class="hover">
                     <li>
                         <img src="{NotificationImage}" width="28" height="30" />
@@ -99,12 +108,11 @@
     </div>
 </div>
 <style type="text/css">
-    
-#ddAutorizationProfiles-button{
-    border-top:1px solid #999;
-    border-bottom:1px solid #999;
-    border-right: none;
-    border-left: none;
+    #ddAutorizationProfiles-button {
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+        border-right: none;
+        border-left: none;
         display: inline-block;
         width: 100% !important;
         height: 34px;
@@ -112,19 +120,19 @@
         border-radius: 0px;
         background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
         background-repeat: repeat-x;
-    margin: -1px 0px 0px 0px;
+        margin: -1px 0px 0px 0px;
     }
 
-span.ui-selectmenu-text {
-    height: 32px;
-    padding: 0px 0px 0px 20px !important;
-    width: 91%;
-    font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 32px !important;
-    color: #333;
-}
+    span.ui-selectmenu-text {
+        height: 32px;
+        padding: 0px 0px 0px 20px !important;
+        width: 91%;
+        font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 32px !important;
+        color: #333;
+    }
 
     span.selectedProfilePicture {
         display: inline-block;
@@ -153,18 +161,18 @@ span.ui-selectmenu-text {
         left: 16px !important;
     }
 
-#ddAutorizationProfiles-menu {
-    border: 1px solid #333;
-    width: 300px !important;
-    height: auto;
-    border-radius: 0px;
+    #ddAutorizationProfiles-menu {
+        border: 1px solid #333;
+        width: 300px !important;
+        height: auto;
+        border-radius: 0px;
         padding: 8px 0px;
         background-color: #fff !important;
         background-image: none;
     }
 
     #notificationsWrapper ul li:hover {
-            background-color: white;
-            text-decoration: none;
-}
+        background-color: white;
+        text-decoration: none;
+    }
 </style>
