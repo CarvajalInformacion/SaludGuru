@@ -21,14 +21,14 @@ border:none;
 }
 #divGridInsurance div a, #divGridInsurance div.k-grid-content a,
 #divGridSpecialty div a, #divGridSpecialty div.k-grid-content a,
-#divGridTreatment div a, #divGridTreatment div.k-grid-content a
-{
+#divGridTreatment div a, #divGridTreatment div.k-grid-content a{
     color:#a33683;
 }
-#divGridProfile div a, #divGridProfile div.k-grid-content a
-/*#divGridSpecialty div a, #divGridSpecialty div.k-grid-content a,
-#divGridTreatment div a, #divGridTreatment div.k-grid-content a*/
-{
+
+#divGridPatient div a, #divGridPatient div.k-grid-content a {
+    color:#F07600;
+}
+#divGridProfile div a, #divGridProfile div.k-grid-content a{
     color:#99C21D;
 }
 

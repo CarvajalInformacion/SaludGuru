@@ -115,7 +115,7 @@
                                 Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
                                     DefaultIfEmpty(null).
                                     FirstOrDefault();
-                        if (CatInfo_IN != null)
+                        if (CatInfo_GD != null)
                         {
                             <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_GD.id" />
                         }

@@ -9,11 +9,11 @@
         @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
     </div>
     <div class="BOProfileFormWrapper">
-        <h3>Administracion de Imagenes</h3>
+        <h3>Administracion de Imágenes</h3>
         <ul class="BOAdminImagesProfile">
             <li>
                 <h4>
-                    Imagen de perfil pequeña
+                    Imágen de perfil pequeña
                 </h4>
                 @{
                     string strImage = Model.Profile.ProfileInfo.
@@ -24,7 +24,7 @@
                 }
                 @if (string.IsNullOrEmpty(strImage))
                 {
-                    <span>No hay imagenes de perfil pequeña cargadas</span>
+                    <span>No hay imágenes de perfil pequeña cargadas</span>
                 }
                 else
                 {
@@ -61,7 +61,7 @@
             </li>
             <li>
                 <h4>
-                    Imagen de perfil grande
+                    Imágen de perfil grande
                 </h4>
                 @{
                     strImage = Model.Profile.ProfileInfo.
@@ -72,7 +72,7 @@
                 }
                 @if (string.IsNullOrEmpty(strImage))
                 {
-                    <span>No hay imagenes de perfil grande cargadas</span>
+                    <span>No hay imágenes de perfil grande cargadas</span>
                 }
                 else
                 {
@@ -110,7 +110,7 @@
             </li>
             <li class="BOImageGalleryBlock">
                 <h4>
-                    Imagenes descriptivas
+                    Imágenes descriptivas
                 </h4>
 
                 <form method="post" enctype="multipart/form-data" action="@Url.Action(MVC.Profile.ActionNames.ProfileUpsertGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
