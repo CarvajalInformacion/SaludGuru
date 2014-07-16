@@ -389,5 +389,4 @@ function ReminderSetControlSpinner(control) {
         min: 1,
         step: 2,
     });
-
 }
