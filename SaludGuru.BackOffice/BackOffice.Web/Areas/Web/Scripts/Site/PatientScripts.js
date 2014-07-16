@@ -41,11 +41,11 @@ function PatientListGrid(vidDiv) {
             title: "Nombre",
             template: $("#templateName").html()
         }, {
-            field: "Identification",
+            field: "IdentificationNumber",
             title: "Indentificación"
         }, {
             field: "Email",
-            title: "Contacto"
+            title: "Correo electrónico"
         }, {
             field: "Telephone",
             title: "Teléfono"
