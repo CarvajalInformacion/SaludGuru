@@ -169,10 +169,10 @@ function ProfileAutorizationListGrid(vidDiv, vProfileData) {
         },
         columns: [{
             field: "RoleName",
-            title: "Role",
+            title: "Rol",
         }, {
             field: "UserEmail",
-            title: "Email"
+            title: "Correo electrónico"
         }, {
             field: "ProfileRoleId",
             title: "&nbsp;",

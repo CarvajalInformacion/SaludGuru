@@ -58,6 +58,12 @@ namespace BackOffice.Web.Controllers
                 Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
                 RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId),
             };
+
+            if(Model.RelatedAppointment == null)
+            {
+                Model.RelatedAppointment = new List<AppointmentModel>();
+            }
+
             return View(Model);
         }
 
