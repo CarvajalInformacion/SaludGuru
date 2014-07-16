@@ -72,6 +72,7 @@ namespace BackOffice.Web.Controllers
                 //get updated profile info
                 Model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
             }
+
             return View(Model);
         }
 

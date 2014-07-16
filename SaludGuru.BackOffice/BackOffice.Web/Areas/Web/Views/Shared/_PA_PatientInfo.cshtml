@@ -174,7 +174,7 @@
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
         </div>
         <div>
-            <input type="submit" class="BOButtons" />
+            <input type="submit" class="BOButtons" value="GUARDAR"/>
         </div>
     </form>
 </div>
@@ -184,7 +184,9 @@
     $(function () {
         var pickerOpts = {
             showAnim: "drop",
-            duration: jQuery.support.boxModel ? 'normal' : 'slow'
+            duration: jQuery.support.boxModel ? 'normal' : 'slow',
+            changeMonth: true,
+            changeYear: true
         };
         $("#Birthday").datepicker(pickerOpts);       
     });
