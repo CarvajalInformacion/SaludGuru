@@ -1186,6 +1186,7 @@
     <Content Include="Areas\Web\Views\Profile\ProfileReminderUpsert.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_AP_Calendar.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_AP_MeetingCalendar.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_UpsertAppointment.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
