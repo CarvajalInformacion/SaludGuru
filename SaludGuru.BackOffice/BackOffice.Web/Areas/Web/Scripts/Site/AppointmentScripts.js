@@ -157,176 +157,195 @@ var MettingCalendarObject = {
                 week: 'ddd M/d',
                 day: 'ddd M/d'
             },
-            //dayClick: function (date, jsEvent, view) {
-            //    //MeetingObject.RenderCreateAppointment(date, vOfficePublicId);
-            //},
-            //eventClick: function (event, jsEvent, view) {
-            //    alert(event);
-            //},
-            //eventRender: function (event, element) {
-            //    //debugger;
-            //    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-            //},
-            //events: {
-            //    url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
-            //},
+            dayClick: function (date, jsEvent, view) {
+                UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
+            },
+            eventClick: function (event, jsEvent, view) {
+                UpsertAppointmentObject.RenderForm(null, null, event);
+            },
+            eventRender: function (event, element) {
+                //debugger;
+                element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+            },
+            events: {
+                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
+            },
         });
 
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
     },
 };
 
+var UpsertAppointmentObject = {
 
-//RenderCreateAppointment: function (vDate, vOfficePublicId) {
+    /*appointment info*/
+    DivId: '',
 
-//    //hidde create appointment form
-//    $('#AppointmentUpsert').hide();
-//    $('#AppointmentUpsertActions').hide();
+    /*init appointment variables*/
+    Init: function (vInitObject) {
 
+        //init meeting info
+        this.DivId = vInitObject.DivId;
+    },
 
-//    //load office
-//    $('#OfficePublicId').find('option').remove();
-//    $('#OfficePublicId').unbind('change');
-//    for (var item in this.lstOffice) {
+    /*render appointment form*/
+    RenderForm: function (vDate, vOfficeInfo, vAppointmentInfo) {
 
-//        $('#OfficePublicId').append($('<option/>', {
-//            value: this.lstOffice[item].OfficePublicId,
-//            text: this.lstOffice[item].OfficeName,
-//            selected: (this.lstOffice[item].OfficePublicId == vOfficePublicId)
-//        }));
-//    }
+        //hidde create appointment form
+        $('#' + this.DivId).hide();
 
-//    $('#OfficePublicId').change(function () {
-//        MeetingObject.RenderCreateAppointment(vDate, $(this).val());
-//    });
+        //load office
+        $('#OfficePublicId').find('option').remove();
+        $('#OfficePublicId').unbind('change');
 
-//    //load treatment
-//    $('#TreatmentId').find('option').remove();
-//    $('#TreatmentId').unbind('change');
-//    $.each(this.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
-//        $('#TreatmentId').append($('<option/>', {
-//            value: value.TreatmentId,
-//            text: value.TreatmentName,
-//            selected: value.Default,
-//            officepublicid: vOfficePublicId,
-//        }));
+        var oCurrentOfficePublicId = '';
+        if (vOfficeInfo != null) {
+            oCurrentOfficePublicId = vOfficeInfo;
+        }
+        else if (vAppointmentInfo != null) {
+            oCurrentOfficePublicId = vAppointmentInfo.RelatedAppointment.OfficePublicId;
+        }
 
-//        if (value.Default == true) {
-//            //set duration
-//            $('#Duration').val(value.Duration);
-//            //set aftercare
-//            $('#AfterCare').val(value.AfterCare);
-//            //set beforecare
-//            $('#BeforeCare').val(value.BeforeCare);
-//        }
-//    });
+        for (var item in MettingCalendarObject.lstOffice) {
+            $('#OfficePublicId').append($('<option/>', {
+                value: MettingCalendarObject.lstOffice[item].OfficePublicId,
+                text: MettingCalendarObject.lstOffice[item].OfficeName,
+                selected: (MettingCalendarObject.lstOffice[item].OfficePublicId == oCurrentOfficePublicId)
+            }));
+        }
 
-//    $('#TreatmentId').change(function () {
-//        //get treatment id
-//        var ovTreatmentId = $(this).val();
-//        var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
+        $('#OfficePublicId').change(function () {
+            UpsertAppointmentObject.RenderForm(vDate, $(this).val(), vAppointmentInfo);
+        });
 
-//        //set input dependencies
-//        $.each(MeetingObject.lstOffice[ovOfficePublicId].TreatmentList, function (index, value) {
-//            if (value.TreatmentId == ovTreatmentId) {
-//                //set duration
-//                $('#Duration').val(value.Duration);
-//                //set aftercare
-//                $('#AfterCare').val(value.AfterCare);
-//                //set beforecare
-//                $('#BeforeCare').val(value.BeforeCare);
-//            }
-//        });
-//    });
+        //load treatment
+        //$('#TreatmentId').find('option').remove();
+        //$('#TreatmentId').unbind('change');
+        //$.each(MettingCalendarObject.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
+        //    $('#TreatmentId').append($('<option/>', {
+        //        value: value.TreatmentId,
+        //        text: value.TreatmentName,
+        //        selected: value.Default,
+        //        officepublicid: vOfficePublicId,
+        //    }));
 
-//    $('#CatId_TreatmentId').val('0');
+        //    if (value.Default == true) {
+        //        //set duration
+        //        $('#Duration').val(value.Duration);
+        //        //set aftercare
+        //        $('#AfterCare').val(value.AfterCare);
+        //        //set beforecare
+        //        $('#BeforeCare').val(value.BeforeCare);
+        //    }
+        //});
 
-//    //init duration spinner
-//    $('#Duration').spinner({
-//        min: 10,
-//        step: 5,
-//    });
+        //    $('#TreatmentId').change(function () {
+        //        //get treatment id
+        //        var ovTreatmentId = $(this).val();
+        //        var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
 
-//    //load start date
-//    $('#StartDate').datepicker({
-//        altFormat: "yy-mm-dd"
-//    });
+        //        //set input dependencies
+        //        $.each(MeetingObject.lstOffice[ovOfficePublicId].TreatmentList, function (index, value) {
+        //            if (value.TreatmentId == ovTreatmentId) {
+        //                //set duration
+        //                $('#Duration').val(value.Duration);
+        //                //set aftercare
+        //                $('#AfterCare').val(value.AfterCare);
+        //                //set beforecare
+        //                $('#BeforeCare').val(value.BeforeCare);
+        //            }
+        //        });
+        //    });
 
-//    $('#StartDate').datepicker("setDate", vDate);
+        //    $('#CatId_TreatmentId').val('0');
 
-//    //load start time
-//    $('#StartTime').ptTimeSelect({
-//        hoursLabel: 'Hora',
-//        minutesLabel: 'Minutos',
-//        setButtonLabel: 'Aceptar',
-//    });
-//    var vMin = vDate.getMinutes();
-//    if (vMin < 10) {
-//        vMin = '0' + vDate.getMinutes();
-//    }
+        //    //init duration spinner
+        //    $('#Duration').spinner({
+        //        min: 10,
+        //        step: 5,
+        //    });
 
-//    if (vDate.getHours() <= 12) {
-//        $('#StartTime').val(vDate.getHours() + ':' + vMin + 'AM');
-//    }
-//    else {
-//        $('#StartTime').val((vDate.getHours() - 12) + ':' + vMin + ' PM');
-//    }
+        //    //load start date
+        //    $('#StartDate').datepicker({
+        //        altFormat: "yy-mm-dd"
+        //    });
 
-//    //load patient autocomplete
-//    $('#lstPatient').html('');
-//    $('#PatientAppointmentCreate').val('');
-//    $('#PatientAppointmentDelete').val('');
-//    $('#getPatient').autocomplete(
-//    {
-//        //source: acData,
-//        source: function (request, response) {
-//            $.ajax({
-//                url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
-//                dataType: 'json',
-//                success: function (data) {
-//                    response(data);
-//                }
-//            });
-//        },
-//        minLength: 0,
-//        focus: function (event, ui) {
-//            $('#getPatient').val(ui.item.Name);
-//            return false;
-//        },
-//        select: function (event, ui) {
-//            MeetingObject.AddPatientAppointment({
-//                ProfileImage: ui.item.ProfileImage,
-//                Name: ui.item.Name,
-//                IdentificationNumber: ui.item.IdentificationNumber,
-//                Mobile: ui.item.Mobile,
-//                Email: ui.item.Email,
-//                PatientPublicId: ui.item.PatientPublicId
-//            });
+        //    $('#StartDate').datepicker("setDate", vDate);
 
-//            $('#getPatient').val('');
-//            return false;
-//        }
-//    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+        //    //load start time
+        //    $('#StartTime').ptTimeSelect({
+        //        hoursLabel: 'Hora',
+        //        minutesLabel: 'Minutos',
+        //        setButtonLabel: 'Aceptar',
+        //    });
+        //    var vMin = vDate.getMinutes();
+        //    if (vMin < 10) {
+        //        vMin = '0' + vDate.getMinutes();
+        //    }
 
-//        var RenderItem = $('#divPatientAcItem').html();
-//        RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
-//        RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
-//        RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
-//        RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
+        //    if (vDate.getHours() <= 12) {
+        //        $('#StartTime').val(vDate.getHours() + ':' + vMin + 'AM');
+        //    }
+        //    else {
+        //        $('#StartTime').val((vDate.getHours() - 12) + ':' + vMin + ' PM');
+        //    }
 
-//        return $("<li></li>")
-//		    .data("ui-autocomplete-item", item)
-//		    .append("<a><strong>" + RenderItem + "</strong></a>")
-//		    .appendTo(ul);
-//    };
+        //    //load patient autocomplete
+        //    $('#lstPatient').html('');
+        //    $('#PatientAppointmentCreate').val('');
+        //    $('#PatientAppointmentDelete').val('');
+        //    $('#getPatient').autocomplete(
+        //    {
+        //        //source: acData,
+        //        source: function (request, response) {
+        //            $.ajax({
+        //                url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
+        //                dataType: 'json',
+        //                success: function (data) {
+        //                    response(data);
+        //                }
+        //            });
+        //        },
+        //        minLength: 0,
+        //        focus: function (event, ui) {
+        //            $('#getPatient').val(ui.item.Name);
+        //            return false;
+        //        },
+        //        select: function (event, ui) {
+        //            MeetingObject.AddPatientAppointment({
+        //                ProfileImage: ui.item.ProfileImage,
+        //                Name: ui.item.Name,
+        //                IdentificationNumber: ui.item.IdentificationNumber,
+        //                Mobile: ui.item.Mobile,
+        //                Email: ui.item.Email,
+        //                PatientPublicId: ui.item.PatientPublicId
+        //            });
 
-//    //set appointment id
-//    $('#AppointmentPublicId').val('');
+        //            $('#getPatient').val('');
+        //            return false;
+        //        }
+        //    }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
-//    //display create appointment form
-//    $('#AppointmentUpsert').fadeIn('slow');
-//    $('#AppointmentUpsertActions').fadeIn('slow');
-//},
+        //        var RenderItem = $('#divPatientAcItem').html();
+        //        RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
+        //        RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
+        //        RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
+        //        RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
+
+        //        return $("<li></li>")
+        //		    .data("ui-autocomplete-item", item)
+        //		    .append("<a><strong>" + RenderItem + "</strong></a>")
+        //		    .appendTo(ul);
+        //    };
+
+        //    //set appointment id
+        //    $('#AppointmentPublicId').val('');
+
+        //display create appointment form
+        $('#' + this.DivId).fadeIn('slow');
+    },
+};
+
 
 //AddPatientAppointment: function (vPatientModel) {
 //    if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
@@ -446,16 +465,8 @@ var MeetingListObject = {
             },
             columns: [{
                 field: "title",
-                title: "Nombre",
-            }, {
-                title: "LastName",
-                title: "Apellidos"
-            }, {
-                field: "end",
-                title: "Fecha Fin",
-            }, {
-                field: "start",
-                title: "Fecha Inicio",
+                title: "Citas",
+                template: $('#AppointmentTemplate').html()
             }],
         });
     },

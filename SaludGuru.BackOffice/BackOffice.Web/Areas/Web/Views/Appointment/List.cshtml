@@ -15,9 +15,21 @@
 
 <!--templates-->
 <div id="templates" style="display:none;">
+
+    <!--Appointment template-->
+    <div id="AppointmentTemplate">
+        <div>
+            <label>${start}</label>
+            <label>${end}</label>
+            <img src="${img}" />
+            <label>${name}</label>
+        </div>
+    </div>
+
     <!--metting calendar-->
     <div id="divListGrid">
-        <div id="divOfficePublicId" style="width:700px;float:left;">
+        <div id="templateTitle">
+            <div id="divOfficePublicId" style="width:700px;float:left;"></div>
         </div>
     </div>
 </div>
@@ -53,7 +65,6 @@
                 EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
                 OfficeInfo:@(Html.Raw(oOfficeInfo)),
             });
-            debugger;
             MeetingListObject.InitList('AppointmentList');
         })
     </script>
