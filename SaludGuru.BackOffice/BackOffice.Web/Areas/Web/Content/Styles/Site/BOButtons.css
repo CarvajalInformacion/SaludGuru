@@ -8,21 +8,23 @@ border:none;
     margin:10px auto;
 }
 .BOButtonContainerShort{
-    display:inline-block;
-
-border:none;
-    
-    width:63.6%;
-    height:38px;
-    margin:10px auto;
+    background-color: #CCC;
+    position: fixed;
+    width: 77%;
+    height: 38px;
+    left: 312px;
+    top: 94%;
+    padding: 0px !important;
 }
-.BOIncludeNewSpecialty li.BOButtonContainerShort { min-width: 641px; margin-top: -12px;}
-.BOButtons, .BOFormDataWrapper ul li input.BOButtons {
+.BOIncludeNewSpecialty li.BOButtonContainerShort {
+    min-width: 641px; margin-top: -12px;
+}
+.BOButtons, .BOFormDataWrapper ul li input.BOButtons, input.BOAgregarButtons{
     display:block;
     float:right;
     border:1px solid #333;
     border-radius:3px;
-    padding:6px 12px;
+    padding:5px 12px;
     cursor:pointer;
     background-color:#5c9b00;
     text-transform:uppercase;
@@ -32,14 +34,19 @@ border:none;
     color:#fff;
     box-shadow:#000 2px 2px 3px;
     vertical-align:top;
+    margin: 4px 25% auto auto;
+}
+input.BOAgregarButtons {
+    margin: 4px 1.8% auto auto;
 }
 .BOFormDataWrapper ul li input.BOButtons {
     width:auto;
 }
-.BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover {
+.BOButtons:hover, .BOFormDataWrapper ul li input.BOButtons:hover, .BOAgregarButtons:hover {
     background-color:#73c100;
     color:#333;
 }
+
 
 .BOButtonsErase, .BOButtonsImagesErase {
     display:block;
