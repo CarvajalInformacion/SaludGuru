@@ -1,0 +1,47 @@
+div.BOProfileFormWrapper ul.BOAdminImagesProfile {
+    border:none;
+}
+        div.BOProfileFormWrapper ul.BOAdminImagesProfile li {
+            border:none;
+        }
+
+            div.BOProfileFormWrapper ul.BOAdminImagesProfile li h4 {
+                border-bottom:1px solid #808080;
+                line-height:30px;
+                margin:4px 0px 12px 14px;
+                display:block;
+                font-size:18px;
+                text-align:center;
+                width:97%;
+            }
+            div.BOProfileFormWrapper ul.BOAdminImagesProfile li span {
+                line-height:30px;
+                margin:4px 0px 12px 14px;
+                display:block;
+                font-size:14px;
+                text-align:left;
+                width:auto;
+                color: #027C8E;
+            }
+            div.BOProfileFormWrapper ul.BOAdminImagesProfile li img {
+                border: 1px solid #808080;
+                display: inline-block;
+                margin: 0px 0px 0px 14px;
+                padding: 2px;
+            }
+
+            input#UploadFile, input#lstUploadFile {
+                display: inline-block;
+                margin: 5px 0px 12px 14px;
+            }
+
+li.BOImageGalleryBlock img{
+    width:150px;
+    height:auto;
+    margin-bottom: 10px !important;
+}
+li.BOImageGalleryBlock input {
+    display:inline-block;
+    vertical-align:top;
+}
+

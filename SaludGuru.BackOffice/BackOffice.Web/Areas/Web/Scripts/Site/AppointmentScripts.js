@@ -371,3 +371,92 @@ var MettingCalendarObject = {
 
 //    $("#frmAppointment").submit();
 //}
+
+var MeetingListObject = {
+    /*meeting info*/
+    StartDateTime: new Date(),
+    EndDateTime: new Date(),
+
+    /*office info*/
+    lstOffice: new Array(),
+
+    /*init meeting variables*/
+    Init: function (vInitObject) {
+
+        //init meeting info
+        this.StartDateTime = vInitObject.StartDateTime;
+        this.EndDateTime = vInitObject.EndDateTime;
+
+        //init office info object array
+        $.each(vInitObject.OfficeInfo, function (index, value) {
+            MeetingListObject.lstOffice[value.OfficePublicId] = value;
+        });
+    },
+
+    /*init list office appointments*/
+    InitList: function (DivId) {
+        for (var item in this.lstOffice) {
+            //create div to put a calendar
+            this.lstOffice[item].OfficeDivId = 'divList_' + this.lstOffice[item].OfficePublicId;
+            $('#' + DivId).append($('#divListGrid').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
+
+            //init list appointment
+            this.InitListAppointmentByOffice(this.lstOffice[item].OfficePublicId);
+        }
+    },
+
+    InitListAppointmentByOffice: function (vOfficePublicId) {
+
+        $('#' + MeetingListObject.lstOffice[vOfficePublicId].OfficeDivId).kendoGrid({
+            datasource: {
+                type: "json",
+                data: MeetingListObject.lstOffice[vOfficePublicId],
+            },
+
+        });
+
+        //load treatment
+        $.each(this.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
+            var value = value.TreatmentId;
+            var text = value.TreatmentName;
+            var selected = value.Default;
+            var officepublicid = vOfficePublicId;
+        });
+
+
+        $('#' + MeetingListObject.lstOffice[vOfficePublicId].OfficeDivId).html("<p>" + MeetingListObject.lstOffice[vOfficePublicId].OfficeName + "</p>");
+        //configure grid
+        $('#' + MeetingListObject.lstOffice[vOfficePublicId].OfficeDivId).kendoGrid({
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $.ajax({
+                            url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(MeetingListObject.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(MeetingListObject.EndDateTime),
+                            dataType: "json",
+                            type: "POST",
+                            success: function (result) {
+                                options.success(result);
+                            },
+                            error: function (result) {
+                                options.error(result);
+                            }
+                        });
+                    }
+                },
+            },
+            columns: [{
+                field: "title",
+                title: "Nombre",
+            }, {
+                title: "LastName",
+                title: "Apellidos"
+            }, {
+                field: "end",
+                title: "Fecha Fin",
+            }, {
+                field: "start",
+                title: "Fecha Inicio",
+            }],
+        });
+    },
+};
