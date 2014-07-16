@@ -63,6 +63,9 @@ border:none;
     float:none;
     margin:0px auto;
 }
+.BOButtonsImagesErase:hover {
+    box-shadow:#000 1px 1px 2px;
+}
 
     .BOButtonsErase:hover, .BOButtonsErase:active {
         box-shadow:#000 1px 1px 2px;
@@ -71,17 +74,17 @@ border:none;
     display: inline-block;
     border: medium none;
     width: 12%;
-    height: 33px;
-    margin: 4px auto;
-    vertical-align:bottom;
+    height: auto;
+    margin: 5px auto;
+    vertical-align:top;
 }
 .BOButtonContainerProfileImagesErase {
     display:block;
     border: medium none;
     width: 97%;
-    height: 33px;
+    height: auto;
     margin: 4px auto;
-    vertical-align:bottom;
+    vertical-align:top;
     text-align:center;
 }
 .BOProfileImagesButtons {
@@ -94,7 +97,7 @@ border:none;
     background-color:#5c9b00;
     text-transform:uppercase;
     font-family:'MuseoSans100';
-    font-size:20px;
+    font-size:16px;
     line-height:20px;
     color:#fff;
     box-shadow:#000 2px 2px 3px;
