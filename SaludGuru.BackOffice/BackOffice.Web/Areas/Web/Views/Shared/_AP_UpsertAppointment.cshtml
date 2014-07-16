@@ -17,7 +17,6 @@
                     <li>
                         <label>Tipo de tratamiento:</label>
                         <select id="TreatmentId" name="TreatmentId"></select>
-                        <input type="hidden" id="CatId_TreatmentId" name="CatId_TreatmentId" />
                     </li>
                     <li>
                         <label>Fecha de inicio:</label>
@@ -47,10 +46,6 @@
                     <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
                     <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
-                    <input type="hidden" id="AfterCare" name="AfterCare" />
-                    <input type="hidden" id="CatId_AfterCare" name="CatId_AfterCare" />
-                    <input type="hidden" id="BeforeCare" name="BeforeCare" />
-                    <input type="hidden" id="CatId_BeforeCare" name="CatId_BeforeCare" />
                 </div>
             </form>
 
@@ -58,16 +53,16 @@
 
         <div id="AppointmentUpsertActions" class="BOAgendaCalendarAppointmentCommands">
             <span class="AppointmentActionsCancel">
-                <a href="javascript:MeetingObject.SaveAppointment()">Cancelar</a>
+                <a href="javascript:;">Cancelar</a>
             </span>
             <span class="AppointmentActionsConfirm">
-                <a href="javascript:MeetingObject.SaveAppointment()">Confirmar</a>
-            </span>
-            <span class="AppointmentActionsAccept">
-                <a href="javascript:MeetingObject.SaveAppointment()">Aceptar</a>
+                <a href="javascript:;">Confirmar</a>
             </span>
             <span class="AppointmentActionsNew">
-                <a href="javascript:MeetingObject.SaveAppointment()">Nueva Cita</a>
+                <a href="javascript:;">Nueva Cita</a>
+            </span>
+            <span class="AppointmentActionsAccept">
+                <a href="javascript:;">Guardar</a>
             </span>
         </div>
     </div>
@@ -93,8 +88,8 @@
                 <label>Ident: {IdentificationNumber}</label>
                 <label>Cel: {Mobile}</label>
                 <label>Email: {Email}</label>
-                <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
-                <a href="javascript:MeetingObject.RemovePatientAppointment('{PatientPublicId}')">Eliminar</a>
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
+                <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
             </li>
         </ul>
     </div>
