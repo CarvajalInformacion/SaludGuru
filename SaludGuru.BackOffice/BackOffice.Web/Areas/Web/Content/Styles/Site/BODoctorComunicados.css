@@ -31,13 +31,37 @@ div.BOFormDataWrapper ul.BOCommunicationActions {
         width:auto;
         border:1px solid purple;
     }
-    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(3){
         display:inline-block;
         width:116px;
         border:1px solid purple;
     }
-    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(6){
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
         display:inline-block;
         width:15px;
         border:1px solid purple;
+    }
+
+li.BOComActionsTableCells span.ui-spinner {
+    border: 1px solid #808080;
+    margin: 0px 0px 0px 60px;
+    padding: 0px;
+    width: 92px;
+    height: 22px;
+    border-radius: 0px;
+    vertical-align: top;
+    text-align: left;
+}
+    li.BOComActionsTableCells span.ui-spinner input#RP_Horas,
+    li.BOComActionsTableCells span.ui-spinner input#RPC_Time{
+    border: 1px solid grey;
+    width: 71px !important;
+    height: 18px;
+    vertical-align: top;
+    display: inline-block;
+    padding: 0px;
+    margin: 1px;
+    font-weight: normal;
+    font-size: 14px;
+    text-indent: 3px;
     }
