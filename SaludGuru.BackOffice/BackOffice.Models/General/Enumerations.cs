@@ -65,6 +65,7 @@
     public enum enumCatalog
     {
         Role = 1,
+        Admin = 101,
         ProfileType = 2,
         ProfileStatus = 3,
         ProfileInfoType = 4,

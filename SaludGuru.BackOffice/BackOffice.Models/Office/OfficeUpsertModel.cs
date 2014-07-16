@@ -21,5 +21,6 @@ namespace BackOffice.Models.Office
 
         public List<ProfileAutorizationModel> CurrentAutorization { get; set; }
 
+        public List<ItemModel> OfficeOptions { get; set; }
     }
 }
