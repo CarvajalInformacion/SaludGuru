@@ -349,7 +349,7 @@ line-height: 6px;
     height: 57px;
     background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
     background-repeat: no-repeat;
-    background-size: 87px 54px;
+    background-size:81px auto;
 }
 
 .mainMenuItemWrapper {
