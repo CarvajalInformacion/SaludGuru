@@ -144,14 +144,14 @@ border:none;
     }
 
 /*********** ESTILOS DE LA TABLA DE ADMIN DE DOCS. *************/
-#divGridProfile-txtSearch{
+#divGridProfile-txtSearch, #divGridPatient-txtSearch{
     margin: 12px 0px 10px 7px;
     border: 1px solid #808080;
     background-color: #fff;
-    min-height: 28px;
-    min-width: 250px;
+    min-height:28px;
+    min-width:250px;
 }
-#divGridProfile-Search {
+#divGridProfile-Search, #divGridPatient-Search{
     display: inline-block;
     border: 1px solid #333;
     border-radius: 3px;

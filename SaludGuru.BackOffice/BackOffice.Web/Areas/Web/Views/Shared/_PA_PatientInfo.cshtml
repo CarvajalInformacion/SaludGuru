@@ -7,6 +7,7 @@
     }
     <form action="@UrlAction" method="post">
         <ul>
+            <h3>Datos del Paciente</h3>
             <li>
                 <label>Nombre</label>
                 <input id="Name" name="Name" value="@(Model.Patient == null ? string.Empty : Model.Patient.Name)" type="text" />
@@ -65,7 +66,6 @@
                 <input id="IdentificationNumber" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_EM = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -78,13 +78,12 @@
                         <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_EM.id" />
                     }
                 }
-            </li>
+            
             <li>
                 <label>Correo electrónico</label>
                 <input id="Email" name="Email" value="@(CatInfo_EM == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_AT = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -97,13 +96,12 @@
                         <input type="hidden" id="CatId_Telephone" name="CatId_Telephone" value="@CatInfo_AT.id" />
                     }
                 }
-            </li>
+            
             <li>
                 <label>Teléfono</label>
                 <input id="Telefono" name="Telefono" value="@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_MB = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -116,13 +114,12 @@
                         <input type="hidden" id="CatId_Mobile" name="CatId_Mobile" value="@CatInfo_MB.id" />
                     }
                 }
-            </li>
+            
             <li>
                 <label>Teléfono móvil</label>
                 <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_BD = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -135,7 +132,7 @@
                         <input type="hidden" id="CatId_Birthday" name="CatId_Birthday" value="@CatInfo_BD.id" />
                     }
                 }
-            </li>
+            
             <li>
                 <label>Fecha de nacimiento</label>
                 <input id="Birthday" name="Birthday" value="@(CatInfo_BD == null ? string.Empty : CatInfo_BD.val)" type="text" />
@@ -168,14 +165,13 @@
                     }
                 }
             </li>
+            <li class="BOButtonContainerShort">
+                @*hiden fields*@
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input type="submit" class="BOButtons" value="guardar" />
+            </li>
         </ul>
-        <div>
-            @*hiden fields*@
-            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-        </div>
-        <div>
-            <input type="submit" class="BOButtons" />
-        </div>
+            
     </form>
 </div>
 
