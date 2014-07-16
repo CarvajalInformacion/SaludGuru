@@ -465,16 +465,8 @@ var MeetingListObject = {
             },
             columns: [{
                 field: "title",
-                title: "Nombre",
-            }, {
-                title: "LastName",
-                title: "Apellidos"
-            }, {
-                field: "end",
-                title: "Fecha Fin",
-            }, {
-                field: "start",
-                title: "Fecha Inicio",
+                title: "Citas",
+                template: $('#AppointmentTemplate').html()
             }],
         });
     },

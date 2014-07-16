@@ -120,3 +120,12 @@ border:none;
         border-right: medium none #FFF;
         position: relative;
     }
+
+    div.BOInfoOfficeSubmenu ul li.selected{
+        background-color: #ECECEC;
+        z-index: 10;
+        border-bottom: medium none #FFF;
+        position: relative;
+        text-decoration: underline;
+        box-shadow: 2px -1px 2px;
+    }

@@ -54,7 +54,7 @@ border:none;
     color:#333;
 }
     .BOInfoOfficeSubmenu ul li a:hover {text-decoration:none;}
-    .BOInfoOfficeSubmenu ul li:hover {background-color:#E6E6E6; cursor:pointer;}
+    .BOInfoOfficeSubmenu ul li:hover {background-color:#ccc; cursor:pointer;}
 
 /************* LISTAS DE OFICINAS TRATAMIENTOS HORARIOS ************/
 

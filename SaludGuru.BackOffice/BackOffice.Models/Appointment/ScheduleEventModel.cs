@@ -21,6 +21,10 @@ namespace BackOffice.Models.Appointment
 
         public bool allDay { get { return false; } }
 
+        public string img { get; set; }
+
+        public string name { get; set; }
+
         public AppointmentModel RelatedAppointment { get; set; }
     }
 }
