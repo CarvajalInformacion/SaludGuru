@@ -38,6 +38,7 @@ namespace T4MVC.Web
             {
                 public readonly string _AP_Calendar = "_AP_Calendar";
                 public readonly string _AP_MeetingCalendar = "_AP_MeetingCalendar";
+                public readonly string _AP_UpsertAppointment = "_AP_UpsertAppointment";
                 public readonly string _L_Header = "_L_Header";
                 public readonly string _L_PrincipalMenu = "_L_PrincipalMenu";
                 public readonly string _Layout = "_Layout";
@@ -50,6 +51,7 @@ namespace T4MVC.Web
             }
             public readonly string _AP_Calendar = "~/Areas/Web/Views/Shared/_AP_Calendar.cshtml";
             public readonly string _AP_MeetingCalendar = "~/Areas/Web/Views/Shared/_AP_MeetingCalendar.cshtml";
+            public readonly string _AP_UpsertAppointment = "~/Areas/Web/Views/Shared/_AP_UpsertAppointment.cshtml";
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";
             public readonly string _L_PrincipalMenu = "~/Areas/Web/Views/Shared/_L_PrincipalMenu.cshtml";
             public readonly string _Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
