@@ -389,4 +389,8 @@ div.fc-event {
     display: none;
 }
 
-
+#divMeetingCalendar .fc-agenda-days>thead .fc-widget-header {
+    height:50px;
+    border:solid 1px red;
+    vertical-align:middle;
+}

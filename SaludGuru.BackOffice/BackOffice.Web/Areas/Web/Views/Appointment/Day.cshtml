@@ -82,17 +82,10 @@
     </div>
 
     <!--Meeting Calendar-->
-    <div id="divMeetingCalendar" style="overflow:scroll;">
-        <div id="CalendarContent"></div>
-    </div>
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
 
     <!--templates-->
     <div id="templates" style="display:none;">
-        <!--metting calendar-->
-        <div id="divMetting">
-            <div id="divOfficePublicId" style="width:700px;float:left;"></div>
-        </div>
-
         <!--patient autocomplete-->
         <div id="divPatientAcItem">
             <div class="autocompletePatients">
@@ -119,41 +112,17 @@
         </ul>
     </div>
 </div>
-@{
-    //create office calendar object
-    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
-                        new
-                        {
-                            OfficePublicId = of.OfficePublicId,
-                            OfficeName = of.Name,
-                            OfficeDivId = string.Empty,
-                            TreatmentList = of.RelatedTreatment.Select(tr => new
-                            {
-                                TreatmentId = tr.CategoryId,
-                                TreatmentName = tr.Name,
-                                Default = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
-                                Duration = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
-                                AfterCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                                BeforeCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                            }).OrderBy(tro => tro.TreatmentName).ToList(),
-                        }).OrderBy(ofo => ofo.OfficeName).ToList());
-}
+
 
 @section inlinescripts
 {
     @(Model.RenderScripts = true)
     @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //render day calendar
-            MeetingObject.InitMeeting({
-                StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
-                EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
-                OfficeInfo:@(Html.Raw(oOfficeInfo)),
-            });
-            MeetingObject.InitByDay('CalendarContent','agendaDay');
+
         });
     </script>
 }

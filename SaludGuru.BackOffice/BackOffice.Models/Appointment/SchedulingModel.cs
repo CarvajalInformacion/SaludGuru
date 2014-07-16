@@ -18,6 +18,26 @@ namespace BackOffice.Models.Appointment
 
         public enumAppointmentType AppointmentType { get; set; }
 
+        public string defaultView
+        {
+            get
+            {
+                switch (AppointmentType)
+                {
+                    case enumAppointmentType.Day:
+                        return "agendaDay";
+                    case enumAppointmentType.Week:
+                        return "agendaWeek";
+                    case enumAppointmentType.List:
+                        return string.Empty;
+                    case enumAppointmentType.Month:
+                        return "month";
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+
         public bool RenderScripts { get; set; }
 
     }

@@ -27,7 +27,7 @@ else
     <script type="text/javascript">
         $(document).ready(function () {
             //render calendar by month
-            MettingCalendarObject.Init({
+            CalendarObject.Init({
                 DivId: 'Calendar',
                 CountryId: '@(Model.CurrentProfile.RelatedOffice== null ? 1 : Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
                 ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
@@ -36,7 +36,7 @@ else
                 FirstDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '1'),
                 SecondDate: new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'),
             });
-            MettingCalendarObject.RenderAsync();
+            CalendarObject.RenderAsync();
         });
     </script>
 }
