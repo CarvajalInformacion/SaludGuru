@@ -984,7 +984,7 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
         {
-            List<ProfileModel> Model = new List<ProfileModel>();
+            ProfileModel Model = new ProfileModel();
             Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
                        
             return View(Model); 
