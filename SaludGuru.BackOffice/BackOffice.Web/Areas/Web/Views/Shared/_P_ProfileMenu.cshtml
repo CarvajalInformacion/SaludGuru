@@ -61,6 +61,11 @@
                             strName = "Usuarios autorizados";
                         }
                         break;
+                    case BackOffice.Models.General.enumMenuProfile.Treatment:
+                        strAction = Url.Action(MVC.Profile.ActionNames.TreatmentProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Tratamientos";
+                        break;
                     case BackOffice.Models.General.enumMenuProfile.Office:
                         strAction = Url.Action(MVC.Profile.ActionNames.OfficeList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
@@ -75,11 +80,6 @@
                         strAction = Url.Action(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Seguros";
-                        break;
-                    case BackOffice.Models.General.enumMenuProfile.Treatment:
-                        strAction = Url.Action(MVC.Profile.ActionNames.TreatmentProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
-                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
-                        strName = "Tratamientos";
                         break;
                     case BackOffice.Models.General.enumMenuProfile.Comunicactions:
                         strAction = Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
