@@ -1,0 +1,48 @@
+﻿@model List<SaludGuruProfile.Manager.Models.Profile.ProfileModel>
+@{
+    ViewBag.Title = "RelatedProfileSearch";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.FirstOrDefault())
+</div>
+
+<div id="templates" style="display:none;">
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.FirstOrDefault().ProfilePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+            <input class="BOButtonsErase" type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
+
+@{
+    //get json office data
+    @*string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentAutorization.
+            Select(x => new
+            {
+                ProfileRoleId = x.ProfileRoleId,
+                RoleName = x.RoleName,
+                UserEmail = x.UserEmail
+            }).ToList());*@
+}
+@section inlinescripts
+{
+    @*<script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        $(document).ready(function () {
+            //start office grid
+            ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+        });
+    </script>*@
+}
+
+

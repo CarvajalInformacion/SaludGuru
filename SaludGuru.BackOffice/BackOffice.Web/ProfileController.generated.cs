@@ -225,6 +225,12 @@ namespace BackOffice.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileReminderUpsert);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RelatedProfileSearch()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileSearch);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Profile; } }
@@ -270,6 +276,7 @@ namespace BackOffice.Web.Controllers
             public readonly string ProfileAutorizationDelete = "ProfileAutorizationDelete";
             public readonly string ProfileMessangerUpsert = "ProfileMessangerUpsert";
             public readonly string ProfileReminderUpsert = "ProfileReminderUpsert";
+            public readonly string RelatedProfileSearch = "RelatedProfileSearch";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -304,6 +311,7 @@ namespace BackOffice.Web.Controllers
             public const string ProfileAutorizationDelete = "ProfileAutorizationDelete";
             public const string ProfileMessangerUpsert = "ProfileMessangerUpsert";
             public const string ProfileReminderUpsert = "ProfileReminderUpsert";
+            public const string RelatedProfileSearch = "RelatedProfileSearch";
         }
 
 
@@ -539,6 +547,14 @@ namespace BackOffice.Web.Controllers
         public ActionParamsClass_ProfileReminderUpsert ProfileReminderUpsertParams { get { return s_params_ProfileReminderUpsert; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ProfileReminderUpsert
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_RelatedProfileSearch s_params_RelatedProfileSearch = new ActionParamsClass_RelatedProfileSearch();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RelatedProfileSearch RelatedProfileSearchParams { get { return s_params_RelatedProfileSearch; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RelatedProfileSearch
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -916,6 +932,18 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileReminderUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ProfileReminderUpsertOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RelatedProfileSearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RelatedProfileSearch(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileSearch);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            RelatedProfileSearchOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 
