@@ -100,6 +100,7 @@
     <Compile Include="Models\Profile\ProfileAutorizationModel.cs" />
     <Compile Include="Models\Profile\ProfileInfoModel.cs" />
     <Compile Include="Models\Profile\ProfileModel.cs" />
+    <Compile Include="Models\Profile\RelatedProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

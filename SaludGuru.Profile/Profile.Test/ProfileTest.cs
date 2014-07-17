@@ -122,6 +122,15 @@ namespace Profile.Test
                     }
                 );
         }
+
+        [TestMethod]
+        public void GetRelatedProfileAll()
+        {
+            string PublicProfileId = "E39B31E9";
+
+            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(PublicProfileId);
+            //Assert.AreEqual(oProfile.ProfilePublicId, oProfilePublicId);    
+        }
         #endregion
 
         #region Profile Search

@@ -378,6 +378,36 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
         }
 
+        public List<RelatedProfileModel> RelatedProfileGetAllByParentId(string ProfileParent)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileParent", ProfileParent));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_RelatedProfileGetAll",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<RelatedProfileModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from pm in response.DataTableResult.AsEnumerable()
+                           select new RelatedProfileModel()
+                           {
+                               ProfileParent = pm.Field<int>("ProfileParent"),
+                               ProfileChild = pm.Field<int>("ProfileChild"),
+                               CreateDate = pm.Field<DateTime>("CreateDate"),
+                           }).ToList();
+            }
+
+            return oReturn;
+        }
+
         public void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
@@ -1268,6 +1298,6 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        #endregion
+        #endregion     
     }
 }
