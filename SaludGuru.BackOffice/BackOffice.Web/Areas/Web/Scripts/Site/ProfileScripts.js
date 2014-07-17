@@ -2,7 +2,7 @@
 function OfficeListGrid(vidDiv, vCreateUrl, vOfficeData) {
 
     $('#' + vidDiv).kendoGrid({
-        toolbar: [{ template: '<a href="' + vCreateUrl + '">Nueva oficina</a>' }],
+        toolbar: [{ template: '<a href="' + vCreateUrl + '">Nuevo consultorio</a>' }],
         dataSource: {
             type: "json",
             data: vOfficeData,
