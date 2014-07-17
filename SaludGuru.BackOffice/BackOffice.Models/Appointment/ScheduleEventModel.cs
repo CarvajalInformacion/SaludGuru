@@ -14,9 +14,9 @@ namespace BackOffice.Models.Appointment
 
         public string id { get { return CurrentAppointment.AppointmentPublicId; } }
 
-        public string title 
+        public string title
         {
-            get 
+            get
             {
                 //get appointment title
                 string AppointmentTitle = BackOffice.Models.General.InternalSettings.Instance
@@ -76,9 +76,9 @@ namespace BackOffice.Models.Appointment
 
         public int Duration { get { return (CurrentAppointment.EndDate - CurrentAppointment.StartDate).Minutes; } }
 
-        public string StartDate { get { return CurrentAppointment.StartDate.ToString("yyyy-MM-dd"); } }
+        public string StartDate { get { return CurrentAppointment.StartDate.ToString("dd/MM/yyyy"); } }
 
-        public string StartTime { get { return CurrentAppointment.StartDate.ToString("hh:mm ff"); } }
+        public string StartTime { get { return CurrentAppointment.StartDate.ToString("hh:mm tt").Replace(".", "").ToUpper(); } }
 
         public int TreatmentId
         {

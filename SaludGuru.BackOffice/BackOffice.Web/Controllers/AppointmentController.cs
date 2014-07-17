@@ -111,5 +111,10 @@ namespace BackOffice.Web.Controllers
 
             return View(oModel);
         }
+
+        public virtual ActionResult Detail(string AppointmentPublicId)
+        {
+            return View();
+        }
     }
 }

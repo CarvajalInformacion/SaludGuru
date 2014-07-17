@@ -76,6 +76,18 @@ var CalendarObject = {
         $('#' + this.DivId + vDivId + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
         $('#' + this.DivId + vDivId + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
     },
+
+    Refresh: function () {
+
+        //left date picker
+        this.RefreshCalendar('-Left');
+        //right date picker
+        this.RefreshCalendar('-Right');
+    },
+
+    RefreshCalendar: function (vDivId) {
+        $('#' + this.DivId + vDivId).datepicker("refresh");
+    },
 };
 
 /*render day calendar*/
@@ -164,7 +176,6 @@ var MettingCalendarObject = {
                 UpsertAppointmentObject.RenderForm(null, null, event);
             },
             eventRender: function (event, element) {
-                //debugger;
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {
@@ -173,6 +184,19 @@ var MettingCalendarObject = {
         });
 
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+    },
+
+    Refresh: function () {
+        for (var item in this.lstOffice) {
+            //refresh calendar events
+            this.RefreshMettingCalendar(this.lstOffice[item].OfficePublicId);
+        }
+    },
+
+    RefreshMettingCalendar: function (vOfficePublicId) {
+
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('refetchEvents');
+
     },
 };
 
@@ -267,7 +291,7 @@ var UpsertAppointmentObject = {
 
         //render appointment actions
         this.RenderActions(vAppointmentInfo, oCurrentAppointmentStatus);
-        
+
         //display create appointment form
         $('#' + this.DivId).fadeIn('slow');
     },
@@ -340,9 +364,7 @@ var UpsertAppointmentObject = {
         });
 
         //load start date
-        $('#StartDate').datepicker({
-            altFormat: "yy-mm-dd"
-        });
+        $('#StartDate').datepicker();
 
         $('#StartDate').datepicker("setDate", vCurrentStartDate);
 
@@ -427,7 +449,10 @@ var UpsertAppointmentObject = {
     },
 
     RenderActions: function (vAppointmentInfo, vCurrentAppointmentStatus) {
-    
+
+        //get appointment heades template
+        var oHeaderTemplate = $('#AppointmentHeaderTemplate').html();
+
         //disable actions for status
         if (vCurrentAppointmentStatus == 1201) {
             //New
@@ -437,11 +462,15 @@ var UpsertAppointmentObject = {
                 $('#AppointmentUpsertActions .AppointmentActionsCancel').show();
                 $('#AppointmentUpsertActions .AppointmentActionsConfirm').show();
                 $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+
+                oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita creada)');
             }
             else {
                 $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
                 $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
                 $('#AppointmentUpsertActions .AppointmentActionsNew').hide();
+
+                oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita nueva)');
             }
         }
         else if (vCurrentAppointmentStatus == 1202) {
@@ -450,6 +479,8 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
             $('#AppointmentUpsertActions .AppointmentActionsNew').show();
             $('#AppointmentUpsertActions .AppointmentActionsAccept').show();
+
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita confirmada)');
         }
         else if (vCurrentAppointmentStatus == 1203) {
             //Canceled
@@ -457,6 +488,8 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
             $('#AppointmentUpsertActions .AppointmentActionsNew').show();
             $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita cancelada)');
         }
         else if (vCurrentAppointmentStatus == 1204) {
             //PendientAsistance
@@ -464,6 +497,8 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsConfirm').show();
             $('#AppointmentUpsertActions .AppointmentActionsNew').show();
             $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita pendiente por asistencia)');
         }
         else if (vCurrentAppointmentStatus == 1205) {
             //Attendance
@@ -471,6 +506,8 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
             $('#AppointmentUpsertActions .AppointmentActionsNew').show();
             $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita confirmada asistencia)');
         }
         else if (vCurrentAppointmentStatus == 1206) {
             //NotAttendance
@@ -478,14 +515,92 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
             $('#AppointmentUpsertActions .AppointmentActionsNew').show();
             $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentStatus}/gi, '(Cita confirmada inasistencia)');
         }
+
+        //set appointment header template
+        if (vAppointmentInfo != null) {
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentPublicId}/gi, vAppointmentInfo.AppointmentPublicId);
+        }
+        else {
+            oHeaderTemplate = oHeaderTemplate.replace(/{AppointmentPublicId}/gi, '');
+        }
+
+        $('#liAppointmentHeader').html(oHeaderTemplate);
 
         //set action events on click
         $('#AppointmentUpsertActions .AppointmentActionsCancel').unbind('click');
-        $('#AppointmentUpsertActions .AppointmentActionsCancel').click(function () { UpsertAppointmentObject.CancelAppointment() });
+        $('#AppointmentUpsertActions .AppointmentActionsCancel').click(function () {
+            $("#Dialog_CancelAppointment").dialog({
+                buttons: {
+                    "Si": function () {
+                        $(this).dialog("close");
+                        UpsertAppointmentObject.CancelAppointment(true);
+                    },
+                    "No": function () {
+                        $(this).dialog("close");
+                        UpsertAppointmentObject.CancelAppointment(false);
+                    }
+                }
+            });
+        });
 
         $('#AppointmentUpsertActions .AppointmentActionsConfirm').unbind('click');
-        $('#AppointmentUpsertActions .AppointmentActionsConfirm').click(function () { UpsertAppointmentObject.ConfirmAppointment() });
+        $('#AppointmentUpsertActions .AppointmentActionsConfirm').click(function () {
+
+            //set radio button options
+            $('#Dialog_ConfirmAppointment input:radio').prop('checked', false);
+
+            $('#Dialog_ConfirmAppointment input:radio').unbind('change');
+            $('#Dialog_ConfirmAppointment input:radio').change(function (eventData, handler) {
+                if ($(this).val() == '1205') {
+                    //attendance
+                    $('#liRemindedFuture').fadeIn('slow');
+                }
+                else if ($(this).val() == '1206') {
+                    //not attendance
+                    $('#liRemindedFuture').fadeOut('slow');
+                }
+            });
+
+            //set check box options
+            $('#SendRemindedFuture').prop('checked', false);
+
+            $('#SendRemindedFuture').unbind('change');
+            $('#SendRemindedFuture').change(function (eventData, handler) {
+                if ($(this).is(':checked')) {
+                    //attendance
+                    $('#divRemindedDate').fadeIn('slow');
+                }
+                else {
+                    //not attendance
+                    $('#divRemindedDate').fadeOut('slow');
+                }
+            });
+
+            //start datepicker
+            $('#RemindedDate').datepicker();
+
+            //hide not started controls
+            $('#liRemindedFuture').hide();
+            $('#divRemindedDate').hide();
+            
+            //init dialog
+            $("#Dialog_ConfirmAppointment").dialog({
+                height: 200,
+                width: 400,
+                buttons: {
+                    "Confirmar": function () {
+                        $(this).dialog("close");
+                        UpsertAppointmentObject.ConfirmAppointment();
+                    },
+                    "Cancelar": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
 
         $('#AppointmentUpsertActions .AppointmentActionsNew').unbind('click');
         $('#AppointmentUpsertActions .AppointmentActionsNew').click(function () { UpsertAppointmentObject.DuplicateAppointment() });
@@ -495,21 +610,18 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () {
 
                 $("#Dialog_SaveAppointment").dialog({
-                    resizable: false,
-                    //height: 140,
-                    modal: true,
                     buttons: {
                         "Si": function () {
-                            UpsertAppointmentObject.SaveAppointment(true);
                             $(this).dialog("close");
+                            UpsertAppointmentObject.SaveAppointment(true);
                         },
                         "No": function () {
-                            UpsertAppointmentObject.SaveAppointment(false);
                             $(this).dialog("close");
+                            UpsertAppointmentObject.SaveAppointment(false);
                         }
                     }
                 });
-                //UpsertAppointmentObject.SaveAppointment()
+
             });
         }
         else {
@@ -539,8 +651,12 @@ var UpsertAppointmentObject = {
         $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
     },
 
-    SaveAppointment: function (vSendMsj) {
-        alert(vSendMsj);
+    SaveAppointment: function (vSendNotifications) {
+
+        //set value for SendNotifications
+        $('#SendNotifications').val(vSendNotifications);
+
+        //create ajax form object
         $("#frmAppointment").submit(function (e) {
             var postData = $(this).serializeArray();
             var formURL = $(this).attr("action");
@@ -550,31 +666,172 @@ var UpsertAppointmentObject = {
                 type: "POST",
                 data: postData,
                 success: function (data, textStatus, jqXHR) {
-                    alert(data);
-                    //window.location.reload();
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, data);
+                    oMsj = oMsj.replace(/{Status}/gi, 'correctamente');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    alert('Se ha generado un error creando la cita.');
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
+
                 }
             });
             e.preventDefault(); //STOP default action
             e.unbind(); //unbind. to stop multiple form submit.
         });
 
+        //submit ajax form
         $("#frmAppointment").submit();
     },
 
-    CancelAppointment: function () {
-        alert('CancelAppointment');
+    CancelAppointment: function (vSendNotifications) {
+
+        $.ajax({
+            url: '/api/AppointmentApi?CancelAppointment=true',
+            type: "POST",
+            data: {
+                SendNotifications: vSendNotifications,
+                AppointmentPublicId: $('#AppointmentPublicId').val(),
+            },
+            success: function (data, textStatus, jqXHR) {
+                //refresh all controls
+                UpsertAppointmentObject.Refresh();
+
+                //show success message
+                var oMsj = $('#SaveResultTemplate').html();
+                oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                oMsj = oMsj.replace(/{Status}/gi, 'correctamente');
+
+                $("#Dialog_SaveResult").html(oMsj);
+                $("#Dialog_SaveResult").dialog();
+
+                //hidde create appointment form
+                $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //refresh all controls
+                UpsertAppointmentObject.Refresh();
+
+                //show success message
+                var oMsj = $('#SaveResultTemplate').html();
+                oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                $("#Dialog_SaveResult").html(oMsj);
+                $("#Dialog_SaveResult").dialog();
+
+                //hidde create appointment form
+                $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
+            },
+        });
     },
 
     DuplicateAppointment: function () {
-        alert('DuplicateAppointment');
+
+        //hidde create appointment form
+        $('#' + this.DivId).hide();
+
+        //get current values
+
+        //set appointment id
+        $('#AppointmentPublicId').val('');
+
+        //current appointment status
+        var oCurrentAppointmentStatus = '1201';
+
+        //add style for specific appointment status
+        $('#' + this.DivId).addClass('AppointmentFormStatus_' + oCurrentAppointmentStatus);
+
+        //render appointment actions
+        this.RenderActions(null, oCurrentAppointmentStatus);
+
+        //display create appointment form
+        $('#' + this.DivId).fadeIn('slow');
     },
 
     ConfirmAppointment: function () {
-        alert('ConfirmAppointment');
+        //set current appointment public id
+        $('#R_AppointmentPublicId').val($('#AppointmentPublicId').val());
+
+        //create ajax form object
+        $("#frmConfirmAppointment").submit(function (e) {
+
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+
+            $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'correctamente');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).fadeOut('slow');
+
+                }
+            });
+            e.preventDefault(); //STOP default action
+            e.unbind(); //unbind. to stop multiple form submit.
+        });
+
+        //submit ajax form
+        $("#frmConfirmAppointment").submit();
     },
+
+    Refresh: function () {
+        //refresh calendar 
+        CalendarObject.Refresh();
+
+        //refresh meeting
+        MettingCalendarObject.Refresh();
+    }
 };
 
 var MeetingListObject = {

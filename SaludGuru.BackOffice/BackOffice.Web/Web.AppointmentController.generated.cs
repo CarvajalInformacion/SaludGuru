@@ -92,11 +92,13 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Day = "Day";
+                public readonly string Detail = "Detail";
                 public readonly string List = "List";
                 public readonly string Month = "Month";
                 public readonly string Week = "Week";
             }
             public readonly string Day = "~/Areas/Web/Views/Appointment/Day.cshtml";
+            public readonly string Detail = "~/Areas/Web/Views/Appointment/Detail.cshtml";
             public readonly string List = "~/Areas/Web/Views/Appointment/List.cshtml";
             public readonly string Month = "~/Areas/Web/Views/Appointment/Month.cshtml";
             public readonly string Week = "~/Areas/Web/Views/Appointment/Week.cshtml";
