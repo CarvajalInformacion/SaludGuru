@@ -168,6 +168,37 @@
                     }
                 }
             </li>
+            <li>
+                <label>Seguro</label>
+                <select id="Insurance" name="Insurance">
+                    @{
+                        var valueInsurance = Model.Patient
+                            == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Insurance).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+
+                        foreach (var item in Model.Insurance)
+                        {
+
+                            if (Model.Insurance != null && valueInsurance != null && item.CategoryId == Convert.ToInt32(valueInsurance.val))
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                                
+
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+                        }
+                        
+                    }
+                    <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="@valueInsurance.id" />
+                </select>
+            </li>
         </ul>
         <div>
             @*hiden fields*@
@@ -186,7 +217,7 @@
             showAnim: "drop",
             duration: jQuery.support.boxModel ? 'normal' : 'slow'
         };
-        $("#Birthday").datepicker(pickerOpts);       
+        $("#Birthday").datepicker(pickerOpts);
     });
 </script>
 

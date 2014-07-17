@@ -16,5 +16,7 @@ namespace BackOffice.Models.Patient
         public List<ItemModel> PatientOptions { get; set; }
 
         public List<AppointmentModel> RelatedAppointment { get; set; }
+
+        public List<SaludGuruProfile.Manager.Models.General.InsuranceModel> Insurance { get; set; }
     }
 }

@@ -24,6 +24,8 @@ namespace BackOffice.Web.Controllers
 
             PatientUpSertModel Model = new PatientUpSertModel();
             Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
+            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
@@ -112,7 +114,13 @@ namespace BackOffice.Web.Controllers
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_Gender"])?0:int.Parse(Request["CatId_Gender"].ToString().Trim()),
                             PatientInfoType = enumPatientInfoType.Gender,
                             Value = Request["Gender"].ToString(),
-                        }                   
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Insurance"])? 0 :int.Parse(Request["CatId_Insurance"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Insurance,
+                            Value = Request["Insurance"].ToString(),
+                        }   
                     }
                 };
 
