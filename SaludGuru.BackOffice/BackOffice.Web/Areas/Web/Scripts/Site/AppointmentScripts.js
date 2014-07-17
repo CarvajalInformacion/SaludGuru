@@ -189,207 +189,362 @@ var UpsertAppointmentObject = {
     },
 
     /*render appointment form*/
-    RenderForm: function (vDate, vOfficeInfo, vAppointmentInfo) {
+    RenderForm: function (vStartDate, vOfficeInfo, vAppointmentInfo) {
 
         //hidde create appointment form
         $('#' + this.DivId).hide();
 
-        //load office
-        $('#OfficePublicId').find('option').remove();
-        $('#OfficePublicId').unbind('change');
+        //get current values
 
+        //set appointment id
+        $('#AppointmentPublicId').val('');
+        if (vAppointmentInfo != null) {
+            $('#AppointmentPublicId').val(vAppointmentInfo.AppointmentPublicId);
+        }
+
+        //current appointment status
+        var oCurrentAppointmentStatus = '1201';
+        if (vAppointmentInfo != null) {
+            oCurrentAppointmentStatus = vAppointmentInfo.AppointmentStatus;
+        }
+
+        //current office
         var oCurrentOfficePublicId = '';
         if (vOfficeInfo != null) {
             oCurrentOfficePublicId = vOfficeInfo;
         }
         else if (vAppointmentInfo != null) {
-            oCurrentOfficePublicId = vAppointmentInfo.RelatedAppointment.OfficePublicId;
+            oCurrentOfficePublicId = vAppointmentInfo.OfficePublicId;
         }
+
+        //current treatment
+        var oCurrentTreatmentId = 0;
+
+        if (vAppointmentInfo != null) {
+            oCurrentTreatmentId = vAppointmentInfo.TreatmentId;
+        }
+
+        //current start date and duration
+        var oCurrentStartDate = new Date();
+        var oCurrentStartTime = '';
+        var oCurrentDuration = 0;
+
+        if (vStartDate != null) {
+
+            //get start date
+            oCurrentStartDate = vStartDate;
+
+            //get start time
+            var vMin = vStartDate.getMinutes();
+            if (vMin < 10) {
+                vMin = '0' + vStartDate.getMinutes();
+            }
+
+            if (vStartDate.getHours() <= 12) {
+                oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' AM';
+            }
+            else {
+                oCurrentStartTime = (vStartDate.getHours() - 12) + ':' + vMin + ' PM';
+            }
+        }
+        else if (vAppointmentInfo != null) {
+            oCurrentStartDate = vAppointmentInfo.StartDate;
+            oCurrentStartTime = vAppointmentInfo.StartTime;
+            oCurrentDuration = vAppointmentInfo.Duration;
+        }
+
+        //render office
+        this.RenderOffice(oCurrentOfficePublicId, vStartDate, vAppointmentInfo)
+
+        //render treatment duration startdate and starttime
+        this.RenderTreatment(oCurrentOfficePublicId, oCurrentDuration, oCurrentTreatmentId, oCurrentStartDate, oCurrentStartTime);
+
+        //render patient appointment
+        this.RenderPatient(vAppointmentInfo);
+
+        //add style for specific appointment status
+        $('#' + this.DivId).addClass('AppointmentFormStatus_' + oCurrentAppointmentStatus);
+
+        //disable actions for status
+        if (oCurrentAppointmentStatus == 1201) {
+            //New
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').show();
+
+            if (vAppointmentInfo != null) {
+                $('#AppointmentUpsertActions .AppointmentActionsCancel').show();
+                $('#AppointmentUpsertActions .AppointmentActionsConfirm').show();
+                $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            }
+            else {
+                $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
+                $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
+                $('#AppointmentUpsertActions .AppointmentActionsNew').hide();
+            }
+        }
+        else if (oCurrentAppointmentStatus == 1202) {
+            //Confirmed
+            $('#AppointmentUpsertActions .AppointmentActionsCancel').show();
+            $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').show();
+        }
+        else if (oCurrentAppointmentStatus == 1203) {
+            //Canceled
+            $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+        }
+        else if (oCurrentAppointmentStatus == 1204) {
+            //PendientAsistance
+            $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsConfirm').show();
+            $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+        }
+        else if (oCurrentAppointmentStatus == 1205) {
+            //Attendance
+            $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+        }
+        else if (oCurrentAppointmentStatus == 1206) {
+            //NotAttendance
+            $('#AppointmentUpsertActions .AppointmentActionsCancel').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsConfirm').hide();
+            $('#AppointmentUpsertActions .AppointmentActionsNew').show();
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').hide();
+        }
+
+        //set action events on click
+        $('#AppointmentUpsertActions .AppointmentActionsCancel').unbind('click');
+        $('#AppointmentUpsertActions .AppointmentActionsCancel').click(function () { UpsertAppointmentObject.CancelAppointment() });
+
+        $('#AppointmentUpsertActions .AppointmentActionsConfirm').unbind('click');
+        $('#AppointmentUpsertActions .AppointmentActionsConfirm').click(function () { UpsertAppointmentObject.ConfirmAppointment() });
+
+        $('#AppointmentUpsertActions .AppointmentActionsNew').unbind('click');
+        $('#AppointmentUpsertActions .AppointmentActionsNew').click(function () { UpsertAppointmentObject.DuplicateAppointment() });
+
+        $('#AppointmentUpsertActions .AppointmentActionsAccept').unbind('click');
+        $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { UpsertAppointmentObject.SaveAppointment() });
+
+        //display create appointment form
+        $('#' + this.DivId).fadeIn('slow');
+    },
+
+    RenderOffice: function (vCurrentOfficePublicId, vStartDate, vAppointmentInfo) {
+
+        //load office
+        $('#OfficePublicId').find('option').remove();
+        $('#OfficePublicId').unbind('change');
 
         for (var item in MettingCalendarObject.lstOffice) {
             $('#OfficePublicId').append($('<option/>', {
                 value: MettingCalendarObject.lstOffice[item].OfficePublicId,
                 text: MettingCalendarObject.lstOffice[item].OfficeName,
-                selected: (MettingCalendarObject.lstOffice[item].OfficePublicId == oCurrentOfficePublicId)
+                selected: (MettingCalendarObject.lstOffice[item].OfficePublicId == vCurrentOfficePublicId)
             }));
         }
 
         $('#OfficePublicId').change(function () {
-            UpsertAppointmentObject.RenderForm(vDate, $(this).val(), vAppointmentInfo);
+            UpsertAppointmentObject.RenderForm(vStartDate, $(this).val(), vAppointmentInfo);
+        });
+    },
+
+    RenderTreatment: function (vCurrentOfficePublicId, vCurrentDuration, vCurrentTreatmentId, vCurrentStartDate, vCurrentStartTime) {
+
+        //init duration spinner
+        $('#Duration').spinner({
+            min: 10,
+            step: 5,
         });
 
-        //load treatment
-        //$('#TreatmentId').find('option').remove();
-        //$('#TreatmentId').unbind('change');
-        //$.each(MettingCalendarObject.lstOffice[vOfficePublicId].TreatmentList, function (index, value) {
-        //    $('#TreatmentId').append($('<option/>', {
-        //        value: value.TreatmentId,
-        //        text: value.TreatmentName,
-        //        selected: value.Default,
-        //        officepublicid: vOfficePublicId,
-        //    }));
+        if (vCurrentDuration != null && vCurrentDuration > 0) {
+            $('#Duration').val(vCurrentDuration);
+        }
 
-        //    if (value.Default == true) {
-        //        //set duration
-        //        $('#Duration').val(value.Duration);
-        //        //set aftercare
-        //        $('#AfterCare').val(value.AfterCare);
-        //        //set beforecare
-        //        $('#BeforeCare').val(value.BeforeCare);
-        //    }
+        //load treatment
+        $('#TreatmentId').find('option').remove();
+        $('#TreatmentId').unbind('change');
+        $.each(MettingCalendarObject.lstOffice[vCurrentOfficePublicId].TreatmentList, function (index, value) {
+
+            $('#TreatmentId').append($('<option/>', {
+                value: value.TreatmentId,
+                text: value.TreatmentName,
+                selected: ((vCurrentTreatmentId > 0 && vCurrentTreatmentId == value.TreatmentId) || value.IsDefault),
+                officepublicid: vCurrentOfficePublicId,
+            }));
+
+            //set input dependencies
+            if ((vCurrentTreatmentId > 0 && vCurrentTreatmentId == value.TreatmentId) || value.IsDefault) {
+                if (vCurrentDuration != null && vCurrentDuration > 0) { }
+                else {
+                    //set duration
+                    $('#Duration').val(value.Duration);
+                }
+            }
+        });
+
+        $('#TreatmentId').change(function () {
+            //get treatment id
+            var ovTreatmentId = $(this).val();
+            var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
+
+            //set input dependencies
+            $.each(MeetingObject.lstOffice[ovOfficePublicId].TreatmentList, function (index, value) {
+                if (value.TreatmentId == ovTreatmentId) {
+                    //set duration
+                    $('#Duration').val(value.Duration);
+                }
+            });
+        });
+
+        //load start date
+        $('#StartDate').datepicker({
+            altFormat: "yy-mm-dd"
+        });
+
+        $('#StartDate').datepicker("setDate", vCurrentStartDate);
+
+        //load start time
+        $('#StartTime').ptTimeSelect({
+            hoursLabel: 'Hora',
+            minutesLabel: 'Minutos',
+            setButtonLabel: 'Aceptar',
+        });
+
+        $('#StartTime').val(vCurrentStartTime);
+
+    },
+
+    RenderPatient: function (vAppointmentInfo) {
+
+        //init patient hidden values
+        $('#lstPatient').html('');
+        $('#PatientAppointmentCreate').val('');
+        $('#PatientAppointmentDelete').val('');
+
+        if (vAppointmentInfo != null) {
+
+            //render actual related patient
+            $.each(vAppointmentInfo.CurrentPatientInfo, function (index, value) {
+
+                UpsertAppointmentObject.AddPatientAppointment({
+                    ProfileImage: value.ProfileImage,
+                    Name: value.Name,
+                    IdentificationNumber: value.IdentificationNumber,
+                    Mobile: value.Mobile,
+                    Email: value.Email,
+                    PatientPublicId: value.PatientPublicId
+                });
+
+            });
+        }
+
+        //load patient autocomplete
+        $('#getPatient').autocomplete(
+        {
+            source: function (request, response) {
+                $.ajax({
+                    url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
+                    dataType: 'json',
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 0,
+            focus: function (event, ui) {
+                $('#getPatient').val(ui.item.Name);
+                return false;
+            },
+            select: function (event, ui) {
+                UpsertAppointmentObject.AddPatientAppointment({
+                    ProfileImage: ui.item.ProfileImage,
+                    Name: ui.item.Name,
+                    IdentificationNumber: ui.item.IdentificationNumber,
+                    Mobile: ui.item.Mobile,
+                    Email: ui.item.Email,
+                    PatientPublicId: ui.item.PatientPublicId
+                });
+
+                $('#getPatient').val('');
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+            var RenderItem = $('#divPatientAcItem').html();
+            RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
+            RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
+            RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
+            RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
+
+            return $("<li></li>")
+                .data("ui-autocomplete-item", item)
+                .append("<a><strong>" + RenderItem + "</strong></a>")
+                .appendTo(ul);
+        };
+    },
+
+    AddPatientAppointment: function (vPatientModel) {
+        if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
+            var ApPatHtml = $('#ulPatientAppointment').html();
+            ApPatHtml = ApPatHtml.replace(/{ProfileImage}/gi, vPatientModel.ProfileImage);
+            ApPatHtml = ApPatHtml.replace(/{Name}/gi, vPatientModel.Name);
+            ApPatHtml = ApPatHtml.replace(/{IdentificationNumber}/gi, vPatientModel.IdentificationNumber);
+            ApPatHtml = ApPatHtml.replace(/{Mobile}/gi, vPatientModel.Mobile);
+            ApPatHtml = ApPatHtml.replace(/{Email}/gi, vPatientModel.Email);
+            ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
+            $('#lstPatient').append(ApPatHtml);
+            $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val() + ',' + vPatientModel.PatientPublicId);
+            $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
+        }
+    },
+
+    RemovePatientAppointment: function (vPatientPublicId) {
+        $('#lstPatient').find('#' + vPatientPublicId).remove();
+        $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
+        $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
+    },
+
+    SaveAppointment: function () {
+        alert('SaveAppointment');
+        //$("#frmAppointment").submit(function (e) {
+        //    var postData = $(this).serializeArray();
+        //    var formURL = $(this).attr("action");
+        //    $.ajax(
+        //    {
+        //        url: formURL,
+        //        type: "POST",
+        //        data: postData,
+        //        success: function (data, textStatus, jqXHR) {
+        //            window.location.reload();
+        //        },
+        //        error: function (jqXHR, textStatus, errorThrown) {
+        //            alert('Se ha generado un error creando la cita.');
+        //        }
+        //    });
+        //    e.preventDefault(); //STOP default action
+        //    e.unbind(); //unbind. to stop multiple form submit.
         //});
 
-        //    $('#TreatmentId').change(function () {
-        //        //get treatment id
-        //        var ovTreatmentId = $(this).val();
-        //        var ovOfficePublicId = $(this).find(':selected').attr('officepublicid');
+        //$("#frmAppointment").submit();
+    },
 
-        //        //set input dependencies
-        //        $.each(MeetingObject.lstOffice[ovOfficePublicId].TreatmentList, function (index, value) {
-        //            if (value.TreatmentId == ovTreatmentId) {
-        //                //set duration
-        //                $('#Duration').val(value.Duration);
-        //                //set aftercare
-        //                $('#AfterCare').val(value.AfterCare);
-        //                //set beforecare
-        //                $('#BeforeCare').val(value.BeforeCare);
-        //            }
-        //        });
-        //    });
+    CancelAppointment: function () {
+        alert('CancelAppointment');
+    },
 
-        //    $('#CatId_TreatmentId').val('0');
+    DuplicateAppointment: function () {
+        alert('DuplicateAppointment');
+    },
 
-        //    //init duration spinner
-        //    $('#Duration').spinner({
-        //        min: 10,
-        //        step: 5,
-        //    });
-
-        //    //load start date
-        //    $('#StartDate').datepicker({
-        //        altFormat: "yy-mm-dd"
-        //    });
-
-        //    $('#StartDate').datepicker("setDate", vDate);
-
-        //    //load start time
-        //    $('#StartTime').ptTimeSelect({
-        //        hoursLabel: 'Hora',
-        //        minutesLabel: 'Minutos',
-        //        setButtonLabel: 'Aceptar',
-        //    });
-        //    var vMin = vDate.getMinutes();
-        //    if (vMin < 10) {
-        //        vMin = '0' + vDate.getMinutes();
-        //    }
-
-        //    if (vDate.getHours() <= 12) {
-        //        $('#StartTime').val(vDate.getHours() + ':' + vMin + 'AM');
-        //    }
-        //    else {
-        //        $('#StartTime').val((vDate.getHours() - 12) + ':' + vMin + ' PM');
-        //    }
-
-        //    //load patient autocomplete
-        //    $('#lstPatient').html('');
-        //    $('#PatientAppointmentCreate').val('');
-        //    $('#PatientAppointmentDelete').val('');
-        //    $('#getPatient').autocomplete(
-        //    {
-        //        //source: acData,
-        //        source: function (request, response) {
-        //            $.ajax({
-        //                url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
-        //                dataType: 'json',
-        //                success: function (data) {
-        //                    response(data);
-        //                }
-        //            });
-        //        },
-        //        minLength: 0,
-        //        focus: function (event, ui) {
-        //            $('#getPatient').val(ui.item.Name);
-        //            return false;
-        //        },
-        //        select: function (event, ui) {
-        //            MeetingObject.AddPatientAppointment({
-        //                ProfileImage: ui.item.ProfileImage,
-        //                Name: ui.item.Name,
-        //                IdentificationNumber: ui.item.IdentificationNumber,
-        //                Mobile: ui.item.Mobile,
-        //                Email: ui.item.Email,
-        //                PatientPublicId: ui.item.PatientPublicId
-        //            });
-
-        //            $('#getPatient').val('');
-        //            return false;
-        //        }
-        //    }).data("ui-autocomplete")._renderItem = function (ul, item) {
-
-        //        var RenderItem = $('#divPatientAcItem').html();
-        //        RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
-        //        RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
-        //        RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
-        //        RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
-
-        //        return $("<li></li>")
-        //		    .data("ui-autocomplete-item", item)
-        //		    .append("<a><strong>" + RenderItem + "</strong></a>")
-        //		    .appendTo(ul);
-        //    };
-
-        //    //set appointment id
-        //    $('#AppointmentPublicId').val('');
-
-        //display create appointment form
-        $('#' + this.DivId).fadeIn('slow');
+    ConfirmAppointment: function () {
+        alert('ConfirmAppointment');
     },
 };
-
-
-//AddPatientAppointment: function (vPatientModel) {
-//    if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
-//        var ApPatHtml = $('#ulPatientAppointment').html();
-//        ApPatHtml = ApPatHtml.replace(/{ProfileImage}/gi, vPatientModel.ProfileImage);
-//        ApPatHtml = ApPatHtml.replace(/{Name}/gi, vPatientModel.Name);
-//        ApPatHtml = ApPatHtml.replace(/{IdentificationNumber}/gi, vPatientModel.IdentificationNumber);
-//        ApPatHtml = ApPatHtml.replace(/{Mobile}/gi, vPatientModel.Mobile);
-//        ApPatHtml = ApPatHtml.replace(/{Email}/gi, vPatientModel.Email);
-//        ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
-//        $('#lstPatient').append(ApPatHtml);
-//        $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val() + ',' + vPatientModel.PatientPublicId);
-//        $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
-//    }
-//},
-
-//RemovePatientAppointment: function (vPatientPublicId) {
-//    $('#lstPatient').find('#' + vPatientPublicId).remove();
-//    $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
-//    $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
-//},
-
-//SaveAppointment: function () {
-//    $("#frmAppointment").submit(function (e) {
-//        var postData = $(this).serializeArray();
-//        var formURL = $(this).attr("action");
-//        $.ajax(
-//        {
-//            url: formURL,
-//            type: "POST",
-//            data: postData,
-//            success: function (data, textStatus, jqXHR) {
-//                window.location.reload();
-//            },
-//            error: function (jqXHR, textStatus, errorThrown) {
-//                alert('Se ha generado un error creando la cita.');
-//            }
-//        });
-//        e.preventDefault(); //STOP default action
-//        e.unbind(); //unbind. to stop multiple form submit.
-//    });
-
-//    $("#frmAppointment").submit();
-//}
 
 var MeetingListObject = {
     /*meeting info*/

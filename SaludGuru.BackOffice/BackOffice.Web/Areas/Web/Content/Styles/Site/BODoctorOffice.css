@@ -74,7 +74,7 @@ border:none;
     margin:10px 0px 10px 14px;
     font-size:20px;
 }
-#divGridOffice, #divGridAutorization, #divGridOfficeTreatment, #divGridShceduleAvailable{
+#divGridOffice, #divGridAutorization, #divGridOfficeTreatment, #divGridShceduleAvailable, #divGridAppointment{
     margin:14px;
 }
 

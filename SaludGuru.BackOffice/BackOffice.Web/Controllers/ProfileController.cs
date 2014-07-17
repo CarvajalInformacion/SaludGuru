@@ -72,6 +72,7 @@ namespace BackOffice.Web.Controllers
                 //get updated profile info
                 Model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
             }
+
             return View(Model);
         }
 
@@ -531,6 +532,7 @@ namespace BackOffice.Web.Controllers
             {
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
                 CurrentAutorization = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(ProfilePublicId),
+                OfficeOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
             };
             if (Model.CurrentAutorization == null)
                 Model.CurrentAutorization = new List<ProfileAutorizationModel>();

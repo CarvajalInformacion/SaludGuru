@@ -7,6 +7,7 @@
     }
     <form action="@UrlAction" method="post">
         <ul>
+            <h3>Datos del Paciente</h3>
             <li>
                 <label>Nombre</label>
                 <input id="Name" name="Name" value="@(Model.Patient == null ? string.Empty : Model.Patient.Name)" type="text" />
@@ -65,7 +66,6 @@
                 <input id="IdentificationNumber" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_EM = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -103,7 +103,6 @@
                 <input id="Telefono" name="Telefono" value="@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val)" type="text" />
             </li>
 
-            <li>
                 @{
                     var CatInfo_MB = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -201,12 +200,12 @@
             </li>
         </ul>
         <div>
+            <li class="BOButtonContainerShort">
             @*hiden fields*@
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-        </div>
-        <div>
-            <input type="submit" class="BOButtons" />
-        </div>
+                <input type="submit" class="BOButtons" value="guardar" />
+            </li>
+        </ul>
     </form>
 </div>
 
@@ -215,9 +214,11 @@
     $(function () {
         var pickerOpts = {
             showAnim: "drop",
-            duration: jQuery.support.boxModel ? 'normal' : 'slow'
+            duration: jQuery.support.boxModel ? 'normal' : 'slow',
+            changeMonth: true,
+            changeYear: true
         };
-        $("#Birthday").datepicker(pickerOpts);
+        $("#Birthday").datepicker(pickerOpts);       
     });
 </script>
 

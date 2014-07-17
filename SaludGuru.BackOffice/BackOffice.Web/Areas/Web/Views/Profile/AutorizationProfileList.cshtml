@@ -18,15 +18,20 @@
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
             <ul class="BOEditDaySetUp">
                 <li>
-                    <label>Role</label>
+                    <label>Rol</label>
                     <select id="RoleId" name="RoleId">
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileAdministrator).ToString())">Administrador de perfil</option>
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ProfileOperator).ToString())">Operador</option>
-                        <option value="@(((int)SessionController.Models.Profile.enumRole.ReadOnly).ToString())">Sólo Lectura</option>
+                        @foreach (SaludGuruProfile.Manager.Models.General.ItemModel it in
+                        Model.OfficeOptions.
+                        Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.Role && x.ItemId != (int)BackOffice.Models.General.enumCatalog.Admin).
+                        OrderBy(x => x.ItemName)
+                        .ToList())
+                        {
+                            <option value="@it.ItemId">@it.ItemName</option>
+                        }
                     </select>
                 </li>
                 <li>
-                    <label>Email</label>
+                    <label>Correo electrónico</label>
                     <input type="text" name="UserEmail" id="UserEmail" value=" " />
                 </li>
                 <li class="BOButtonContainerShort">
@@ -59,7 +64,7 @@
             {
                 ProfileRoleId = x.ProfileRoleId,
                 RoleName = x.RoleName,
-                UserEmail = x.UserEmail                
+                UserEmail = x.UserEmail
             }).ToList());
 }
 @section inlinescripts
@@ -67,7 +72,7 @@
     <script type="text/javascript">
         var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
         $(document).ready(function () {
-            //start office grid           
+            //start office grid
             ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
         });
     </script>

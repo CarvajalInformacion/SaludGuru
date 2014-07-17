@@ -56,7 +56,7 @@
                 <div id="templateAutorization" style="display:none;">
                     <div id="SelAutorization">
                         <span class="selectedProfilePicture" style="background-image: url('@(selDoctorImageUrl)');"></span>
-                        <span class="selectedProfileName">@SelDrShowName hola</span>
+                        <span class="selectedProfileName">@SelDrShowName</span>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
             <!--render user options-->
             <div class="userOptionsWrapper">
                 <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                    <label>@(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
+                    <label>Hola @(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
                     <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
                 </div>
                 <!--pop up user option menu-->
