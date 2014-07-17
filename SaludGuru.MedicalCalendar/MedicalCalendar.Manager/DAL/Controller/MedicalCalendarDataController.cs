@@ -98,6 +98,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.AppointmentModify(AppointmentPublicId, OfficePublicId, Status, StartDate, EndDate);
         }
 
+        public void AppointmentModifyStatus(string AppointmentPublicId, MedicalCalendar.Manager.Models.enumAppointmentStatus Status)
+        {
+            DataFactory.AppointmentModifyStatus(AppointmentPublicId, Status);
+        }
+
         public int AppointmentInfoCreate(string AppointmentPublicId, MedicalCalendar.Manager.Models.enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue)
         {
             return DataFactory.AppointmentInfoCreate(AppointmentPublicId, AppointmentInfoType, Value, LargeValue);
@@ -132,7 +137,7 @@ namespace MedicalCalendar.Manager.DAL.Controller
         {
             return DataFactory.AppointmentGetById(AppointmentPublicId);
         }
-        
+
         #endregion
     }
 }

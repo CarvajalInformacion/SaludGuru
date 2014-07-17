@@ -371,6 +371,23 @@ namespace SaludGuruProfile.Manager.Controller
             });
         }
 
+        public static List<ProfileModel> GetRelatedProfileAll(string PublicParentId)
+        {
+            List<ProfileModel> oReturn = new List<ProfileModel>();
+            List<RelatedProfileModel> relatedList = new List<RelatedProfileModel>();
+            ProfileModel obj = new ProfileModel();
+
+            relatedList = DAL.Controller.ProfileDataController.Instance.RelatedProfileGetAllByParentId(PublicParentId);
+
+            foreach (RelatedProfileModel item in relatedList)
+            {
+                obj = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(PublicParentId);
+
+                oReturn.Add(obj);
+            }
+            return oReturn;
+        }
+
         #endregion
 
         #region Insurance
@@ -456,6 +473,6 @@ namespace SaludGuruProfile.Manager.Controller
             DAL.Controller.ProfileDataController.Instance.ProfileRoleDelete(ProfileRoleId);
         }
 
-        #endregion
+        #endregion        
     }
 }

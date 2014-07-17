@@ -291,7 +291,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
 
         #region Appointment
 
-        public string AppointmentCreate(string OfficePublicId, Models.enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
+        public string AppointmentCreate(string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -325,6 +325,22 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
                 CommandText = "AP_Appointment_Modify",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+        }
+
+        public void AppointmentModifyStatus(string AppointmentPublicId, enumAppointmentStatus Status)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vAppointmentPublicId", AppointmentPublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)Status));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
+                CommandText = "AP_Appointment_ModifyStatus",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });

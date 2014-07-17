@@ -85,7 +85,7 @@
                                 <input type="hidden" id="IsNotifyRC" name="IsNotifyRC" />
                             }
 
-                            <input type="text" style="width: 5%;"name="RP_Horas" id="RP_Horas" value="@CatInfo_RC[0].LargeValue " />
+                            <input type="text" style="width: 5%;" name="RP_Horas" id="RP_Horas" value="@CatInfo_RC[0].LargeValue " />
                             <input type="hidden" id="IsRP_Horas" name="IsRP_Horas" value="@CatInfo_RC[0].id" />
                             <label>Horas</label>
                         }
@@ -94,7 +94,7 @@
                             <input type="checkbox" id="RC_EMail" name="RC_EMail" />
                             <input type="checkbox" id="RC_Sms" name="RC_Sms" />
                             <input type="checkbox" id="RC_NotifyGuru" name="RC_NotifyGuru" />
-                            <input type="text" style="width: 5%;"name="RP_Horas" id="RP_Horas" />
+                            <input type="text" style="width: 5%;" name="RP_Horas" id="RP_Horas" />
                         }
                     }
                 </li>
@@ -164,18 +164,23 @@
                     }
                 </li>
             </ul>
-            <div class="BOButtonContainerShort">
-                @*hiden fields*@
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                <input class="BOButtons" type="submit" value="guardar" />
-            </div>
+            @{
+                if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                {
+                    <div class="BOButtonContainerShort">
+                        @*hiden fields*@
+                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                        <input class="BOButtons" type="submit" value="guardar" />
+                    </div>
+                }
+            }
         </form>
     </div>
 </div>
 
 @section inlinescripts
 {
-        <script type="text/javascript">                 
+    <script type="text/javascript">
         $(document).ready(function () {
             //start office grid
             ReminderSetControlSpinner('RPC_Time');

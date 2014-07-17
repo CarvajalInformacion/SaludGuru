@@ -112,6 +112,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             DataFactory.ProfileInfoDelete(ProfileInfoId);
         }
 
+        public List<RelatedProfileModel> RelatedProfileGetAllByParentId(string ProfileParent)
+        {
+            return DataFactory.RelatedProfileGetAllByParentId(ProfileParent);
+        }
+
         public void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild)
         {
             DataFactory.RelatedProfileCreate(ProfilePublicIdParent, ProfilePublicIdChild);
@@ -252,7 +257,6 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         {
             return DataFactory.CityGetAll();
         }
-        #endregion
-
+        #endregion       
     }
 }

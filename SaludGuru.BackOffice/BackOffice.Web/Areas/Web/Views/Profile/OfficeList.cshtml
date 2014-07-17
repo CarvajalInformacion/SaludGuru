@@ -18,11 +18,15 @@
             }).ToList());
 
     //get create url
-    string oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
-        new
-        {
-            ProfilePublicId = Model.Profile.ProfilePublicId
-        });
+    string oCreateUrl = "";
+    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+    {
+        oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+            new
+            {
+                ProfilePublicId = Model.Profile.ProfilePublicId
+            });
+    }
 }
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
@@ -32,8 +36,8 @@
     <h3>Listado de Consultorios</h3>
 
     <div id="divGridOffice"></div>
-
 </div>
+
 
 @section inlinescripts
 {

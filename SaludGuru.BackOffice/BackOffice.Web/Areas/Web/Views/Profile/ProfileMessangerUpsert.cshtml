@@ -270,13 +270,18 @@
                             <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
                         }
                     }
-                </li>                
+                </li>
             </ul>
-            <div class="BOButtonContainerShort">
-                @*hiden fields*@
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                <input class="BOButtons" type="submit" value="guardar" />
-            </div>
+            @{
+                if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                {
+                    <div class="BOButtonContainerShort">
+                        @*hiden fields*@
+                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                        <input class="BOButtons" type="submit" value="guardar" />
+                    </div>
+                }
+            }
         </form>
     </div>
 </div>

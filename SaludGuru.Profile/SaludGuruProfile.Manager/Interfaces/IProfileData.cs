@@ -35,7 +35,8 @@ namespace SaludGuruProfile.Manager.Interfaces
         int ProfileInfoCreate(string ProfilePublicId, enumProfileInfoType ProfileInfoType, string Value, string LargeValue);
         void ProfileInfoModify(int ProfileInfoId, string Value, string LargeValue);
         void ProfileInfoDelete(int ProfileInfoId);
-
+        
+        List<RelatedProfileModel> RelatedProfileGetAllByParentId(string ProfileParent);
         void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild);
         void RelatedProfileDelete(string ProfilePublicIdParent, string ProfilePublicIdChild);
 
