@@ -9,7 +9,9 @@
         IdentificationType = 1005,
         IdentificationNumber = 1006,
         Mobile = 1007,
-        ProfileImage = 1008
+        ProfileImage = 1008,
+        Insurance = 1009,
+        MedicalPlain = 1010
     }
 
     public enum enumAppointmentInfoType

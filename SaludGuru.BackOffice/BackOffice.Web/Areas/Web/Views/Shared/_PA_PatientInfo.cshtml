@@ -167,12 +167,63 @@
                     }
                 }
             </li>
+            <li>
+                <label>Seguro</label>
+                <select id="Insurance" name="Insurance">
+                    @{
+                        var valueInsurance = Model.Patient
+                            == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Insurance).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+
+                        foreach (var item in Model.Insurance)
+                        {
+                            if (Model.Insurance != null && valueInsurance != null && item.CategoryId == Convert.ToInt32(valueInsurance.val))
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+                        }
+                    }
+                    @if (valueInsurance != null)
+                    {
+                        <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="@valueInsurance.id" />
+                    }
+                </select>
+            </li>
+            <li>
+                @{
+                    var CatInfo_MP = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.MedicalPlain).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_MP != null)
+                    {
+                        <input type="hidden" id="CatId_MedicalPlan" name="CatId_MedicalPlan" value="@CatInfo_MP.id" />
+                    }
+                }
+            </li>
+            <li>
+                <label>Plan médico</label>
+                <input id="MedicalPlan" name="MedicalPlan" value="@(CatInfo_MP == null ? string.Empty : CatInfo_MP.val)" type="text" />
+            </li>
+
+        </ul>
+        <div>
             <li class="BOButtonContainerShort">
                 @*hiden fields*@
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
                 <input type="submit" class="BOButtons" value="guardar" />
             </li>
-        </ul>
+            </ul>
     </form>
 </div>
 

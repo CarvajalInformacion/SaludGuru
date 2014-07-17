@@ -32,13 +32,15 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public string UpsertAppointment(string UpsertAction)
         {
-            List<PatientModel> PatientToRemove;
+            //List<PatientModel> PatientToRemove;
 
-            AppointmentModel AppointmentToUpsert = GetAppointmentInfoRequestModel(out PatientToRemove);
+            //AppointmentModel AppointmentToUpsert = GetAppointmentInfoRequestModel(out PatientToRemove);
 
-            string AppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
+            //string AppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
 
-            return AppointmentPublicId;
+            //return AppointmentPublicId;
+
+            return string.Empty;
         }
 
         #region Private Methods

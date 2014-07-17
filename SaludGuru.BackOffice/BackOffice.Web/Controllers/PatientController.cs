@@ -3,6 +3,8 @@ using BackOffice.Models.Patient;
 using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models;
+using SaludGuruProfile.Manager.Models.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,10 @@ namespace BackOffice.Web.Controllers
             string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
 
             PatientUpSertModel Model = new PatientUpSertModel();
+                    
             Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
+            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+            
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
@@ -59,7 +64,7 @@ namespace BackOffice.Web.Controllers
                 RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId),
             };
 
-            if(Model.RelatedAppointment == null)
+            if (Model.RelatedAppointment == null)
             {
                 Model.RelatedAppointment = new List<AppointmentModel>();
             }
@@ -118,7 +123,19 @@ namespace BackOffice.Web.Controllers
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_Gender"])?0:int.Parse(Request["CatId_Gender"].ToString().Trim()),
                             PatientInfoType = enumPatientInfoType.Gender,
                             Value = Request["Gender"].ToString(),
-                        }                   
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Insurance"])? 0 :int.Parse(Request["CatId_Insurance"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Insurance,
+                            Value = Request["Insurance"].ToString(),
+                        }, 
+                         new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_MedicalPlan"])?0:int.Parse(Request["CatId_MedicalPlan"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.MedicalPlain,
+                            Value = Request["MedicalPlan"].ToString(),
+                        }
                     }
                 };
 
