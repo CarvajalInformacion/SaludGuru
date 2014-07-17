@@ -7,7 +7,7 @@
         <div id="AppointmentUpsert">
             <form action="/api/AppointmentApi?UpsertAction=true" method="post" id="frmAppointment" name="frmAppointment">
                 <ul>
-                    <li>
+                    <li id="liAppointmentHeader">
                         <span>Datos de la Nueva Cita</span><span>(Cita Pendiete por Asistencia)</span>
                     </li>
                     <li>
@@ -43,6 +43,7 @@
                 </ul>
                 <!--hidden fields-->
                 <div style="display:none;">
+                    <input type="hidden" id="SendNotifications" name="SendNotifications" />
                     <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" />
                     <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
@@ -79,12 +80,16 @@
                 </label>
             </div>
         </div>
-
+        <div id="AppointmentHeaderTemplate">
+            <span>{AppointmentStatus}</span><span><a href="@(Url.Action(MVC.Appointment.ActionNames.Detail) + "?AppointmentPublicId={AppointmentPublicId}")">Ver detalle</a></span>
+        </div>
         <!--patient appointment-->
         <ul id="ulPatientAppointment">
             <li id="{PatientPublicId}">
-                <img src="{ProfileImage}" />
-                <label>{Name}</label>
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">
+                    <img src="{ProfileImage}" />
+                </a>
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">{Name}</a>
                 <label>Ident: {IdentificationNumber}</label>
                 <label>Cel: {Mobile}</label>
                 <label>Email: {Email}</label>
@@ -92,12 +97,58 @@
                 <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
             </li>
         </ul>
+
+        <!--Save result message-->
+        <div id="SaveResultTemplate">
+            <p>La cita {AppointmentPublicId} se ha procesado {Status}.</p>
+        </div>
     </div>
     <!--dialogs-->
     <div id="AppointmentDialog" style="display:none;">
+        <!--Dialog save result-->
+        <div id="Dialog_SaveResult" title="Guardar cambios"></div>
+
+        <!--Dialog save appointment changes-->
         <div id="Dialog_SaveAppointment" title="Guardar cambios">
             <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
         </div>
+
+        <!--Dialog cancel appointment-->
+        <div id="Dialog_CancelAppointment" title="Guardar cambios">
+            <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
+        </div>
+
+        <!--Dialog confirm appointment-->
+        <div id="Dialog_ConfirmAppointment" title="Confirmar asistencia">
+            <form action="/api/AppointmentApi?ConfirmAttendance=true" method="post" id="frmConfirmAppointment" name="frmConfirmAppointment">
+                <ul>
+                    <li>
+                        <div>
+                            <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance)" />
+                            <span>El paciente asistio a la cita</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance)" />
+                            <span>El paciente no asistio a la cita</span>
+                        </div>
+                    </li>
+                    <li id="liRemindedFuture">
+                        <input name="SendRemindedFuture" id="SendRemindedFuture" type="checkbox" />
+                        <span>Enviar recordatorio de proxima cita</span>
+                        <div id="divRemindedDate">
+                            <span>Seleccione la fecha de envio del recordatorio</span>
+                            <input type="text" id="RemindedDate" name="RemindedDate" />
+                        </div>
+                    </li>
+                </ul>
+
+                <div style="display:none;">
+                    <!-- hidden fields -->
+                    <input type="hidden" id="R_AppointmentPublicId" name="R_AppointmentPublicId" />
+                </div>
+            </form>
+        </div>
+
     </div>
 }
 else

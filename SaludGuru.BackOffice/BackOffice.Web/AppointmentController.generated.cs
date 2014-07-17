@@ -81,6 +81,12 @@ namespace BackOffice.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Detail()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AppointmentController Actions { get { return MVC.Appointment; } }
@@ -101,6 +107,7 @@ namespace BackOffice.Web.Controllers
             public readonly string Week = "Week";
             public readonly string Month = "Month";
             public readonly string List = "List";
+            public readonly string Detail = "Detail";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -110,6 +117,7 @@ namespace BackOffice.Web.Controllers
             public const string Week = "Week";
             public const string Month = "Month";
             public const string List = "List";
+            public const string Detail = "Detail";
         }
 
 
@@ -144,6 +152,14 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_List
         {
             public readonly string Date = "Date";
+        }
+        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Detail
+        {
+            public readonly string AppointmentPublicId = "AppointmentPublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -209,6 +225,18 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             ListOverride(callInfo, Date);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string AppointmentPublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Detail(string AppointmentPublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AppointmentPublicId", AppointmentPublicId);
+            DetailOverride(callInfo, AppointmentPublicId);
             return callInfo;
         }
 

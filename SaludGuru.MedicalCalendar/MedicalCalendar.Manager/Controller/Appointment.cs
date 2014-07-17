@@ -106,6 +106,13 @@ namespace MedicalCalendar.Manager.Controller
             return oAppointmentPublicId;
         }
 
+        public static void UpdateAppointmentStatus(AppointmentModel AppointmentToUpSert)
+        {
+            DAL.Controller.MedicalCalendarDataController.Instance.AppointmentModifyStatus
+                (AppointmentToUpSert.AppointmentPublicId,
+                AppointmentToUpSert.Status);
+        }
+
         public static List<AppointmentModel> AppointmentGetByOfficeId
             (string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
