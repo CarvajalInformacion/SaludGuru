@@ -349,18 +349,7 @@ div.fc-event {
 }
 
 /******************************Calendar by month*************************************/
-/*weekends calendar*/
-.ui-datepicker-week-end a.ui-state-default {
-    background: #00ffff;
-}
-/*holiday*/
-.specialDay_1 a.ui-state-default {
-    background: #ff0000;
-}
-/*not available day*/
-.specialDay_2 a.ui-state-default {
-    background: #0026ff;
-}
+
 /*hide next and preview*/
 #Calendar-Left .ui-datepicker-prev, #Calendar-Right .ui-datepicker-next {
     border: none;
