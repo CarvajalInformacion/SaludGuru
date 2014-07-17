@@ -30,9 +30,9 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
-        public static List<AppointmentModel> AppointmentList(string ProfilePublicId)
+        public static List<AppointmentModel> AppointmentList(string PatientPublicId)
         {
-            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(ProfilePublicId);
+            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(PatientPublicId);
 
             return oReturn;
         }
@@ -111,6 +111,11 @@ namespace MedicalCalendar.Manager.Controller
         {
             return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeId
                 (OfficePublicId, StartDateTime, EndDateTime);
+        }
+
+        public static AppointmentModel AppointmentGetById(string AppointmentPublicId)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetById(AppointmentPublicId);
         }
     }
 }
