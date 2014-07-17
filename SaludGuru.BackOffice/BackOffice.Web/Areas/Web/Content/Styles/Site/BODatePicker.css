@@ -25,6 +25,9 @@ div#ui-datepicker-div {
     }
         div.ui-datepicker-header div.ui-datepicker-title{
             line-height: 16px;
+            display: block;
+            margin: -3px 26px 0px 26px;
+            font-size:12px;
         }
     div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title span.ui-datepicker-year{
         height: 20px;
@@ -36,22 +39,43 @@ div#ui-datepicker-div {
             font-weight: normal;
             line-height: 16px;
         }
-/**********************DATOS DEL DIA FECHA ETC**************************/
+    select.ui-datepicker-month, select.ui-datepicker-year{
+        width: 49%;
+        font-size: 12px;
+        background-color: #ececec;
+        border: 1px solid #666;
+        height: 20px;
+    }
 
+/**********************DATOS DEL DIA FECHA ETC**************************/
+table.ui-datepicker-calendar > thead > tr {
+    background-color:#e6e6e6;
+}
 table.ui-datepicker-calendar > thead > tr > th{
     font-weight: normal;
     width: auto;
     margin: 0px;
     padding: 8px 0px;
-    border: 1px solid red;  
+    border: 1px solid #666;
 }
-
 table.ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end {
     font-weight: normal;
     width: auto;
     margin: 0px;
     padding: 8px 0px;
-    border: 1px solid red;  
+    border: 1px solid #666;  
+}
+/*weekends calendar*/
+.ui-datepicker-week-end a.ui-state-default {
+    background:#ffb380;
+}
+/*holiday*/
+.specialDay_1 a.ui-state-default {
+    background: #ff0000;
+}
+/*not available day*/
+.specialDay_2 a.ui-state-default {
+    background: #0026ff;
 }
 table.ui-datepicker-calendar > tbody > tr > td {
     font-size: 12px;
@@ -59,8 +83,17 @@ table.ui-datepicker-calendar > tbody > tr > td {
     width: auto;
     margin: 0px;
     padding:0px;
-    border: 1px solid blue;
+    border:None;
 }
+
+a.ui-state-default, .ui-widget-content .ui-state-default {
+    border:1px solid #666 !important;
+    color: #333 !important;
+    background-image:none;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+
     table.ui-datepicker-calendar > tbody > tr > td > a {
         height: 20px;
         margin: 0px auto;
@@ -133,10 +166,11 @@ div#ptTimeSelectUserTime {
         line-height: 11px;
     }
 div.ui-widget-content {
-    border: 1px solid blue;
+    border: 1px solid #333;
     border-radius: 0px;
     margin: 0px;
     height: auto; 
+    box-shadow:2px 2px 8px;
 }
     div.ptTimeSelectLeftPane, div.ptTimeSelectRightPane {
         line-height: 12px;
@@ -148,6 +182,10 @@ div.ui-widget-content {
             line-height:14px;
             border-color:#666;
             color:#666;
+        }
+        a.ui-state-hover, .ui-widget-content .ui-state-hover {
+            background-color:#e2ff6d !important;
+            background-image:none !important;
         }
         div#ptTimeSelectSetButton a.ui-state-hover {
             line-height:14px;
