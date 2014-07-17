@@ -11,13 +11,13 @@
     <div class="BOAgendaAppointmentActions">
         <ul>
             <li class="BOActionCreate">
-                <a href="">Crear nueva cita</a>
+                <a href="javascript:UpsertAppointmentObject.RenderForm(new Date('@(DateTime.Now.Year.ToString())', '@((DateTime.Now.Month - 1).ToString())', '@(DateTime.Now.Day)', '@(DateTime.Now.Hour)', '@(DateTime.Now.Minute)'), '@Model.CurrentProfile.RelatedOffice.Select(x=>x.OfficePublicId).FirstOrDefault()', null);">Crear nueva cita</a>
             </li>
             <li class="BOActionCancel">
-                <a href="">Citas canceladas</a>
+                <a href="javascript:MettingCalendarObject.ToggleCancelAppointment();">Citas canceladas</a>
             </li>
             <li class="BOActionBlock">
-                <a href="">Bloquear horario</a>
+                <a href="javascript:UpsertAppointmentObject.RenderBlockForm();">Bloquear horario</a>
             </li>
         </ul>
     </div>
