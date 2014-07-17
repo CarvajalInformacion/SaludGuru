@@ -253,7 +253,7 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
 
 /************************BARRITA DE LOS COMANDOS***************************/
         div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands{
-            background-color:#f2f2f2;
+            background-color:#ececec;
             display:block;
             height:34px;
             width:100%;

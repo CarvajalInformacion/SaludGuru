@@ -5,7 +5,7 @@
 	width:100%; height:auto;
     min-width:800px;
 	text-align:center;
-    border:1px solid PURPLE;
+    border:none;
 }
 
 /*.BOAgendaDateSelector{
@@ -88,22 +88,20 @@
 
 div#Calendar-Left table.ui-datepicker-calendar > thead > tr > th,
 div#Calendar-Right table.ui-datepicker-calendar > thead > tr > th{
-    font-size: 12px;
+    font-size:14px;
     font-weight: normal;
     width: auto;
     margin: 0px;
     padding: 8px 0px;
-    border: 1px solid red;  
+    border: 1px solid #666;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td{
-    font-size: 12px;
+    font-size: 13px;
     font-weight: normal;
     width: auto;
-    margin: 0px;
     padding:0px;
-    border: 1px solid blue;  
 }
 
 div#Calendar-Left table.ui-datepicker-calendar .ui-state-active,
@@ -116,39 +114,46 @@ div#Calendar-Right table.ui-datepicker-calendar .ui-state-active{
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td > a,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td > a{
 height: 20px;
-margin: 0px auto;
+margin-top:-1px;
+margin-left:-1px;
 width: auto;
-border: 1px solid gray;
 text-align: center;
 vertical-align: baseline;
 line-height: 12px;
 color: #666;
+border: 1px solid #666;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected{
     background-image:none;
-    background-color:purple;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected > a,
 div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
     background-image:none;
-    background-color:purple;
+        background-color:#de87aa;
 }
+.specialDay_1 a.ui-state-default {
+    background-color:#ff5555 !important;
+}
+    .specialDay_1 a.ui-state-hover {
+        background-color:#e2ff6d !important;
+    }
+
 /************************ ACCIONES DE LA CITA **************************/
 
-.BOAgendaAppointmentActions {border:1px solid #99c21d; display:block; box-shadow:2px 2px 2px; background-color:#F2F2F2;}
+.BOAgendaAppointmentActions {border:none; display:block; box-shadow:2px 2px 2px; background-color:#ECECEC; height:30px;}
     .BOAgendaAppointmentActions ul{
-        border:1px solid green;
+        border:none;
         display:block;
-        margin:2px auto;
+        margin:3px auto;
         width:auto;height:auto;
     }
         .BOAgendaAppointmentActions ul li{
-            border:1px solid blue;
+            border:none;
             display:inline-block;
-            margin:0px; padding:0px;
+            margin:3px 0px 0px 0px; padding:0px;
             width:114px;height:auto;
             text-align:right;
             vertical-align:top;
@@ -156,21 +161,20 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
         .BOAgendaAppointmentActions ul li.BOActionCreate, 
         .BOAgendaAppointmentActions ul li.BOActionCancel,
         .BOAgendaAppointmentActions ul li.BOActionBlock {
-            background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');            
+            background-image:url('/Areas/Web/Content/Images/calendarActionsSprite.png');
             background-repeat:no-repeat;
         }
         .BOAgendaAppointmentActions ul li.BOActionCreate {
-            background-position: -51px -96px; background-size: 519px auto;
+            background-position: 0px 0px; background-size:112px auto;
         }
         .BOAgendaAppointmentActions ul li.BOActionCancel {
-            background-position: -92px -96px; background-size: 519px auto;
+            background-position:-44px 0px; background-size:112px auto;
         }
         .BOAgendaAppointmentActions ul li.BOActionBlock {
-            background-position: -130px -96px; background-size: 519px auto;
+            background-position:-88px 0px; background-size:112px auto;
         }
-
         .BOAgendaAppointmentActions ul li a{
-            border:1px solid red;
+            border:none;
             display:block;
             max-width:88px;height:auto;
             line-height:12px;
@@ -180,7 +184,9 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
             font-weight:normal;
             text-transform:uppercase;
             float:right;
-            background-color:#fff;
+            color:#333;
+            background-color:#ECECEC;
+            text-align: left;
         }
 /*************************CONTENEDOR CREACION DE CITAS**************************/
 div#AppointmentUpsert{
