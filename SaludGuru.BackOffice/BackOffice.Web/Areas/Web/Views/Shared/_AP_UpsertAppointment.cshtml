@@ -49,7 +49,6 @@
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
                 </div>
             </form>
-
         </div>
 
         <div id="AppointmentUpsertActions" class="BOAgendaCalendarAppointmentCommands">
@@ -64,6 +63,56 @@
             </span>
             <span class="AppointmentActionsAccept">
                 <a href="javascript:;">Guardar</a>
+            </span>
+        </div>
+    </div>
+    <div id="BlockAppointmentContainer" style="display:none;">
+        <div>
+            <form action="/api/AppointmentApi?BlockAppointment=true" method="post" id="frmBlockAppointment" name="frmBlockAppointment">
+                <ul>
+                    <li>
+                        <span>Bloquear agenda</span>
+                    </li>
+                    <li>
+                        <label>Consultorio:</label>
+                        <select id="BlockOfficePublicId" name="BlockOfficePublicId">
+                            @foreach (SaludGuruProfile.Manager.Models.Office.OfficeModel of in Model.CurrentProfile.RelatedOffice)
+                            {
+                                <option value="@of.OfficePublicId">@of.Name</option>
+                            }
+                        </select>
+                    </li>
+                    <li>
+                        <label>Fecha:</label>
+                        <input type="text" id="BlockDate" name="BlockDate" />
+                    </li>
+                    <li>
+                        <label>Hora de inicio:</label>
+                        <input type="text" id="BlockStartTime" name="BlockStartTime" />
+                    </li>
+                    <li>
+                        <label>Hora de fin:</label>
+                        <input type="text" id="BlockEndTime" name="BlockEndTime" />
+                    </li>
+                    <li>
+                        <input type="checkbox" id="CancelAllAppointment" name="CancelAllAppointment" />
+                        <label>Cancelar todas las citas</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="SendNotificationAllAppointment" name="SendNotificationAllAppointment" />
+                        <label>Enviar notificaciones</label>
+                    </li>
+                </ul>
+                <!--hidden fields-->
+                <div style="display:none;">
+                    <input type="hidden" id="BlockAppointmentPublicId" name="BlockAppointmentPublicId" />
+                </div>
+            </form>
+        </div>
+
+        <div class="BOAgendaCalendarAppointmentCommands">
+            <span class="AppointmentActionsAccept">
+                <a href="javascript:UpsertAppointmentObject.SaveBlockAppointment();">Guardar</a>
             </span>
         </div>
     </div>
@@ -159,6 +208,7 @@ else
             //init upsert appointment object
             UpsertAppointmentObject.Init({
                 DivId: 'AppointmentUpsertContainer',
+                DivBlockId: 'BlockAppointmentContainer',
             });
         });
     </script>

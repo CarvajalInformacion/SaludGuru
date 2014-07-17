@@ -70,18 +70,10 @@ namespace BackOffice.Web.ControllersApi
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
                     AppointmentPublicId = HttpContext.Current.Request["AppointmentPublicId"].ToString(),
-                    Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled,
                 };
 
-                //update appointment status
-                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
-
-                if (SendNotifications)
-                {
-                    //TODO: send message new patient PatientNew
-
-                    //TODO: send message removed patient
-                }
+                //cancel appointment
+                DoCancelAppointment(AppointmentToUpsert, SendNotifications);
             }
         }
 
@@ -125,6 +117,38 @@ namespace BackOffice.Web.ControllersApi
                     //TODO: program remember mesaje RemindedDate
                 }
             }
+        }
+
+        [HttpPost]
+        [HttpGet]
+        public string BlockAppointment(string BlockAppointment)
+        {
+            //get request object
+            bool CancelAllAppointment = false, SendNotificationAllAppointment = false;
+            AppointmentModel BlockAppmt = GetBlockAppointmentRequestModel(out CancelAllAppointment, out SendNotificationAllAppointment);
+
+            //upsert block appointment
+            string AppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(BlockAppmt, new List<PatientModel>());
+
+            if (CancelAllAppointment)
+            {
+                //get all appointments to masive cancel
+                List<AppointmentModel> lstAppmtToCancel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeId
+                    (BlockAppmt.OfficePublicId, BlockAppmt.StartDate, BlockAppmt.EndDate);
+
+                lstAppmtToCancel.
+                    Where(x => x.Status != MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled &&
+                            x.Status != MedicalCalendar.Manager.Models.enumAppointmentStatus.BlockCalendar).
+                    All(AppmtToCancel =>
+                {
+                    DoCancelAppointment(AppmtToCancel, SendNotificationAllAppointment);
+
+                    return true;
+                });
+            }
+
+            //return block appointment public id
+            return AppointmentPublicId;
         }
 
         #region Private Methods
@@ -279,6 +303,66 @@ namespace BackOffice.Web.ControllersApi
                 return oReturn;
             }
             return null;
+        }
+
+        private AppointmentModel GetBlockAppointmentRequestModel(out bool CancelAllAppointment, out bool SendNotificationAllAppointment)
+        {
+            CancelAllAppointment = false;
+            SendNotificationAllAppointment = false;
+
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request["BlockAppointment"])
+                && bool.Parse(HttpContext.Current.Request["BlockAppointment"]))
+            {
+                //get send notifications
+                SendNotificationAllAppointment = !string.IsNullOrEmpty(HttpContext.Current.Request["SendNotificationAllAppointment"]);
+
+                //get cancel all appointment
+                CancelAllAppointment = !string.IsNullOrEmpty(HttpContext.Current.Request["CancelAllAppointment"]);
+
+
+                //get basic appointment
+                AppointmentModel oReturn = new AppointmentModel()
+                {
+                    AppointmentPublicId = string.IsNullOrEmpty(HttpContext.Current.Request["BlockAppointmentPublicId"]) ? null :
+                                HttpContext.Current.Request["BlockAppointmentPublicId"].ToString(),
+
+                    OfficePublicId = HttpContext.Current.Request["BlockOfficePublicId"].ToString(),
+
+                    Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.BlockCalendar,
+
+                    StartDate = DateTime.ParseExact
+                            (HttpContext.Current.Request["BlockDate"].Replace(" ", "") + "T" + HttpContext.Current.Request["BlockStartTime"].Replace(" ", ""),
+                            "dd/MM/yyyyTh:mmtt",
+                            System.Globalization.CultureInfo.InvariantCulture),
+
+                    EndDate = DateTime.ParseExact
+                            (HttpContext.Current.Request["BlockDate"].Replace(" ", "") + "T" + HttpContext.Current.Request["BlockEndTime"].Replace(" ", ""),
+                            "dd/MM/yyyyTh:mmtt",
+                            System.Globalization.CultureInfo.InvariantCulture),
+
+                    AppointmentInfo = new List<AppointmentInfoModel>(),
+
+                    RelatedPatient = new List<PatientModel>(),
+                };
+
+                return oReturn;
+            }
+            return null;
+        }
+
+        private void DoCancelAppointment(AppointmentModel AppointmentToUpsert, bool SendNotifications)
+        {
+            AppointmentToUpsert.Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled;
+
+            //update appointment status
+            MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+
+            if (SendNotifications)
+            {
+                //TODO: send message new patient PatientNew
+
+                //TODO: send message removed patient
+            }
         }
 
         #endregion
