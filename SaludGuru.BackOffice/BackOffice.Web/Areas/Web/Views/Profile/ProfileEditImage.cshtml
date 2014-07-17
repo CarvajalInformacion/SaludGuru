@@ -54,9 +54,14 @@
                                     Select(x=>x.ProfileInfoId).
                                     DefaultIfEmpty(0).
                                     FirstOrDefault())" />
-                    <div class="BOButtonContainerProfileImages">
-                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
-                    </div>
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
                 </form>
             </li>
             <li>
@@ -102,10 +107,14 @@
                                     Select(x=>x.ProfileInfoId).
                                     DefaultIfEmpty(0).
                                     FirstOrDefault())" />
-
-                    <div class="BOButtonContainerProfileImages">
-                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
-                    </div>
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
                 </form>
             </li>
             <li class="BOImageGalleryBlock">
@@ -115,9 +124,14 @@
 
                 <form method="post" enctype="multipart/form-data" action="@Url.Action(MVC.Profile.ActionNames.ProfileUpsertGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
                     <input type="file" id="lstUploadFile" name="lstUploadFile" multiple />
-                    <div class="BOButtonContainerProfileImages">
-                        <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
-                    </div>
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
 
                 </form>
 

@@ -31,25 +31,36 @@
                                 }).ToList());
                     }
                 </li>
-                <li class="BOButtonContainerShort">
-                    <!--hiden fields-->
-                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input class="BOAgregarButtons" type="submit" value="Agregar" />
-                </li>
+                @{
+                    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                    {
+                        <li class="BOButtonContainerShort">
+                            <!--hiden fields-->
+                            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                            <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                        </li>
+                    }
+                }
             </ul>
         </form>
     </div>
     <div id="templateDelete">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileDelete, MVC.Profile.Name,
+        @{
+            if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+            {
+                <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileDelete, MVC.Profile.Name,
                 new
                 {
                     ProfilePublicId = Model.Profile.ProfilePublicId
                 }))">
-            <!--hiden fields-->
-            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
-            <input class="BOButtonsErase" type="submit" value="Borrar" />
-        </form>
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
+                    <input class="BOButtonsErase" type="submit" value="Borrar" />
+                    
+                </form>
+            }
+        }
     </div>
 </div>
 
@@ -68,7 +79,6 @@
     <script type="text/javascript">
         var vDataTreatmentProfile = @Html.Raw(oTreatmentProfile)
         $(document).ready(function () {
-            debugger;
             //start office grid
             ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
         });
