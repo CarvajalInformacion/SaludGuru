@@ -979,5 +979,16 @@ namespace BackOffice.Web.Controllers
         }
 
         #endregion
+
+        #region RelatedProfile
+
+        public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
+        {
+            List<ProfileModel> Model = new List<ProfileModel>();
+            Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
+                       
+            return View(Model); 
+        }
+        #endregion
     }
 }
