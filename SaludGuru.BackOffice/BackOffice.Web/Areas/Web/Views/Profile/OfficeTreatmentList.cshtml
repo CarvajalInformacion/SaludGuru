@@ -43,12 +43,17 @@
             }).ToList());
 
     //get create url
-    string oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
-        new
-        {
-            ProfilePublicId = Model.Profile.ProfilePublicId,
-            OfficePublicId = Model.CurrentOffice.OfficePublicId,
-        });
+    string oCreateUrl = "";
+
+    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+    {
+        oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
+            new
+            {
+                ProfilePublicId = Model.Profile.ProfilePublicId,
+                OfficePublicId = Model.CurrentOffice.OfficePublicId,
+            });
+    }
 }
 @section inlinescripts
 {
