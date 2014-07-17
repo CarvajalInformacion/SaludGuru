@@ -1,19 +1,19 @@
-﻿@model List<SaludGuruProfile.Manager.Models.Profile.ProfileModel>
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 @{
     ViewBag.Title = "RelatedProfileSearch";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
 <div class="BOProfileMenuWrapper">
-    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.FirstOrDefault())
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model)
 </div>
 
 <div id="templates" style="display:none;">
     <div id="templateDelete">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationDelete, MVC.Profile.Name,
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name,
                 new
                 {
-                    ProfilePublicId = Model.FirstOrDefault().ProfilePublicId
+                    ProfilePublicId = Model.ProfilePublicId
                 }))">
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
@@ -25,24 +25,23 @@
 
 @{
     //get json office data
-    @*string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.CurrentAutorization.
+    string oRelatedProfileInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.ChildProfile.
             Select(x => new
             {
-                ProfileRoleId = x.ProfileRoleId,
-                RoleName = x.RoleName,
-                UserEmail = x.UserEmail
-            }).ToList());*@
+               Name = x.Name + "" + x.LastName,
+               Email = x.ProfileInfo.Where(p => p.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).Select(p =>p.Value)
+            }).ToList());
 }
 @section inlinescripts
 {
-    @*<script type="text/javascript">
-        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+    <script type="text/javascript">
+        var vDataRelatedProfileInfo = @Html.Raw(oRelatedProfileInfo)
         $(document).ready(function () {
             //start office grid
-            ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+            RelatedProfileListGrid('divGridAutorization', vDataRelatedProfileInfo);
         });
-    </script>*@
+    </script>
 }
 
 

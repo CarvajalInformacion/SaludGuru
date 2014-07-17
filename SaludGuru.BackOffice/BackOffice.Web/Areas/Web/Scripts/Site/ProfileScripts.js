@@ -390,3 +390,24 @@ function ReminderSetControlSpinner(control) {
         step: 2,
     });
 }
+function RelatedProfileListGrid(vidDiv, vRelatedData) {
+
+    $('#' + vidDiv).kendoGrid({
+        //toolbar: [{ template: $("#templateCreate").html() }],
+        dataSource: {
+            type: "json",
+            data: vRelatedData,
+        },
+        columns: [{
+            field: "Name",
+            title: "Nombre",
+        }, {
+            field: "Email",
+            title: "Correo Electrónico"
+        },{
+            field: "CategoryId",
+            title: "&nbsp;",
+            template: $("#templateDelete").html()
+        }],
+    });
+}

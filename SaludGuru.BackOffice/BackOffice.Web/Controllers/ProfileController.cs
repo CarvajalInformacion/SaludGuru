@@ -58,7 +58,6 @@ namespace BackOffice.Web.Controllers
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
             };
 
-
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
@@ -985,7 +984,10 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
         {
             ProfileModel Model = new ProfileModel();
-            Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
+            Model = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+
+            Model = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+            //Model.ChildProfile = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
                        
             return View(Model); 
         }
