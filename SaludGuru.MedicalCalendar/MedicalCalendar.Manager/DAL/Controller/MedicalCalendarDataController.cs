@@ -128,6 +128,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentGetByOfficeId(OfficePublicId, StartDateTime, EndDateTime);
         }
 
+        public AppointmentModel AppointmentGetById(string AppointmentPublicId)
+        {
+            return DataFactory.AppointmentGetById(AppointmentPublicId);
+        }
+        
         #endregion
     }
 }
