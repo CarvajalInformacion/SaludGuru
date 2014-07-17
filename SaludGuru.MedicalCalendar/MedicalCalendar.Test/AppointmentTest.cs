@@ -18,5 +18,15 @@ namespace MedicalCalendar.Test
 
             Assert.AreEqual(true, result.Count > 0);
         }
+
+        [TestMethod]
+        public void AppointmentGetById()
+        {
+            MedicalCalendar.Manager.Models.Appointment.AppointmentModel result =
+                MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById("37245685");
+
+            Assert.IsNotNull(result);
+            
+        }
     }
 }

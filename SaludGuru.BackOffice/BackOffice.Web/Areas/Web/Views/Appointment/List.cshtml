@@ -1,10 +1,15 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "Day";
+    ViewBag.Title = "List";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
 <div class="BOAgendaModuleGreatWrapper">
+    
+    <div class="BOAgendaCalendarWrapper">
+        <!--Calendar by Month-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+    </div>
 
     <div id="divMeetingAppointmentCalendar">
 

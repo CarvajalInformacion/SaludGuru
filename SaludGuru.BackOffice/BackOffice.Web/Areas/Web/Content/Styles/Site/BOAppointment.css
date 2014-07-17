@@ -36,7 +36,7 @@
 	}*/
 /************************CALENDARIOS**************************/
 .BOAgendaCalendarWrapper{
-	border:1px solid red;
+	border:none;
 	float:left;
 	width:390px;
 	height:510px;
@@ -46,9 +46,10 @@
 }
 .BOAgendaSideMonthsWrapper{
 	display:block;
-	border:1px solid orange;
+	border:none;
 	width:auto;
 	height:auto;
+    background-color:#ececec;
 }
     div.BOAgendaSideMonthsWrapper div#Calendar-Left, div.BOAgendaSideMonthsWrapper div#Calendar-Right{
         display: inline-block;
@@ -61,6 +62,7 @@
             width:178px;
             border-radius: 1px;
             margin:0px;
+            box-shadow:none;
         }
                 div.BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline div.ui-datepicker-header,
                 div.BOAgendaSideMonthsWrapper div#Calendar-Right div.ui-datepicker-inline div.ui-datepicker-header 
