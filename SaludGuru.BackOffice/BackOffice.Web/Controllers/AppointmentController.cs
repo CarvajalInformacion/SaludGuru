@@ -54,7 +54,10 @@ namespace BackOffice.Web.Controllers
             dtAux = dtAux.AddDays((-1) * intAuxDayAdd);
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day + 7, 0, 0, 0);
+
+            dtAux = dtAux.AddDays(7);
+
+            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Week;
@@ -94,7 +97,7 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get date
-            if(!string.IsNullOrEmpty(Date))
+            if (!string.IsNullOrEmpty(Date))
             {
                 DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);

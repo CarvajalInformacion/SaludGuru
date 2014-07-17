@@ -80,6 +80,8 @@ namespace BackOffice.Models.Appointment
 
         public string StartTime { get { return CurrentAppointment.StartDate.ToString("hh:mm tt").Replace(".", "").ToUpper(); } }
 
+        public string EndTime { get { return CurrentAppointment.EndDate.ToString("hh:mm tt").Replace(".", "").ToUpper(); } }
+
         public int TreatmentId
         {
             get

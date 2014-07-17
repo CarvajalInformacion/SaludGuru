@@ -65,10 +65,7 @@ var CalendarObject = {
                 return oReturn;
             },
             onSelect: function (date) {
-                //delete selected style in continuos calendar
-                //$('#' + this.DivId + '-Right .ui-state-active').removeClass('ui-state-active ui-state-hover');
-                //alert(date + 'jairo');
-                //window.location = '/Appointment/Day?Date=' + date;
+                window.location = window.location.pathname + '?Date=' + date;
             },
         });
 
@@ -235,7 +232,7 @@ var UpsertAppointmentObject = {
 
         //validate if is render appointment block
         if (oCurrentAppointmentStatus == 1207) {
-            this.RenderBlockForm();
+            this.RenderBlockForm(vAppointmentInfo);
             return;
         }
 
@@ -599,7 +596,7 @@ var UpsertAppointmentObject = {
             //hide not started controls
             $('#liRemindedFuture').hide();
             $('#divRemindedDate').hide();
-            
+
             //init dialog
             $("#Dialog_ConfirmAppointment").dialog({
                 height: 200,
@@ -845,14 +842,26 @@ var UpsertAppointmentObject = {
     },
 
     /*render block appointment form*/
-    RenderBlockForm: function () {
+    RenderBlockForm: function (vAppointmentInfo) {
 
         //hidde create appointment form
         $('#' + this.DivId).hide();
         $('#' + this.DivBlockId).hide();
 
+        //load office
+        if (vAppointmentInfo != null) {
+            $('#BlockOfficePublicId').val(vAppointmentInfo.OfficePublicId);
+        }
+
         //load block date
         $('#BlockDate').datepicker();
+
+        if (vAppointmentInfo != null) {
+            $('#BlockDate').val(vAppointmentInfo.StartDate);
+        }
+        else {
+            $('#BlockDate').val('');
+        }
 
         //load block start time
         $('#BlockStartTime').ptTimeSelect({
@@ -861,12 +870,26 @@ var UpsertAppointmentObject = {
             setButtonLabel: 'Aceptar',
         });
 
+        if (vAppointmentInfo != null) {
+            $('#BlockDate').val(vAppointmentInfo.StartTime);
+        }
+        else {
+            $('#BlockDate').val('');
+        }
+
         //load block end time
         $('#BlockEndTime').ptTimeSelect({
             hoursLabel: 'Hora',
             minutesLabel: 'Minutos',
             setButtonLabel: 'Aceptar',
         });
+
+        if (vAppointmentInfo != null) {
+            $('#BlockEndTime').val(vAppointmentInfo.EndTime);
+        }
+        else {
+            $('#BlockEndTime').val('');
+        }
 
         //display create appointment form
         $('#' + this.DivBlockId).fadeIn('slow');
