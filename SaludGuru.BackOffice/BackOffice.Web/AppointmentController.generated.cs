@@ -71,15 +71,15 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Month()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult List()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Month()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -105,8 +105,8 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string Day = "Day";
             public readonly string Week = "Week";
-            public readonly string Month = "Month";
             public readonly string List = "List";
+            public readonly string Month = "Month";
             public readonly string Detail = "Detail";
         }
 
@@ -115,8 +115,8 @@ namespace BackOffice.Web.Controllers
         {
             public const string Day = "Day";
             public const string Week = "Week";
-            public const string Month = "Month";
             public const string List = "List";
+            public const string Month = "Month";
             public const string Detail = "Detail";
         }
 
@@ -137,19 +137,19 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string Date = "Date";
         }
-        static readonly ActionParamsClass_Month s_params_Month = new ActionParamsClass_Month();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Month MonthParams { get { return s_params_Month; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Month
-        {
-            public readonly string Date = "Date";
-        }
         static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_List ListParams { get { return s_params_List; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_List
+        {
+            public readonly string Date = "Date";
+        }
+        static readonly ActionParamsClass_Month s_params_Month = new ActionParamsClass_Month();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Month MonthParams { get { return s_params_Month; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Month
         {
             public readonly string Date = "Date";
         }
@@ -205,18 +205,6 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Month(string Date)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            MonthOverride(callInfo, Date);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
 
         [NonAction]
@@ -225,6 +213,18 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             ListOverride(callInfo, Date);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Month(string Date)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
+            MonthOverride(callInfo, Date);
             return callInfo;
         }
 

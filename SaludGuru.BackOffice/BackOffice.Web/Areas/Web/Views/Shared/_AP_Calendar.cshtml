@@ -4,8 +4,7 @@
 {
     <!--double calendar-->
     <div class="BOAgendaSideMonthsWrapper">
-        <div id="Calendar-Left"></div>
-        <div id="Calendar-Right"></div>
+        <div id="divCalendar"></div>
     </div>
     <!--Appointment actions-->
     <div class="BOAgendaAppointmentActions">
@@ -28,13 +27,12 @@ else
         $(document).ready(function () {
             //render calendar by month
             CalendarObject.Init({
-                DivId: 'Calendar',
+                DivId: 'divCalendar',
                 CountryId: '@(Model.CurrentProfile.RelatedOffice== null ? 1 : Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
                 ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
                 StartDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)'),
                 EndDate: new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)'),
                 FirstDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '1'),
-                SecondDate: new Date('@(Model.CurrentStartDate.AddMonths(1).Year.ToString())', '@((Model.CurrentStartDate.AddMonths(1).Month - 1).ToString())', '1'),
             });
             CalendarObject.RenderAsync();
         });

@@ -60,6 +60,7 @@
     <Compile Include="DAL\MySQLDAO\MedicalCalendar_MySqlDao.cs" />
     <Compile Include="Interfaces\IMedicalCalendarData.cs" />
     <Compile Include="Models\Appointment\AppointmentInfoModel.cs" />
+    <Compile Include="Models\Appointment\AppointmentMonthModel.cs" />
     <Compile Include="Models\Appointment\AppointmentModel.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Enumerations.cs" />

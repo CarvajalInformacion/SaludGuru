@@ -68,6 +68,30 @@ namespace BackOffice.Web.Controllers
             return View(oModel);
         }
 
+        public virtual ActionResult List(string Date)
+        {
+            BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
+
+            //get date
+            DateTime dtAux = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(Date))
+            {
+                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
+            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.AddDays(1).Day, 0, 0, 0);
+
+            //set current appointment type
+            oModel.AppointmentType = enumAppointmentType.List;
+
+            //get schedule config
+            oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
+            return View(oModel);
+        }
+
         public virtual ActionResult Month(string Date)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
@@ -87,29 +111,6 @@ namespace BackOffice.Web.Controllers
             oModel.AppointmentType = enumAppointmentType.Month;
 
             //get schedule config
-            oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
-
-            return View(oModel);
-        }
-
-        public virtual ActionResult List(string Date)
-        {
-            BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
-
-            //get date
-            if (!string.IsNullOrEmpty(Date))
-            {
-                DateTime dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 23, 59, 59);
-            }
-            else
-            {
-                oModel.CurrentStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                oModel.CurrentEndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
-            }
-
-            //get Schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
             return View(oModel);

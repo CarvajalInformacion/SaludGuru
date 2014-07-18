@@ -124,5 +124,10 @@ namespace MedicalCalendar.Manager.Controller
         {
             return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetById(AppointmentPublicId);
         }
+
+        public static List<AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
+        }
     }
 }

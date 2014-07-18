@@ -16,7 +16,7 @@ namespace BackOffice.Web.ControllersApi
     {
         [HttpPost]
         [HttpGet]
-        public List<ScheduleEventModel> GetAppoinmentSessionUser(string OfficePublicId, string StartDateTime, string EndDateTime)
+        public List<ScheduleEventModel> GetAppoinmentByOffice(string OfficePublicId, string StartDateTime, string EndDateTime)
         {
             List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeId
                 (OfficePublicId,
@@ -150,6 +150,21 @@ namespace BackOffice.Web.ControllersApi
             //return block appointment public id
             return AppointmentPublicId;
         }
+
+        [HttpPost]
+        [HttpGet]
+        public List<ScheduleEventMonthModel> GetAppoinmentByOfficeMonth(string OfficePublicId, string StartDate)
+        {
+            List<AppointmentMonthModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeIdMonth
+                (OfficePublicId,
+                DateTime.ParseExact(StartDate.Replace(" ", ""), "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture));
+
+            if (lstAppointment != null)
+                return lstAppointment.Select(x => new ScheduleEventMonthModel(x)).ToList();
+            else
+                return new List<ScheduleEventMonthModel>();
+        }
+
 
         #region Private Methods
 

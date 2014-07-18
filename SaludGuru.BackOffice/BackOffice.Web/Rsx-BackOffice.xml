@@ -106,6 +106,18 @@
       </div>
     ]]>
     </key>
+  
+    <!--Month-->
+    <key name="Appointment_TitleTemplate_Month">
+      <![CDATA[
+      <div>
+        <label class="AppointmentCount_1201">{Count_1201} Citas nuevas</label>
+        <label class="AppointmentCount_1202">{Count_1202} Citas confirmadas</label>
+        <label class="AppointmentCount_1201">{Count_1203} Citas canceladas</label>
+      </div>
+    ]]>
+    </key>
+
   </BackOffice>
 </Settings>
 
