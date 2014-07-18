@@ -39,7 +39,8 @@ namespace SaludGuruProfile.Manager.Interfaces
         List<RelatedProfileModel> RelatedProfileGetAllByParentId(string ProfileParent);
         void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild);
         void RelatedProfileDelete(string ProfilePublicIdParent, string ProfilePublicIdChild);
-
+        List<ProfileModel> ProfileSearchToRelate(string SearchCriteria, string vProfilePublicToExclude, int PageNumber, int RowCount);
+        
         void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault);
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 

@@ -22,9 +22,18 @@ namespace BackOffice.Models.Appointment
 
                 foreach (MedicalCalendar.Manager.Models.enumAppointmentStatus AppointmentStatus in (MedicalCalendar.Manager.Models.enumAppointmentStatus[])Enum.GetValues(typeof(MedicalCalendar.Manager.Models.enumAppointmentStatus)))
                 {
-                    AppointmentTitleMonth = AppointmentTitleMonth.
-                        Replace("{Count_" + ((int)AppointmentStatus).ToString() + "}",
-                        CurrentAppointment.StatusDescription[AppointmentStatus].ToString());
+                    if (CurrentAppointment.StatusDescription.ContainsKey(AppointmentStatus))
+                    {
+                        AppointmentTitleMonth = AppointmentTitleMonth.
+                            Replace("{Count_" + ((int)AppointmentStatus).ToString() + "}",
+                            CurrentAppointment.StatusDescription[AppointmentStatus].ToString());
+                    }
+                    else
+                    {
+                        AppointmentTitleMonth = AppointmentTitleMonth.
+                            Replace("{Count_" + ((int)AppointmentStatus).ToString() + "}",
+                            "0");
+                    }
                 }
 
                 return AppointmentTitleMonth;
