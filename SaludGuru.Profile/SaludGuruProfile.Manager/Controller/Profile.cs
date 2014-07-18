@@ -371,21 +371,24 @@ namespace SaludGuruProfile.Manager.Controller
             });
         }
 
-        public static List<ProfileModel> GetRelatedProfileAll(string PublicParentId)
+        public static ProfileModel GetRelatedProfileAll(string PublicParentId)
         {
-            List<ProfileModel> oReturn = new List<ProfileModel>();
+            List<ProfileModel> childs = new List<ProfileModel>();
+            ProfileModel oLoad = new ProfileModel();
             List<RelatedProfileModel> relatedList = new List<RelatedProfileModel>();
-            ProfileModel obj = new ProfileModel();
 
-            relatedList = DAL.Controller.ProfileDataController.Instance.RelatedProfileGetAllByParentId(PublicParentId);
-
-            foreach (RelatedProfileModel item in relatedList)
-            {
-                obj = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(PublicParentId);
-
-                oReturn.Add(obj);
+            oLoad = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(PublicParentId);
+            
+            if (oLoad.ChildProfile != null)
+            {                
+                foreach (var item in oLoad.ChildProfile)
+                {
+                    childs.Add(DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(item.ProfilePublicId));
+                }
+                oLoad.ChildProfile = new List<ProfileModel>();
+                oLoad.ChildProfile.AddRange(childs);
             }
-            return oReturn;
+            return oLoad;
         }
 
         #endregion
@@ -473,6 +476,6 @@ namespace SaludGuruProfile.Manager.Controller
             DAL.Controller.ProfileDataController.Instance.ProfileRoleDelete(ProfileRoleId);
         }
 
-        #endregion        
+        #endregion
     }
 }

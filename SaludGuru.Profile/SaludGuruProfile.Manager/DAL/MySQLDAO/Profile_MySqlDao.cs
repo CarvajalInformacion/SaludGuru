@@ -399,6 +399,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                 oReturn = (from pm in response.DataTableResult.AsEnumerable()
                            select new RelatedProfileModel()
                            {
+                               ChildPublicId = pm.Field<string>("ChildPublicId"),
                                ProfileParent = pm.Field<int>("ProfileParent"),
                                ProfileChild = pm.Field<int>("ProfileChild"),
                                CreateDate = pm.Field<DateTime>("CreateDate"),
