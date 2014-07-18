@@ -86,6 +86,9 @@ border:none;
     }
 
     /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
+div#AppointmentUpsertContainer {
+    min-height: 322px;
+}
 div#AppointmentUpsert ul{
     display:block;
     margin:0px;
@@ -228,24 +231,24 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
     }
 
     div.BOPatientPhotoContainer {
-        border:1px solid purple;
+        border:none;
         display:inline-block;
         width: 62px;
         height: auto;
         vertical-align: top;
     }
     div.BOPatientDataContainer{
-        border:1px solid purple;
+        border:none;
         display:inline-block;
         width: 258px;
         height: auto;
     }
     div.BOPatientRemoveContainer{
-        border:1px solid purple;
+        border:none;
         display:inline-block;
         vertical-align: top;
-        height: auto;
-        width: auto;
+        min-height:62px;
+        width: auto; margin-top:3px;
     }
 
         div.BOPatientPhotoContainer > a > img {
@@ -272,16 +275,16 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
             div.BOPatientRemoveContainer a:first-child, div.BOPatientRemoveContainer a:nth-child(2){
                 display:block;
                 width:18px; height:18px;
-                border:1px solid red;
+                    border:none;
                 background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
                 background-position: -336px -1065px;
                 background-size: 594px auto;
-                text-indent: 100%;
             }
              div.BOPatientRemoveContainer a:nth-child(2){
-                margin:0px;
-                background-position: -336px -1065px;
-            }
+                margin:25px 0px 0px 0px;
+                background-position: -351px -1119px;
+                background-size: 117px auto;
+                }
 /************************BARRITA DE LOS COMANDOS***************************/
         div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands{
             background-color:#ececec;
@@ -290,11 +293,13 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
             width:100%;
         }
             div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span{
-                background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+                background-image:url('/Areas/Web/Content/Images/BOAppointmentActionsSprite.png');
+                background-size:154px 24px;
+                background-repeat:no-repeat;
                 display:inline-block;
                 height:26px;
                 width:auto;
-                border:1px solid pink;
+                    border:none;
                 margin:4px 0px;
                 text-align:right;
                 padding-left: 30px;
@@ -303,16 +308,16 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
                 color: #333;
             }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
-                    background-position:-278px -346px; background-size:515px auto;
+                    background-position:0px 0px; 
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
-                    background-position:-282px -321px; background-size:527px auto;
+                    background-position:-44px 0px;
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
-                    background-position:-280px -241px; background-size:515px auto;
+                    background-position:-87px 0px;
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
-                    background-position:-278px -278px; background-size:515px auto;
+                    background-position:-131px 0px;
                 }
             div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span > a{
                 background-color: #F2F2F2;

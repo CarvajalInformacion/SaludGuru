@@ -84,6 +84,14 @@
                         font-weight: normal;
                         line-height: 16px;
                     }
+div#hasDatepicker {
+    width: 96%;
+    display: block;
+    margin: 0px auto;
+    box-shadow: 1px 0px 3px;
+}
+
+
 /********************* DIAS DEL MES ETC.. **********************/
 
 div#Calendar-Left table.ui-datepicker-calendar > thead > tr > th,
@@ -194,7 +202,8 @@ div#AppointmentUpsert{
     display:block;    
     width:inherit;
     overflow-x:auto;
-    height:277px;
+    min-height:288px;
+
 }
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
@@ -206,7 +215,6 @@ div#divMeetingCalendar {
     height:510px;
     float:right; 
 }
-
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
 ul#ui-id-1{
