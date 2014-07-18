@@ -401,6 +401,7 @@ function RelatedProfileListGrid(vidDiv, vRelatedData) {
         columns: [{
             field: "Name",
             title: "Nombre",
+            template: $('#TemplateUserFrom').html()
         }, {
             field: "Email",
             title: "Correo Electrónico"
