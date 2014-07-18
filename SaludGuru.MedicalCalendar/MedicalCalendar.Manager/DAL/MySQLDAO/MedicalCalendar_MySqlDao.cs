@@ -656,6 +656,57 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDateTime));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "AP_Appointment_GetByOfficeIdMonth",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AppointmentMonthModel> oReturn = null;
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from am in response.DataTableResult.AsEnumerable()
+                           where am.Field<int?>("AppointmentDay") != null
+                           group am by
+                           new
+                           {
+                               AppointmentDay = am.Field<int>("AppointmentDay"),
+                               OfficePublicId = am.Field<string>("OfficePublicId"),
+                               OfficeName = am.Field<string>("OfficeName"),
+                           } into amg
+                           select new AppointmentMonthModel()
+                           {
+                               StartDate = new DateTime(StartDateTime.Year, StartDateTime.Month, amg.Key.AppointmentDay),
+                               OfficePublicId = amg.Key.OfficePublicId,
+                               OfficeName = amg.Key.OfficeName,
+                               StatusDescription =
+                                   (from sd in response.DataTableResult.AsEnumerable()
+                                    where sd.Field<int?>("AppointmentDay") != null &&
+                                          sd.Field<int?>("AppointmentStatus") != null &&
+                                          sd.Field<int>("AppointmentDay") == amg.Key.AppointmentDay
+                                    group sd by
+                                    new
+                                    {
+                                        StatusCount = sd.Field<Int64>("StatusCount"),
+                                        AppointmentStatus = (enumAppointmentStatus)sd.Field<int>("AppointmentStatus"),
+                                    } into sdg
+                                    select sdg).
+                                    ToDictionary(k => k.Key.AppointmentStatus, v => (int)v.Key.StatusCount),
+                           }).ToList();
+            }
+            return oReturn;
+        }
+
         #endregion
     }
 }

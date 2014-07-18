@@ -33,6 +33,7 @@ namespace MedicalCalendar.Manager.Interfaces
         List<Models.Appointment.AppointmentModel> AppointmentList(string PatientPublicId);
         List<Models.Appointment.AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
         Models.Appointment.AppointmentModel AppointmentGetById(string AppointmentPublicId);
+        List<MedicalCalendar.Manager.Models.Appointment.AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime);
 
         //appointment info
         int AppointmentInfoCreate(string AppointmentPublicId, enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue);

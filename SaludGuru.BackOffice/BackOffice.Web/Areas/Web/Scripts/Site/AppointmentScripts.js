@@ -137,27 +137,53 @@ var MettingCalendarObject = {
     /*init meeting calendar by day*/
     RenderAsync: function () {
 
-        var TotalCalendars = 0;
+        if (this.CurrentAgentType == 'month') {
 
-        for (var item in this.lstOffice) {
-            //create div to put a calendar
-            this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
-            $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
+            //render calendars by month
 
-            //init calendar
-            this.RenderMettingCalendar(this.lstOffice[item].OfficePublicId);
+            var CalendarRender = false;
 
-            //add calendars count
-            TotalCalendars = TotalCalendars + 1;
+            for (var item in this.lstOffice) {
+                //create div to put a calendar
+                this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
+                $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
+
+                if (CalendarRender == false) {
+
+                    //init calendar
+                    this.RenderMettingCalendarMonth(this.lstOffice[item].OfficePublicId);
+                    CalendarRender = true;
+
+                }
+            }
+
         }
+        else {
 
-        if (this.CurrentAgentType == 'agendaDay' || this.CurrentAgentType == 'agendaWeek') {
-            //TODO: Recalc dimension with bootstrap
-            $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
-        }
-        else if (this.CurrentAgentType == 'basicDay') {
-            //TODO: Recalc dimension with bootstrap
-            $('#' + this.DivId).width($('#divOfficePublicId').width());
+            //render calendars by day,week and list
+
+            var TotalCalendars = 0;
+
+            for (var item in this.lstOffice) {
+                //create div to put a calendar
+                this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
+                $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
+
+                //init calendar
+                this.RenderMettingCalendar(this.lstOffice[item].OfficePublicId);
+
+                //add calendars count
+                TotalCalendars = TotalCalendars + 1;
+            }
+
+            if (this.CurrentAgentType == 'agendaDay' || this.CurrentAgentType == 'agendaWeek') {
+                //TODO: Recalc dimension with bootstrap
+                $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
+            }
+            else if (this.CurrentAgentType == 'basicDay') {
+                //TODO: Recalc dimension with bootstrap
+                $('#' + this.DivId).width($('#divOfficePublicId').width());
+            }
         }
     },
 
@@ -203,6 +229,57 @@ var MettingCalendarObject = {
         });
 
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+    },
+
+    RenderMettingCalendarMonth: function (vOfficePublicId) {
+
+        //hide metting calendar by month
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fadeOut('slow');
+
+        //get title
+        var vTitle = $('#divMettingHeader').html();
+        vTitle = vTitle.replace(/{{OfficeScheduleConfigUrl}}/gi, this.lstOffice[vOfficePublicId].OfficeScheduleConfigUrl);
+        vTitle = vTitle.replace(/{{OfficeName}}/gi, this.lstOffice[vOfficePublicId].OfficeName);
+
+        //init office metting calendar
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
+            dayNames: this.dayNamesSp,
+            dayNamesShort: this.dayNamesShortSp,
+            defaultView: this.CurrentAgentType,
+            allDaySlot: false,
+            allDayText: ' ',
+            titleFormat: '\'' + vTitle + '\'',
+            weekNumbers: false,
+            editable: false,
+            header: {
+                left: '',
+                center: 'title',
+                right: '',
+            },
+            columnFormat: {
+                month: ' MM ',
+                week: 'ddd M/d',
+                day: 'ddd M/d'
+            },
+            dayClick: function (date, jsEvent, view) {
+                //UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
+            },
+            eventClick: function (event, jsEvent, view) {
+                //UpsertAppointmentObject.RenderForm(null, null, event);
+            },
+            eventAfterRender: function (event, element, view) {
+                element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+            },
+            events: {
+                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime),
+            },
+        });
+
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+
+        //display metting calendar by month
+        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fadeIn('slow');
+
     },
 
     Refresh: function () {

@@ -100,14 +100,6 @@ namespace BackOffice.Models.Appointment
 
         #endregion
 
-        #region List appointment properties
-
-        //public string img { get; set; }
-
-        //public string name { get; set; }
-
-        #endregion
-
         #region Related Appointment
 
         private AppointmentModel CurrentAppointment { get; set; }

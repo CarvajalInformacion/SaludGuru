@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\ScheduleEventMonthModel.cs" />
     <Compile Include="Appointment\ScheduleEventModel.cs" />
     <Compile Include="Appointment\SchedulingModel.cs" />
     <Compile Include="General\Constants.cs" />
