@@ -38,7 +38,7 @@ div.BOFormDataWrapper ul.BOCommunicationActions {
     }
     ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
         display:inline-block;
-        width:15px;
+        width:115px;
         border:1px solid purple;
     }
 

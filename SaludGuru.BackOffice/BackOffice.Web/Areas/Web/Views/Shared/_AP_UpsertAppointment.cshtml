@@ -135,16 +135,29 @@
         <!--patient appointment-->
         <ul id="ulPatientAppointment">
             <li id="{PatientPublicId}">
-                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">
-                    <img src="{ProfileImage}" />
-                </a>
-                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">{Name}</a>
-                <label>Ident: {IdentificationNumber}</label>
-                <label>Cel: {Mobile}</label>
-                <label>Email: {Email}</label>
-                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">Perfil paciente</a>
-                <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
-            </li>
+                
+                <!--photo container-->
+                <div class="BOPatientPhotoContainer">
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">
+                        <img src="{ProfileImage}" />
+                    </a>
+                </div>                
+                
+                    <!--data container-->
+                <div class="BOPatientDataContainer">
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">{Name}</a>
+                    <label>Ident: {IdentificationNumber}</label>
+                    <label>Cel: {Mobile}</label>
+                    <label>Email: {Email}</label>                    
+                </div>
+                
+                <!--remove patient container-->
+                <div class="BOPatientRemoveContainer">
+                    <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
+                </div>
+
+        </li>
         </ul>
 
         <!--Save result message-->
