@@ -8,6 +8,7 @@ namespace SaludGuruProfile.Manager.Models.Profile
 {
     public class RelatedProfileModel
     {
+        public string ChildPublicId { get; set; }
         public int ProfileParent { get; set; }
         public int ProfileChild { get; set; }
         public DateTime CreateDate { get; set; }
