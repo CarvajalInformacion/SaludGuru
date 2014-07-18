@@ -42,7 +42,7 @@ var CalendarObject = {
             dateFormat: 'yy-mm-dd',
             locale: $.datepicker.regional['es'],
             defaultDate: vCurrentDate,
-            numberOfMonths: [ 1,2 ],
+            numberOfMonths: [1, 2],
             beforeShowDay: function (date) {
 
                 var oReturn = [true, ''];
@@ -188,7 +188,7 @@ var MettingCalendarObject = {
             eventClick: function (event, jsEvent, view) {
                 UpsertAppointmentObject.RenderForm(null, null, event);
             },
-            eventRender: function (event, element) {
+            eventAfterRender: function (event, element, view) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {
