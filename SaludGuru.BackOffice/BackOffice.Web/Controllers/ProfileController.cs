@@ -983,11 +983,21 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
         {
+            ProfileRelatedModel oReturn = new ProfileRelatedModel();
             ProfileModel Model = new ProfileModel();
             Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
-                       
-            return View(Model); 
+
+            oReturn.PrincipalProfile = Model;
+            oReturn.AutoComplitListProfiles = SaludGuruProfile.Manager.Controller.Profile.ProfileSearchToRelate(string.Empty, ProfilePublicId, 0, 20);
+            return View(oReturn);
         }
+
+        public virtual ActionResult RelatedProfileDelete(string ProfilePublicId)
+        {
+
+            return RedirectToAction(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
         #endregion
     }
 }
