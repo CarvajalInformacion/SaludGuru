@@ -115,6 +115,7 @@ var MettingCalendarObject = {
     /*full calendar info*/
     dayNamesSp: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
     dayNamesShortSp: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    monthNamesSp: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 
     /*office info*/
     lstOffice: new Array(),
@@ -198,6 +199,7 @@ var MettingCalendarObject = {
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
             dayNames: this.dayNamesSp,
             dayNamesShort: this.dayNamesShortSp,
+            monthNames: this.monthNamesSp,
             defaultView: this.CurrentAgentType,
             allDaySlot: false,
             allDayText: ' ',
@@ -238,34 +240,62 @@ var MettingCalendarObject = {
 
         //get title
         var vTitle = $('#divMettingHeader').html();
-        vTitle = vTitle.replace(/{{OfficeScheduleConfigUrl}}/gi, this.lstOffice[vOfficePublicId].OfficeScheduleConfigUrl);
-        vTitle = vTitle.replace(/{{OfficeName}}/gi, this.lstOffice[vOfficePublicId].OfficeName);
+        var oOfficeListOption = '<select id="selOffice_' + vOfficePublicId + '">';
+
+        for (var item in this.lstOffice) {
+
+            if (this.lstOffice[item].OfficePublicId == vOfficePublicId) {
+                oOfficeListOption = oOfficeListOption + '<option value="' + this.lstOffice[item].OfficePublicId + '" selected>' + this.lstOffice[item].OfficeName + '</option>';
+            }
+            else {
+                oOfficeListOption = oOfficeListOption + '<option value="' + this.lstOffice[item].OfficePublicId + '">' + this.lstOffice[item].OfficeName + '</option>';
+            }
+        }
+
+        oOfficeListOption = oOfficeListOption + '</select>';
+
+        vTitle = vTitle.replace(/{{OfficeList}}/gi, oOfficeListOption);
 
         //init office metting calendar
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
             dayNames: this.dayNamesSp,
             dayNamesShort: this.dayNamesShortSp,
+            monthNames: this.monthNamesSp,
             defaultView: this.CurrentAgentType,
             allDaySlot: false,
             allDayText: ' ',
-            titleFormat: '\'' + vTitle + '\'',
+            titleFormat: 'MMMM yyyy \'' + vTitle + '\'',
             weekNumbers: false,
             editable: false,
             header: {
-                left: '',
+                left: 'prev',
                 center: 'title',
-                right: '',
+                right: 'next',
             },
             columnFormat: {
-                month: ' MM ',
+                month: ' ddd ',
                 week: 'ddd M/d',
                 day: 'ddd M/d'
             },
+            viewRender: function (view, element) {
+
+                $('#selOffice_' + vOfficePublicId).unbind('change');
+                $('#selOffice_' + vOfficePublicId).change(function () {
+
+                    //hide old office
+                    $('#' + MettingCalendarObject.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('destroy');
+                    $('#' + MettingCalendarObject.lstOffice[vOfficePublicId].OfficeDivId).fadeOut('slow');
+
+                    //render new calendar
+                    MettingCalendarObject.RenderMettingCalendarMonth($(this).val());
+                });
+
+            },
             dayClick: function (date, jsEvent, view) {
-                //UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
+                window.location = '/Appointment/Day?Date=' + serverDateToString(date);
             },
             eventClick: function (event, jsEvent, view) {
-                //UpsertAppointmentObject.RenderForm(null, null, event);
+                window.location = '/Appointment/Day?Date=' + serverDateToString(event.start);
             },
             eventAfterRender: function (event, element, view) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());

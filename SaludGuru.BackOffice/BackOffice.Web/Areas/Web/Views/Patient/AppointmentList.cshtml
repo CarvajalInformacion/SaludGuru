@@ -9,7 +9,7 @@
         {
             AppointmentPublicId = x.AppointmentPublicId,
             CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy"),
-            StatusName = x.Status.ToString()
+            StatusName = x.Status.ToString() == "Attendance" ? "Atendido" : x.Status.ToString() == "New" ? "Nueva Cita" : x.Status.ToString() == "Canceled" ? "Cita Cancelada" : x.Status.ToString(),
         }).ToList());
 }
 

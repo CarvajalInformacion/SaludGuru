@@ -19,7 +19,7 @@ namespace BackOffice.Web.Controllers
 
             if (!string.IsNullOrEmpty(Date))
             {
-                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
@@ -43,7 +43,7 @@ namespace BackOffice.Web.Controllers
 
             if (!string.IsNullOrEmpty(Date))
             {
-                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
             //get start week date
@@ -77,7 +77,7 @@ namespace BackOffice.Web.Controllers
 
             if (!string.IsNullOrEmpty(Date))
             {
-                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
@@ -101,7 +101,7 @@ namespace BackOffice.Web.Controllers
 
             if (!string.IsNullOrEmpty(Date))
             {
-                dtAux = DateTime.ParseExact(Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, 1, 0, 0, 0);

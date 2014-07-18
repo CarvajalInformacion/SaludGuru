@@ -31,10 +31,10 @@ namespace BackOffice.Web.ControllersApi
                         SearchProfileCount = oTotalCount,
                         ProfilePublicId = x.ProfilePublicId,
                         Name = x.Name + " " + x.LastName,
-                        ProfileStatus = x.ProfileStatus.ToString(),
+                        ProfileStatus = x.ProfileStatus.ToString() == "Pay" ? "Pago" : x.ProfileStatus.ToString() == "Free" ? "Gratuito" : x.ProfileStatus.ToString() == "Basic" ? "Basico" : x.ProfileStatus.ToString() == "NotShow" ? "Solo lectura" : x.ProfileStatus.ToString(),
                         Certified = x.ProfileInfo.
                             Where(y => y.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
-                            Select(y => !string.IsNullOrEmpty(y.Value) && y.Value.Trim().ToLower() == "true" ? "true" : "false").
+                            Select(y => !string.IsNullOrEmpty(y.Value) && y.Value.Trim().ToLower() == "true" ? "Si" : "No").
                             DefaultIfEmpty("false").FirstOrDefault(),
                         Email = x.ProfileInfo.
                             Where(y => y.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).
