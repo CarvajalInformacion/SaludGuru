@@ -391,6 +391,13 @@ namespace SaludGuruProfile.Manager.Controller
             return oLoad;
         }
 
+        public static List<ProfileModel> ProfileSearchToRelate(string SearchCriteria, string vProfilePublicToExclude, int PageNumber, int RowCount)
+        {
+            List<ProfileModel> oReturn = ProfileDataController.Instance.ProfileSearchToRelate(SearchCriteria, vProfilePublicToExclude, PageNumber, RowCount);
+
+            return oReturn;
+        }
+
         #endregion
 
         #region Insurance

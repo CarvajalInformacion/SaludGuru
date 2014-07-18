@@ -441,6 +441,53 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
         }
 
+        public List<ProfileModel> ProfileSearchToRelate(string SearchCriteria, string vProfilePublicToExclude, int PageNumber, int RowCount)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicToExclude", vProfilePublicToExclude));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));            
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_SearchToRelate",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturnProfile = null;
+            
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                
+                oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
+                                  select new ProfileModel
+                                  {
+                                      ProfilePublicId = pm.Field<string>("ProfilePublicId"),
+                                      Name = pm.Field<string>("Name"),
+                                      LastName = pm.Field<string>("LastName"),
+                                      ProfileStatus = pm.Field<enumProfileStatus>("Status"),
+                                      ProfileInfo = new List<ProfileInfoModel>() 
+                                      { 
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("IsCertified"),                                        
+                                            ProfileInfoType = enumProfileInfoType.IsCertified
+                                        },
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = pm.Field<string>("Email"),               
+                                            ProfileInfoType = enumProfileInfoType.Email
+                                        }
+                                      },
+                                  }).ToList();
+            }
+
+            return oReturnProfile;
+        }
+
         public void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
