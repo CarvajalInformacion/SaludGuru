@@ -305,11 +305,13 @@
   <ItemGroup>
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarCopy.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
+    <Content Include="Areas\Web\Content\Images\calendarActionsSprite.png" />
     <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
