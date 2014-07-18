@@ -446,7 +446,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vSearchCriteria", SearchCriteria));
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicToExclude", vProfilePublicToExclude));
-            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));            
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
