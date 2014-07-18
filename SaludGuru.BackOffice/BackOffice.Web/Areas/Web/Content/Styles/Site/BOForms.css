@@ -97,20 +97,43 @@ div#AppointmentUpsert ul li{
     display:block;
     padding:2px 0px;
     margin:0px;
-border:NONE;
-}
+    border:NONE;
+    }
                 div#AppointmentUpsert ul li:first-child{
                     background-color:#800066;
-                    width:100%; height:20px;
+                    width:100%; height:24px;
                     padding:0px;
+                    margin-bottom:10px;
                 }
-    div#AppointmentUpsert ul > li > span{
-        font-size:13px;
+                    div#AppointmentUpsert ul li:nth-child(7) > input{
+                        width:49%;
+                    }
+                    div#AppointmentUpsert ul li:nth-child(7) > a{
+                        font-weight:bold;
+                        font-size:25px;
+                        color:green;
+                    }
+                div#AppointmentUpsert ul li:nth-child(8) {
+                    margin-top:10px;
+                }
+    div#AppointmentUpsert ul > li > span, div#AppointmentUpsert ul > li > span > a{
+        font-size:15px;
         color:#fff;
-        line-height:18px;
+        line-height:15px;
+        margin-top:4px;
     }
+        div#AppointmentUpsert ul > li > span > a {
+            background-color: #ECECEC;
+            padding: 0px 8px;
+            font-size: 14px;
+            color: #333;
+        }
+        div#AppointmentUpsert ul > li > span > a:hover{
+            background-color:#ccc;
+        }
     div#AppointmentUpsert ul > li > span:first-child {
         float:left; margin-left:16px;
+        margin-bottom: 7px;
     }
     div#AppointmentUpsert ul > li > span:nth-child(2n) {
         float:right; margin-right:16px;
@@ -188,7 +211,7 @@ div#AppointmentUpsert ul li > span.ui-spinner{
 /************************NUEVOS PACIENTES EN LA CITA***********************/
 div#AppointmentUpsert ul > li > ul#lstPatient {
     display:block;
-    border:1px solid green;
+    border:none;
     width:100%;
     height:auto;
     margin:-4px 0px; padding:0px;
@@ -199,58 +222,66 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
         padding: 0px;
         border: none;
              width: 95%;
-        height: 84px;
+        height:auto;
         text-align: left;
         background-color:#e6e6e6;
     }
-        div#AppointmentUpsert ul > li > ul#lstPatient li img {
-            margin:6px;
-            width:36px; height:auto;
-            float:left;
+
+    div.BOPatientPhotoContainer {
+        border:1px solid purple;
+        display:inline-block;
+        width: 62px;
+        height: auto;
+        vertical-align: top;
+    }
+    div.BOPatientDataContainer{
+        border:1px solid purple;
+        display:inline-block;
+        width: 258px;
+        height: auto;
+    }
+    div.BOPatientRemoveContainer{
+        border:1px solid purple;
+        display:inline-block;
+        vertical-align: top;
+        height: auto;
+        width: auto;
+    }
+
+        div.BOPatientPhotoContainer > a > img {
+            margin: 4px;
+            width: 52px;
+            height: auto;
         }
-        div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(2) {
+         div.BOPatientDataContainer > a:first-child{
             font-size:14px;
             display: block;
-            line-height:20px;
+            line-height:18px;
             width: 100%;
             margin:0px;
             text-decoration: underline;
+            color:#333;
         }
-        div#AppointmentUpsert ul > li > ul#lstPatient li label {
-            font-size: 13px;
-            display: block;
-            line-height:13px;
-            width: 100%;
-            margin:-2px 0px 0px 0px;
-            vertical-align:top;
+        div.BOPatientDataContainer > label {
+            font-size: 13px !important;
+            display: block !important;
+            line-height: 14px !important;
+            width: 100% !important;
+            margin: 0px;
         }
-        div#AppointmentUpsert ul > li > ul#lstPatient li label:nth-child(5) {
-            margin-left:47px; width: 80%;
-        }
-            
-            div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(6){
-                font-size: 12px;
-                display: block;
-                line-height: 12px;
-                width: auto;
-                margin: 4px 0px 0px 48px;
-                color: #008000;
-            }
-            div#AppointmentUpsert ul > li > ul#lstPatient li a:nth-child(7) {
-                position:relative;
+            div.BOPatientRemoveContainer a:first-child, div.BOPatientRemoveContainer a:nth-child(2){
                 display:block;
                 width:18px; height:18px;
                 border:1px solid red;
-                top: -75px;
-                left: 324px;
                 background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
                 background-position: -336px -1065px;
                 background-size: 594px auto;
                 text-indent: 100%;
-                white-space: nowrap;
-                overflow: hidden;
             }
-
+             div.BOPatientRemoveContainer a:nth-child(2){
+                margin:0px;
+                background-position: -336px -1065px;
+            }
 /************************BARRITA DE LOS COMANDOS***************************/
         div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands{
             background-color:#ececec;

@@ -143,17 +143,17 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
 
 /************************ ACCIONES DE LA CITA **************************/
 
-.BOAgendaAppointmentActions {border:none; display:block; box-shadow:2px 2px 2px; background-color:#ECECEC; height:30px;}
-    .BOAgendaAppointmentActions ul{
-        border:none;
-        display:block;
-        margin:3px auto;
-        width:auto;height:auto;
+.BOAgendaAppointmentActions {
+    border-bottom:1px solid #666;
+    display: block;
+    background-color: #ECECEC;
+    height: 38px;
     }
+
         .BOAgendaAppointmentActions ul li{
             border:none;
             display:inline-block;
-            margin:3px 0px 0px 0px; padding:0px;
+            margin:8px 0px 0px 0px; padding:0px;
             width:114px;height:auto;
             text-align:right;
             vertical-align:top;
@@ -190,7 +190,7 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
         }
 /*************************CONTENEDOR CREACION DE CITAS**************************/
 div#AppointmentUpsert{
-    border:1px solid purple;
+    border:none;
     display:block;    
     width:inherit;
     overflow-x:auto;
