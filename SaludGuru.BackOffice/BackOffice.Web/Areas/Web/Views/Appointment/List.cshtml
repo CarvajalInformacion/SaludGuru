@@ -1,76 +1,28 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "SaludGuru - agenda lista";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
 }
 
 <div class="BOAgendaModuleGreatWrapper">
-    
     <div class="BOAgendaCalendarWrapper">
-        <!--Calendar by Month-->
+        <!--Calendar by month-->
         @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+
+        <!--create edit appointment-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_UpsertAppointment, Model)
     </div>
 
-    <div id="divMeetingAppointmentCalendar">
-
-        <div id="AppointmentList"></div>
-    </div>
-
+    <!--Meeting Calendar-->
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
 </div>
 
-<!--templates-->
-<div id="templates" style="display:none;">
-
-    <!--Appointment template-->
-    <div id="AppointmentTemplate">
-        <div>
-            <label>${start}</label>
-            <label>${end}</label>
-            <img src="${img}" />
-            <label>${name}</label>
-        </div>
-    </div>
-
-    <!--metting calendar-->
-    <div id="divListGrid">
-        <div id="templateTitle">
-            <div id="divOfficePublicId" style="width:700px;float:left;"></div>
-        </div>
-    </div>
-</div>
-
-@{
-    //Create appointment list calendar object
-    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
-                        new
-                        {
-                            OfficePublicId = of.OfficePublicId,
-                            OfficeName = of.Name,
-                            OfficeDivId = string.Empty,
-                            TreatmentList = of.RelatedTreatment.Select(tr => new
-                            {
-                                TreatmentId = tr.CategoryId,
-                                TreatmentName = tr.Name,
-                                Default = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
-                                Duration = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
-                                AfterCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                                BeforeCare = tr.TreatmentOfficeInfo.Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
-                            }).OrderBy(tro => tro.TreatmentName).ToList(),
-                        }).OrderBy(ofo => ofo.OfficeName).ToList());
-}
-
+@{Model.RenderScripts = true;}
 @section inlinescripts
 {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //render appointment list by office
-            MeetingListObject.Init({
-                StartDateTime:new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
-                EndDateTime:new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
-                OfficeInfo:@(Html.Raw(oOfficeInfo)),
-            });
-            MeetingListObject.InitList('AppointmentList');
-        })
-    </script>
+    @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_UpsertAppointment, Model)
 }

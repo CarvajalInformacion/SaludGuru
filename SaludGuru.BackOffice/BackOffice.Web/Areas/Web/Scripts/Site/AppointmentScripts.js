@@ -18,7 +18,6 @@ var CalendarObject = {
         this.StartDate = vInitObject.StartDate;
         this.EndDate = vInitObject.EndDate;
         this.FirstDate = vInitObject.FirstDate;
-        this.SecondDate = vInitObject.SecondDate;
     },
 
     RenderAsync: function () {
@@ -29,28 +28,27 @@ var CalendarObject = {
         }).done(function (data) {
 
             //left date picker
-            CalendarObject.RenderCalendar('-Left', data, CalendarObject.FirstDate);
-            //right date picker
-            CalendarObject.RenderCalendar('-Right', data, CalendarObject.SecondDate);
+            CalendarObject.RenderCalendar(data, CalendarObject.FirstDate);
 
         }).fail(function () {
             alert("se ha generado un error en el calendario");
         });
     },
 
-    RenderCalendar: function (vDivId, vlstSpecialDay, vCurrentDate) {
+    RenderCalendar: function (vlstSpecialDay, vCurrentDate) {
 
         //render calendar
-        $('#' + this.DivId + vDivId).datepicker({
+        $('#' + this.DivId).datepicker({
             dateFormat: 'yy-mm-dd',
             locale: $.datepicker.regional['es'],
             defaultDate: vCurrentDate,
+            numberOfMonths: [1, 2],
             beforeShowDay: function (date) {
 
                 var oReturn = [true, ''];
 
                 //eval selected date
-                if (date.getFullYear() >= CalendarObject.StartDate.getFullYear() && date.getMonth() >= CalendarObject.StartDate.getMonth() && date.getDate() >= CalendarObject.StartDate.getDate() && date.getFullYear() <= CalendarObject.EndDate.getFullYear() && date.getMonth() <= CalendarObject.EndDate.getMonth() && date.getDate() < CalendarObject.EndDate.getDate()) {
+                if (CalendarObject.GetNumberDate(date) >= CalendarObject.GetNumberDate(CalendarObject.StartDate) && CalendarObject.GetNumberDate(date) < CalendarObject.GetNumberDate(CalendarObject.EndDate)) {
                     oReturn = [true, ' selected'];
                 }
 
@@ -70,21 +68,39 @@ var CalendarObject = {
         });
 
         //delete selected style on calendar
-        $('#' + this.DivId + vDivId + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
-        $('#' + this.DivId + vDivId + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
+        $('#' + this.DivId + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
+        $('#' + this.DivId + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
+    },
+
+    GetNumberDate: function (vDateToEval) {
+
+        var oReturn = '';
+
+        oReturn = vDateToEval.getFullYear();
+
+        if (vDateToEval.getMonth() < 10) {
+            oReturn = oReturn + '0' + vDateToEval.getMonth();
+        }
+        else {
+            oReturn = oReturn + vDateToEval.getMonth();
+        }
+
+        if (vDateToEval.getDate() < 10) {
+            oReturn = oReturn + '0' + vDateToEval.getDate();
+        }
+        else {
+            oReturn = oReturn + vDateToEval.getDate();
+        }
+
+        return oReturn;
     },
 
     Refresh: function () {
 
-        //left date picker
-        this.RefreshCalendar('-Left');
-        //right date picker
-        this.RefreshCalendar('-Right');
+        $('#' + this.DivId).datepicker("refresh");
+
     },
 
-    RefreshCalendar: function (vDivId) {
-        $('#' + this.DivId + vDivId).datepicker("refresh");
-    },
 };
 
 /*render day calendar*/
@@ -135,8 +151,14 @@ var MettingCalendarObject = {
             TotalCalendars = TotalCalendars + 1;
         }
 
-        //TODO: Recalc dimension with bootstrap
-        $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
+        if (this.CurrentAgentType == 'agendaDay' || this.CurrentAgentType == 'agendaWeek') {
+            //TODO: Recalc dimension with bootstrap
+            $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
+        }
+        else if (this.CurrentAgentType == 'basicDay') {
+            //TODO: Recalc dimension with bootstrap
+            $('#' + this.DivId).width($('#divOfficePublicId').width());
+        }
     },
 
     RenderMettingCalendar: function (vOfficePublicId) {
@@ -172,7 +194,7 @@ var MettingCalendarObject = {
             eventClick: function (event, jsEvent, view) {
                 UpsertAppointmentObject.RenderForm(null, null, event);
             },
-            eventRender: function (event, element) {
+            eventAfterRender: function (event, element, view) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {
