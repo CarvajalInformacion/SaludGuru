@@ -298,6 +298,7 @@ var UpsertAppointmentObject = {
         this.RenderPatient(vAppointmentInfo);
 
         //add style for specific appointment status
+        $('#' + this.DivId).attr('class', '');
         $('#' + this.DivId).addClass('AppointmentFormStatus_' + oCurrentAppointmentStatus);
 
         //render appointment actions
