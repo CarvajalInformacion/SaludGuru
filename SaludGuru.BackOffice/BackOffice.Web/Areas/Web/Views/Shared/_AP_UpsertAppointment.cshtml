@@ -138,14 +138,14 @@
                 
                 <!--photo container-->
                 <div class="BOPatientPhotoContainer">
-                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">
                         <img src="{ProfileImage}" />
                     </a>
                 </div>                
                 
                     <!--data container-->
                 <div class="BOPatientDataContainer">
-                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")">{Name}</a>
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">{Name}</a>
                     <label>Ident: {IdentificationNumber}</label>
                     <label>Cel: {Mobile}</label>
                     <label>Email: {Email}</label>                    
@@ -154,7 +154,7 @@
                 <!--remove patient container-->
                 <div class="BOPatientRemoveContainer">
                     <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
-                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientUpsert={PatientPublicId}")"></a>
+                    <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
                 </div>
 
         </li>

@@ -35,8 +35,8 @@
                 Name = x.Name,
                 IsDefault = x.TreatmentOfficeInfo.
                     Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
-                    Select(z => string.IsNullOrEmpty(z.Value) ? false : bool.Parse(z.Value)).
-                    DefaultIfEmpty(false).
+                    Select(z => z.Value == "false" ? "No" : "Si").
+                    DefaultIfEmpty("No").
                     FirstOrDefault(),
                 LastModify = x.TreatmentOfficeInfo.Select(y => y.LastModify.ToString("yyyy/MM/dd HH:mm")).DefaultIfEmpty(string.Empty).FirstOrDefault(),
                 CreateDate = x.TreatmentOfficeInfo.Select(y => y.CreateDate.ToString("yyyy/MM/dd HH:mm")).DefaultIfEmpty(string.Empty).FirstOrDefault()
