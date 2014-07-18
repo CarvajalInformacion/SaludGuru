@@ -151,8 +151,14 @@ var MettingCalendarObject = {
             TotalCalendars = TotalCalendars + 1;
         }
 
-        //TODO: Recalc dimension with bootstrap
-        $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
+        if (this.CurrentAgentType == 'agendaDay' || this.CurrentAgentType == 'agendaWeek') {
+            //TODO: Recalc dimension with bootstrap
+            $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
+        }
+        else if (this.CurrentAgentType == 'basicDay') {
+            //TODO: Recalc dimension with bootstrap
+            $('#' + this.DivId).width($('#divOfficePublicId').width());
+        }
     },
 
     RenderMettingCalendar: function (vOfficePublicId) {

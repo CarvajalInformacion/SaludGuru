@@ -29,7 +29,7 @@ namespace BackOffice.Models.Appointment
                     case enumAppointmentType.Week:
                         return "agendaWeek";
                     case enumAppointmentType.List:
-                        return string.Empty;
+                        return "basicDay";
                     case enumAppointmentType.Month:
                         return "month";
                     default:
