@@ -6,6 +6,20 @@
 <div>
     <label></label>
 </div>
+<div class="BOProfileFormWrapper">
+    <h3>Notificaciones</h3>
+    <div id="divGridNotifications" style="left: 130px;"></div>
+</div>
+<div id="templates" style="display:none;">
+    <div id="TemplateNotificationType">
+        <img src="/Areas/Web/Content/Images/NotificationType_${NotificationType}.png" width="45" height="45" />
+        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${CreateDate}</label>
+    </div>
+    <div id="TemplateUserFrom">
+        <img src="${UserFromImage}" width="45" height="45" />
+        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
+    </div>
+</div>
 @{
     //get json office data
     string oNotificationData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
@@ -24,20 +38,6 @@
             }).ToList());
 }
 
-<div class="BOProfileFormWrapper">
-    <h3>Notificaciones</h3>
-    <div id="divGridNotifications" style="left: 130px;"></div>
-</div>
-<div id="templates" style="display:none;">
-    <div id="TemplateNotificationType">
-        <img src="/Areas/Web/Content/Images/NotificationType_${NotificationType}.png" width="45" height="45" />
-        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${CreateDate}</label>
-    </div>
-    <div id="TemplateUserFrom">
-        <img src="${UserFromImage}" width="45" height="45" />
-        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
-    </div>
-</div>
 @section inlinescripts
 {
     <script type="text/javascript">
