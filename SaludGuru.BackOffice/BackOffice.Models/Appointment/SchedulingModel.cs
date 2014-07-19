@@ -1,4 +1,5 @@
 ﻿using BackOffice.Models.General;
+using MedicalCalendar.Manager.Models.Appointment;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace BackOffice.Models.Appointment
                         return "basicDay";
                     case enumAppointmentType.Month:
                         return "month";
+                    case enumAppointmentType.Detail:
+                        return "basicDay";
                     default:
                         return string.Empty;
                 }
@@ -40,5 +43,6 @@ namespace BackOffice.Models.Appointment
 
         public bool RenderScripts { get; set; }
 
+        public AppointmentModel CurrentAppointment { get; set; }
     }
 }

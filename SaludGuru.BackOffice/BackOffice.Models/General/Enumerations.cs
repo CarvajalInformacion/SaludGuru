@@ -83,5 +83,6 @@
         Week,
         List,
         Month,
+        Detail,
     }
 }

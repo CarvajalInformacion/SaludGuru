@@ -231,6 +231,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileSearch);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult RelatedProfileDelete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileDelete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Web.Profile; } }
@@ -277,6 +283,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfileMessangerUpsert = "ProfileMessangerUpsert";
             public readonly string ProfileReminderUpsert = "ProfileReminderUpsert";
             public readonly string RelatedProfileSearch = "RelatedProfileSearch";
+            public readonly string RelatedProfileDelete = "RelatedProfileDelete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -312,6 +319,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string ProfileMessangerUpsert = "ProfileMessangerUpsert";
             public const string ProfileReminderUpsert = "ProfileReminderUpsert";
             public const string RelatedProfileSearch = "RelatedProfileSearch";
+            public const string RelatedProfileDelete = "RelatedProfileDelete";
         }
 
 
@@ -555,6 +563,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public ActionParamsClass_RelatedProfileSearch RelatedProfileSearchParams { get { return s_params_RelatedProfileSearch; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_RelatedProfileSearch
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_RelatedProfileDelete s_params_RelatedProfileDelete = new ActionParamsClass_RelatedProfileDelete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RelatedProfileDelete RelatedProfileDeleteParams { get { return s_params_RelatedProfileDelete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RelatedProfileDelete
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -978,6 +994,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileSearch);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             RelatedProfileSearchOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RelatedProfileDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RelatedProfileDelete(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RelatedProfileDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            RelatedProfileDeleteOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

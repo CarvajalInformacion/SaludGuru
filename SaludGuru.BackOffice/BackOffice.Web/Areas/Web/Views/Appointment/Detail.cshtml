@@ -1,12 +1,25 @@
 ﻿@model BackOffice.Models.Appointment.SchedulingModel
 @{
-    ViewBag.Title = "SaludGuru - detalle de la cita";
+    ViewBag.Title = "SaludGuru - agenda detalle";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
 }
 
+<div class="BOAgendaModuleGreatWrapper">
+    <div class="BOAgendaCalendarWrapper">
+        <!--Calendar by month-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
 
+        <!--Meeting Calendar-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+    </div>
+
+</div>
+
+@{Model.RenderScripts = true;}
 @section inlinescripts
 {
+    @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
 }
-
-
