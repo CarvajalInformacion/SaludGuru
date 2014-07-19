@@ -103,6 +103,9 @@ var NotificationObject = {
             }
             NotificationObject.RenderNotifications(this.NotificationList)
             //var oReturn
+        }).error(function (jqXHR, textStatus, errorThrown) {
+
+
         });
     },
 
@@ -111,7 +114,7 @@ var NotificationObject = {
         $('#aNotifyCount').html(NotificationList.length);
         if (NotificationList.length > 0) {
             var imageUrl = "'/Areas/Web/Content/Images/icono campana sonando.png'";
-            
+
             //$('#aNotifyCount').css('background-image', 'url(' +imageUrl + ')');
             //set notification alert icon
         }

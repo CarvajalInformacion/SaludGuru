@@ -140,24 +140,25 @@ var MettingCalendarObject = {
 
         if (this.CurrentAgentType == 'month') {
 
-            //render calendars by month
-
             var CalendarRender = false;
 
+            //render calendars by month
             for (var item in this.lstOffice) {
                 //create div to put a calendar
                 this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
                 $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
 
+                //init calendar
+                this.RenderMettingCalendarMonth(this.lstOffice[item].OfficePublicId);
+
                 if (CalendarRender == false) {
-
-                    //init calendar
-                    this.RenderMettingCalendarMonth(this.lstOffice[item].OfficePublicId);
                     CalendarRender = true;
-
+                }
+                else {
+                    //hide unselect office
+                    $('#' + this.lstOffice[item].OfficeDivId).hide();
                 }
             }
-
         }
         else {
 
@@ -235,9 +236,6 @@ var MettingCalendarObject = {
 
     RenderMettingCalendarMonth: function (vOfficePublicId) {
 
-        //hide metting calendar by month
-        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fadeOut('slow');
-
         //get title
         var vTitle = $('#divMettingHeader').html();
         var oOfficeListOption = '<select id="selOffice_' + vOfficePublicId + '">';
@@ -281,15 +279,13 @@ var MettingCalendarObject = {
 
                 $('#selOffice_' + vOfficePublicId).unbind('change');
                 $('#selOffice_' + vOfficePublicId).change(function () {
-
-                    //hide old office
-                    $('#' + MettingCalendarObject.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('destroy');
-                    $('#' + MettingCalendarObject.lstOffice[vOfficePublicId].OfficeDivId).fadeOut('slow');
-
-                    //render new calendar
-                    MettingCalendarObject.RenderMettingCalendarMonth($(this).val());
+                    for (var item in MettingCalendarObject.lstOffice) {
+                        //hide old office
+                        $('#' + MettingCalendarObject.lstOffice[item].OfficeDivId).hide();
+                    }
+                    //show new office
+                    $('#' + MettingCalendarObject.lstOffice[$(this).val()].OfficeDivId).fadeIn('slow');
                 });
-
             },
             dayClick: function (date, jsEvent, view) {
                 window.location = '/Appointment/Day?Date=' + serverDateToString(date);
@@ -306,10 +302,6 @@ var MettingCalendarObject = {
         });
 
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
-
-        //display metting calendar by month
-        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fadeIn('slow');
-
     },
 
     Refresh: function () {
