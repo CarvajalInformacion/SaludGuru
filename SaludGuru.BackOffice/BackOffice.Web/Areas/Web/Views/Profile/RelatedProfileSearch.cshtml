@@ -13,39 +13,58 @@
     <div id="divGridRelatedProfile"></div>
 </div>
 <div id="templates" style="display:none;">
-    <form method="post" action="@Url.Action(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name,
+    <div id="templateHeader">
+        <form method="post" action="@Url.Action(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name,
                                     new { ProfilePublicId = Model.PrincipalProfile.ProfilePublicId })">
-        <div id="templateHeader">
-            <label>Nombre</label>  
-            <input type="text" id="divGridProfile-txtSearch" name="divGridProfile-txtSearch" value="@(string.IsNullOrEmpty(Request["SearchParam"])?string.Empty:Request["SearchParam"])" />
-            <input type="submit" id="divGridProfile-Search" value="Agregar" />
-            <input type="hidden" id="Profile-id" name="Profile-id" value="" />
-            @{
-                //get json treatment
-                string oProfileSearchData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-                    Serialize(Model.AutoComplitListProfiles.
-                    Select(x => new
-                    {
-                        label = x.Name + " " + x.LastName,
-                        value = x.ProfilePublicId,
-                    }).ToList());
-            }
-            @*<a href="@Url.Action(MVC.Profile.ActionNames.ProfileCreate,MVC.Profile.Name)">Nuevo</a>*@
-        </div>
+            <ul class="BOEditDaySetUp">
+                <li>
 
-        <div id="templateDelete">
+                    <label>Nombre</label>
+                    <input type="hidden" id="divGridProfile-txtSearch-id" name="divGridProfile-txtSearch-id" value="" />
+                    <input type="text" id="divGridProfile-txtSearch" name="divGridProfile-txtSearch" value="" />
+                    @*<input class="BOAgregarButtons" type="submit" value="Agregar" />*@
+                    @{
+                        //get json treatment
+                        string oProfileSearchData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.AutoComplitListProfiles.
+                            Select(x => new
+                            {
+                                label = x.Name + " " + x.LastName,
+                                value = x.ProfilePublicId,
+                            }).ToList());
+                    }
 
+                </li>
+                <li >
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.RelatedProfileDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.PrincipalProfile.ProfilePublicId
+                }))">
             <!--hiden fields-->
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+            <input type="hidden" id="ProfileRelatedId" name="ProfileRelated" value="${Id}" />
             <input class="BOButtonsErase" type="submit" value="Borrar" />
-        </div>
-    </form>
+        </form>
+    </div>
+    <!--hiden fields-->
+    @*<input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+        <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+        <input class="BOButtonsErase" type="submit" value="Borrar" />*@
+    <div id="TemplateUserFrom">
+        <img src="${UserFromImage}" width="45" height="45" />
+        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${Name}</label>
+    </div>
 </div>
-<div id="TemplateUserFrom">
-    <img src="${UserFromImage}" width="45" height="45" />
-    <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${Name}</label>
-</div>
+
 
 @{
     //get json office data
@@ -53,11 +72,13 @@
         Serialize(Model.PrincipalProfile.ChildProfile.
             Select(x => new
             {
+                Id = x.ProfilePublicId, 
                 UserFromImage = x.ProfileInfo.Where(p => p.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).Select(p => p.Value).FirstOrDefault(),
                 Name = x.Name + " " + x.LastName,
                 Email = x.ProfileInfo.Where(p => p.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Email).Select(p => p.Value).FirstOrDefault()
             }).ToList());
 }
+
 @section inlinescripts
 {
     <script type="text/javascript">
