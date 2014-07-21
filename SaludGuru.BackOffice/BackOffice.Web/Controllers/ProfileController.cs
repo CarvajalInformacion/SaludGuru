@@ -1014,15 +1014,20 @@ namespace BackOffice.Web.Controllers
                             img = BackOffice.Models.General.InternalSettings.Instance
                                 [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
 
-                            item.ProfileInfo.Select(c => { c.Value = img; return c; }).FirstOrDefault();
-                            item.ProfileInfo.Select(c => { c.ProfileInfoType = enumProfileInfoType.ImageProfileSmall; return c; }).FirstOrDefault();
+                            ProfileInfoModel infoAdd = new ProfileInfoModel();
+                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
+                            infoAdd.Value = img;
+                            item.ProfileInfo.Add(infoAdd);
                         }
                         else
                         {
                             img = BackOffice.Models.General.InternalSettings.Instance
                                 [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
-                            item.ProfileInfo.Select(c => { c.Value = img; return c; }).FirstOrDefault();
-                            item.ProfileInfo.Select(c => { c.ProfileInfoType = enumProfileInfoType.ImageProfileSmall; return c; }).FirstOrDefault();
+
+                            ProfileInfoModel infoAdd = new ProfileInfoModel();
+                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
+                            infoAdd.Value = img;
+                            item.ProfileInfo.Add(infoAdd);
                         }
                     }
                 }
