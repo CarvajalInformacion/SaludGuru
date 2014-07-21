@@ -67,7 +67,7 @@
         </div>
     </div>
     <div id="BlockAppointmentContainer" style="display:none;">
-        <div>
+        <div class="BlockAppointmentUpsert">
             <form action="/api/AppointmentApi?BlockAppointment=true" method="post" id="frmBlockAppointment" name="frmBlockAppointment">
                 <ul>
                     <li>
@@ -95,12 +95,12 @@
                         <input type="text" id="BlockEndTime" name="BlockEndTime" />
                     </li>
                     <li>
-                        <input type="checkbox" id="CancelAllAppointment" name="CancelAllAppointment" />
                         <label>Cancelar todas las citas</label>
+                        <input type="checkbox" id="CancelAllAppointment" name="CancelAllAppointment" />
                     </li>
                     <li>
-                        <input type="checkbox" id="SendNotificationAllAppointment" name="SendNotificationAllAppointment" />
                         <label>Enviar notificaciones</label>
+                        <input type="checkbox" id="SendNotificationAllAppointment" name="SendNotificationAllAppointment" />
                     </li>
                 </ul>
                 <!--hidden fields-->

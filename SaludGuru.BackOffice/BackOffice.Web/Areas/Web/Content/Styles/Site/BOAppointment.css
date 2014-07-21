@@ -197,14 +197,15 @@ div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
             text-align: left;
         }
 /*************************CONTENEDOR CREACION DE CITAS**************************/
-div#AppointmentUpsert{
+div#AppointmentUpsert, div.BlockAppointmentUpsert{
     border:none;
     display:block;    
     width:inherit;
     overflow-x:auto;
     min-height:288px;
-
+    height:288px;
 }
+
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
     display:inline-block;
