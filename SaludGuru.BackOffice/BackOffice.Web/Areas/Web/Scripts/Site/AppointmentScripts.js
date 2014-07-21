@@ -119,6 +119,7 @@ var MettingCalendarObject = {
 
     /*office info*/
     lstOffice: new Array(),
+    optionOffice: '',
 
     /*init meeting variables*/
     Init: function (vInitObject) {
@@ -129,62 +130,40 @@ var MettingCalendarObject = {
         this.StartDateTime = vInitObject.StartDateTime;
         this.EndDateTime = vInitObject.EndDateTime;
 
+        //init office option list
+        this.optionOffice = '<select id="selOffice_{OfficePublicId}">';
+
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
+            //set key value pair for an office
             MettingCalendarObject.lstOffice[value.OfficePublicId] = value;
+            //add office option
+            MettingCalendarObject.optionOffice = MettingCalendarObject.optionOffice + '<option value="' + value.OfficePublicId + '">' + value.OfficeName + '</option>';
         });
+
+        this.optionOffice = this.optionOffice + '</select>';
     },
 
     /*init meeting calendar by day*/
     RenderAsync: function () {
 
-        if (this.CurrentAgentType == 'month') {
+        var CalendarRender = false;
 
-            var CalendarRender = false;
+        //render calendars by month
+        for (var item in this.lstOffice) {
+            //create div to put a calendar
+            this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
+            $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
 
-            //render calendars by month
-            for (var item in this.lstOffice) {
-                //create div to put a calendar
-                this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
-                $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
+            this.RenderMettingCalendar(this.lstOffice[item].OfficePublicId);
 
-                //init calendar
-                this.RenderMettingCalendarMonth(this.lstOffice[item].OfficePublicId);
 
-                if (CalendarRender == false) {
-                    CalendarRender = true;
-                }
-                else {
-                    //hide unselect office
-                    $('#' + this.lstOffice[item].OfficeDivId).hide();
-                }
+            if (CalendarRender == false) {
+                CalendarRender = true;
             }
-        }
-        else {
-
-            //render calendars by day,week and list
-
-            var TotalCalendars = 0;
-
-            for (var item in this.lstOffice) {
-                //create div to put a calendar
-                this.lstOffice[item].OfficeDivId = 'divMetting_' + this.lstOffice[item].OfficePublicId;
-                $('#' + this.DivId).append($('#divMetting').html().replace(/divOfficePublicId/gi, this.lstOffice[item].OfficeDivId));
-
-                //init calendar
-                this.RenderMettingCalendar(this.lstOffice[item].OfficePublicId);
-
-                //add calendars count
-                TotalCalendars = TotalCalendars + 1;
-            }
-
-            if (this.CurrentAgentType == 'agendaDay' || this.CurrentAgentType == 'agendaWeek') {
-                //TODO: Recalc dimension with bootstrap
-                $('#' + this.DivId).width(($('#divOfficePublicId').width() * TotalCalendars) + 1);
-            }
-            else if (this.CurrentAgentType == 'basicDay') {
-                //TODO: Recalc dimension with bootstrap
-                $('#' + this.DivId).width($('#divOfficePublicId').width());
+            else {
+                //hide unselect office
+                $('#' + this.lstOffice[item].OfficeDivId).hide();
             }
         }
     },
@@ -193,66 +172,24 @@ var MettingCalendarObject = {
 
         //get title
         var vTitle = $('#divMettingHeader').html();
-        vTitle = vTitle.replace(/{{OfficeScheduleConfigUrl}}/gi, this.lstOffice[vOfficePublicId].OfficeScheduleConfigUrl);
-        vTitle = vTitle.replace(/{{OfficeName}}/gi, this.lstOffice[vOfficePublicId].OfficeName);
 
-        //init office metting calendar
-        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
-            dayNames: this.dayNamesSp,
-            dayNamesShort: this.dayNamesShortSp,
-            monthNames: this.monthNamesSp,
-            defaultView: this.CurrentAgentType,
-            allDaySlot: false,
-            allDayText: ' ',
-            titleFormat: '\'' + vTitle + '\'',
-            weekNumbers: false,
-            editable: true,
-            header: {
-                left: '',
-                center: 'title',
-                right: '',
-            },
-            columnFormat: {
-                month: ' ',
-                week: 'ddd M/d',
-                day: 'ddd M/d'
-            },
-            dayClick: function (date, jsEvent, view) {
-                UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
-            },
-            eventClick: function (event, jsEvent, view) {
-                UpsertAppointmentObject.RenderForm(null, null, event);
-            },
-            eventAfterRender: function (event, element, view) {
-                element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-            },
-            events: {
-                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime),
-            },
-        });
+        vTitle = vTitle.replace(/{OfficeList}/gi, this.optionOffice);
+        vTitle = vTitle.replace(/{OfficeScheduleConfigUrl}/gi, this.lstOffice[vOfficePublicId].OfficeScheduleConfigUrl);
+        vTitle = vTitle.replace(/{OfficePublicId}/gi, vOfficePublicId);
 
-        $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
-    },
+        //get parameters by calendar type
+        var oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDateTime=' + serverDateTimeToString(this.StartDateTime) + '&EndDateTime=' + serverDateTimeToString(this.EndDateTime);
+        var oEditable = true;
+        var oLeft = '';
+        var oRight = '';
 
-    RenderMettingCalendarMonth: function (vOfficePublicId) {
-
-        //get title
-        var vTitle = $('#divMettingHeader').html();
-        var oOfficeListOption = '<select id="selOffice_' + vOfficePublicId + '">';
-
-        for (var item in this.lstOffice) {
-
-            if (this.lstOffice[item].OfficePublicId == vOfficePublicId) {
-                oOfficeListOption = oOfficeListOption + '<option value="' + this.lstOffice[item].OfficePublicId + '" selected>' + this.lstOffice[item].OfficeName + '</option>';
-            }
-            else {
-                oOfficeListOption = oOfficeListOption + '<option value="' + this.lstOffice[item].OfficePublicId + '">' + this.lstOffice[item].OfficeName + '</option>';
-            }
+        if (this.CurrentAgentType == 'month') {
+            oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime);
+            oEditable = false;
+            var oLeft = 'prev';
+            var oRight = 'next';
         }
 
-        oOfficeListOption = oOfficeListOption + '</select>';
-
-        vTitle = vTitle.replace(/{{OfficeList}}/gi, oOfficeListOption);
 
         //init office metting calendar
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
@@ -262,46 +199,68 @@ var MettingCalendarObject = {
             defaultView: this.CurrentAgentType,
             allDaySlot: false,
             allDayText: ' ',
-            titleFormat: 'MMMM yyyy \'' + vTitle + '\'',
+            titleFormat: 'MMMM d yyyy \'' + vTitle + '\'',
             weekNumbers: false,
-            editable: false,
+            editable: oEditable,
             header: {
-                left: 'prev',
+                left: oLeft,
                 center: 'title',
-                right: 'next',
+                right: oRight,
             },
             columnFormat: {
                 month: ' ddd ',
-                week: 'ddd M/d',
-                day: 'ddd M/d'
+                week: ' dddd ',
+                day: ' dddd '
             },
             viewRender: function (view, element) {
 
+                //select current office
+                $('#selOffice_' + vOfficePublicId).val(vOfficePublicId);
+
+                //init on change event
                 $('#selOffice_' + vOfficePublicId).unbind('change');
                 $('#selOffice_' + vOfficePublicId).change(function () {
-                    for (var item in MettingCalendarObject.lstOffice) {
-                        //hide old office
-                        $('#' + MettingCalendarObject.lstOffice[item].OfficeDivId).hide();
-                    }
                     //show new office
-                    $('#' + MettingCalendarObject.lstOffice[$(this).val()].OfficeDivId).fadeIn('slow');
+                    MettingCalendarObject.ChangeOffice($(this).val());
                 });
             },
             dayClick: function (date, jsEvent, view) {
-                window.location = '/Appointment/Day?Date=' + serverDateToString(date);
+
+                if (MettingCalendarObject.CurrentAgentType == 'month') {
+                    window.location = '/Appointment/Day?Date=' + serverDateToString(date);
+                }
+                else {
+                    UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
+                }
             },
             eventClick: function (event, jsEvent, view) {
-                window.location = '/Appointment/Day?Date=' + serverDateToString(event.start);
+                if (MettingCalendarObject.CurrentAgentType == 'month') {
+                    window.location = '/Appointment/Day?Date=' + serverDateToString(event.start);
+                }
+                else {
+                    UpsertAppointmentObject.RenderForm(null, null, event);
+                }
             },
             eventAfterRender: function (event, element, view) {
                 element.find('.fc-event-title').html(element.find('.fc-event-title').text());
             },
             events: {
-                url: '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime),
+                url: oEventUrl,
             },
         });
-
+        //set start date
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+    },
+
+    ChangeOffice: function (vNewOfficePublicId) {
+
+        for (var item in this.lstOffice) {
+            //hide old office
+            $('#' + this.lstOffice[item].OfficeDivId).hide();
+        }
+        //show new office
+        $('#' + this.lstOffice[vNewOfficePublicId].OfficeDivId).fadeIn('slow');
+
     },
 
     Refresh: function () {

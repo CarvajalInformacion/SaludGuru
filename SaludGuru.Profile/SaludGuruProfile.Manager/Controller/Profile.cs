@@ -398,6 +398,16 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        public static void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild)
+        {
+            ProfileDataController.Instance.RelatedProfileCreate(ProfilePublicIdParent, ProfilePublicIdChild);
+        }
+
+        public static void RelatedProfileDelete(string ProfilePublicIdParent, string ProfilePublicIdChild)
+        {
+            ProfileDataController.Instance.RelatedProfileDelete(ProfilePublicIdParent, ProfilePublicIdChild);
+        }
+
         #endregion
 
         #region Insurance
