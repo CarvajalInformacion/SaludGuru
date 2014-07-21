@@ -598,7 +598,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
+        public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -606,7 +606,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin",
+                CommandText = "P_Profile_GetFullAdmin_BasicInfo",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -645,7 +645,33 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                        LargeValue = pinfg.Key.LargeValue,
                                        LastModify = pinfg.Key.LastModify,
                                        CreateDate = pinfg.Key.CreateDate
-                                   }).ToList(),
+                                   }).ToList()
+                };
+            }
+            return oReturn;
+        }
+
+        public ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetFullAdmin_Category",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+
 
                     RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
                                         where sp.Field<int?>("CategoryType") != null &&
@@ -700,23 +726,32 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                         {
                                             CategoryId = spg.Key.CategoryId,
                                             Name = spg.Key.Name,
-                                        }).ToList(),
+                                        }).ToList()
+                };
+            }
+            return oReturn;
+        }
 
-                    ChildProfile = (from cp in response.DataTableResult.AsEnumerable()
-                                    where !string.IsNullOrEmpty(cp.Field<string>("ProfileChildPublicId"))
-                                    group cp by
-                                    new
-                                    {
-                                        ChildProfilePublicId = cp.Field<string>("ProfileChildPublicId"),
-                                        ChildName = cp.Field<string>("ProfileChildName"),
-                                        ChildLastName = cp.Field<string>("ProfileChildLastName"),
-                                    } into cpg
-                                    select new ProfileModel()
-                                    {
-                                        ProfilePublicId = cpg.Key.ChildProfilePublicId,
-                                        Name = cpg.Key.ChildName,
-                                        LastName = cpg.Key.ChildLastName
-                                    }).ToList(),
+        public ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetFullAdmin_Office",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
 
                     RelatedOffice = (from op in response.DataTableResult.AsEnumerable()
                                      where !string.IsNullOrEmpty(op.Field<string>("OfficePublicId"))
@@ -743,14 +778,53 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                              CityId = opg.Key.CityId,
                                              CityName = opg.Key.CityName
                                          }
-                                     }).ToList(),
+                                     }).ToList()
 
                 };
             }
-
             return oReturn;
         }
 
+        public ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetFullAdmin_RelatedProfile",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+
+                    ChildProfile = (from cp in response.DataTableResult.AsEnumerable()
+                                    where !string.IsNullOrEmpty(cp.Field<string>("ProfileChildPublicId"))
+                                    group cp by
+                                    new
+                                    {
+                                        ChildProfilePublicId = cp.Field<string>("ProfileChildPublicId"),
+                                        ChildName = cp.Field<string>("ProfileChildName"),
+                                        ChildLastName = cp.Field<string>("ProfileChildLastName"),
+                                    } into cpg
+                                    select new ProfileModel()
+                                    {
+                                        ProfilePublicId = cpg.Key.ChildProfilePublicId,
+                                        Name = cpg.Key.ChildName,
+                                        LastName = cpg.Key.ChildLastName
+                                    }).ToList()
+                };
+            }
+            return oReturn;
+        }
         #endregion
 
         #region Office

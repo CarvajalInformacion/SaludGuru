@@ -47,7 +47,13 @@ namespace SaludGuruProfile.Manager.Interfaces
         List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows);
         List<ItemModel> ProfileGetOptions();
 
-        ProfileModel ProfileGetFullAdmin(string ProfilePublicId);
+        ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId);
 
         #endregion
 
