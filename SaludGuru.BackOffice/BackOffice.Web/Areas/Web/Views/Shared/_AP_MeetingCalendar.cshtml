@@ -2,57 +2,28 @@
 
 @if (!Model.RenderScripts)
 {
-    if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Month)
-    {
-        <div id="divMeetingCalendarMonth" class="@Model.defaultView">
-            <div id="CalendarContent"></div>
-        </div>
+    <div id="divMeetingCalendar" class="@Model.defaultView">
+        <div id="CalendarContent"></div>
+    </div>
 
-        <div id="templatesMettingCalendar" style="display:none;">
-            <!--metting calendar-->
-            <div id="divMetting">
-                <div id="divOfficePublicId" style="width:80%;float:left;"></div>
-            </div>
-            <!--metting header-->
-            <div id="divMettingHeader">
-                {{OfficeList}}
-            </div>
+    <div id="templatesMettingCalendar" style="display:none;">
+        <!--metting calendar-->
+        <div id="divMetting">
+            <div id="divOfficePublicId" style="width:90%;float:left;"></div>
         </div>
-    }
-    else if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Detail)
-    {
-        <div id="divMeetingCalendar" style="overflow:scroll;" class="@Model.defaultView">
-            <div id="CalendarContent"></div>
+        <!--metting header-->
+        <div id="divMettingHeader">
+            <ul>
+                <li>
+                    {OfficeList}
+                </li>
+                <li>
+                    <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                </li>
+            </ul>
         </div>
+    </div>
 
-        <div id="templatesMettingCalendar" style="display:none;">
-            <!--metting calendar-->
-            <div id="divMetting">
-                <div id="divOfficePublicId" style="width:700px;float:left;"></div>
-            </div>
-            <!--metting header-->
-            <div id="divMettingHeader">
-                <a href="{{OfficeScheduleConfigUrl}}">{{OfficeName}}</a>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div id="divMeetingCalendar" style="overflow:scroll;" class="@Model.defaultView">
-            <div id="CalendarContent"></div>
-        </div>
-
-        <div id="templatesMettingCalendar" style="display:none;">
-            <!--metting calendar-->
-            <div id="divMetting">
-                <div id="divOfficePublicId" style="width:700px;float:left;"></div>
-            </div>
-            <!--metting header-->
-            <div id="divMettingHeader">
-                <a href="{{OfficeScheduleConfigUrl}}">{{OfficeName}}</a>
-            </div>
-        </div>
-    }
 }
 else
 {
