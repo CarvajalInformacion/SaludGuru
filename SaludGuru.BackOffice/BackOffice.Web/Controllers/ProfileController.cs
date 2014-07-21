@@ -989,11 +989,10 @@ namespace BackOffice.Web.Controllers
                           && bool.Parse(Request["UpsertAction"]))
             {
                 string ProfilePublicIdChild = Request["divGridProfile-txtSearch-id"];
+                Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
                 if (Model.ChildProfile.Where(x => x.ProfilePublicId == ProfilePublicIdChild).Select(x => x).ToList().Count() > 0)
-                {
-                    Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
-                    return View(Model);
-                }
+                    return RedirectToAction(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+
                 SaludGuruProfile.Manager.Controller.Profile.RelatedProfileCreate(ProfilePublicId, ProfilePublicIdChild);
             }
             Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
@@ -1014,9 +1013,9 @@ namespace BackOffice.Web.Controllers
                         {
                             img = BackOffice.Models.General.InternalSettings.Instance
                                 [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
-                            
+
                             item.ProfileInfo.Select(c => { c.Value = img; return c; }).FirstOrDefault();
-                            item.ProfileInfo.Select(c => { c.ProfileInfoType  = enumProfileInfoType.ImageProfileSmall; return c; }).FirstOrDefault();
+                            item.ProfileInfo.Select(c => { c.ProfileInfoType = enumProfileInfoType.ImageProfileSmall; return c; }).FirstOrDefault();
                         }
                         else
                         {
@@ -1024,9 +1023,9 @@ namespace BackOffice.Web.Controllers
                                 [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
                             item.ProfileInfo.Select(c => { c.Value = img; return c; }).FirstOrDefault();
                             item.ProfileInfo.Select(c => { c.ProfileInfoType = enumProfileInfoType.ImageProfileSmall; return c; }).FirstOrDefault();
-                        }   
-                    }                    
-                }                
+                        }
+                    }
+                }
             }
             oReturn.PrincipalProfile = Model;
             oReturn.AutoComplitListProfiles = SaludGuruProfile.Manager.Controller.Profile.ProfileSearchToRelate(string.Empty, ProfilePublicId, 0, 20);
