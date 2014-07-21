@@ -1,0 +1,86 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "Insurance";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+<div class="BOProfileFormWrapper">
+    <h3>Agregar Seguros para este Profesional</h3>
+    <div id="divGridInsuranceProfile"></div>
+</div>
+
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileUpsert, MVC.Profile.Name,
+                                        new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+            <ul class="BOEditDaySetUp">
+                <li>
+                    <label>Seguro</label>
+                    <input type="hidden" id="Insurance-id" name="Insurance-id" value="" />
+                    <input type="text" id="Insurance" name="Insurance" value="" />
+                    @{
+                        //get json treatment
+                        string oInsuranceData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.InsuranceToSelect.
+                                Select(x => new
+                                {
+                                    label = x.Name,
+                                    value = x.CategoryId,
+                                }).ToList());
+                    }
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.InsuranceProfileDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
+            <input class="BOButtonsErase" type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
+
+@{
+    //get json office data
+    string oInsuranceProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedInsurance.
+            Select(x => new
+            {
+                CategoryId = x.CategoryId,
+                Name = x.Name
+            }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oInsuranceProfile)
+        $(document).ready(function () {
+            debugger;
+            //start office grid
+            ProfileInsuranceListGrid('divGridInsuranceProfile', vDataAutorizationProfile);
+        });
+    </script>
+
+    <script type="text/javascript">
+        var vDataInsurance = @Html.Raw(oInsuranceData)
+        $(document).ready(function () {
+            //start office grid
+            OfficeInsuranceAc('Insurance', vDataInsurance);
+        });
+    </script>
+}
+
+

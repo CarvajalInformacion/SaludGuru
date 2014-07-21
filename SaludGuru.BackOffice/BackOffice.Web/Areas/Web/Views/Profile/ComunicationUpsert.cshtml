@@ -1,0 +1,14 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "ComunicationUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+<div>
+    @Html.Partial(MVC.Web.Profile.Views.ProfileMessangerUpsert, Model)
+</div>
+

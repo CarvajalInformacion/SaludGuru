@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://soa.inalambria.com/IMPWebServiceSend.asmx?wsdl" docRef="https://soa.inalambria.com/IMPWebServiceSend.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://soa.inalambria.com/IMPWebServiceSend.asmx" xmlns:q1="soa.inalambria.com" binding="q1:ServiceSendSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://soa.inalambria.com/IMPWebServiceSend.asmx" xmlns:q2="soa.inalambria.com" binding="q2:ServiceSendSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

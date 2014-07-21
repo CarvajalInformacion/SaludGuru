@@ -1,0 +1,96 @@
+﻿@model BackOffice.Models.Appointment.SchedulingModel
+
+@if (!Model.RenderScripts)
+{
+    if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Detail)
+    {
+        <div id="divMeetingCalendar" style="overflow:scroll;" class="@Model.defaultView">
+            <div id="CalendarContent"></div>
+        </div>
+
+        <div id="templatesMettingCalendar" style="display:none;">
+            <!--metting calendar-->
+            <div id="divMetting">
+                <div id="divOfficePublicId" style="width:700px;float:left;"></div>
+            </div>
+            <!--metting header-->
+            <div id="divMettingHeader">
+                <a href="{{OfficeScheduleConfigUrl}}">{{OfficeName}}</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="divMeetingCalendar" class="@Model.defaultView">
+            <div id="CalendarContent"></div>
+        </div>
+
+        <div id="templatesMettingCalendar" style="display:none;">
+            <!--metting calendar-->
+            <div id="divMetting">
+                <div id="divOfficePublicId"></div>
+            </div>
+            <!--metting header-->
+            <div id="divMettingHeader">
+                <ul>
+                    <li>
+                        {OfficeList}
+                    </li>
+                    <li>
+                        <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+}
+else
+{
+    //create office calendar object
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
+                new
+                {
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                    OfficeScheduleConfigUrl = Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableList,
+                                                MVC.Profile.Name,
+                                                new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, OfficePublicId = of.OfficePublicId }),
+                    TreatmentList = of.RelatedTreatment.Select(tr => new
+                    {
+                        TreatmentId = tr.CategoryId,
+                        TreatmentName = tr.Name,
+                        IsDefault = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                            Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
+                        Duration = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).
+                            Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
+                        AfterCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                        BeforeCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                    }).OrderBy(tro => tro.IsDefault).OrderBy(tro => tro.TreatmentName).ToList(),
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //render metting calendar
+            MettingCalendarObject.Init({
+                DivId: 'CalendarContent',
+                CurrentAgentType: '@Model.defaultView',
+                StartDateTime : new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
+                EndDateTime : new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
+                OfficeInfo : @Html.Raw(oOfficeInfo),
+            });
+            MettingCalendarObject.RenderAsync();
+        });
+    </script>
+}
+

@@ -1,0 +1,190 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "RemindersUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+<div class="BOProfileFormWrapper">
+    <h3 class="BOCreateOfficeLabel">Administrar Comunicaciones</h3>
+
+    @if (Model.Profile.ProfileInfo != null)
+    {
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileComunicationMenu, Model);
+    }
+
+    <div class="BOFormDataWrapper">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileReminderUpsert, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId,
+                }))">
+            <ul class="BOCommunicationActions">
+
+                <li class="BOComActionsTableHeading">
+                    <div></div>
+                    <label>E-Mail</label>
+                    <label>SMS</label>
+                    <label>Notificaciones Gurú</label>
+                    <label>Tiempo Previo</label>
+                </li>
+                <li class="BOComActionsTableCells">
+                    <label>Recordatorio de cita</label>
+                    @{
+                        var CatInfo_RC = Model.Profile == null ? null :
+                                 Model.Profile.ProfileInfo.Where
+                                     (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.RecordatorioCita).
+                                     Select(x => new { id = x.ProfileInfoId, val = x.Value, LargeValue = x.LargeValue }).
+                                         DefaultIfEmpty(null).
+                                         ToList();
+
+                        if (CatInfo_RC[0] != null)
+                        {
+                            var oLoadedEmail = CatInfo_RC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
+                                                            Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            var oLoadedSms = CatInfo_RC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
+                                                            Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            var oLoadedNotifyGuru = CatInfo_RC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                                                           Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            if (oLoadedEmail != null)
+                            {
+                                <input type="checkbox" id="RC_EMail" name="RC_EMail" checked="checked" />
+                                <input type="hidden" id="IsemailRC" name="IsemailRC" value="@oLoadedEmail.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RC_EMail" name="RC_EMail" />
+                                <input type="hidden" id="IsemailRC" name="IsEmailRC" />
+                            }
+
+                            if (oLoadedSms != null)
+                            {
+                                <input type="checkbox" id="RC_Sms" name="RC_Sms" checked="checked" />
+                                <input type="hidden" id="IsSmsRC" name="IsSmsRC" value="@oLoadedSms.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RC_Sms" name="RC_Sms" />
+                                <input type="hidden" id="IsSmsRC" name="IsSmsRC" />
+                            }
+
+                            if (oLoadedNotifyGuru != null)
+                            {
+                                <input type="checkbox" id="RC_NotifyGuru" name="RC_NotifyGuru" checked="checked" />
+                                <input type="hidden" id="IsNotifyRC" name="IsNotifyRC" value="@oLoadedNotifyGuru.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RC_NotifyGuru" name="RC_NotifyGuru" />
+                                <input type="hidden" id="IsNotifyRC" name="IsNotifyRC" />
+                            }
+
+                            <input type="text" style="width: 5%;" name="RP_Horas" id="RP_Horas" value="@CatInfo_RC[0].LargeValue " />
+                            <input type="hidden" id="IsRP_Horas" name="IsRP_Horas" value="@CatInfo_RC[0].id" />
+                            <label>Horas</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="RC_EMail" name="RC_EMail" />
+                            <input type="checkbox" id="RC_Sms" name="RC_Sms" />
+                            <input type="checkbox" id="RC_NotifyGuru" name="RC_NotifyGuru" />
+                            <input type="text" style="width: 5%;" name="RP_Horas" id="RP_Horas" />
+                        }
+                    }
+                </li>
+                <li class="BOComActionsTableCells">
+                    <label>Recordatorio próxima cita</label>
+                    @{
+                        var CatInfo_RPC = Model.Profile == null ? null :
+                            Model.Profile.ProfileInfo.Where
+                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.RecordatorioProxCita).
+                                Select(x => new { id = x.ProfileInfoId, val = x.Value, LargeValue = x.LargeValue }).
+                                         DefaultIfEmpty(null).ToList();
+
+                        if (CatInfo_RPC[0] != null)
+                        {
+                            var oLoadedEmail_CC = CatInfo_RPC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
+                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            var oLoadedSms_CC = CatInfo_RPC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
+                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            var oLoadedNotifyGuru_CC = CatInfo_RPC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+
+                            if (oLoadedEmail_CC != null)
+                            {
+                                <input type="checkbox" id="RPC_EMail" name="RPC_EMail" checked="checked" />
+                                <input type="hidden" id="isEMailRPC" name="isEMailRPC" value="@oLoadedEmail_CC.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RPC_EMail" name="RPC_EMail" />
+                                <input type="hidden" id="isEMailRPC" name="isEMailRPC" />
+                            };
+                            if (oLoadedSms_CC != null)
+                            {
+                                <input type="checkbox" id="RPC_Sms" name="RPC_Sms" checked="checked" />
+                                <input type="hidden" id="isSmsRPC" name="isSmsRPC" value="@oLoadedSms_CC.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RPC_Sms" name="RPC_Sms" />
+                                <input type="hidden" id="isSmsRPC" name="isSmsRPC" />
+                            };
+
+                            if (oLoadedNotifyGuru_CC != null)
+                            {
+                                <input type="checkbox" id="RPC_GuruNotify" name="RPC_GuruNotify" checked="checked" />
+                                <input type="hidden" id="isNotifyRPC" name="isNotifyRPC" value="@oLoadedNotifyGuru_CC.id" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="RPC_GuruNotify" name="RPC_GuruNotify" />
+                                <input type="hidden" id="isNotifyRPC" name="isNotifyRPC" />
+                            }
+
+                            <input type="text" style="width: 5%;" name="RPC_Time" id="RPC_Time" value="@CatInfo_RPC[0].LargeValue" />
+                            <input type="hidden" id="isRPC_Time" name="isRPC_Time" value="@CatInfo_RPC[0].id" />
+                            <label>Horas</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="RPC_EMail" name="RPC_EMail" />
+                            <input type="checkbox" id="RPC_Sms" name="CC_Sms" />
+                            <input type="checkbox" id="RPC_GuruNotify" name="RPC_GuruNotify" />
+                            <input type="text" style="width: 5%;" name="RPC_Time" id="RPC_Time" />
+                        }
+                    }
+                </li>
+            </ul>
+            @{
+                if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                {
+                    <div class="BOButtonContainerShort">
+                        @*hiden fields*@
+                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                        <input class="BOButtons" type="submit" value="guardar" />
+                    </div>
+                }
+            }
+        </form>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //start office grid
+            ReminderSetControlSpinner('RPC_Time');
+            ReminderSetControlSpinner('RP_Horas');
+        });
+    </script>
+}

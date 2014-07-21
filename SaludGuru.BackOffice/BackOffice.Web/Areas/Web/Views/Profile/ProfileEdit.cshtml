@@ -1,0 +1,14 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+    </div>
+    <div class="BOProfileFormWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._P_ProfileInfo, Model)
+    </div>
+</div>

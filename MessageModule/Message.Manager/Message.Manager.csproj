@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48540FF3-A712-4347-B9A0-40C1A5023D95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Message.Manager</RootNamespace>
+    <AssemblyName>Message.Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SettingsManager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SettingsManager\developer\SettingsManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessageProcess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Message.Client\Message.Client.csproj">
+      <Project>{bf3ac4d4-522c-45bd-a2c5-9511858f8022}</Project>
+      <Name>Message.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message.DAL\Message.DAL.csproj">
+      <Project>{1e884e31-ffcf-4dda-bf63-24e1a950b476}</Project>
+      <Name>Message.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message.Inalambria\Message.Inalambria.csproj">
+      <Project>{bbf09d5a-8d32-4f2e-a10d-09606e2008f9}</Project>
+      <Name>Message.Inalambria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message.Interfaces\Message.Interfaces.csproj">
+      <Project>{c85b3dd9-70a7-4738-8ba5-0fe04ef02839}</Project>
+      <Name>Message.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message.Mailman\Message.Mailman.csproj">
+      <Project>{1778d44b-31f5-4602-a086-44ff77a7e3fc}</Project>
+      <Name>Message.Mailman</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Message.Models\Message.Models.csproj">
+      <Project>{65bd15f2-3262-4e42-a686-da819cab3360}</Project>
+      <Name>Message.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Librarys\Carvajal.Mail.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

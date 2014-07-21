@@ -1,0 +1,37 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+
+@{
+    List<BackOffice.Models.General.MenuComunicationModel> ComunicationMenu = BackOffice.Web.Controllers.BaseController.GetComunicationMenu();
+}
+<div class="BOInfoOfficeWrapper">    
+    <div class="BOInfoOfficeSubmenu">
+        <ul>
+            @foreach (BackOffice.Models.General.MenuComunicationModel oMenu in ComunicationMenu)
+            {
+                string strAction = string.Empty;
+                string strStyle = string.Empty;
+                string strName = string.Empty;
+
+                switch (oMenu.Menu)
+                {
+                    case BackOffice.Models.General.enumMenuComunications.Messaging:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Mensajería";
+                        break;
+                    case BackOffice.Models.General.enumMenuComunications.Reminders:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileReminderUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Recordatorios";
+                        break;
+                    default:
+                        break;
+                }
+                <li class="@strStyle">
+                    <a href="@strAction">@strName</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <BackOffice>
+
+    <!--Login Module-->
+    <key name="Web_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <!--Principal Menu-->
+    <key name="PrincipalMenu_101">Administrator,Write;</key>
+    <key name="PrincipalMenu_102">Profile,Write;Appointment,Write;Patient,Write;</key>
+    <key name="PrincipalMenu_103">Profile,Read;Appointment,Write;Patient,Write;</key>
+    <key name="PrincipalMenu_104">Profile,Read;Appointment,Read;Patient,Read;</key>
+
+    <!--Secundary Menu-->
+    <key name="SecundaryMenu_Dashboard"></key>
+    <key name="SecundaryMenu_Administrator">Ad_Profile,Ad_Insurance,Ad_Specialty,Ad_Treatment</key>
+    <key name="SecundaryMenu_Profile"></key>
+    <key name="SecundaryMenu_Appointment">Ap_Day,Ap_Week,Ap_Month,Ap_List,Ap_ShceduleAvailable</key>
+    <key name="SecundaryMenu_Patient"></key>
+
+    <!--Image uploader-->
+    <key name="ProfileImage_TempDirectory">D:\Proyectos\Github\SaludGuru\SaludGuru.BackOffice\BackOffice.Web\TmpImg\</key>
+
+    <!--Default image profile-->
+    <key name="ProfileImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileMan.png</key>
+    <key name="ProfileImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileWoman.png</key>
+    <key name="ProfileImage_Admin">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileAdmin.png</key>
+
+    <!--Default image patient-->
+    <key name="PatientImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientMan.png</key>
+    <key name="PatientImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientWoman.png</key>
+
+    <!--Appointment templates-->
+    <key name="Appointment_ImageEmpty">http://www.madrimasd.org/blogs/matematicas/2008/blogs/matematicas/wp-content/blogs.dir/69/files/1219/o_imagen146.jpg</key>
+    <key name="Appointment_ImageGroup">http://www.madrimasd.org/blogs/matematicas/2008/blogs/matematicas/wp-content/blogs.dir/69/files/1219/o_imagen146.jpg</key>
+
+    <!--New-->
+    <key name="Appointment_TitleTemplate_1201">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Confirmed-->
+    <key name="Appointment_TitleTemplate_1202">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Canceled-->
+    <key name="Appointment_TitleTemplate_1203">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--PendientAsistance-->
+    <key name="Appointment_TitleTemplate_1204">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--Attendance-->
+    <key name="Appointment_TitleTemplate_1205">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--NotAttendance-->
+    <key name="Appointment_TitleTemplate_1206">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+    <!--BlockCalendar-->
+    <key name="Appointment_TitleTemplate_1207">
+      <![CDATA[
+      <div>
+        <label>Agenda bloqueada</label>
+      </div>
+    ]]>
+    </key>
+  
+    <!--Month-->
+    <key name="Appointment_TitleTemplate_Month">
+      <![CDATA[
+      <div>
+        <label class="AppointmentCount_1201">{Count_1201} Citas nuevas</label>
+        <label class="AppointmentCount_1202">{Count_1202} Citas confirmadas</label>
+        <label class="AppointmentCount_1203">{Count_1203} Citas canceladas</label>
+      </div>
+    ]]>
+    </key>
+
+  </BackOffice>
+</Settings>
+

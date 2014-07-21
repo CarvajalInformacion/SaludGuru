@@ -1,0 +1,42 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+
+@{
+    List<BackOffice.Models.General.MenuOfficeModel> OfficeMenu = BackOffice.Web.Controllers.BaseController.GetOfficeMenu();
+}
+<div class="BOInfoOfficeWrapper">
+    <label class="BOInfoOfficeLabel">@Model.CurrentOffice.Name</label>
+    <div class="BOInfoOfficeSubmenu">
+        <ul>
+            @foreach (BackOffice.Models.General.MenuOfficeModel oMenu in OfficeMenu)
+            {
+                string strAction = string.Empty;
+                string strStyle = string.Empty;
+                string strName = string.Empty;
+
+                switch (oMenu.Menu)
+                {
+                    case BackOffice.Models.General.enumMenuOffice.OfficeInfo:
+                        strAction = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Información general";
+                        break;
+                    case BackOffice.Models.General.enumMenuOffice.Treatments:
+                        strAction = Url.Action(MVC.Profile.ActionNames.OfficeTreatmentList, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Tratamientos";
+                        break;
+                    case BackOffice.Models.General.enumMenuOffice.ScheduleAvalilable:
+                        strAction = Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableList, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Horarios de atención";
+                        break;
+                    default:
+                        break;
+                }
+                <li class="@strStyle">
+                    <a href="@strAction">@strName</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

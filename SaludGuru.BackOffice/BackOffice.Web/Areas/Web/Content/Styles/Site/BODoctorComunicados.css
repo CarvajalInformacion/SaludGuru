@@ -1,0 +1,67 @@
+div.BOFormDataWrapper ul.BOCommunicationActions {
+    width: 90%;
+}
+    ul.BOCommunicationActions li.BOComActionsTableHeading {
+        display:inline-block;
+        width:auto;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableHeading div{
+        display:inline-block;
+        width:206px;
+        border:none;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableHeading label{
+        display:inline-block;
+        padding: 2px 8px;
+        border-radius: 0px 12px 0px 0px;
+        background-color: #8ed0e0;
+        height: 34px;
+        font-size: 14px;
+        text-align: center;
+        line-height: 13px;
+        width: 114px;
+        vertical-align: top;
+    }    
+    ul.BOCommunicationActions li.BOComActionsTableCells label{
+        display:inline-block;
+        width:206px;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(2){
+        display:inline-block;
+        width:auto;
+        border:1px solid purple;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(3){
+        display:inline-block;
+        width:116px;
+        border:1px solid purple;
+    }
+    ul.BOCommunicationActions li.BOComActionsTableCells input[type="checkbox"]:nth-child(4){
+        display:inline-block;
+        width:115px;
+        border:1px solid purple;
+    }
+
+li.BOComActionsTableCells span.ui-spinner {
+    border: 1px solid #808080;
+    margin: 0px 0px 0px 60px;
+    padding: 0px;
+    width: 92px;
+    height: 22px;
+    border-radius: 0px;
+    vertical-align: top;
+    text-align: left;
+}
+    li.BOComActionsTableCells span.ui-spinner input#RP_Horas,
+    li.BOComActionsTableCells span.ui-spinner input#RPC_Time{
+    border: 1px solid grey;
+    width: 71px !important;
+    height: 18px;
+    vertical-align: top;
+    display: inline-block;
+    padding: 0px;
+    margin: 1px;
+    font-weight: normal;
+    font-size: 14px;
+    text-indent: 3px;
+    }

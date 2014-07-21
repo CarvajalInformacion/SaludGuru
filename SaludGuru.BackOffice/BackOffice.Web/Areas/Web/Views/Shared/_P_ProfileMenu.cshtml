@@ -1,0 +1,106 @@
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
+@{
+    List<BackOffice.Models.General.MenuProfileModel> ProfileMenu = BackOffice.Web.Controllers.BaseController.GetProfileMenu();
+
+    //get image profile
+    string ImgProfile = Model.ProfileInfo.
+        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+        Select(x => x.Value).
+        DefaultIfEmpty(string.Empty).
+        FirstOrDefault();
+
+    if (string.IsNullOrEmpty(ImgProfile))
+    {
+        if (Model.ProfileInfo.
+                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Gender).
+                Select(x => x.Value == "true" ? true : false).
+                DefaultIfEmpty(false).
+                FirstOrDefault())
+        {
+            ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
+        }
+        else
+        {
+            ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
+        }
+    }
+}
+<div class="BOMenuPrincipalPerfil">
+    <div>
+        <img class="BOFotoPerfil" src="@ImgProfile" />
+        <h2>@(Model.Name + " " + Model.LastName)</h2>
+        <h3>@(Model.DefaultSpecialty != null ? Model.DefaultSpecialty.Name : string.Empty)</h3>
+    </div>
+    <div>
+        <ul>
+            @foreach (BackOffice.Models.General.MenuProfileModel oMenu in ProfileMenu)
+            {
+                string strAction = string.Empty;
+                string strStyle = string.Empty;
+                string strName = string.Empty;
+
+                switch (oMenu.Menu)
+                {
+                    case BackOffice.Models.General.enumMenuProfile.ProfileInfo:                        
+                            strAction = Url.Action(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                            strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                            strName = "Datos basicos";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.ProfileImages:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Imágenes de perfil";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Autorization:
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            strAction = Url.Action(MVC.Profile.ActionNames.AutorizationProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                            strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                            strName = "Usuarios autorizados";
+                        }
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Treatment:
+                        strAction = Url.Action(MVC.Profile.ActionNames.TreatmentProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Tratamientos";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Office:
+                        strAction = Url.Action(MVC.Profile.ActionNames.OfficeList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Consultorios";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Specialty:
+                        strAction = Url.Action(MVC.Profile.ActionNames.SpecialtyProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Especialidades";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Insurance:
+                        strAction = Url.Action(MVC.Profile.ActionNames.InsuranceProfileList, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Seguros";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.Comunicactions:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Comunicaciones";
+                        break;
+                    case BackOffice.Models.General.enumMenuProfile.RelatedProfiles:
+                        strAction = Url.Action(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Perfiles Relacionados";
+                        break;
+                    default:
+                        break;
+                }
+                if (@strName != string.Empty)
+                {
+                    <li class="@strStyle">
+                        <a href="@strAction">@strName</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

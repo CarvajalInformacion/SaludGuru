@@ -1,0 +1,35 @@
+﻿@model List<SaludGuruProfile.Manager.Models.General.TreatmentModel>
+@{
+    ViewBag.Title = "TreatmentList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+    
+    //get json office data
+    string oTreatmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.
+            Select(x => new
+            {
+                UrlToUpdate = Url.Action(MVC.Treatment.ActionNames.TreatmentUpsert, MVC.Treatment.Name, new { treatmentId = x.CategoryId }),
+                CategoryId = x.CategoryId,
+                Name = x.Name,
+                LastModify = x.LastModify.ToString("yyyy/MM/dd HH:mm"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd HH:mm")
+            }).ToList());
+
+    //get create url
+    string oCreateUrl = Url.Action(MVC.Treatment.ActionNames.TreatmentUpsert, MVC.Treatment.Name);    
+}
+<div class="BOInsuranceTableWrapper">
+    <h3>Listado de Tratamientos</h3>
+    <div id="divGridTreatment"></div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataTreatment = @Html.Raw(oTreatmentData)
+            $(document).ready(function () {
+                //Start treatment grid
+                TreatmentListGrid('divGridTreatment', '@oCreateUrl', vDataTreatment);
+            });
+    </script>
+}

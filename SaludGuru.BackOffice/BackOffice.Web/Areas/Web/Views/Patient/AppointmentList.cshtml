@@ -1,0 +1,38 @@
+﻿@model BackOffice.Models.Patient.PatientUpSertModel
+@{
+    ViewBag.Title = "AppointmentList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    string oAppointmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.RelatedAppointment.
+        Select(x => new
+        {
+            AppointmentPublicId = x.AppointmentPublicId,
+            CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy"),
+            StatusName = x.Status.ToString() == "Attendance" ? "Atendido" : x.Status.ToString() == "New" ? "Nueva Cita" : x.Status.ToString() == "Canceled" ? "Cita Cancelada" : x.Status.ToString(),
+        }).ToList());
+}
+
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._PA_PatientMenu, Model)
+    </div>
+    <div class="BOProfileTableWrapper">
+
+        <h3>Listado de Citas</h3>
+
+        <div id="divGridAppointment"></div>
+
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAppointment = @Html.Raw(oAppointmentData)
+        $(document).ready(function () {
+            //Start appointment grid
+            PatientAppointmentListGrid('divGridAppointment', vDataAppointment);
+        })
+    </script>
+}

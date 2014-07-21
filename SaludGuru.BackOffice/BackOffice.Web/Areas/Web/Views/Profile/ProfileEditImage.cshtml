@@ -1,0 +1,161 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "EditImageProfile";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+    </div>
+    <div class="BOProfileFormWrapper">
+        <h3>Administracion de Imágenes</h3>
+        <ul class="BOAdminImagesProfile">
+            <li>
+                <h4>
+                    Imágen de perfil pequeña
+                </h4>
+                @{
+                    string strImage = Model.Profile.ProfileInfo.
+                        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault();
+                }
+                @if (string.IsNullOrEmpty(strImage))
+                {
+                    <span>No hay imágenes de perfil pequeña cargadas</span>
+                }
+                else
+                {
+                    <img src="@strImage" />
+                    <img src="@(Model.Profile.ProfileInfo.
+                        Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
+                        Select(x=>x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault())" />
+
+                }
+
+                <form method="post" enctype="multipart/form-data" action="@(Url.Action(MVC.Profile.ActionNames.ProfileUpsertSmall, MVC.Profile.Name,new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+                    <input type="file" id="UploadFile" name="UploadFile" />
+                    <input type="hidden" id="ProfileInfoId_ImageProfileSmall"
+                           name="ProfileInfoId_ImageProfileSmall"
+                           value="@(Model.Profile.ProfileInfo.
+                                    Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
+                                    Select(x=>x.ProfileInfoId).
+                                    DefaultIfEmpty(0).
+                                    FirstOrDefault())" />
+                    <input type="hidden"
+                           id="ProfileInfoId_ImageProfileSmallOriginal"
+                           name="ProfileInfoId_ImageProfileSmallOriginal"
+                           value="@(Model.Profile.ProfileInfo.
+                                     Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
+                                    Select(x=>x.ProfileInfoId).
+                                    DefaultIfEmpty(0).
+                                    FirstOrDefault())" />
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
+                </form>
+            </li>
+            <li>
+                <h4>
+                    Imágen de perfil grande
+                </h4>
+                @{
+                    strImage = Model.Profile.ProfileInfo.
+                        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault();
+                }
+                @if (string.IsNullOrEmpty(strImage))
+                {
+                    <span>No hay imágenes de perfil grande cargadas</span>
+                }
+                else
+                {
+                    <img src="@strImage" />
+                    <img src="@(Model.Profile.ProfileInfo.
+                        Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLargeOriginal).
+                        Select(x=>x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault())" />
+
+                }
+
+                <form method="post" enctype="multipart/form-data" action="@(Url.Action(MVC.Profile.ActionNames.ProfileUpsertLarge, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+                    <input type="file" id="UploadFile" name="UploadFile" />
+                    <input type="hidden" id="ProfileInfoId_ImageProfileLarge"
+                           name="ProfileInfoId_ImageProfileLarge"
+                           value="@(Model.Profile.ProfileInfo.
+                                    Where(x=>x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+                                    Select(x=>x.ProfileInfoId).
+                                    DefaultIfEmpty(0).
+                                    FirstOrDefault())" />
+                    <input type="hidden"
+                           id="ProfileInfoId_ImageProfileLargeOriginal"
+                           name="ProfileInfoId_ImageProfileLargeOriginal"
+                           value="@(Model.Profile.ProfileInfo.
+                                     Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLargeOriginal).
+                                    Select(x=>x.ProfileInfoId).
+                                    DefaultIfEmpty(0).
+                                    FirstOrDefault())" />
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
+                </form>
+            </li>
+            <li class="BOImageGalleryBlock">
+                <h4>
+                    Imágenes descriptivas
+                </h4>
+
+                <form method="post" enctype="multipart/form-data" action="@Url.Action(MVC.Profile.ActionNames.ProfileUpsertGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
+                    <input type="file" id="lstUploadFile" name="lstUploadFile" multiple />
+                    @{
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+                        {
+                            <div class="BOButtonContainerProfileImages">
+                                <input class="BOProfileImagesButtons" type="submit" value="Guardar" />
+                            </div>
+                        }
+                    }
+
+                </form>
+
+                <form method="post" action="@Url.Action(MVC.Profile.ActionNames.ProfileDeleteGeneral, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId })">
+                    @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel pinf in Model.Profile.
+                    ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral))
+                    {
+                        <img src="@pinf.Value" />
+                        <input type="checkbox" name="chk_DeleteGeneral" value="@pinf.ProfileInfoId" />
+                    }
+                    @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel pinf in Model.Profile.
+                    ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneralOriginal))
+                    {
+                        <img src="@pinf.Value" />
+                        <input type="checkbox" name="chk_DeleteGeneral" value="@pinf.ProfileInfoId" />
+                    }
+                    @if (Model.Profile.ProfileInfo.Count(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral) > 0)
+                    {
+                        <div class="BOButtonContainerProfileImagesErase">
+                            <input class="BOButtonsImagesErase" type="submit" value="Borrar seleccionadas" />
+                        </div>
+                    }
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>

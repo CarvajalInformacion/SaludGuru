@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Message>
+    <!--Agent Cofig-->
+
+    <!--Mailman-->
+    <key name="Agent_Mailman">
+      <![CDATA[
+          <Agent>
+            <key name="Assemblie">Message.Mailman.AgentMailmanImplement,Message.Mailman</key>
+          </Agent>
+      ]]>
+    </key>
+
+    <!--Inalambria-->
+    <key name="Agent_Inalambria">
+      <![CDATA[
+          <Agent>
+            <key name="Assemblie">Message.Inalambria.AgentInalambriaImplement, Message.Inalambria</key>
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Agent>
+      ]]>
+    </key>
+
+    <!--Message-->
+    <!--RetrivePasswordEmail-->
+    <key name="Message_Params_RetrivePasswordEmail">
+      <![CDATA[
+          <Message>
+          <key name="Agent">Agent_Mailman</key>
+          <key name="From">contacto@saludguru.com</key>
+          <key name="Subject">Salud Gurú - Información de cita médica.</key>
+          <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_RetrivePasswordEmail">
+      <![CDATA[
+          <html>
+          Hola,
+          {PatientName} Por favor sigue el siguiente enlace para generar una nueva contraseña: 
+          Podrás ingresar nuevamente a Salud Gurú con la nueva contraseña que generes.        
+          {Link}
+          Te esperamos,
+          </html>
+      ]]>
+    </key>
+
+    <!--ReminderNextAppointment-->
+    <key name="Message_Params_ReminderNextAppointment">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Recordatorio de tu nueva cita a través de Salud Gurú</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_ReminderNextAppointment">
+      <![CDATA[
+          <html>
+            Este es un recordatorio para que no olvides solicitar una nueva cita con el Dr.{DoctorName} por motivo {Reason}
+          </html>
+      ]]>
+    </key>
+
+    <!--ReminderEmail-->
+    <key name="Message_Params_ReminderEmail">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Hola {PatientName}</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_ReminderEmail">
+      <![CDATA[
+          <html>
+            Te estamos contactando para que confirmes tu cita Médica 
+		        con el Dr.{DoctorName},
+            el día {Date} a las {Hour} en el consultorio situado en {OfficeAddress}
+			      Teléfono: {Telephone}			
+          </html>
+      ]]>
+    </key>
+
+    <!--ApptEmail-->
+    <key name="Message_Params_ApptEmail">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Pérdida de cita</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_ApptEmail">
+      <![CDATA[
+          <html>
+            No has asistido a tu cita médica con el Dr.{DoctorName},
+            el día {Date} a las {Hour} en el consultorio situado en {OfficeAddress}
+			      Teléfono: {Telephone}			
+            Para agendar una nueva fecha haz clic en {Link} esto te llevará a la agenda disponible del Dr.{DoctorName}.
+          </html>
+      ]]>
+    </key>
+
+    <!--ConfirmationReschedule-->
+    <key name="Message_Params_ConfirmationReschedule">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Mensaje de cita reagendada</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_ConfirmationReschedule">
+      <![CDATA[
+          <html>
+              Tu cita con el Dr.{DoctorName} ha sido reagendada para  
+              el día {Date} a las {Hour}
+              en el consultorio situado en 
+              {OfficeAddres}
+              Teléfono: {Telephone}
+          </html>
+      ]]>
+    </key>
+
+    <!--CancelEMail-->
+    <key name="Message_Params_CancelEMail">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Cancelación de cita con el Dr.{DoctorName}</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_CancelEMail">
+      <![CDATA[
+          <html>
+            Desafortunadamente el Dr. {DoctorName}, no puede
+            atenderte el día{Date} a las {Hour} en el 
+            consultorio situado en {OfficeAddres}
+            Teléfono: {Telephone}. Debido  a {Reason}			
+            Para agendar una nueva fecha haz clic en {Link}
+            esto te llevará a la agenda disponible del Dr. {DoctorName}.
+          </html>
+      ]]>
+    </key>
+
+    <!--MailAssignmentPro-->
+    <key name="Message_Params_MailAssignmentPro">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Hola, Dr.{DoctorName}</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_MailAssignmentPro">
+      <![CDATA[
+          <html>
+            este es el body del Email
+          </html>
+      ]]>
+    </key>
+
+    <!--MailAssignment-->
+    <key name="Message_Params_MailAssignment">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Información de cita médica</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_MailAssignment">
+      <![CDATA[
+          <html>
+          El Sr(a).{ClientName} identificación {ClientIdentification}
+			    con teléfono: {Telephone}
+			    acaba de reservar una cita para el día {Date} a las 
+			    {Hour} en el consultorio {Address} para el paciente {PatientName}.
+		      </html>
+      ]]>
+    </key>
+
+    <!--MailConfirmation-->
+    <key name="Message_Params_MailConfirmation">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Mensaje de Confirmación de Cita</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_MailConfirmation">
+      <![CDATA[
+          <html>
+            este es el body del Email
+          </html>
+      ]]>
+    </key>
+    
+    <!--SMS-->
+    <!--CancelSMSMessage-->
+    <key name="Message_Params_CancelSMSMessage">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_CancelSMSMessage">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
+
+    <!--ReminderSMSMessage-->
+    <key name="Message_Params_ReminderSMSMessage">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_ReminderSMSMessage">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
+    
+    <!--MissedAppSMSMessage-->
+    <key name="Message_Params_MissedAppSMSMessage">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_MissedAppSMSMessage">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
+
+    <!--AssignmentSMSMessage-->
+    <key name="Message_Params_AssignmentSMSMessage">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_AssignmentSMSMessage">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
+    
+    
+    <!--SMSConfirmation-->
+    <key name="Message_Params_SMSCancelation">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_SMSCancelation">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
+  </Message>
+</Settings>
+
