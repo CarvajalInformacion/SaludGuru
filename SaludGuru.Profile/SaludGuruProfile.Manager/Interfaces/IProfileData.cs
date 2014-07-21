@@ -45,9 +45,7 @@ namespace SaludGuruProfile.Manager.Interfaces
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 
         List<ProfileModel> ProfileSearch(string SearchCriteria, int PageNumber, int RowCount, out int TotalRows);
-        List<ItemModel> ProfileGetOptions();
-
-        ProfileModel ProfileGetFullAdmin(string ProfilePublicId);
+        List<ItemModel> ProfileGetOptions();      
 
         ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId);
 

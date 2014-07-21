@@ -150,12 +150,7 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         public List<ItemModel> ProfileGetOptions()
         {
             return DataFactory.ProfileGetOptions();
-        }
-
-        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
-        {
-            return DataFactory.ProfileGetFullAdmin(ProfilePublicId);
-        }
+        }       
 
         public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
         {

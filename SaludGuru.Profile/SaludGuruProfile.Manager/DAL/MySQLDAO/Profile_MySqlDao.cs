@@ -1575,11 +1575,5 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
         }
 
         #endregion
-
-
-        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
