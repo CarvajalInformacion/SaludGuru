@@ -86,23 +86,24 @@ border:none;
     }
 
     /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
-div#AppointmentUpsertContainer {
+div#AppointmentUpsertContainer, div#BlockAppointmentContainer {
     min-height: 322px;
 }
-div#AppointmentUpsert ul{
+div#AppointmentUpsert ul, div.BlockAppointmentUpsert ul{
     display:block;
     margin:0px;
     width:100%;
     min-width:348px;
     height:auto;
 }
-div#AppointmentUpsert ul li{
+div#AppointmentUpsert ul li, div.BlockAppointmentUpsert ul li{
     display:block;
     padding:2px 0px;
     margin:0px;
     border:NONE;
     }
-                div#AppointmentUpsert ul li:first-child{
+                div#AppointmentUpsert ul li:first-child,
+                div.BlockAppointmentUpsert ul li:first-child{
                     background-color:#800066;
                     width:100%; height:24px;
                     padding:0px;
@@ -111,37 +112,53 @@ div#AppointmentUpsert ul li{
                     div#AppointmentUpsert ul li:nth-child(7) > input{
                         width:49%;
                     }
-                    div#AppointmentUpsert ul li:nth-child(7) > a{
+                    div.BlockAppointmentUpsert ul li:nth-child(7) > input {
+                        width: 54%;
+                    }
+                    div#AppointmentUpsert ul li:nth-child(7) > a,
+                    div.BlockAppointmentUpsert ul li:nth-child(7) > a
+                    {
                         font-weight:bold;
                         font-size:25px;
                         color:green;
                     }
-                div#AppointmentUpsert ul li:nth-child(8) {
+                div#AppointmentUpsert ul li:nth-child(8),
+                div.BlockAppointmentUpsert ul li:nth-child(8)
+                 {
                     margin-top:10px;
                 }
-    div#AppointmentUpsert ul > li > span, div#AppointmentUpsert ul > li > span > a{
+    div#AppointmentUpsert ul > li > span,
+    div#AppointmentUpsert ul > li > span > a,
+    div.BlockAppointmentUpsert ul > li > span
+    {
         font-size:15px;
         color:#fff;
         line-height:15px;
         margin-top:4px;
     }
-        div#AppointmentUpsert ul > li > span > a {
+        div#AppointmentUpsert ul > li > span > a,
+        div.BlockAppointmentUpsert ul > li > span > a{
             background-color: #ECECEC;
             padding: 0px 8px;
             font-size: 14px;
             color: #333;
         }
-        div#AppointmentUpsert ul > li > span > a:hover{
+        div#AppointmentUpsert ul > li > span > a:hover,
+        div.BlockAppointmentUpsert ul > li > span > a:hover
+        {
             background-color:#ccc;
         }
-    div#AppointmentUpsert ul > li > span:first-child {
+    div#AppointmentUpsert ul > li > span:first-child, 
+    div.BlockAppointmentUpsert ul > li > span:first-child{
         float:left; margin-left:16px;
         margin-bottom: 7px;
     }
-    div#AppointmentUpsert ul > li > span:nth-child(2n) {
+    div#AppointmentUpsert ul > li > span:nth-child(2n),
+    div.BlockAppointmentUpsert ul > li > span:nth-child(2n){
         float:right; margin-right:16px;
     }
-    div#AppointmentUpsert ul > li > h4{
+    div#AppointmentUpsert ul > li > h4,
+    div.BlockAppointmentUpsert ul > li > h4{
         display:block;
         border-bottom:1px solid #800066;
         color:#800066;
@@ -151,7 +168,8 @@ div#AppointmentUpsert ul li{
         width:94%;
         height:20px;
     }
-div#AppointmentUpsert ul li label{
+div#AppointmentUpsert ul li label,
+div.BlockAppointmentUpsert ul li label{
     display: inline-block;
     line-height: 15px;
     font-size: 14px;
@@ -160,7 +178,9 @@ div#AppointmentUpsert ul li label{
     width: 38%;
     text-align: left;
 }
-div#AppointmentUpsert ul li input{
+div#AppointmentUpsert ul li input,
+div.BlockAppointmentUpsert ul li input
+{
     display: inline-block;
     border: 1px solid #999;
     padding: 0px 3px;
@@ -171,7 +191,9 @@ div#AppointmentUpsert ul li input{
     font-size:14px;
     line-height:14px;
 }
-div#AppointmentUpsert ul li select{
+div#AppointmentUpsert ul li select,
+div.BlockAppointmentUpsert ul li select
+{
     display: inline-block;
     border: 1px solid #999;
     padding: 0px;
@@ -183,7 +205,8 @@ div#AppointmentUpsert ul li select{
     font-size:14px;
     line-height:14px;
 }
-div#AppointmentUpsert ul li textarea{
+div#AppointmentUpsert ul li textarea,
+div.BlockAppointmentUpsert ul li textarea{
     display:inline-block;
     border:1px solid #999;
     text-align:justify;
@@ -194,7 +217,8 @@ div#AppointmentUpsert ul li textarea{
     line-height: 15px;
     font-size: 14px;
 }
-div#AppointmentUpsert ul li > span.ui-spinner{
+div#AppointmentUpsert ul li > span.ui-spinner,
+div.BlockAppointmentUpsert ul li > span.ui-spinner{
     height: 22px;
     width: 54%;
     margin: 0px;
@@ -203,7 +227,8 @@ div#AppointmentUpsert ul li > span.ui-spinner{
     float: none;
     border-radius: 0px;
 }
-    div#AppointmentUpsert ul li > span.ui-spinner > input#Duration {
+    div#AppointmentUpsert ul li > span.ui-spinner > input#Duration,
+    div.BlockAppointmentUpsert ul li > span.ui-spinner > input#Duration{
         width: 92%;
         padding: 0px;
         height: 20px;
@@ -308,16 +333,16 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
                 color: #333;
             }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
-                    background-position:0px 0px; 
+                    background-position:4px 0px; 
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
-                    background-position:-44px 0px;
+                    background-position:-40px 0px;
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
-                    background-position:-87px 0px;
+                    background-position:-127px 0px;
                 }
                 div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
-                    background-position:-131px 0px;
+                    background-position:-83px 0px;
                 }
             div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span > a{
                 background-color: #F2F2F2;
