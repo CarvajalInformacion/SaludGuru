@@ -455,7 +455,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturnPatient;
         }
 
-        public List<AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        public List<AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
@@ -465,7 +465,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "AP_Appointment_GetByOfficeId",
+                CommandText = "AP_Appointment_GetByOfficeId_BasicInfo",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -488,7 +488,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                          LastModify = ap.Field<DateTime>("LastModify"),
                          CreateDate = ap.Field<DateTime>("CreateDate"),
                          OfficePublicId = ap.Field<string>("OfficePublicId"),
-                         OFficeName = ap.Field<string>("OFficeName"),
+                         OfficeName = ap.Field<string>("OfficeName"),
                      } into apg
                      select new AppointmentModel()
                      {
@@ -499,7 +499,8 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                          LastModify = apg.Key.LastModify,
                          CreateDate = apg.Key.CreateDate,
                          OfficePublicId = apg.Key.OfficePublicId,
-                         OfficeName = apg.Key.OFficeName,
+                         OfficeName = apg.Key.OfficeName,
+
                          AppointmentInfo =
                             (from api in response.DataTableResult.AsEnumerable()
                              where api.Field<int?>("AppointmentInfoId") != null &&
@@ -519,6 +520,43 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                  Value = apig.Key.Value,
                                  LargeValue = apig.Key.LargeValue
                              }).ToList(),
+                     }).ToList();
+            }
+            return oReturn;
+        }
+
+        public List<AppointmentModel> AppointmentGetByOfficeIdPatientInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDateTime));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDateTime));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "AP_Appointment_GetByOfficeId_PatientInfo",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AppointmentModel> oReturn = null;
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from ap in response.DataTableResult.AsEnumerable()
+                     where !string.IsNullOrEmpty(ap.Field<string>("AppointmentPublicId"))
+                     group ap by
+                     new
+                     {
+                         AppointmentPublicId = ap.Field<string>("AppointmentPublicId"),
+                     } into apg
+                     select new AppointmentModel()
+                     {
+                         AppointmentPublicId = apg.Key.AppointmentPublicId,
+
                          RelatedPatient =
                             (from pt in response.DataTableResult.AsEnumerable()
                              where !string.IsNullOrEmpty(pt.Field<string>("PatientPublicId")) &&
@@ -529,7 +567,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                  PatientPublicId = pt.Field<string>("PatientPublicId"),
                                  Name = pt.Field<string>("PatientName"),
                                  LastName = pt.Field<string>("PatientLastName"),
-                                 IsProfilePatient = pt.Field<Int64>("IsProfilePatient") == 1 ? true : false,
+                                 IsProfilePatient = pt.Field<Int32>("IsProfilePatient") == 1 ? true : false,
                              } into ptg
                              select new PatientModel()
                              {
@@ -563,7 +601,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public AppointmentModel AppointmentGetById(string AppointmentPublicId)
+        public AppointmentModel AppointmentGetByIdBasicInfo(string AppointmentPublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vAppointmentPublicId", AppointmentPublicId));
@@ -611,47 +649,73 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                  Value = apig.Key.Value,
                                  LargeValue = apig.Key.LargeValue
                              }).ToList(),
-
-                        RelatedPatient =
-                           (from pt in response.DataTableResult.AsEnumerable()
-                            where !string.IsNullOrEmpty(pt.Field<string>("PatientPublicId")) &&
-                                   pt.Field<string>("AppointmentPublicId") == response.DataTableResult.Rows[0].Field<string>("AppointmentPublicId")
-                            group pt by
-                            new
-                            {
-                                PatientPublicId = pt.Field<string>("PatientPublicId"),
-                                Name = pt.Field<string>("PatientName"),
-                                LastName = pt.Field<string>("PatientLastName"),
-                                IsProfilePatient = pt.Field<Int64>("IsProfilePatient") == 1 ? true : false,
-                            } into ptg
-                            select new PatientModel()
-                            {
-                                PatientPublicId = ptg.Key.PatientPublicId,
-                                Name = ptg.Key.Name,
-                                LastName = ptg.Key.LastName,
-                                IsProfilePatient = ptg.Key.IsProfilePatient,
-                                PatientInfo =
-                                   (from pti in response.DataTableResult.AsEnumerable()
-                                    where pti.Field<int?>("PatientInfoId") != null &&
-                                           pti.Field<string>("AppointmentPublicId") == response.DataTableResult.Rows[0].Field<string>("AppointmentPublicId") &&
-                                           pti.Field<string>("PatientPublicId") == ptg.Key.PatientPublicId
-                                    group pti by
-                                    new
-                                    {
-                                        PatientInfoId = pti.Field<int>("PatientInfoId"),
-                                        PatientInfoType = pti.Field<int>("PatientInfoType"),
-                                        Value = pti.Field<string>("PatientInfoValue"),
-                                        LargeValue = pti.Field<string>("PatientInfoLargeValue"),
-                                    } into ptig
-                                    select new PatientInfoModel()
-                                    {
-                                        PatientInfoId = ptig.Key.PatientInfoId,
-                                        PatientInfoType = (enumPatientInfoType)ptig.Key.PatientInfoType,
-                                        Value = ptig.Key.Value,
-                                        LargeValue = ptig.Key.LargeValue
-                                    }).ToList(),
-                            }).ToList(),
                     };
+            }
+            return oReturn;
+        }
+
+        public AppointmentModel AppointmentGetByIdPatientInfo(string AppointmentPublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vAppointmentPublicId", AppointmentPublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "AP_Appointment_GetById_PatientInfo",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            AppointmentModel oReturn = null;
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new AppointmentModel()
+                {
+                    AppointmentPublicId = response.DataTableResult.Rows[0].Field<string>("AppointmentPublicId"),
+
+                    RelatedPatient =
+                       (from pt in response.DataTableResult.AsEnumerable()
+                        where !string.IsNullOrEmpty(pt.Field<string>("PatientPublicId")) &&
+                               pt.Field<string>("AppointmentPublicId") == response.DataTableResult.Rows[0].Field<string>("AppointmentPublicId")
+                        group pt by
+                        new
+                        {
+                            PatientPublicId = pt.Field<string>("PatientPublicId"),
+                            Name = pt.Field<string>("PatientName"),
+                            LastName = pt.Field<string>("PatientLastName"),
+                            IsProfilePatient = pt.Field<Int32>("IsProfilePatient") == 1 ? true : false,
+                        } into ptg
+                        select new PatientModel()
+                        {
+                            PatientPublicId = ptg.Key.PatientPublicId,
+                            Name = ptg.Key.Name,
+                            LastName = ptg.Key.LastName,
+                            IsProfilePatient = ptg.Key.IsProfilePatient,
+                            PatientInfo =
+                               (from pti in response.DataTableResult.AsEnumerable()
+                                where pti.Field<int?>("PatientInfoId") != null &&
+                                       pti.Field<string>("AppointmentPublicId") == response.DataTableResult.Rows[0].Field<string>("AppointmentPublicId") &&
+                                       pti.Field<string>("PatientPublicId") == ptg.Key.PatientPublicId
+                                group pti by
+                                new
+                                {
+                                    PatientInfoId = pti.Field<int>("PatientInfoId"),
+                                    PatientInfoType = pti.Field<int>("PatientInfoType"),
+                                    Value = pti.Field<string>("PatientInfoValue"),
+                                    LargeValue = pti.Field<string>("PatientInfoLargeValue"),
+                                } into ptig
+                                select new PatientInfoModel()
+                                {
+                                    PatientInfoId = ptig.Key.PatientInfoId,
+                                    PatientInfoType = (enumPatientInfoType)ptig.Key.PatientInfoType,
+                                    Value = ptig.Key.Value,
+                                    LargeValue = ptig.Key.LargeValue
+                                }).ToList(),
+                        }).ToList(),
+                };
             }
             return oReturn;
         }

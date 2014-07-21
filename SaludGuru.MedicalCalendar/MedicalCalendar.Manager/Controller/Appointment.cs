@@ -116,13 +116,37 @@ namespace MedicalCalendar.Manager.Controller
         public static List<AppointmentModel> AppointmentGetByOfficeId
             (string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
-            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeId
+            List<AppointmentModel> oReturn = DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeIdBasicInfo
                 (OfficePublicId, StartDateTime, EndDateTime);
+
+            List<AppointmentModel> oAux = DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeIdPatientInfo
+                (OfficePublicId, StartDateTime, EndDateTime);
+
+            if (oReturn != null)
+            {
+                oReturn.All(x =>
+                {
+                    x.RelatedPatient = oAux.Where(y => x.AppointmentPublicId == y.AppointmentPublicId).Select(y => y.RelatedPatient).FirstOrDefault();
+                    return true;
+                });
+            }
+
+            return oReturn;
         }
 
         public static AppointmentModel AppointmentGetById(string AppointmentPublicId)
         {
-            return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetById(AppointmentPublicId);
+
+            AppointmentModel oReturn = DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByIdBasicInfo(AppointmentPublicId);
+
+            AppointmentModel oAux = DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByIdPatientInfo(AppointmentPublicId);
+
+            if (oReturn != null)
+            {
+                oReturn.RelatedPatient = oAux.RelatedPatient;
+            }
+
+            return oReturn;
         }
 
         public static List<AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime)
