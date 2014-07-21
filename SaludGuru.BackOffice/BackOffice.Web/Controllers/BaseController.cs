@@ -333,6 +333,11 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuProfile.Comunicactions;
             }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+               MVC.Profile.ActionNames.RelatedProfileSearch == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.RelatedProfiles;
+            }
             return oReturn;
         }
 

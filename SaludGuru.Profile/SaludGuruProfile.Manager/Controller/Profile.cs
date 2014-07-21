@@ -29,7 +29,22 @@ namespace SaludGuruProfile.Manager.Controller
         /// <returns></returns>
         public static ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
         {
-            return DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(ProfilePublicId);
+            ProfileModel oReturn = new ProfileModel();
+            ProfileModel oCategory = new ProfileModel();
+            ProfileModel oOffice = new ProfileModel();
+            ProfileModel oRelatedProfile = new ProfileModel();
+
+            oReturn = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_BasicInfo(ProfilePublicId);
+            oCategory = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_Category(ProfilePublicId);
+
+            oReturn.RelatedSpecialty = oCategory.RelatedSpecialty;
+            oReturn.DefaultSpecialty = oCategory.DefaultSpecialty;
+            oReturn.RelatedInsurance = oCategory.RelatedInsurance;
+            oReturn.RelatedTreatment = oCategory.RelatedTreatment;
+            oReturn.RelatedOffice = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_Office(ProfilePublicId).RelatedOffice;
+            oReturn.ChildProfile = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_RelatedProfile(ProfilePublicId).ChildProfile;
+
+            return oReturn;
         }
 
         /// <summary>
@@ -377,13 +392,13 @@ namespace SaludGuruProfile.Manager.Controller
             ProfileModel oLoad = new ProfileModel();
             List<RelatedProfileModel> relatedList = new List<RelatedProfileModel>();
 
-            oLoad = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(PublicParentId);
+            oLoad = ProfileGetFullAdmin(PublicParentId);
             
             if (oLoad.ChildProfile != null)
             {                
                 foreach (var item in oLoad.ChildProfile)
                 {
-                    childs.Add(DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdmin(item.ProfilePublicId));
+                    childs.Add(ProfileGetFullAdmin(item.ProfilePublicId));
                 }
                 oLoad.ChildProfile = new List<ProfileModel>();
                 oLoad.ChildProfile.AddRange(childs);
