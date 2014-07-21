@@ -458,11 +458,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
 
             List<ProfileModel> oReturnProfile = null;
-
+            
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
-
+                
                 oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
                                   select new ProfileModel
                                   {
@@ -597,161 +597,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
             return oReturn;
         }
-        
-        //public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
-        //{
-        //    List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-        //    lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
 
-        //    ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-        //    {
-        //        CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-        //        CommandText = "P_Profile_GetFullAdmin",
-        //        CommandType = System.Data.CommandType.StoredProcedure,
-        //        Parameters = lstParams
-        //    });
-
-        //    ProfileModel oReturn = null;
-        //    if (response.DataTableResult != null &&
-        //        response.DataTableResult.Rows.Count > 0)
-        //    {
-        //        oReturn = new ProfileModel()
-        //        {
-        //            ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
-        //            Name = response.DataTableResult.Rows[0].Field<string>("Name"),
-        //            LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
-        //            ProfileType = (enumProfileType)response.DataTableResult.Rows[0].Field<int>("ProfileType"),
-        //            ProfileStatus = (enumProfileStatus)response.DataTableResult.Rows[0].Field<int>("ProfileStatus"),
-        //            LastModify = response.DataTableResult.Rows[0].Field<DateTime>("ProfileLastModify"),
-        //            CreateDate = response.DataTableResult.Rows[0].Field<DateTime>("ProfileCreateDate"),
-
-        //            ProfileInfo = (from pinf in response.DataTableResult.AsEnumerable()
-        //                           where pinf.Field<int?>("ProfileInfoId") != null
-        //                           group pinf by
-        //                           new
-        //                           {
-        //                               ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
-        //                               ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
-        //                               Value = pinf.Field<string>("ProfileInfoValue"),
-        //                               LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
-        //                               LastModify = pinf.Field<DateTime>("ProfileInfoLastModify"),
-        //                               CreateDate = pinf.Field<DateTime>("ProfileInfoCreateDate"),
-        //                           } into pinfg
-        //                           select new ProfileInfoModel()
-        //                           {
-        //                               ProfileInfoId = pinfg.Key.ProfileInfoId,
-        //                               ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
-        //                               Value = pinfg.Key.Value,
-        //                               LargeValue = pinfg.Key.LargeValue,
-        //                               LastModify = pinfg.Key.LastModify,
-        //                               CreateDate = pinfg.Key.CreateDate
-        //                           }).ToList(),
-
-        //            RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
-        //                                where sp.Field<int?>("CategoryType") != null &&
-        //                                        sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
-        //                                group sp by
-        //                                new
-        //                                {
-        //                                    CategoryId = sp.Field<int>("CategoryId"),
-        //                                    Name = sp.Field<string>("CategoryName")
-        //                                } into spg
-        //                                select new SpecialtyModel()
-        //                                {
-        //                                    CategoryId = spg.Key.CategoryId,
-        //                                    Name = spg.Key.Name,
-        //                                }).ToList(),
-
-        //            DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
-        //                                where sp.Field<int?>("CategoryType") != null &&
-        //                                        sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
-        //                                        sp.Field<UInt64>("CategoryIsDefault") == 1
-        //                                select new SpecialtyModel()
-        //                                {
-        //                                    CategoryId = sp.Field<int>("CategoryId"),
-        //                                    Name = sp.Field<string>("CategoryName"),
-        //                                }).FirstOrDefault(),
-
-        //            RelatedInsurance = (from sp in response.DataTableResult.AsEnumerable()
-        //                                where sp.Field<int?>("CategoryType") != null &&
-        //                                        sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
-        //                                group sp by
-        //                                new
-        //                                {
-        //                                    CategoryId = sp.Field<int>("CategoryId"),
-        //                                    Name = sp.Field<string>("CategoryName")
-        //                                } into spg
-        //                                select new InsuranceModel()
-        //                                {
-        //                                    CategoryId = spg.Key.CategoryId,
-        //                                    Name = spg.Key.Name,
-        //                                }).ToList(),
-
-        //            RelatedTreatment = (from sp in response.DataTableResult.AsEnumerable()
-        //                                where sp.Field<int?>("CategoryType") != null &&
-        //                                        sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
-        //                                group sp by
-        //                                new
-        //                                {
-        //                                    CategoryId = sp.Field<int>("CategoryId"),
-        //                                    Name = sp.Field<string>("CategoryName")
-        //                                } into spg
-        //                                select new TreatmentModel()
-        //                                {
-        //                                    CategoryId = spg.Key.CategoryId,
-        //                                    Name = spg.Key.Name,
-        //                                }).ToList(),
-
-        //            ChildProfile = (from cp in response.DataTableResult.AsEnumerable()
-        //                            where !string.IsNullOrEmpty(cp.Field<string>("ProfileChildPublicId"))
-        //                            group cp by
-        //                            new
-        //                            {
-        //                                ChildProfilePublicId = cp.Field<string>("ProfileChildPublicId"),
-        //                                ChildName = cp.Field<string>("ProfileChildName"),
-        //                                ChildLastName = cp.Field<string>("ProfileChildLastName"),
-        //                            } into cpg
-        //                            select new ProfileModel()
-        //                            {
-        //                                ProfilePublicId = cpg.Key.ChildProfilePublicId,
-        //                                Name = cpg.Key.ChildName,
-        //                                LastName = cpg.Key.ChildLastName
-        //                            }).ToList(),
-
-        //            RelatedOffice = (from op in response.DataTableResult.AsEnumerable()
-        //                             where !string.IsNullOrEmpty(op.Field<string>("OfficePublicId"))
-        //                             group op by
-        //                             new
-        //                             {
-        //                                 OfficePublicId = op.Field<string>("OfficePublicId"),
-        //                                 OfficeName = op.Field<string>("OfficeName"),
-        //                                 OfficeIsDefault = op.Field<UInt64>("OfficeIsDefault") == 1 ? true : false,
-        //                                 LastModify = op.Field<DateTime>("OfficeLastModify"),
-        //                                 CreateDate = op.Field<DateTime>("OfficeCreateDate"),
-        //                                 CityId = op.Field<int>("CityId"),
-        //                                 CityName = op.Field<string>("CityName"),
-        //                             } into opg
-        //                             select new OfficeModel()
-        //                             {
-        //                                 OfficePublicId = opg.Key.OfficePublicId,
-        //                                 Name = opg.Key.OfficeName,
-        //                                 IsDefault = opg.Key.OfficeIsDefault,
-        //                                 LastModify = opg.Key.LastModify,
-        //                                 CreateDate = opg.Key.CreateDate,
-        //                                 City = new CityModel()
-        //                                 {
-        //                                     CityId = opg.Key.CityId,
-        //                                     CityName = opg.Key.CityName
-        //                                 }
-        //                             }).ToList(),
-
-        //        };
-        //    }
-
-        //    return oReturn;
-        //}
-
-        public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -759,60 +606,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_BasicInfo",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            ProfileModel oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
-            {
-                oReturn = new ProfileModel()
-               {
-                   ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
-                   Name = response.DataTableResult.Rows[0].Field<string>("Name"),
-                   LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
-                   ProfileType = (enumProfileType)response.DataTableResult.Rows[0].Field<int>("ProfileType"),
-                   ProfileStatus = (enumProfileStatus)response.DataTableResult.Rows[0].Field<int>("ProfileStatus"),
-                   LastModify = response.DataTableResult.Rows[0].Field<DateTime>("ProfileLastModify"),
-                   CreateDate = response.DataTableResult.Rows[0].Field<DateTime>("ProfileCreateDate"),
-
-                   ProfileInfo = (from pinf in response.DataTableResult.AsEnumerable()
-                                  where pinf.Field<int?>("ProfileInfoId") != null
-                                  group pinf by
-                                  new
-                                  {
-                                      ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
-                                      ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
-                                      Value = pinf.Field<string>("ProfileInfoValue"),
-                                      LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
-                                      LastModify = pinf.Field<DateTime>("ProfileInfoLastModify"),
-                                      CreateDate = pinf.Field<DateTime>("ProfileInfoCreateDate"),
-                                  } into pinfg
-                                  select new ProfileInfoModel()
-                                  {
-                                      ProfileInfoId = pinfg.Key.ProfileInfoId,
-                                      ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
-                                      Value = pinfg.Key.Value,
-                                      LargeValue = pinfg.Key.LargeValue,
-                                      LastModify = pinfg.Key.LastModify,
-                                      CreateDate = pinfg.Key.CreateDate
-                                  }).ToList()
-               };
-            }
-            return oReturn;
-        }
-
-        public ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_Category",
+                CommandText = "P_Profile_GetFullAdmin",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -824,7 +618,34 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                 oReturn = new ProfileModel()
                 {
                     ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+                    Name = response.DataTableResult.Rows[0].Field<string>("Name"),
+                    LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+                    ProfileType = (enumProfileType)response.DataTableResult.Rows[0].Field<int>("ProfileType"),
+                    ProfileStatus = (enumProfileStatus)response.DataTableResult.Rows[0].Field<int>("ProfileStatus"),
+                    LastModify = response.DataTableResult.Rows[0].Field<DateTime>("ProfileLastModify"),
+                    CreateDate = response.DataTableResult.Rows[0].Field<DateTime>("ProfileCreateDate"),
 
+                    ProfileInfo = (from pinf in response.DataTableResult.AsEnumerable()
+                                   where pinf.Field<int?>("ProfileInfoId") != null
+                                   group pinf by
+                                   new
+                                   {
+                                       ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
+                                       ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
+                                       Value = pinf.Field<string>("ProfileInfoValue"),
+                                       LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
+                                       LastModify = pinf.Field<DateTime>("ProfileInfoLastModify"),
+                                       CreateDate = pinf.Field<DateTime>("ProfileInfoCreateDate"),
+                                   } into pinfg
+                                   select new ProfileInfoModel()
+                                   {
+                                       ProfileInfoId = pinfg.Key.ProfileInfoId,
+                                       ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
+                                       Value = pinfg.Key.Value,
+                                       LargeValue = pinfg.Key.LargeValue,
+                                       LastModify = pinfg.Key.LastModify,
+                                       CreateDate = pinfg.Key.CreateDate
+                                   }).ToList(),
 
                     RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
                                         where sp.Field<int?>("CategoryType") != null &&
@@ -879,32 +700,23 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                         {
                                             CategoryId = spg.Key.CategoryId,
                                             Name = spg.Key.Name,
-                                        }).ToList()
-                };
-            }
-            return oReturn;
-        }
+                                        }).ToList(),
 
-        public ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_Office",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            ProfileModel oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
-            {
-                oReturn = new ProfileModel()
-                {
-                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+                    ChildProfile = (from cp in response.DataTableResult.AsEnumerable()
+                                    where !string.IsNullOrEmpty(cp.Field<string>("ProfileChildPublicId"))
+                                    group cp by
+                                    new
+                                    {
+                                        ChildProfilePublicId = cp.Field<string>("ProfileChildPublicId"),
+                                        ChildName = cp.Field<string>("ProfileChildName"),
+                                        ChildLastName = cp.Field<string>("ProfileChildLastName"),
+                                    } into cpg
+                                    select new ProfileModel()
+                                    {
+                                        ProfilePublicId = cpg.Key.ChildProfilePublicId,
+                                        Name = cpg.Key.ChildName,
+                                        LastName = cpg.Key.ChildLastName
+                                    }).ToList(),
 
                     RelatedOffice = (from op in response.DataTableResult.AsEnumerable()
                                      where !string.IsNullOrEmpty(op.Field<string>("OfficePublicId"))
@@ -931,53 +743,14 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                              CityId = opg.Key.CityId,
                                              CityName = opg.Key.CityName
                                          }
-                                     }).ToList()
+                                     }).ToList(),
 
                 };
             }
+
             return oReturn;
         }
 
-        public ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_RelatedProfile",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            ProfileModel oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
-            {
-                oReturn = new ProfileModel()
-                {
-                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
-
-                    ChildProfile = (from cp in response.DataTableResult.AsEnumerable()
-                                    where !string.IsNullOrEmpty(cp.Field<string>("ProfileChildPublicId"))
-                                    group cp by
-                                    new
-                                    {
-                                        ChildProfilePublicId = cp.Field<string>("ProfileChildPublicId"),
-                                        ChildName = cp.Field<string>("ProfileChildName"),
-                                        ChildLastName = cp.Field<string>("ProfileChildLastName"),
-                                    } into cpg
-                                    select new ProfileModel()
-                                    {
-                                        ProfilePublicId = cpg.Key.ChildProfilePublicId,
-                                        Name = cpg.Key.ChildName,
-                                        LastName = cpg.Key.ChildLastName
-                                    }).ToList()
-                };
-            }
-            return oReturn;
-        }
         #endregion
 
         #region Office
@@ -1574,6 +1347,6 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        #endregion
+        #endregion     
     }
 }
