@@ -35,12 +35,12 @@ namespace SaludGuruProfile.Manager.Interfaces
         int ProfileInfoCreate(string ProfilePublicId, enumProfileInfoType ProfileInfoType, string Value, string LargeValue);
         void ProfileInfoModify(int ProfileInfoId, string Value, string LargeValue);
         void ProfileInfoDelete(int ProfileInfoId);
-        
+
         List<RelatedProfileModel> RelatedProfileGetAllByParentId(string ProfileParent);
         void RelatedProfileCreate(string ProfilePublicIdParent, string ProfilePublicIdChild);
         void RelatedProfileDelete(string ProfilePublicIdParent, string ProfilePublicIdChild);
         List<ProfileModel> ProfileSearchToRelate(string SearchCriteria, string vProfilePublicToExclude, int PageNumber, int RowCount);
-        
+
         void ProfileCategoryUpsert(string ProfilePublicId, int CategoryId, bool IsDefault);
         void ProfileCategoryDelete(string ProfilePublicId, int CategoryId);
 
@@ -48,6 +48,15 @@ namespace SaludGuruProfile.Manager.Interfaces
         List<ItemModel> ProfileGetOptions();
 
         ProfileModel ProfileGetFullAdmin(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId);
+
+        ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId);        
+
+        ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId);
+
 
         #endregion
 
