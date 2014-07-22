@@ -212,9 +212,11 @@ div#divMeetingCalendar {
 	border:1px solid green;
 	margin:0px 0px 0px -2px;
 	vertical-align:top;
-    width: 69.8% !important;
+    width: 100% !important;
     height:510px;
     float:right; 
+    position:absolute;
+    left:0;
 }
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
