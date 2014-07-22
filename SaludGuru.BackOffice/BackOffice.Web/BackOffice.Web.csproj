@@ -315,7 +315,7 @@
     <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
-    <Content Include="Areas\Web\Content\Images\icono campana sonando.png" />
+    <Content Include="Areas\Web\Content\Images\iconocampanasonando.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenu.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenuHover.png" />
     <Content Include="Areas\Web\Content\Images\iconosSprite1.png" />

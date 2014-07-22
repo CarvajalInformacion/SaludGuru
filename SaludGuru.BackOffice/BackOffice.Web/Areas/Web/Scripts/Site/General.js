@@ -33,7 +33,7 @@ function serverDateTimeToString(vDate) {
 
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitModel) {
-
+    
     //init autorization options menu
     InitAutorizationMenu();
 
@@ -91,43 +91,43 @@ var NotificationObject = {
             $("#ulNotificationList").toggle();
         });
     },
+
     TimerEvent: function () {
         $.ajax({
             url: "/api/NotificationApi",
-            Type: "GET",
+            Type: "POST",
             dataType: "Json"
         }).done(function (data) {
-            this.NotificationList = data;
-            if (this.NotificationList != null && data != null && this.NotificationList.length != data.length) {
-                this.NotificationList = data;
+            
+            if (data != null && NotificationObject.NotificationList.length != data.length) {
+                NotificationObject.NotificationList = data;
+                NotificationObject.RenderNotifications();
             }
-            NotificationObject.RenderNotifications(this.NotificationList)
+
             //var oReturn
         }).error(function (jqXHR, textStatus, errorThrown) {
-
-
         });
     },
 
-    RenderNotifications: function (NotificationList) {
-        //set notification count background-image
-        $('#aNotifyCount').html(NotificationList.length);
-        if (NotificationList.length > 0) {
-            var imageUrl = "'/Areas/Web/Content/Images/icono campana sonando.png'";
+    RenderNotifications: function () {
+        if (NotificationObject.NotificationList != null && NotificationObject.NotificationList.length > 0) {
 
-            //$('#aNotifyCount').css('background-image', 'url(' +imageUrl + ')');
-            //set notification alert icon
+            //set notification count background-image
+            $('#aNotifyCount').html(NotificationObject.NotificationList.length);
+
+            $("#ulNotificationList").html('');
+
+            $.each(NotificationObject.NotificationList, function (i, item) {
+
+                //get html notification template                 
+                var valSet = $("#NotificationTemplate").html();
+                valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
+                valSet = valSet.replace('{NotificationText}', item.Body);
+                //ulNotificationList
+                $("#ulNotificationList").append(valSet);
+
+            });
         }
-        $("#ulNotificationList").html('');
-
-        $.each(NotificationList, function (i, item) {
-            //get html notification template                 
-            var valSet = $("#NotificationTemplate").html();
-            valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
-            valSet = valSet.replace('{NotificationText}', item.Body);
-            //ulNotificationList
-            $("#ulNotificationList").append(valSet);
-        })
     },
 };
 
