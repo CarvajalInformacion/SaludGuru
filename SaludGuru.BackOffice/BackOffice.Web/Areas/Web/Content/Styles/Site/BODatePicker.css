@@ -1,5 +1,5 @@
 div#ui-datepicker-div {
-    width:210px;
+    width:210px !important;
     border-radius: 1px;
     margin:0px;
 }
@@ -107,12 +107,14 @@ a.ui-state-default, .ui-widget-content .ui-state-default {
 /*****************SELECCION DE DURACION DE LA CITA******************/
 
 div#ptTimeSelectCntr {
-    width:210px;
+    width:210px !important;
     border-radius: 1px;
     margin:0px;
 }
     div#ptTimeSelectCntr div.ui-widget {
-
+        width:238px !important;
+        border-radius: 1px;
+        margin:0px;
     }
 div.ui-widget-header {
     height: 24px;
@@ -136,32 +138,45 @@ div#ptTimeSelectCloseCntr a{
 }
 div#ptTimeSelectCloseCntr a span{
     background-position: -34px -194px;
-    border: 1px solid blue;
+    border: none;
     width: 14px;
     height: 14px;
     margin: -4px -4px;
 }
-div#ptTimeSelectCloseCntr a.ui-corner-all {
-    border:1px solid green;
+
+div#ptTimeSelectCloseCntr a.ui-corner-all {}
+
+#ptTimeSelectCntr .ui-widget-content {
+    width:100% !important;
+    box-shadow:none!important;
 }
+#ptTimeSelectCntr .ptTimeSelectLeftPane.ui-widget-content {
+    width: 100% !important;
+    box-shadow:0px;
+}
+#ptTimeSelectCntr .ptTimeSelectRightPane.ui-widget-content {
+    width: 100% !important;
+    box-shadow:0px;
+}
+
 div#ptTimeSelectUserTime {
-    border:1px solid purple;
+        border:none;
     line-height:8px;
     margin:-2px 0px;
 }
     div#ptTimeSelectUserTime span#ptTimeSelectUserSelHr{
-        border: 1px solid #800080;
+            border:none;
         font-size: 14px;
         line-height: 11px;
     }
     div#ptTimeSelectUserTime span#ptTimeSelectUserSelMin {
-        border: 1px solid #800080;
+            border:none;
         font-size: 14px;
         line-height: 11px;
 
     }
     div#ptTimeSelectUserTime span#ptTimeSelectUserSelAmPm {
-        border: 1px solid #800080;
+            border:none;
         font-size: 14px;
         line-height: 11px;
     }
@@ -197,7 +212,21 @@ div.ui-widget-content {
         }
 /*BLOQUE HORA Y MINUTOS*/
 
-
+#ptTimeSelectCntr .ptTimeSelectHrAmPmCntr a {
+    font-size: 14px;
+}
+#ptTimeSelectCntr .ptTimeSelectHrCntr a, 
+#ptTimeSelectCntr .ptTimeSelectMinCntr a {
+    font-size:12px; font-weight:normal;
+}
+#ptTimeSelectCntr .ptTimeSelectHrCntr a:hover,
+#ptTimeSelectCntr .ptTimeSelectMinCntr a:hover {
+    text-decoration:none;
+    background-color:#ccc;
+}
+#ptTimeSelectCntr .ptTimeSelectRightPane.ui-widget-content {
+    width:12px;
+}
 
 
 

@@ -212,9 +212,11 @@ div#divMeetingCalendar {
 	border:1px solid green;
 	margin:0px 0px 0px -2px;
 	vertical-align:top;
-    width: 69.8% !important;
+    width: 100% !important;
     height:510px;
     float:right; 
+    position:absolute;
+    left:0;
 }
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
@@ -397,7 +399,7 @@ div.fc-event {
 
 #divMeetingCalendar .fc-agenda-days>thead .fc-widget-header {
     height:50px;
-    border:solid 1px red;
+    border:none;
     vertical-align:middle;
 }
 /******************* GENERAL WRAPPERS *********************/
@@ -645,20 +647,20 @@ table.fc-header {
         span.fc-header-title h2 > ul{
             float:right;
             position:relative;
-            top: -10px;
+            top:auto;
         }
         span.fc-header-title h2 > ul li:first-child, span.fc-header-title h2 > ul li:nth-child(2){
             display:inline-block;
         }
             span.fc-header-title h2 > ul li select, span.fc-header-title h2 > ul li a{
                 border: 1px solid #666;
-                height: 21px;
+                height: auto;
                 font-size: 14px;
                 color: #333;
                 margin: auto 12px;
                 background-color: #fff;
                 position: relative;
-                top:-9px;
+                top:auto;
             }
         span.fc-header-title h2 > ul li a {
             width: 157px;
