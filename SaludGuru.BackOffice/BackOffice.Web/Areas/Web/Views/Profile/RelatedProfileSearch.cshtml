@@ -22,7 +22,6 @@
                     <label>Nombre</label>
                     <input type="hidden" id="divGridProfile-txtSearch-id" name="divGridProfile-txtSearch-id" value="" />
                     <input type="text" id="divGridProfile-txtSearch" name="divGridProfile-txtSearch" value="" />
-                    @*<input class="BOAgregarButtons" type="submit" value="Agregar" />*@
                     @{
                         //get json treatment
                         string oProfileSearchData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
@@ -56,9 +55,6 @@
         </form>
     </div>
     <!--hiden fields-->
-    @*<input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-        <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
-        <input class="BOButtonsErase" type="submit" value="Borrar" />*@
     <div id="TemplateUserFrom">
         <img src="${UserFromImage}" width="45" height="45" />
         <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${Name}</label>

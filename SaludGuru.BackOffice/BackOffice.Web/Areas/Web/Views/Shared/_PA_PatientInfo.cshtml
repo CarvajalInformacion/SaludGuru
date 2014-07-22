@@ -114,19 +114,19 @@
             <li>
                 <label>Teléfono móvil</label>
                 <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
-            </li>
-            @{
-                var CatInfo_BD = Model.Patient == null ? null :
-                    Model.Patient.PatientInfo.Where
-                        (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Birthday).
-                        Select(x => new { id = x.PatientInfoId, val = x.Value }).
-                            DefaultIfEmpty(null).
-                            FirstOrDefault();
-                if (CatInfo_BD != null)
-                {
-                    <input type="hidden" id="CatId_Birthday" name="CatId_Birthday" value="@CatInfo_BD.id" />
+                @{
+                    var CatInfo_BD = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Birthday).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_BD != null)
+                    {
+                        <input type="hidden" id="CatId_Birthday" name="CatId_Birthday" value="@CatInfo_BD.id" />
+                    }
                 }
-            }
+            </li>
             <li>
                 <label>Fecha de nacimiento</label>
                 <input id="Birthday" name="Birthday" value="@(CatInfo_BD == null ? string.Empty : CatInfo_BD.val)" type="text" />
@@ -183,11 +183,12 @@
                             }
                         }
                     }
-                    @if (valueInsurance != null)
-                    {
-                        <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="@valueInsurance.id" />
-                    }
                 </select>
+                @if (valueInsurance != null)
+                {
+                    <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="@valueInsurance.id" />
+                }
+
             </li>
             <li>
                 @{
