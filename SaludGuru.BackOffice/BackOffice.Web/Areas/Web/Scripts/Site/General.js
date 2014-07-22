@@ -88,7 +88,7 @@ var NotificationObject = {
         setInterval(function () { NotificationObject.TimerEvent() }, 50000);
 
         $('#notificationsWrapper').click(function () {
-            $("#ulNotificationList").toggle();
+            $("#ulNotificationList").toggle("slow");
         });
     },
 
