@@ -161,6 +161,7 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string Date = "Date";
             public readonly string AppointmentPublicId = "AppointmentPublicId";
+            public readonly string ReturnUrl = "ReturnUrl";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -230,15 +231,16 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string AppointmentPublicId);
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string AppointmentPublicId, string ReturnUrl);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(string Date, string AppointmentPublicId)
+        public override System.Web.Mvc.ActionResult Detail(string Date, string AppointmentPublicId, string ReturnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AppointmentPublicId", AppointmentPublicId);
-            DetailOverride(callInfo, Date, AppointmentPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
+            DetailOverride(callInfo, Date, AppointmentPublicId, ReturnUrl);
             return callInfo;
         }
 
