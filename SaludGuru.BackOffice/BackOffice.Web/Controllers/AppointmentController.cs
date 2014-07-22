@@ -121,7 +121,7 @@ namespace BackOffice.Web.Controllers
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
             //get return url
-            if (string.IsNullOrEmpty(ReturnUrl))
+            if (string.IsNullOrEmpty(ReturnUrl) && Request.UrlReferrer != null)
             {
                 //get url from previus page send
                 oModel.ReturnUrl = Request.UrlReferrer.ToString();
@@ -136,8 +136,8 @@ namespace BackOffice.Web.Controllers
             //get appointment info
             if (!string.IsNullOrEmpty(AppointmentPublicId))
             {
-                oModel.CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById
-                    (AppointmentPublicId.Replace(" ", ""));
+                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel(MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById
+                    (AppointmentPublicId.Replace(" ", "")));
             }
 
             //get date
@@ -150,7 +150,7 @@ namespace BackOffice.Web.Controllers
 
             else if (oModel.CurrentAppointment != null)
             {
-                dtAux = oModel.CurrentAppointment.StartDate;
+                dtAux = oModel.CurrentAppointment.start;
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);

@@ -82,7 +82,31 @@ namespace SaludGuruProfile.Manager.Controller
 
         public static ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
         {
-            return DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettings(ProfilePublicId);
+            ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsBasicInfo(ProfilePublicId);
+
+            ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsCategory(ProfilePublicId);
+
+            if (oAux != null && oAux.RelatedOffice != null)
+            {
+                oReturn.RelatedOffice.All(x =>
+                {
+                    x.RelatedTreatment = oAux.RelatedOffice.Where(y => x.OfficePublicId == y.OfficePublicId).FirstOrDefault().RelatedTreatment;
+                    return true;
+                });
+            }
+
+            oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsScheduleAvailable(ProfilePublicId);
+
+            if (oAux != null && oAux.RelatedOffice != null)
+            {
+                oReturn.RelatedOffice.All(x =>
+                {
+                    x.ScheduleAvailable = oAux.RelatedOffice.Where(y => x.OfficePublicId == y.OfficePublicId).FirstOrDefault().ScheduleAvailable;
+                    return true;
+                });
+            }
+
+            return oReturn;
         }
 
         #endregion
