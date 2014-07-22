@@ -5,6 +5,7 @@
 }
 
 .headerTopWrapper {
+    display:block;
     border: none;
     height: 34px;
 }
@@ -15,7 +16,7 @@
 }
 
 .profilesListWrapper {
-    display: inline-block;
+    float:left;
     width: 22%;
     height: 34px;
     vertical-align: top;
@@ -177,11 +178,11 @@ span.ui-selectmenu-text {
     }
 
 .searchBox {
-    display: inline-block;
+    float:left;
     border: none;
     width: 22%;
     height: 34px;
-    margin-left: -5px;
+    margin-left:0px;
     background-image: url('/Areas/Web/Content/Images/BOTopBarLeftTipLong.png');
 background-repeat: no-repeat;
     background-position: 98% -1px;
@@ -205,13 +206,12 @@ background-size: 450px 34px;
 }
 
 .userNotificationWrapper {
-    float: right;
+    float:right;
     width: auto;
     height: 34px;
-    margin-right: 0px;
+    margin-top: -1px;
     border: none;
 }
-
 .notificationsWrapper {
     display: inline-block;
     border: none;
@@ -351,15 +351,13 @@ line-height: 6px;
     background-repeat: no-repeat;
     background-size:81px auto;
 }
-
 .mainMenuItemWrapper {
     display: block;
-    border: none;
-    width: auto;
+    border:none;
+    width: 100%;
     background-color: #fff;
-    float: right;
+    text-align:right;    
 }
-    
     .mainMenuItemWrapper li {
         border: 1px solid grey;
         display: inline-block;
@@ -516,7 +514,7 @@ line-height: 6px;
        width:100%;
        height:auto;
        border:none;
-       margin:-3px 0px 0px 0px; padding:0px;
+       margin:-1px 0px 0px 0px; padding:0px;
 }
 .subMenu {
     display:block;
