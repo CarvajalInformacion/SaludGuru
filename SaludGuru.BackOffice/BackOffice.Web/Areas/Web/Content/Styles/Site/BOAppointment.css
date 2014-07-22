@@ -229,13 +229,12 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
 
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
-    display: inline-block;
     border: 1px solid green;
     margin: 0px 0px 0px -2px;
-    vertical-align: top;
     height: 510px;
-    position: relative;
-    float: left;
+    width: 950px;
+    position: absolute;
+    left: 390px;
 }
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
