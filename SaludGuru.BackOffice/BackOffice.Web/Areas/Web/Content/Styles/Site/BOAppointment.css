@@ -1,11 +1,13 @@
 ﻿/******************* GENERAL WRAPPERS *********************/
 
-.BOAgendaModuleGreatWrapper{
-	display:block;
-	width:100%; height:auto;
-    min-width:800px;
-	text-align:center;
-    border:none;
+.BOAgendaModuleGreatWrapper {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-width: 800px;
+    text-align: center;
+    border: none;
+    position: absolute;
 }
 
 /*.BOAgendaDateSelector{
@@ -35,55 +37,61 @@
         text-align: left;
 	}*/
 /************************CALENDARIOS**************************/
-.BOAgendaCalendarWrapper{
-	border:none;
-	float:left;
-	width:390px;
-	height:510px;
-	vertical-align:top;
-	margin:0px;
-    display:inline-block;
+.BOAgendaCalendarWrapper {
+    border: none;
+    float: left;
+    width: 390px;
+    height: 510px;
+    vertical-align: top;
+    margin: 0px;
+    display: inline-block;
+    position: relative;
 }
-.BOAgendaSideMonthsWrapper{
-	display:block;
-	border:none;
-	width:auto;
-	height:auto;
-    background-color:#ececec;
+
+.BOAgendaSideMonthsWrapper {
+    display: block;
+    border: none;
+    width: auto;
+    height: auto;
+    background-color: #ececec;
 }
-    div.BOAgendaSideMonthsWrapper div#Calendar-Left, div.BOAgendaSideMonthsWrapper div#Calendar-Right{
+
+div.BOAgendaSideMonthsWrapper div#Calendar-Left, div.BOAgendaSideMonthsWrapper div#Calendar-Right {
+    display: inline-block;
+    width: 178px;
+    margin: 0px 3px;
+}
+
+    div.BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline,
+    div.BOAgendaSideMonthsWrapper div#Calendar-Right div.ui-datepicker-inline {
         display: inline-block;
-        width:178px;
-        margin:0px 3px;
+        width: 178px;
+        border-radius: 1px;
+        margin: 0px;
+        box-shadow: none;
     }
-        div.BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline, 
-        div.BOAgendaSideMonthsWrapper div#Calendar-Right div.ui-datepicker-inline{
-            display: inline-block;
-            width:178px;
-            border-radius: 1px;
-            margin:0px;
-            box-shadow:none;
+
+        div.BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline div.ui-datepicker-header,
+        div.BOAgendaSideMonthsWrapper div#Calendar-Right div.ui-datepicker-inline div.ui-datepicker-header {
+            height: 24px;
+            background-color: #99c21d;
+            background-image: none;
+            border: 1px solid #666;
+            border-radius: 2px;
         }
-                div.BOAgendaSideMonthsWrapper div#Calendar-Left div.ui-datepicker-inline div.ui-datepicker-header,
-                div.BOAgendaSideMonthsWrapper div#Calendar-Right div.ui-datepicker-inline div.ui-datepicker-header 
-                {
-                    height: 24px;
-                    background-color: #99c21d;
-                    background-image:none;
-                    border: 1px solid #666;
-                    border-radius: 2px;
-                }
-                    
-                div.BOAgendaSideMonthsWrapper div.ui-datepicker-title {
-                        height: 20px;
-                        margin: 0px;
-                        line-height: 16px;
-                    }
-                    div.BOAgendaSideMonthsWrapper div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title span.ui-datepicker-year{
-                        font-size: 15px;
-                        font-weight: normal;
-                        line-height: 16px;
-                    }
+
+div.BOAgendaSideMonthsWrapper div.ui-datepicker-title {
+    height: 20px;
+    margin: 0px;
+    line-height: 16px;
+}
+
+    div.BOAgendaSideMonthsWrapper div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title span.ui-datepicker-year {
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 16px;
+    }
+
 div#hasDatepicker {
     width: 96%;
     display: block;
@@ -95,8 +103,8 @@ div#hasDatepicker {
 /********************* DIAS DEL MES ETC.. **********************/
 
 div#Calendar-Left table.ui-datepicker-calendar > thead > tr > th,
-div#Calendar-Right table.ui-datepicker-calendar > thead > tr > th{
-    font-size:14px;
+div#Calendar-Right table.ui-datepicker-calendar > thead > tr > th {
+    font-size: 14px;
     font-weight: normal;
     width: auto;
     margin: 0px;
@@ -105,229 +113,255 @@ div#Calendar-Right table.ui-datepicker-calendar > thead > tr > th{
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td,
-div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td{
+div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td {
     font-size: 13px;
     font-weight: normal;
     width: auto;
-    padding:0px;
+    padding: 0px;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar .ui-state-active,
-div#Calendar-Right table.ui-datepicker-calendar .ui-state-active{
+div#Calendar-Right table.ui-datepicker-calendar .ui-state-active {
     border: solid 1px red;
     background-image: url('');
     background-color: #FCF8E3;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td > a,
-div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td > a{
-height: 20px;
-margin-top:-1px;
-margin-left:-1px;
-width: auto;
-text-align: center;
-vertical-align: baseline;
-line-height: 12px;
-color: #666;
-border: 1px solid #666;
+div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td > a {
+    height: 20px;
+    margin-top: -1px;
+    margin-left: -1px;
+    width: auto;
+    text-align: center;
+    vertical-align: baseline;
+    line-height: 12px;
+    color: #666;
+    border: 1px solid #666;
 }
 
 div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected,
-div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected{
-    background-image:none;
+div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected {
+    background-image: none;
 }
 
-div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected > a,
-div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a{
-    background-image:none;
-        background-color:#de87aa;
-}
-.specialDay_1 a.ui-state-default {
-    background-color:#ff5555 !important;
-}
-    .specialDay_1 a.ui-state-hover {
-        background-color:#e2ff6d !important;
+    div#Calendar-Left table.ui-datepicker-calendar > tbody > tr > td.selected > a,
+    div#Calendar-Right table.ui-datepicker-calendar > tbody > tr > td.selected > a {
+        background-image: none;
+        background-color: #de87aa;
     }
+
+.specialDay_1 a.ui-state-default {
+    background-color: #ff5555 !important;
+}
+
+.specialDay_1 a.ui-state-hover {
+    background-color: #e2ff6d !important;
+}
 
 /************************ ACCIONES DE LA CITA **************************/
 
 .BOAgendaAppointmentActions {
-    border-bottom:1px solid #666;
+    border-bottom: 1px solid #666;
     display: block;
     background-color: #ECECEC;
     height: 38px;
+}
+
+    .BOAgendaAppointmentActions ul li {
+        border: none;
+        display: inline-block;
+        margin: 8px 0px 0px 0px;
+        padding: 0px;
+        width: 114px;
+        height: auto;
+        text-align: right;
+        vertical-align: top;
     }
 
-        .BOAgendaAppointmentActions ul li{
-            border:none;
-            display:inline-block;
-            margin:8px 0px 0px 0px; padding:0px;
-            width:114px;height:auto;
-            text-align:right;
-            vertical-align:top;
-        }
-        .BOAgendaAppointmentActions ul li.BOActionCreate, 
+        .BOAgendaAppointmentActions ul li.BOActionCreate,
         .BOAgendaAppointmentActions ul li.BOActionCancel,
         .BOAgendaAppointmentActions ul li.BOActionBlock {
-            background-image:url('/Areas/Web/Content/Images/calendarActionsSprite.png');
-            background-repeat:no-repeat;
+            background-image: url('/Areas/Web/Content/Images/calendarActionsSprite.png');
+            background-repeat: no-repeat;
         }
+
         .BOAgendaAppointmentActions ul li.BOActionCreate {
-            background-position: 0px 0px; background-size:112px auto;
+            background-position: 0px 0px;
+            background-size: 112px auto;
         }
+
         .BOAgendaAppointmentActions ul li.BOActionCancel {
-            background-position:-44px 0px; background-size:112px auto;
+            background-position: -44px 0px;
+            background-size: 112px auto;
         }
+
         .BOAgendaAppointmentActions ul li.BOActionBlock {
-            background-position:-88px 0px; background-size:112px auto;
+            background-position: -88px 0px;
+            background-size: 112px auto;
         }
-        .BOAgendaAppointmentActions ul li a{
-            border:none;
-            display:block;
-            max-width:88px;height:auto;
-            line-height:12px;
-            vertical-align:middle;
-            font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-            font-size:12px;
-            font-weight:normal;
-            text-transform:uppercase;
-            float:right;
-            color:#333;
-            background-color:#ECECEC;
+
+        .BOAgendaAppointmentActions ul li a {
+            border: none;
+            display: block;
+            max-width: 88px;
+            height: auto;
+            line-height: 12px;
+            vertical-align: middle;
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: normal;
+            text-transform: uppercase;
+            float: right;
+            color: #333;
+            background-color: #ECECEC;
             text-align: left;
         }
 /*************************CONTENEDOR CREACION DE CITAS**************************/
-div#AppointmentUpsert, div.BlockAppointmentUpsert{
-    border:none;
-    display:block;    
-    width:inherit;
-    overflow-x:auto;
-    min-height:288px;
-    height:288px;
+div#AppointmentUpsert, div.BlockAppointmentUpsert {
+    border: none;
+    display: block;
+    width: inherit;
+    overflow-x: auto;
+    min-height: 288px;
+    height: 288px;
 }
 
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
-    display:inline-block;
-	border:1px solid green;
-	margin:0px 0px 0px -2px;
-	vertical-align:top;
-    width: 100% !important;
-    height:510px;
-    float:right; 
-    position:absolute;
-    left:0;
+    display: inline-block;
+    border: 1px solid green;
+    margin: 0px 0px 0px -2px;
+    vertical-align: top;
+    height: 510px;
+    position: relative;
+    float: left;
 }
 /*******************AUTOCOMPLETE PACIENTES*******************/
 
-ul#ui-id-1{
+ul#ui-id-1 {
     top: 562.6px;
     left: 168px;
     width: 210px;
     background-color: #666;
     padding: 0px;
-    border:1px solid #333;
-    background-image:none;
+    border: 1px solid #333;
+    background-image: none;
 }
 
-    ul#ui-id-1 > li.ui-menu, 
+    ul#ui-id-1 > li.ui-menu,
     ul#ui-id-1 > li.ui-menu-item,
-    ul#ui-id-1 > li.ui-state-focus
-     {
+    ul#ui-id-1 > li.ui-state-focus {
         display: block;
         width: 210px;
         margin: 2px 0px;
         padding: 0px;
-        color:#333;
-        border:none;
-        background:none;
+        color: #333;
+        border: none;
+        background: none;
     }
+
         ul#ui-id-1 > li.ui-menu-item:hover, ul#ui-id-1 > li.ui-menu-item:active,
         ul#ui-id-1 > li.ui-state-focus:hover, ul#ui-id-1 > li.ui-state-focus:active {
-            color:#333;
-            border:none;
-            background:none;
+            color: #333;
+            border: none;
+            background: none;
         }
-        ul.ui-autocomplete > li.ui-menu-item a {
-            margin: 0px;
-            display: block;
-            padding: 0px;
-            }
+
+ul.ui-autocomplete > li.ui-menu-item a {
+    margin: 0px;
+    display: block;
+    padding: 0px;
+}
 
 div.autocompletePatients {
-    display:block;
-    border:none;
-    width:209px;
-    height:auto;
-    margin:0px; padding:0px;
-    background-color:#f2f2f2;
+    display: block;
+    border: none;
+    width: 209px;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    background-color: #f2f2f2;
 }
-            div.autocompletePatients img {
-                display: inline-block;
-                border: medium none;
-                width: 34px;
-                height: 34px;
-                margin: 4px 0px 0px 4px;
-                padding: 0px;
-                vertical-align: top;
-                box-shadow: 1px 1px 1px;
-            }
-            div.autocompletePatients label {
-                display: inline-block;
-                border: medium none;
-                width: auto;
-                height: auto;
-                font-size: 13px;
-                line-height: 14px;
-                margin: 0px 0px 0px 2px;
-                padding: 0px;
-                vertical-align: top;
-            }
+
+    div.autocompletePatients img {
+        display: inline-block;
+        border: medium none;
+        width: 34px;
+        height: 34px;
+        margin: 4px 0px 0px 4px;
+        padding: 0px;
+        vertical-align: top;
+        box-shadow: 1px 1px 1px;
+    }
+
+    div.autocompletePatients label {
+        display: inline-block;
+        border: medium none;
+        width: auto;
+        height: auto;
+        font-size: 13px;
+        line-height: 14px;
+        margin: 0px 0px 0px 2px;
+        padding: 0px;
+        vertical-align: top;
+    }
 /******************************EVENTOS EN EL CALENDARIO // CITAS*************************************/
 div.fc-event-inner {
     border-width: 1px 1px 1px 10px;
     border-style: solid;
-    border-color: #800066;    
+    border-color: #800066;
 }
+
     div.fc-event-inner:hover {
-        background-color:#f7e4f3;
+        background-color: #f7e4f3;
     }
+
 div.fc-event {
-    border:none;
-    border-radius:0px;
-    background-color:#fff !important;
+    border: none;
+    border-radius: 0px;
+    background-color: #fff !important;
 }
-    div.fc-event-inner div.fc-event-time{
-        width: 85px;height: auto;
-        border: none;
-        display:inline-block;
-        line-height:14px;
-        margin:1px 0px 0px 5px;
-        padding:0px;
-        vertical-align:top;
+
+div.fc-event-inner div.fc-event-time {
+    width: 85px;
+    height: auto;
+    border: none;
+    display: inline-block;
+    line-height: 14px;
+    margin: 1px 0px 0px 5px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+div.fc-event-inner div.fc-event-title {
+    display: inline-block;
+    width: 68%;
+}
+
+    div.fc-event-inner div.fc-event-title div {
+        width: 100%;
     }
-    div.fc-event-inner div.fc-event-title {
-        display: inline-block; width:68%;
-    }
-    div.fc-event-inner div.fc-event-title div{
-        width:100%;
-    }
-    div.fc-event-inner div.fc-event-title div img {
-        display:inline-block;
-        width:18px; height:18px;
-        vertical-align:top;
-        margin:0px 4px;
-    }
-    div.fc-event-inner div.fc-event-title div label {
-        display:inline-block;
-        width:82%;
-    }    
-    div.fc-event-inner div.fc-event-time, div.fc-event-inner div.fc-event-title div label{
-        font-family:"MuseoSans100","Trebuchet MS", Helvetica, sans-serif ;
-        font-size:14px;
-        color:#333 !important;
-        line-height: 18px;
-    }
+
+        div.fc-event-inner div.fc-event-title div img {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            vertical-align: top;
+            margin: 0px 4px;
+        }
+
+        div.fc-event-inner div.fc-event-title div label {
+            display: inline-block;
+            width: 82%;
+        }
+
+        div.fc-event-inner div.fc-event-time, div.fc-event-inner div.fc-event-title div label {
+            font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+            font-size: 14px;
+            color: #333 !important;
+            line-height: 18px;
+        }
 
 
 /*event personalized style*/
@@ -335,36 +369,54 @@ div.fc-event {
 .AppointmentStatus_1201 {
     border-color: #f4c600;
 }
-.AppointmentStatus_1201:hover {background-color: #fef4ca;}
+
+    .AppointmentStatus_1201:hover {
+        background-color: #fef4ca;
+    }
 /*Confirmed*/
 .AppointmentStatus_1202 {
     border-color: #88aa00;
 }
-.AppointmentStatus_1202:hover {background-color:#f7ffd9;}
+
+    .AppointmentStatus_1202:hover {
+        background-color: #f7ffd9;
+    }
 /*Canceled*/
 .AppointmentStatus_1203 {
     border-color: #d40000;
 }
-.AppointmentStatus_1203:hover {background-color:#ffdede;}
+
+    .AppointmentStatus_1203:hover {
+        background-color: #ffdede;
+    }
 /*PendientAsistance*/
 .AppointmentStatus_1204 {
     border-color: #800066;
 }
-.AppointmentStatus_1204:hover {background-color:#f7e4f3;}
+
+    .AppointmentStatus_1204:hover {
+        background-color: #f7e4f3;
+    }
 /*Attendance*/
 .AppointmentStatus_1205 {
     border-color: blue;
 }
-.AppointmentStatus_1205:hover {background-color:#dcdcff;}
+
+    .AppointmentStatus_1205:hover {
+        background-color: #dcdcff;
+    }
 /*NotAttendance*/
 .AppointmentStatus_1206 {
     border-color: #414143;
 }
-.AppointmentStatus_1206:hover {background-color:#e6e6e6;}
+
+    .AppointmentStatus_1206:hover {
+        background-color: #e6e6e6;
+    }
 /*BlockCalendar*/
 .AppointmentStatus_1207 {
-    border-color:#800000;
-    background-color:#ffaaaa;
+    border-color: #800000;
+    background-color: #ffaaaa;
 }
 
 /******************************Calendar by month*************************************/
@@ -372,34 +424,37 @@ div.fc-event {
 /*hide next and preview*/
 #Calendar-Left .ui-datepicker-prev, #Calendar-Right .ui-datepicker-next {
     border: none;
-    border-radius:12px;
+    border-radius: 12px;
     padding: 0px;
-    margin:3px 0px 0px 0px;
-    width:15px;
-    height:15px;
+    margin: 3px 0px 0px 0px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
 }
-#Calendar-Left .ui-datepicker-prev:hover, #Calendar-Right .ui-datepicker-next:hover {
-    background-image:none;
-    background-color:#fff;
-}
+
+    #Calendar-Left .ui-datepicker-prev:hover, #Calendar-Right .ui-datepicker-next:hover {
+        background-image: none;
+        background-color: #fff;
+    }
+
 #Calendar-Right .ui-datepicker-prev {
     display: none;
 }
+
 #Calendar-Left .ui-datepicker-next {
-    display:none;
+    display: none;
 }
 /*hide calendar all day event*/
 #divMeetingCalendar .fc-agenda-allday {
     display: none;
 }
+
 #divMeetingCalendar .fc-agenda-divider {
     display: none;
 }
 
-#divMeetingCalendar .fc-agenda-days>thead .fc-widget-header {
-    height:50px;
-    border:none;
-    vertical-align:middle;
+#divMeetingCalendar .fc-agenda-days > thead .fc-widget-header {
+    height: 50px;
+    border: none;
+    vertical-align: middle;
 }
-

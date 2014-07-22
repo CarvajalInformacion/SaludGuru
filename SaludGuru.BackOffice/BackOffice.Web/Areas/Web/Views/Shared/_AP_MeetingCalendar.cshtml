@@ -2,31 +2,30 @@
 
 @if (!Model.RenderScripts)
 {
-    <div id="divMeetingCalendar" class="@Model.defaultView">
+    <div id="divMeetingCalendar" class="@Model.defaultView container">
         <div id="CalendarContent"></div>
-    </div>
 
-    <div id="templatesMettingCalendar" style="display:none;">
-        <!--metting calendar-->
-        <div id="divMetting">
-            <div id="divOfficePublicId" style="width:70%;float:left;position:relative;left:385px;" class="container"></div>
-        </div>
-        <!--metting header-->
-        <div id="divMettingHeader">
-            <ul>
-                <li>
-                    'MMMM d yyyy'
-                </li>
-                <li>
-                    {OfficeList}
-                </li>
-                <li>
-                    <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
-                </li>
-            </ul>
+        <div id="templatesMettingCalendar" style="display:none;">
+            <!--metting calendar-->
+            <div id="divMetting">
+                <div id="divOfficePublicId" style="width:100%;"></div>
+            </div>
+            <!--metting header-->
+            <div id="divMettingHeader">
+                <ul>
+                    <li>
+                        'MMMM d yyyy'
+                    </li>
+                    <li>
+                        {OfficeList}
+                    </li>
+                    <li>
+                        <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
 }
 else
 {
