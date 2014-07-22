@@ -199,7 +199,7 @@ var MettingCalendarObject = {
             defaultView: this.CurrentAgentType,
             allDaySlot: false,
             allDayText: ' ',
-            titleFormat: 'MMMM d yyyy \'' + vTitle + '\'',
+            titleFormat: '\'' + vTitle + '\'',
             weekNumbers: false,
             editable: oEditable,
             header: {
