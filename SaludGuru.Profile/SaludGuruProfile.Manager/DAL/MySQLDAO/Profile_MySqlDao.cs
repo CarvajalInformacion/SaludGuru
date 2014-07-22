@@ -458,11 +458,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
 
             List<ProfileModel> oReturnProfile = null;
-            
+
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
-                
+
                 oReturnProfile = (from pm in response.DataTableResult.AsEnumerable()
                                   select new ProfileModel
                                   {
@@ -598,7 +598,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminBasicInfo(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -651,7 +651,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminCategory(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -732,7 +732,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminOffice(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -785,7 +785,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminRelatedProfile(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
@@ -825,6 +825,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             }
             return oReturn;
         }
+
         #endregion
 
         #region Office
@@ -1022,7 +1023,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             });
         }
 
-        public OfficeModel OfficeGetFullAdmin(string OfficePublicId)
+        public OfficeModel OfficeGetFullAdminBasicInfo(string OfficePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -1031,7 +1032,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Office_GetFullAdmin",
+                CommandText = "P_Office_GetFullAdmin_BasicInfo",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -1048,11 +1049,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
                               City = new CityModel()
                               {
-                                  CityId = response.DataTableResult.Rows[0].Field<int>("CityId"),
+                                  CityId = (int)response.DataTableResult.Rows[0].Field<Int64>("CityId"),
                                   CityName = response.DataTableResult.Rows[0].Field<string>("CityName"),
-                                  StateId = response.DataTableResult.Rows[0].Field<int>("StateId"),
+                                  StateId = (int)response.DataTableResult.Rows[0].Field<Int64>("StateId"),
                                   StateName = response.DataTableResult.Rows[0].Field<string>("StateName"),
-                                  CountryId = response.DataTableResult.Rows[0].Field<int>("CountryId"),
+                                  CountryId = (int)response.DataTableResult.Rows[0].Field<Int64>("CountryId"),
                                   CountryName = response.DataTableResult.Rows[0].Field<string>("CountryName"),
                               },
 
@@ -1073,6 +1074,33 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                 Value = oig.Key.Value,
                                                 LargeValue = oig.Key.LargeValue
                                             }).ToList(),
+                          };
+            }
+
+            return oReturn;
+        }
+
+        public OfficeModel OfficeGetFullAdminCategory(string OfficePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Office_GetFullAdmin_Category",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            OfficeModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new OfficeModel()
+                          {
+                              OfficePublicId = response.DataTableResult.Rows[0].Field<string>("OfficePublicId"),
 
                               RelatedTreatment = (from rt in response.DataTableResult.AsEnumerable()
                                                   where rt.Field<int?>("CategoryId") != null &&
@@ -1116,6 +1144,34 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                                                  CreateDate = rtig.Key.CreateDate,
                                                                              }).ToList(),
                                                   }).ToList(),
+
+                          };
+            }
+
+            return oReturn;
+        }
+
+        public OfficeModel OfficeGetFullAdminScheduleAvailable(string OfficePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Office_GetFullAdmin_ScheduleAvailable",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            OfficeModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new OfficeModel()
+                          {
+                              OfficePublicId = response.DataTableResult.Rows[0].Field<string>("OfficePublicId"),
 
                               ScheduleAvailable = (from sha in response.DataTableResult.AsEnumerable()
                                                    where sha.Field<int?>("ScheduleAvailableId") != null
@@ -1421,6 +1477,6 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        #endregion     
+        #endregion
     }
 }

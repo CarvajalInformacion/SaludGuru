@@ -29,20 +29,31 @@ namespace SaludGuruProfile.Manager.Controller
         /// <returns></returns>
         public static ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
         {
-            ProfileModel oReturn = new ProfileModel();
-            ProfileModel oCategory = new ProfileModel();
-            ProfileModel oOffice = new ProfileModel();
-            ProfileModel oRelatedProfile = new ProfileModel();
+            ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdminBasicInfo(ProfilePublicId);
 
-            oReturn = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_BasicInfo(ProfilePublicId);
-            oCategory = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_Category(ProfilePublicId);
+            ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdminCategory(ProfilePublicId);
 
-            oReturn.RelatedSpecialty = oCategory.RelatedSpecialty;
-            oReturn.DefaultSpecialty = oCategory.DefaultSpecialty;
-            oReturn.RelatedInsurance = oCategory.RelatedInsurance;
-            oReturn.RelatedTreatment = oCategory.RelatedTreatment;
-            oReturn.RelatedOffice = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_Office(ProfilePublicId).RelatedOffice;
-            oReturn.ChildProfile = DAL.Controller.ProfileDataController.Instance.Profile_GetFullAdmin_RelatedProfile(ProfilePublicId).ChildProfile;
+            if (oAux != null)
+            {
+                oReturn.RelatedSpecialty = oAux.RelatedSpecialty;
+                oReturn.DefaultSpecialty = oAux.DefaultSpecialty;
+                oReturn.RelatedInsurance = oAux.RelatedInsurance;
+                oReturn.RelatedTreatment = oAux.RelatedTreatment;
+            }
+
+            oAux = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdminOffice(ProfilePublicId);
+
+            if (oAux != null && oAux.RelatedOffice != null)
+            {
+                oReturn.RelatedOffice = oAux.RelatedOffice;
+            }
+
+            oAux = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdminRelatedProfile(ProfilePublicId);
+
+            if (oAux != null && oAux.ChildProfile != null)
+            {
+                oReturn.ChildProfile = oAux.ChildProfile;
+            }
 
             return oReturn;
         }
@@ -393,9 +404,9 @@ namespace SaludGuruProfile.Manager.Controller
             List<RelatedProfileModel> relatedList = new List<RelatedProfileModel>();
 
             oLoad = ProfileGetFullAdmin(PublicParentId);
-            
+
             if (oLoad.ChildProfile != null)
-            {                
+            {
                 foreach (var item in oLoad.ChildProfile)
                 {
                     childs.Add(ProfileGetFullAdmin(item.ProfilePublicId));
