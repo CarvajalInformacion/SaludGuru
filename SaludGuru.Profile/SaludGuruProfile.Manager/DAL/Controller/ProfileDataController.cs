@@ -251,9 +251,19 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.OfficeGetFullAdminScheduleAvailable(OfficePublicId);
         }
 
-        public ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
+        public ProfileModel OfficeGetScheduleSettingsBasicInfo(string ProfilePublicId)
         {
-            return DataFactory.OfficeGetScheduleSettings(ProfilePublicId);
+            return DataFactory.OfficeGetScheduleSettingsBasicInfo(ProfilePublicId);
+        }
+
+        public ProfileModel OfficeGetScheduleSettingsCategory(string ProfilePublicId)
+        {
+            return DataFactory.OfficeGetScheduleSettingsCategory(ProfilePublicId);
+        }
+
+        public ProfileModel OfficeGetScheduleSettingsScheduleAvailable(string ProfilePublicId)
+        {
+            return DataFactory.OfficeGetScheduleSettingsScheduleAvailable(ProfilePublicId);
         }
 
         #endregion

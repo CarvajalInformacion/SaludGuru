@@ -1198,7 +1198,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
+        public ProfileModel OfficeGetScheduleSettingsBasicInfo(string ProfilePublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -1207,7 +1207,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Office_GetScheduleSettings",
+                CommandText = "P_Office_GetScheduleSettings_BasicInfo",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -1270,6 +1270,46 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                            Value = oig.Key.Value,
                                                            LargeValue = oig.Key.LargeValue
                                                        }).ToList(),
+                                     }).ToList(),
+
+                };
+            }
+
+            return oReturn;
+        }
+
+        public ProfileModel OfficeGetScheduleSettingsCategory(string ProfilePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Office_GetScheduleSettings_Category",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+
+                    RelatedOffice = (from of in response.DataTableResult.AsEnumerable()
+                                     where !string.IsNullOrEmpty(of.Field<string>("OfficePublicId"))
+                                     group of by
+                                     new
+                                     {
+                                         OfficePublicId = of.Field<string>("OfficePublicId"),
+                                     } into ofg
+                                     select new OfficeModel()
+                                     {
+                                         OfficePublicId = ofg.Key.OfficePublicId,
 
                                          RelatedTreatment = (from rt in response.DataTableResult.AsEnumerable()
                                                              where rt.Field<int?>("CategoryId") != null &&
@@ -1312,6 +1352,47 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                                                         }).ToList(),
                                                              }).ToList(),
 
+                                     }).ToList(),
+
+                };
+            }
+
+            return oReturn;
+        }
+
+        public ProfileModel OfficeGetScheduleSettingsScheduleAvailable(string ProfilePublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Office_GetScheduleSettings_ScheduleAvailable",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+
+                    RelatedOffice = (from of in response.DataTableResult.AsEnumerable()
+                                     where !string.IsNullOrEmpty(of.Field<string>("OfficePublicId"))
+                                     group of by
+                                     new
+                                     {
+                                         OfficePublicId = of.Field<string>("OfficePublicId"),
+                                     } into ofg
+                                     select new OfficeModel()
+                                     {
+                                         OfficePublicId = ofg.Key.OfficePublicId,
+
                                          ScheduleAvailable = (from sha in response.DataTableResult.AsEnumerable()
                                                               where sha.Field<int?>("ScheduleAvailableId") != null &&
                                                                     sha.Field<string>("OfficePublicId") == ofg.Key.OfficePublicId
@@ -1330,7 +1411,6 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                                   StartTime = shag.Key.StartTime,
                                                                   EndTime = shag.Key.EndTime,
                                                               }).ToList(),
-
                                      }).ToList(),
 
                 };
