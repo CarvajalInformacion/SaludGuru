@@ -14,7 +14,23 @@ namespace SaludGuruProfile.Manager.Controller
 
         public static OfficeModel OfficeGetFullAdmin(string OfficePublicId)
         {
-            return DAL.Controller.ProfileDataController.Instance.OfficeGetFullAdmin(OfficePublicId);
+            OfficeModel oReturn = DAL.Controller.ProfileDataController.Instance.OfficeGetFullAdminBasicInfo(OfficePublicId);
+
+            OfficeModel oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetFullAdminCategory(OfficePublicId);
+
+            if (oAux != null && oAux.RelatedTreatment != null)
+            {
+                oReturn.RelatedTreatment = oAux.RelatedTreatment;
+            }
+
+            oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetFullAdminScheduleAvailable(OfficePublicId);
+
+            if (oAux != null && oAux.ScheduleAvailable != null)
+            {
+                oReturn.ScheduleAvailable = oAux.ScheduleAvailable;
+            }
+
+            return oReturn;
         }
 
         public static string UpsertOfficeInfo(string ProfilePublicId, OfficeModel OfficeToUpsert)

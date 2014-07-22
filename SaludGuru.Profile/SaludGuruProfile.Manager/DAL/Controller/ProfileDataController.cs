@@ -152,24 +152,24 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.ProfileGetOptions();
         }
 
-        public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminBasicInfo(string ProfilePublicId)
         {
-            return DataFactory.Profile_GetFullAdmin_BasicInfo(ProfilePublicId);
+            return DataFactory.ProfileGetFullAdminBasicInfo(ProfilePublicId);
         }
 
-        public ProfileModel Profile_GetFullAdmin_Category(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminCategory(string ProfilePublicId)
         {
-            return DataFactory.Profile_GetFullAdmin_Category(ProfilePublicId);
+            return DataFactory.ProfileGetFullAdminCategory(ProfilePublicId);
         }
 
-        public ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminOffice(string ProfilePublicId)
         {
-            return DataFactory.Profile_GetFullAdmin_Office(ProfilePublicId);
+            return DataFactory.ProfileGetFullAdminOffice(ProfilePublicId);
         }
 
-        public ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId)
+        public ProfileModel ProfileGetFullAdminRelatedProfile(string ProfilePublicId)
         {
-            return DataFactory.Profile_GetFullAdmin_RelatedProfile(ProfilePublicId);
+            return DataFactory.ProfileGetFullAdminRelatedProfile(ProfilePublicId);
         }
 
         #endregion
@@ -236,9 +236,19 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.ProfileSearch(SearchCriteria, PageNumber, RowCount, out TotalRows);
         }
 
-        public OfficeModel OfficeGetFullAdmin(string OfficePublicId)
+        public OfficeModel OfficeGetFullAdminBasicInfo(string OfficePublicId)
         {
-            return DataFactory.OfficeGetFullAdmin(OfficePublicId);
+            return DataFactory.OfficeGetFullAdminBasicInfo(OfficePublicId);
+        }
+
+        public OfficeModel OfficeGetFullAdminCategory(string OfficePublicId)
+        {
+            return DataFactory.OfficeGetFullAdminCategory(OfficePublicId);
+        }
+
+        public OfficeModel OfficeGetFullAdminScheduleAvailable(string OfficePublicId)
+        {
+            return DataFactory.OfficeGetFullAdminScheduleAvailable(OfficePublicId);
         }
 
         public ProfileModel OfficeGetScheduleSettings(string ProfilePublicId)
@@ -277,6 +287,6 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         {
             return DataFactory.CityGetAll();
         }
-        #endregion  
+        #endregion
     }
 }
