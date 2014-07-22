@@ -63,7 +63,20 @@ var CalendarObject = {
                 return oReturn;
             },
             onSelect: function (date) {
-                window.location = window.location.pathname + '?Date=' + date;
+                if (window.location.pathname.toLowerCase() == '/appointment/detail') {
+                    var strUrl = window.location.pathname + '?Date=' + date;
+                    $.each(window.location.search.replace('?', '').split('&'), function (item, value) {
+                        if (value.toLowerCase().indexOf('appointmentpublicid') >= 0) {
+                            strUrl = strUrl + '&' + value;
+                        }
+                    });
+                    //appointment detail
+                    window.location = strUrl;
+                }
+                else {
+                    //appointment day, week, month
+                    window.location = window.location.pathname + '?Date=' + date;
+                }
             },
         });
 
@@ -222,6 +235,9 @@ var MettingCalendarObject = {
                 $('#selOffice_' + vOfficePublicId).change(function () {
                     //show new office
                     MettingCalendarObject.ChangeOffice($(this).val());
+
+                    //keep selected current office
+                    $('#selOffice_' + vOfficePublicId).val(vOfficePublicId);
                 });
             },
             dayClick: function (date, jsEvent, view) {

@@ -7,16 +7,16 @@
 }
 
 <div class="BOAgendaModuleGreatWrapper">
-    <div class="BOAgendaCalendarWrapper">
+    <div class="BOAgendaCalendarWrapper" style="width:390px;overflow:scroll;left:0px;position:absolute;">
         <!--Calendar by month-->
         @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
 
         <!--Meeting Calendar-->
         @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
     </div>
-    <div>
+    <div style="height:900px;">
         <div>
-            <a href="">Volver</a>
+            <a href="@Model.ReturnUrl">Volver</a>
             <span>Detalles de la cita</span>
         </div>
         <div>
