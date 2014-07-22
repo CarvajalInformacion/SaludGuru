@@ -74,7 +74,9 @@ namespace SaludGuruProfile.Manager.Interfaces
         OfficeModel OfficeGetFullAdminCategory(string OfficePublicId);
         OfficeModel OfficeGetFullAdminScheduleAvailable(string OfficePublicId);
 
-        ProfileModel OfficeGetScheduleSettings(string ProfilePublicId);
+        ProfileModel OfficeGetScheduleSettingsBasicInfo(string ProfilePublicId);
+        ProfileModel OfficeGetScheduleSettingsCategory(string ProfilePublicId);
+        ProfileModel OfficeGetScheduleSettingsScheduleAvailable(string ProfilePublicId);
 
         #endregion
 
