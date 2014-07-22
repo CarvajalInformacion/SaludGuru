@@ -232,7 +232,7 @@ div#divMeetingCalendar {
     border: 1px solid green;
     margin: 0px 0px 0px -2px;
     height: 510px;
-    width: 950px;
+    width: calc(100%);
     position: absolute;
     left: 390px;
 }
