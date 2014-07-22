@@ -116,9 +116,22 @@ namespace BackOffice.Web.Controllers
             return View(oModel);
         }
 
-        public virtual ActionResult Detail(string Date, string AppointmentPublicId)
+        public virtual ActionResult Detail(string Date, string AppointmentPublicId, string ReturnUrl)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
+
+            //get return url
+            if (string.IsNullOrEmpty(ReturnUrl))
+            {
+                //get url from previus page send
+                oModel.ReturnUrl = Request.UrlReferrer.ToString();
+            }
+            else
+            {
+                //get url from request
+                oModel.ReturnUrl = ReturnUrl;
+            }
+
 
             //get appointment info
             if (!string.IsNullOrEmpty(AppointmentPublicId))

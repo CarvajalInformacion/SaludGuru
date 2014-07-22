@@ -152,11 +152,6 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.ProfileGetOptions();
         }
 
-        public ProfileModel ProfileGetFullAdmin(string ProfilePublicId)
-        {
-            return DataFactory.ProfileGetFullAdmin(ProfilePublicId);
-        }
-
         public ProfileModel Profile_GetFullAdmin_BasicInfo(string ProfilePublicId)
         {
             return DataFactory.Profile_GetFullAdmin_BasicInfo(ProfilePublicId);
@@ -170,7 +165,7 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         public ProfileModel Profile_GetFullAdmin_Office(string ProfilePublicId)
         {
             return DataFactory.Profile_GetFullAdmin_Office(ProfilePublicId);
-        }        
+        }
 
         public ProfileModel Profile_GetFullAdmin_RelatedProfile(string ProfilePublicId)
         {
@@ -282,6 +277,6 @@ namespace SaludGuruProfile.Manager.DAL.Controller
         {
             return DataFactory.CityGetAll();
         }
-        #endregion
+        #endregion  
     }
 }

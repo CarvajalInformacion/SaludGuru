@@ -44,5 +44,7 @@ namespace BackOffice.Models.Appointment
         public bool RenderScripts { get; set; }
 
         public AppointmentModel CurrentAppointment { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

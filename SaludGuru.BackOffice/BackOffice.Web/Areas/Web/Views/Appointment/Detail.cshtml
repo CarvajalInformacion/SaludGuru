@@ -14,7 +14,88 @@
         <!--Meeting Calendar-->
         @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
     </div>
+    <div>
+        <div>
+            <a href="">Volver</a>
+            <span>Detalles de la cita</span>
+        </div>
+        <div>
+            <!--appointment info-->
+            <form action="" method="post">
+                <ul>
+                    <li>
+                        <label>Consultorio:</label>
+                        <select id="OfficePublicId" name="OfficePublicId"></select>
+                    </li>
+                    <li>
+                        <label>Tipo de tratamiento:</label>
+                        <select id="TreatmentId" name="TreatmentId"></select>
+                    </li>
+                    <li>
+                        <label>Fecha de inicio:</label>
+                        <input type="text" id="StartDate" name="StartDate" />
+                    </li>
+                    <li>
+                        <label>Hora de inicio:</label>
+                        <input type="text" id="StartTime" name="StartTime" />
+                    </li>
+                    <li>
+                        <label>Duración:</label>
+                        <input type="text" id="Duration" name="Duration" />
+                    </li>
+                    <li>
+                        <label>Cuidados previos:</label>
+                        <input type="text" id="AfterCare" name="AfterCare" />
+                    </li>
+                    <li>
+                        <label>Cuidados posteriores:</label>
+                        <input type="text" id="BeforeCare" name="BeforeCare" />
+                    </li>
+                </ul>
+                <!--hidden fields-->
+                <div style="display:none;">
+                    <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="@Model.ReturnUrl" />
+                    <input type="hidden" id="SendNotifications" name="SendNotifications" value="false" />
+                    <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" value="@Request["AppointmentPublicId"]" />
+                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate"
+                           value="@(Model.CurrentAppointment != null && Model.CurrentAppointment.RelatedPatient != null && Model.CurrentAppointment.RelatedPatient.Count > 0 ?
+                                        string.Join(",",Model.CurrentAppointment.RelatedPatient.Select(x=>x.PatientPublicId).ToList())
+                                        :string.Empty)" />
+                    <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
+                </div>
+                <div>
+                    <a href="javascript:;">Guardar</a>
+                </div>
+            </form>
+        </div>
+        <div>
+            <!--patient info-->
+            <ul>
+                <li>
+                    <label>Agregar paciente:</label>
+                    <input type="text" id="getPatient" />
+                    <a href="javascript:;">+</a>
+                </li>
+                <li>
+                    <h4>Paciente(s) asignados a la cita:</h4>
+                </li>
+                <li>
+                    <ul id="lstPatient">
+                        @if (Model.CurrentAppointment != null && Model.CurrentAppointment.RelatedPatient != null && Model.CurrentAppointment.RelatedPatient.Count > 0)
+                        {
+                            foreach (MedicalCalendar.Manager.Models.Patient.PatientModel pt in Model.CurrentAppointment.RelatedPatient)
+                            {
+                                <li>
 
+
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 @{Model.RenderScripts = true;}

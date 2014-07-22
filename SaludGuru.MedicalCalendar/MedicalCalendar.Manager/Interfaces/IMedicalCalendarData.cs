@@ -31,8 +31,10 @@ namespace MedicalCalendar.Manager.Interfaces
         void AppointmentModify(string AppointmentPublicId, string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate);
         void AppointmentModifyStatus(string AppointmentPublicId, enumAppointmentStatus Status);
         List<Models.Appointment.AppointmentModel> AppointmentList(string PatientPublicId);
-        List<Models.Appointment.AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
-        Models.Appointment.AppointmentModel AppointmentGetById(string AppointmentPublicId);
+        List<Models.Appointment.AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
+        List<Models.Appointment.AppointmentModel> AppointmentGetByOfficeIdPatientInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
+        Models.Appointment.AppointmentModel AppointmentGetByIdBasicInfo(string AppointmentPublicId);
+        Models.Appointment.AppointmentModel AppointmentGetByIdPatientInfo(string AppointmentPublicId);
         List<MedicalCalendar.Manager.Models.Appointment.AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime);
 
         //appointment info
@@ -44,3 +46,4 @@ namespace MedicalCalendar.Manager.Interfaces
         void AppointmentPatientDelete(string AppointmentPublicId, string PatientPublicId);
     }
 }
+

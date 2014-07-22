@@ -128,14 +128,24 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentList(ProfilePublicId);
         }
 
-        public List<AppointmentModel> AppointmentGetByOfficeId(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        public List<AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
-            return DataFactory.AppointmentGetByOfficeId(OfficePublicId, StartDateTime, EndDateTime);
+            return DataFactory.AppointmentGetByOfficeIdBasicInfo(OfficePublicId, StartDateTime, EndDateTime);
         }
 
-        public AppointmentModel AppointmentGetById(string AppointmentPublicId)
+        public List<AppointmentModel> AppointmentGetByOfficeIdPatientInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
-            return DataFactory.AppointmentGetById(AppointmentPublicId);
+            return DataFactory.AppointmentGetByOfficeIdPatientInfo(OfficePublicId, StartDateTime, EndDateTime);
+        }
+
+        public AppointmentModel AppointmentGetByIdBasicInfo(string AppointmentPublicId)
+        {
+            return DataFactory.AppointmentGetByIdBasicInfo(AppointmentPublicId);
+        }
+
+        public AppointmentModel AppointmentGetByIdPatientInfo(string AppointmentPublicId)
+        {
+            return DataFactory.AppointmentGetByIdPatientInfo(AppointmentPublicId);
         }
 
         public List<AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime)
