@@ -229,74 +229,84 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
 
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     margin: 0px 0px 0px 0px;
-    height: 510px;
+    height: calc(100%);
     width: calc(100%);
     vertical-align: top;
     position: relative;
-    float:left;
-    overflow: initial;
+    float: left;
+    overflow: hidden;
 }
 
 table.fc-header {
     width: 100%;
     height: auto;
     margin: 0px auto;
-    background-color:#ececec;
+    background-color: #ececec;
 }
+
     table.fc-header td:first-child {
-        width:5.4%;
+        width: 5.4%;
     }
+
     table.fc-header td:nth-child(2) {
-        width:auto;
+        width: auto;
     }
+
     table.fc-header td:nth-child(3) {
-        width:2%;
+        width: 2%;
     }
-        span.fc-header-title {
-            width:100%;
-            height:30px;
-        }
-    span.fc-header-title h2{
-        font-size:14px;
+
+span.fc-header-title {
+    width: 100%;
+    height: 30px;
+}
+
+    span.fc-header-title h2 {
+        font-size: 14px;
         width: 100%;
-        border:none;
+        border: none;
         height: auto;
         display: block;
-        text-align:left;
-        margin-top:5px;
+        text-align: left;
+        margin-top: 5px;
     }
-        span.fc-header-title h2 > ul li:first-child{
-            float:left;
-            margin-top:2px;
+
+        span.fc-header-title h2 > ul li:first-child {
+            float: left;
+            margin-top: 2px;
         }
-        span.fc-header-title h2 > ul li:nth-child(2){
+
+        span.fc-header-title h2 > ul li:nth-child(2) {
             float: right;
             border: none;
             vertical-align: top;
             width: auto;
             top: 0px;
         }
-            span.fc-header-title h2 > ul li select, span.fc-header-title h2 > ul li a{
-                border: 1px solid #666;
-                height: 21px;
-                font-size: 14px;
-                color: #333;
-                margin:0px;
-                background-color: #fff;
-            }
-        span.fc-header-title h2 > ul li a {
-                width: 157px;
-                text-align: center;
-                line-height: 20px;
-                border-radius: 2px;
-                height: 22px;
-                display: inline-block;
+
+        span.fc-header-title h2 > ul li select, span.fc-header-title h2 > ul li a {
+            border: 1px solid #666;
+            height: 21px;
+            font-size: 14px;
+            color: #333;
+            margin: 0px;
+            background-color: #fff;
         }
+
+        span.fc-header-title h2 > ul li a {
+            width: 157px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 2px;
+            height: 22px;
+            display: inline-block;
+        }
+
             span.fc-header-title h2 > ul li a:hover {
-                background-color:#e5ff80;
-                text-decoration:none;
+                background-color: #e5ff80;
+                text-decoration: none;
             }
 /*******************AUTOCOMPLETE PACIENTES*******************/
 ul#ui-id-1 {
@@ -421,24 +431,27 @@ div.fc-event-inner div.fc-event-title {
 
 /*event personalized style*/
 /*New*/
-div.AppointmentStatus_1201 .fc-event-inner{
+div.AppointmentStatus_1201 .fc-event-inner {
     border-color: #d6ab00;
 }
+
     div.AppointmentStatus_1201 .fc-event-inner:hover {
         background-color: #ffeea5;
     }
 
 /*Confirmed*/
-div.AppointmentStatus_1202 .fc-event-inner{
+div.AppointmentStatus_1202 .fc-event-inner {
     border-color: #88aa00;
 }
+
     div.AppointmentStatus_1202 .fc-event-inner:hover {
         background-color: #e4ff77;
     }
 /*Canceled*/
-div.AppointmentStatus_1203 .fc-event-inner{
+div.AppointmentStatus_1203 .fc-event-inner {
     border-color: #d40000;
 }
+
     div.AppointmentStatus_1203 .fc-event-inner:hover {
         background-color: #ffabab;
     }
@@ -446,13 +459,15 @@ div.AppointmentStatus_1203 .fc-event-inner{
 .AppointmentStatus_1204 {
     border-color: #800066;
 }
-    div.AppointmentStatus_1204 .fc-event-inner:hover {
-        background-color: #f7e4f3;
-    }
+
+div.AppointmentStatus_1204 .fc-event-inner:hover {
+    background-color: #f7e4f3;
+}
 /*Attendance*/
 .AppointmentStatus_1205 {
     border-color: #39a500;
 }
+
     .AppointmentStatus_1205 .fc-event-inner:hover {
         background-color: #afff85;
     }
@@ -460,11 +475,12 @@ div.AppointmentStatus_1203 .fc-event-inner{
 .AppointmentStatus_1206 {
     border-color: #414143;
 }
+
     .AppointmentStatus_1206 .fc-event-inner:hover {
         background-color: #c7c7c8;
     }
 /*BlockCalendar*/
-div.AppointmentStatus_1207 .fc-event-inner{
+div.AppointmentStatus_1207 .fc-event-inner {
     border-color: #800000;
     background-color: #ffaaaa;
 }
@@ -504,11 +520,12 @@ div.AppointmentStatus_1207 .fc-event-inner{
 }
 
 #divMeetingCalendar .fc-agenda-days > thead .fc-widget-header {
-    height:20px;
+    height: 20px;
     border: none;
     vertical-align: middle;
 }
-.fc-border-separate thead{
+
+.fc-border-separate thead {
     box-shadow: 0px 1px 4px;
-    position:relative;
+    position: relative;
 }
