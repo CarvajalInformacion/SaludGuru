@@ -16,7 +16,10 @@
     </div>
     <div style="height:900px;">
         <div>
-            <a href="@Model.ReturnUrl">Volver</a>
+            @if (!string.IsNullOrEmpty(Model.ReturnUrl))
+            {
+                <a href="@Model.ReturnUrl">Volver</a>
+            }
             <span>Detalles de la cita</span>
         </div>
         <div>
@@ -56,11 +59,8 @@
                 <div style="display:none;">
                     <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="@Model.ReturnUrl" />
                     <input type="hidden" id="SendNotifications" name="SendNotifications" value="false" />
-                    <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" value="@Request["AppointmentPublicId"]" />
-                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate"
-                           value="@(Model.CurrentAppointment != null && Model.CurrentAppointment.RelatedPatient != null && Model.CurrentAppointment.RelatedPatient.Count > 0 ?
-                                        string.Join(",",Model.CurrentAppointment.RelatedPatient.Select(x=>x.PatientPublicId).ToList())
-                                        :string.Empty)" />
+                    <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" value="@(Model.CurrentAppointment != null && !string.IsNullOrEmpty(Model.CurrentAppointment.id) ? Model.CurrentAppointment.id : string.Empty)" />
+                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" value="" />
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
                 </div>
                 <div>
@@ -80,27 +80,65 @@
                     <h4>Paciente(s) asignados a la cita:</h4>
                 </li>
                 <li>
-                    <ul id="lstPatient">
-                        @if (Model.CurrentAppointment != null && Model.CurrentAppointment.RelatedPatient != null && Model.CurrentAppointment.RelatedPatient.Count > 0)
-                        {
-                            foreach (MedicalCalendar.Manager.Models.Patient.PatientModel pt in Model.CurrentAppointment.RelatedPatient)
-                            {
-                                <li>
-
-
-                                </li>
-                            }
-                        }
-                    </ul>
+                    <ul id="lstPatient"></ul>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 
-@{Model.RenderScripts = true;}
+@{
+    //create office object
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
+                new
+                {
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                    OfficeScheduleConfigUrl = Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableList,
+                                                MVC.Profile.Name,
+                                                new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, OfficePublicId = of.OfficePublicId }),
+                    TreatmentList = of.RelatedTreatment.Select(tr => new
+                    {
+                        TreatmentId = tr.CategoryId,
+                        TreatmentName = tr.Name,
+                        IsDefault = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                            Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
+                        Duration = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).
+                            Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
+                        AfterCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                        BeforeCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                    }).OrderBy(tro => tro.IsDefault).OrderBy(tro => tro.TreatmentName).ToList(),
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
+    //create appointment object
+    string oAppointmentInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).Serialize(Model.CurrentAppointment);
+
+    Model.RenderScripts = true;
+}
 @section inlinescripts
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
     @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //render metting calendar
+            AppointmentDetailObject.Init({
+                CurrentAppointment: @Html.Raw(oAppointmentInfo),
+                OfficeInfo: @Html.Raw(oOfficeInfo),
+            });
+            AppointmentDetailObject.RenderAsync();
+        });
+    </script>
 }

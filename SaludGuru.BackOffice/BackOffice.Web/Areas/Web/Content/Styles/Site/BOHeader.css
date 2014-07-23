@@ -5,7 +5,7 @@
 }
 
 .headerTopWrapper {
-    display:block;
+    display: block;
     border: none;
     height: 34px;
 }
@@ -16,12 +16,12 @@
 }
 
 .profilesListWrapper {
-    float:left;
+    float: left;
     width: 22%;
     height: 34px;
     vertical-align: top;
     border: none;
-    }
+}
 
 #ddAutorizationProfiles-button {
     border-top: 1px solid #999;
@@ -36,7 +36,7 @@
     background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
     background-repeat: repeat-x;
     margin: -1px 0px 0px 0px;
-    }
+}
 
 span.ui-selectmenu-text {
     height: 32px;
@@ -49,28 +49,28 @@ span.ui-selectmenu-text {
     color: #333;
 }
 
-    span.selectedProfilePicture {
+span.selectedProfilePicture {
     display: inline-block;
     background-size: 30px 30px;
     width: 30px;
     height: 30px;
     margin-top: 1px;
-    }
+}
 
-    span.selectedProfileName {
+span.selectedProfileName {
     display: inline;
     width: 50px;
     height: 32px;
-        font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+    font-family: "MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
     font-size: 14px;
     font-weight: normal;
     margin: 0px;
     vertical-align: top;
-    }
+}
 
-    span.ui-selectmenu-text:hover {
+span.ui-selectmenu-text:hover {
     background-color: #f2f2f2;
-    }
+}
 
 .ui-selectmenu-open {
     left: 16px !important;
@@ -100,20 +100,20 @@ span.ui-selectmenu-text {
         margin: 2px 0px;
     }
 
-    #ddAutorizationProfiles-menu li.ui-state-focus {
+        #ddAutorizationProfiles-menu li.ui-state-focus {
             background-color: #e6e6e6;
             background-image: none;
             border: none;
             color: #333;
-    }
-        
+        }
+
         #ddAutorizationProfiles-menu li span {
             border: 1px solid #999;
             display: inline-block;
             width: 32px;
             height: 32px;
             background-size: 32px 32px;
-    }
+        }
 
 
 
@@ -137,11 +137,11 @@ span.ui-selectmenu-text {
     font-size: 16px;
     padding: 4px 12px;
     color: #666;
-    }
+}
 
-        .profilesListWrapper select option.option1, 
-        .profilesListWrapper select option.option2, 
-        .profilesListWrapper select option.option3,
+    .profilesListWrapper select option.option1,
+    .profilesListWrapper select option.option2,
+    .profilesListWrapper select option.option3,
     .profilesListWrapper select option.option4 {
         display: block;
         width: auto;
@@ -150,7 +150,7 @@ span.ui-selectmenu-text {
         font-size: 16px;
         padding: 4px 12px;
         color: #666;
-        }
+    }
 
     .profilesListWrapper select option.option1 {
         background-color: #ffb380;
@@ -178,15 +178,15 @@ span.ui-selectmenu-text {
     }
 
 .searchBox {
-    float:left;
+    float: left;
     border: none;
     width: 22%;
     height: 34px;
-    margin-left:0px;
+    margin-left: 0px;
     background-image: url('/Areas/Web/Content/Images/BOTopBarLeftTipLong.png');
-background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: 98% -1px;
-background-size: 450px 34px;
+    background-size: 450px 34px;
 }
 
     .searchBox input {
@@ -203,15 +203,16 @@ background-size: 450px 34px;
         background-size: 25px 20px;
         padding: 0px 0px 0px 10px;
         vertical-align: top;
-}
+    }
 
 .userNotificationWrapper {
-    float:right;
+    float: right;
     width: auto;
     height: 34px;
     margin-top: -1px;
     border: none;
 }
+
 .notificationsWrapper {
     display: inline-block;
     border: none;
@@ -223,7 +224,7 @@ background-size: 450px 34px;
     background-repeat: no-repeat;
     background-position: 0px 0px;
     background-size: 66px 34px;
-    }
+}
 
     .notificationsWrapper span {
         display: inline-block;
@@ -241,10 +242,10 @@ background-size: 450px 34px;
         background-position: -250px -216px;
         background-size: auto auto;
         text-align: right;
-line-height: 6px;
+        line-height: 6px;
     }
 
-    .userOptionsWrapper {
+.userOptionsWrapper {
     display: inline-block;
     border: none;
     width: 268px;
@@ -253,13 +254,13 @@ line-height: 6px;
     vertical-align: top;
     background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
     background-repeat: repeat-x;
-    }
+}
 
     .userOptionsWrapper div {
         border: none;
     }
 
-        .arrowDownUserOptions {
+.arrowDownUserOptions {
     display: inline-block;
     width: 16px;
     height: 17px;
@@ -268,7 +269,7 @@ line-height: 6px;
     background-image: url('/Areas/Web/Content/Images/iconosSprite1.png');
     background-repeat: no-repeat;
     background-position: -41px -6px;
-        }
+}
 
 .userOptionsWrapper label {
     display: inline-block;
@@ -279,24 +280,24 @@ line-height: 6px;
     font-size: 14px;
     width: 200px;
     height: 32px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     line-height: 32px;
-            padding: 0px 0px 0px 8px;
+    padding: 0px 0px 0px 8px;
     cursor: pointer;
-        }
-
-.userOptionsWrapper label:hover {
-        background-color: #f2f2f2;
 }
+
+    .userOptionsWrapper label:hover {
+        background-color: #f2f2f2;
+    }
 
 .userOptionsWrapper img {
     border: none;
     width: 28px;
     height: 28px;
     margin: 3px 0px 0px 12px;
-        }
+}
 
 #divUserMenu {
     border: 1px solid grey;
@@ -316,19 +317,19 @@ line-height: 6px;
 
         #divUserMenu ul li:hover {
             background-color: #e6e6e6;
-    }
+        }
 
         #divUserMenu ul li a {
             font-size: 13px;
             line-height: 33px;
             color: #4d4d4d;
-    display: block;
+            display: block;
             margin-left: 5px;
         }
 
             #divUserMenu ul li a:hover {
                 text-decoration: none;
-    }
+            }
 
 
 /*********************** MAIN MENU **********************/
@@ -343,21 +344,23 @@ line-height: 6px;
 .HeaderLogoSaludGuru {
     display: inline-block;
     border: none;
-	padding: 0px;
-	margin: 0px 0px 0px 37px;
+    padding: 0px;
+    margin: 0px 0px 0px 37px;
     width: 90px;
     height: 57px;
     background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
     background-repeat: no-repeat;
-    background-size:81px auto;
+    background-size: 81px auto;
 }
+
 .mainMenuItemWrapper {
     display: block;
-    border:none;
+    border: none;
     width: 100%;
     background-color: #fff;
-    text-align:right;    
+    text-align: right;
 }
+
     .mainMenuItemWrapper li {
         border: 1px solid grey;
         display: inline-block;
@@ -368,7 +371,7 @@ line-height: 6px;
         text-align: center;
         cursor: pointer;
         background-color: #fff;
-}
+    }
 
         .mainMenuItemWrapper li:hover, .mainMenuItemWrapper li:active, .mainMenuItemWrapper li.selected {
             border: 1px solid grey;
@@ -382,11 +385,11 @@ line-height: 6px;
             box-shadow: 2px 2px 2px;
             position: relative;
             z-index: 10;
-}
+        }
 
 
-/**************** ICONO Y LINK PARA CADA CATEGORIA DEL MENU PRINCIPAL ****************/
-/* ADMINISTRAR */
+        /**************** ICONO Y LINK PARA CADA CATEGORIA DEL MENU PRINCIPAL ****************/
+        /* ADMINISTRAR */
         .mainMenuItemWrapper li.admin a {
             border: none;
             display: inline-block;
@@ -401,12 +404,12 @@ line-height: 6px;
             background-repeat: no-repeat;
             background-position: 13px -387px;
             background-size: 50px 509px;
-}
+        }
 
             .mainMenuItemWrapper li.admin a:hover, .mainMenuItemWrapper li.admin a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* DASHBOARD */
+            }
+        /* DASHBOARD */
         .mainMenuItemWrapper li.dashboard a {
             border: none;
             display: inline-block;
@@ -421,12 +424,12 @@ line-height: 6px;
             background-repeat: no-repeat;
             background-position: 12px -315px;
             background-size: 50px 509px;
-}
+        }
 
             .mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* PERFIL */
+            }
+        /* PERFIL */
         .mainMenuItemWrapper li.perfil a {
             border: none;
             display: inline-block;
@@ -442,12 +445,12 @@ line-height: 6px;
             background-repeat: no-repeat;
             background-position: 5px -12px;
             background-size: 50px 509px;
-}
+        }
 
             .mainMenuItemWrapper li.perfil a:hover, .mainMenuItemWrapper li.perfil a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/* AGENDA */
+            }
+        /* AGENDA */
         .mainMenuItemWrapper li.agenda a {
             border: none;
             display: inline-block;
@@ -463,12 +466,12 @@ line-height: 6px;
             background-repeat: no-repeat;
             background-position: 5px -177px;
             background-size: 50px 509px;
-}
+        }
 
             .mainMenuItemWrapper li.agenda a:hover, .mainMenuItemWrapper li.agenda a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
-/*PACIENTES*/
+            }
+        /*PACIENTES*/
         .mainMenuItemWrapper li.pacientes a {
             border: none;
             display: inline-block;
@@ -483,16 +486,16 @@ line-height: 6px;
             background-repeat: no-repeat;
             background-position: 6px -91px;
             background-size: 50px 509px;
-}
+        }
 
             .mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
-}
+            }
 
 /*Secondary menu*/
 .subMenu_Administrator {
     border-bottom: 4px solid #9d046f;
-} 
+}
 
 .subMenu_Appointment {
     border-bottom: 4px solid #99d50e;
@@ -509,15 +512,18 @@ line-height: 6px;
 .subMenu_Patient {
     border-bottom: 4px solid #F07600;
 }
+
 .BOSubMenuWrappper {
-       display:block;
-       width:100%;
-       height:auto;
-       border:none;
-       margin:-1px 0px 0px 0px; padding:0px;
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none;
+    margin: -1px 0px 0px 0px;
+    padding: 0px;
 }
+
 .subMenu {
-    display:block;
+    display: block;
     max-height: 30px;
     width: 100%;
     min-width: 800px;
@@ -525,26 +531,28 @@ line-height: 6px;
     text-transform: uppercase;
     font-size: 12px;
     text-align: right;
-    margin:0px; padding:0px;
+    margin: 0px;
+    padding: 0px;
 }
+
     .subMenu li, .subMenu li:hover, .subMenu li:active {
         display: inline-block;
         margin: 0px 0px 0px -3px;
         padding: 7px 12px;
         height: 30px;
         width: auto;
-    border-top: 1px solid #999;
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: none;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+        border-right: 1px solid #999;
+        border-bottom: none;
         background-color: rgba(255, 255, 255, 0.7);
     }
 
         .subMenu li.selected, .subMenu li:hover, .subMenu li:active {
             box-shadow: none;
             background-color: #fff;
-            cursor:pointer;
-    }
+            cursor: pointer;
+        }
 
         .subMenu li > a {
             margin: 0px;
@@ -558,3 +566,42 @@ line-height: 6px;
             .subMenu li > a:hover {
                 text-decoration: underline;
             }
+
+/*Dropdown Listado notificaciones.*/
+
+.ddNotifications {
+    margin-left: -190px;
+    position: relative;
+    z-index: 20;
+}
+
+    .ddNotifications ul li {
+        color: #4d4d4d;
+        margin: -1px;
+    }
+
+        .ddNotifications ul li img {
+            width: 34px;
+            height: 34px;
+            margin: 2px;
+        }
+
+        .ddNotifications ul li label {
+            vertical-align: text-top;
+            font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-weight: normal;
+            width: 210px;
+            display: inline-block;
+            font-size: 15px;
+        }
+
+
+    .ddNotifications li:nth-child(2n+1) {
+        background-color: lightgray;
+        border: 1px solid #333;
+    }
+
+    .ddNotifications li:nth-child(2n) {
+        background-color: white;
+        border: 1px solid #333;
+    }

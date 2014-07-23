@@ -230,11 +230,13 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
     border: 1px solid green;
-    margin: 0px 0px 0px -2px;
+    margin: 0px 0px 0px 0px;
     height: 510px;
     width: calc(100%);
-    position: absolute;
-    left: 390px;
+    vertical-align: top;
+    position: relative;
+    float:left;
+    overflow: initial;
 }
 
 table.fc-header {

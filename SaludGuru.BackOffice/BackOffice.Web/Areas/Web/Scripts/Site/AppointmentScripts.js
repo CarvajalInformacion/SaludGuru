@@ -1052,3 +1052,106 @@ var UpsertAppointmentObject = {
         MettingCalendarObject.Refresh();
     }
 };
+
+/*render appointment detail*/
+var AppointmentDetailObject = {
+
+    /*office info*/
+    lstOffice: new Array(),
+
+    CurrentAppointment: null,
+
+    /*init meeting variables*/
+    Init: function (vInitObject) {
+
+        this.CurrentAppointment = vInitObject.CurrentAppointment;
+
+        //init office info object array
+        $.each(vInitObject.OfficeInfo, function (index, value) {
+            //set key value pair for an office
+            AppointmentDetailObject.lstOffice[value.OfficePublicId] = value;
+        });
+    },
+
+    /*init appointment info form*/
+    RenderAsync: function () {
+        debugger;
+        //get current values
+
+        //current appointment status
+        var oCurrentAppointmentStatus = '1201';
+        if (this.CurrentAppointment != null) {
+            oCurrentAppointmentStatus = this.CurrentAppointment.AppointmentStatus;
+        }
+
+        //current office
+        var oCurrentOfficePublicId = '';
+        if (this.CurrentAppointment != null) {
+            oCurrentOfficePublicId = this.CurrentAppointment.OfficePublicId;
+        }
+        else {
+            for (ovOfficePublicId in this.lstOffice) {
+                oCurrentOfficePublicId = ovOfficePublicId;
+                break;
+            }
+        }
+
+        //current treatment
+        var oCurrentTreatmentId = 0;
+
+        if (this.CurrentAppointment != null) {
+            oCurrentTreatmentId = this.CurrentAppointment.TreatmentId;
+        }
+
+        ////current start date and duration
+        //var oCurrentStartDate = new Date();
+        //var oCurrentStartTime = '';
+        //var oCurrentDuration = 0;
+
+        //if (vStartDate != null) {
+
+        //    //get start date
+        //    oCurrentStartDate = vStartDate;
+
+        //    //get start time
+        //    var vMin = vStartDate.getMinutes();
+        //    if (vMin < 10) {
+        //        vMin = '0' + vStartDate.getMinutes();
+        //    }
+
+        //    if (vStartDate.getHours() <= 12) {
+        //        oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' AM';
+        //    }
+        //    else {
+        //        oCurrentStartTime = (vStartDate.getHours() - 12) + ':' + vMin + ' PM';
+        //    }
+        //}
+        //else if (vAppointmentInfo != null) {
+        //    oCurrentStartDate = vAppointmentInfo.StartDate;
+        //    oCurrentStartTime = vAppointmentInfo.StartTime;
+        //    oCurrentDuration = vAppointmentInfo.Duration;
+        //}
+
+        ////render office
+        //this.RenderOffice(oCurrentOfficePublicId, vStartDate, vAppointmentInfo)
+
+        ////render treatment duration startdate and starttime
+        //this.RenderTreatment(oCurrentOfficePublicId, oCurrentDuration, oCurrentTreatmentId, oCurrentStartDate, oCurrentStartTime);
+
+        ////render patient appointment
+        //this.RenderPatient(vAppointmentInfo);
+
+        ////add style for specific appointment status
+        //$('#' + this.DivId).attr('class', '');
+        //$('#' + this.DivId).addClass('AppointmentFormStatus_' + oCurrentAppointmentStatus);
+
+        ////render appointment actions
+        //this.RenderActions(vAppointmentInfo, oCurrentAppointmentStatus);
+
+        ////display create appointment form
+        //$('#' + this.DivId).fadeIn('slow');
+
+
+    },
+};
+
