@@ -354,6 +354,7 @@
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOAgendaPopUp.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOAppointment.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOAppointmentViewDay.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODatePicker.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorComunicados.css" />
