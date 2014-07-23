@@ -258,7 +258,12 @@ var MettingCalendarObject = {
                 }
             },
             eventAfterRender: function (event, element, view) {
-                element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+                if (element.find('.fc-event-title').text().length > 0) {
+                    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+                }
+                else {
+                    element.find('.fc-event-time').html(element.find('.fc-event-time').text());
+                }
             },
             events: {
                 url: oEventUrl,
@@ -945,6 +950,11 @@ var UpsertAppointmentObject = {
         $('#' + this.DivId).hide();
         $('#' + this.DivBlockId).hide();
 
+        //load appointment id
+        if (vAppointmentInfo != null) {
+            $('#BlockAppointmentPublicId').val(vAppointmentInfo.id);
+        }
+        
         //load office
         if (vAppointmentInfo != null) {
             $('#BlockOfficePublicId').val(vAppointmentInfo.OfficePublicId);
@@ -968,10 +978,10 @@ var UpsertAppointmentObject = {
         });
 
         if (vAppointmentInfo != null) {
-            $('#BlockDate').val(vAppointmentInfo.StartTime);
+            $('#BlockStartTime').val(vAppointmentInfo.StartTime);
         }
         else {
-            $('#BlockDate').val('');
+            $('#BlockStartTime').val('');
         }
 
         //load block end time
@@ -1056,13 +1066,17 @@ var UpsertAppointmentObject = {
 /*render appointment detail*/
 var AppointmentDetailObject = {
 
-    /*office info*/
-    lstOffice: new Array(),
+    StartDateTime: new Date(),
 
     CurrentAppointment: null,
 
+    /*office info*/
+    lstOffice: new Array(),
+
     /*init meeting variables*/
     Init: function (vInitObject) {
+
+        this.StartDateTime = vInitObject.StartDateTime;
 
         this.CurrentAppointment = vInitObject.CurrentAppointment;
 
@@ -1103,34 +1117,22 @@ var AppointmentDetailObject = {
             oCurrentTreatmentId = this.CurrentAppointment.TreatmentId;
         }
 
-        ////current start date and duration
-        //var oCurrentStartDate = new Date();
-        //var oCurrentStartTime = '';
-        //var oCurrentDuration = 0;
+        //current start date and duration
+        var oCurrentStartDate = new Date();
+        var oCurrentStartTime = '';
+        var oCurrentDuration = 0;
 
-        //if (vStartDate != null) {
+        if (this.CurrentAppointment != null) {
+            oCurrentStartDate = this.CurrentAppointment.StartDate;
+            oCurrentStartTime = this.CurrentAppointment.StartTime;
+            oCurrentDuration = this.CurrentAppointment.Duration;
+        }
+        else if (this.StartDateTime != null) {
 
-        //    //get start date
-        //    oCurrentStartDate = vStartDate;
+            //get start date
+            oCurrentStartDate = this.StartDateTime;
+        }
 
-        //    //get start time
-        //    var vMin = vStartDate.getMinutes();
-        //    if (vMin < 10) {
-        //        vMin = '0' + vStartDate.getMinutes();
-        //    }
-
-        //    if (vStartDate.getHours() <= 12) {
-        //        oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' AM';
-        //    }
-        //    else {
-        //        oCurrentStartTime = (vStartDate.getHours() - 12) + ':' + vMin + ' PM';
-        //    }
-        //}
-        //else if (vAppointmentInfo != null) {
-        //    oCurrentStartDate = vAppointmentInfo.StartDate;
-        //    oCurrentStartTime = vAppointmentInfo.StartTime;
-        //    oCurrentDuration = vAppointmentInfo.Duration;
-        //}
 
         ////render office
         //this.RenderOffice(oCurrentOfficePublicId, vStartDate, vAppointmentInfo)
