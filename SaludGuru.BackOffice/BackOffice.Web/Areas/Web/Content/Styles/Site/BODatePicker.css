@@ -85,6 +85,10 @@ table.ui-datepicker-calendar > tbody > tr > td {
     padding:0px;
     border:None;
 }
+    table.ui-datepicker-calendar > tbody > tr > td.selected a{
+        background-color:#e2ff6d;
+        background-image:none;
+    }
 
 a.ui-state-default, .ui-widget-content .ui-state-default {
     border:1px solid #666 !important;

@@ -102,9 +102,68 @@ div#AppointmentUpsert ul li, div.BlockAppointmentUpsert ul li{
     margin:0px;
     border:NONE;
     }
+
+/****************AQUI VIENEN TODOS LOS COLORCITOS***************/
+/*NUEVA CITA*/
+div.AppointmentFormStatus_1201 li#liAppointmentHeader {
+    background-color:#d6ab00;
+}
+div.AppointmentFormStatus_1201 h4.changeToColorStatus {
+    border-bottom:1px solid #d6ab00;
+    color:#d6ab00;
+}
+/*CITA CONFIRMADA*/
+div.AppointmentFormStatus_1202 li#liAppointmentHeader {
+    background-color:#88aa00;
+}
+div.AppointmentFormStatus_1202 h4.changeToColorStatus {
+    border-bottom:1px solid #88aa00;
+    color:#88aa00;
+}
+/*CITA CANCELADA*/
+div.AppointmentFormStatus_1203 li#liAppointmentHeader {
+    background-color:#d40000;
+}
+div.AppointmentFormStatus_1203 h4.changeToColorStatus {
+    border-bottom:1px solid #d40000;
+    color:#d40000;
+}
+/*CITA PENDIENTE ASISTENCIA*/
+div.AppointmentFormStatus_1204 li#liAppointmentHeader {
+    background-color:#800066;
+}
+div.AppointmentFormStatus_1204 h4.changeToColorStatus {
+    border-bottom:1px solid #800066;
+    color:#800066;
+}
+/*CITA SI ASISTENCIA*/
+div.AppointmentFormStatus_1205 li#liAppointmentHeader {
+    background-color:#39a500;
+}
+div.AppointmentFormStatus_1205 h4.changeToColorStatus {
+    border-bottom:1px solid #39a500;
+    color:#39a500;
+}
+/*CITA NO ASISTENCIA*/
+div.AppointmentFormStatus_1206 li#liAppointmentHeader {
+    background-color:#414143;
+}
+div.AppointmentFormStatus_1206 h4.changeToColorStatus {
+    border-bottom:1px solid #414143;
+    color:#414143;
+}
+/*BLOQUEAR AGENDA*/
+div.AppointmentFormStatus_1207 li#liAppointmentHeader {
+    background-color:#880034;
+}
+div.AppointmentFormStatus_1207 h4.changeToColorStatus {
+    border-bottom:1px solid #880034;
+    color:#880034;
+}
+
+
                 div#AppointmentUpsert ul li:first-child,
                 div.BlockAppointmentUpsert ul li:first-child{
-                    background-color:#800066;
                     width:100%; height:24px;
                     padding:0px;
                     margin-bottom:10px;
@@ -160,8 +219,6 @@ div#AppointmentUpsert ul li, div.BlockAppointmentUpsert ul li{
     div#AppointmentUpsert ul > li > h4,
     div.BlockAppointmentUpsert ul > li > h4{
         display:block;
-        border-bottom:1px solid #800066;
-        color:#800066;
         line-height:15px;
         text-align:left;
         margin-left:12px;
