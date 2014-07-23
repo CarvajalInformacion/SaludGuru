@@ -352,6 +352,7 @@
     <Content Include="Areas\Web\Content\ptTimeSelect\jquery.ptTimeSelect.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOAgendaPopUp.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOAppointment.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOButtons.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODatePicker.css" />
