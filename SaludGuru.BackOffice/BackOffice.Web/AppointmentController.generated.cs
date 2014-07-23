@@ -159,9 +159,11 @@ namespace BackOffice.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Detail
         {
+            public readonly string UpsertAction = "UpsertAction";
             public readonly string Date = "Date";
             public readonly string AppointmentPublicId = "AppointmentPublicId";
             public readonly string ReturnUrl = "ReturnUrl";
+            public readonly string AppointmentPublicIdToDuplicate = "AppointmentPublicIdToDuplicate";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -231,16 +233,18 @@ namespace BackOffice.Web.Controllers
         }
 
         [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string AppointmentPublicId, string ReturnUrl);
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UpsertAction, string Date, string AppointmentPublicId, string ReturnUrl, string AppointmentPublicIdToDuplicate);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(string Date, string AppointmentPublicId, string ReturnUrl)
+        public override System.Web.Mvc.ActionResult Detail(string UpsertAction, string Date, string AppointmentPublicId, string ReturnUrl, string AppointmentPublicIdToDuplicate)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UpsertAction", UpsertAction);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AppointmentPublicId", AppointmentPublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ReturnUrl", ReturnUrl);
-            DetailOverride(callInfo, Date, AppointmentPublicId, ReturnUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AppointmentPublicIdToDuplicate", AppointmentPublicIdToDuplicate);
+            DetailOverride(callInfo, UpsertAction, Date, AppointmentPublicId, ReturnUrl, AppointmentPublicIdToDuplicate);
             return callInfo;
         }
 

@@ -4,6 +4,11 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 
     Model.RenderScripts = false;
+
+    //get current appointment status
+    MedicalCalendar.Manager.Models.enumAppointmentStatus oApmntStatus = Model.CurrentAppointment != null ?
+        (MedicalCalendar.Manager.Models.enumAppointmentStatus)Model.CurrentAppointment.AppointmentStatus :
+        MedicalCalendar.Manager.Models.enumAppointmentStatus.New;
 }
 
 <div class="BOAgendaModuleGreatWrapper">
@@ -14,17 +19,49 @@
         <!--Meeting Calendar-->
         @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
     </div>
-    <div style="height:900px;">
+    <div class="AppointmentFormStatus_@((int)oApmntStatus)" style="height:900px;">
         <div>
             @if (!string.IsNullOrEmpty(Model.ReturnUrl))
             {
                 <a href="@Model.ReturnUrl">Volver</a>
             }
             <span>Detalles de la cita</span>
+            <span>
+                @switch (oApmntStatus)
+                {
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.New:
+                        if (Model.CurrentAppointment == null)
+                        {
+                            Html.Raw("(Cita nueva)");
+                        }
+                        else
+                        {
+                            Html.Raw("(Cita creada)");
+                        }
+                        break;
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Confirmed:
+                        Html.Raw("(Cita confirmada)");
+                        break;
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled:
+                        Html.Raw("(Cita cancelada)");
+                        break;
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.PendientAsistance:
+                        Html.Raw("(Cita pendiente por asistencia)");
+                        break;
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance:
+                        Html.Raw("(Cita confirmada asistencia)");
+                        break;
+                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance:
+                        Html.Raw("(Cita confirmada inasistencia)");
+                        break;
+                    default:
+                        break;
+                }
+            </span>
         </div>
         <div>
             <!--appointment info-->
-            <form action="" method="post">
+            <form id="frmAppointment" name="frmAppointment" action="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name))" method="post">
                 <ul>
                     <li>
                         <label>Consultorio:</label>
@@ -58,13 +95,11 @@
                 <!--hidden fields-->
                 <div style="display:none;">
                     <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="@Model.ReturnUrl" />
+                    <input type="hidden" id="UpsertAction" name="UpsertAction" />
                     <input type="hidden" id="SendNotifications" name="SendNotifications" value="false" />
                     <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" value="@(Model.CurrentAppointment != null && !string.IsNullOrEmpty(Model.CurrentAppointment.id) ? Model.CurrentAppointment.id : string.Empty)" />
-                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" value="" />
+                    <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
-                </div>
-                <div>
-                    <a href="javascript:;">Guardar</a>
                 </div>
             </form>
         </div>
@@ -84,8 +119,165 @@
                 </li>
             </ul>
         </div>
+        <div id="AppointmentUpsertActions" class="BOAgendaCalendarAppointmentCommands">
+
+            @switch (oApmntStatus)
+            {
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.New:
+                    if (Model.CurrentAppointment == null)
+                    {
+                    }
+                    else
+                    {
+                        <span class="AppointmentActionsCancel">
+                            <a href="javascript:;">Cancelar</a>
+                        </span>
+                        <span class="AppointmentActionsConfirm">
+                            <a href="javascript:;">Confirmar</a>
+                        </span>
+                        <span class="AppointmentActionsNew">
+                            <a href="javascript:;">Nueva Cita</a>
+                        </span>
+                    }
+                    <span class="AppointmentActionsAccept">
+                        <a href="javascript:;">Guardar</a>
+                    </span>
+                    break;
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.Confirmed:
+                <span class="AppointmentActionsCancel">
+                    <a href="javascript:;">Cancelar</a>
+                </span>
+                <span class="AppointmentActionsNew">
+                    <a href="javascript:;">Nueva Cita</a>
+                </span>
+                <span class="AppointmentActionsAccept">
+                    <a href="javascript:;">Guardar</a>
+                </span>
+                    break;
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled:
+                <span class="AppointmentActionsNew">
+                    <a href="javascript:;">Nueva Cita</a>
+                </span>
+                    break;
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.PendientAsistance:
+                <span class="AppointmentActionsConfirm">
+                    <a href="javascript:;">Confirmar</a>
+                </span>
+                <span class="AppointmentActionsNew">
+                    <a href="javascript:;">Nueva Cita</a>
+                </span>
+                <span class="AppointmentActionsAccept">
+                    <a href="javascript:;">Guardar</a>
+                </span>
+                    break;
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance:
+                <span class="AppointmentActionsNew">
+                    <a href="javascript:;">Nueva Cita</a>
+                </span>
+                    break;
+                case MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance:
+                <span class="AppointmentActionsNew">
+                    <a href="javascript:;">Nueva Cita</a>
+                </span>
+                    break;
+                default:
+                    break;
+            }
+        </div>
     </div>
 </div>
+
+<!--templates-->
+<div id="templatesUpsertAppointment" style="display:none;">
+    <!--patient autocomplete-->
+    <div id="divPatientAcItem">
+        <div class="autocompletePatients">
+            <img src="{ProfileImage}" />
+            <label>
+                {Name}<br />
+                Ident: {IdentificationNumber}<br />
+                Cel: {Mobile}
+            </label>
+        </div>
+    </div>
+
+    <!--patient appointment-->
+    <ul id="ulPatientAppointment">
+        <li id="{PatientPublicId}">
+
+            <!--photo container-->
+            <div class="BOPatientPhotoContainer">
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">
+                    <img src="{ProfileImage}" />
+                </a>
+            </div>
+
+            <!--data container-->
+            <div class="BOPatientDataContainer">
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">{Name}</a>
+                <label>Ident: {IdentificationNumber}</label>
+                <label>Cel: {Mobile}</label>
+                <label>Email: {Email}</label>
+            </div>
+
+            <!--remove patient container-->
+            <div class="BOPatientRemoveContainer">
+                <a href="javascript:AppointmentDetailObject.RemovePatientAppointment('{PatientPublicId}')"></a>
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
+            </div>
+
+        </li>
+    </ul>
+
+</div>
+<!--dialogs-->
+<div id="AppointmentDialog" style="display:none;">
+
+    <!--Dialog save appointment changes-->
+    <div id="Dialog_SaveAppointment" title="Guardar cambios">
+        <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
+    </div>
+
+    <!--Dialog cancel appointment-->
+    <div id="Dialog_CancelAppointment" title="Guardar cambios">
+        <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
+    </div>
+
+    <!--Dialog confirm appointment-->
+    <div id="Dialog_ConfirmAppointment" title="Confirmar asistencia">
+        <form action="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name))" method="post" id="frmConfirmAppointment" name="frmConfirmAppointment">
+            <ul>
+                <li>
+                    <div>
+                        <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance)" />
+                        <span>El paciente asistio a la cita</span>
+                    </div>
+                    <div>
+                        <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance)" />
+                        <span>El paciente no asistio a la cita</span>
+                    </div>
+                </li>
+                <li id="liRemindedFuture">
+                    <input name="SendRemindedFuture" id="SendRemindedFuture" type="checkbox" />
+                    <span>Enviar recordatorio de proxima cita</span>
+                    <div id="divRemindedDate">
+                        <span>Seleccione la fecha de envio del recordatorio</span>
+                        <input type="text" id="RemindedDate" name="RemindedDate" />
+                    </div>
+                </li>
+            </ul>
+
+            <div style="display:none;">
+                <!-- hidden fields -->
+                <input type="hidden" id="R_ReturnUrl" name="R_ReturnUrl" value="@Model.ReturnUrl" />
+                <input type="hidden" id="R_UpsertAction" name="R_UpsertAction" value="ConfirmAppointment" />
+                <input type="hidden" id="R_AppointmentPublicId" name="R_AppointmentPublicId" value="@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AppointmentPublicId)" />
+            </div>
+        </form>
+    </div>
+
+</div>
+
 
 @{
     //create office object
@@ -135,6 +327,7 @@
         $(document).ready(function () {
             //render metting calendar
             AppointmentDetailObject.Init({
+                StartDateTime : new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
                 CurrentAppointment: @Html.Raw(oAppointmentInfo),
                 OfficeInfo: @Html.Raw(oOfficeInfo),
             });
