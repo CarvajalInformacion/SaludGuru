@@ -8,11 +8,7 @@ table.fc-border-separate th.fc-day-header{
     border: none;
     vertical-align: middle;
 }
-
-div#CalendarContent div.fc-event-inner {
-    height:auto;
-    min-height:45px;
-    display: block;
+div#CalendarContent > div.fc-event > div.fc-event-inner {
 }
 div#CalendarContent span.fc-event-time{
     display: inline-block;
