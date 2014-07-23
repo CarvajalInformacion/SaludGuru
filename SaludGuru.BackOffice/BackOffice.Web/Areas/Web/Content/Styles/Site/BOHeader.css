@@ -342,7 +342,7 @@ span.ui-selectmenu-text:hover {
 }
 
 .HeaderLogoSaludGuru {
-    display: inline-block;
+    position:absolute;
     border: none;
     padding: 0px;
     margin: 0px 0px 0px 37px;
@@ -350,7 +350,7 @@ span.ui-selectmenu-text:hover {
     height: 57px;
     background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
     background-repeat: no-repeat;
-    background-size: 81px auto;
+    background-size:84px auto;
 }
 
 .mainMenuItemWrapper {

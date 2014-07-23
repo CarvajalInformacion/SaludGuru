@@ -1,0 +1,87 @@
+.ui-dialog .ui-dialog-titlebar-close {
+    border:none;
+    background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+        background-position:-213px -265px;
+        background-size:394px auto;
+        background-repeat:no-repeat;
+        background-color:none;
+        background-color: #99c21d;
+        height: 18px !important;
+        width: 18px !important;
+}
+
+#Dialog_CancelAppointment, .ui-dialog-buttonpane {
+    width:auto !important;
+}
+.ui-dialog .ui-dialog-content {
+    border:1px solid pink;
+    width:200px;
+}
+
+#Dialog_ConfirmAppointment {
+    height:auto !important;
+}
+
+#Dialog_CancelAppointment p, .BOSelectAttendance span, #liRemindedFuture span, #divRemindedDate span,
+#Dialog_SaveResult p, #Dialog_SaveAppointment p{
+    border:none;
+    line-height:15px;
+    font-size:15px;
+    font-weight:normal;
+    font-family:"MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+    margin:8px 20px 9px 0px;
+}
+    #Dialog_SaveResult p {
+        line-height:18px;
+        font-size:18px;
+    }
+
+    li.BOSelectAttendance{
+        display:block;
+        border-bottom:1px solid #666;
+        padding:0px 0px 10px 0px;
+        margin-bottom:6px;
+    }
+    #divRemindedDate {
+        margin:7px 0px;
+    }
+            #divRemindedDate input{
+                margin-top:8px;
+                border:1px solid #333;
+                background-color: #fff;
+                line-height:15px;
+                font-size:15px;
+                font-weight:normal;
+                font-family:"MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+                height: 24px;
+                border-radius: 3px;
+            }
+
+div.ui-dialog-buttonset button{
+    border: 1px solid #333;
+    color: #333;
+    border-radius: 3px;
+    width: auto;
+    height: auto;
+    margin:4px 0px 0px 14px !important;
+    font-family:"MuseoSans100","Trebuchet MS",Helvetica,sans-serif;
+    font-weight:bold;
+    padding: 13px 28px;
+}
+
+        div.ui-dialog-buttonset button:first-child {
+           background-color:#b5df30; 
+        }
+        div.ui-dialog-buttonset button:first-child:hover {
+           background-color:#99c21d; 
+        }
+        div.ui-dialog-buttonset button:nth-child(2) {
+           background-color:#ffa3a3; 
+        }
+        div.ui-dialog-buttonset button:nth-child(2):hover {
+           background-color:#ff8080; 
+        }
+
+ {
+
+}

@@ -422,7 +422,7 @@ div.fc-event-inner div.fc-event-title {
 /*event personalized style*/
 /*New*/
 div.AppointmentStatus_1201 .fc-event-inner{
-    border-color: #d6ab00;
+    color: #d6ab00 !important;
 }
     div.AppointmentStatus_1201 .fc-event-inner:hover {
         background-color: #ffeea5;
@@ -430,35 +430,35 @@ div.AppointmentStatus_1201 .fc-event-inner{
 
 /*Confirmed*/
 div.AppointmentStatus_1202 .fc-event-inner{
-    border-color: #88aa00;
+    color: #88aa00 !important;
 }
     div.AppointmentStatus_1202 .fc-event-inner:hover {
         background-color: #e4ff77;
     }
 /*Canceled*/
 div.AppointmentStatus_1203 .fc-event-inner{
-    border-color: #d40000;
+    color: #d40000 !important;
 }
     div.AppointmentStatus_1203 .fc-event-inner:hover {
         background-color: #ffabab;
     }
 /*PendientAsistance*/
 .AppointmentStatus_1204 {
-    border-color: #800066;
+    color: #800066 !important;
 }
     div.AppointmentStatus_1204 .fc-event-inner:hover {
         background-color: #f7e4f3;
     }
 /*Attendance*/
 .AppointmentStatus_1205 {
-    border-color: #39a500;
+    color: #39a500 !important;
 }
     .AppointmentStatus_1205 .fc-event-inner:hover {
         background-color: #afff85;
     }
 /*NotAttendance*/
 .AppointmentStatus_1206 {
-    border-color: #414143;
+    color: #414143 !important;
 }
     .AppointmentStatus_1206 .fc-event-inner:hover {
         background-color: #c7c7c8;
