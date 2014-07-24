@@ -1478,6 +1478,7 @@ var AppointmentDetailObject = {
     },
 
     RenderPatientAppointment: function (vDivId, vPatientPublicId) {
+
         //init office metting calendar
         $('#' + vDivId).fullCalendar({
             dayNames: MettingCalendarObject.dayNamesSp,
@@ -1494,9 +1495,9 @@ var AppointmentDetailObject = {
                 right: ' ',
             },
             columnFormat: {
-                month: ' ddd ',
-                week: ' dddd ',
-                day: ' dddd '
+                month: ' ',
+                week: ' ',
+                day: ' '
             },
             eventClick: function (event, jsEvent, view) {
                 window.location = '/Appointment/Detail?AppointmentPublicId=' + event.id;
@@ -1510,7 +1511,7 @@ var AppointmentDetailObject = {
                 }
             },
             events: {
-                url: '/api/PatientApi?PatientPublicId=' + vPatientPublicId + '&Quantity=5',
+                url: '/api/PatientApi?Quantity=5&PatientPublicId=' + vPatientPublicId,
             },
         });
     },
