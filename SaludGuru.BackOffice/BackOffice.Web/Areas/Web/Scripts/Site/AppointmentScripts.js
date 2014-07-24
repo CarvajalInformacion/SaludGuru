@@ -561,7 +561,7 @@ var UpsertAppointmentObject = {
 
         //add style for specific appointment status
         $('#' + this.DivId).attr('class', '');
-        $('#' + this.DivId).addClass('AppointmentFormStatus_' + vCurrentAppointmentStatus);
+        $('#' + this.DivId).addClass('container2 AppointmentFormStatus_' + vCurrentAppointmentStatus);
 
         //get appointment header template
         var oHeaderTemplate = $('#AppointmentHeaderTemplate').html();
@@ -878,7 +878,7 @@ var UpsertAppointmentObject = {
         var oCurrentAppointmentStatus = '1201';
 
         //add style for specific appointment status
-        $('#' + this.DivId).addClass('AppointmentFormStatus_' + oCurrentAppointmentStatus);
+        $('#' + this.DivId).addClass('container2 AppointmentFormStatus_' + oCurrentAppointmentStatus);
 
         //render appointment actions
         this.RenderActions(null, oCurrentAppointmentStatus);

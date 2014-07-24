@@ -223,8 +223,8 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
     display: block;
     width: inherit;
     overflow-x: auto;
-    min-height: 288px;
-    height: 288px;
+    /*min-height: 288px;*/
+    /*height: 288px;*/
 }
 
 /*************************VISTA CALENDARIO POR DIA**************************/
@@ -236,7 +236,7 @@ div#divMeetingCalendar {
     vertical-align: top;
     position: relative;
     float:left;
-    overflow: initial;
+    /*overflow: initial;*/
 }
 
 table.fc-header {
