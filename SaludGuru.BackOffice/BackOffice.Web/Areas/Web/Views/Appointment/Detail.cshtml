@@ -85,11 +85,11 @@
                     </li>
                     <li>
                         <label>Cuidados previos:</label>
-                        <input type="text" id="AfterCare" name="AfterCare" />
+                        <textarea id="AfterCare" name="AfterCare">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AfterCare)</textarea>
                     </li>
                     <li>
                         <label>Cuidados posteriores:</label>
-                        <input type="text" id="BeforeCare" name="BeforeCare" />
+                        <textarea id="BeforeCare" name="BeforeCare">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.BeforeCare)</textarea>
                     </li>
                 </ul>
                 <!--hidden fields-->
@@ -270,7 +270,7 @@
             <div style="display:none;">
                 <!-- hidden fields -->
                 <input type="hidden" id="R_ReturnUrl" name="R_ReturnUrl" value="@Model.ReturnUrl" />
-                <input type="hidden" id="R_UpsertAction" name="R_UpsertAction" value="ConfirmAppointment" />
+                <input type="hidden" id="R_UpsertAction" name="UpsertAction" value="ConfirmAppointment" />
                 <input type="hidden" id="R_AppointmentPublicId" name="R_AppointmentPublicId" value="@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AppointmentPublicId)" />
             </div>
         </form>

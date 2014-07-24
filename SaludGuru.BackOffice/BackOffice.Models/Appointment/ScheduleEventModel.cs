@@ -98,6 +98,10 @@ namespace BackOffice.Models.Appointment
 
         public List<PatientSearchModel> CurrentPatientInfo { get { return CurrentAppointment.RelatedPatient.Select(x => new PatientSearchModel(x)).ToList(); } }
 
+        public string AfterCare { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
+
+        public string BeforeCare { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
+
         #endregion
 
         #region Related Appointment

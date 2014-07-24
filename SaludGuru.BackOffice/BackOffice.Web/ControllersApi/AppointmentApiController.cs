@@ -259,10 +259,11 @@ namespace BackOffice.Web.ControllersApi
                                 DefaultIfEmpty(0).
                                 FirstOrDefault(),
                             AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare,
-                            Value = oCurrentProfile.RelatedOffice.
+                            LargeValue = oCurrentProfile.RelatedOffice.
                                 Where(x => x.OfficePublicId == oReturn.OfficePublicId).
                                 Select(x => x.RelatedTreatment.Where(y => y.CategoryId == oTreatmentId).
-                                    Select(y => y.TreatmentOfficeInfo.Where(z => z.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
+                                    Select(y => y.TreatmentOfficeInfo.
+                                        Where(z => z.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
                                         Select(z => z.LargeValue).
                                         FirstOrDefault()).
                                     FirstOrDefault()).
@@ -275,15 +276,16 @@ namespace BackOffice.Web.ControllersApi
                         (new AppointmentInfoModel()
                         {
                             AppointmentInfoId = oOriginalAppointment == null ? 0 : oOriginalAppointment.AppointmentInfo.
-                                Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare).
+                                Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare).
                                 Select(x => x.AppointmentInfoId).
                                 DefaultIfEmpty(0).
                                 FirstOrDefault(),
                             AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare,
-                            Value = oCurrentProfile.RelatedOffice.
+                            LargeValue = oCurrentProfile.RelatedOffice.
                                 Where(x => x.OfficePublicId == oReturn.OfficePublicId).
                                 Select(x => x.RelatedTreatment.Where(y => y.CategoryId == oTreatmentId).
-                                    Select(y => y.TreatmentOfficeInfo.Where(z => z.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
+                                    Select(y => y.TreatmentOfficeInfo.
+                                        Where(z => z.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
                                         Select(z => z.LargeValue).
                                         FirstOrDefault()).
                                     FirstOrDefault()).

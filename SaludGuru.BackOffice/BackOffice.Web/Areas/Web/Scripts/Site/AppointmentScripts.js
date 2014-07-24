@@ -1195,6 +1195,12 @@ var AppointmentDetailObject = {
                 else {
                     //set duration
                     $('#Duration').val(value.Duration);
+                    if (this.CurrentAppointment == null) {
+                        //set after care 
+                        $('#AfterCare').val(value.AfterCare);
+                        //set before care
+                        $('#BeforeCare').val(value.BeforeCare);
+                    }
                 }
             }
         });
@@ -1209,6 +1215,11 @@ var AppointmentDetailObject = {
                 if (value.TreatmentId == ovTreatmentId) {
                     //set duration
                     $('#Duration').val(value.Duration);
+                    //set after care 
+                    $('#AfterCare').val(value.AfterCare);
+                    //set before care
+                    $('#BeforeCare').val(value.BeforeCare);
+
                 }
             });
         });
