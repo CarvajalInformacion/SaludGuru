@@ -601,32 +601,135 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult ProfileReminderUpsert(string ProfilePublicId)
         {
-            ProfileUpSertModel model = new ProfileUpSertModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
             };
+
+            //load comunication model
+            Model.RelatedComunication = new List<ProfileComunicationModel>();
+
+            ProfileComunicationModel.MessageTypeEnabled.All(x =>
+            {
+                Model.RelatedComunication.Add(
+                    new ProfileComunicationModel(Model.Profile.ProfileInfo.
+                        Where(y => y.ProfileInfoType == x).
+                        ToList(),
+                        x));
+
+                return true;
+            });
+
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
-                ProfileModel oCreate = new ProfileModel();
-                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+                List<ProfileInfoModel> oProfileInfoToDelete = null;
 
-                oCreate = GetReminderRequestModel();
+                ProfileModel oProfileToUpsert = GetReminderRequestModel(Model.RelatedComunication, out oProfileInfoToDelete);
 
-                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
-                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+                oProfileInfoToDelete = oProfileToUpsert.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oProfileInfoToDelete);
 
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
+                oProfileToUpsert.ProfileInfo = oProfileToUpsert.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
 
                 //create profile 
-                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oProfileToUpsert);
+                
+                Model = new ProfileUpSertModel()
+                {
+                    ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                    Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                };
 
-                //get updated profile info
-                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
-            }
-            return View(model);
+                //load comunication model
+                Model.RelatedComunication = new List<ProfileComunicationModel>();
+
+                ProfileComunicationModel.MessageTypeEnabled.All(x =>
+                {
+                    Model.RelatedComunication.Add(
+                        new ProfileComunicationModel(Model.Profile.ProfileInfo.
+                            Where(y => y.ProfileInfoType == x).
+                            ToList(),
+                            x));
+
+                    return true;
+                });
+            }           
+            return View(Model);
         }
+
+        #endregion
+
+        #region RelatedProfile
+
+        public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
+        {
+            ProfileRelatedModel oReturn = new ProfileRelatedModel();
+            ProfileModel Model = new ProfileModel();
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                          && bool.Parse(Request["UpsertAction"]))
+            {
+                string ProfilePublicIdChild = Request["divGridProfile-txtSearch-id"];
+                Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
+                if (Model.ChildProfile.Where(x => x.ProfilePublicId == ProfilePublicIdChild).Select(x => x).ToList().Count() > 0)
+                    return RedirectToAction(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+
+                SaludGuruProfile.Manager.Controller.Profile.RelatedProfileCreate(ProfilePublicId, ProfilePublicIdChild);
+            }
+            Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
+
+            if (Model.ChildProfile.Count() > 0)
+            {
+                foreach (ProfileModel item in Model.ChildProfile)
+                {
+                    string img = item.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).Select(x => x.Value).FirstOrDefault();
+
+                    if (img == null)
+                    {
+                        if (item.ProfileInfo.
+                           Where(x => x.ProfileInfoType == enumProfileInfoType.Gender).
+                           Select(x => x.Value == "true" ? true : false).
+                           DefaultIfEmpty(false).
+                           FirstOrDefault())
+                        {
+                            img = BackOffice.Models.General.InternalSettings.Instance
+                                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
+
+                            ProfileInfoModel infoAdd = new ProfileInfoModel();
+                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
+                            infoAdd.Value = img;
+                            item.ProfileInfo.Add(infoAdd);
+                        }
+                        else
+                        {
+                            img = BackOffice.Models.General.InternalSettings.Instance
+                                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
+
+                            ProfileInfoModel infoAdd = new ProfileInfoModel();
+                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
+                            infoAdd.Value = img;
+                            item.ProfileInfo.Add(infoAdd);
+                        }
+                    }
+                }
+            }
+            oReturn.PrincipalProfile = Model;
+            oReturn.AutoComplitListProfiles = SaludGuruProfile.Manager.Controller.Profile.ProfileSearchToRelate(string.Empty, ProfilePublicId, 0, 20);
+            return View(oReturn);
+        }
+
+        public virtual ActionResult RelatedProfileDelete(string ProfilePublicId)
+        {
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                         && bool.Parse(Request["UpsertAction"]))
+            {
+                string ProfilePublicIdChild = Request["ProfileRelated"];
+                SaludGuruProfile.Manager.Controller.Profile.RelatedProfileDelete(ProfilePublicId, ProfilePublicIdChild);
+            }
+            return RedirectToAction(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
+        }
+
         #endregion
 
         #region private methods
@@ -848,7 +951,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["IsNotifyAC"])?0:int.Parse(Request["IsNotifyAC"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.AsignacionCita,                            
-                            Value = (Request["AC_NotifyGuru"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            Value = (Request["AC_NotifyGuru"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Cancelacion de cita
                         new ProfileInfoModel()
@@ -867,7 +970,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyCC"])?0:int.Parse(Request["isNotifyCC"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.CancelacionCita,
-                            Value = (Request["CC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            Value = (Request["CC_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Encuesta Satisfacción
                         new ProfileInfoModel()
@@ -886,7 +989,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyEs"])?0:int.Parse(Request["isNotifyEs"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
-                            Value = (Request["ES_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            Value = (Request["ES_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Modificación de cita
                         new ProfileInfoModel()
@@ -905,7 +1008,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyMC"])?0:int.Parse(Request["isNotifyMC"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.ModificacionCita,
-                            Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
+                            Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                        },
                     }
                 };
@@ -914,140 +1017,85 @@ namespace BackOffice.Web.Controllers
             return null;
         }
 
-        private ProfileModel GetReminderRequestModel()
+        private ProfileModel GetReminderRequestModel(List<ProfileComunicationModel> vComunicationInfo, out List<ProfileInfoModel> vProfileInfoToDelete)
         {
+            vProfileInfoToDelete = new List<ProfileInfoModel>();
+
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                && bool.Parse(Request["UpsertAction"]))
             {
                 ProfileModel oReturn = new ProfileModel()
+                   {
+                       ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
+                       ProfileInfo = new List<ProfileInfoModel>()
+                   };
+
+                vComunicationInfo.All(cit =>
                 {
-                    ProfilePublicId = string.IsNullOrEmpty(Request["ProfilePublicId"]) ? null : Request["ProfilePublicId"].ToString(),
+                    int Duration = Convert.ToInt32(Request["ComunicationType_" + ((int)cit.ComunicationType).ToString()]);
 
-                    ProfileInfo = new List<ProfileInfoModel>() 
-                    { 
-                        //Recordatorio cita
-                        new ProfileInfoModel()
-                        {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["IsemailRC"])?0:int.Parse(Request["IsemailRC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,
-                            Value = (Request["RC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
-                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
-                        },
-                        new ProfileInfoModel()
-                        {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["IsSmsRC"])?0:int.Parse(Request["IsSmsRC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,
-                            Value = (Request["RC_Sms"]!= null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
-                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
-                        },
-                        new ProfileInfoModel()
-                        {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["IsNotifyRC"])?0:int.Parse(Request["IsNotifyRC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioCita,                            
-                            Value = (Request["RC_NotifyGuru"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
-                            LargeValue = (Request["RP_Horas"] != null ? Request["RP_Horas"].ToString()  : "0"),
-                        },                       
+                    ((enumMessageType[])Enum.GetValues(typeof(enumMessageType))).All(mst =>
+                    {
+                        //get actual value
+                        ProfileInfoModel CurrentInfo = cit.MessageType.Where(mt => mt.Value.ToString() == ((int)mst).ToString()).FirstOrDefault();
+                        if (CurrentInfo != null)
+                            CurrentInfo.LargeValue = Duration.ToString();
 
-                        //Recordatorio Prox. de cita
-                        new ProfileInfoModel()
+                        //get request value
+                        string RequestKey = "chb_";
+                        if (CurrentInfo == null)
                         {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["isEMailRPC"])?0:int.Parse(Request["isEMailRPC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
-                            Value = (Request["RPC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
-                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
-                        },                        
-                        new ProfileInfoModel()
+                            //new profile info
+                            RequestKey += ((int)cit.ComunicationType).ToString() + "_" + ((int)mst).ToString() + "_";
+                        }
+                        else
                         {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["isSmsRPC"])?0:int.Parse(Request["isSmsRPC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
-                            Value = (Request["RPC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
-                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
-                        },
-                        new ProfileInfoModel()
+                            //already profile info
+                            RequestKey += ((int)cit.ComunicationType).ToString() + "_" + ((int)mst).ToString() + "_" + CurrentInfo.ProfileInfoId;
+                        }
+
+                        bool IsInRequest = Request.Form.AllKeys.Any(x => x.ToLower().Replace(" ", "") == RequestKey.ToLower().Replace(" ", ""));
+
+                        if (IsInRequest && CurrentInfo != null)
                         {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyRPC"])?0:int.Parse(Request["isNotifyRPC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.RecordatorioProxCita,
-                            Value = (Request["RPC_GuruNotify"] != null ? ((int)enumMessageType.NotificacionesGuru).ToString() : string.Empty),
-                            LargeValue = (Request["RPC_Time"] != null ? Request["RPC_Time"].ToString()  : "0"),
-                        },                        
-                    }
-                };
+                            //Exist on the DataBase
+                            oReturn.ProfileInfo.Add(CurrentInfo);
+                        }
+                        else if (IsInRequest && CurrentInfo == null)
+                        {
+                            //nuevo profile info
+                            oReturn.ProfileInfo.Add(
+                                new ProfileInfoModel
+                                {
+                                    ProfileInfoId = 0,
+                                    ProfileInfoType = cit.ComunicationType,
+                                    Value = ((int)mst).ToString(),
+                                    LargeValue = Duration.ToString()
+                                }
+                                );
+                        }
+                        else if (!IsInRequest && CurrentInfo != null)
+                        {
+                            //borrar profile info
+                            oReturn.ProfileInfo.Add(
+                                new ProfileInfoModel
+                                {
+                                    ProfileInfoId = CurrentInfo.ProfileInfoId
+                                }
+                                );
+                        }
+
+                        return true;
+                    });
+
+                    return true;
+                });
+
                 return oReturn;
             }
             return null;
         }
-
-        #endregion
-
-        #region RelatedProfile
-
-        public virtual ActionResult RelatedProfileSearch(string ProfilePublicId)
-        {
-            ProfileRelatedModel oReturn = new ProfileRelatedModel();
-            ProfileModel Model = new ProfileModel();
-            if (!string.IsNullOrEmpty(Request["UpsertAction"])
-                          && bool.Parse(Request["UpsertAction"]))
-            {
-                string ProfilePublicIdChild = Request["divGridProfile-txtSearch-id"];
-                Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
-                if (Model.ChildProfile.Where(x => x.ProfilePublicId == ProfilePublicIdChild).Select(x => x).ToList().Count() > 0)
-                    return RedirectToAction(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
-
-                SaludGuruProfile.Manager.Controller.Profile.RelatedProfileCreate(ProfilePublicId, ProfilePublicIdChild);
-            }
-            Model = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(ProfilePublicId);
-
-            if (Model.ChildProfile.Count() > 0)
-            {
-                foreach (ProfileModel item in Model.ChildProfile)
-                {
-                    string img = item.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).Select(x => x.Value).FirstOrDefault();
-
-                    if (img == null)
-                    {
-                        if (item.ProfileInfo.
-                           Where(x => x.ProfileInfoType == enumProfileInfoType.Gender).
-                           Select(x => x.Value == "true" ? true : false).
-                           DefaultIfEmpty(false).
-                           FirstOrDefault())
-                        {
-                            img = BackOffice.Models.General.InternalSettings.Instance
-                                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
-
-                            ProfileInfoModel infoAdd = new ProfileInfoModel();
-                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
-                            infoAdd.Value = img;
-                            item.ProfileInfo.Add(infoAdd);
-                        }
-                        else
-                        {
-                            img = BackOffice.Models.General.InternalSettings.Instance
-                                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
-
-                            ProfileInfoModel infoAdd = new ProfileInfoModel();
-                            infoAdd.ProfileInfoType = enumProfileInfoType.ImageProfileSmall;
-                            infoAdd.Value = img;
-                            item.ProfileInfo.Add(infoAdd);
-                        }
-                    }
-                }
-            }
-            oReturn.PrincipalProfile = Model;
-            oReturn.AutoComplitListProfiles = SaludGuruProfile.Manager.Controller.Profile.ProfileSearchToRelate(string.Empty, ProfilePublicId, 0, 20);
-            return View(oReturn);
-        }
-
-        public virtual ActionResult RelatedProfileDelete(string ProfilePublicId)
-        {
-            if (!string.IsNullOrEmpty(Request["UpsertAction"])
-                         && bool.Parse(Request["UpsertAction"]))
-            {
-                string ProfilePublicIdChild = Request["ProfileRelated"];
-                SaludGuruProfile.Manager.Controller.Profile.RelatedProfileDelete(ProfilePublicId, ProfilePublicIdChild);
-            }
-            return RedirectToAction(MVC.Profile.ActionNames.RelatedProfileSearch, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
-        }
-
+        
         #endregion
     }
 }

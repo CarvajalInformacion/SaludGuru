@@ -19,5 +19,7 @@ namespace BackOffice.Models.Profile
         public List<InsuranceModel> InsuranceToSelect { get; set; }
 
         public List<TreatmentModel> TreatmentToSelect { get; set; }
+
+        public List<ProfileComunicationModel> RelatedComunication { get; set; }
     }
 }

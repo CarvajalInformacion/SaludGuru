@@ -82,6 +82,7 @@
     <Compile Include="Office\OfficeUpsertModel.cs" />
     <Compile Include="Patient\PatientSearchModel.cs" />
     <Compile Include="Patient\PatientUpSertModel.cs" />
+    <Compile Include="Profile\ProfileComunicationModel.cs" />
     <Compile Include="Profile\ProfileRelatedModel.cs" />
     <Compile Include="Profile\ProfileSearchModel.cs" />
     <Compile Include="Profile\ProfileUpSertModel.cs" />

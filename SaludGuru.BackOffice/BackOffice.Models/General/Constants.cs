@@ -26,6 +26,12 @@
 
         #endregion
 
+        #region Profile Genera
+
+        public const string C_Settings_RemindersType = "Profile_RemindersType";
+
+        #endregion
+
         #region Profile Images
 
         public const string C_Settings_ProfileImage_TempDirectory = "ProfileImage_TempDirectory";
