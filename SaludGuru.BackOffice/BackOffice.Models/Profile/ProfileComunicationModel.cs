@@ -16,12 +16,23 @@ namespace BackOffice.Models.Profile
 
         public List<ProfileInfoModel> MessageType { get; set; }
 
-        public static List<enumProfileInfoType> MessageTypeEnabled
+        public static List<enumProfileInfoType> MessageReminderTypeEnabled
         {
             get
             {
                 return BackOffice.Models.General.InternalSettings.Instance
                     [BackOffice.Models.General.Constants.C_Settings_RemindersType].Value.
+                    Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).
+                    Select(x => (enumProfileInfoType)int.Parse(x)).ToList();
+            }
+        }
+
+        public static List<enumProfileInfoType> MessageComunicationTypeEnabled
+        {
+            get
+            {
+                return BackOffice.Models.General.InternalSettings.Instance
+                    [BackOffice.Models.General.Constants.C_Settings_ComunicationType].Value.
                     Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).
                     Select(x => (enumProfileInfoType)int.Parse(x)).ToList();
             }
