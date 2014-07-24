@@ -23,10 +23,6 @@
     <!--template-->
     <div id="templates" style="display:none;">
 
-        @*<div id="templateHourTime">
-            <input type="text" name="ComunicationType_${ComunicationType}" class="spinnerSelector" value="${ProgramTime}" />
-        </div>*@
-
         <div id="templateCheckMessageSMS">
             <input type="checkbox" name="chb_${ComunicationType}_${SMS ? SMS.Value + '_' + SMS.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms)_'}" class="${SMS ? 'SelectedChecked' : ''}" />
         </div>
@@ -38,8 +34,7 @@
         <div id="templateCheckMessageNotificationGuru">
             <input type="checkbox" name="chb_${ComunicationType}_${NotificationGuru ? NotificationGuru.Value + '_' + NotificationGuru.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification)_'}" class="${NotificationGuru ? 'SelectedChecked' : ''}" />
         </div>
-
-
+        
         <div id="template_Header">
             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             <input class="BOAgregarButtons" type="submit" value="Guardar" />

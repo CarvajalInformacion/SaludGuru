@@ -6,9 +6,15 @@
 <div class="BOProfileMenuWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
 </div>
+
 <div class="BOProfileFormWrapper">
     <h3>Agregar Tratamientos para este Profesional</h3>
     <div id="divGridTreatmentProfile"></div>
+</div>
+<div id="dialog" title="Error">
+    <p>
+
+    </p>
 </div>
 
 <div id="templates" style="display:none;">
@@ -37,7 +43,7 @@
                         <li class="BOButtonContainerShort">
                             <!--hiden fields-->
                             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                            <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                            <input id="Add" class="BOAgregarButtons" type="submit" value="Agregar" />
                         </li>
                     }
                 }
@@ -57,7 +63,7 @@
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
                     <input type="hidden" id="CategoryId" name="CategoryId" value="${CategoryId}" />
                     <input class="BOButtonsErase" type="submit" value="Borrar" />
-                    
+
                 </form>
             }
         }
@@ -78,17 +84,59 @@
 {
     <script type="text/javascript">
         var vDataTreatmentProfile = @Html.Raw(oTreatmentProfile)
-        $(document).ready(function () {
-            //start office grid
-            ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
-        });
-    </script>
 
-    <script type="text/javascript">
-        var oTreatmentData = @Html.Raw(oTreatmentData)
-        $(document).ready(function () {
-            //start office grid
-            ProfileTreatmentAc('Treatment', oTreatmentData);
+            $(document).ready(function () {
+                //start office grid
+                ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
+
+                var oTreatmentData = @Html.Raw(oTreatmentData)
+                ProfileTreatmentAc('Treatment', oTreatmentData);
+            });
+
+        $("#Add").click(function () {
+            debugger;
+            var val = $("#Treatment-id").prop('value');
+            if (val == null || val == " ") {
+                $(function () {
+                    $("#dialog").dialog({
+                        autoOpen: false,
+                        show: {
+                            effect: "blind",
+                            duration: 1000
+                        },
+                        hide: {
+                            effect: "explode",
+                            duration: 1000
+                        }
+                    });
+                    $("#opener").click(function () {
+                        $("#dialog").dialog("open");
+                    });
+                });
+            }
+        });
+        $(function () {
+            $("#dialog").dialog({
+
+                autoOpen: false,
+                show: {
+                    effect: "clip",
+                    duration: 500
+                },
+                hide: {
+                    effect: "blind",
+                    duration: 500
+                }
+            });
+            $("#Add").click(function () {
+                debugger;
+                var val = $("#Treatment-id").prop('value');
+                if (val == null || val == "") {
+                    $("#dialog").text('test');
+                    $("#dialog").dialog("open");
+                    return false;
+                }
+            });
         });
     </script>
 }
