@@ -79,7 +79,7 @@
     {
         Email = 101,
         Sms = 102,
-        NotificacionesGuru = 103
+        GuruNotification = 103
     }
 
     public enum enumImageType
