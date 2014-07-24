@@ -220,12 +220,36 @@
                 <label>Email: {Email}</label>
             </div>
 
+            <!--doctor notes-->
+            <div>
+                <div>
+                    <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15" style="padding: 0;width:100px;height:100px;">&nbsp;</textarea>
+                    <a href="javascript:AppointmentDetailObject.AddPatientNote('{PatientPublicId}');">Agregar nota</a>
+                </div>
+                <div>
+                    <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
+                </div>
+            </div>
+            <!--related appointment-->
+            <div>
+                <div id="divPatientAppointment_{PatientPublicId}" style="width:100px;"></div>
+                <a href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
+            </div>
             <!--remove patient container-->
             <div class="BOPatientRemoveContainer">
                 <a href="javascript:AppointmentDetailObject.RemovePatientAppointment('{PatientPublicId}')"></a>
                 <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
             </div>
 
+        </li>
+    </ul>
+
+    <!--patient notes template-->
+    <ul id="ulDoctorNotes">
+        <li>
+            <span>{NoteDate}</span>
+            <label id="">{NoteText}</label>
+            <a href="javascript:AppointmentDetailObject.RemovePatientNote('{PatientPublicId}','{PatientInfoId}');">Borrar nota</a>
         </li>
     </ul>
 

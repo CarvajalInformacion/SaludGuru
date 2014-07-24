@@ -128,9 +128,9 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.AppointmentPatientDelete(AppointmentPublicId, PatientPublicId);
         }
 
-        public List<AppointmentModel> AppointmentList(string ProfilePublicId)
+        public List<AppointmentModel> AppointmentGetByPatient(string ProfilePublicId)
         {
-            return DataFactory.AppointmentList(ProfilePublicId);
+            return DataFactory.AppointmentGetByPatient(ProfilePublicId);
         }
 
         public List<AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)

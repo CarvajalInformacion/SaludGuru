@@ -1257,7 +1257,8 @@ var AppointmentDetailObject = {
                     IdentificationNumber: value.IdentificationNumber,
                     Mobile: value.Mobile,
                     Email: value.Email,
-                    PatientPublicId: value.PatientPublicId
+                    PatientPublicId: value.PatientPublicId,
+                    Notes: value.Notes,
                 });
 
             });
@@ -1287,7 +1288,8 @@ var AppointmentDetailObject = {
                     IdentificationNumber: ui.item.IdentificationNumber,
                     Mobile: ui.item.Mobile,
                     Email: ui.item.Email,
-                    PatientPublicId: ui.item.PatientPublicId
+                    PatientPublicId: ui.item.PatientPublicId,
+                    Notes: value.Notes,
                 });
 
                 $('#getPatient').val('');
@@ -1424,6 +1426,7 @@ var AppointmentDetailObject = {
 
     AddPatientAppointment: function (vPatientModel) {
         if ($('#PatientAppointmentCreate').val().indexOf(vPatientModel.PatientPublicId) == -1) {
+
             var ApPatHtml = $('#ulPatientAppointment').html();
             ApPatHtml = ApPatHtml.replace(/{ProfileImage}/gi, vPatientModel.ProfileImage);
             ApPatHtml = ApPatHtml.replace(/{Name}/gi, vPatientModel.Name);
@@ -1431,9 +1434,14 @@ var AppointmentDetailObject = {
             ApPatHtml = ApPatHtml.replace(/{Mobile}/gi, vPatientModel.Mobile);
             ApPatHtml = ApPatHtml.replace(/{Email}/gi, vPatientModel.Email);
             ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
+
             $('#lstPatient').append(ApPatHtml);
             $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val() + ',' + vPatientModel.PatientPublicId);
             $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val().replace(new RegExp(vPatientModel.PatientPublicId, 'gi'), ''));
+
+            this.RenderDoctorNotes('ulDoctorNotes_' + vPatientModel.PatientPublicId, vPatientModel.Notes, vPatientModel.PatientPublicId);
+
+            this.RenderPatientAppointment('divPatientAppointment_' + vPatientModel.PatientPublicId, vPatientModel.PatientPublicId);
         }
     },
 
@@ -1441,6 +1449,70 @@ var AppointmentDetailObject = {
         $('#lstPatient').find('#' + vPatientPublicId).remove();
         $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
         $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
+    },
+
+    RenderDoctorNotes: function (vUlId, vNotes, vPatientPublicId) {
+
+        $('#' + vUlId).html('');
+
+        var ApPatNoteHtml = $('#ulDoctorNotes').html();
+        if (vNotes != null) {
+
+            $.each(vNotes, function (index, value) {
+                var DateAux = new Date();
+                if (value.CreateDate.indexOf('Date') >= 0) {
+                    DateAux = new Date(eval(value.CreateDate.replace(/\//gi, '')));
+                }
+                else {
+                    DateAux = new Date(value.CreateDate.replace(/\//gi, ''));
+                }
+
+                var TmpApPatNoteBody = ApPatNoteHtml.replace(/{NoteDate}/gi, DateAux.getFullYear() + '/' + DateAux.getMonth() + '/' + DateAux.getDate());
+                TmpApPatNoteBody = TmpApPatNoteBody.replace(/{NoteText}/gi, value.LargeValue);
+                TmpApPatNoteBody = TmpApPatNoteBody.replace(/{PatientInfoId}/gi, value.PatientInfoId);
+                TmpApPatNoteBody = TmpApPatNoteBody.replace(/{PatientPublicId}/gi, vPatientPublicId);
+
+                $('#' + vUlId).append(TmpApPatNoteBody);
+            });
+        }
+    },
+
+    RenderPatientAppointment: function (vDivId, vPatientPublicId) {
+        //init office metting calendar
+        $('#' + vDivId).fullCalendar({
+            dayNames: MettingCalendarObject.dayNamesSp,
+            dayNamesShort: MettingCalendarObject.dayNamesShortSp,
+            monthNames: MettingCalendarObject.monthNamesSp,
+            defaultView: 'basicDay',
+            allDaySlot: false,
+            allDayText: ' ',
+            weekNumbers: false,
+            editable: false,
+            header: {
+                left: ' ',
+                center: ' ',
+                right: ' ',
+            },
+            columnFormat: {
+                month: ' ddd ',
+                week: ' dddd ',
+                day: ' dddd '
+            },
+            eventClick: function (event, jsEvent, view) {
+                window.location = '/Appointment/Detail?AppointmentPublicId=' + event.id;
+            },
+            eventAfterRender: function (event, element, view) {
+                if (element.find('.fc-event-title').text().length > 0) {
+                    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
+                }
+                else {
+                    element.find('.fc-event-time').html(element.find('.fc-event-time').text());
+                }
+            },
+            events: {
+                url: '/api/PatientApi?PatientPublicId=' + vPatientPublicId + '&Quantity=5',
+            },
+        });
     },
 
     SaveAppointment: function (vSendNotifications) {
@@ -1470,6 +1542,32 @@ var AppointmentDetailObject = {
     ConfirmAppointment: function () {
         //submit form
         $("#frmConfirmAppointment").submit();
+    },
+
+    AddPatientNote: function (vPatientPublicId) {
+        $.ajax({
+            type: "POST",
+            url: '/api/PatientApi?PatientPublicId=' + vPatientPublicId,
+            data: {
+                DoctorNote: $('#NewDoctorNote_' + vPatientPublicId).val(),
+            },
+        }).done(function (data) {
+            if (data != null) {
+                AppointmentDetailObject.RenderDoctorNotes('ulDoctorNotes_' + data.PatientPublicId, data.Notes, data.PatientPublicId);
+            }
+        });
+    },
+
+    RemovePatientNote: function (vPatientPublicId, vPatientInfoId) {
+
+        $.ajax({
+            type: "POST",
+            url: '/api/PatientApi?PatientPublicId=' + vPatientPublicId + '&PatientInfoId=' + vPatientInfoId,
+        }).done(function (data) {
+            if (data != null) {
+                AppointmentDetailObject.RenderDoctorNotes('ulDoctorNotes_' + data.PatientPublicId, data.Notes, data.PatientPublicId);
+            }
+        });
     },
 };
 

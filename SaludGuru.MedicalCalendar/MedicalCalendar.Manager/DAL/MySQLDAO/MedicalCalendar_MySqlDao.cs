@@ -432,7 +432,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             });
         }
 
-        public List<AppointmentModel> AppointmentList(string PatientPublicId)
+        public List<AppointmentModel> AppointmentGetByPatient(string PatientPublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicId", PatientPublicId));
@@ -445,31 +445,59 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                 Parameters = lstParams
             });
 
-            List<AppointmentModel> oReturnPatient = null;
+            List<AppointmentModel> oReturn = null;
 
-            if (response.DataTableResult != null && response.DataTableResult.Rows.Count > 0)
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
             {
+                oReturn =
+                    (from ap in response.DataTableResult.AsEnumerable()
+                     where !string.IsNullOrEmpty(ap.Field<string>("AppointmentPublicId"))
+                     group ap by
+                     new
+                     {
+                         AppointmentPublicId = ap.Field<string>("AppointmentPublicId"),
+                         Status = ap.Field<int>("AppointmentStatus"),
+                         StartDate = ap.Field<DateTime>("StartDate"),
+                         EndDate = ap.Field<DateTime>("EndDate"),
+                         LastModify = ap.Field<DateTime>("LastModify"),
+                         CreateDate = ap.Field<DateTime>("CreateDate"),
+                         OfficePublicId = ap.Field<string>("OfficePublicId"),
+                         OfficeName = ap.Field<string>("OfficeName"),
+                     } into apg
+                     select new AppointmentModel()
+                     {
+                         AppointmentPublicId = apg.Key.AppointmentPublicId,
+                         Status = (enumAppointmentStatus)apg.Key.Status,
+                         StartDate = apg.Key.StartDate,
+                         EndDate = apg.Key.EndDate,
+                         LastModify = apg.Key.LastModify,
+                         CreateDate = apg.Key.CreateDate,
+                         OfficePublicId = apg.Key.OfficePublicId,
+                         OfficeName = apg.Key.OfficeName,
 
-                oReturnPatient = (from pm in response.DataTableResult.AsEnumerable()
-                                  select new AppointmentModel
-                                  {
-                                      AppointmentPublicId = pm.Field<string>("AppointmentPublicId"),
-                                      Status = pm.Field<enumAppointmentStatus>("Status"),
-                                      StartDate = pm.Field<DateTime>("StartDate"),
-                                      EndDate = pm.Field<DateTime>("EndDate"),
-                                      CreateDate = pm.Field<DateTime>("CreateDate"),
-                                      AppointmentInfo = new List<AppointmentInfoModel>()
-                                      {
-                                          new AppointmentInfoModel()
-                                          {
-                                              Value = pm.Field<string>("StatusName"),
-                                          }
-                                      },
-                                      OfficePublicId = pm.Field<string>("OfficePublicId"),
-                                      OfficeName = pm.Field<string>("Name"),
-                                  }).ToList();
+                         AppointmentInfo =
+                            (from api in response.DataTableResult.AsEnumerable()
+                             where api.Field<int?>("AppointmentInfoId") != null &&
+                                    api.Field<string>("AppointmentPublicId") == apg.Key.AppointmentPublicId
+                             group api by
+                             new
+                             {
+                                 AppointmentInfoId = api.Field<int>("AppointmentInfoId"),
+                                 AppintmentInfoType = api.Field<int>("AppintmentInfoType"),
+                                 Value = api.Field<string>("AppointmentInfoValue"),
+                                 LargeValue = api.Field<string>("AppointmentInfoLargeValue"),
+                             } into apig
+                             select new AppointmentInfoModel()
+                             {
+                                 AppointmentInfoId = apig.Key.AppointmentInfoId,
+                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppintmentInfoType,
+                                 Value = apig.Key.Value,
+                                 LargeValue = apig.Key.LargeValue
+                             }).ToList(),
+                     }).ToList();
             }
-            return oReturnPatient;
+            return oReturn;
         }
 
         public List<AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
