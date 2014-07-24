@@ -48,7 +48,7 @@
                             var oLoadedSms = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
 
-                            var oLoadedNotifyGuru = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                            var oLoadedNotifyGuru = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
                                                            Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
 
                             if (oLoadedEmail != null)
@@ -109,7 +109,7 @@
                             var oLoadedSms_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
                                                              Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
 
-                            var oLoadedNotifyGuru_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                            var oLoadedNotifyGuru_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
                                                              Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
 
                             if (oLoadedEmail_CC != null)
@@ -169,7 +169,7 @@
                             var oLoadedSms_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
                                                              Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
 
-                            var oLoadedNotifyGuru_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                            var oLoadedNotifyGuru_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
                                                             Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
 
                             if (oLoadedEmail_ES != null)
@@ -228,7 +228,7 @@
                             var oLoadedSms_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
                                                             Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
 
-                            var oLoadedNotifyGuru_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
+                            var oLoadedNotifyGuru_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
                                                             Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
 
 
