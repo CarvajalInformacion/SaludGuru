@@ -70,6 +70,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.PatientInfoModify(PatientInfoId, Value, LargeValue);
         }
 
+        public void PatientInfoDelete(int PatientInfoId)
+        {
+            DataFactory.PatientInfoDelete(PatientInfoId);
+        }
+
         public Models.Patient.PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
         {
             return DataFactory.PatientGetAllByPublicPatientId(PatientPublicId);

@@ -148,6 +148,21 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             });
         }
 
+        public void PatientInfoDelete(int PatientInfoId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vPatientInfoId", PatientInfoId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.NonQuery,
+                CommandText = "PT_PatientInfo_Delete",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+        }
+
         public PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
@@ -247,6 +262,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                                          PatientInfoType = pi.Field<int>("PatientInfoType"),
                                                          Value = pi.Field<string>("Value"),
                                                          LargeValue = pi.Field<string>("LargeValue"),
+                                                         CreateDate = pi.Field<DateTime>("PatientInfoCreateDate"),
                                                      } into pig
                                                      select new PatientInfoModel()
                                                      {
@@ -254,6 +270,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                                          PatientInfoType = (enumPatientInfoType)pig.Key.PatientInfoType,
                                                          Value = pig.Key.Value,
                                                          LargeValue = pig.Key.LargeValue,
+                                                         CreateDate = pig.Key.CreateDate,
                                                      }).ToList(),
                                   }).ToList();
             }

@@ -22,6 +22,7 @@ namespace MedicalCalendar.Manager.Interfaces
         //patient info
         int PatientInfoCreate(string PatientPublicId, enumPatientInfoType PatientInfoType, string Value, string LargeValue);
         void PatientInfoModify(int PatientInfoId, string Value, string LargeValue);
+        void PatientInfoDelete(int PatientInfoId);
         PatientModel PatientGetAllByPublicPatientId(string PatientPublicId);
         List<PatientModel> PatientSearch(string ProfilePublicId, string SearchCriteria, int PageNumber, int RowCount, out int TotalRows);
         List<ItemModel> PatientGetOptions();
