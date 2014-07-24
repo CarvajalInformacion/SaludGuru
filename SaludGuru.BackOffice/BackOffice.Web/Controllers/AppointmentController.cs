@@ -1,5 +1,7 @@
 ﻿using BackOffice.Models.General;
 using MedicalCalendar.Manager.Models.Appointment;
+using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,6 +134,40 @@ namespace BackOffice.Web.Controllers
                 oModel.ReturnUrl = ReturnUrl;
             }
 
+            if (!string.IsNullOrEmpty(UpsertAction))
+            {
+                List<PatientModel> PatientToRemove;
+                List<PatientModel> PatientNew;
+                bool SendNotifications = false;
+
+                if (UpsertAction.Replace(" ", "").ToLower() == "saveappointment")
+                {
+                    //get request info
+                    AppointmentModel AppointmentToUpsert = GetUpsertAppointmentRequestModel(out SendNotifications, out PatientNew, out PatientToRemove);
+
+                    //upsert appointment
+                    string NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
+
+                    if (SendNotifications)
+                    {
+                        //TODO: send message new patient PatientNew
+
+                        //TODO: send message removed patient
+                    }
+
+                    return RedirectToAction(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name,
+                        new { AppointmentPublicId = NewAppointmentPublicId, ReturnUrl = oModel.ReturnUrl });
+                }
+                else if (UpsertAction.Replace(" ", "").ToLower() == "cancelappointment")
+                {
+                    //cancel appointment
+                }
+                else if (UpsertAction.Replace(" ", "").ToLower() == "confirmappointment")
+                {
+                    //confirm appointment
+                }
+            }
+
             if (!string.IsNullOrEmpty(AppointmentPublicId))
             {
                 //get appointment edit info
@@ -178,7 +214,139 @@ namespace BackOffice.Web.Controllers
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings
                 (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
+
             return View(oModel);
         }
+
+        #region PrivateMethods
+
+        private AppointmentModel GetUpsertAppointmentRequestModel
+            (out bool SendNotifications,
+            out List<PatientModel> PatientNew,
+            out List<PatientModel> PatientToRemove)
+        {
+            PatientToRemove = new List<PatientModel>();
+            PatientNew = new List<PatientModel>();
+            SendNotifications = false;
+
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && Request["UpsertAction"].Replace(" ", "").ToLower() == "saveappointment")
+            {
+                //get appointment public id
+                string oAppointmentPublicId = string.IsNullOrEmpty(Request["AppointmentPublicId"]) ? null : Request["AppointmentPublicId"].ToString();
+
+                AppointmentModel oOriginalAppointment = null;
+                if (!string.IsNullOrEmpty(oAppointmentPublicId))
+                {
+                    //get original appointment info
+                    oOriginalAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(oAppointmentPublicId);
+                }
+
+                //get send notifications
+                SendNotifications = Convert.ToBoolean(Request["SendNotifications"].ToString());
+
+                //get basic appointment
+                AppointmentModel oReturn = new AppointmentModel()
+                {
+                    AppointmentPublicId = oAppointmentPublicId,
+                    OfficePublicId = Request["OfficePublicId"].ToString(),
+
+                    Status = oOriginalAppointment == null ?
+                        MedicalCalendar.Manager.Models.enumAppointmentStatus.New :
+                        oOriginalAppointment.Status,
+
+                    StartDate = DateTime.ParseExact
+                            (Request["StartDate"].Replace(" ", "") + "T" + Request["StartTime"].Replace(" ", ""),
+                            "dd/MM/yyyyTh:mmtt",
+                            System.Globalization.CultureInfo.InvariantCulture),
+
+                    EndDate = DateTime.ParseExact
+                            (Request["StartDate"].Replace(" ", "") + "T" + Request["StartTime"].Replace(" ", ""),
+                            "dd/MM/yyyyTh:mmtt",
+                            System.Globalization.CultureInfo.InvariantCulture).
+                            AddMinutes(Convert.ToInt32(Request["Duration"])),
+
+                    AppointmentInfo = new List<AppointmentInfoModel>(),
+
+                    RelatedPatient = new List<PatientModel>(),
+                };
+
+                //get appointment info
+
+                //treatment
+                int oTreatmentId = Convert.ToInt32(Request["TreatmentId"].Replace(" ", ""));
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = oOriginalAppointment == null ? 0 :
+                            oOriginalAppointment.AppointmentInfo.
+                            Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category).
+                            Select(x => x.AppointmentInfoId).
+                            DefaultIfEmpty(0).
+                            FirstOrDefault(),
+
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category,
+
+                        Value = oTreatmentId.ToString(),
+                    });
+
+                //after care
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = oOriginalAppointment == null ? 0 :
+                            oOriginalAppointment.AppointmentInfo.
+                            Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare).
+                            Select(x => x.AppointmentInfoId).
+                            DefaultIfEmpty(0).
+                            FirstOrDefault(),
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare,
+                        LargeValue = Request["AfterCare"],
+                    });
+
+                //before care
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = oOriginalAppointment == null ? 0 : oOriginalAppointment.AppointmentInfo.
+                            Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare).
+                            Select(x => x.AppointmentInfoId).
+                            DefaultIfEmpty(0).
+                            FirstOrDefault(),
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare,
+                        LargeValue = Request["BeforeCare"],
+                    });
+
+
+                //get patient to add
+                oReturn.RelatedPatient = Request["PatientAppointmentCreate"].Split(',').
+                    Where(x => !string.IsNullOrEmpty(x) && x.Replace(" ", "").Length == 8).
+                    Select(x => new PatientModel()
+                    {
+                        PatientPublicId = x.Replace(" ", "")
+                    }).ToList();
+
+                //get patient to remove
+                PatientToRemove = Request["PatientAppointmentDelete"].Split(',').
+                        Where(x => !string.IsNullOrEmpty(x) && x.Replace(" ", "").Length == 8).
+                        Select(x => new PatientModel()
+                        {
+                            PatientPublicId = x.Replace(" ", "")
+                        }).ToList();
+
+                if (oOriginalAppointment != null)
+                {
+                    //get new patient
+                    PatientNew = oReturn.RelatedPatient.
+                        Where(x => !oOriginalAppointment.RelatedPatient.Any(y => y.PatientPublicId == x.PatientPublicId)).ToList();
+                }
+
+                return oReturn;
+            }
+            return null;
+        }
+
+
+        #endregion
     }
 }

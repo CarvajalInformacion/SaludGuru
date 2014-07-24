@@ -30,6 +30,9 @@
     <key name="ProfileImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileWoman.png</key>
     <key name="ProfileImage_Admin">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileAdmin.png</key>
 
+    <!--Reminder Types-->
+    <key name="Profile_RemindersType">417,418</key>
+    
     <!--Default image patient-->
     <key name="PatientImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientMan.png</key>
     <key name="PatientImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientWoman.png</key>
@@ -106,7 +109,7 @@
       </div>
     ]]>
     </key>
-  
+
     <!--Month-->
     <key name="Appointment_TitleTemplate_Month">
       <![CDATA[
@@ -117,7 +120,6 @@
       </div>
     ]]>
     </key>
-
   </BackOffice>
 </Settings>
 
