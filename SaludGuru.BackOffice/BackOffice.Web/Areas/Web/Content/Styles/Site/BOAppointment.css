@@ -246,13 +246,13 @@ table.fc-header {
     background-color:#ececec;
 }
     table.fc-header td:first-child {
-        width:5.4%;
+        width:2%;
     }
     table.fc-header td:nth-child(2) {
         width:auto;
     }
     table.fc-header td:nth-child(3) {
-        width:2%;
+        width:1%;
     }
         span.fc-header-title {
             width:100%;
@@ -285,9 +285,10 @@ table.fc-header {
                 color: #333;
                 margin:0px;
                 background-color: #fff;
+                width:45%;
             }
         span.fc-header-title h2 > ul li a {
-                width: 157px;
+                width:52%;
                 text-align: center;
                 line-height: 20px;
                 border-radius: 2px;

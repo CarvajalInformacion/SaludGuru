@@ -338,6 +338,11 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuProfile.RelatedProfiles;
             }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+              MVC.Profile.ActionNames.ProfileReminderUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.Comunicactions;
+            }
             return oReturn;
         }
 
@@ -411,17 +416,12 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuComunications.Messaging;
             }
-            //else if (MVC.Profile.Name == CurrentControllerName &&
-            //    MVC.Profile.ActionNames.OfficeScheduleAvailableList == CurrentActionName)
-            //{
-            //    oReturn = enumMenuOffice.ScheduleAvalilable;
-            //}
-            //else if (MVC.Profile.Name == CurrentControllerName &&
-            //    (MVC.Profile.ActionNames.OfficeTreatmentList == CurrentActionName ||
-            //    MVC.Profile.ActionNames.OfficeTreatmentUpsert == CurrentActionName))
-            //{
-            //    oReturn = enumMenuOffice.Treatments;
-            //}
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.ProfileReminderUpsert == CurrentActionName)
+            {
+                oReturn = enumMenuComunications.Reminders; 
+            }
+            
             return oReturn;
         }
 
