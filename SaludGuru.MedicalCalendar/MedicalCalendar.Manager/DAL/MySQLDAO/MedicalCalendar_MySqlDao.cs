@@ -723,13 +723,15 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                                     PatientInfoType = pti.Field<int>("PatientInfoType"),
                                     Value = pti.Field<string>("PatientInfoValue"),
                                     LargeValue = pti.Field<string>("PatientInfoLargeValue"),
+                                    CreateDate = pti.Field<DateTime>("PatientInfoCreateDate"),
                                 } into ptig
                                 select new PatientInfoModel()
                                 {
                                     PatientInfoId = ptig.Key.PatientInfoId,
                                     PatientInfoType = (enumPatientInfoType)ptig.Key.PatientInfoType,
                                     Value = ptig.Key.Value,
-                                    LargeValue = ptig.Key.LargeValue
+                                    LargeValue = ptig.Key.LargeValue,
+                                    CreateDate = ptig.Key.CreateDate,
                                 }).ToList(),
                         }).ToList(),
                 };
