@@ -8,9 +8,21 @@ table.fc-border-separate th.fc-day-header{
     border: none;
     vertical-align: middle;
 }
-div#CalendarContent > div.fc-event > div.fc-event-inner {
+div.basicDay div.fc-event{
+    display: block;
+    margin: 1px 0px;
+    height: auto;
+    position: unset !important;
 }
-div#CalendarContent span.fc-event-time{
+
+div.basicDay div.fc-event-container{margin-top: 24px;}
+
+div.basicDay div.fc-view {
+    height: 478px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+div.basicDay span.fc-event-time{
     display: inline-block;
 border:none;
     width: 11%;
@@ -22,20 +34,20 @@ font-size: 18px;
     vertical-align: middle;
     color: #333;
 }
-div#CalendarContent span.fc-event-title {
+div.basicDay span.fc-event-title {
     display: inline-block;
 border:none;
     vertical-align:middle;
     margin-top: 3px;
 }
-span.fc-event-title > div > img {
+div.basicDay span.fc-event-title > div > img {
     width: auto;
     margin: 1px;
     display: inline-block;
     vertical-align: middle;
-    height:36px;
+    height:24px;
 }
-span.fc-event-title > div > label{
+div.basicDay span.fc-event-title > div > label{
     line-height:18px;
     color:#333;
 }

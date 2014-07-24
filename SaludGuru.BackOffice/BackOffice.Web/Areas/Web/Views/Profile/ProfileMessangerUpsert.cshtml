@@ -1,6 +1,6 @@
 ﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 @{
-    ViewBag.Title = "ComunicationUpsert";
+    ViewBag.Title = "SaludGuru - configuracion recordatorios";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,280 +8,81 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
 </div>
 
-<div class="BOProfileFormWrapper">
+<div class="BOProfileTableWrapper">
     <h3 class="BOCreateOfficeLabel">Administrar Comunicaciones</h3>
+
 
     @if (Model.Profile.ProfileInfo != null)
     {
         Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileComunicationMenu, Model);
     }
+    <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name,
+                                new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+        <div id="divGridReminder"></div>
+    </form>
+    <!--template-->
+    <div id="templates" style="display:none;">
 
-    <div class="BOFormDataWrapper">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name,
-                new
-                {
-                    ProfilePublicId = Model.Profile.ProfilePublicId,
-                }))">
-            <ul class="BOCommunicationActions">
+        @*<div id="templateHourTime">
+            <input type="text" name="ComunicationType_${ComunicationType}" class="spinnerSelector" value="${ProgramTime}" />
+        </div>*@
 
-                <li class="BOComActionsTableHeading">
-                    <div></div>
-                    <label>E-Mail</label>
-                    <label>SMS</label>
-                    <label>Notificaciones Gurú</label>
-                </li>
-                <li class="BOComActionsTableCells">
-                    <label>Asignación de cita</label>
-                    @{
-                        var CatInfo_AC = Model.Profile == null ? null :
-                                 Model.Profile.ProfileInfo.Where
-                                     (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AsignacionCita).
-                                     Select(x => new { id = x.ProfileInfoId, val = x.Value }).
-                                         DefaultIfEmpty(null).
-                                         ToList();
+        <div id="templateCheckMessageSMS">
+            <input type="checkbox" name="chb_${ComunicationType}_${SMS ? SMS.Value + '_' + SMS.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms)_'}" class="${SMS ? 'SelectedChecked' : ''}" />
+        </div>
 
-                        if (CatInfo_AC[0] != null)
-                        {
-                            var oLoadedEmail = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
-                                                            Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
+        <div id="templateCheckMessageEmail">
+            <input type="checkbox" name="chb_${ComunicationType}_${Email ? Email.Value + '_' + Email.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.Email)_'}" class="${Email ? 'SelectedChecked' : ''}" />
+        </div>
 
-                            var oLoadedSms = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
-                                                            Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
-
-                            var oLoadedNotifyGuru = CatInfo_AC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
-                                                           Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
-
-                            if (oLoadedEmail != null)
-                            {
-                                <input type="checkbox" id="AC_EMail" name="AC_EMail" checked="checked" />
-                                <input type="hidden" id="IsemailAC" name="IsEmailAC" value="@oLoadedEmail.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="AC_EMail" name="AC_EMail" />
-                                <input type="hidden" id="IsemailAC" name="IsEmailAC" />
-                            }
-
-                            if (oLoadedSms != null)
-                            {
-                                <input type="checkbox" id="AC_Sms" name="AC_Sms" checked="checked" />
-                                <input type="hidden" id="IsSmsAC" name="IsSmsAC" value="@oLoadedSms.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="AC_Sms" name="AC_Sms" />
-                                <input type="hidden" id="IsSmsAC" name="IsSmsAC" />
-                            }
-
-                            if (oLoadedNotifyGuru != null)
-                            {
-                                <input type="checkbox" id="AC_NotifyGuru" name="AC_NotifyGuru" checked="checked" />
-                                <input type="hidden" id="IsNotifyAC" name="IsNotifyAC" value="@oLoadedNotifyGuru.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="AC_NotifyGuru" name="AC_NotifyGuru" />
-                                <input type="hidden" id="IsNotifyAC" name="IsNotifyAC" />
-                            }
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="AC_EMail" name="AC_EMail" />
-                            <input type="checkbox" id="AC_Sms" name="AC_Sms" />
-                            <input type="checkbox" id="AC_NotifyGuru" name="AC_NotifyGuru" />
-                        }
-                    }
-                </li>
-                <li class="BOComActionsTableCells">
-                    <label>Cancelación de cita</label>
-                    @{
-                        var CatInfo_CC = Model.Profile == null ? null :
-                            Model.Profile.ProfileInfo.Where
-                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.CancelacionCita).
-                                Select(x => new { id = x.ProfileInfoId, val = x.Value }).
-                                         DefaultIfEmpty(null).ToList();
-
-                        if (CatInfo_CC[0] != null)
-                        {
-                            var oLoadedEmail_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
-                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
-
-                            var oLoadedSms_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
-                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
-
-                            var oLoadedNotifyGuru_CC = CatInfo_CC.Where(x => x.val == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
-                                                             Select(x => new { id = x.id, val = x.val }).FirstOrDefault();
-
-                            if (oLoadedEmail_CC != null)
-                            {
-                                <input type="checkbox" id="CC_EMail" name="CC_EMail" checked="checked" />
-                                <input type="hidden" id="isEMailCC" name="isEMailCC" value="@oLoadedEmail_CC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="CC_EMail" name="CC_EMail" />
-                                <input type="hidden" id="isEMailCC" name="isEMailCC" />
-                            };
-                            if (oLoadedSms_CC != null)
-                            {
-                                <input type="checkbox" id="CC_Sms" name="CC_Sms" checked="checked" />
-                                <input type="hidden" id="isSmsCC" name="isSmsCC" value="@oLoadedSms_CC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="CC_Sms" name="CC_Sms" />
-                                <input type="hidden" id="isSmsCC" name="isSmsCC" />
-                            };
-
-                            if (oLoadedNotifyGuru_CC != null)
-                            {
-                                <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" checked="checked" />
-                                <input type="hidden" id="isNotifyCC" name="isNotifyCC" value="@oLoadedNotifyGuru_CC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" />
-                                <input type="hidden" id="isNotifyCC" name="isNotifyCC" />
-                            }
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="CC_EMail" name="CC_EMail" />
-                            <input type="checkbox" id="CC_Sms" name="CC_Sms" />
-                            <input type="checkbox" id="CC_GuruNotify" name="CC_GuruNotify" />
-                        }
-                    }
-                </li>
-                <li class="BOComActionsTableCells">
-                    <label>Encuesta de satisfacción</label>
-                    @{
-                        var CatInfo_ES = Model.Profile == null ? null :
-                                            Model.Profile.ProfileInfo.Where
-                                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.EncuestaSatisfaccion).
-                                                Select(x => new { id = x.ProfileInfoId, x.Value }).
-                                                         DefaultIfEmpty(null).
-                                                         ToList();
-                        if (CatInfo_ES[0] != null)
-                        {
-                            var oLoadedEmail_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
-                                                Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
-
-                            var oLoadedSms_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
-                                                             Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
-
-                            var oLoadedNotifyGuru_ES = CatInfo_ES.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
-                                                            Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
-
-                            if (oLoadedEmail_ES != null)
-                            {
-                                <input type="checkbox" id="ES_EMail" name="ES_EMail" checked="checked" />
-                                <input type="hidden" id="isEmailEs" name="isEmailEs" value="@oLoadedEmail_ES.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="ES_EMail" name="ES_EMail" />
-                                <input type="hidden" id="isEmailEs" name="isEmailEs" />
-                            }
-                            if (oLoadedSms_ES != null)
-                            {
-                                <input type="checkbox" id="ES_Sms" name="ES_Sms" checked="checked" />
-                                <input type="hidden" id="isSmsEs" name="isSmsEs" value="@oLoadedSms_ES.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="ES_Sms" name="ES_Sms" />
-                                <input type="hidden" id="isSmsEs" name="isSmsEs" />
-                            }
-                            if (oLoadedNotifyGuru_ES != null)
-                            {
-                                <input type="checkbox" id="ES_GuruNotify" name="ES_GuruNotify" checked="checked" />
-                                <input type="hidden" id="isNotifyEs" name="isNotifyEs" value="@oLoadedNotifyGuru_ES.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="ES_GuruNotify" name="ES_GuruNotify" />
-                                <input type="hidden" id="isNotifyEs" name="isNotifyEs" />
-                            }
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="ES_EMail" name="ES_EMail" />
-                            <input type="checkbox" id="ES_Sms" name="ES_Sms" />
-                            <input type="checkbox" id="ES_GuruNotify" name="ES_GuruNotify" />
-                        }
-                    }
-                </li>
-                <li class="BOComActionsTableCells">
-                    <label>Modificación de cita</label>
-                    @{
-                        var CatInfo_MC = Model.Profile == null ? null :
-                            Model.Profile.ProfileInfo.Where
-                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ModificacionCita).
-                                Select(x => new { id = x.ProfileInfoId, x.Value }).
-                                         DefaultIfEmpty(null).
-                                       ToList();
-                        if (CatInfo_MC[0] != null)
-                        {
-                            var oLoadedEmail_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
-                                                            Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
-
-                            var oLoadedSms_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
-                                                            Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
-
-                            var oLoadedNotifyGuru_MC = CatInfo_MC.Where(x => x.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.NotificacionesGuru).ToString()).
-                                                            Select(x => new { id = x.id, Value = x.Value }).FirstOrDefault();
+        <div id="templateCheckMessageNotificationGuru">
+            <input type="checkbox" name="chb_${ComunicationType}_${NotificationGuru ? NotificationGuru.Value + '_' + NotificationGuru.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification)_'}" class="${NotificationGuru ? 'SelectedChecked' : ''}" />
+        </div>
 
 
-                            if (oLoadedEmail_MC != null)
-                            {
-                                <input type="checkbox" id="MC_EMail" name="MC_EMail" checked="checked" />
-                                <input type="hidden" id="isEmailMC" name="isEmailMC" value="@oLoadedEmail_MC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="MC_EMail" name="MC_EMail" />
-                                <input type="hidden" id="isEmailMC" name="isEmailMC" />
-                            }
-                            if (oLoadedSms_MC != null)
-                            {
-                                <input type="checkbox" id="MC_Sms" name="MC_Sms" checked="checked" />
-                                <input type="hidden" id="isSmsMC" name="isSmsMC" value="@oLoadedSms_MC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="MC_Sms" name="MC_Sms" />
-                                <input type="hidden" id="isSmsMC" name="isSmsMC" />
-                            }
-                            if (oLoadedNotifyGuru_MC != null)
-                            {
-                                <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" checked="checked" />
-                                <input type="hidden" id="isNotifyMC" name="isNotifyMC" value="@oLoadedNotifyGuru_MC.id" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
-                                <input type="hidden" id="isNotifyMC" name="isNotifyMC" />
-                            }
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="MC_EMail" name="MC_EMail" />
-                            <input type="checkbox" id="MC_Sms" name="MC_Sms" />
-                            <input type="checkbox" id="MC_GuruNotify" name="MC_GuruNotify" />
-                        }
-                    }
-                </li>
-            </ul>
-            @{
-                if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
-                {
-                    <div class="BOButtonContainerShort">
-                        @*hiden fields*@
-                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                        <input class="BOButtons" type="submit" value="guardar" />
-                    </div>
-                }
-            }
-        </form>
+        <div id="template_Header">
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input class="BOAgregarButtons" type="submit" value="Guardar" />
+        </div>
     </div>
+    @{
+        //get json office data
+        string oComunication = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+            Serialize(Model.RelatedComunication.
+                Select(x => new
+                {
+                    ComunicationType = x.ComunicationType,
+
+                    Name = Model.ProfileOptions.
+                        Where(y => y.ItemId == (int)x.ComunicationType).
+                        Select(y => y.ItemName).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
+
+                    ProgramTime = x.ProgramTime,
+
+                    SMS = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
+                        FirstOrDefault(),
+
+                    Email = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
+                        FirstOrDefault(),
+
+                    NotificationGuru = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
+                        FirstOrDefault(),
+
+                }).ToList());
+    }
 </div>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataComunication = @Html.Raw(oComunication)
+        $(document).ready(function () {
+            //start office grid
+            ProfileComunicationListGrid('divGridReminder', vDataComunication);
+        });
+    </script>
+}

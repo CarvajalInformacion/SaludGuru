@@ -139,14 +139,16 @@ namespace BackOffice.Web.Controllers
                 List<PatientModel> PatientToRemove;
                 List<PatientModel> PatientNew;
                 bool SendNotifications = false;
+                AppointmentModel AppointmentToUpsert = new AppointmentModel();
+                string NewAppointmentPublicId = string.Empty;
 
                 if (UpsertAction.Replace(" ", "").ToLower() == "saveappointment")
                 {
                     //get request info
-                    AppointmentModel AppointmentToUpsert = GetUpsertAppointmentRequestModel(out SendNotifications, out PatientNew, out PatientToRemove);
+                    AppointmentToUpsert = GetUpsertAppointmentRequestModel(out SendNotifications, out PatientNew, out PatientToRemove);
 
                     //upsert appointment
-                    string NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
+                    NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(AppointmentToUpsert, PatientToRemove);
 
                     if (SendNotifications)
                     {
@@ -154,18 +156,68 @@ namespace BackOffice.Web.Controllers
 
                         //TODO: send message removed patient
                     }
-
-                    return RedirectToAction(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name,
-                        new { AppointmentPublicId = NewAppointmentPublicId, ReturnUrl = oModel.ReturnUrl });
                 }
                 else if (UpsertAction.Replace(" ", "").ToLower() == "cancelappointment")
                 {
-                    //cancel appointment
+                    AppointmentToUpsert = new AppointmentModel()
+                    {
+                        AppointmentPublicId = Request["AppointmentPublicId"].ToString(),
+                        Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled,
+                    };
+
+                    NewAppointmentPublicId = AppointmentToUpsert.AppointmentPublicId;
+
+                    //update appointment status
+                    MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+
+                    if (SendNotifications)
+                    {
+                        //TODO: send message new patient PatientNew
+
+                        //TODO: send message removed patient
+                    }
                 }
                 else if (UpsertAction.Replace(" ", "").ToLower() == "confirmappointment")
                 {
                     //confirm appointment
+
+                    //get request info
+
+                    //get new status
+                    MedicalCalendar.Manager.Models.enumAppointmentStatus oStatus =
+                        (MedicalCalendar.Manager.Models.enumAppointmentStatus)Convert.ToInt32(Request["NewStatus"]);
+
+                    //get send reminded appointment
+                    bool SendRemindedFuture = !string.IsNullOrEmpty(Request["SendRemindedFuture"]);
+
+                    DateTime RemindedDate;
+                    if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
+                        SendRemindedFuture)
+                    {
+                        //get time to send reminded appointment
+                        RemindedDate = DateTime.ParseExact(Request["RemindedDate"].Replace(" ", ""),
+                                        "dd/MM/yyyy",
+                                        System.Globalization.CultureInfo.InvariantCulture);
+                    }
+
+                    AppointmentToUpsert = new AppointmentModel()
+                    {
+                        AppointmentPublicId = Request["R_AppointmentPublicId"].ToString(),
+                        Status = oStatus,
+                    };
+
+                    //update appointment status
+                    MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+
+                    if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
+                        SendRemindedFuture)
+                    {
+                        //TODO: program remember mesaje RemindedDate
+                    }
                 }
+
+                return RedirectToAction(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name,
+                    new { AppointmentPublicId = NewAppointmentPublicId, ReturnUrl = oModel.ReturnUrl });
             }
 
             if (!string.IsNullOrEmpty(AppointmentPublicId))

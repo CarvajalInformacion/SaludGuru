@@ -572,31 +572,62 @@ namespace BackOffice.Web.Controllers
 
         public virtual ActionResult ProfileMessangerUpsert(string ProfilePublicId)
         {
-            ProfileUpSertModel model = new ProfileUpSertModel()
+            ProfileUpSertModel Model = new ProfileUpSertModel()
             {
                 ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
                 Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
             };
+
+            //load comunication model
+            Model.RelatedComunication = new List<ProfileComunicationModel>();
+
+            ProfileComunicationModel.MessageComunicationTypeEnabled.All(x =>
+            {
+                Model.RelatedComunication.Add(
+                    new ProfileComunicationModel(Model.Profile.ProfileInfo.
+                        Where(y => y.ProfileInfoType == x).
+                        ToList(),
+                        x));
+
+                return true;
+            });
+
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
-                ProfileModel oCreate = new ProfileModel();
-                List<ProfileInfoModel> oDeleteList = new List<ProfileInfoModel>();
+                List<ProfileInfoModel> oProfileInfoToDelete = null;
 
-                oCreate = GetComunicationRequestModel();
+                ProfileModel oProfileToUpsert = GetReminderRequestModel(Model.RelatedComunication, out oProfileInfoToDelete);
 
-                oDeleteList = oCreate.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
-                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oDeleteList);
+                oProfileInfoToDelete = oProfileToUpsert.ProfileInfo.Where(x => string.IsNullOrEmpty(x.Value)).Select(p => p).ToList();
+                SaludGuruProfile.Manager.Controller.Profile.DeleteProfileDetailInfo(oProfileInfoToDelete);
 
-                oCreate.ProfileInfo = oCreate.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
+                oProfileToUpsert.ProfileInfo = oProfileToUpsert.ProfileInfo.Where(x => x.Value != string.Empty).ToList();
 
                 //create profile 
-                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oCreate);
+                SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oProfileToUpsert);
 
-                //get updated profile info
-                model.Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+                Model = new ProfileUpSertModel()
+                {
+                    ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
+                    Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+                };
+
+                //load comunication model
+                Model.RelatedComunication = new List<ProfileComunicationModel>();
+
+                ProfileComunicationModel.MessageComunicationTypeEnabled.All(x =>
+                {
+                    Model.RelatedComunication.Add(
+                        new ProfileComunicationModel(Model.Profile.ProfileInfo.
+                            Where(y => y.ProfileInfoType == x).
+                            ToList(),
+                            x));
+
+                    return true;
+                });
             }
-            return View(model);
+            return View(Model);
         }
 
         public virtual ActionResult ProfileReminderUpsert(string ProfilePublicId)
@@ -610,7 +641,7 @@ namespace BackOffice.Web.Controllers
             //load comunication model
             Model.RelatedComunication = new List<ProfileComunicationModel>();
 
-            ProfileComunicationModel.MessageTypeEnabled.All(x =>
+            ProfileComunicationModel.MessageReminderTypeEnabled.All(x =>
             {
                 Model.RelatedComunication.Add(
                     new ProfileComunicationModel(Model.Profile.ProfileInfo.
@@ -645,7 +676,7 @@ namespace BackOffice.Web.Controllers
                 //load comunication model
                 Model.RelatedComunication = new List<ProfileComunicationModel>();
 
-                ProfileComunicationModel.MessageTypeEnabled.All(x =>
+                ProfileComunicationModel.MessageReminderTypeEnabled.All(x =>
                 {
                     Model.RelatedComunication.Add(
                         new ProfileComunicationModel(Model.Profile.ProfileInfo.
