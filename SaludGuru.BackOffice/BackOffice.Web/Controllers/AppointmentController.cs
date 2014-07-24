@@ -116,7 +116,7 @@ namespace BackOffice.Web.Controllers
             return View(oModel);
         }
 
-        public virtual ActionResult Detail(string Date, string AppointmentPublicId, string ReturnUrl)
+        public virtual ActionResult Detail(string UpsertAction, string Date, string AppointmentPublicId, string ReturnUrl, string AppointmentPublicIdToDuplicate)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
@@ -132,12 +132,27 @@ namespace BackOffice.Web.Controllers
                 oModel.ReturnUrl = ReturnUrl;
             }
 
-
-            //get appointment info
             if (!string.IsNullOrEmpty(AppointmentPublicId))
             {
+                //get appointment edit info
                 oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel(MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById
                     (AppointmentPublicId.Replace(" ", "")));
+            }
+            else if (!string.IsNullOrEmpty(AppointmentPublicIdToDuplicate))
+            {
+                //get appointment duplicate info
+                AppointmentModel Apmt = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById
+                    (AppointmentPublicIdToDuplicate.Replace(" ", ""));
+
+                Apmt.AppointmentPublicId = string.Empty;
+                Apmt.Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New;
+                Apmt.AppointmentInfo.All(x =>
+                {
+                    x.AppointmentInfoId = 0;
+                    return true;
+                });
+
+                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel(Apmt);
             }
 
             //get date
