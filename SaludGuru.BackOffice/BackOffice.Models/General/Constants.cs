@@ -30,6 +30,8 @@
 
         public const string C_Settings_RemindersType = "Profile_RemindersType";
 
+        public const string C_Settings_ComunicationType = "Profile_ComuicationType";
+        
         #endregion
 
         #region Profile Images

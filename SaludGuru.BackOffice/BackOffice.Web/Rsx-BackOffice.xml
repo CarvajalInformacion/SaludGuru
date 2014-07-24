@@ -33,6 +33,9 @@
     <!--Reminder Types-->
     <key name="Profile_RemindersType">417,418</key>
     
+    <!--Comunication Types-->
+    <key name="Profile_ComuicationType">413,414,415,416</key>
+    
     <!--Default image patient-->
     <key name="PatientImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientMan.png</key>
     <key name="PatientImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientWoman.png</key>

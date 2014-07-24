@@ -445,3 +445,38 @@ function ProfileReminderListGrid(vidDiv, vReminderData) {
     //checked selected checkbox
     $('.SelectedChecked').attr('checked', 'checked');
 }
+
+function ProfileComunicationListGrid(vidDiv, vReminderData) {
+    $('#' + vidDiv).kendoGrid({
+        toolbar: [{ template: $("#template_Header").html() }],
+        dataSource: {
+            type: "json",
+            data: vReminderData,
+        },
+        columns: [{
+            field: "Name",
+            title: "Tipo recordatorio",
+        }, {
+            field: "ValueEmail",
+            title: "Email",
+            template: $("#templateCheckMessageEmail").html()
+        }, {
+            field: "ValueSms",
+            title: "SMS",
+            template: $("#templateCheckMessageSMS").html()
+        }, {
+            field: "ValueNotify",
+            title: "Notificaciones Gurú",
+            template: $("#templateCheckMessageNotificationGuru").html()
+        }],
+    });
+
+    //start all spinner
+    $('.spinnerSelector').spinner({
+        min: 1,
+        step: 1,
+    });
+
+    //checked selected checkbox
+    $('.SelectedChecked').attr('checked', 'checked');
+}
