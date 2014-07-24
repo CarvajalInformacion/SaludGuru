@@ -9,6 +9,8 @@ table.fc-border-separate th.fc-day-header{
     vertical-align: middle;
 }
 div#CalendarContent > div.fc-event > div.fc-event-inner {
+
+
 }
 div#CalendarContent span.fc-event-time{
     display: inline-block;
@@ -33,7 +35,7 @@ span.fc-event-title > div > img {
     margin: 1px;
     display: inline-block;
     vertical-align: middle;
-    height:36px;
+    height:24px;
 }
 span.fc-event-title > div > label{
     line-height:18px;
