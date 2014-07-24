@@ -65,6 +65,34 @@ namespace MedicalCalendar.Manager.Controller
             return oPublicPatientId;
         }
 
+        public static void UpsertPatientInfoItem(PatientInfoModel PatientInfoToUpsert, string PatientPublicId)
+        {
+            if (PatientInfoToUpsert.PatientInfoId <= 0)
+            {
+                //create info
+                DAL.Controller.MedicalCalendarDataController.Instance.PatientInfoCreate
+                    (PatientPublicId,
+                    PatientInfoToUpsert.PatientInfoType,
+                    PatientInfoToUpsert.Value,
+                    PatientInfoToUpsert.LargeValue);
+            }
+            else
+            {
+                //update info
+                DAL.Controller.MedicalCalendarDataController.Instance.PatientInfoModify
+                    (PatientInfoToUpsert.PatientInfoId,
+                    PatientInfoToUpsert.Value,
+                    PatientInfoToUpsert.LargeValue);
+            }
+        }
+
+        public static void DeletePatientInfoItem(PatientInfoModel PatientInfoToDelete)
+        {
+            //create info
+            DAL.Controller.MedicalCalendarDataController.Instance.PatientInfoDelete
+                (PatientInfoToDelete.PatientInfoId);
+        }
+
         public static List<ItemModel> GetPatientOptions()
         {
             return MedicalCalendarDataController.Instance.PatientGetOptions();

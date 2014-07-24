@@ -70,6 +70,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.PatientInfoModify(PatientInfoId, Value, LargeValue);
         }
 
+        public void PatientInfoDelete(int PatientInfoId)
+        {
+            DataFactory.PatientInfoDelete(PatientInfoId);
+        }
+
         public Models.Patient.PatientModel PatientGetAllByPublicPatientId(string PatientPublicId)
         {
             return DataFactory.PatientGetAllByPublicPatientId(PatientPublicId);
@@ -123,9 +128,9 @@ namespace MedicalCalendar.Manager.DAL.Controller
             DataFactory.AppointmentPatientDelete(AppointmentPublicId, PatientPublicId);
         }
 
-        public List<AppointmentModel> AppointmentList(string ProfilePublicId)
+        public List<AppointmentModel> AppointmentGetByPatient(string ProfilePublicId)
         {
-            return DataFactory.AppointmentList(ProfilePublicId);
+            return DataFactory.AppointmentGetByPatient(ProfilePublicId);
         }
 
         public List<AppointmentModel> AppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)

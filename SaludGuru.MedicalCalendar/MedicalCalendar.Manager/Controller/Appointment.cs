@@ -30,9 +30,17 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
-        public static List<AppointmentModel> AppointmentList(string PatientPublicId)
+        public static List<AppointmentModel> AppointmentGetByPatient(string PatientPublicId)
         {
-            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentList(PatientPublicId);
+            PatientModel CurrentPatient = Patient.PatientGetAllByPublicPatientId(PatientPublicId);
+
+            List<AppointmentModel> oReturn = MedicalCalendarDataController.Instance.AppointmentGetByPatient(PatientPublicId);
+
+            oReturn.All(x =>
+            {
+                x.RelatedPatient = new List<PatientModel>() { CurrentPatient };
+                return true;
+            });
 
             return oReturn;
         }

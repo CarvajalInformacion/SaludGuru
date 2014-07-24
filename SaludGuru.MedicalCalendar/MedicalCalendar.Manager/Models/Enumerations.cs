@@ -11,7 +11,8 @@
         Mobile = 1007,
         ProfileImage = 1008,
         Insurance = 1009,
-        MedicalPlain = 1010
+        MedicalPlain = 1010,
+        DoctorNotes = 1011,
     }
 
     public enum enumAppointmentInfoType

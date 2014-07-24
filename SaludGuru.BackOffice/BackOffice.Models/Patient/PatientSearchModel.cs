@@ -75,6 +75,16 @@ namespace BackOffice.Models.Patient
             }
         }
 
+        public List<PatientInfoModel> Notes
+        {
+            get
+            {
+                return CurrentPatient.PatientInfo.
+                    Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.DoctorNotes).
+                    ToList();
+            }
+        }
+
         private PatientModel CurrentPatient { get; set; }
 
         public PatientSearchModel(PatientModel vCurrentPatient)

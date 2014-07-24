@@ -61,7 +61,7 @@ namespace BackOffice.Web.Controllers
             PatientUpSertModel Model = new PatientUpSertModel()
             {
                 Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
-                RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentList(PatientPublicId),
+                RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByPatient(PatientPublicId),
             };
 
             if (Model.RelatedAppointment == null)
