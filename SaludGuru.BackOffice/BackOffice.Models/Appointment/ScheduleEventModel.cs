@@ -107,6 +107,8 @@ namespace BackOffice.Models.Appointment
 
         public string OfficeName { get { return CurrentAppointment.OfficeName; } }
 
+        public string StatusName { get { return CurrentAppointment.Status.ToString(); } }
+
         #endregion
 
         #region Form Properties
