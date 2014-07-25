@@ -256,7 +256,7 @@
     <!--patient appointment template-->
     <div id="divPatientAppointmentTemplate">
         <div>
-            <a href="/Appointment/Detail?AppointmentPublicId=${id}">
+            <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
                 <img src="${AppointmentImage}" />
                 <label>${AppointmentText}</label>
             </a>
