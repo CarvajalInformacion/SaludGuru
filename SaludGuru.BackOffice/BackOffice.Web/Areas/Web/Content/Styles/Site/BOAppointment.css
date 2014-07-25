@@ -261,22 +261,37 @@ table.fc-header {
     span.fc-header-title h2{
         font-size:14px;
         width: 100%;
-        border:none;
+        border:1px solid green;
         height: auto;
         display: block;
-        text-align:left;
+        text-align:center;
         margin-top:5px;
     }
         span.fc-header-title h2 > ul li:first-child{
             float:left;
             margin-top:2px;
+            width:auto;
+               border:1px solid blue;
+                    overflow:hidden; 
+                    white-space:nowrap; 
+                    text-overflow: ellipsis;
         }
         span.fc-header-title h2 > ul li:nth-child(2){
-            float: right;
-            border: none;
+            display: inline-block;
             vertical-align: top;
             width: auto;
             top: 0px;
+                border:1px solid blue;
+            margin:0px auto;
+        }
+        span.fc-header-title h2 > ul li:nth-child(3){
+                border:1px solid blue;
+            float: right;
+            position: absolute;
+            top:5px;
+            right:18px;
+            width:auto;
+            text-align: right;
         }
             span.fc-header-title h2 > ul li select, span.fc-header-title h2 > ul li a{
                 border: 1px solid #666;
@@ -285,15 +300,21 @@ table.fc-header {
                 color: #333;
                 margin:0px;
                 background-color: #fff;
-                width:45%;
             }
+        span.fc-header-title h2 > ul li select {
+            font-size:17px;
+            font-weight:bold;
+            background-color: #FCF8E3;
+            border-radius: 3px;
+        }
         span.fc-header-title h2 > ul li a {
-                width:52%;
+                width:100%;
                 text-align: center;
                 line-height: 20px;
                 border-radius: 2px;
                 height: 22px;
                 display: inline-block;
+                padding: 0px 5px;
         }
             span.fc-header-title h2 > ul li a:hover {
                 background-color:#e5ff80;
