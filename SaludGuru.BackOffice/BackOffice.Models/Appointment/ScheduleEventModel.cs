@@ -22,38 +22,10 @@ namespace BackOffice.Models.Appointment
                 string AppointmentTitle = BackOffice.Models.General.InternalSettings.Instance
                     [BackOffice.Models.General.Constants.C_Settings_Appointment_TitleTemplate.Replace("{{StatusId}}", ((int)CurrentAppointment.Status).ToString())].Value;
 
-                if (CurrentAppointment.RelatedPatient == null || CurrentAppointment.RelatedPatient.Count == 0)
-                {
-                    //no patients over appointment
-                    AppointmentTitle = AppointmentTitle.
-                        Replace("{AppointmentName}", "Esta cita no tiene pacientes.").
-                        Replace("{AppointmentImage}",
-                        BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Appointment_ImageEmpty].Value);
-                }
-                else if (CurrentAppointment.RelatedPatient.Count == 1)
-                {
-                    //one patient over appointment
-                    AppointmentTitle = AppointmentTitle.
-                        Replace("{AppointmentName}", CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName).FirstOrDefault()).
-                        Replace("{AppointmentImage}",
-                            CurrentAppointment.RelatedPatient.
-                                Select(x => x.PatientInfo.
-                                    Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
-                                    Select(y => !string.IsNullOrEmpty(y.Value) ? y.Value :
-                                                    BackOffice.Models.General.InternalSettings.Instance
-                                                        [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value).
-                                    DefaultIfEmpty(BackOffice.Models.General.InternalSettings.Instance
-                                                        [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value).
-                                    FirstOrDefault()).FirstOrDefault());
-                }
-                else if (CurrentAppointment.RelatedPatient.Count > 1)
-                {
-                    //more than one patient
-                    AppointmentTitle = AppointmentTitle.
-                        Replace("{AppointmentName}", "Esta cita tiene varios pacientes asociados.").
-                        Replace("{AppointmentImage}",
-                        BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Appointment_ImageGroup].Value);
-                }
+                AppointmentTitle = AppointmentTitle.
+                                        Replace("{AppointmentName}", AppointmentText).
+                                        Replace("{AppointmentImage}", AppointmentImage);
+
                 return AppointmentTitle;
             }
         }
@@ -65,6 +37,60 @@ namespace BackOffice.Models.Appointment
         public string className { get { return "AppointmentStatus_" + ((int)CurrentAppointment.Status).ToString(); } }
 
         public bool allDay { get { return false; } }
+
+        public string AppointmentImage
+        {
+            get
+            {
+                if (CurrentAppointment.RelatedPatient == null || CurrentAppointment.RelatedPatient.Count == 0)
+                {
+                    //no patients over appointment
+                    return BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Appointment_ImageEmpty].Value;
+                }
+                else if (CurrentAppointment.RelatedPatient.Count == 1)
+                {
+                    //one patient over appointment
+                    return CurrentAppointment.RelatedPatient.
+                                Select(x => x.PatientInfo.
+                                    Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
+                                    Select(y => !string.IsNullOrEmpty(y.Value) ? y.Value :
+                                                    BackOffice.Models.General.InternalSettings.Instance
+                                                        [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value).
+                                    DefaultIfEmpty(BackOffice.Models.General.InternalSettings.Instance
+                                                        [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value).
+                                    FirstOrDefault()).FirstOrDefault();
+                }
+                else if (CurrentAppointment.RelatedPatient.Count > 1)
+                {
+                    //more than one patient
+                    return BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Appointment_ImageGroup].Value;
+                }
+                return string.Empty;
+            }
+        }
+
+        public string AppointmentText
+        {
+            get
+            {
+                if (CurrentAppointment.RelatedPatient == null || CurrentAppointment.RelatedPatient.Count == 0)
+                {
+                    //no patients over appointment
+                    return "Esta cita no tiene pacientes.";
+                }
+                else if (CurrentAppointment.RelatedPatient.Count == 1)
+                {
+                    //one patient over appointment
+                    return CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName).FirstOrDefault();
+                }
+                else if (CurrentAppointment.RelatedPatient.Count > 1)
+                {
+                    //more than one patient
+                    return "Esta cita tiene varios pacientes asociados.";
+                }
+                return string.Empty;
+            }
+        }
 
         #endregion
 

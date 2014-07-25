@@ -90,13 +90,6 @@ namespace BackOffice.Web.ControllersApi
                     lstAppointment = lstAppointment.OrderByDescending(x => x.StartDate).Take(Quantity).ToList();
                 }
 
-                lstAppointment.All(x =>
-                {
-                    x.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, x.StartDate.Hour, x.StartDate.Minute, 0);
-                    x.EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, x.EndDate.Hour, x.EndDate.Minute, 0);
-                    return true;
-                });
-
                 return lstAppointment.Select(x => new ScheduleEventModel(x)).ToList();
             }
             else

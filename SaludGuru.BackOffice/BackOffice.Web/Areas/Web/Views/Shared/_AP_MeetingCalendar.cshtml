@@ -18,7 +18,10 @@
                     </li>
                     <li>
                         {OfficeList}
-                        <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                        @if (Model.AppointmentType != BackOffice.Models.General.enumAppointmentType.Detail)
+                        {
+                            <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                        }
                     </li>
                 </ul>
             </div>

@@ -1480,39 +1480,31 @@ var AppointmentDetailObject = {
     RenderPatientAppointment: function (vDivId, vPatientPublicId) {
 
         //init office metting calendar
-        $('#' + vDivId).fullCalendar({
-            dayNames: MettingCalendarObject.dayNamesSp,
-            dayNamesShort: MettingCalendarObject.dayNamesShortSp,
-            monthNames: MettingCalendarObject.monthNamesSp,
-            defaultView: 'basicDay',
-            allDaySlot: false,
-            allDayText: ' ',
-            weekNumbers: false,
-            editable: false,
-            header: {
-                left: ' ',
-                center: ' ',
-                right: ' ',
+        $('#' + vDivId).kendoGrid({
+            pageable: false,
+            dataSource: {
+                transport: {
+                    read: function (options) {
+                        $.ajax({
+                            url: '/api/PatientApi?Quantity=5&PatientPublicId=' + vPatientPublicId,
+                            dataType: "json",
+                            type: "POST",
+                            success: function (result) {
+                                debugger;
+                                options.success(result);
+                            },
+                            error: function (result) {
+                                options.error(result);
+                            }
+                        });
+                    }
+                },
             },
-            columnFormat: {
-                month: ' ',
-                week: ' ',
-                day: ' '
-            },
-            eventClick: function (event, jsEvent, view) {
-                window.location = '/Appointment/Detail?AppointmentPublicId=' + event.id;
-            },
-            eventAfterRender: function (event, element, view) {
-                if (element.find('.fc-event-title').text().length > 0) {
-                    element.find('.fc-event-title').html(element.find('.fc-event-title').text());
-                }
-                else {
-                    element.find('.fc-event-time').html(element.find('.fc-event-time').text());
-                }
-            },
-            events: {
-                url: '/api/PatientApi?Quantity=5&PatientPublicId=' + vPatientPublicId,
-            },
+            columns: [{
+                field: 'id',
+                title: ' ',
+                template: $('#divPatientAppointmentTemplate').html()
+            }]
         });
     },
 
