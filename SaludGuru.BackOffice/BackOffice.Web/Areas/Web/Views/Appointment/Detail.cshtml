@@ -257,8 +257,10 @@
     <div id="divPatientAppointmentTemplate">
         <div>
             <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
+                <label>${AppointmentDateText}</label>
                 <img src="${AppointmentImage}" />
                 <label>${AppointmentText}</label>
+                <label>${OfficeName}</label>
             </a>
         </div>
     </div>

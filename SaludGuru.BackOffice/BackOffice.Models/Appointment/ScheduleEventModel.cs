@@ -38,6 +38,10 @@ namespace BackOffice.Models.Appointment
 
         public bool allDay { get { return false; } }
 
+        #endregion
+
+        #region Appointment patient
+
         public string AppointmentImage
         {
             get
@@ -91,6 +95,17 @@ namespace BackOffice.Models.Appointment
                 return string.Empty;
             }
         }
+
+        public string AppointmentDateText
+        {
+            get
+            {
+                return CurrentAppointment.StartDate.ToString("dd \\de MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) +
+                    CurrentAppointment.EndDate.ToString(" - hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+            }
+        }
+
+        public string OfficeName { get { return CurrentAppointment.OfficeName; } }
 
         #endregion
 
