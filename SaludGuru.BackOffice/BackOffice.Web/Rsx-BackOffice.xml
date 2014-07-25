@@ -32,10 +32,10 @@
 
     <!--Reminder Types-->
     <key name="Profile_RemindersType">417,418</key>
-    
+
     <!--Comunication Types-->
     <key name="Profile_ComuicationType">413,414,415,416</key>
-    
+
     <!--Default image patient-->
     <key name="PatientImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientMan.png</key>
     <key name="PatientImage_Woman">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientWoman.png</key>
@@ -123,6 +123,17 @@
       </div>
     ]]>
     </key>
+
+    <!--Appointment status names-->
+    <key name="Appointment_StatusName_New">(Cita nueva)</key>
+    <key name="Appointment_StatusName_1201">(Cita creada)</key>
+    <key name="Appointment_StatusName_1202">(Cita confirmada)</key>
+    <key name="Appointment_StatusName_1203">(Cita cancelada)</key>
+    <key name="Appointment_StatusName_1204">(Cita pendiente por asistencia)</key>
+    <key name="Appointment_StatusName_1205">(Cita confirmada asistencia)</key>
+    <key name="Appointment_StatusName_1206">(Cita confirmada inasistencia)</key>
+    <key name="Appointment_StatusName_1207">(Agenda bloqueada)</key>
+
   </BackOffice>
 </Settings>
 

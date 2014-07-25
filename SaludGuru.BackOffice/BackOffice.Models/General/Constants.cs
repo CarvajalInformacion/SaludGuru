@@ -57,6 +57,9 @@
         public const string C_Settings_Appointment_ImageGroup = "Appointment_ImageGroup";
         public const string C_Settings_Appointment_TitleTemplate = "Appointment_TitleTemplate_{{StatusId}}";
         public const string C_Settings_Appointment_TitleTemplate_Month = "Appointment_TitleTemplate_Month";
+        public const string C_Settings_Appointment_StatusName_New = "Appointment_StatusName_New";
+        public const string C_Settings_Appointment_StatusName = "Appointment_StatusName_{{StatusId}}";        
+
         #endregion
 
         #endregion
