@@ -1490,7 +1490,6 @@ var AppointmentDetailObject = {
                             dataType: "json",
                             type: "POST",
                             success: function (result) {
-                                debugger;
                                 options.success(result);
                             },
                             error: function (result) {
