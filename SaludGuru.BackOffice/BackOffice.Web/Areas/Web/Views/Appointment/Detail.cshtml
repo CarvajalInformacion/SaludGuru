@@ -27,35 +27,16 @@
             }
             <span>Detalles de la cita</span>
             <span>
-                @switch (oApmntStatus)
+                @if (Model.CurrentAppointment == null)
                 {
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.New:
-                        if (Model.CurrentAppointment == null)
-                        {
-                            Html.Raw("(Cita nueva)");
-                        }
-                        else
-                        {
-                            Html.Raw("(Cita creada)");
-                        }
-                        break;
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Confirmed:
-                        Html.Raw("(Cita confirmada)");
-                        break;
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled:
-                        Html.Raw("(Cita cancelada)");
-                        break;
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.PendientAsistance:
-                        Html.Raw("(Cita pendiente por asistencia)");
-                        break;
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance:
-                        Html.Raw("(Cita confirmada asistencia)");
-                        break;
-                    case MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance:
-                        Html.Raw("(Cita confirmada inasistencia)");
-                        break;
-                    default:
-                        break;
+                    Html.Raw(BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_Appointment_StatusName_New].Value);
+                }
+                else
+                {
+                    Html.Raw(BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_Appointment_StatusName.
+                        Replace("{{StatusId}}", Model.CurrentAppointment.AppointmentStatus.ToString())].Value);
                 }
             </span>
         </div>

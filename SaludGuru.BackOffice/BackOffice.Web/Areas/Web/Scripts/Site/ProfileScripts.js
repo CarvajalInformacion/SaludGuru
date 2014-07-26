@@ -416,23 +416,28 @@ function ProfileReminderListGrid(vidDiv, vReminderData) {
         columns: [{
             field: "Name",
             title: "Tipo recordatorio",
+            width: 200
         }, {
             field: "ValueEmail",
             title: "Email",
-            template: $("#templateCheckMessageEmail").html()
+            template: $("#templateCheckMessageEmail").html(),
+            width: 70
         }, {
             field: "ValueSms",
             title: "SMS",
-            template: $("#templateCheckMessageSMS").html()
+            template: $("#templateCheckMessageSMS").html(),
+            width: 70
         }, {
             field: "ValueNotify",
             title: "Notificaciones Gurú",
-            template: $("#templateCheckMessageNotificationGuru").html()
+            template: $("#templateCheckMessageNotificationGuru").html(),
+            width: 180
         },
         {
             field: "ProgramTime",
-            title: "Tiempo previo (valor en horas)",
+            title: "Tiempo previo (horas)",
             template: $("#templateHourTime").html()
+
         }],
     });
 
@@ -452,22 +457,27 @@ function ProfileComunicationListGrid(vidDiv, vReminderData) {
         dataSource: {
             type: "json",
             data: vReminderData,
+           
         },
         columns: [{
             field: "Name",
             title: "Tipo recordatorio",
+            width: 200
         }, {
             field: "ValueEmail",
             title: "Email",
-            template: $("#templateCheckMessageEmail").html()
+            template: $("#templateCheckMessageEmail").html(),
+            width: 100
         }, {
             field: "ValueSms",
             title: "SMS",
-            template: $("#templateCheckMessageSMS").html()
+            template: $("#templateCheckMessageSMS").html(),
+            width: 100
         }, {
             field: "ValueNotify",
             title: "Notificaciones Gurú",
-            template: $("#templateCheckMessageNotificationGuru").html()
+            template: $("#templateCheckMessageNotificationGuru").html(),
+            width: 100
         }],
     });
 

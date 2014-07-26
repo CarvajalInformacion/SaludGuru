@@ -19,7 +19,7 @@
 
 <div id="templates" style="display:none;">
     <div id="templateCreate">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileUpsert, MVC.Profile.Name,
+        <form id="TreatmentForm" method="post" action="@(Url.Action(MVC.Profile.ActionNames.TreatmentProfileUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
             <ul class="BOEditDaySetUp">
                 <li>
@@ -85,57 +85,19 @@
     <script type="text/javascript">
         var vDataTreatmentProfile = @Html.Raw(oTreatmentProfile)
 
-            $(document).ready(function () {
-                //start office grid
-                ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
+        $(document).ready(function () {
+            //start office grid
+            ProfileTreatmentListGrid('divGridTreatmentProfile', vDataTreatmentProfile);
 
-                var oTreatmentData = @Html.Raw(oTreatmentData)
-                ProfileTreatmentAc('Treatment', oTreatmentData);
-            });
-
-        $("#Add").click(function () {
-            debugger;
-            var val = $("#Treatment-id").prop('value');
-            if (val == null || val == " ") {
-                $(function () {
-                    $("#dialog").dialog({
-                        autoOpen: false,
-                        show: {
-                            effect: "blind",
-                            duration: 1000
-                        },
-                        hide: {
-                            effect: "explode",
-                            duration: 1000
-                        }
-                    });
-                    $("#opener").click(function () {
-                        $("#dialog").dialog("open");
-                    });
-                });
-            }
-        });
-        $(function () {
-            $("#dialog").dialog({
-
-                autoOpen: false,
-                show: {
-                    effect: "clip",
-                    duration: 500
-                },
-                hide: {
-                    effect: "blind",
-                    duration: 500
-                }
-            });
-            $("#Add").click(function () {
-                debugger;
+            var oTreatmentData = @Html.Raw(oTreatmentData)
+            ProfileTreatmentAc('Treatment', oTreatmentData);
+                       
+            $("#Add").on("click", function () {
                 var val = $("#Treatment-id").prop('value');
-                if (val == null || val == "") {
-                    $("#dialog").text('test');
-                    $("#dialog").dialog("open");
+                if (val == null || val == "") {                    
+                    ValidatePopUp("Treatment-id", "el tratamiento que desea agregar no se encuentra en la base de tratamientos, "+ " \n "+ " para agregarlo por favor comunicarse con el área de soporte.", "Add")
                     return false;
-                }
+                }               
             });
         });
     </script>

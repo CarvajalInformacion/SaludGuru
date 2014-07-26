@@ -33,7 +33,7 @@ function serverDateTimeToString(vDate) {
 
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitModel) {
-    
+
     //init autorization options menu
     InitAutorizationMenu();
 
@@ -98,7 +98,7 @@ var NotificationObject = {
             Type: "POST",
             dataType: "Json"
         }).done(function (data) {
-            
+
             if (data != null && NotificationObject.NotificationList.length != data.length) {
                 NotificationObject.NotificationList = data;
                 NotificationObject.RenderNotifications();
@@ -158,4 +158,26 @@ function InitGlobalSearchBox(IsUserAdmin) {
             }
         });
     }
+}
+
+/*Error popup validation*/
+function ValidatePopUp(controlName, message, NameSubmit) {
+    //debugger;
+    $("#dialogError").dialog({
+
+        
+        show: {
+            effect: "clip",
+            duration: 500,
+            title: "Error"
+        },
+        hide: {
+            effect: "blind",
+            duration: 500,
+            title: "Error"            
+        }
+    });
+    $("#dialogError").text(message);
+    $("#dialogError").dialog("open");
+
 }

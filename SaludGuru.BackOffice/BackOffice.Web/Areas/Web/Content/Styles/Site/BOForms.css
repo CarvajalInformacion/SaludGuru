@@ -67,7 +67,16 @@ border:none;
         line-height: 20px;
     }
 
-
+.BOFormDataWrapper ul li span{
+    display: block;
+    height: 4px;
+    color: red;
+    line-height: 18px;
+    margin: 10px 0px 0px 0px;
+    font-style: italic;
+    width: 95%;
+    text-align: right;
+}
 
 
     .BOFormDataWrapper ul li p{

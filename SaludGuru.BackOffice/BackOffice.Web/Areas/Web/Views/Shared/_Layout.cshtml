@@ -28,8 +28,10 @@
     <div>
         @RenderBody()
     </div>
-
-
+    <!--Div Error-->
+    <div style="display:none;">
+        <div id="dialogError" title="Error"></div>
+    </div>
     @*Render boundles scripts*@
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
     @Scripts.Render("~/" + BackOffice.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")

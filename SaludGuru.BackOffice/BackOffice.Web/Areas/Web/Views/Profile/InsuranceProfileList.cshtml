@@ -34,7 +34,7 @@
                 <li class="BOButtonContainerShort">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                    <input id="Add" class="BOAgregarButtons" type="submit" value="Agregar" />
                 </li>
             </ul>
         </form>
@@ -79,6 +79,14 @@
         $(document).ready(function () {
             //start office grid
             OfficeInsuranceAc('Insurance', vDataInsurance);
+
+            $("#Add").on("click", function () {
+                var val = $("#Insurance-id").prop('value');
+                if (val == null || val == "") {
+                    ValidatePopUp("Insurance-id", "el seguro que desea agregar no se encuentra en la base de seguros, " + " \n " + " para agregarlo por favor comunicarse con el área de soporte.", "Add")
+                    return false;
+                }
+            });
         });
     </script>
 }

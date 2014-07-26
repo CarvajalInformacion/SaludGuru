@@ -107,6 +107,24 @@ namespace BackOffice.Models.Appointment
 
         public string OfficeName { get { return CurrentAppointment.OfficeName; } }
 
+        public string StatusName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(AppointmentPublicId))
+                {
+                    return BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_Appointment_StatusName_New].Value;
+                }
+                else
+                {
+                    return BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_Appointment_StatusName.
+                        Replace("{{StatusId}}", ((int)CurrentAppointment.Status).ToString())].Value;
+                }
+            }
+        }
+
         #endregion
 
         #region Form Properties

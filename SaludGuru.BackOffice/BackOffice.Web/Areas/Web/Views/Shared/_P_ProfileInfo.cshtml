@@ -1,22 +1,20 @@
 ﻿@model BackOffice.Models.Profile.ProfileUpSertModel
 
-
-
 <div class="BOFormDataWrapper">
     @{string UrlAction = (Model.Profile == null) ?
             Url.Action(MVC.Profile.ActionNames.ProfileCreate, MVC.Profile.Name) :
             Url.Action(MVC.Profile.ActionNames.ProfileEdit, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId });
     }
-    <form action="@UrlAction" method="post">
+    <form id="ProfileInfoFormId" action="@UrlAction" method="post">
         <ul>
             <h3>Datos del Perfil</h3>
             <li>
                 <label>Nombre</label>
-                <input id="Name" name="Name" value="@(Model.Profile==null?string.Empty:Model.Profile.Name)" type="text" />
+                <input id="Name" class="required" name="Name" value="@(Model.Profile==null?string.Empty:Model.Profile.Name)" type="text" />
             </li>
             <li>
                 <label>Apellido</label>
-                <input id="LastName" name="LastName" value="@(Model.Profile==null?string.Empty:Model.Profile.LastName)" type="text" />
+                <input id="LastName" class="required" name="LastName" value="@(Model.Profile==null?string.Empty:Model.Profile.LastName)" type="text" />
             </li>
             <li>
                 <label>Tipo de perfil</label>
@@ -105,7 +103,7 @@
                     }
                 }
                 <label>Número Identificación</label>
-                <input id="IdentificationNumber" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" type="text" />
+                <input id="IdentificationNumber" class="required" name="IdentificationNumber" value="@(CatInfo_IN == null ? string.Empty : CatInfo_IN.val)" type="text" />
             </li>
             <li>
                 @{
@@ -148,8 +146,13 @@
                     }
                 }
                 <label>Correo electronico</label>
-                <input id="Email" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
+                <input id="Email" class="required" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
+
+            @*<li>
+                    <label>Telefono móvil</label>
+                    <input id="Mobile" class="required" name="LastName" value="@(Model.Profile==null?string.Empty:Model.Profile.)" type="text" />
+                </li>*@
             <li>
                 @{
                     var CatInfo_WS = Model.Profile == null ? null :
