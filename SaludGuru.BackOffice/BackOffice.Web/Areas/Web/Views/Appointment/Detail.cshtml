@@ -19,8 +19,8 @@
         <!--Meeting Calendar-->
         @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
     </div>
-    <div class="AppointmentFormStatus_@((int)oApmntStatus)" style="height:900px;">
-        <div>
+    <div class="AppointmentFormStatus_@((int)oApmntStatus)">
+        <div class="BOVerMasTop">
             @if (!string.IsNullOrEmpty(Model.ReturnUrl))
             {
                 <a href="@Model.ReturnUrl">Volver</a>
@@ -59,7 +59,7 @@
                 }
             </span>
         </div>
-        <div>
+        <div class="BOVerMasLeftColumn BOFormDataWrapper">
             <!--appointment info-->
             <form id="frmAppointment" name="frmAppointment" action="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name))" method="post">
                 <ul>
@@ -103,7 +103,7 @@
                 </div>
             </form>
         </div>
-        <div>
+        <div class="BOVerMasRightColumn">
             <!--patient info-->
             <ul>
                 <li>
@@ -112,7 +112,7 @@
                     <a href="javascript:;">+</a>
                 </li>
                 <li>
-                    <h4>Paciente(s) asignados a la cita:</h4>
+                    <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Paciente(s) asignados a la cita:</h4>
                 </li>
                 <li>
                     <ul id="lstPatient"></ul>
@@ -221,18 +221,19 @@
             </div>
 
             <!--doctor notes-->
-            <div>
-                <div>
-                    <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15" style="padding: 0;width:100px;height:100px;">&nbsp;</textarea>
+                <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Las Notas Del Doctor</h4>
+                <div class="BOAddNotes">
+                    <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15">&nbsp;</textarea>
+                    <span>
                     <a href="javascript:AppointmentDetailObject.AddPatientNote('{PatientPublicId}');">Agregar nota</a>
+                    </span>
                 </div>
-                <div>
+                <div class="BoNotesList">
                     <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
                 </div>
-            </div>
             <!--related appointment-->
             <div>
-                <div id="divPatientAppointment_{PatientPublicId}" style="width:400px;right:0px;position:absolute;"></div>
+                <div id="divPatientAppointment_{PatientPublicId}"></div>
                 <a href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
             </div>
             <!--remove patient container-->

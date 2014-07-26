@@ -1,0 +1,184 @@
+.AppointmentFormStatus_1205 {
+    height:auto; 
+    border:1px solid red; 
+    float:right; 
+    width:70.8%;
+    text-align:left;
+}
+div.BOVerMasTop {
+    border:1px solid green;
+    width:100%;
+    height:26px;
+    display:block;
+    float:right;
+    background-color:#99c21d;
+    border-radius: 2px;
+    text-align:left;
+}
+div.BOVerMasTop a{
+    border: 1px solid #00F;
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    margin: 0px 0px 0px 22px;
+    line-height: 22px;
+}
+div.BOVerMasTop span:first-child{
+    border:1px solid red;
+        display:inline block;
+        width:auto; height:auto;
+        margin:10px 0px 0px 10px;
+        vertical-align:bottom;
+}
+    div.BOVerMasTop span:nth-child(3) {
+        display:none;
+    }
+.BOVerMasLeftColumn {
+    border: 1px solid #008000;
+    border-right:2px solid #99c21d;
+    display: inline-block;
+    width: 40%;
+    height: auto;
+    left: 0px;
+    vertical-align:top;
+}
+.BOVerMasLeftColumn ul{
+    border:1px solid purple;
+    display: block;
+    margin:10px 0px 8px 22px;
+    width: 72%;
+    min-width: 348px;
+    height: auto;
+}
+.BOVerMasLeftColumn ul li{
+    border:1px solid red;
+    display: block;
+    padding: 10px;
+    margin: 0px;
+}
+.BOVerMasLeftColumn ul li label{
+    border:1px solid pink;
+     font-size: 14px;
+    padding: 2px 0px;
+    width: 48%;
+}
+    .BOVerMasLeftColumn ul li select, .BOVerMasLeftColumn ul li textarea, 
+    .BOVerMasLeftColumn ul li input{
+        border: 1px solid #008000;
+        font-size: 14px;
+        height: 24px;
+        width: 48%;
+    }
+        .BOVerMasLeftColumn ul li textarea#AfterCare {
+            height:130px;
+        }
+        .BOVerMasLeftColumn ul li textarea#BeforeCare {
+            height:130px;
+        }
+.BOVerMasRightColumn {
+    border:1px solid blue;
+    display: inline-block;
+    width:60%;
+    height: auto;
+    left: 0px;
+    vertical-align:auto;
+    margin-left:-6px;
+}
+    .BOVerMasRightColumn ul{
+        border:1px solid red;
+        display:block;
+        margin:10px 0px 0px 10px;
+        background-color:#f2f2f2;
+    }
+        .BOVerMasRightColumn ul li{
+            border:1px solid black;
+            display:block;
+            margin:10px;
+            font-size:14px;
+            line-height:14px;
+        }
+            .BOVerMasRightColumn ul li label, .BOVerMasRightColumn ul li input,
+            .BOVerMasRightColumn ul li a{
+                border:1px solid pink;
+                display:inline-block;
+                margin:0px 0px 0px 10px;
+                vertical-align:middle;
+            }
+            .BOVerMasRightColumn ul li input {
+                width:45%;
+                height:20px;
+            }
+            .BOVerMasRightColumn ul li a{
+                font-size:28px;
+                font-weight:bold;
+                color:#99c21d;
+                vertical-align:top;
+                text-decoration: none;
+            }
+.BOHeadingColorStatus_1205{
+    border:1px solid red;
+    display:block;
+    border-bottom:1px solid #99c21d;
+    color:#99c21d;
+}
+.BOVerMasRightColumn ul li ul#lstPatient{
+    border:1px solid blue;
+    display:block;
+    margin:0px;
+    width:100%;
+}
+    ul#lstPatient li{
+        border:1px solid grey;
+        display:block;
+        margin:0px;
+        width:100%;
+    }
+        ul#lstPatient div.BOPatientDataContainer a {
+            border:1px solid green;
+            margin-left:10px;
+        }
+        div.BOAddNotes {
+            display:block;
+            border:1px solid grey;
+            width:100%;
+            padding:8px;
+        }
+        div.BOAddNotes textarea{
+            display:block;
+            width:98%; height:72px;
+            border:1px solid #666;
+            border-radius:2px;
+            background-color:#fff;
+        }
+        div.BOAddNotes span {
+            display:block;
+            width:100px; height:28px;
+            background-image:url('/Areas/Web/Content/Images/calendarActionsSprite.png');
+            background-position:0px 0px;
+            background-repeat:no-repeat;
+            text-align:right;
+        }
+        div.BOAddNotes a{
+            width:100px; height:28px;
+            font-size:12px;
+            color:#333;
+            font-weight:normal;
+        }
+        .BoNotesList {
+            display:block;
+            border:1px solid grey;
+        }
+div.BOAgendaCalendarAppointmentCommands{
+    border: 1px solid #800080;
+    background-color: #CCC;
+    position: fixed;
+    width: 70.8%;
+    height: 38px;
+    right: 0px;
+    top: 94%;
+    padding: 0px !important;
+}
+
+
+
+

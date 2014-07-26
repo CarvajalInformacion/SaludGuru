@@ -261,37 +261,40 @@ table.fc-header {
     span.fc-header-title h2{
         font-size:14px;
         width: 100%;
-        border:1px solid green;
+            border:1px solid red;
         height: auto;
         display: block;
         text-align:center;
         margin-top:5px;
     }
         span.fc-header-title h2 > ul li:first-child{
-            float:left;
-            margin-top:2px;
-            width:auto;
-               border:1px solid blue;
-                    overflow:hidden; 
-                    white-space:nowrap; 
-                    text-overflow: ellipsis;
+            float: left;
+            margin-top: 4px;
+            border: 1px solid #008000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 20%;
+            text-align: left;
+            min-width: 170px;
         }
         span.fc-header-title h2 > ul li:nth-child(2){
-            display: inline-block;
             vertical-align: top;
-            width: auto;
             top: 0px;
-                border:1px solid blue;
-            margin:0px auto;
+            border: 1px solid #008000;
+            margin: 0px auto;
+            width: 40%;
+            text-align: right;
+            float: left;
+            min-width: 152px;
         }
         span.fc-header-title h2 > ul li:nth-child(3){
-                border:1px solid blue;
-            float: right;
-            position: absolute;
-            top:5px;
-            right:18px;
-            width:auto;
+            border: 1px solid #008000;
+            top: 5px;
             text-align: right;
+            width: 40%;
+            float: left;
+            right: 0px;
         }
             span.fc-header-title h2 > ul li select, span.fc-header-title h2 > ul li a{
                 border: 1px solid #666;
@@ -302,19 +305,23 @@ table.fc-header {
                 background-color: #fff;
             }
         span.fc-header-title h2 > ul li select {
-            font-size:17px;
-            font-weight:bold;
+            font-size: 17px;
+            font-weight: bold;
             background-color: #FCF8E3;
             border-radius: 3px;
+            display: inline-block;
+            vertical-align: middle;
+            height: 22px;
         }
         span.fc-header-title h2 > ul li a {
-                width:100%;
-                text-align: center;
-                line-height: 20px;
-                border-radius: 2px;
-                height: 22px;
-                display: inline-block;
-                padding: 0px 5px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 2px;
+            height: 22px;
+            display: inline-block;
+            padding: 0px 5px;
+            width: auto;
+            vertical-align: middle;
         }
             span.fc-header-title h2 > ul li a:hover {
                 background-color:#e5ff80;
