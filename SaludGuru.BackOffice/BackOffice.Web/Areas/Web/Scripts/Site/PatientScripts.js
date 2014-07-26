@@ -81,3 +81,33 @@ function PatientAppointmentListGrid(vidDiv, vDataAppointment) {
         }],
     });
 }
+
+function RenderPatientAppointment (vDivId, vPatientPublicId) {
+
+    //init office metting calendar
+    $('#' + vDivId).kendoGrid({
+        pageable: false,
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.ajax({
+                        url: '/api/PatientApi?Quantity=0&PatientPublicId=' + vPatientPublicId,
+                        dataType: "json",
+                        type: "POST",
+                        success: function (result) {
+                            options.success(result);
+                        },
+                        error: function (result) {
+                            options.error(result);
+                        }
+                    });
+                }
+            },
+        },
+        columns: [{
+            field: 'id',
+            title: ' ',
+            template: $('#divPatientAppointmentTemplate').html()
+        }]
+    });
+}

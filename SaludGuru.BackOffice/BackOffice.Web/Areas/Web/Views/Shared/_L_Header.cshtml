@@ -12,7 +12,7 @@
                         string DrShowName = string.Empty;
                         if (!string.IsNullOrEmpty(ua.ProfileName))
                         {
-                            DrShowName = ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. " + ua.ProfileName + " " + ua.ProfileLastName;
+                            DrShowName = (ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. ") + ua.ProfileName + " " + ua.ProfileLastName;
                         }
                         if (!string.IsNullOrEmpty(DrShowName))
                         {
