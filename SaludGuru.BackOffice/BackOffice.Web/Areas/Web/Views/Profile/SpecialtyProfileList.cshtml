@@ -40,7 +40,7 @@
                         <li class="BOButtonContainerShort">
                             <!-- hiden fields -->
                             <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                            <input class="BOAgregarButtons" type="submit" value="Agregar" />
+                            <input id="Add" class="BOAgregarButtons" type="submit" value="Agregar" />
                         </li>
                     }
                 }
@@ -85,13 +85,19 @@
             $(document).ready(function () {
                 //start office grid
                 ProfileSpecialtyListGrid('divGridSpecialtyProfile', vDataAutorizationProfile);
-            });
-    </script>
-    <script type="text/javascript">
-        var vDataSpecialty = @Html.Raw(oSpecialtyData)
-            $(document).ready(function () {
+                var vDataSpecialty = @Html.Raw(oSpecialtyData)
+
                 //start office grid
                 OfficeSpecialtyAc('Specialty', vDataSpecialty);
+
+                //Validate specialty
+                $("#Add").on("click", function () {
+                    var val = $("#Specialty-id").prop('value');
+                    if (val == null || val == "") {
+                        ValidatePopUp("Specialty-id", "La especialidad que desea agregar no existe actualmente en nuestra base de seguros, " + " \n " + " para agregarlo por favor comunicarse con el área de soporte.", "Add")
+                        return false;
+                    }
+                });
             });
     </script>
 }

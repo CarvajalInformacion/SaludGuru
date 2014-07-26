@@ -23,7 +23,7 @@
 }
 
 #Dialog_CancelAppointment p, .BOSelectAttendance span, #liRemindedFuture span, #divRemindedDate span,
-#Dialog_SaveResult p, #Dialog_SaveAppointment p{
+#Dialog_SaveResult p, #Dialog_SaveAppointment p, #dialogError{
     border:none;
     line-height:15px;
     font-size:15px;
