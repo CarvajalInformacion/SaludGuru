@@ -14,6 +14,8 @@ namespace SaludGuruProfile.Manager.Models.Profile
         public string LargeValue { get; set; }
         public DateTime LastModify { get; set; }
         public DateTime CreateDate { get; set; }
-
+        public string Mobil { get; set; }
+        public string KeyWords { get; set; }        
+        public string SaleforceCode { get; set; }
     }
 }

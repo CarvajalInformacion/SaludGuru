@@ -47,6 +47,9 @@
         ModificacionCita = 416,
         RecordatorioCita = 417,
         RecordatorioProxCita = 418,
+        CodigoSaleforce = 419,
+        Mobile = 424,
+        KeyWords = 425,
 
         ImageProfileLarge = 420,
         ImageProfileSmallOriginal = 421,
