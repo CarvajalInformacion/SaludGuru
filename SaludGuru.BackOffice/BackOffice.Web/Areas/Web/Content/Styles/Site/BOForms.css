@@ -382,6 +382,7 @@ div#AppointmentUpsert ul > li > ul#lstPatient {
             display:block;
             height:34px;
             width:100%;
+            border-top: 1px solid #666;
         }
             div.BOAgendaCalendarWrapper div.BOAgendaCalendarAppointmentCommands span{
                 background-image:url('/Areas/Web/Content/Images/BOAppointmentActionsSprite.png');

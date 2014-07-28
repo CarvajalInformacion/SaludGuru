@@ -282,9 +282,11 @@ var MettingCalendarObject = {
     },
 
     CalendarHeight: function () {
+        var contentHeightAux = $(window).height() - 170;
 
-        var contentHeightAux = 200;
-
+        if (contentHeightAux < 300) {
+            contentHeightAux = 300;
+        }
         return contentHeightAux;
     },
 

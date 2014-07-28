@@ -1,3 +1,13 @@
+div.BOVerMasAppointmentFormStatus_1201, div.BOVerMasAppointmentFormStatus_1202, 
+div.BOVerMasAppointmentFormStatus_1203, div.BOVerMasAppointmentFormStatus_1204,
+div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206
+{
+    border:1px solid purple;
+    width:71%;
+    position:absolute;
+    right:0px;
+    top:0px;
+}
 div.BOVerMasTop {
     border:1px solid green;
     width:100%;
@@ -31,14 +41,16 @@ div.BOVerMasTop span:first-child{
     border-right:2px solid #99c21d;
     display: inline-block;
     width: 40%;
-    height: auto;
+    height:446px;
     left: 0px;
     vertical-align:top;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 .BOVerMasLeftColumn ul{
     border:1px solid purple;
     display: block;
-    margin:10px 0px 8px 22px;
+    margin:10px 0px 8px 14px;
     width: 72%;
     min-width: 348px;
     height: auto;
@@ -72,10 +84,12 @@ div.BOVerMasTop span:first-child{
     border:1px solid blue;
     display: inline-block;
     width:60%;
-    height: auto;
+    height:446px;
     left: 0px;
     vertical-align:auto;
     margin-left:-6px;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
     .BOVerMasRightColumn ul{
         border:1px solid red;
@@ -119,6 +133,7 @@ div.BOVerMasTop span:first-child{
     display:block;
     margin:0px;
     width:100%;
+    text-align:left;
 }
     ul#lstPatient li{
         border:1px solid grey;
@@ -126,6 +141,9 @@ div.BOVerMasTop span:first-child{
         margin:0px;
         width:100%;
     }
+        ul#lstPatient div.BOPatientDataContainer{
+            
+        }
         ul#lstPatient div.BOPatientDataContainer a {
                 border:none;
             margin-left:1px;
@@ -161,14 +179,6 @@ div.BOVerMasTop span:first-child{
             display:block;
             border:1px solid grey;
         }
-div.BOAgendaCalendarAppointmentCommands{
-        border:none;
-    background-color: #CCC;
-    position: fixed;
-    width: 28.5% !important;
-    height: 38px !important;
-    padding: 0px !important;
-}
 
 
 
