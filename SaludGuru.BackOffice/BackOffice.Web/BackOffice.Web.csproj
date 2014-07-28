@@ -312,6 +312,7 @@
     <Content Include="Areas\Web\Content\Images\BOTopBarCopy.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
     <Content Include="Areas\Web\Content\Images\calendarActionsSprite.png" />
+    <Content Include="Areas\Web\Content\Images\cerrar.png" />
     <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
