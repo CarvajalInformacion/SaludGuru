@@ -18,7 +18,7 @@ namespace BackOffice.Web.Controllers
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["AreaName"].ToString().Trim();
+                return System.Configuration.ConfigurationManager.AppSettings[BackOffice.Models.General.Constants.C_AppSetting_AreaName].ToString().Trim();
             }
         }
 
@@ -419,9 +419,9 @@ namespace BackOffice.Web.Controllers
             else if (MVC.Profile.Name == CurrentControllerName &&
                 MVC.Profile.ActionNames.ProfileReminderUpsert == CurrentActionName)
             {
-                oReturn = enumMenuComunications.Reminders; 
+                oReturn = enumMenuComunications.Reminders;
             }
-            
+
             return oReturn;
         }
 
