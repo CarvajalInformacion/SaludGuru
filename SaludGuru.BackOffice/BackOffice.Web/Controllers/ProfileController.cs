@@ -666,7 +666,7 @@ namespace BackOffice.Web.Controllers
 
                 //create profile 
                 SaludGuruProfile.Manager.Controller.Profile.UpsertProfileDetailInfo(oProfileToUpsert);
-                
+
                 Model = new ProfileUpSertModel()
                 {
                     ProfileOptions = SaludGuruProfile.Manager.Controller.Profile.GetProfileOptions(),
@@ -686,7 +686,7 @@ namespace BackOffice.Web.Controllers
 
                     return true;
                 });
-            }           
+            }
             return View(Model);
         }
 
@@ -839,6 +839,24 @@ namespace BackOffice.Web.Controllers
                             ProfileInfoType = enumProfileInfoType.Certification,
                             LargeValue = Request["Certification"].ToString(),
                         },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_SaleForce"])?0:int.Parse(Request["CatId_SaleForce"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.CodigoSaleforce,
+                            LargeValue = Request["Saleforce"].ToString(),
+                        },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_Keywords"])?0:int.Parse(Request["CatId_Keywords"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.KeyWords,
+                            LargeValue = Request["Keywords"].ToString(),
+                        },
+                         new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_Mobil"])?0:int.Parse(Request["CatId_Mobil"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.Mobile,
+                            LargeValue = Request["Mobil"].ToString(),
+                        },
                     }
                 };
 
@@ -880,6 +898,12 @@ namespace BackOffice.Web.Controllers
                             OfficeInfoId = string.IsNullOrEmpty(Request["CatId_Geolocation"])?0:int.Parse(Request["CatId_Geolocation"].ToString().Trim()),
                             OfficeInfoType = enumOfficeInfoType.Geolocation,
                             Value = Request["Geolocation"].ToString(),
+                        },
+                        new OfficeInfoModel()
+                        {
+                            OfficeInfoId = string.IsNullOrEmpty(Request["CatId_SlotMinutes"])?0:int.Parse(Request["CatId_SlotMinutes"].ToString().Trim()),
+                            OfficeInfoType = enumOfficeInfoType.SlotMinutes,
+                            Value = Request["SlotMinutes"].ToString(),
                         },
                     }
                 };
@@ -1126,7 +1150,7 @@ namespace BackOffice.Web.Controllers
             }
             return null;
         }
-        
+
         #endregion
     }
 }
