@@ -35,7 +35,12 @@
                     },
                     Email: {
                         email: true
-                    }
+                    },
+                    Saleforce:
+                        {
+                            required: true,
+                            maxlength: 8
+                            }
                 },
                 messages: {
                     Name: {
@@ -54,6 +59,11 @@
                         {
                             required: "Debe ingresar una dirección de correo electrónico",
                             email: "Debe ingresar un email valido"
+                        },
+                    Saleforce:
+                        {
+                            required: "Debe ingresar un código",
+                            maxlength: "No puede ingresar mas de 8 caracteres"
                         }
                 }
             });

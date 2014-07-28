@@ -9,6 +9,22 @@
         <ul>
             <h3>Datos del Perfil</h3>
             <li>
+                @{
+                    var CatInfo_SC = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.CodigoSaleforce).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_SC != null)
+                    {
+                        <input type="hidden" id="CatId_SaleForce" name="CatId_SaleForce" value="@CatInfo_SC.id" />
+                    }
+                }
+                <label>Código Saleforce</label>
+                <input id="Saleforce" name="Saleforce" class="required" value="@(CatInfo_SC == null ? string.Empty : CatInfo_SC.val.ToString())" type="text" />
+            </li>
+            <li>
                 <label>Nombre</label>
                 <input id="Name" class="required" name="Name" value="@(Model.Profile==null?string.Empty:Model.Profile.Name)" type="text" />
             </li>
@@ -27,11 +43,11 @@
                     {
                         if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileType)
                         {
-                    <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
                         }
                         else
                         {
-                    <option value="@tp.ItemId">@tp.ItemName</option>
+                            <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
@@ -154,16 +170,16 @@
                     var CatInfo_MB = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
                             (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Mobile).
-                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
                     if (CatInfo_MB != null)
                     {
-                        <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_MB.id" />
+                        <input type="hidden" id="CatId_Mobil" name="CatId_Mobil" value="@CatInfo_MB.id" />
                     }
                 }
                 <label>Telefono móvil</label>
-                <input id="Mobil" name="Mobil" value="@(Model.Profile==null?string.Empty:Model.Profile.Mobil)" type="text" />
+                <input id="Mobil" name="Mobil" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
             </li>
             <li>
                 @{
@@ -287,6 +303,22 @@
                 }
                 <label>Acreditaciones</label>
                 <textarea id="Certification" name="Certification" rows="15" cols="15">@(CatInfo_AT == null ? string.Empty : CatInfo_AT.val.TrimStart())</textarea>
+            </li>
+            <li>
+                @{
+                    var CatInfo_KW = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.KeyWords).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_KW != null)
+                    {
+                        <input type="hidden" id="CatId_Keywords" name="CatId_Keywords" value="@CatInfo_KW.id" />
+                    }
+                }
+                <label>Keywords</label>
+                <textarea id="Keywords" name="Keywords" rows="15" cols="15">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val.TrimStart())</textarea>
             </li>
             @{
                 if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
