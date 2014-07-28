@@ -261,7 +261,7 @@ table.fc-header {
     span.fc-header-title h2{
         font-size:14px;
         width: 100%;
-            border:1px solid red;
+            border:none;
         height: auto;
         display: block;
         text-align:center;
@@ -270,7 +270,7 @@ table.fc-header {
         span.fc-header-title h2 > ul li:first-child{
             float: left;
             margin-top: 4px;
-            border: 1px solid #008000;
+                border:none;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -281,7 +281,7 @@ table.fc-header {
         span.fc-header-title h2 > ul li:nth-child(2){
             vertical-align: top;
             top: 0px;
-            border: 1px solid #008000;
+                border:none;
             margin: 0px auto;
             width: 40%;
             text-align: right;
@@ -289,7 +289,7 @@ table.fc-header {
             min-width: 152px;
         }
         span.fc-header-title h2 > ul li:nth-child(3){
-            border: 1px solid #008000;
+                border:none;
             top: 5px;
             text-align: right;
             width: 39%;
