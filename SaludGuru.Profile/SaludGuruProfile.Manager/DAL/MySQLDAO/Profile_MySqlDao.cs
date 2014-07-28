@@ -635,10 +635,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                        Value = pinf.Field<string>("ProfileInfoValue"),
                                        LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
                                        LastModify = pinf.Field<DateTime>("ProfileInfoLastModify"),
-                                       CreateDate = pinf.Field<DateTime>("ProfileInfoCreateDate"),
-                                       Mobil = pinf.Field<string>("Mobil"),
-                                       SaleforceCode = pinf.Field<string>("SaleforceCode"),
-                                       KeyWords = pinf.Field<string>("KeyWords"),
+                                       CreateDate = pinf.Field<DateTime>("ProfileInfoCreateDate"),                                  
                                    } into pinfg
                                    select new ProfileInfoModel()
                                    {
@@ -647,10 +644,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                        Value = pinfg.Key.Value,
                                        LargeValue = pinfg.Key.LargeValue,
                                        LastModify = pinfg.Key.LastModify,
-                                       CreateDate = pinfg.Key.CreateDate,
-                                       Mobil = pinfg.Key.Mobil,
-                                       SaleforceCode = pinfg.Key.SaleforceCode,
-                                       KeyWords = pinfg.Key.KeyWords
+                                       CreateDate = pinfg.Key.CreateDate                                       
                                    }).ToList()
                 };
             }

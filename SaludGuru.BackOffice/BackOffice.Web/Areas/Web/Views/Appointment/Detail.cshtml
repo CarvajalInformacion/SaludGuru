@@ -12,14 +12,14 @@
 }
 
 <div class="BOAgendaModuleGreatWrapper">
-    <div class="BOAgendaCalendarWrapper" style="width:390px;overflow:scroll;left:0px;position:absolute;">
+    <div class="BOAgendaCalendarWrapper">
         <!--Calendar by month-->
         @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
 
         <!--Meeting Calendar-->
         @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
     </div>
-    <div class="AppointmentFormStatus_@((int)oApmntStatus)">
+    <div class="BOVerMasAppointmentFormStatus_@((int)oApmntStatus)">
         <div class="BOVerMasTop">
             @if (!string.IsNullOrEmpty(Model.ReturnUrl))
             {

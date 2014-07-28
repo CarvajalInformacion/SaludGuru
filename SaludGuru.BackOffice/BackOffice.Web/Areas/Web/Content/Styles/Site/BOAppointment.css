@@ -223,15 +223,20 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
     display: block;
     width: inherit;
     overflow-x: auto;
+    /*min-height: 288px;*/
+    /*height: 288px;*/
 }
 
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
+    border: 1px solid green;
     margin: 0px 0px 0px 0px;
+    /*height: 510px;*/
     width: calc(100%);
     vertical-align: top;
     position: relative;
     float:left;
+    /*overflow: initial;*/
 }
 
 table.fc-header {
@@ -256,6 +261,7 @@ table.fc-header {
     span.fc-header-title h2{
         font-size:14px;
         width: 100%;
+            border:none;
         height: auto;
         display: block;
         text-align:center;
@@ -264,6 +270,7 @@ table.fc-header {
         span.fc-header-title h2 > ul li:first-child{
             float: left;
             margin-top: 4px;
+                border:none;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -274,6 +281,7 @@ table.fc-header {
         span.fc-header-title h2 > ul li:nth-child(2){
             vertical-align: top;
             top: 0px;
+                border:none;
             margin: 0px auto;
             width: 40%;
             text-align: right;
@@ -281,6 +289,7 @@ table.fc-header {
             min-width: 152px;
         }
         span.fc-header-title h2 > ul li:nth-child(3){
+                border:none;
             top: 5px;
             text-align: right;
             width: 39%;
