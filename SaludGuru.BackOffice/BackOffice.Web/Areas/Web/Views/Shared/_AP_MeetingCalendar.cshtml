@@ -76,7 +76,7 @@ else
                 EndDateTime : new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
                 OfficeInfo : @Html.Raw(oOfficeInfo),
             });
-            MettingCalendarObject.RenderAsync();
+            MettingCalendarObject.RenderAsync();           
         });
     </script>
 }

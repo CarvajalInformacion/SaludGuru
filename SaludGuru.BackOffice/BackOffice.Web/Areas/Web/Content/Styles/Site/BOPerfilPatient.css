@@ -16,6 +16,11 @@ label#Status {
     float: right !important;
 }
 
+label#TreatmentName {
+    width: 200px;
+    margin-top: 5px !important;
+}
+
 .AppointmentStatus_1201, .AppointmentStatus_1202, .AppointmentStatus_1203,
 .AppointmentStatus_1204, .AppointmentStatus_1205, .AppointmentStatus_1206,
 .AppointmentStatus_1207 {
