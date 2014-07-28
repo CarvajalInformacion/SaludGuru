@@ -103,17 +103,20 @@ div.BOVerMasTop span:first-child{
             margin:10px;
             font-size:14px;
             line-height:14px;
+            text-align:left;
         }
             .BOVerMasRightColumn ul li label, .BOVerMasRightColumn ul li input,
             .BOVerMasRightColumn ul li a{
                 border:1px solid pink;
                 display:inline-block;
-                margin:0px 0px 0px 10px;
+                margin:0px;
                 vertical-align:middle;
             }
             .BOVerMasRightColumn ul li input {
-                width:45%;
-                height:20px;
+                width: 45%;
+                height: 20px;
+                border: 1px solid #666;
+                background-color: #fff;
             }
             .BOVerMasRightColumn ul li a{
                 font-size:28px;
@@ -122,12 +125,15 @@ div.BOVerMasTop span:first-child{
                 vertical-align:top;
                 text-decoration: none;
             }
-.BOHeadingColorStatus_1205{
-    border:1px solid red;
+h4.BOAddNotes1201, h4.BOHeadingColorStatus_1202, 
+h4.BOHeadingColorStatus_1203, h4.BOHeadingColorStatus_1204,
+h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
+    border-bottom-style:solid;
+    border-bottom-width:1px;BOAddNotes
     display:block;
-    border-bottom:1px solid #99c21d;
-    color:#99c21d;
+    text-align:left;
 }
+
 .BOVerMasRightColumn ul li ul#lstPatient{
     border:1px solid blue;
     display:block;
@@ -142,7 +148,8 @@ div.BOVerMasTop span:first-child{
         width:100%;
     }
         ul#lstPatient div.BOPatientDataContainer{
-            
+            border:1px solid black;
+
         }
         ul#lstPatient div.BOPatientDataContainer a {
                 border:none;
@@ -163,23 +170,90 @@ div.BOVerMasTop span:first-child{
         }
         div.BOAddNotes span {
             display:block;
-            width:100px; height:28px;
+            width:110px; height:30px;
             background-image:url('/Areas/Web/Content/Images/calendarActionsSprite.png');
-            background-position:0px 0px;
+            background-position:-49px 0px;
             background-repeat:no-repeat;
+            background-size: 126px auto;
             text-align:right;
+            margin: 4px 0px 0px 380px;
+            border:1px solid pink;
         }
         div.BOAddNotes a{
-            width:100px; height:28px;
-            font-size:12px;
-            color:#333;
-            font-weight:normal;
+            width:80px; height:28px;
+            font-size:14px !important;
+            color:#333 !important;
+            font-weight:normal !important;
+            background-color:#F2F2F2;
+            line-height:24px;
         }
         .BoNotesList {
             display:block;
             border:1px solid grey;
         }
-
-
-
-
+/************************BARRITA DE LOS COMANDOS***************************/
+        div.BOVerMasAppointmentCommands{
+            background-color:#ececec;
+            display:block;
+            height:34px;
+            width:100%;
+            border-top: 1px solid #666;
+        }
+            div.BOVerMasAppointmentCommands span{
+                background-image:url('/Areas/Web/Content/Images/BOAppointmentActionsSprite.png');
+                background-size:154px 24px;
+                background-repeat:no-repeat;
+                display:inline-block;
+                height:26px;
+                width:auto;
+                    border:none;
+                margin:4px 0px;
+                text-align:right;
+                padding-left: 30px;
+                line-height: 23px;
+                font-size: 14px;
+                color: #333;
+            }
+                div.BOVerMasAppointmentCommands span.AppointmentActionsCancel {
+                    background-position:4px 0px; 
+                }
+                div.BOVerMasAppointmentCommands span.AppointmentActionsConfirm {
+                    background-position:-40px 0px;
+                }
+                div.BOVerMasAppointmentCommands span.AppointmentActionsAccept {
+                    background-position:-127px 0px;
+                }
+                div.BOVerMasAppointmentCommands span.AppointmentActionsNew {
+                    background-position:-83px 0px;
+                }
+                div.BOVerMasAppointmentCommands span > a{
+                background-color: #F2F2F2;
+                height: 24px;
+                display: block;
+            }
+/***************** NOTAS DEL COCTOR **************************/
+div.BoNotesList ul{
+    margin:10px !important;
+}
+div.BoNotesList ul li{
+    padding: 4px;
+    margin: 5px 0px !important;
+    border-radius: 2px;
+    background-color:#fff;
+}
+    div.BoNotesList ul li span, div.BoNotesList ul li label, div.BoNotesList ul li a{
+        font-size:13px;
+        color:#333;
+    }
+    div.BoNotesList ul li a{
+        display: block;
+        width: 82px;
+        background-image: url('/Areas/Web/Content/Images/cerrar.png');
+        background-repeat: no-repeat;
+        background-size: 13px auto;
+        text-align: right;
+        margin:12px 0px 0px 400px;
+    }
+    div.BoNotesList ul li a:hover{
+        text-decoration:underline;
+    }
