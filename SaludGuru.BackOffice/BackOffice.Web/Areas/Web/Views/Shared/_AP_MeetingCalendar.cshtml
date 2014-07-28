@@ -21,9 +21,9 @@
                 </li>
                 <li>
                     @if (Model.AppointmentType != BackOffice.Models.General.enumAppointmentType.Detail)
-                        {
+                    {
                         <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
-                        }
+                    }
                 </li>
             </ul>
         </div>
@@ -45,6 +45,7 @@ else
                     OfficeScheduleConfigUrl = Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableList,
                                                 MVC.Profile.Name,
                                                 new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, OfficePublicId = of.OfficePublicId }),
+                    SlotMinutes = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.SlotMinutes).Select(x => Convert.ToInt32(x.Value) > 0 ? Convert.ToInt32(x.Value) : 30).DefaultIfEmpty(30).FirstOrDefault(),
                     TreatmentList = of.RelatedTreatment.Select(tr => new
                     {
                         TreatmentId = tr.CategoryId,

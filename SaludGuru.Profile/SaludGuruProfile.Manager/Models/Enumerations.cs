@@ -47,6 +47,9 @@
         ModificacionCita = 416,
         RecordatorioCita = 417,
         RecordatorioProxCita = 418,
+        CodigoSaleforce = 419,
+        Mobile = 424,
+        KeyWords = 425,
 
         ImageProfileLarge = 420,
         ImageProfileSmallOriginal = 421,
@@ -58,7 +61,8 @@
     {
         Address = 701,
         Telephone = 702,
-        Geolocation = 703
+        Geolocation = 703,
+        SlotMinutes = 704,
     }
 
     public enum enumOfficeCategoryInfoType

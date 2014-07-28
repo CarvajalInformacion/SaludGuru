@@ -1,6 +1,7 @@
 ﻿using BackOffice.Models.Appointment;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,15 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public List<ScheduleEventModel> GetAppoinmentByOffice(string OfficePublicId, string StartDateTime, string EndDateTime)
         {
+            OfficeModel oCurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(OfficePublicId);
+
             List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeId
                 (OfficePublicId,
                 DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture),
                 DateTime.ParseExact(EndDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture));
 
             if (lstAppointment != null)
-                return lstAppointment.Select(x => new ScheduleEventModel(x)).ToList();
+                return lstAppointment.Select(x => new ScheduleEventModel(x, oCurrentOffice)).ToList();
             else
                 return new List<ScheduleEventModel>();
         }

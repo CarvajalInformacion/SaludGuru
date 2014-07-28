@@ -14,7 +14,7 @@ namespace SaludGuruProfile.Manager.Models.Profile
 
         public string Name { get; set; }
 
-        public string LastName { get; set; }
+        public string LastName { get; set; }        
 
         public enumProfileType ProfileType { get; set; }
 

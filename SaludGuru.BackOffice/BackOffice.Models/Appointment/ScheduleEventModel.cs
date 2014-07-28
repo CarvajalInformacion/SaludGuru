@@ -1,5 +1,6 @@
 ﻿using BackOffice.Models.Patient;
 using MedicalCalendar.Manager.Models.Appointment;
+using SaludGuruProfile.Manager.Models.Office;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,20 +78,30 @@ namespace BackOffice.Models.Appointment
         {
             get
             {
+                string strTreatmentName = string.Empty;
+                if (CurrentOffice != null)
+                {
+                    strTreatmentName = CurrentOffice.RelatedTreatment.
+                        Where(x => x.CategoryId == TreatmentId).
+                        Select(x => string.IsNullOrEmpty(x.Name) ? string.Empty : " - " + x.Name).
+                        DefaultIfEmpty("").
+                        FirstOrDefault();
+                }
+
                 if (CurrentAppointment.RelatedPatient == null || CurrentAppointment.RelatedPatient.Count == 0)
                 {
                     //no patients over appointment
-                    return "Esta cita no tiene pacientes.";
+                    return "Esta cita no tiene pacientes" + strTreatmentName + ".";
                 }
                 else if (CurrentAppointment.RelatedPatient.Count == 1)
                 {
                     //one patient over appointment
-                    return CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName).FirstOrDefault();
+                    return CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName + strTreatmentName + ".").FirstOrDefault();
                 }
                 else if (CurrentAppointment.RelatedPatient.Count > 1)
                 {
                     //more than one patient
-                    return "Esta cita tiene varios pacientes asociados.";
+                    return "Esta cita tiene varios pacientes asociados" + strTreatmentName + ".";
                 }
                 return string.Empty;
             }
@@ -167,11 +178,14 @@ namespace BackOffice.Models.Appointment
 
         private AppointmentModel CurrentAppointment { get; set; }
 
+        private OfficeModel CurrentOffice { get; set; }
+
         #endregion
 
-        public ScheduleEventModel(AppointmentModel vCurrentAppointment)
+        public ScheduleEventModel(AppointmentModel vCurrentAppointment, OfficeModel vCurrentOffice)
         {
             CurrentAppointment = vCurrentAppointment;
+            CurrentOffice = vCurrentOffice;
         }
 
     }

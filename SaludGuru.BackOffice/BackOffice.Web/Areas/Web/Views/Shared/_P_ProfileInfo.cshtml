@@ -27,11 +27,11 @@
                     {
                         if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileType)
                         {
-                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                    <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
                         }
                         else
                         {
-                            <option value="@tp.ItemId">@tp.ItemName</option>
+                    <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
@@ -47,11 +47,11 @@
                     {
                         if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileStatus)
                         {
-                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                    <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
                         }
                         else
                         {
-                            <option value="@tp.ItemId">@tp.ItemName</option>
+                    <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
@@ -66,7 +66,7 @@
                                FirstOrDefault();
                     if (CatInfo_IT != null)
                     {
-                        <input type="hidden" id="CatId_IdentificationType" name="CatId_IdentificationType" value="@CatInfo_IT.id" />
+                <input type="hidden" id="CatId_IdentificationType" name="CatId_IdentificationType" value="@CatInfo_IT.id" />
                     }
                 }
                 <label>Tipo Identificación</label>
@@ -80,11 +80,11 @@
 
                         if (CatInfo_IT != null && tp.ItemId == CatInfo_IT.val)
                         {
-                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                    <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
                         }
                         else
                         {
-                            <option value="@tp.ItemId">@tp.ItemName</option>
+                    <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
@@ -99,7 +99,7 @@
                                FirstOrDefault();
                     if (CatInfo_IN != null)
                     {
-                        <input type="hidden" id="CatId_IdentificationNumber" name="CatId_IdentificationNumber" value="@CatInfo_IN.id" />
+                <input type="hidden" id="CatId_IdentificationNumber" name="CatId_IdentificationNumber" value="@CatInfo_IN.id" />
                     }
                 }
                 <label>Número Identificación</label>
@@ -115,20 +115,20 @@
                                 FirstOrDefault();
                     if (CatInfo_GD != null)
                     {
-                        <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_GD.id" />
+                <input type="hidden" id="CatId_Gender" name="CatId_Gender" value="@CatInfo_GD.id" />
                     }
                 }
                 <label>Sexo</label>
                 @{
                     if (CatInfo_GD != null && CatInfo_GD.val)
                     {
-                        <input type="radio" name="Gender" value="true" checked="checked" /><p> Masculino </p>
-                        <input type="radio" name="Gender" value="false" /><p> Femenino </p>
+                <input type="radio" name="Gender" value="true" checked="checked" /><p> Masculino </p>
+                <input type="radio" name="Gender" value="false" /><p> Femenino </p>
                     }
                     else
                     {
-                        <input type="radio" name="Gender" value="true" /><p> Masculino </p>
-                        <input type="radio" name="Gender" value="false" checked="checked" /><p> Femenino </p>
+                <input type="radio" name="Gender" value="true" /><p> Masculino </p>
+                <input type="radio" name="Gender" value="false" checked="checked" /><p> Femenino </p>
                     }
                 }
             </li>
@@ -149,10 +149,22 @@
                 <input id="Email" class="required" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
 
-            @*<li>
-                    <label>Telefono móvil</label>
-                    <input id="Mobile" class="required" name="LastName" value="@(Model.Profile==null?string.Empty:Model.Profile.)" type="text" />
-                </li>*@
+            <li>
+                @{
+                    var CatInfo_MB = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Mobile).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_MB != null)
+                    {
+                        <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_MB.id" />
+                    }
+                }
+                <label>Telefono móvil</label>
+                <input id="Mobil" name="Mobil" value="@(Model.Profile==null?string.Empty:Model.Profile.Mobil)" type="text" />
+            </li>
             <li>
                 @{
                     var CatInfo_WS = Model.Profile == null ? null :
@@ -163,7 +175,7 @@
                                 FirstOrDefault();
                     if (CatInfo_WS != null)
                     {
-                        <input type="hidden" id="CatId_Website" name="CatId_Website" value="@CatInfo_WS.id" />
+                <input type="hidden" id="CatId_Website" name="CatId_Website" value="@CatInfo_WS.id" />
                     }
                 }
                 <label>Pagina web</label>
@@ -179,7 +191,7 @@
                                 FirstOrDefault();
                     if (CatInfo_FB != null)
                     {
-                        <input type="hidden" id="CatId_FacebookProfile" name="CatId_FacebookProfile" value="@CatInfo_FB.id" />
+                <input type="hidden" id="CatId_FacebookProfile" name="CatId_FacebookProfile" value="@CatInfo_FB.id" />
                     }
                 }
                 <label>Perfil de facebook</label>
@@ -195,18 +207,18 @@
                                 FirstOrDefault();
                     if (CatInfo_IC != null)
                     {
-                        <input type="hidden" id="CatId_IsCertified" name="CatId_IsCertified" value="@CatInfo_IC.id" />
+                <input type="hidden" id="CatId_IsCertified" name="CatId_IsCertified" value="@CatInfo_IC.id" />
                     }
                 }
                 <label>Profesional certificado</label>
                 @{
                     if (CatInfo_IC != null && CatInfo_IC.val)
                     {
-                        <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
+                <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
                     }
                     else
                     {
-                        <input type="checkbox" id="IsCertified" name="IsCertified" />
+                <input type="checkbox" id="IsCertified" name="IsCertified" />
                     }
                 }
             </li>
@@ -220,18 +232,18 @@
                                 FirstOrDefault();
                     if (CatInfo_PT != null)
                     {
-                        <input type="hidden" id="CatId_ProfileText" name="CatId_ProfileText" value="@CatInfo_PT.id" />
+                <input type="hidden" id="CatId_ProfileText" name="CatId_ProfileText" value="@CatInfo_PT.id" />
                     }
                 }
                 <label>Texto de perfil</label>
                 @{
                     if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileAdministrator)
                     {
-                        <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
+                <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
                     }
                     else
                     {
-                        <textarea id="ProfileText" name="ProfileText" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
+                <textarea id="ProfileText" name="ProfileText" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
                     }
                 }
             </li>
@@ -245,18 +257,18 @@
                                 FirstOrDefault();
                     if (CatInfo_ET != null)
                     {
-                        <input type="hidden" id="CatId_Education" name="CatId_Education" value="@CatInfo_ET.id" />
+                <input type="hidden" id="CatId_Education" name="CatId_Education" value="@CatInfo_ET.id" />
                     }
                 }
                 <label>Educación</label>
                 @{
                     if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileAdministrator)
                     {
-                        <textarea id="Education" name="Education" rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
+                <textarea id="Education" name="Education" rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
                     }
                     else
                     {
-                        <textarea id="Education" name="Education" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
+                <textarea id="Education" name="Education" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
                     }
                 }
             </li>
@@ -270,7 +282,7 @@
                                 FirstOrDefault();
                     if (CatInfo_AT != null)
                     {
-                        <input type="hidden" id="CatId_Certification" name="CatId_Certification" value="@CatInfo_AT.id" />
+                <input type="hidden" id="CatId_Certification" name="CatId_Certification" value="@CatInfo_AT.id" />
                     }
                 }
                 <label>Acreditaciones</label>

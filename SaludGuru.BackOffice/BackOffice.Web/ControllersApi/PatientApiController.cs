@@ -2,6 +2,7 @@
 using BackOffice.Models.Patient;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,10 @@ namespace BackOffice.Web.ControllersApi
         {
             List<AppointmentModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByPatient
                 (PatientPublicId);
+
+            ProfileModel oCurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings
+                (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
             if (lstAppointment != null)
             {
                 if (Quantity > 0)
@@ -90,7 +95,13 @@ namespace BackOffice.Web.ControllersApi
                     lstAppointment = lstAppointment.OrderByDescending(x => x.StartDate).Take(Quantity).ToList();
                 }
 
-                return lstAppointment.Select(x => new ScheduleEventModel(x)).ToList();
+                return lstAppointment.Select(x => new
+                    ScheduleEventModel
+                        (x,
+                        oCurrentProfile.
+                        RelatedOffice.
+                        Where(y => x.OfficePublicId == x.OfficePublicId).
+                        FirstOrDefault())).ToList();
             }
             else
                 return new List<ScheduleEventModel>();
