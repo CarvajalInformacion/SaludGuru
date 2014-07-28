@@ -231,7 +231,7 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
 div#divMeetingCalendar {
     border: 1px solid green;
     margin: 0px 0px 0px 0px;
-    height: 510px;
+    /*height: 510px;*/
     width: calc(100%);
     vertical-align: top;
     position: relative;

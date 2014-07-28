@@ -205,6 +205,9 @@ var MettingCalendarObject = {
 
 
         //init office metting calendar
+        debugger;
+        var contentHeightAux = 510;
+
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
             dayNames: this.dayNamesSp,
             dayNamesShort: this.dayNamesShortSp,
@@ -212,6 +215,14 @@ var MettingCalendarObject = {
             defaultView: this.CurrentAgentType,
             allDaySlot: false,
             allDayText: ' ',
+
+            contentHeight: contentHeightAux,
+            firstHour: 8,
+            slotMinutes: 10,
+            minTime: 5,
+            maxTime: 20,
+            slotEventOverlap: true,
+
             titleFormat: '\'' + vTitle + '\'',
             weekNumbers: false,
             editable: oEditable,
