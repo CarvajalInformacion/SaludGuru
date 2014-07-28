@@ -78,30 +78,20 @@ namespace BackOffice.Models.Appointment
         {
             get
             {
-                string strTreatmentName = string.Empty;
-                if (CurrentOffice != null)
-                {
-                    strTreatmentName = CurrentOffice.RelatedTreatment.
-                        Where(x => x.CategoryId == TreatmentId).
-                        Select(x => string.IsNullOrEmpty(x.Name) ? string.Empty : " - " + x.Name).
-                        DefaultIfEmpty("").
-                        FirstOrDefault();
-                }
-
                 if (CurrentAppointment.RelatedPatient == null || CurrentAppointment.RelatedPatient.Count == 0)
                 {
                     //no patients over appointment
-                    return "Esta cita no tiene pacientes" + strTreatmentName + ".";
+                    return "Esta cita no tiene pacientes - " + TreatmentName + ".";
                 }
                 else if (CurrentAppointment.RelatedPatient.Count == 1)
                 {
                     //one patient over appointment
-                    return CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName + strTreatmentName + ".").FirstOrDefault();
+                    return CurrentAppointment.RelatedPatient.Select(x => x.Name + " " + x.LastName + " - " + TreatmentName + ".").FirstOrDefault();
                 }
                 else if (CurrentAppointment.RelatedPatient.Count > 1)
                 {
                     //more than one patient
-                    return "Esta cita tiene varios pacientes asociados" + strTreatmentName + ".";
+                    return "Esta cita tiene varios pacientes asociados - " + TreatmentName + ".";
                 }
                 return string.Empty;
             }
@@ -161,6 +151,23 @@ namespace BackOffice.Models.Appointment
                     Select(x => Convert.ToInt32(x.Value)).
                     DefaultIfEmpty(0).
                     FirstOrDefault();
+            }
+        }
+
+        public string TreatmentName
+        {
+            get
+            {
+                string strTreatmentName = string.Empty;
+                if (CurrentOffice != null)
+                {
+                    strTreatmentName = CurrentOffice.RelatedTreatment.
+                        Where(x => x.CategoryId == TreatmentId).
+                        Select(x => string.IsNullOrEmpty(x.Name) ? string.Empty : x.Name).
+                        DefaultIfEmpty("").
+                        FirstOrDefault();
+                }
+                return strTreatmentName;
             }
         }
 

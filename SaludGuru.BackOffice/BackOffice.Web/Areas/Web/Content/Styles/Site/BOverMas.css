@@ -135,7 +135,7 @@ div.BOVerMasTop span:first-child{
     }
         ul#lstPatient div.BOPatientDataContainer a {
             border:1px solid green;
-            margin-left:10px;
+            margin-left:1px;
         }
         div.BOAddNotes {
             display:block;
