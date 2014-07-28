@@ -58,7 +58,8 @@
     {
         Address = 701,
         Telephone = 702,
-        Geolocation = 703
+        Geolocation = 703,
+        SlotMinutes = 704,
     }
 
     public enum enumOfficeCategoryInfoType

@@ -134,6 +134,10 @@ namespace BackOffice.Web.Controllers
                 oModel.ReturnUrl = ReturnUrl;
             }
 
+            //get schedule config
+            oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings
+                (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
             if (!string.IsNullOrEmpty(UpsertAction))
             {
                 List<PatientModel> PatientToRemove;
@@ -223,8 +227,10 @@ namespace BackOffice.Web.Controllers
             if (!string.IsNullOrEmpty(AppointmentPublicId))
             {
                 //get appointment edit info
-                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel(MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById
-                    (AppointmentPublicId.Replace(" ", "")));
+                AppointmentModel Apmt = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId.Replace(" ", ""));
+                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel
+                    (Apmt,
+                    oModel.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Apmt.OfficePublicId).FirstOrDefault());
             }
             else if (!string.IsNullOrEmpty(AppointmentPublicIdToDuplicate))
             {
@@ -240,7 +246,9 @@ namespace BackOffice.Web.Controllers
                     return true;
                 });
 
-                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel(Apmt);
+                oModel.CurrentAppointment = new Models.Appointment.ScheduleEventModel
+                    (Apmt,
+                    oModel.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Apmt.OfficePublicId).FirstOrDefault());
             }
 
             //get date
@@ -261,11 +269,6 @@ namespace BackOffice.Web.Controllers
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Detail;
-
-            //get schedule config
-            oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings
-                (BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
-
 
             return View(oModel);
         }
