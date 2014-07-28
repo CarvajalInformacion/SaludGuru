@@ -205,9 +205,6 @@ var MettingCalendarObject = {
 
 
         //init office metting calendar
-        debugger;
-        var contentHeightAux = 510;
-
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar({
             dayNames: this.dayNamesSp,
             dayNamesShort: this.dayNamesShortSp,
@@ -216,9 +213,9 @@ var MettingCalendarObject = {
             allDaySlot: false,
             allDayText: ' ',
 
-            contentHeight: contentHeightAux,
+            contentHeight: this.CalendarHeight(),
+            slotMinutes: this.lstOffice[vOfficePublicId].SlotMinutes,
             firstHour: 8,
-            slotMinutes: 10,
             minTime: 5,
             maxTime: 20,
             slotEventOverlap: true,
@@ -282,6 +279,13 @@ var MettingCalendarObject = {
         });
         //set start date
         $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+    },
+
+    CalendarHeight: function () {
+
+        var contentHeightAux = 200;
+
+        return contentHeightAux;
     },
 
     ChangeOffice: function (vNewOfficePublicId) {
