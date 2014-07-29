@@ -14,7 +14,7 @@
 
 <div id="templates" style="display:none;">
     <div id="templateCreate">
-        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
+        <form id="AutorizationId"  method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
                                         new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
             <ul class="BOEditDaySetUp">
                 <li>
@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <label>Correo electrónico</label>
-                    <input type="text" name="UserEmail" id="UserEmail" value=" " />
+                    <input type="text" class="required" name="UserEmail" id="UserEmail" value=" " />
                 </li>
                 <li class="BOButtonContainerShort">
                     <!--hiden fields-->
@@ -74,7 +74,35 @@
         $(document).ready(function () {
             //start office grid
             ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+
+            $('#AutorizationId').validate({
+                //debug: true,
+                errorClass: 'error help-inline',
+                validClass: 'success',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+                },
+                rules: {
+                    UserEmail: {
+                        email: true
+                    }
+                },
+                messages: {
+                    UserEmail:
+                        {
+                            required: " Debe ingresar una dirección de correo electrónico",
+                            email: " Debe ingresar un email valido"
+                        }
+                }
+            });
         });
+
+       
     </script>
 }
 
