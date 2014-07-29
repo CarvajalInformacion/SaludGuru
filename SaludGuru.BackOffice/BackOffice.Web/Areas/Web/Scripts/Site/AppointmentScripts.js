@@ -253,6 +253,9 @@ var MettingCalendarObject = {
                 if (MettingCalendarObject.CurrentAgentType == 'month') {
                     window.location = '/Appointment/Day?Date=' + serverDateToString(date);
                 }
+                else if (MettingCalendarObject.CurrentAgentType == 'basicDay' && window.location.pathname.toLowerCase() == '/appointment/detail') {
+
+                }
                 else {
                     UpsertAppointmentObject.RenderForm(date, vOfficePublicId, null);
                 }
@@ -260,6 +263,20 @@ var MettingCalendarObject = {
             eventClick: function (event, jsEvent, view) {
                 if (MettingCalendarObject.CurrentAgentType == 'month') {
                     window.location = '/Appointment/Day?Date=' + serverDateToString(event.start);
+                }
+                else if (MettingCalendarObject.CurrentAgentType == 'basicDay' && window.location.pathname.toLowerCase() == '/appointment/detail') {
+
+                    var strUrl = window.location.pathname + '?AppointmentPublicId=' + event.id;
+
+                    $.each(window.location.search.replace('?', '').split('&'), function (item, value) {
+                        if (value.toLowerCase().indexOf('date') >= 0) {
+                            strUrl = strUrl + '&' + value;
+                        }
+                    });
+
+                    //appointment detail
+                    window.location = strUrl;
+
                 }
                 else {
                     UpsertAppointmentObject.RenderForm(null, null, event);
