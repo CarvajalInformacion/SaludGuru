@@ -32,7 +32,7 @@
                     <li>
                         <label>Asignar paciente(s):</label>
                         <input type="text" id="getPatient" />
-                        <a id="addPatient" href="javascript:;">+</a>
+                        <a id="aCreatePatient" href="javascript:;">+</a>
                     </li>
                     <li>
                         <h4 class="changeToColorStatus">Paciente(s) asignados a la cita:</h4>
@@ -212,39 +212,38 @@
         </div>
 
         <!--Dialog create patient-->
-        <div id="Dialog_CreatePatient">
-            <form id="ProfileInfoFormId" method="post">
+        <div id="Dialog_CreatePatient" title="Crear Paciente">
+            <form action="/api/AppointmentApi?PatientPublicId=" method="post">
                 <ul>
-                    <h3>Datos del Perfil</h3>
+                    <h3>Datos del Paciente</h3>
                     <li>
                         <label>Nombre</label>
-                        <input id="Name" class="required" name="Name" type="text" />
+                        <input id="Name" name="Name" type="text" />
                     </li>
                     <li>
-                        <label>Apellido</label>
-                        <input id="LastName" class="required" name="LastName" type="text" />
+                        <label>Apellidos</label>
+                        <input id="LastName" name="LastName" type="text" />
                     </li>
                     <li>
                         <label>Número Identificación</label>
-                        <input id="IdentificationNumber" class="required" name="IdentificationNumber" type="text" />
+                        <input id="IdentificationNumber" name="IdentificationNumber" type="text" />
                     </li>
                     <li>
-                        <label>Correo electronico</label>
-                        <input id="Email" class="required" name="Email" type="text" />
+                        <label>Correo electrónico</label>
+                        <input id="Email" name="Email" type="text" />
                     </li>
                     <li>
-                        <label>Telefono móvil</label>
-                        <input id="Mobil" name="Mobil" type="text" />
-                    </li>
-                    <li class="BOButtonContainerShort">
-                        @*hiden fields*@
-                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                        <input class="BOButtons" type="submit" value="guardar" />
+                        <label>Teléfono móvil</label>
+                        <input id="Mobile" name="Mobile" type="text" />
                     </li>
                 </ul>
+                <div>
+                    @*hiden fields*@
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input type="submit" class="BOButtons" value="guardar" />
+                </div>
             </form>
         </div>
-
     </div>
 }
 else
@@ -256,17 +255,6 @@ else
             UpsertAppointmentObject.Init({
                 DivId: 'AppointmentUpsertContainer',
                 DivBlockId: 'BlockAppointmentContainer',
-            });
-        });
-        $('#addPatient').click(function () {
-            $("#Dialog_CreatePatient").dialog({
-                modal: false,
-                title: "Caja con opciones",
-                width: 800,
-                minWidth: 400,
-                maxWidth: 650,
-                show: "clip",
-                hide: "blind"
             });
         });
     </script>

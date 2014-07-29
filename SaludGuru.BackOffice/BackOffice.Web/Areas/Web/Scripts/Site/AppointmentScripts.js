@@ -758,6 +758,21 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { UpsertAppointmentObject.SaveAppointment(true) });
         }
 
+        //Dialog create patient
+        $('#aCreatePatient').unbind('click');
+        $('#aCreatePatient').click(function () {
+            //init dialog
+            $("#Dialog_CreatePatient").dialog({
+                width: 800,
+                show: "clip",
+                hide: "blind",
+                buttons: {
+                    "Cancelar": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
     },
 
     AddPatientAppointment: function (vPatientModel) {
