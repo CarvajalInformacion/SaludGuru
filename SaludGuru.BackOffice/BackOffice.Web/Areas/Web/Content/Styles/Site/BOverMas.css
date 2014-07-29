@@ -125,7 +125,7 @@ div.BOVerMasTop span:first-child{
                 vertical-align:top;
                 text-decoration: none;
             }
-h4.BOAddNotes1201, h4.BOHeadingColorStatus_1202, 
+h4.BOAddNotes1201, h4.BOHeadingColorStatus_1202,
 h4.BOHeadingColorStatus_1203, h4.BOHeadingColorStatus_1204,
 h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
     border-bottom-style:solid;
@@ -256,4 +256,105 @@ div.BoNotesList ul li{
     }
     div.BoNotesList ul li a:hover{
         text-decoration:underline;
+    }    
+
+/******************** LISTA DE CITAS DEL PACIENTE **********************/
+
+
+div.mierdas {
+    border:1px solid green;
+}
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1201,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1202,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1203,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1204,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1205,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1206,
+    div#divPatientAppointmentTemplate div.AppointmentStatus_1207
+    {
+        border:1px solid red;
+        background-color:#99c21d;
     }
+/********* VER TODAS LAS CITAS DE ESTE PACIENTE ********/
+.BOVerMasAllAppointments {
+    display:block;
+    padding:0px;
+    margin:0px;
+    border:4px solid purple;
+}
+.BOVerMasAllAppointments div.k-grid-content{
+    height:auto;
+    overflow:auto;
+}
+.BOVerMasAllAppointments > a{
+    font-size: 18px !important;
+    font-weight: normal !important;
+    color: #333 !important;
+    display: block !important;
+    margin: 12px 0px !important;
+    text-align: right !important;
+}
+    .BOVerMasAllAppointments > a:hover {
+        text-decoration:underline;
+    }
+
+
+.BOVerMasAllAppointments td > div{
+    height:auto;
+}
+    .BOVerMasAllAppointments td > div a{
+        display: block;
+        border: 1px solid black;
+        height: auto;
+    }
+    .BOVerMasAllAppointments td > div > a > label {    
+        font-size: 12px;
+        color: #333;
+        display: inline-block;
+        width: 104px;
+        line-height: 16px;
+        vertical-align:top;
+    }
+.BOVerMasAllAppointments td > div > a > img {
+    width: 25px;
+    display: inline-block;
+    vertical-align:top;
+    vertical-align:top;
+}
+    .BOVerMasAllAppointments td > div > a > label:nth-child(3) {
+        font-size: 12px;
+        display: inline-block;
+        color: #333;
+        width:190px;
+        line-height: 16px;
+        vertical-align:top;
+    }
+    .BOVerMasAllAppointments td > div > a > label:nth-child(4) {
+        font-size: 12px;
+        display: inline-block;
+        color: #333;
+        width:104px;
+        line-height: 16px;
+        vertical-align:top;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
