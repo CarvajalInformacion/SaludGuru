@@ -176,6 +176,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Web\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\Web\Controllers\UserProfileController.cs" />
     <Compile Include="Areas\Web\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Web\Controllers\SearchController.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
@@ -185,6 +186,7 @@
     </Compile>
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -210,6 +212,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserProfileController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Web.AppointmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -223,6 +228,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web.UserProfileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -975,9 +983,10 @@
     <Content Include="Areas\Web\Scripts\kendo\2014.1.318\jquery.min.map" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\images\kendoui.ttf" />
+    <Content Include="Areas\Web\Views\Home\Index.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
-    <Content Include="Areas\Web\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_L_Footer.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

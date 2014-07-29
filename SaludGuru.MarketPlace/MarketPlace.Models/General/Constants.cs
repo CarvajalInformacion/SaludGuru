@@ -14,6 +14,21 @@
 
         public const string C_SettingsModuleName = "MarketPlace";
 
+        #region LoginModule
+
+        public const string C_Settings_Login_FBUrl = "{{AreaName}}_Login_FBUrl";
+        public const string C_Settings_Login_GoogleUrl = "{{AreaName}}_Login_GoogleUrl";
+
+        #endregion
+
+        #region General Settings
+
+        public const string C_Settings_Cities = "Cities";
+
+        public const string C_Cookie_CookieKey = "SaludGuruCookie";
+
+        #endregion
+
         #endregion
     }
 }

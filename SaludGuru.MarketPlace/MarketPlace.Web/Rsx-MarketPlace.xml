@@ -2,16 +2,15 @@
 <Settings>
   <MarketPlace>
 
-    <!--New-->
-    <key name="Appointment_TitleTemplate_1201">
-      <![CDATA[
-      <div>
-        <img src="{AppointmentImage}" />
-        <label>{AppointmentName}</label>
-      </div>
-    ]]>
-    </key>
+    <!--Login Module-->
+    <key name="Web_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
 
+    <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+
+    <!--Enabled Cities-->
+    <key name="Cities">1,Bogotá;</key>
   </MarketPlace>
 </Settings>
 

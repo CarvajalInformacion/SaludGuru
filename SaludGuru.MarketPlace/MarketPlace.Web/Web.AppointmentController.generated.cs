@@ -73,13 +73,11 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
         }
 
 
@@ -101,17 +99,6 @@ namespace MarketPlace.Web.Areas.Web.Controllers
     public partial class T4MVC_AppointmentController : MarketPlace.Web.Areas.Web.Controllers.AppointmentController
     {
         public T4MVC_AppointmentController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
-            return callInfo;
-        }
 
     }
 }

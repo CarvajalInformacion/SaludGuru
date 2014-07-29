@@ -12,5 +12,13 @@ namespace MarketPlace.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult LogOutUser()
+        {
+            base.LogOut();
+
+            //get return url
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
