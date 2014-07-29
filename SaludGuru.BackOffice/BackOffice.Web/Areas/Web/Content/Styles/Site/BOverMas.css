@@ -9,6 +9,20 @@ div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206
     top:0px;
 }
 
+div.BOVerMasAppointmentFormStatus_1201 {}
+div.BOVerMasAppointmentFormStatus_1202 {}
+div.BOVerMasAppointmentFormStatus_1203 {}
+div.BOVerMasAppointmentFormStatus_1204 {}
+div.BOVerMasAppointmentFormStatus_1205 {}
+div.BOVerMasAppointmentFormStatus_1206 {}
+
+h4.BOHeadingColorStatus_1201 {color:#d6ab00; border-bottom-color:#d6ab00;}
+h4.BOHeadingColorStatus_1202 {color:#88aa00; border-bottom-color:#88aa00;}
+h4.BOHeadingColorStatus_1203 {color:#d40000; border-bottom-color:#d40000;}
+h4.BOHeadingColorStatus_1204 {color:#800066; border-bottom-color:#800066;}
+h4.BOHeadingColorStatus_1205 {color:#39a500; border-bottom-color:#39a500;}
+h4.BOHeadingColorStatus_1206 {color:#414143; border-bottom-color:#414143;}
+h4.BOHeadingColorStatus_1207 {color:#880034; border-bottom-color:#880034;}
 
 
 
@@ -40,9 +54,8 @@ div.BOVerMasTop span:first-child{
     div.BOVerMasTop span:nth-child(3) {
         display:none;
     }
-.BOVerMasLeftColumn {
-    border: 1px solid #008000;
-    border-right:2px solid #99c21d;
+.BOVerMasLeftColumn {   
+    border:none;
     display: inline-block;
     width: 40%;
     height:446px;
@@ -52,7 +65,7 @@ div.BOVerMasTop span:first-child{
     overflow-y:auto;
 }
 .BOVerMasLeftColumn ul{
-    border:1px solid purple;
+        border:none;
     display: block;
     margin:10px 0px 8px 14px;
     width: 72%;
@@ -60,20 +73,20 @@ div.BOVerMasTop span:first-child{
     height: auto;
 }
 .BOVerMasLeftColumn ul li{
-    border:1px solid red;
+        border:none;
     display: block;
     padding: 10px;
     margin: 0px;
 }
 .BOVerMasLeftColumn ul li label{
-    border:1px solid pink;
+        border:none;
      font-size: 14px;
     padding: 2px 0px;
     width: 48%;
 }
     .BOVerMasLeftColumn ul li select, .BOVerMasLeftColumn ul li textarea, 
     .BOVerMasLeftColumn ul li input{
-        border: 1px solid #008000;
+            border: 1px solid #666;
         font-size: 14px;
         height: 24px;
         width: 48%;
