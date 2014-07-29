@@ -49,6 +49,7 @@ var CalendarObject = {
 
                 //eval selected date
                 if (CalendarObject.GetNumberDate(date) >= CalendarObject.GetNumberDate(CalendarObject.StartDate) && CalendarObject.GetNumberDate(date) < CalendarObject.GetNumberDate(CalendarObject.EndDate)) {
+                    debugger;
                     oReturn = [true, ' selected'];
                 }
 
@@ -92,17 +93,18 @@ var CalendarObject = {
         oReturn = vDateToEval.getFullYear();
 
         if (vDateToEval.getMonth() < 10) {
-            oReturn = oReturn + '0' + vDateToEval.getMonth();
+            debugger;
+            oReturn = oReturn + '0' + (vDateToEval.getMonth()).toString();       
         }
         else {
-            oReturn = oReturn + vDateToEval.getMonth();
+            oReturn = oReturn + (vDateToEval.getMonth()).toString();            
         }
 
         if (vDateToEval.getDate() < 10) {
-            oReturn = oReturn + '0' + vDateToEval.getDate();
+            oReturn = oReturn + '0' + (vDateToEval.getDate()).toString();            
         }
         else {
-            oReturn = oReturn + vDateToEval.getDate();
+            oReturn = oReturn + (vDateToEval.getDate()).toString();            
         }
 
         return oReturn;

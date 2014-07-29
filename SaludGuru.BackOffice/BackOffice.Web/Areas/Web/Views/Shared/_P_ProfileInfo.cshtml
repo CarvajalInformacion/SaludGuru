@@ -12,7 +12,7 @@
                 @{
                     var CatInfo_SC = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.CodigoSaleforce).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.SaleforceCode).
                             Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
@@ -292,7 +292,7 @@
                 @{
                     var CatInfo_AT = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileAllId).
                             Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
@@ -320,6 +320,22 @@
                 <label>Keywords</label>
                 <textarea id="Keywords" name="Keywords" rows="15" cols="15">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val.TrimStart())</textarea>
             </li>
+            @*<li>
+                @{
+                    var CatInfo_PA = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_PA != null)
+                    {
+                        <input type="hidden" id="CatId_OldProfileId" name="CatId_OldProfileId" value="@CatInfo_PA.id" />
+                    }
+                }
+                <label>Identificador anterior</label>
+                <input id="OldProfileId" name="OldProfileId" value="@(CatInfo_WS == null ? string.Empty : CatInfo_WS.val)" type="text" />
+            </li>*@
             @{
                 if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
                 {

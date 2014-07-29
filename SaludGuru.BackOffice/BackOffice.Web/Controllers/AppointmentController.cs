@@ -25,7 +25,7 @@ namespace BackOffice.Web.Controllers
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.AddDays(1).Day, 0, 0, 0);
+            oModel.CurrentEndDate = dtAux.AddDays(1);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Day;
@@ -56,10 +56,7 @@ namespace BackOffice.Web.Controllers
             dtAux = dtAux.AddDays((-1) * intAuxDayAdd);
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-
-            dtAux = dtAux.AddDays(7);
-
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
+            oModel.CurrentEndDate = dtAux.AddDays(7);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Week;
@@ -83,7 +80,7 @@ namespace BackOffice.Web.Controllers
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.AddDays(1).Day, 0, 0, 0);
+            oModel.CurrentEndDate = dtAux.AddDays(1);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.List;
@@ -107,7 +104,7 @@ namespace BackOffice.Web.Controllers
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, 1, 0, 0, 0);
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.AddMonths(1).Month, 1, 0, 0, 0);
+            oModel.CurrentEndDate = dtAux.AddMonths(1);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Month;
@@ -265,7 +262,7 @@ namespace BackOffice.Web.Controllers
             }
 
             oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.AddDays(1).Day, 0, 0, 0);
+            oModel.CurrentEndDate = dtAux.AddDays(1);
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Detail;
