@@ -842,7 +842,7 @@ namespace BackOffice.Web.Controllers
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_SaleForce"])?0:int.Parse(Request["CatId_SaleForce"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.CodigoSaleforce,
+                            ProfileInfoType = enumProfileInfoType.SaleforceCode,
                             LargeValue = Request["Saleforce"].ToString(),
                         },
                         new ProfileInfoModel()
@@ -993,76 +993,76 @@ namespace BackOffice.Web.Controllers
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["IsemailAC"])?0:int.Parse(Request["IsemailAC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.AsignacionCita,
+                            ProfileInfoType = enumProfileInfoType.AsignedAppointment,
                             Value = (Request["AC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["IsSmsAC"])?0:int.Parse(Request["IsSmsAC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.AsignacionCita,
+                            ProfileInfoType = enumProfileInfoType.AsignedAppointment,
                             Value = (Request["AC_Sms"]!= null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["IsNotifyAC"])?0:int.Parse(Request["IsNotifyAC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.AsignacionCita,                            
+                            ProfileInfoType = enumProfileInfoType.AsignedAppointment,                            
                             Value = (Request["AC_NotifyGuru"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Cancelacion de cita
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isEMailCC"])?0:int.Parse(Request["isEMailCC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            ProfileInfoType = enumProfileInfoType.CancelAppointment,
                             Value = (Request["CC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
                         },                        
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isSmsCC"])?0:int.Parse(Request["isSmsCC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            ProfileInfoType = enumProfileInfoType.CancelAppointment,
                             Value = (Request["CC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyCC"])?0:int.Parse(Request["isNotifyCC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.CancelacionCita,
+                            ProfileInfoType = enumProfileInfoType.CancelAppointment,
                             Value = (Request["CC_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Encuesta Satisfacción
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isEmailEs"])?0:int.Parse(Request["isEmailEs"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            ProfileInfoType = enumProfileInfoType.SatisfactionSurvey,
                             Value = (Request["ES_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isSmsEs"])?0:int.Parse(Request["isSmsEs"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            ProfileInfoType = enumProfileInfoType.SatisfactionSurvey,
                             Value = (Request["ES_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyEs"])?0:int.Parse(Request["isNotifyEs"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion,
+                            ProfileInfoType = enumProfileInfoType.SatisfactionSurvey,
                             Value = (Request["ES_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                         },
                         //Modificación de cita
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isEmailMC"])?0:int.Parse(Request["isEmailMC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            ProfileInfoType = enumProfileInfoType.ModifyAppointment,
                             Value = (Request["MC_EMail"] != null ? ((int)enumMessageType.Email).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isSmsMC"])?0:int.Parse(Request["isSmsMC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            ProfileInfoType = enumProfileInfoType.ModifyAppointment,
                             Value = (Request["MC_Sms"] != null ? ((int)enumMessageType.Sms).ToString() : string.Empty),
                         },
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["isNotifyMC"])?0:int.Parse(Request["isNotifyMC"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.ModificacionCita,
+                            ProfileInfoType = enumProfileInfoType.ModifyAppointment,
                             Value = (Request["MC_GuruNotify"] != null ? ((int)enumMessageType.GuruNotification).ToString() : string.Empty),
                        },
                     }
