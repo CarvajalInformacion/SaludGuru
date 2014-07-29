@@ -87,8 +87,8 @@
         <div class="BOVerMasRightColumn">
             <!--patient info-->
             <ul>
-                <li>
-                    <label>Agregar paciente:</label>
+                <li class="BOVerMasAddPatientesAppointment">
+                    <label>Agregar pacientes a esta cita:</label>
                     <input type="text" id="getPatient" />
                     <a href="javascript:;">+</a>
                 </li>
@@ -200,9 +200,13 @@
                 <label>Cel: {Mobile}</label>
                 <label>Email: {Email}</label>
             </div>
+            <div class="BOPatientRemoveContainer BOVerMasPatientRemove">
+                <a href="javascript:AppointmentDetailObject.RemovePatientAppointment('{PatientPublicId}')"></a>
+                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
+            </div>
 
             <!--doctor notes-->
-            <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Las Notas Del Doctor</h4>
+            <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Notas Del Doctor</h4>
             <div class="BOAddNotes">
                 <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15">&nbsp;</textarea>
                 <span>
@@ -213,15 +217,13 @@
                 <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
             </div>
             <!--related appointment-->
+            <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Historial de citas del paciente</h4>
             <div>
-                <div id="divPatientAppointment_{PatientPublicId}" class="patientAppointmentClass"></div>
-                <a href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
+                <div id="divPatientAppointment_{PatientPublicId}" class="patientAppointmentClass BOVerMasAllAppointments"></div>
+                <a class="BOVerMasAllAppointmentsThisPatient" href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
             </div>
             <!--remove patient container-->
-            <div class="BOPatientRemoveContainer">
-                <a href="javascript:AppointmentDetailObject.RemovePatientAppointment('{PatientPublicId}')"></a>
-                <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
-            </div>
+            
 
         </li>
     </ul>
@@ -239,10 +241,10 @@
     <div id="divPatientAppointmentTemplate">
         <div class="${className}">
             <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
-                <label>${AppointmentDateText}</label>
                 <img src="${AppointmentImage}" />
-                <label>${AppointmentText}</label>
+                <label>${AppointmentDateText}</label>
                 <label>${OfficeName}</label>
+                <label>${AppointmentText}</label>
             </a>
         </div>
     </div>
