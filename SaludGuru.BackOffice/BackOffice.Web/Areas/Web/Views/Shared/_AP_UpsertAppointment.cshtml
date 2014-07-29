@@ -213,7 +213,7 @@
 
         <!--Dialog create patient-->
         <div id="Dialog_CreatePatient" title="Crear Paciente">
-            <form action="/api/AppointmentApi?PatientPublicId=" method="post">
+            <form action="/api/PatientApi?UpsertAction=true" method="post" id="frmCreatePatient" name="frmCreatePatient">
                 <ul>
                     <h3>Datos del Paciente</h3>
                     <li>
@@ -237,11 +237,6 @@
                         <input id="Mobile" name="Mobile" type="text" />
                     </li>
                 </ul>
-                <div>
-                    @*hiden fields*@
-                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input type="submit" class="BOButtons" value="guardar" />
-                </div>
             </form>
         </div>
     </div>

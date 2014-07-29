@@ -170,44 +170,6 @@ namespace BackOffice.Web.ControllersApi
                 return new List<ScheduleEventMonthModel>();
         }
 
-
-        [HttpPost]
-        [HttpGet]
-        public void PatientUpsert(string PatientPublicId)
-        {
-
-            string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
-
-            PatientUpSertModel Model = new PatientUpSertModel();
-
-            Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
-            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
-
-            if (!string.IsNullOrEmpty(HttpContext.Current.Request["UpsertAction"])
-                && bool.Parse(HttpContext.Current.Request["UpsertAction"]))
-            {
-                //get request model
-                PatientModel PatientToCreate = GetPatientInfoRequestModel();
-
-                //create patient 
-                string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
-
-                //get updated profile info
-                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oProfilePublicId);
-            }
-            else
-            {
-                //get request model
-                PatientModel PatientToCreate = GetPatientInfoRequestModel();
-                if (PatientToCreate != null)
-                {
-                    //create patient 
-                    string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, SessionController.SessionManager.Auth_UserLogin.UserPublicId);
-                }
-                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId);
-            }
-        }
-
         #region Private Methods
 
         private AppointmentModel GetUpsertAppointmentRequestModel
@@ -288,7 +250,7 @@ namespace BackOffice.Web.ControllersApi
                 if (oOriginalAppointment == null ||
                     (oOriginalAppointment != null &&
                         oOriginalAppointment.AppointmentInfo.
-                        Any(x => x.Value.Replace(" ", "") != oTreatmentId.ToString() &&
+                        Any(x => !string.IsNullOrEmpty(x.Value) && x.Value.Replace(" ", "") != oTreatmentId.ToString() &&
                             x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category)))
                 {
                     //after care
@@ -422,46 +384,6 @@ namespace BackOffice.Web.ControllersApi
 
                 //TODO: send message removed patient
             }
-        }
-
-        private PatientModel GetPatientInfoRequestModel()
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Current.Request["UpsertAction"])
-                 && bool.Parse(HttpContext.Current.Request["UpsertAction"]))
-            {
-                PatientModel oReturn = new PatientModel()
-                {
-                    PatientPublicId = HttpContext.Current.Request["PatientPublicId"],
-                    Name = HttpContext.Current.Request["Name"].ToString(),
-                    LastModify = DateTime.Now,
-                    LastName = HttpContext.Current.Request["LastName"].ToString(),
-
-                    PatientInfo = new List<PatientInfoModel>() 
-                    { 
-                        new PatientInfoModel()
-                        {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_IdentificationNumber"])?0:int.Parse(HttpContext.Current.Request["CatId_IdentificationNumber"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.IdentificationNumber,
-                            Value = HttpContext.Current.Request["IdentificationNumber"].ToString(),
-                        },
-                        new PatientInfoModel()
-                        {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Email"])?0:int.Parse(HttpContext.Current.Request["CatId_Email"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.Email,
-                            Value = HttpContext.Current.Request["Email"].ToString(),
-                        },
-                         new PatientInfoModel()
-                        {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Mobile"])?0:int.Parse(HttpContext.Current.Request["CatId_Mobile"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.Mobile,
-                            Value = HttpContext.Current.Request["Mobile"].ToString(),
-                        },  
-                    }
-                };
-
-                return oReturn;
-            }
-            return null;
         }
 
         #endregion
