@@ -490,3 +490,34 @@ function ProfileComunicationListGrid(vidDiv, vReminderData) {
     //checked selected checkbox
     $('.SelectedChecked').attr('checked', 'checked');
 }
+
+//Valitation, Email 
+function ValidEmailAutorizationProfileList(ControlId )
+{
+    $('#' + ControlId).validate({
+        //debug: true,
+        errorClass: 'error help-inline',
+        validClass: 'success',
+        errorElement: 'span',
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+        },
+        rules: {
+            UserEmail: {
+                email: true
+            }
+        },
+        messages: {
+            UserEmail:
+                {
+                    required: " Debe ingresar una dirección de correo electrónico",
+                    email: " Debe ingresar un email valido"
+                }
+        }
+    });
+
+}
