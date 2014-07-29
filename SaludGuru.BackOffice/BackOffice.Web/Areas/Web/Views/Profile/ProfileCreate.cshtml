@@ -7,3 +7,61 @@
 <div class="BOInsuranceTableWrapper">
     @Html.Partial(MVC.Web.Shared.Views._P_ProfileInfo, Model)
 </div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ProfileInfoFormId').validate({
+                //debug: true,
+                errorClass: 'error help-inline',
+                validClass: 'success',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+                },
+                rules: {
+                    Name: {
+                        required: true,
+                    },
+                    Email: {
+                        email: true
+                    },
+                    Saleforce:
+                        {
+                            required: true,
+                            maxlength: 8
+                            }
+                },
+                messages: {
+                    Name: {
+                        required: "Debe ingresar el nombre",
+
+                    },
+                    LastName:
+                        {
+                            required: "Debe ingresar el apellido"
+                        },
+                    IdentificationNumber:
+                        {
+                            required: "Debe ingresar la identificación"
+                        },
+                    Email:
+                        {
+                            required: "Debe ingresar una dirección de correo electrónico",
+                            email: "Debe ingresar un email valido"
+                        },
+                    Saleforce:
+                        {
+                            required: "Debe ingresar un código",
+                            maxlength: "No puede ingresar mas de 8 caracteres"
+                        }
+                }
+            });
+        });
+    </script>
+}
