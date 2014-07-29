@@ -32,19 +32,19 @@ namespace Profile.Test
             model.ProfileInfo = new List<ProfileInfoModel>();
 
             info.ProfileInfoId = 136;
-            info.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            info.ProfileInfoType = enumProfileInfoType.AsignedAppointment;
             info.Value = "101";
 
             model.ProfileInfo.Add(info);
 
             info2.ProfileInfoId = 137;
-            info2.ProfileInfoType = enumProfileInfoType.CancelacionCita;
+            info2.ProfileInfoType = enumProfileInfoType.CancelAppointment;
             info2.Value = "101";
 
             model.ProfileInfo.Add(info2);
 
             info3.ProfileInfoId = 138;
-            info3.ProfileInfoType = enumProfileInfoType.EncuestaSatisfaccion;
+            info3.ProfileInfoType = enumProfileInfoType.SatisfactionSurvey;
             info3.Value = "101";
 
             model.ProfileInfo.Add(info3);
@@ -62,7 +62,7 @@ namespace Profile.Test
             ProfileInfoModel item = new ProfileInfoModel();
 
             item.ProfileInfoId = 274;
-            item.ProfileInfoType = enumProfileInfoType.AsignacionCita;
+            item.ProfileInfoType = enumProfileInfoType.AsignedAppointment;
             item.Value = "102";
 
             list.Add(item);
