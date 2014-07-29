@@ -51,16 +51,13 @@ function InitAutorizationMenu() {
     $.widget("custom.iconselectmenu", $.ui.selectmenu, {
         _renderItem: function (ul, item) {
             var li = $("<li>", { text: item.label });
-
             if (item.disabled) {
                 li.addClass("ui-state-disabled");
             }
-
             $("<span>", {
                 style: item.element.attr("data-style"),
                 "class": "ui-icon " + item.element.attr("data-class")
             }).appendTo(li);
-
             return li.appendTo(ul);
         }
     });
@@ -75,7 +72,6 @@ function InitAutorizationMenu() {
 
     //set selected item html
     $('#ddAutorizationProfiles-button .ui-selectmenu-text').html($('#SelAutorization').html());
-
 }
 
 /*init user notifications*/
@@ -164,8 +160,6 @@ function InitGlobalSearchBox(IsUserAdmin) {
 function ValidatePopUp(controlName, message, NameSubmit) {
     //debugger;
     $("#dialogError").dialog({
-
-        
         show: {
             effect: "clip",
             duration: 500,
@@ -179,5 +173,4 @@ function ValidatePopUp(controlName, message, NameSubmit) {
     });
     $("#dialogError").text(message);
     $("#dialogError").dialog("open");
-
 }

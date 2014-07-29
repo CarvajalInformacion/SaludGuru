@@ -3,30 +3,9 @@
     ViewBag.Title = "SaludGuru - detalle citas";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 
-    //string oAppointmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-    //    Serialize(Model.RelatedAppointment.
-    //    Select(x => new
-    //    {
-    //        AppointmentPublicId = x.AppointmentPublicId,
-    //        CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy"),
-    //        StatusName = x.Status.ToString() == "Attendance" ? "Atendido" : x.Status.ToString() == "New" ? "Nueva Cita" : x.Status.ToString() == "Canceled" ? "Cita Cancelada" : x.Status.ToString() == "NotAttendance" ? "No atendido" : x.Status.ToString(),
-    //    }).ToList());
-
     string oPatientPublicId = Model.Patient.PatientPublicId.ToString();
 }
 
-@*<div class="BOProfilesGeneralWrapper">
-        <div class="BOProfileMenuWrapper">
-            @Html.Partial(MVC.Web.Shared.Views._PA_PatientMenu, Model)
-        </div>
-        <div class="BOProfileTableWrapper">
-
-            <h3>Listado de Citas</h3>
-
-            <div id="divGridAppointment"></div>0
-
-        </div>
-    </div>*@
 <div class="BOProfilesGeneralWrapper">
     <div class="BOProfileMenuWrapper">
         @if (Model != null && Model.Patient != null)
@@ -39,7 +18,7 @@
 
         <!--patient appointment template-->
         <div id="divPatientAppointmentTemplate">
-            <div class="${className}">
+            <div id="patientAppointment" class="${className}">
                 <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
                     <img src="${AppointmentImage}" />
                     <label>${AppointmentDateText}</label>
@@ -58,11 +37,9 @@
         var vPatientPublicId = @Html.Raw(oPatientPublicId)
             @*vDataAppointment = @Html.Raw(oAppointmentData)*@
         $(document).ready(function () {
-            //Start appointment grid
-            //PatientAppointmentListGrid('divGridAppointment', vDataAppointment);
-
             //Render List Appointment
             RenderPatientAppointment('divPatientAppointmentTemplate', vPatientPublicId);
+            $("#patientAppointment").hide();
         })        
     </script>
 }

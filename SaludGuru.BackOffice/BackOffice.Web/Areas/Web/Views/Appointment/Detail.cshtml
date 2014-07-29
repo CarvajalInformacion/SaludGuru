@@ -169,7 +169,7 @@
 </div>
 
 <!--templates-->
-<div id="templatesUpsertAppointment" style="display:none;">
+<div id="divPatientAppointmentTemplate">
     <!--patient autocomplete-->
     <div id="divPatientAcItem">
         <div class="autocompletePatients">
@@ -202,16 +202,16 @@
             </div>
 
             <!--doctor notes-->
-                <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Las Notas Del Doctor</h4>
-                <div class="BOAddNotes">
-                    <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15">&nbsp;</textarea>
-                    <span>
+            <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Las Notas Del Doctor</h4>
+            <div class="BOAddNotes">
+                <textarea id="NewDoctorNote_{PatientPublicId}" rows="15" cols="15">&nbsp;</textarea>
+                <span>
                     <a href="javascript:AppointmentDetailObject.AddPatientNote('{PatientPublicId}');">Agregar nota</a>
-                    </span>
-                </div>
-                <div class="BoNotesList">
-                    <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
-                </div>
+                </span>
+            </div>
+            <div class="BoNotesList">
+                <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
+            </div>
             <!--related appointment-->
             <div>
                 <div id="divPatientAppointment_{PatientPublicId}"></div>

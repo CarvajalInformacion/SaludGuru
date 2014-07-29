@@ -32,7 +32,7 @@
                     <li>
                         <label>Asignar paciente(s):</label>
                         <input type="text" id="getPatient" />
-                        <a href="javascript:;">+</a>
+                        <a id="addPatient" href="javascript:;">+</a>
                     </li>
                     <li>
                         <h4 class="changeToColorStatus">Paciente(s) asignados a la cita:</h4>
@@ -135,29 +135,29 @@
         <!--patient appointment-->
         <ul id="ulPatientAppointment">
             <li id="{PatientPublicId}">
-                
+
                 <!--photo container-->
                 <div class="BOPatientPhotoContainer">
                     <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">
                         <img src="{ProfileImage}" />
                     </a>
-                </div>                
-                
-                    <!--data container-->
+                </div>
+
+                <!--data container-->
                 <div class="BOPatientDataContainer">
                     <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")">{Name}</a>
                     <label>Ident: {IdentificationNumber}</label>
                     <label>Cel: {Mobile}</label>
-                    <label>Email: {Email}</label>                    
+                    <label>Email: {Email}</label>
                 </div>
-                
+
                 <!--remove patient container-->
                 <div class="BOPatientRemoveContainer">
                     <a href="javascript:UpsertAppointmentObject.RemovePatientAppointment('{PatientPublicId}')"></a>
                     <a target="_blank" href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId={PatientPublicId}")"></a>
                 </div>
 
-        </li>
+            </li>
         </ul>
 
         <!--Save result message-->
@@ -212,6 +212,39 @@
         </div>
 
     </div>
+
+    <div id="dialogo">
+        <form id="ProfileInfoFormId" method="post">
+            <ul>
+                <h3>Datos del Perfil</h3>
+                <li>
+                    <label>Nombre</label>
+                    <input id="Name" class="required" name="Name" type="text" />
+                </li>
+                <li>
+                    <label>Apellido</label>
+                    <input id="LastName" class="required" name="LastName" type="text" />
+                </li>
+                <li>
+                    <label>Número Identificación</label>
+                    <input id="IdentificationNumber" class="required" name="IdentificationNumber" type="text" />
+                </li>
+                <li>
+                    <label>Correo electronico</label>
+                    <input id="Email" class="required" name="Email" type="text" />
+                </li>
+                <li>
+                    <label>Telefono móvil</label>
+                    <input id="Mobil" name="Mobil" type="text" />
+                </li>
+                <li class="BOButtonContainerShort">
+                    @*hiden fields*@
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="guardar" />
+                </li>
+            </ul>
+        </form>
+    </div>
 }
 else
 {
@@ -222,6 +255,17 @@ else
             UpsertAppointmentObject.Init({
                 DivId: 'AppointmentUpsertContainer',
                 DivBlockId: 'BlockAppointmentContainer',
+            });
+        });
+        $('#addPatient').click(function () {
+            $("#dialogo").dialog({
+                modal: false,
+                title: "Caja con opciones",
+                width: 800,
+                minWidth: 400,
+                maxWidth: 650,
+                show: "clip",
+                hide: "blind"
             });
         });
     </script>
