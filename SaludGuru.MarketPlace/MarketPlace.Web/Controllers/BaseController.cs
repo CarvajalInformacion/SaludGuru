@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarketPlace.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,79 @@ namespace MarketPlace.Web.Controllers
             {
                 return System.Web.HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString();
             }
+        }
+
+        private static Dictionary<int, string> oEnabledCities;
+        public static Dictionary<int, string> EnabledCities
+        {
+            get
+            {
+                if (oEnabledCities == null)
+                {
+                    oEnabledCities = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Cities].
+                        Value.
+                        Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).
+                        ToDictionary
+                            (k => Convert.ToInt32(k.Split(',')[0]),
+                            v => v.Split(',')[1].Trim());
+                }
+                return oEnabledCities;
+            }
+        }
+
+        private CookieModel oCurrentCookie;
+        public CookieModel CurrentCookie
+        {
+            get
+            {
+                if (oCurrentCookie == null)
+                {
+                    oCurrentCookie = GetCookie();
+                }
+                return oCurrentCookie;
+            }
+        }
+
+        #endregion
+
+        #region Cookie methods
+
+        //save cookie over request
+        public void SetCookie(CookieModel CookieToUpdate)
+        {
+            string strCookieKey = MarketPlace.Models.General.Constants.C_Cookie_CookieKey;
+            string strCookieValue = (new System.Web.Script.Serialization.JavaScriptSerializer()).Serialize(CookieToUpdate);
+
+            if (Request.Cookies.AllKeys.Any(x => x == strCookieKey))
+            {
+                Request.Cookies.Remove(strCookieKey);
+            }
+            this.ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie(strCookieKey, strCookieValue));
+        }
+
+        public CookieModel GetCookie()
+        {
+            CookieModel oReturn;
+
+            string strCookieKey = MarketPlace.Models.General.Constants.C_Cookie_CookieKey;
+
+            if (!Request.Cookies.AllKeys.Any(x => x == strCookieKey))
+            {
+                oReturn = new CookieModel()
+                {
+                    CurrentCity = EnabledCities.FirstOrDefault().Key,
+                };
+
+                SetCookie(oReturn);
+            }
+            else
+            {
+                oReturn = (CookieModel)(new System.Web.Script.Serialization.JavaScriptSerializer()).
+                                    Deserialize(Request.Cookies[strCookieKey].Value, typeof(CookieModel));
+            }
+
+            return oReturn;
         }
 
         #endregion

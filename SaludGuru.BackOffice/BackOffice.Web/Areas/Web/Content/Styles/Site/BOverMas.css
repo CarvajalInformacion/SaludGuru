@@ -2,14 +2,18 @@ div.BOVerMasAppointmentFormStatus_1201, div.BOVerMasAppointmentFormStatus_1202,
 div.BOVerMasAppointmentFormStatus_1203, div.BOVerMasAppointmentFormStatus_1204,
 div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206
 {
-    border:1px solid purple;
+        border:none;
     width:71%;
     position:absolute;
     right:0px;
     top:0px;
 }
+
+
+
+
 div.BOVerMasTop {
-    border:1px solid green;
+        border:none;
     width:100%;
     height:26px;
     display:block;
@@ -19,7 +23,7 @@ div.BOVerMasTop {
     text-align:left;
 }
 div.BOVerMasTop a{
-    border: 1px solid #00F;
+        border:none;
     display: inline-block;
     width: auto;
     height: 24px;
@@ -92,50 +96,71 @@ div.BOVerMasTop span:first-child{
     overflow-y:auto;
 }
     .BOVerMasRightColumn ul{
-        border:1px solid red;
+            border:none;
         display:block;
         margin:10px 0px 0px 10px;
-        background-color:#f2f2f2;
+        background-color:#f9f9f9;
     }
         .BOVerMasRightColumn ul li{
-            border:1px solid black;
+                border:none;
             display:block;
             margin:10px;
             font-size:14px;
             line-height:14px;
             text-align:left;
         }
-            .BOVerMasRightColumn ul li label, .BOVerMasRightColumn ul li input,
-            .BOVerMasRightColumn ul li a{
-                border:1px solid pink;
+                .BOVerMasRightColumn > ul > li > ul > li {
+                    border: 1px solid #333 !important;
+                    background-color: #F2F2F2;
+                    border-radius: 3px;
+                    box-shadow: 2px 2px 2px #666;
+                    margin-bottom: 9px !important;
+                }
+
+            li.BOVerMasAddPatientesAppointment label, li.BOVerMasAddPatientesAppointment input,
+            li.BOVerMasAddPatientesAppointment a{
+                    border:none;
                 display:inline-block;
                 margin:0px;
                 vertical-align:middle;
             }
-            .BOVerMasRightColumn ul li input {
+                li.BOVerMasAddPatientesAppointment label{
+                    font-size:17px;
+                }
+            li.BOVerMasAddPatientesAppointment input {
                 width: 45%;
                 height: 20px;
                 border: 1px solid #666;
                 background-color: #fff;
             }
-            /*.BOVerMasRightColumn ul li a{
+            li.BOVerMasAddPatientesAppointment a{
                 font-size:28px;
                 font-weight:bold;
                 color:#99c21d;
                 vertical-align:top;
                 text-decoration: none;
-            }*/
-h4.BOAddNotes1201, h4.BOHeadingColorStatus_1202,
-h4.BOHeadingColorStatus_1203, h4.BOHeadingColorStatus_1204,
-h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
+            }
+h4.BOAddNotes1201, h4.BOHeadingColorStatus_1201,
+h4.BOHeadingColorStatus_1202, h4.BOHeadingColorStatus_1203, 
+h4.BOHeadingColorStatus_1204, h4.BOHeadingColorStatus_1205, 
+h4.BOHeadingColorStatus_1206, h4.BOHeadingColorStatus_1207{
     border-bottom-style:solid;
-    border-bottom-width:1px;BOAddNotes
+    border-bottom-width:1px;
     display:block;
     text-align:left;
+    font-size:17px;
+    margin: 14px 0px 0px;
 }
+h4.BOHeadingColorStatus_1201 {color:#d6ab00; border-bottom-color:#d6ab00;}
+h4.BOHeadingColorStatus_1202 {color:#88aa00; border-bottom-color:#88aa00;}
+h4.BOHeadingColorStatus_1203 {color:#d40000; border-bottom-color:#d40000;}
+h4.BOHeadingColorStatus_1204 {color:#800066; border-bottom-color:#800066;}
+h4.BOHeadingColorStatus_1205 {color:#39a500; border-bottom-color:#39a500;}
+h4.BOHeadingColorStatus_1206 {color:#414143; border-bottom-color:#414143;}
+h4.BOHeadingColorStatus_1207 {color:#880034; border-bottom-color:#880034;}
 
 .BOVerMasRightColumn ul li ul#lstPatient{
-    border:1px solid blue;
+        border:none;
     display:block;
     margin:0px;
     width:100%;
@@ -148,7 +173,7 @@ h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
         width:100%;
     }
         ul#lstPatient div.BOPatientDataContainer{
-            border:1px solid black;
+            border:none;
 
         }
         ul#lstPatient div.BOPatientDataContainer a {
@@ -156,10 +181,11 @@ h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
             margin-left:1px;
         }
         div.BOAddNotes {
-            display:block;
-            border:1px solid grey;
-            width:100%;
-            padding:8px;
+            display: block;
+            width: 97.6%;
+            padding: 0px;
+            border: none;
+            margin: 10px 0px 0px 12px;
         }
         div.BOAddNotes textarea{
             display:block;
@@ -170,26 +196,27 @@ h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
         }
         div.BOAddNotes span {
             display:block;
-            width:110px; height:30px;
+            width:115px; height:30px;
             background-image:url('/Areas/Web/Content/Images/calendarActionsSprite.png');
             background-position:-49px 0px;
             background-repeat:no-repeat;
             background-size: 126px auto;
             text-align:right;
-            margin: 4px 0px 0px 380px;
-            border:1px solid pink;
+            margin: 4px 0px 0px 374px;
+                border:none;
         }
         div.BOAddNotes a{
-            width:80px; height:28px;
+            width:85px; height:28px;
             font-size:14px !important;
             color:#333 !important;
             font-weight:normal !important;
             background-color:#F2F2F2;
-            line-height:24px;
+            line-height:28px;
+            display:inline-block;
         }
         .BoNotesList {
             display:block;
-            border:1px solid grey;
+                border:none;
         }
 /************************BARRITA DE LOS COMANDOS***************************/
         div.BOVerMasAppointmentCommands{
@@ -257,86 +284,76 @@ div.BoNotesList ul li{
     div.BoNotesList ul li a:hover{
         text-decoration:underline;
     }    
-
-/******************** LISTA DE CITAS DEL PACIENTE **********************/
-
-
-div.mierdas {
-    border:1px solid green;
-}
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1201,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1202,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1203,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1204,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1205,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1206,
-    div#divPatientAppointmentTemplate div.AppointmentStatus_1207
-    {
-        border:1px solid red;
-        background-color:#99c21d;
-    }
 /********* VER TODAS LAS CITAS DE ESTE PACIENTE ********/
-/*.BOVerMasAllAppointments {
+.BOVerMasAllAppointments {
     display:block;
     padding:0px;
     margin:0px;
-    border:4px solid purple;
+        border:none;
 }
-.BOVerMasAllAppointments div.k-grid-content{
-    height:auto;
-    overflow:auto;
-}
-.BOVerMasAllAppointments > a{
-    font-size: 18px !important;
-    font-weight: normal !important;
-    color: #333 !important;
-    display: block !important;
-    margin: 12px 0px !important;
-    text-align: right !important;
-}
-    .BOVerMasAllAppointments > a:hover {
-        text-decoration:underline;
+    .BOVerMasAllAppointments div.k-grid-content{
+        height:auto;
+        overflow:hidden;
     }
-
-
-.BOVerMasAllAppointments td > div{
-    height:auto;
+        .BOVerMasAllAppointments td > div{
+            height:auto;
+            border-style:solid;
+            border-width:1px 1px 1px 12px;
+            min-width:90% !important;
+            display: block;
+        }
+            .BOVerMasAllAppointments td > div > a{
+                display: block;
+                height: 40px;
+            }
+                .BOVerMasAllAppointments td > div > a > img {
+                    height: auto !important;
+                    width: 40px !important;
+                    margin: 0px 0px 0px 7px;
+                    padding: 0px;
+                    display: inline-block;
+                    vertical-align:top;
+                }
+                .BOVerMasAllAppointments td > div > a > label {    
+                    font-size: 12px;
+                    color: #333;
+                    display: inline-block;
+                    line-height: 16px;
+                    vertical-align: top;
+                    float: none !important;
+                    margin-top: 0px !important;
+                        border:none;
+                    width: auto;
+                    margin-left: 8px !important;
+                    margin-right: 8px !important;
+                }
+a.BOVerMasAllAppointmentsThisPatient {
+    display: block;
+    font-size: 17px;
+    height: auto;
+    color: #333;
+    width:98%;
+    text-align: right;
+    margin:3px 0px;
+        border:none;
+    line-height: 28px;
 }
-    .BOVerMasAllAppointments td > div a{
-        display: block;
-        border: 1px solid black;
-        height: auto;
-    }
-    .BOVerMasAllAppointments td > div > a > label {    
-        font-size: 12px;
-        color: #333;
-        display: inline-block;
-        width: 104px;
-        line-height: 16px;
-        vertical-align:top;
-    }
-.BOVerMasAllAppointments td > div > a > img {
-    width: 25px;
+div.BOVerMasPatientRemove {
     display: inline-block;
-    vertical-align:top;
-    vertical-align:top;
+    float: right;
+        border:none;
+    width: auto;
+    height: auto;
+    vertical-align: top;
+    margin: 0px;
 }
-    .BOVerMasAllAppointments td > div > a > label:nth-child(3) {
-        font-size: 12px;
-        display: inline-block;
-        color: #333;
-        width:190px;
-        line-height: 16px;
-        vertical-align:top;
-    }
-    .BOVerMasAllAppointments td > div > a > label:nth-child(4) {
-        font-size: 12px;
-        display: inline-block;
-        color: #333;
-        width:104px;
-        line-height: 16px;
-        vertical-align:top;
-    }*/
+
+
+
+
+    
+
+    
 
 
 

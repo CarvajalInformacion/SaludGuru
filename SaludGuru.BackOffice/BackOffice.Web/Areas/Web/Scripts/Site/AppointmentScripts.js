@@ -786,12 +786,51 @@ var UpsertAppointmentObject = {
                 show: "clip",
                 hide: "blind",
                 buttons: {
+                    "Guardar": function () {
+                        $(this).dialog("close");
+                        UpsertAppointmentObject.CreatePatient();
+                    },
                     "Cancelar": function () {
                         $(this).dialog("close");
                     }
                 }
             });
         });
+    },
+
+    CreatePatient: function () {
+
+        //create ajax form object
+        $("#frmCreatePatient").submit(function (e) {
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                    debugger;
+                    UpsertAppointmentObject.AddPatientAppointment(data);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+                }
+            });
+            e.preventDefault(); //STOP default action
+            e.unbind(); //unbind. to stop multiple form submit.
+        });
+
+        //submit ajax form
+        $("#frmCreatePatient").submit();
+
     },
 
     AddPatientAppointment: function (vPatientModel) {
@@ -865,6 +904,9 @@ var UpsertAppointmentObject = {
             e.preventDefault(); //STOP default action
             e.unbind(); //unbind. to stop multiple form submit.
         });
+
+        //hidde create appointment form
+        $('#' + this.DivId).hide();
 
         //submit ajax form
         $("#frmAppointment").submit();
@@ -1100,6 +1142,9 @@ var UpsertAppointmentObject = {
             e.preventDefault(); //STOP default action
             e.unbind(); //unbind. to stop multiple form submit.
         });
+
+        //hidde create appointment form
+        $('#' + this.DivBlockId).hide();
 
         //submit ajax form
         $("#frmBlockAppointment").submit();

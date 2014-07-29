@@ -1,5 +1,6 @@
 ﻿using BackOffice.Models.Appointment;
 using BackOffice.Models.Patient;
+using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
 using SaludGuruProfile.Manager.Models.Profile;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace BackOffice.Web.ControllersApi
@@ -106,5 +108,67 @@ namespace BackOffice.Web.ControllersApi
             else
                 return new List<ScheduleEventModel>();
         }
+
+        [HttpPost]
+        [HttpGet]
+        public PatientSearchModel PatientUpsert(string UpsertAction)
+        {
+
+            string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
+
+            PatientUpSertModel Model = new PatientUpSertModel();
+
+            Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
+            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+
+            //get request model
+            PatientModel PatientToCreate = GetPatientInfoRequestModel();
+
+            //create patient 
+            string oPatientPublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
+
+            PatientToCreate = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oPatientPublicId);
+
+            return new PatientSearchModel(PatientToCreate);
+        }
+
+        #region Private Methods
+
+        private PatientModel GetPatientInfoRequestModel()
+        {
+            PatientModel oReturn = new PatientModel()
+            {
+                PatientPublicId = HttpContext.Current.Request["PatientPublicId"],
+                Name = HttpContext.Current.Request["Name"].ToString(),
+                LastModify = DateTime.Now,
+                LastName = HttpContext.Current.Request["LastName"].ToString(),
+
+                PatientInfo = new List<PatientInfoModel>() 
+                    { 
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_IdentificationNumber"])?0:int.Parse(HttpContext.Current.Request["CatId_IdentificationNumber"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.IdentificationNumber,
+                            Value = HttpContext.Current.Request["IdentificationNumber"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Email"])?0:int.Parse(HttpContext.Current.Request["CatId_Email"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Email,
+                            Value = HttpContext.Current.Request["Email"].ToString(),
+                        },
+                         new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Mobile"])?0:int.Parse(HttpContext.Current.Request["CatId_Mobile"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Mobile,
+                            Value = HttpContext.Current.Request["Mobile"].ToString(),
+                        },  
+                    }
+            };
+
+            return oReturn;
+        }
+
+        #endregion
     }
 }
