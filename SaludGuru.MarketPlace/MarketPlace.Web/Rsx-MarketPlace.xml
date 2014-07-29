@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <MarketPlace>
+
+    <!--New-->
+    <key name="Appointment_TitleTemplate_1201">
+      <![CDATA[
+      <div>
+        <img src="{AppointmentImage}" />
+        <label>{AppointmentName}</label>
+      </div>
+    ]]>
+    </key>
+
+  </MarketPlace>
+</Settings>
+
