@@ -292,7 +292,7 @@
                 @{
                     var CatInfo_AT = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileAllId).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
                             Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
@@ -320,11 +320,11 @@
                 <label>Keywords</label>
                 <textarea id="Keywords" name="Keywords" rows="15" cols="15">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val.TrimStart())</textarea>
             </li>
-            @*<li>
+            <li>
                 @{
                     var CatInfo_PA = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.OldProfileId).
                             Select(x => new { id = x.ProfileInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
@@ -334,8 +334,8 @@
                     }
                 }
                 <label>Identificador anterior</label>
-                <input id="OldProfileId" name="OldProfileId" value="@(CatInfo_WS == null ? string.Empty : CatInfo_WS.val)" type="text" />
-            </li>*@
+                <input id="OldProfileId" name="OldProfileId" value="@(CatInfo_PA == null ? string.Empty : CatInfo_PA.val)" type="text" />
+            </li>
             @{
                 if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
                 {

@@ -857,6 +857,12 @@ namespace BackOffice.Web.Controllers
                             ProfileInfoType = enumProfileInfoType.Mobile,
                             LargeValue = Request["Mobil"].ToString(),
                         },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_OldProfileId"])?0:int.Parse(Request["CatId_OldProfileId"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.OldProfileId,
+                            Value = Request["OldProfileId"].ToString(),
+                        },
                     }
                 };
 
