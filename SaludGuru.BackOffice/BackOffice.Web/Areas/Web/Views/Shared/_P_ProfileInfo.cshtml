@@ -12,7 +12,7 @@
                 @{
                     var CatInfo_SC = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.CodigoSaleforce).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.SaleforceCode).
                             Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
