@@ -169,7 +169,7 @@
 </div>
 
 <!--templates-->
-<div id="divPatientAppointmentTemplate">
+<div style="display:none;">
     <!--patient autocomplete-->
     <div id="divPatientAcItem">
         <div class="autocompletePatients">
@@ -213,8 +213,8 @@
                 <ul id="ulDoctorNotes_{PatientPublicId}"></ul>
             </div>
             <!--related appointment-->
-            <div class="BOVerMasAllAppointments">
-                <div id="divPatientAppointment_{PatientPublicId}"></div>
+            <div>
+                <div id="divPatientAppointment_{PatientPublicId}" class="patientAppointmentClass"></div>
                 <a href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
             </div>
             <!--remove patient container-->
@@ -237,7 +237,7 @@
 
     <!--patient appointment template-->
     <div id="divPatientAppointmentTemplate">
-        <div>
+        <div class="${className}">
             <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
                 <label>${AppointmentDateText}</label>
                 <img src="${AppointmentImage}" />
@@ -246,8 +246,6 @@
             </a>
         </div>
     </div>
-
-
 </div>
 <!--dialogs-->
 <div id="AppointmentDialog" style="display:none;">

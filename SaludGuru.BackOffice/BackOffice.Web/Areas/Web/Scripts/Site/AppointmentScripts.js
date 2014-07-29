@@ -1495,7 +1495,6 @@ var AppointmentDetailObject = {
     },
 
     RenderPatientAppointment: function (vDivId, vPatientPublicId) {
-
         //init office metting calendar
         $('#' + vDivId).kendoGrid({
             pageable: false,

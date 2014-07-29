@@ -211,39 +211,40 @@
             </form>
         </div>
 
-    </div>
+        <!--Dialog create patient-->
+        <div id="Dialog_CreatePatient">
+            <form id="ProfileInfoFormId" method="post">
+                <ul>
+                    <h3>Datos del Perfil</h3>
+                    <li>
+                        <label>Nombre</label>
+                        <input id="Name" class="required" name="Name" type="text" />
+                    </li>
+                    <li>
+                        <label>Apellido</label>
+                        <input id="LastName" class="required" name="LastName" type="text" />
+                    </li>
+                    <li>
+                        <label>Número Identificación</label>
+                        <input id="IdentificationNumber" class="required" name="IdentificationNumber" type="text" />
+                    </li>
+                    <li>
+                        <label>Correo electronico</label>
+                        <input id="Email" class="required" name="Email" type="text" />
+                    </li>
+                    <li>
+                        <label>Telefono móvil</label>
+                        <input id="Mobil" name="Mobil" type="text" />
+                    </li>
+                    <li class="BOButtonContainerShort">
+                        @*hiden fields*@
+                        <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                        <input class="BOButtons" type="submit" value="guardar" />
+                    </li>
+                </ul>
+            </form>
+        </div>
 
-    <div id="dialogo">
-        <form id="ProfileInfoFormId" method="post">
-            <ul>
-                <h3>Datos del Perfil</h3>
-                <li>
-                    <label>Nombre</label>
-                    <input id="Name" class="required" name="Name" type="text" />
-                </li>
-                <li>
-                    <label>Apellido</label>
-                    <input id="LastName" class="required" name="LastName" type="text" />
-                </li>
-                <li>
-                    <label>Número Identificación</label>
-                    <input id="IdentificationNumber" class="required" name="IdentificationNumber" type="text" />
-                </li>
-                <li>
-                    <label>Correo electronico</label>
-                    <input id="Email" class="required" name="Email" type="text" />
-                </li>
-                <li>
-                    <label>Telefono móvil</label>
-                    <input id="Mobil" name="Mobil" type="text" />
-                </li>
-                <li class="BOButtonContainerShort">
-                    @*hiden fields*@
-                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                    <input class="BOButtons" type="submit" value="guardar" />
-                </li>
-            </ul>
-        </form>
     </div>
 }
 else
@@ -258,7 +259,7 @@ else
             });
         });
         $('#addPatient').click(function () {
-            $("#dialogo").dialog({
+            $("#Dialog_CreatePatient").dialog({
                 modal: false,
                 title: "Caja con opciones",
                 width: 800,

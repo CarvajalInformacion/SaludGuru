@@ -118,13 +118,13 @@ div.BOVerMasTop span:first-child{
                 border: 1px solid #666;
                 background-color: #fff;
             }
-            .BOVerMasRightColumn ul li a{
+            /*.BOVerMasRightColumn ul li a{
                 font-size:28px;
                 font-weight:bold;
                 color:#99c21d;
                 vertical-align:top;
                 text-decoration: none;
-            }
+            }*/
 h4.BOAddNotes1201, h4.BOHeadingColorStatus_1202,
 h4.BOHeadingColorStatus_1203, h4.BOHeadingColorStatus_1204,
 h4.BOHeadingColorStatus_1205, h4.BOHeadingColorStatus_1206{
@@ -276,7 +276,7 @@ div.mierdas {
         background-color:#99c21d;
     }
 /********* VER TODAS LAS CITAS DE ESTE PACIENTE ********/
-.BOVerMasAllAppointments {
+/*.BOVerMasAllAppointments {
     display:block;
     padding:0px;
     margin:0px;
@@ -336,7 +336,7 @@ div.mierdas {
         width:104px;
         line-height: 16px;
         vertical-align:top;
-    }
+    }*/
 
 
 

@@ -25,10 +25,10 @@ namespace BackOffice.Web.Controllers
             string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
 
             PatientUpSertModel Model = new PatientUpSertModel();
-                    
+
             Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
             Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
-            
+
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
                 && bool.Parse(Request["UpsertAction"]))
             {
@@ -61,13 +61,7 @@ namespace BackOffice.Web.Controllers
             PatientUpSertModel Model = new PatientUpSertModel()
             {
                 Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
-                RelatedAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByPatient(PatientPublicId),
             };
-
-            if (Model.RelatedAppointment == null)
-            {
-                Model.RelatedAppointment = new List<AppointmentModel>();
-            }
 
             return View(Model);
         }

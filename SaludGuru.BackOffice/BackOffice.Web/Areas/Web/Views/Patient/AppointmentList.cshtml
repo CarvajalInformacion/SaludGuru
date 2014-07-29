@@ -13,33 +13,35 @@
             Html.RenderPartial(MVC.Web.Shared.Views._PA_PatientMenu, Model);
         }
     </div>
-
     <div class="BOProfileFormWrapper">
-
-        <!--patient appointment template-->
-        <div id="divPatientAppointmentTemplate">
-            <div id="patientAppointment" class="${className}">
-                <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
-                    <img src="${AppointmentImage}" />
-                    <label>${AppointmentDateText}</label>
-                    <label>${OfficeName}</label>
-                    <label id="TreatmentName">${TreatmentName}</label>
-                    <label id="Status">${StatusName}</label>
-                </a>
-            </div>
+        <div id="divLstPatientAppointment" class="patientAppointmentClass">
         </div>
     </div>
 </div>
 
+<!--Templates-->
+<div style="display:none;">
+    <!--patient appointment template-->
+    <div id="divPatientAppointmentTemplate">
+        <div class="${className}">
+            <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
+                <img src="${AppointmentImage}" />
+                <label>${AppointmentDateText}</label>
+                <label>${OfficeName}</label>
+                <label id="TreatmentName">${TreatmentName}</label>
+                <label id="Status">${StatusName}</label>
+            </a>
+        </div>
+    </div>
+</div>
+
+
 @section inlinescripts
 {
     <script type="text/javascript">
-        var vPatientPublicId = @Html.Raw(oPatientPublicId)
-            @*vDataAppointment = @Html.Raw(oAppointmentData)*@
         $(document).ready(function () {
             //Render List Appointment
-            RenderPatientAppointment('divPatientAppointmentTemplate', vPatientPublicId);
-            $("#patientAppointment").hide();
-        })        
+            RenderPatientAppointment('divLstPatientAppointment', '@Html.Raw(oPatientPublicId)');
+        })
     </script>
 }
