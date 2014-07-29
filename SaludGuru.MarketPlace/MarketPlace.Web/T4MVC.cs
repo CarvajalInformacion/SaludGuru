@@ -34,6 +34,7 @@ public static partial class MVC
     public static MarketPlace.Web.Controllers.HomeController Home = new MarketPlace.Web.Controllers.T4MVC_HomeController();
     public static MarketPlace.Web.Controllers.ProfileController Profile = new MarketPlace.Web.Controllers.T4MVC_ProfileController();
     public static MarketPlace.Web.Controllers.SearchController Search = new MarketPlace.Web.Controllers.T4MVC_SearchController();
+    public static MarketPlace.Web.Controllers.UserProfileController UserProfile = new MarketPlace.Web.Controllers.T4MVC_UserProfileController();
 }
 
 namespace T4MVC
@@ -52,6 +53,7 @@ namespace T4MVC
         public MarketPlace.Web.Areas.Web.Controllers.HomeController Home = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_HomeController();
         public MarketPlace.Web.Areas.Web.Controllers.ProfileController Profile = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_ProfileController();
         public MarketPlace.Web.Areas.Web.Controllers.SearchController Search = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_SearchController();
+        public MarketPlace.Web.Areas.Web.Controllers.UserProfileController UserProfile = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_UserProfileController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
     }
 }

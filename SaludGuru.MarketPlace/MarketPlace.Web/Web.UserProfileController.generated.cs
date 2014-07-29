@@ -21,15 +21,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace MarketPlace.Web.Controllers
+namespace MarketPlace.Web.Areas.Web.Controllers
 {
-    public partial class HomeController
+    public partial class UserProfileController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController() { }
+        public UserProfileController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        protected UserProfileController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -59,13 +59,13 @@ namespace MarketPlace.Web.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public UserProfileController Actions { get { return MVC.Web.UserProfile; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
+        public readonly string Area = "Web";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "UserProfile";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "UserProfile";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -74,14 +74,20 @@ namespace MarketPlace.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string LogOutUser = "LogOutUser";
+            public readonly string FamilyGroup = "FamilyGroup";
+            public readonly string ProfileList = "ProfileList";
+            public readonly string Treatment = "Treatment";
+            public readonly string Notification = "Notification";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string LogOutUser = "LogOutUser";
+            public const string FamilyGroup = "FamilyGroup";
+            public const string ProfileList = "ProfileList";
+            public const string Treatment = "Treatment";
+            public const string Notification = "Notification";
         }
 
 
@@ -100,9 +106,9 @@ namespace MarketPlace.Web.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : MarketPlace.Web.Controllers.HomeController
+    public partial class T4MVC_UserProfileController : MarketPlace.Web.Areas.Web.Controllers.UserProfileController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_UserProfileController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -116,13 +122,46 @@ namespace MarketPlace.Web.Controllers
         }
 
         [NonAction]
-        partial void LogOutUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void FamilyGroupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult LogOutUser()
+        public override System.Web.Mvc.ActionResult FamilyGroup()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOutUser);
-            LogOutUserOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FamilyGroup);
+            FamilyGroupOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfileList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileList);
+            ProfileListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void TreatmentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Treatment()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Treatment);
+            TreatmentOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void NotificationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Notification()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Notification);
+            NotificationOverride(callInfo);
             return callInfo;
         }
 

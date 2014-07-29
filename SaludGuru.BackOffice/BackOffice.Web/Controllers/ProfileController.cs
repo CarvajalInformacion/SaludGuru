@@ -863,6 +863,18 @@ namespace BackOffice.Web.Controllers
                             ProfileInfoType = enumProfileInfoType.OldProfileId,
                             Value = Request["OldProfileId"].ToString(),
                         },
+                        new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_MPFreeScheduleId"])?0:int.Parse(Request["CatId_MPFreeScheduleId"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.MPFreeSchedule,
+                            Value = Request["MPFreeScheduleText"].ToString(),
+                        },
+                         new ProfileInfoModel()
+                        {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_ShortProfileId"])?0:int.Parse(Request["CatId_ShortProfileId"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.ShortProfile,
+                            Value = Request["ShortProfileText"].ToString(),
+                        },
                     }
                 };
 

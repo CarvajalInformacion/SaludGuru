@@ -19,6 +19,11 @@
     <div>
         @RenderBody()
     </div>
+    <!--Start footer content-->
+    <div>
+        @Html.Partial(MVC.Web.Shared.Views._L_Footer)
+    </div>
+
 
     @*Render boundles scripts*@
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
@@ -39,3 +44,4 @@
 
 </body>
 </html>
+

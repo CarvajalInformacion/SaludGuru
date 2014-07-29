@@ -1,3 +1,93 @@
 ﻿<div>
-    
+    <div>
+        <div>
+            <a href="">Inicio</a>
+            <a href="">Blog pacientes</a>
+            <a href="">Blog doctores</a>
+            <a href="">Solicite su perfil gratis</a>
+        </div>
+        <div>
+            <div>
+                <span>Ciudad</span>
+                <select>
+                    @{
+                        var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+                        foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
+                        {
+                            if (item.Key == oBaseController.CurrentCookie.CurrentCity)
+                            {
+                                <option value="@item.Key" selected="selected">@item.Value</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                Notificaciones
+            </div>
+            <div>
+                @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
+                {
+                <!--Render user login options-->
+                    <div>
+                        <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                            <label>Hola @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
+                            <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+                        </div>
+                        <!--pop up user option menu-->
+                        <div id="divUserMenu" style="display:none;">
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Index,MVC.UserProfile.Name)">Mis datos</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.FamilyGroup, MVC.UserProfile.Name)">Mi grupo familiar</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.ProfileList, MVC.UserProfile.Name)">Mis especialistas</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Treatment, MVC.UserProfile.Name)">Mis tratamientos</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    //get login urls
+                    string RetUrl = Request.Url.ToString();
+                    string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                        .Value.Replace("{{UrlRetorno}}", RetUrl);
+
+                    string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                        .Value.Replace("{{UrlRetorno}}", RetUrl);
+
+                <!--Render autentications-->
+                    <a href="@GoogleUrl">Login Google</a>
+                    <a href="@FBUrl">Login Facebook</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div>
+        <!--image guru-->
+        <a href=""><img src="" /></a>
+        <!--search box-->
+        <input type="text" id="inSearchBoxProfile" />
+        <a href="">Buscar</a>
+    </div>
 </div>

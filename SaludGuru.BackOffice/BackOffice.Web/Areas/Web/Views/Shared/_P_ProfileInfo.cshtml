@@ -18,7 +18,7 @@
                                 FirstOrDefault();
                     if (CatInfo_SC != null)
                     {
-                        <input type="hidden" id="CatId_SaleForce" name="CatId_SaleForce" value="@CatInfo_SC.id" />
+                <input type="hidden" id="CatId_SaleForce" name="CatId_SaleForce" value="@CatInfo_SC.id" />
                     }
                 }
                 <label>Código Saleforce</label>
@@ -43,11 +43,11 @@
                     {
                         if (Model.Profile != null && tp.ItemId == (int)Model.Profile.ProfileType)
                         {
-                            <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
+                    <option value="@tp.ItemId" selected="selected">@tp.ItemName</option>
                         }
                         else
                         {
-                            <option value="@tp.ItemId">@tp.ItemName</option>
+                    <option value="@tp.ItemId">@tp.ItemName</option>
                         }
                     }
                 </select>
@@ -158,13 +158,12 @@
                                 FirstOrDefault();
                     if (CatInfo_EM != null)
                     {
-                        <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_EM.id" />
+                <input type="hidden" id="CatId_Email" name="CatId_Email" value="@CatInfo_EM.id" />
                     }
                 }
                 <label>Correo electronico</label>
                 <input id="Email" class="required" name="Email" value="@(CatInfo_IN == null ? string.Empty : CatInfo_EM.val)" type="text" />
             </li>
-
             <li>
                 @{
                     var CatInfo_MB = Model.Profile == null ? null :
@@ -175,7 +174,7 @@
                                 FirstOrDefault();
                     if (CatInfo_MB != null)
                     {
-                        <input type="hidden" id="CatId_Mobil" name="CatId_Mobil" value="@CatInfo_MB.id" />
+                <input type="hidden" id="CatId_Mobil" name="CatId_Mobil" value="@CatInfo_MB.id" />
                     }
                 }
                 <label>Telefono móvil</label>
@@ -240,6 +239,65 @@
             </li>
             <li>
                 @{
+                    var CatInfo_PA = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.OldProfileId).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_PA != null)
+                    {
+                <input type="hidden" id="CatId_OldProfileId" name="CatId_OldProfileId" value="@CatInfo_PA.id" />
+                    }
+                }
+                <label>Identificador anterior</label>
+                <input id="OldProfileId" name="OldProfileId" value="@(CatInfo_PA == null ? string.Empty : CatInfo_PA.val)" type="text" />
+            </li>
+            <li>
+                <label>Duración de la cita MarketPlace</label>
+                <select id="MPFreeScheduleText" name="MPFreeScheduleText">
+                    @{
+                        var CatInfo_SP = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+
+                        if (CatInfo_SP != null)
+                        {
+                            if (CatInfo_SP.val == "20")
+                            {
+                    <option value="20" selected="selected"> @CatInfo_SP.val </option>
+                            }
+                            else
+                            {
+                    <option value="20">20</option>
+                            }
+                            if (CatInfo_SP.val == "30")
+                            {
+                    <option value="30" selected="selected"> @CatInfo_SP.val </option>
+                            }
+                            else
+                            {
+                    <option value="30">30</option>
+                            }
+                        }
+                        else
+                        {
+                    <option value="20" selected="selected"> 20 </option>
+                    <option value="30" selected="selected"> 30 </option>
+                        }
+                        if (CatInfo_SP != null)
+                        {
+                    <input type="hidden" id="CatId_MPFreeScheduleId" name="CatId_MPFreeScheduleId" value="@CatInfo_SP.id" />
+                        }
+                    }
+                </select>
+            </li>
+
+            <li>
+                @{
                     var CatInfo_PT = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
                             (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
@@ -248,20 +306,45 @@
                                 FirstOrDefault();
                     if (CatInfo_PT != null)
                     {
-                <input type="hidden" id="CatId_ProfileText" name="CatId_ProfileText" value="@CatInfo_PT.id" />
+                        <input type="hidden" id="CatId_ProfileText" name="CatId_ProfileText" value="@CatInfo_PT.id" />
                     }
                 }
                 <label>Texto de perfil</label>
                 @{
                     if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileAdministrator)
                     {
-                <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
+                        <textarea id="ProfileText" name="ProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
                     }
                     else
                     {
-                <textarea id="ProfileText" name="ProfileText" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
+                        <textarea id="ProfileText" name="ProfileText" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_PT == null ? string.Empty : CatInfo_PT.val.TrimStart())</textarea>
                     }
                 }
+            </li>
+            <li>
+                @{
+                    var CatInfo_TC = Model.Profile == null ? null :
+                        Model.Profile.ProfileInfo.Where
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_TC != null)
+                    {
+                        <input type="hidden" id="CatId_ShortProfileId" name="CatId_ShortProfileId" value="@CatInfo_TC.id" />
+                    }
+                }
+                <label>Texto corto de perfil</label>
+                @{
+                    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileAdministrator)
+                    {
+                        <textarea id="ShortProfileText" name="ShortProfileText" rows="15" cols="15" style="padding: 0">@(CatInfo_TC == null ? string.Empty : CatInfo_TC.val.TrimStart())</textarea>
+                    }
+                    else
+                    {
+                        <textarea id="ShortProfileText" name="ShortProfileText" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_TC == null ? string.Empty : CatInfo_TC.val.TrimStart())</textarea>
+                    }
+}
             </li>
             <li>
                 @{
@@ -273,18 +356,18 @@
                                 FirstOrDefault();
                     if (CatInfo_ET != null)
                     {
-                <input type="hidden" id="CatId_Education" name="CatId_Education" value="@CatInfo_ET.id" />
+                        <input type="hidden" id="CatId_Education" name="CatId_Education" value="@CatInfo_ET.id" />
                     }
                 }
                 <label>Educación</label>
                 @{
                     if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileAdministrator)
                     {
-                <textarea id="Education" name="Education" rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
+                        <textarea id="Education" name="Education" rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
                     }
                     else
                     {
-                <textarea id="Education" name="Education" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
+                        <textarea id="Education" name="Education" readonly rows="15" cols="15" style="padding: 0">@(CatInfo_ET == null ? string.Empty : CatInfo_ET.val.TrimStart())</textarea>
                     }
                 }
             </li>
@@ -314,27 +397,11 @@
                                 FirstOrDefault();
                     if (CatInfo_KW != null)
                     {
-                        <input type="hidden" id="CatId_Keywords" name="CatId_Keywords" value="@CatInfo_KW.id" />
+                <input type="hidden" id="CatId_Keywords" name="CatId_Keywords" value="@CatInfo_KW.id" />
                     }
                 }
                 <label>Keywords</label>
                 <textarea id="Keywords" name="Keywords" rows="15" cols="15">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val.TrimStart())</textarea>
-            </li>
-            <li>
-                @{
-                    var CatInfo_PA = Model.Profile == null ? null :
-                        Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.OldProfileId).
-                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
-                                DefaultIfEmpty(null).
-                                FirstOrDefault();
-                    if (CatInfo_PA != null)
-                    {
-                        <input type="hidden" id="CatId_OldProfileId" name="CatId_OldProfileId" value="@CatInfo_PA.id" />
-                    }
-                }
-                <label>Identificador anterior</label>
-                <input id="OldProfileId" name="OldProfileId" value="@(CatInfo_PA == null ? string.Empty : CatInfo_PA.val)" type="text" />
             </li>
             @{
                 if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)

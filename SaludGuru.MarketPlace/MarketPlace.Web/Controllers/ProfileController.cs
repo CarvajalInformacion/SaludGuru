@@ -8,8 +8,11 @@ namespace MarketPlace.Web.Controllers
 {
     public partial class ProfileController : BaseController
     {
-        public virtual ActionResult Index()
+        public virtual ActionResult Index(string ProfilePublicId)
         {
+            
+
+
             return View();
         }
     }
