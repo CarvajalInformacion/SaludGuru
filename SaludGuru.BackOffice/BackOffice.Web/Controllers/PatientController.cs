@@ -129,6 +129,24 @@ namespace BackOffice.Web.Controllers
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_MedicalPlan"])?0:int.Parse(Request["CatId_MedicalPlan"].ToString().Trim()),
                             PatientInfoType = enumPatientInfoType.MedicalPlain,
                             Value = Request["MedicalPlan"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_Responsable"])?0:int.Parse(Request["CatId_Responsable"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Responsable,
+                            Value = Request["Responsable"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_SendEmail"])?0:int.Parse(Request["CatId_SendEmail"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.SendEmail,
+                            Value = (!string.IsNullOrEmpty(Request["IsSendEmail"]) && Request["IsSendEmail"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_SendSMS"])?0:int.Parse(Request["CatId_SendSMS"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.SendSMS,
+                            Value = (!string.IsNullOrEmpty(Request["IsSendSMS"]) && Request["IsSendSMS"].ToString().ToLower() == "on") ? "true" : "false",
                         }
                     }
                 };

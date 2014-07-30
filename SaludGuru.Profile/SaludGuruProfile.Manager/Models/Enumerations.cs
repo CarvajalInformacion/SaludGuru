@@ -52,7 +52,7 @@
         KeyWords = 425,
         OldProfileId = 426,
         ShortProfile = 427,
-        MPFreeSchedule = 428,
+        MarketPlaceSlotDuration = 428,
 
         ImageProfileLarge = 420,
         ImageProfileSmallOriginal = 421,

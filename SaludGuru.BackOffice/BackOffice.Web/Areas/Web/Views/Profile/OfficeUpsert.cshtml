@@ -106,7 +106,7 @@
                     <input id="Geolocation" name="Geolocation" value="@(CatInfo_GL == null ? string.Empty : CatInfo_GL.val)" type="text" />
                 </li>
                 <li>
-                    <label>Duración de la cita (horas)</label>
+                    <label>Duración de la cita (minutos)</label>
                     <select id="SlotMinutes" name="SlotMinutes">
                         @{
                             var CatInfo_SM = Model.CurrentOffice == null ? null :
@@ -134,6 +134,14 @@
                                 {
                                     <option value="10">10</option>
                                 }
+                                if (CatInfo_SM.val == "15")
+                                {
+                                    <option value="15" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="15">15</option>
+                                }
                                 if (CatInfo_SM.val == "20")
                                 {
                                     <option value="20" selected="selected"> @CatInfo_SM.val </option>
@@ -150,6 +158,8 @@
                                 {
                                     <option value="30">30</option>
                                 }
+                                
+                                 <input type="hidden" id="CatId_SlotMinutes" name="CatId_SlotMinutes" value="@CatInfo_SM.id" />
                             }
                             else
                             {
@@ -157,11 +167,7 @@
                                 <option value="10" selected="selected"> 10 </option>
                                 <option value="20" selected="selected"> 20 </option>
                                 <option value="30" selected="selected"> 30 </option>
-                            }
-                            if (CatInfo_SM != null)
-                            {
-                                <input type="hidden" id="CatId_SlotMinutes" name="CatId_SlotMinutes" value="@CatInfo_SM.id" />
-                            }
+                            }                           
                         }
 
                     </select>

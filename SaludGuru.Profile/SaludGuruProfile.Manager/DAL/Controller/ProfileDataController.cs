@@ -172,6 +172,36 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.ProfileGetFullAdminRelatedProfile(ProfilePublicId);
         }
 
+        public ProfileModel MPProfileGetFullBasicInfo(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullBasicInfo(ProfilePublicId);
+        }
+
+        public ProfileModel MPProfileGetFullCategory(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullCategory(ProfilePublicId);
+        }
+
+        public ProfileModel MPProfileGetFullOfficeBasicInfo(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullOfficeBasicInfo(ProfilePublicId);
+        }
+
+        public ProfileModel MPProfileGetFullOfficeCategory(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullOfficeCategory(ProfilePublicId);
+        }
+
+        public ProfileModel MPProfileGetFullOfficeScheduleAvailable(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullOfficeScheduleAvailable(ProfilePublicId);
+        }
+
+        public ProfileModel MPProfileGetFullRelatedProfile(string ProfilePublicId)
+        {
+            return DataFactory.MPProfileGetFullRelatedProfile(ProfilePublicId);
+        }
+
         #endregion
 
         #region Office

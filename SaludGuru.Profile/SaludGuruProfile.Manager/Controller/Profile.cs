@@ -434,6 +434,67 @@ namespace SaludGuruProfile.Manager.Controller
             ProfileDataController.Instance.RelatedProfileDelete(ProfilePublicIdParent, ProfilePublicIdChild);
         }
 
+        #region MarketPlace
+
+        public static ProfileModel MPProfileGetFull(string ProfilePublicId)
+        {
+            ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullBasicInfo(ProfilePublicId);
+
+            if (oReturn != null && !string.IsNullOrEmpty(oReturn.ProfilePublicId))
+            {
+                ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullCategory(ProfilePublicId);
+
+                if (oAux != null)
+                {
+                    oReturn.RelatedSpecialty = oAux.RelatedSpecialty;
+                    oReturn.DefaultSpecialty = oAux.DefaultSpecialty;
+                    oReturn.RelatedInsurance = oAux.RelatedInsurance;
+                    oReturn.RelatedTreatment = oAux.RelatedTreatment;
+                }
+
+                oAux = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullOfficeBasicInfo(ProfilePublicId);
+
+                if (oAux != null && oAux.RelatedOffice != null)
+                {
+                    oReturn.RelatedOffice = oAux.RelatedOffice;
+
+                    ProfileModel oAuxOffice1 = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullOfficeCategory(ProfilePublicId);
+                    ProfileModel oAuxOffice2 = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullOfficeScheduleAvailable(ProfilePublicId);
+
+                    oReturn.RelatedOffice.All(of =>
+                    {
+                        of.RelatedTreatment = oAuxOffice1.
+                                        RelatedOffice.
+                                        Where(x => x.OfficePublicId == of.OfficePublicId).
+                                        Select(x => x.RelatedTreatment).
+                                        FirstOrDefault().
+                                        ToList();
+
+                        of.ScheduleAvailable = oAuxOffice2.
+                                        RelatedOffice.
+                                        Where(x => x.OfficePublicId == of.OfficePublicId).
+                                        Select(x => x.ScheduleAvailable).
+                                        FirstOrDefault().
+                                        ToList();
+
+
+                        return true;
+                    });
+                }
+
+                oAux = DAL.Controller.ProfileDataController.Instance.MPProfileGetFullRelatedProfile(ProfilePublicId);
+
+                if (oAux != null && oAux.ChildProfile != null)
+                {
+                    oReturn.ChildProfile = oAux.ChildProfile;
+                }
+            }
+
+            return oReturn;
+        }
+
+        #endregion
+
         #endregion
 
         #region Insurance
