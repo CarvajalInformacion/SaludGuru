@@ -1,3 +1,32 @@
+/******************* LISTADO DE CITAS FECHA CONSULTORIO ******************/
+        div.BOVerMasMeetingCalendarList span.fc-event-time {
+                border:none;
+            vertical-align:top;
+        }
+            div.BOVerMasMeetingCalendarList span.fc-event-title {
+                display: inline-block;
+                width: 86%;
+                vertical-align:top;
+            }
+            div.BOVerMasMeetingCalendarList span.fc-event-title > div {
+                width:100%;
+                    border:none;
+                vertical-align:top;
+                margin-top: -3px;
+            }
+                div.BOVerMasMeetingCalendarList span.fc-event-title > div > img {
+                        border:none;
+                    display: inline-block;
+                    width: auto;
+                    vertical-align: top;
+                }
+                div.BOVerMasMeetingCalendarList span.fc-event-title > div > label {
+                        border:none;
+                    display: inline-block;
+                    width: 86%;
+                    vertical-align: top;
+                }
+/******************* BLOQUE DE MAS INFO ******************/
 div.BOVerMasAppointmentFormStatus_1201, div.BOVerMasAppointmentFormStatus_1202, 
 div.BOVerMasAppointmentFormStatus_1203, div.BOVerMasAppointmentFormStatus_1204,
 div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206,
