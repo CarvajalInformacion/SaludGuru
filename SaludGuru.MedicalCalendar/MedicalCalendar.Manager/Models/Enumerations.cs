@@ -23,7 +23,8 @@
         Category = 1101,
         AfterCare = 1103,
         BeforeCare = 1104,
-        Note = 1105
+        Note = 1105,
+        AppointmentNote = 1106
     }
 
     public enum enumAppointmentStatus
