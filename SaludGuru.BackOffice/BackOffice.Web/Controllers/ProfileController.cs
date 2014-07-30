@@ -866,7 +866,7 @@ namespace BackOffice.Web.Controllers
                         new ProfileInfoModel()
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_MPFreeScheduleId"])?0:int.Parse(Request["CatId_MPFreeScheduleId"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.MPFreeSchedule,
+                            ProfileInfoType = enumProfileInfoType.MarketPlaceSlotDuration,
                             Value = Request["MPFreeScheduleText"].ToString(),
                         },
                          new ProfileInfoModel()
