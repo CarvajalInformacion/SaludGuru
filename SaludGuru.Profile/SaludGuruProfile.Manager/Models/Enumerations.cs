@@ -11,6 +11,7 @@
     {
         Keyword = 601,
         DurationTime = 602,
+        MarketPlaceEnabled = 603
     }
 
     public enum enumProfileType
@@ -66,6 +67,7 @@
         Telephone = 702,
         Geolocation = 703,
         SlotMinutes = 704,
+        MarketPlaceEnabled = 705
     }
 
     public enum enumOfficeCategoryInfoType
