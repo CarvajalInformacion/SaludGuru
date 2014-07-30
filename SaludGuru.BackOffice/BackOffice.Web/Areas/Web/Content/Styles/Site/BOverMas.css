@@ -1,64 +1,44 @@
 div.BOVerMasAppointmentFormStatus_1201, div.BOVerMasAppointmentFormStatus_1202, 
 div.BOVerMasAppointmentFormStatus_1203, div.BOVerMasAppointmentFormStatus_1204,
-div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206
-{
+div.BOVerMasAppointmentFormStatus_1205, div.BOVerMasAppointmentFormStatus_1206,
+div.BOVerMasAppointmentFormStatus_1207{
         border:none;
     width:71%;
     position:absolute;
     right:0px;
     top:0px;
 }
-
-div.BOVerMasAppointmentFormStatus_1201 {}
-div.BOVerMasAppointmentFormStatus_1202 {}
-div.BOVerMasAppointmentFormStatus_1203 {}
-div.BOVerMasAppointmentFormStatus_1204 {}
-div.BOVerMasAppointmentFormStatus_1205 {}
-div.BOVerMasAppointmentFormStatus_1206 {}
-
-h4.BOHeadingColorStatus_1201 {color:#d6ab00; border-bottom-color:#d6ab00;}
-h4.BOHeadingColorStatus_1202 {color:#88aa00; border-bottom-color:#88aa00;}
-h4.BOHeadingColorStatus_1203 {color:#d40000; border-bottom-color:#d40000;}
-h4.BOHeadingColorStatus_1204 {color:#800066; border-bottom-color:#800066;}
-h4.BOHeadingColorStatus_1205 {color:#39a500; border-bottom-color:#39a500;}
-h4.BOHeadingColorStatus_1206 {color:#414143; border-bottom-color:#414143;}
-h4.BOHeadingColorStatus_1207 {color:#880034; border-bottom-color:#880034;}
-
-
-
 div.BOVerMasTop {
         border:none;
     width:100%;
     height:26px;
     display:block;
     float:right;
-    background-color:#99c21d;
     border-radius: 2px;
     text-align:left;
 }
-div.BOVerMasTop a{
-        border:none;
-    display: inline-block;
-    width: auto;
-    height: 24px;
-    margin: 0px 0px 0px 22px;
-    line-height: 22px;
-}
-div.BOVerMasTop span:first-child{
-    border:1px solid red;
+div.BOVerMasAppointmentFormStatus_1201 div.BOVerMasTop {background-color:#d6ab00;}
+div.BOVerMasAppointmentFormStatus_1202 div.BOVerMasTop {background-color:#88aa00;}
+div.BOVerMasAppointmentFormStatus_1203 div.BOVerMasTop {background-color:#d40000;}
+div.BOVerMasAppointmentFormStatus_1204 div.BOVerMasTop {background-color:#800066;}
+div.BOVerMasAppointmentFormStatus_1205 div.BOVerMasTop {background-color:#39a500;}
+div.BOVerMasAppointmentFormStatus_1206 div.BOVerMasTop {background-color:#414143;}
+div.BOVerMasAppointmentFormStatus_1207 div.BOVerMasTop {background-color:#880034;}
+
+div.BOVerMasTop a, div.BOVerMasTop span:first-child, div.BOVerMasTop span:nth-child(3), div.BOVerMasTop span:nth-child(2){
+    border:none;
         display:inline block;
         width:auto; height:auto;
-        margin:10px 0px 0px 10px;
-        vertical-align:bottom;
+        margin:0px 0px 0px 10px;
+        vertical-align:top;
+        line-height: 24px;
+        color:#fff;
 }
-    div.BOVerMasTop span:nth-child(3) {
-        display:none;
-    }
 .BOVerMasLeftColumn {   
     border:none;
     display: inline-block;
     width: 40%;
-    height:446px;
+    height:448px;
     left: 0px;
     vertical-align:top;
     overflow-x:hidden;
@@ -91,6 +71,36 @@ div.BOVerMasTop span:first-child{
         height: 24px;
         width: 48%;
     }
+div.BOVerMasLeftColumn ul li > span.ui-spinner{
+    height: 24px;
+    width: 48%;
+    margin: 0px;
+    display: inline-block;
+    padding: 0px;
+    float: none;
+    border-radius: 0px;
+    text-align: left;
+}
+    div.BOVerMasLeftColumn ul li > span.ui-spinner > input#Duration
+    {
+        width: 89%;
+        padding: 0px;
+        height: 22px;
+        margin: 0px 0px 0px 0px;
+        color: #333;
+    }
+        div.BOVerMasLeftColumn ul li > span.ui-spinner > a {
+            background-color:#b5b5b5;
+        }
+        div.BOVerMasLeftColumn ul li > span.ui-spinner > a:hover {
+            background-color:#cbcbcb;
+        }
+            div.BOVerMasLeftColumn ul li > span.ui-spinner > a > span{
+                height: 12px;
+                width: 14px;
+                color:transparent;
+            }
+
         .BOVerMasLeftColumn ul li textarea#AfterCare {
             height:130px;
         }
@@ -98,10 +108,10 @@ div.BOVerMasTop span:first-child{
             height:130px;
         }
 .BOVerMasRightColumn {
-    border:1px solid blue;
+        border-left:1px solid #666;
     display: inline-block;
     width:60%;
-    height:446px;
+    height:448px;
     left: 0px;
     vertical-align:auto;
     margin-left:-6px;

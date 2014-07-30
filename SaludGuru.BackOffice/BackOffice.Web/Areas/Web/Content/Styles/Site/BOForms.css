@@ -294,7 +294,8 @@ div.BlockAppointmentUpsert ul li > span.ui-spinner{
     border-radius: 0px;
 }
     div#AppointmentUpsert ul li > span.ui-spinner > input#Duration,
-    div.BlockAppointmentUpsert ul li > span.ui-spinner > input#Duration{
+    div.BlockAppointmentUpsert ul li > span.ui-spinner > input#Duration
+    {
         width: 92%;
         padding: 0px;
         height: 20px;
