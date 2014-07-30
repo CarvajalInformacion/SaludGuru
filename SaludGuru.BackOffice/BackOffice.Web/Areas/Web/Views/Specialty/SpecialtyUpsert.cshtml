@@ -30,6 +30,29 @@
                     }
                     <label>Keywords</label>
                     <textarea id="Keyword" name="Keyword">@(CatInfo_KW == null ? string.Empty : CatInfo_KW.val)</textarea>
+                    @{
+                        var CatInfo_IC = Model.SpecialtyInfo == null ? null :
+                            Model.SpecialtyInfo.SpecialtyInfo.Where
+                                (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.MarketPlaceEnabled).
+                                Select(x => new { id = x.CategoryInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_IC != null)
+                        {
+                            <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_IC.id" />
+                        }
+                    }
+                    <label>Visible en marketplace</label>
+                    @{
+                        if (CatInfo_IC != null && CatInfo_IC.val)
+                        {
+                            <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                        }
+                    }
                 </li>
                 <li class="BOButtonContainerShort">
                     <!--hiden fields-->
