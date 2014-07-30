@@ -49,7 +49,6 @@ var CalendarObject = {
 
                 //eval selected date
                 if (CalendarObject.GetNumberDate(date) >= CalendarObject.GetNumberDate(CalendarObject.StartDate) && CalendarObject.GetNumberDate(date) < CalendarObject.GetNumberDate(CalendarObject.EndDate)) {
-                    debugger;
                     oReturn = [true, ' selected'];
                 }
 
@@ -93,7 +92,6 @@ var CalendarObject = {
         oReturn = vDateToEval.getFullYear();
 
         if (vDateToEval.getMonth() < 10) {
-            debugger;
             oReturn = oReturn + '0' + (vDateToEval.getMonth()).toString();       
         }
         else {

@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MedicalCalendar.Manager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="SaludGuruProfile.Manager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuruProfile.Manager\developer\SaludGuruProfile.Manager.dll</HintPath>
+    </Reference>
     <Reference Include="SessionController">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
     </Reference>
@@ -45,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\AppointmentViewModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\CookieModel.cs" />
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\SessionModel.cs" />
+    <Compile Include="Profile\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

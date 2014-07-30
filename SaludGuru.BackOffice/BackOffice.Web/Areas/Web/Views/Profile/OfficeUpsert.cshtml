@@ -58,6 +58,10 @@
                     }
                 </li>
                 <li>
+                    <label>Visible en marketplace</label>
+                    <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                </li>
+                <li>
                     @{
                         var CatInfo_AD = Model.CurrentOffice == null ? null :
                             Model.CurrentOffice.OfficeInfo.Where
@@ -158,16 +162,17 @@
                                 {
                                     <option value="30">30</option>
                                 }
-                                
-                                 <input type="hidden" id="CatId_SlotMinutes" name="CatId_SlotMinutes" value="@CatInfo_SM.id" />
+
+                                <input type="hidden" id="CatId_SlotMinutes" name="CatId_SlotMinutes" value="@CatInfo_SM.id" />
                             }
                             else
                             {
                                 <option value="5" selected="selected"> 5 </option>
                                 <option value="10" selected="selected"> 10 </option>
+                                <option value="15" selected="selected"> 15 </option>
                                 <option value="20" selected="selected"> 20 </option>
                                 <option value="30" selected="selected"> 30 </option>
-                            }                           
+                            }
                         }
 
                     </select>
