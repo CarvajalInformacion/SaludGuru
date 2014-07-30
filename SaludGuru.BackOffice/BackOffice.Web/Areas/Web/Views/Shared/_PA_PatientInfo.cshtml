@@ -5,7 +5,7 @@
             Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) :
             Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
     }
-    <form action="@UrlAction" method="post">
+    <form id="PatientInfoId" action="@UrlAction" method="post">
         <ul>
             <h3>Datos del Paciente</h3>
             <li>
@@ -14,7 +14,7 @@
             </li>
             <li>
                 <label>Apellidos</label>
-                <input id="LastName" name="LastName" value="@(Model.Patient == null ? string.Empty : Model.Patient.LastName)" type="text" />
+                <input id="LastName" class="required"  name="LastName" value="@(Model.Patient == null ? string.Empty : Model.Patient.LastName)" type="text" />
             </li>
             <li>
                 @{
@@ -110,10 +110,11 @@
                     <input type="hidden" id="CatId_Mobile" name="CatId_Mobile" value="@CatInfo_MB.id" />
                 }
             }
-
             <li>
                 <label>Teléfono móvil</label>
                 <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
+            </li>
+            <li>                
                 @{
                     var CatInfo_BD = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
@@ -208,7 +209,76 @@
                 <label>Plan médico</label>
                 <input id="MedicalPlan" name="MedicalPlan" value="@(CatInfo_MP == null ? string.Empty : CatInfo_MP.val)" type="text" />
             </li>
+            <li>
+                @{
+                    var CatInfo_RP = Model.Patient == null ? null :
+                        Model.Patient.PatientInfo.Where
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Responsable).
+                            Select(x => new { id = x.PatientInfoId, val = x.Value }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                    if (CatInfo_RP != null)
+                    {
+                        <input type="hidden" id="CatId_Responsable" name="CatId_Responsable" value="@CatInfo_RP.id" />
+                    }
+                }
+            </li>
+            <li>
+                <label>Responsable</label>
+                <input id="Responsable" name="Responsable" value="@(CatInfo_RP == null ? string.Empty : CatInfo_RP.val)" type="text" />
+            </li>
+            <li>
+                @{
+                    var CatInfo_Email = Model.Patient == null ? null :
+                    Model.Patient.PatientInfo.Where
+                    (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.SendEmail).
+                        Select(x => new { id = x.PatientInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
 
+                    if (CatInfo_Email != null)
+                    {
+                        <input type="hidden" id="CatId_SendEmail" name="CatId_SendEmail" value="@CatInfo_Email.id" />
+                    }
+                }
+                <label>Notificaciones a su correo electrónico.</label>
+                @{
+                    if (CatInfo_Email != null && CatInfo_Email.val)
+                    {
+                        <input type="checkbox" id="IsSendEmail" name="IsSendEmail" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="IsSendEmail" name="IsSendEmail" />
+                    }
+                }
+            </li>
+            <li>
+                @{
+                    var CatInfo_SMS = Model.Patient == null ? null :
+                    Model.Patient.PatientInfo.Where
+                    (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.SendSMS).
+                        Select(x => new { id = x.PatientInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+
+                    if (CatInfo_Email != null)
+                    {
+                        <input type="hidden" id="CatId_SendSMS" name="CatId_SendSMS" value="@CatInfo_SMS.id" />
+                    }
+                }
+                <label>Notificaciones como mensaje de texto.</label>
+                @{
+                    if (CatInfo_SMS != null && CatInfo_SMS.val)
+                    {
+                        <input type="checkbox" id="IsSendSMS" name="IsSendSMS" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="IsSendSMS" name="IsSendSMS" />
+                    }
+                }
+            </li>
         </ul>
         <div class="BOButtonContainerShort">
             @*hiden fields*@

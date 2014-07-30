@@ -843,7 +843,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_SaleForce"])?0:int.Parse(Request["CatId_SaleForce"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.SaleforceCode,
-                            LargeValue = Request["Saleforce"].ToString(),
+                            Value = Request["Saleforce"].ToString(),
                         },
                         new ProfileInfoModel()
                         {
@@ -855,7 +855,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_Mobil"])?0:int.Parse(Request["CatId_Mobil"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.Mobile,
-                            LargeValue = Request["Mobil"].ToString(),
+                            Value = Request["Mobil"].ToString(),
                         },
                         new ProfileInfoModel()
                         {
@@ -873,7 +873,7 @@ namespace BackOffice.Web.Controllers
                         {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_ShortProfileId"])?0:int.Parse(Request["CatId_ShortProfileId"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.ShortProfile,
-                            Value = Request["ShortProfileText"].ToString(),
+                            LargeValue = Request["ShortProfileText"].ToString(),
                         },
                     }
                 };

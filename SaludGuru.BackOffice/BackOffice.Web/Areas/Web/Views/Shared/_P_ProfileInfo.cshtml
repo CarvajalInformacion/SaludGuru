@@ -169,7 +169,7 @@
                     var CatInfo_MB = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
                             (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Mobile).
-                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
+                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
                     if (CatInfo_MB != null)
@@ -326,7 +326,7 @@
                     var CatInfo_TC = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
                             (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
-                            Select(x => new { id = x.ProfileInfoId, val = x.Value }).
+                            Select(x => new { id = x.ProfileInfoId, val = x.LargeValue }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
                     if (CatInfo_TC != null)

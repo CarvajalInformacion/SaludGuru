@@ -13,6 +13,9 @@
         Insurance = 1009,
         MedicalPlain = 1010,
         DoctorNotes = 1011,
+        Responsable = 1012,
+        SendSMS = 1013,
+        SendEmail = 1014,
     }
 
     public enum enumAppointmentInfoType
