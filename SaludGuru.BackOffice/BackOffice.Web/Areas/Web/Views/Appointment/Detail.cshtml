@@ -65,6 +65,11 @@
                         <input type="text" id="Duration" name="Duration" />
                     </li>
                     <li>
+                        <label>Notas de la cita:</label>
+                        <textarea id="AppointmentNote" name="AppointmentNote">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AppointmentNote)</textarea>
+                    </li>
+
+                    <li>
                         <label>Cuidados previos:</label>
                         <textarea id="AfterCare" name="AfterCare">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AfterCare)</textarea>
                     </li>

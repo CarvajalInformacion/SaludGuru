@@ -179,6 +179,8 @@ namespace BackOffice.Models.Appointment
 
         public string BeforeCare { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
 
+        public string AppointmentNote { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AppointmentNote).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
+
         #endregion
 
         #region Related Appointment

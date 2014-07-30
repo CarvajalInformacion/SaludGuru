@@ -369,6 +369,19 @@ namespace BackOffice.Web.Controllers
                         LargeValue = Request["BeforeCare"],
                     });
 
+                //Appointment note
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = oOriginalAppointment == null ? 0 : oOriginalAppointment.AppointmentInfo.
+                            Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AppointmentNote).
+                            Select(x => x.AppointmentInfoId).
+                            DefaultIfEmpty(0).
+                            FirstOrDefault(),
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.AppointmentNote,
+                        LargeValue = Request["AppointmentNote"],
+                    });
+
 
                 //get patient to add
                 oReturn.RelatedPatient = Request["PatientAppointmentCreate"].Split(',').
