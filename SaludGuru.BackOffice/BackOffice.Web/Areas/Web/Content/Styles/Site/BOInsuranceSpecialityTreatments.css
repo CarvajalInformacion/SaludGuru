@@ -1,122 +1,147 @@
 /************* LISTAS DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
 
 .BOInsuranceTableWrapper {
-    display:block;
-
-border:1px solid #b3b3b3;
-    
-    margin:5px auto 0px auto;
-    width:100%;
-    min-width:58%;
-    background-color:#fff;
-    padding:0px 6% 20px 6%;
+    display: block;
+    border: 1px solid #b3b3b3;
+    margin: 5px auto 0px auto;
+    width: 100%;
+    min-width: 58%;
+    background-color: #fff;
+    padding: 0px 6% 20px 6%;
 }
-.BOInsuranceTableWrapper h3{
 
-border:none; 
-    
-    width:auto; 
-    margin:10px 0px 10px 14px;
-    font-size:20px;
+.divUpsert{
+    margin-left: calc(14%);    
 }
+
+.divUpsert h3{
+    margin: 10px 0px 10px 8% !important;
+}
+
+    .BOInsuranceTableWrapper h3 {
+        border: none;
+        width: auto;
+        margin: 10px 0px 10px 0%;
+        font-size: 20px;
+    }
+
 #divGridInsurance div a, #divGridInsurance div.k-grid-content a,
 #divGridSpecialty div a, #divGridSpecialty div.k-grid-content a,
-#divGridTreatment div a, #divGridTreatment div.k-grid-content a{
-    color:#a33683;
+#divGridTreatment div a, #divGridTreatment div.k-grid-content a {
+    color: #a33683;
 }
 
 #divGridPatient div a, #divGridPatient div.k-grid-content a {
-    color:#F07600;
+    color: #F07600;
 }
-#divGridProfile div a, #divGridProfile div.k-grid-content a{
-    color:#99C21D;
+
+#divGridProfile div a, #divGridProfile div.k-grid-content a {
+    color: #99C21D;
 }
 
 /************* INCLUIR INFO EN LISTA DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
 
-.BOIncludeNewInsurance, .BOIncludeNewSpecialty li{
-    display:block;
-
-border:1px solid #b3b3b3;
-    
-    margin:5px auto 0px auto;
-    width:100%;
-    min-width:58%;
-    background-color:#fff;
-    padding:20px 6% 15px 6%;
-}
-.BOIncludeNewInsurance li, .BOIncludeNewSpecialty li{
-    display:inline-block;
-border:none;
-    margin:0px 0px 0px 14px;
-    vertical-align:top;
-    width:auto;
-    height:auto;
+.BOIncludeNewInsurance, .BOIncludeNewSpecialty {
+    display: block;
+    border: 1px solid #b3b3b3;
+    margin: 5px auto 0px auto;
+    width: 100%;
+    min-width: 70%;
+    background-color: #fff;
+    padding: 20px 6% 15px 6%;
 }
 
-
-.BOIncludeNewInsurance li label, .BOIncludeNewSpecialty li label{
-    display:inline-block;
-    border:1px solid #999;
-    padding:15px 20px;
-    background-color:#E6E6E6;
-    line-height:inherit;
-}
-    .BOIncludeNewInsurance li label {
-        text-align:left;
-    }
-    .BOIncludeNewSpecialty li label { 
-        min-width:200px;
-        height:32px;
-        text-align:center;
-    }
-.BOIncludeNewInsurance li input[type="text"], .BOIncludeNewSpecialty li input[type="text"]{
-    display:inline-block;
-    border:1px solid #999;
-    padding:5px 2px;
-    text-align:left;
-    background-color:#fff;
-}
-.BOIncludeNewInsurance li input[type="text"]{
-    width:200px;
-    height:30px;
-}
-.BOIncludeNewSpecialty li input[type="text"] {
-    min-width:200px;
-    height:32px;
-}
-    .BOIncludeNewSpecialty li textarea {
-        border: 1px solid grey;
-        background-color: #FFF;
-        min-width: 300px;
-        min-height: 130px;
-        line-height: 16px;
+    .BOIncludeNewInsurance li, .BOIncludeNewSpecialty li {
+        display: inline-block;
+        margin: 0px 0px 0px 14px;
+        width: auto;
+        padding: 10px 14px;
     }
 
-.BOIncludeNewInsurance li select, BOIncludeNewSpecialty li select{
-    display:inline-block;
-    border:1px solid #999;
-    padding:0px;
-    text-align:left;
-    background-color:#fff;
-    width:55%;
-    height:28px;
-    vertical-align:top;
-}
-.BOIncludeNewInsurance li textarea, BOIncludeNewSpecialty li textarea{
-    display:inline-block;
-    border:1px solid #999;
-    text-align:justify;
-    background-color:#fff;
-    width:200px;
-    height:120px;
-    vertical-align:top;
-    line-height: 15px;
-    font-size: 14px;
-}
+
+        .BOIncludeNewInsurance li label, .BOIncludeNewSpecialty li label {
+            display: inline-block;
+            border: 1px solid #999;
+            padding: 15px 20px;
+            background-color: #E6E6E6;
+            line-height: inherit;
+        }
+
+        .BOIncludeNewInsurance li label {
+            text-align: center;
+            width: 220px;
+            height: 32px; 
+        }
+
+        .BOIncludeNewSpecialty li label {
+            text-align: center;
+            min-width: 220px;
+            height: 32px;            
+        }
+
+        .BOIncludeNewInsurance li input[type="text"], .BOIncludeNewSpecialty li input[type="text"] {
+            display: inline-block;
+            border: 1px solid #999;
+            padding: 5px 2px;
+            text-align: left;
+            background-color: #fff;
+        }
+
+        .BOIncludeNewInsurance li input[type="text"] {
+            width: 200px;
+            height: 30px;
+        }
+
+        .BOIncludeNewSpecialty li input[type="text"] {
+            min-width: 200px;
+            height: 32px;
+        }
+
+        .BOIncludeNewSpecialty li textarea {
+            border: 1px solid grey;
+            background-color: #FFF;
+            min-width: 300px;
+            min-height: 130px;
+            line-height: 16px;
+        }
+
+        .BOIncludeNewInsurance li select, BOIncludeNewSpecialty li select {
+            display: inline-block;
+            border: 1px solid #999;
+            padding: 0px;
+            text-align: left;
+            background-color: #fff;
+            width: 55%;
+            height: 28px;
+            vertical-align: top;
+        }
+
+        .BOIncludeNewInsurance li textarea, BOIncludeNewSpecialty li textarea {
+            display: inline-block;
+            border: 1px solid #999;
+            text-align: justify;
+            background-color: #fff;
+            width: 200px;
+            height: 120px;
+            vertical-align: top;
+            line-height: 15px;
+            font-size: 14px;
+        }
 
 /****************** FORMULARIO VERTICAL DE EDICION *********************/
 
-    .BOIncludeNewSpecialty{
-        border:1px solid #B3B3B3;
-    }
+ul.BOIncludeNewSpecialty {
+    display: block;
+    margin: 22px 0px 8px 80px;
+    width: 720px;
+    min-width: 300px;
+    height: auto;
+}
+
+ul.BOIncludeNewInsurance {
+    display: block;
+    margin: 22px 0px 8px 80px;
+    width: 700px;
+    min-width: 300px;
+    height: auto;
+}
