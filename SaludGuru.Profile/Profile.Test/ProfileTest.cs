@@ -101,7 +101,7 @@ namespace Profile.Test
                 (new ProfileModel()
                 {
                     ProfilePublicId = "38E35666",
-                        ProfileInfo = new List<ProfileInfoModel>(),
+                    ProfileInfo = new List<ProfileInfoModel>(),
                 },
                     @"D:\Proyectos\Github\SaludGuru\SaludGuru.Profile\Profile.Test\profile_2822_large.png"
                 );
@@ -114,7 +114,7 @@ namespace Profile.Test
                 (new ProfileModel()
                         {
                             ProfilePublicId = "38E35666",
-                        ProfileInfo = new List<ProfileInfoModel>(),
+                            ProfileInfo = new List<ProfileInfoModel>(),
                         },
                 new List<string>() 
                     { 
@@ -126,11 +126,22 @@ namespace Profile.Test
         [TestMethod]
         public void GetRelatedProfileAll()
         {
-            string PublicProfileId = "E39B31E9";
+            string PublicProfileId = "2C1D2510";
 
             ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.GetRelatedProfileAll(PublicProfileId);
-            //Assert.AreEqual(oProfile.ProfilePublicId, oProfilePublicId);    
+            Assert.AreEqual(oProfile.ProfilePublicId, PublicProfileId);
         }
+
+        [TestMethod]
+        public void MPProfileGetFull()
+        {
+            string PublicProfileId = "2C1D2510";
+
+            ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(PublicProfileId);
+            Assert.AreEqual(oProfile.ProfilePublicId, PublicProfileId);
+        }
+
+
         #endregion
 
         #region Profile Search
