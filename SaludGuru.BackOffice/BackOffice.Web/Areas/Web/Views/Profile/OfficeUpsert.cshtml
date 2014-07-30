@@ -58,6 +58,10 @@
                     }
                 </li>
                 <li>
+                    <label>Visible en marketplace</label>
+                    <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                </li>
+                <li>
                     @{
                         var CatInfo_AD = Model.CurrentOffice == null ? null :
                             Model.CurrentOffice.OfficeInfo.Where

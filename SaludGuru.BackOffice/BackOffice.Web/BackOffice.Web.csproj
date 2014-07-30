@@ -305,6 +305,7 @@
   <ItemGroup>
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Images\ajax-loader.gif" />
     <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
@@ -320,6 +321,8 @@
     <Content Include="Areas\Web\Content\Images\iconosMainMenu.png" />
     <Content Include="Areas\Web\Content\Images\iconosMainMenuHover.png" />
     <Content Include="Areas\Web\Content\Images\iconosSprite1.png" />
+    <Content Include="Areas\Web\Content\Images\loading_1.gif" />
+    <Content Include="Areas\Web\Content\Images\loading_2.gif" />
     <Content Include="Areas\Web\Content\Images\logInBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInBandBackground.png" />
     <Content Include="Areas\Web\Content\Images\logInDoctorSmall.png" />
