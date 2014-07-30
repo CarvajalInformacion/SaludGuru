@@ -14,7 +14,7 @@
             </li>
             <li>
                 <label>Apellidos</label>
-                <input id="LastName" class="required"  name="LastName" value="@(Model.Patient == null ? string.Empty : Model.Patient.LastName)" type="text" />
+                <input id="LastName" class="required" name="LastName" value="@(Model.Patient == null ? string.Empty : Model.Patient.LastName)" type="text" />
             </li>
             <li>
                 @{
@@ -114,7 +114,7 @@
                 <label>Teléfono móvil</label>
                 <input id="Mobile" name="Mobile" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
             </li>
-            <li>                
+            <li>
                 @{
                     var CatInfo_BD = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
