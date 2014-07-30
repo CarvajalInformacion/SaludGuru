@@ -76,6 +76,7 @@
         BeforeCare = 802,
         AfterCare = 803,
         IsDefault = 804,
+        MarketPlaceEnabled = 805
     }
 
     public enum enumIdentificationType
