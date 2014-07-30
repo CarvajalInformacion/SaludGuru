@@ -259,7 +259,7 @@
                     @{
                         var CatInfo_SP = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.MarketPlaceSlotDuration).
                             Select(x => new { id = x.ProfileInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
