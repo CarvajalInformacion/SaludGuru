@@ -82,6 +82,33 @@
                 </li>
                 <li>
                     @{
+                        var TrInf_MPE = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                                Select(x => new
+                                {
+                                    id = x.CategoryInfoId,
+                                    val = !string.IsNullOrEmpty(x.Value) && x.Value.ToLower() == "true" ? true : false
+                                }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                        if (TrInf_DF != null)
+                        {
+                            <input type="hidden" id="TrInf_MarketPlaceEnabled" name="TrInf_MarketPlaceEnabled" value="@TrInf_MPE.id" />
+                        }
+                    }
+                    <label>Visible en marketplace</label>
+                    @if (TrInf_MPE != null && TrInf_MPE.val)
+                    {
+                        <input type="checkbox" name="MarketPlaceEnabled" id="MarketPlaceEnabled" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="MarketPlaceEnabled" id="MarketPlaceEnabled" />
+                    }
+                </li>
+                <li>
+                    @{
                         var TrInf_AC = Model.CurrentTreatmentOffice == null ? null :
                             Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
                                 (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
