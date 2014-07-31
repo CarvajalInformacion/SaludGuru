@@ -211,7 +211,6 @@ var ProfileAppointmentObject = {
     },
 
     RenderAsync: function () {
-        debugger;
         var oFirstRender = false;
 
         for (var item in this.lstOffice) {
@@ -220,10 +219,10 @@ var ProfileAppointmentObject = {
             this.lstOffice[item].OfficeDivId = this.DivId + '_' + this.lstOffice[item].OfficePublicId;
 
             //crete calendar menu item
-            $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/${OfficeName}/gi, this.lstOffice[item].OfficeName));
+            $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/\${OfficeName}/gi, this.lstOffice[item].OfficeName));
 
             //create div to put a calendar
-            $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
+            $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
 
             if (oFirstRender == false) {
                 this.RenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
@@ -233,36 +232,64 @@ var ProfileAppointmentObject = {
     },
 
     RenderOfficeSchedule: function (vOfficePublicId) {
-        debugger;
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
 
         if (CurrentOfficeDiv.length == 1) {
-
-            if (CurrentOfficeDiv.html().replace(/ /gi, '') != '') {
+            if (CurrentOfficeDiv.children().length == 0) {
                 //startup grid
                 CurrentOfficeDiv.kendoGrid({
                     pageable: false,
-                    //dataSource: {
-                    //    transport: {
-                    //        read: function (options) {
-                    //            $.ajax({
-                    //                url: '/api/PatientApi?Quantity=5&PatientPublicId=' + vPatientPublicId,
-                    //                dataType: "json",
-                    //                type: "POST",
-                    //                success: function (result) {
-                    //                    options.success(result);
-                    //                },
-                    //                error: function (result) {
-                    //                    options.error(result);
-                    //                }
-                    //            });
-                    //        }
-                    //    },
-                    //},
+                    height: 350,
+                    dataSource: {
+                        transport: {
+                            read: function (options) {
+                                $.ajax({
+                                    url: '/api/ScheduleAvailableApi?ProfilePublicId=' + this.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&NextAvailableDate=true&StartDateTime=&EndDateTime=',
+                                    dataType: "json",
+                                    type: "POST",
+                                    success: function (result) {
+                                        options.success(result);
+                                    },
+                                    error: function (result) {
+                                        options.error(result);
+                                    }
+                                });
+                            }
+                        },
+                    },
+                    rowTemplate: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event').html(),
                     columns: [{
-                        field: 'id',
-                        title: ' hola ',
-                        //template: $('#divPatientAppointmentTemplate').html()
+                        field: 'Monday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Monday').html()
+                    }, {
+                        field: 'Tuesday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Tuesday').html()
+                    }, {
+                        field: 'Wednesday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Wednesday').html()
+                    }, {
+                        field: 'Thursday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Thursday').html()
+                    }, {
+                        field: 'Friday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Friday').html()
+                    }, {
+                        field: 'Saturday',
+                        title: ' ',
+                        width: 100,
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Saturday').html()
+                    }, {
+
                     }]
                 });
             }

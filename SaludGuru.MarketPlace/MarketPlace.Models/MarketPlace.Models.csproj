@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment\AppointmentViewModel.cs" />
+    <Compile Include="Appointment\EventAvailableDayModel.cs" />
+    <Compile Include="Appointment\EventAvailableModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\CookieModel.cs" />
     <Compile Include="General\Enumerations.cs" />
