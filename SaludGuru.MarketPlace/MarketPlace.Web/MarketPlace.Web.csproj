@@ -1000,6 +1000,9 @@
     <Content Include="Areas\Web\Views\Shared\_L_Footer.cshtml" />
     <Content Include="Areas\Web\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ImageSlider.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_BasicInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_DetailInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_Appointment.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

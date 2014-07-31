@@ -1,0 +1,90 @@
+﻿@model MarketPlace.Models.Profile.ProfileViewModel
+
+@{
+    //get image profile
+    var ovImageProfile = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+            Select(x => x.Value).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get profile text
+    var ovProfileText = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get profile text
+    var ovProfileEducation = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Education).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get profile text
+    var ovProfileCertification = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+}
+
+@if (!Model.RenderScripts)
+{
+    <div>
+        <img src="@ovImageProfile" />
+        <div>
+            <ul>
+                @if (!string.IsNullOrEmpty(ovProfileText))
+                {
+                    <li><a id="divProfileText_sel" href="javascript:;">Perfil profesional</a></li>
+                }
+                @if (!string.IsNullOrEmpty(ovProfileEducation))
+                {
+                    <li><a id="divEducation_sel" href="javascript:;">Educación</a></li>
+                }
+                @if (!string.IsNullOrEmpty(ovProfileCertification))
+                {
+                    <li><a id="divCertification_sel" href="javascript:;">Acreditaciones</a></li>
+                }
+            </ul>
+            @if (!string.IsNullOrEmpty(ovProfileText))
+            {
+                <div id="divProfileText" style="display:none;height:90px;overflow:hidden">
+                    <p>@ovProfileText.Trim()</p>
+                    <a id="divProfileText_a" href="javascript:;"></a>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(ovProfileEducation))
+            {
+                <div id="divEducation" style="display:none;height:90px;overflow:hidden">
+                    <p>@ovProfileEducation.Trim()</p>
+                    <a id="divEducation_a" href="javascript:;"></a>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(ovProfileCertification))
+            {
+                <div id="divCertification" style="display:none;height:90px;overflow:hidden">
+                    <p>@ovProfileCertification.Trim()</p>
+                    <a id="divCertification_a" href="javascript:;"></a>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ProfileDetailObject.Init({
+                ProfileTextId: 'divProfileText',
+                ProfileEducationId: 'divEducation',
+                ProfileCertificationId: 'divCertification',
+            });
+            ProfileDetailObject.RenderAsync();
+
+        });
+    </script>
+}

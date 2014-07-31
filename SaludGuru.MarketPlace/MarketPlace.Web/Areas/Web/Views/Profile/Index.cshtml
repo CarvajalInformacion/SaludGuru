@@ -14,15 +14,17 @@
         </div>
         <!--Profile Basic Info Detail-->
         <div>
-
-
-
+            @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
         </div>
     </div>
     <!--Profile Description-->
-    <div></div>
+    <div>
+        @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
+    </div>
     <!--Profile Schedule-->
-    <div></div>
+    <div>
+        @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
+    </div>
     <!--Profile Map-->
     <div></div>
 </div>
@@ -32,6 +34,8 @@
 @section inlinescripts
 {
     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
+    @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
+    @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
     <script type="text/javascript">
         $(document).ready(function () {
         });
