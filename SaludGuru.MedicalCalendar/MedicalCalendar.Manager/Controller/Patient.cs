@@ -97,5 +97,14 @@ namespace MedicalCalendar.Manager.Controller
         {
             return MedicalCalendarDataController.Instance.PatientGetOptions();
         }
+
+        #region Market Place
+
+        public static List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
+        {
+            return MedicalCalendarDataController.Instance.MPPatientGetByUserPublicId(vUserPublicId);
+        }
+
+        #endregion
     }
 }

@@ -88,6 +88,12 @@ namespace BackOffice.Web.Controllers
                             CategoryInfoType = enumCategoryInfoType.Keyword,
                             LargeValue = Request["Keyword"].ToString(),
                         },
+                         new CategoryInfoModel()
+                        {
+                            CategoryInfoId = string.IsNullOrEmpty(Request["CatId_MarketPlaceEnabled"])?0:int.Parse(Request["CatId_MarketPlaceEnabled"].ToString().Trim()),
+                            CategoryInfoType = enumCategoryInfoType.MarketPlaceEnabled,
+                            Value = (!string.IsNullOrEmpty(Request["MarketPlaceEnabled"]) && Request["MarketPlaceEnabled"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
                     }
                 };
                 return oReturn;

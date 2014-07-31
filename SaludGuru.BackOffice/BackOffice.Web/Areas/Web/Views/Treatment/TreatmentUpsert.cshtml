@@ -4,7 +4,7 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 <div class="BOInsuranceTableWrapper">
-    
+    <div class="divUpsert">
         <h3>Incluir un Nuevo Tratamiento</h3>
 
         <form action="@Url.Action("TreatmentUpsert", "Treatment", new { TreatmentId = Model.TreatmentInfo.CategoryId })" method="post">
@@ -15,7 +15,31 @@
                 </li>
                 <li>
                     @{
-
+                        var CatInfo_IC = Model.TreatmentInfo == null ? null :
+                            Model.TreatmentInfo.TreatmentInfo.Where
+                                (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.MarketPlaceEnabled).
+                                Select(x => new { id = x.CategoryInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_IC != null)
+                        {
+                            <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_IC.id" />
+                        }
+                    }
+                    <label>Visible en marketplace</label>
+                    @{
+                        if (CatInfo_IC != null && CatInfo_IC.val)
+                        {
+                            <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                        }
+                    }
+                </li>
+                <li>
+                    @{
                         var CatInfo_KW = Model.TreatmentInfo == null ? null :
                             Model.TreatmentInfo.TreatmentInfo.Where
                             (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
@@ -35,7 +59,7 @@
                         var CatInfo_DT = Model.TreatmentInfo == null ? null :
                             Model.TreatmentInfo.TreatmentInfo.Where
                             (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.DurationTime).
-                            Select(x => new { id = x.CategoryInfoId, val = x.Value.ToString()}).
+                            Select(x => new { id = x.CategoryInfoId, val = x.Value.ToString() }).
                             DefaultIfEmpty(null).
                             FirstOrDefault();
                         if (CatInfo_DT != null)
@@ -46,12 +70,12 @@
                     <label>Tiempo de Duración</label>
                     <input id="DurationTime" name="DurationTime" value="@(CatInfo_DT == null ? string.Empty : CatInfo_DT.val)" type="text" />
                 </li>
-                <li class="BOButtonContainerShort">
+                <li class="BOButtonAdmin">
                     <!--hiden fields-->
                     <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
                     <input class="BOButtons" type="submit" value="Guardar" />
                 </li>
             </ul>
         </form>
-
+    </div>
 </div>
