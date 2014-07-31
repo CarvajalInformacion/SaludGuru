@@ -1,0 +1,58 @@
+﻿@model MarketPlace.Models.Profile.ProfileViewModel
+
+@{
+}
+
+@if (!Model.RenderScripts)
+{
+    <div>
+        <ul id="divAppointmentSchedule_Menu"></ul>
+        <div id="divAppointmentSchedule">
+        </div>
+    </div>
+
+    <!--templates-->
+    <div>
+
+        <!--appointment menu template-->
+        <div id="divAppointmentSchedule_Template_Menu">
+            <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
+                <a href="javascript:;">${OfficeName}</a>
+            </li>
+        </div>
+
+        <!--appointment grid template-->
+        <div id="divAppointmentSchedule_Template_Grid">
+            <div class="SelOfficeGrid" id="divGrid_${OfficePublicId}"></div>
+        </div>
+    </div>
+}
+else
+{
+    //create office calendar object
+    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.
+            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+            Select(of =>
+                new
+                {
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ProfileAppointmentObject.Init({
+                DivId: 'divAppointmentSchedule',
+                OfficeInfo : @Html.Raw(oOfficeInfo),
+            });
+            ProfileAppointmentObject.RenderAsync();
+        });
+    </script>
+}

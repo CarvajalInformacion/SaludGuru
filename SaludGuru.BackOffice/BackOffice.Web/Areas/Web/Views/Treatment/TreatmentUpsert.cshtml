@@ -15,20 +15,20 @@
                 </li>
                 <li>
                     @{
-                        var CatInfo_IC = Model.TreatmentInfo == null ? null :
+                        var CatInfo_MPE = Model.TreatmentInfo == null ? null :
                             Model.TreatmentInfo.TreatmentInfo.Where
                                 (x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.MarketPlaceEnabled).
                                 Select(x => new { id = x.CategoryInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
                                     DefaultIfEmpty(null).
                                     FirstOrDefault();
-                        if (CatInfo_IC != null)
+                        if (CatInfo_MPE != null)
                         {
-                            <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_IC.id" />
+                            <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_MPE.id" />
                         }
                     }
                     <label>Visible en marketplace</label>
                     @{
-                        if (CatInfo_IC != null && CatInfo_IC.val)
+                        if (CatInfo_MPE != null && CatInfo_MPE.val)
                         {
                             <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" checked="checked" />
                         }
