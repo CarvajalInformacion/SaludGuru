@@ -89,6 +89,15 @@ namespace MedicalCalendar.Manager.DAL.Controller
         {
             return DataFactory.PatientGetOptions();
         }
+
+        #region Market Place
+
+        public List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
+        {
+            return DataFactory.MPPatientGetByUserPublicId(vUserPublicId);
+        }
+
+        #endregion
         #endregion
 
         #region Appointment
@@ -158,7 +167,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
         }
 
-        #endregion
-
+        #endregion       
     }
 }

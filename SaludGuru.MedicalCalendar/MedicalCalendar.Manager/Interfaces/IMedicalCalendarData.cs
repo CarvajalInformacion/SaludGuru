@@ -19,6 +19,9 @@ namespace MedicalCalendar.Manager.Interfaces
         void PatientModify(string PatientPublicId, string Name, string LastName);
         void PatientDelete(string PatientPublicId);
 
+        //patient Market Place
+        List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId);
+
         //patient info
         int PatientInfoCreate(string PatientPublicId, enumPatientInfoType PatientInfoType, string Value, string LargeValue);
         void PatientInfoModify(int PatientInfoId, string Value, string LargeValue);

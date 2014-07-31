@@ -304,6 +304,64 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
 
             return oReturn;
         }
+
+        #region MarketPlace
+
+        public List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vUserPublicId", vUserPublicId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_PT_Patient_GetByUserPublicId",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<PatientModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                 response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = (from pm in response.DataTableResult.AsEnumerable()
+                            select new PatientModel()
+                            {
+                                PatientPublicId = response.DataTableResult.Rows[0].Field<string>("PatientPublicId"),
+                                Name = response.DataTableResult.Rows[0].Field<string>("Name"),
+                                LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+                                LastModify = response.DataTableResult.Rows[0].Field<DateTime>("PatientLastModify"),
+                                CreateDate = response.DataTableResult.Rows[0].Field<DateTime>("PatientCreationDate"),
+
+                                PatientInfo = (from oi in response.DataTableResult.AsEnumerable()
+                                                where oi.Field<int?>("PatientInfoId") != null
+                                                group oi by
+                                                new
+                                                {
+                                                    PatientInfoId = oi.Field<int>("PatientInfoId"),
+                                                    PatientInfoType = (enumPatientInfoType)oi.Field<int>("PatientInfoType"),
+                                                    Value = oi.Field<string>("Value"),
+                                                    LargeValue = oi.Field<string>("LargeValue"),
+                                                    LastModify = oi.Field<DateTime>("InfoLastModify"),
+                                                    CreateDate = oi.Field<DateTime>("InfoCreationDate"),
+                                                } into oig
+                                                select new PatientInfoModel()
+                                                {
+                                                    PatientInfoId = oig.Key.PatientInfoId,
+                                                    PatientInfoType = oig.Key.PatientInfoType,
+                                                    Value = oig.Key.Value,
+                                                    LargeValue = oig.Key.LargeValue,
+                                                    LastModify = oig.Key.LastModify,
+                                                    CreateDate = oig.Key.CreateDate
+                                                }).ToList(),
+                            }).ToList();
+            }
+            return oReturn;
+        }
+
+        #endregion
+
         #endregion
 
         #region Appointment
