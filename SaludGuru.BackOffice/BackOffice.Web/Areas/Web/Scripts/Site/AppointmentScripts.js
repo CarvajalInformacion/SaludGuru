@@ -785,7 +785,7 @@ var UpsertAppointmentObject = {
                 hide: "blind",
                 buttons: {
                     "Guardar": function () {
-                        $(this).dialog("close");
+                        //$(this).dialog("close");
                         UpsertAppointmentObject.CreatePatient();
                     },
                     "Cancelar": function () {
@@ -810,7 +810,6 @@ var UpsertAppointmentObject = {
                 success: function (data, textStatus, jqXHR) {
                     debugger;
                     UpsertAppointmentObject.AddPatientAppointment(data);
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     //show success message
@@ -826,9 +825,8 @@ var UpsertAppointmentObject = {
             e.unbind(); //unbind. to stop multiple form submit.
         });
 
-        //submit ajax form
+        //submit ajax form        
         $("#frmCreatePatient").submit();
-
     },
 
     AddPatientAppointment: function (vPatientModel) {
