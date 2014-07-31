@@ -559,11 +559,13 @@ div.AppointmentStatus_1207 .fc-event-inner {
 
 /*------Estilo PopUp registro pacientes.--------*/
 form#frmCreatePatient ul li label {
-    width: 200px;
+    width: 45%;
+    font-size: 15px;
+    font-weight: normal;
 }
 
 form#frmCreatePatient ul li input {
-    width: 40%;
+    width: 50%;
 }
 
 form#frmCreatePatient ul li {
