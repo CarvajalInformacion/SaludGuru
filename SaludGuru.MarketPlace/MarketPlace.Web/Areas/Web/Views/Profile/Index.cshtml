@@ -1,6 +1,8 @@
 ﻿@model MarketPlace.Models.Profile.ProfileViewModel
 @{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
 }
 
 <div>
@@ -8,11 +10,14 @@
     <div>
         <!--Profile Images-->
         <div>
+            @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
+        </div>
+        <!--Profile Basic Info Detail-->
+        <div>
+
 
 
         </div>
-        <!--Profile Basic Info Detail-->
-        <div></div>
     </div>
     <!--Profile Description-->
     <div></div>
@@ -21,4 +26,14 @@
     <!--Profile Map-->
     <div></div>
 </div>
-
+@{
+    Model.RenderScripts = true;
+}
+@section inlinescripts
+{
+    @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+}

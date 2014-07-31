@@ -10,5 +10,7 @@ namespace MarketPlace.Models.Profile
     public class ProfileViewModel
     {
         public ProfileModel CurrentProfile { get; set; }
+
+        public bool RenderScripts { get; set; }
     }
 }
