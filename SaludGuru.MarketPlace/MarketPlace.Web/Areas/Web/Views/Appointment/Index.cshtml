@@ -1,0 +1,61 @@
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
+@{
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <form id="AppointmentForm" action="/" method="post">
+
+        <ul>
+            <li>
+                <label>Por favor escoge un seguro</label>
+                <select id="SelectedInsurance" name="SelectedInsurance">
+                    @foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                    {
+                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                        {
+                            <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CategoryId">@item.Name</option>
+                        }
+                    }
+                </select>
+            </li>
+            <li>
+                <label>Selecciona un tratamiento</label>
+                <select id="SelectedTreatment" name="SelectedTreatment">
+                    @foreach (var item in Model.CurrentProfile.RelatedTreatment)
+                    {
+                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                        {
+                            <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CategoryId">@item.Name</option>
+                        }
+                    }
+                </select>
+            </li>
+            <li>
+                <div>
+                    @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
+                </div>
+            </li>
+            <li>
+                <div>
+                   @Html.Partial(MVC.Web.Shared.Views._AP_PatientGroup, Model)
+                </div>
+            </li>
+
+
+        </ul>
+
+
+    </form>
+
+</div>

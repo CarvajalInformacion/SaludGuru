@@ -994,6 +994,9 @@
     <Content Include="Areas\Web\Views\Shared\_L_Header.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_L_Footer.cshtml" />
     <Content Include="Areas\Web\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Web\Views\Appointment\Index.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_ProfileInfo.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_PatientGroup.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
