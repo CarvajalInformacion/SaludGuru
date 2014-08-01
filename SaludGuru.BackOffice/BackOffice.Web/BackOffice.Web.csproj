@@ -585,6 +585,7 @@
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Areas\Web\Content\jquery\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOResponsive.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BOCalendar.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOverMas.css" />
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />

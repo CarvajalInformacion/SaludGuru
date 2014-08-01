@@ -785,7 +785,7 @@ var UpsertAppointmentObject = {
                 hide: "blind",
                 buttons: {
                     "Guardar": function () {
-                        //$(this).dialog("close");
+                        $(this).dialog("close");
                         UpsertAppointmentObject.CreatePatient();
                     },
                     "Cancelar": function () {

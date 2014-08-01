@@ -12,7 +12,7 @@
     </div>
 
     <!--templates-->
-    <div>
+    <div style="display:none;">
 
         <!--appointment menu template-->
         <div id="divAppointmentSchedule_Template_Menu">
@@ -24,6 +24,38 @@
         <!--appointment grid template-->
         <div id="divAppointmentSchedule_Template_Grid">
             <div class="SelOfficeGrid" id="divGrid_${OfficePublicId}"></div>
+        </div>
+
+        <!--appointment grid event template-->
+        <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
+            <a class="${Monday.CurrentStyle}" href="javascrip:;">
+                ${Monday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
+            <a class="${Tuesday.CurrentStyle}" href="javascrip:;">
+                ${Tuesday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
+            <a class="${Wednesday.CurrentStyle}" href="javascrip:;">
+                ${Wednesday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
+            <a class="${Thursday.CurrentStyle}" href="javascrip:;">
+                ${Thursday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
+            <a class="${Friday.CurrentStyle}" href="javascrip:;">
+                ${Friday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
+            <a class="${Saturday.CurrentStyle}" href="javascrip:;">
+                ${Saturday.AvailableDateText}
+            </a>
         </div>
     </div>
 }
@@ -38,6 +70,7 @@ else
             Select(of =>
                 new
                 {
+                    ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
                     OfficePublicId = of.OfficePublicId,
                     OfficeName = of.Name,
                     OfficeDivId = string.Empty,

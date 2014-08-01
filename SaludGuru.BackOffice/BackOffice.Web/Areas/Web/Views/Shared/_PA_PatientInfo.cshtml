@@ -247,6 +247,10 @@
                     {
                         <input type="checkbox" id="IsSendEmail" name="IsSendEmail" checked="checked" />
                     }
+                    else if (CatInfo_Email == null)
+                    {
+                        <input type="checkbox" id="IsSendEmail" name="IsSendEmail" checked="checked" />
+                    }
                     else
                     {
                         <input type="checkbox" id="IsSendEmail" name="IsSendEmail" />
@@ -273,9 +277,13 @@
                     {
                         <input type="checkbox" id="IsSendSMS" name="IsSendSMS" checked="checked" />
                     }
+                    else if(CatInfo_SMS == null)
+                    {
+                        <input type="checkbox" id="IsSendSMS" name="IsSendSMS" checked="checked"/>
+                    }
                     else
                     {
-                        <input type="checkbox" id="IsSendSMS" name="IsSendSMS" />
+                        <input type="checkbox" id="IsSendSMS" name="IsSendSMS"/>
                     }
                 }
             </li>

@@ -163,6 +163,24 @@ namespace BackOffice.Web.ControllersApi
                             PatientInfoType = enumPatientInfoType.Mobile,
                             Value = HttpContext.Current.Request["Mobile"].ToString(),
                         },  
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_MedicalPlan"])?0:int.Parse(HttpContext.Current.Request["CatId_MedicalPlan"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.MedicalPlain,
+                            Value = HttpContext.Current.Request["MedicalPlan"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_SendEmail"])?0:int.Parse(HttpContext.Current.Request["CatId_SendEmail"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.SendEmail,
+                            Value = "true",
+                        },
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_SendSMS"])?0:int.Parse(HttpContext.Current.Request["CatId_SendSMS"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.SendSMS,
+                            Value = "true",
+                        }
                     }
             };
 

@@ -42,6 +42,8 @@ function InitGlobalPagesControls(InitModel) {
 
     //init search box
     InitGlobalSearchBox(InitModel.IsUserAdmin);
+
+    InitSearchMagGlass(InitModel.IsUserAdmin);
 }
 
 /*init autorization menu*/
@@ -156,6 +158,19 @@ function InitGlobalSearchBox(IsUserAdmin) {
     }
 }
 
+function InitSearchMagGlass(IsUserAdmin) {
+    if (IsUserAdmin == true) {
+        $('#searchMagGlass').click(function () {
+            window.location = '/Profile/ProfileSearch?SearchParam=' + $('#ipGlobalSearchBox').val();
+        });
+    }
+    else {
+        $('#searchMagGlass').click(function () {
+            window.location = '/Patient/Search?SearchParam=' + $('#ipGlobalSearchBox').val();
+        });
+    }
+}
+
 /*Error popup validation*/
 function ValidatePopUp(controlName, message, NameSubmit) {
     //debugger;
@@ -168,7 +183,7 @@ function ValidatePopUp(controlName, message, NameSubmit) {
         hide: {
             effect: "blind",
             duration: 500,
-            title: "Error"            
+            title: "Error"
         }
     });
     $("#dialogError").text(message);

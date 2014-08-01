@@ -572,6 +572,12 @@ form#frmCreatePatient ul li {
     margin-bottom: 5px;
 }
 
+div#Dialog_CreatePatient {
+    min-height: 240px !important;
+    min-width: 380px !important;
+    overflow: hidden;
+}
+
 /*-----Estilo cambiar de tamaño citas de agenda-----*/
 .ui-resizable-handle.ui-resizable-s {
     display: block !important;
