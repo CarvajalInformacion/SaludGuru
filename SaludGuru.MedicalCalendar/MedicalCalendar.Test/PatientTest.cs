@@ -15,5 +15,14 @@ namespace MedicalCalendar.Test
 
             Assert.AreEqual(true, result.Count > 0);
         }
+
+        [TestMethod]
+        public void PatientGetByUserPublicId()
+        {
+            int TotalRows;
+            List<MedicalCalendar.Manager.Models.Patient.PatientModel> result = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId("17B1EF7E");
+
+            Assert.AreEqual(true, result.Count > 0);
+        }
     }
 }

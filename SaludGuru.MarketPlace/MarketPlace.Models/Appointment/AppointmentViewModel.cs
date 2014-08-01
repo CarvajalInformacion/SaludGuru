@@ -1,4 +1,5 @@
-﻿using SaludGuruProfile.Manager.Models.Profile;
+﻿using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace MarketPlace.Models.Appointment
         public DateTime CurrentDate { get; set; }
 
         public ProfileModel CurrentProfile { get; set; }
+
+        public List<PatientModel> PatientGroup { get; set; }
     }
 }

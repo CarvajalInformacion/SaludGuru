@@ -1,0 +1,63 @@
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
+
+<label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
+<div>
+    <ul>
+        <div>
+            @foreach (var item in Model.PatientGroup)
+            {
+                <li>
+                    <input type="radio" id="SelectedItem" name="SelectedItem" value="@item.IsProfilePatient" checked="checked">
+                    <label>@item.Name @item.LastName</label>
+                </li>
+            }
+            <div id="isSomeBody">
+                <label>Alguien más </label>
+            </div>
+        </div>
+    </ul>
+</div>
+
+<div id="NewPatient" style="display:none;" >
+    <form action="@(Url.Action(MVC.Profile.ActionNames.Index, MVC.Profile.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }))">
+        <ul>
+            <li>
+                <label>Nombre</label>
+                <input type="text" id="Name" name="Name" value=" " />
+            </li>
+            <li>
+                <label>Apellido</label>
+                <input type="text" id="LastName" name="LastName" value=" " />
+            </li>
+            <li>
+                <label>Identificación</label>
+                <input type="text" id="Identification" name="Identification" value=" " />
+            </li>
+            <li>
+                <label>Fecha de nacimiento</label>
+                <input type="text" id="Birthday" name="Birthday" value=" " />
+            </li>
+            <li>
+                <label>Sexo</label>
+                <input type="checkbox" id="GenderMale" name="GenderMale" />
+                <input type="checkbox" id="GenderFemale" name="GenderFemale" />
+            </li>
+        </ul>
+        <input type="hidden" id="IsNewPatient" name="IsNewPatient" value="true" />
+        <input type="submit" id="Save" name="Save" value="Guardar" />
+    </form>
+
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+
+        $("#isSomeBody").on("click", function () {
+            debugger;
+            $("#NewPatient").Show();
+            });
+
+    </script>
+}
+
