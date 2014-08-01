@@ -8,7 +8,9 @@
 
 <div class="BOAgendaModuleGreatWrapper">
     <!--Meeting Calendar-->
-    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+    <div class="CalendarMonth">
+        @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+    </div>
 </div>
 
 @{Model.RenderScripts = true;}

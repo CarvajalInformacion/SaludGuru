@@ -236,6 +236,10 @@
                         <label>Teléfono móvil</label>
                         <input id="Mobile" name="Mobile" class="required" type="text" />
                     </li>
+                    <li>
+                        <label>Plan médico</label>
+                        <input id="MedicalPlan" name="MedicalPlan" type="text" />
+                    </li>
                 </ul>
             </form>
         </div>
@@ -252,9 +256,7 @@ else
                 DivBlockId: 'BlockAppointmentContainer',
             });
 
-
             //Validate PopUp
-
             $('#frmCreatePatient').validate({
                 //debug: true,
                 errorClass: 'error help-inline',

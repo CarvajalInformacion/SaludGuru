@@ -115,19 +115,6 @@ span.ui-selectmenu-text:hover {
             background-size: 32px 32px;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .profilesListWrapper select {
     border-top: none;
     border-bottom: 1px solid #999;
@@ -190,19 +177,12 @@ span.ui-selectmenu-text:hover {
 }
 
     .searchBox input {
-        display: inline-block;
         border: 1px solid #808080;
         background-color: #fff;
         width: 80%;
         height: 25px;
         margin: 4px 0px 0px 6px;
         border-radius: 12px;
-        background-image: url('/Areas/Web/Content/Images/magGlassSmall.png');
-        background-repeat: no-repeat;
-        background-position: 95% 1px;
-        background-size: 25px 20px;
-        padding: 0px 0px 0px 10px;
-        vertical-align: top;
     }
 
 .userNotificationWrapper {
@@ -342,7 +322,7 @@ span.ui-selectmenu-text:hover {
 }
 
 .HeaderLogoSaludGuru {
-    position:absolute;
+    position: absolute;
     border: none;
     padding: 0px;
     margin: 0px 0px 0px 37px;
@@ -350,7 +330,7 @@ span.ui-selectmenu-text:hover {
     height: 57px;
     background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
     background-repeat: no-repeat;
-    background-size:84px auto;
+    background-size: 84px auto;
 }
 
 .mainMenuItemWrapper {
@@ -605,3 +585,18 @@ span.ui-selectmenu-text:hover {
         background-color: white;
         border: 1px solid #333;
     }
+
+/*-------botón lupa----------*/
+input#searchMagGlass {
+    position: absolute;
+    width: 27px;
+    border-radius: 0;
+    border: none;
+    margin-left: -38px;
+    height: 22px;
+    margin-top: 5px;
+    background-image: url('/Areas/Web/Content/Images/magGlassSmall.png');
+    background-repeat: no-repeat;
+    background-position: 95% 1px;
+    background-size: 25px 20px;
+}
