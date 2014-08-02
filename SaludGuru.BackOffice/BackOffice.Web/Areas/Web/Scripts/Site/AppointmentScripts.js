@@ -775,29 +775,11 @@ var UpsertAppointmentObject = {
             $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { UpsertAppointmentObject.SaveAppointment(true) });
         }
 
-        //Dialog create patient
-        $('#aCreatePatient').unbind('click');
-        $('#aCreatePatient').click(function () {
-            //init dialog
-            $("#Dialog_CreatePatient").dialog({
-                width: 800,
-                show: "clip",
-                hide: "blind",
-                buttons: {
-                    "Guardar": function () {
-                        $(this).dialog("close");
-                        UpsertAppointmentObject.CreatePatient();
-                    },
-                    "Cancelar": function () {
-                        $(this).dialog("close");
-                    }
-                }
-            });
-        });
+        //Create patient        
+        UpsertAppointmentObject.ValidateCreatePatient();
     },
 
     CreatePatient: function () {
-
         //create ajax form object
         $("#frmCreatePatient").submit(function (e) {
             var postData = $(this).serializeArray();
@@ -808,17 +790,12 @@ var UpsertAppointmentObject = {
                 type: "POST",
                 data: postData,
                 success: function (data, textStatus, jqXHR) {
-                    debugger;
+                    $("#Dialog_CreatePatient").dialog("close");
                     UpsertAppointmentObject.AddPatientAppointment(data);
+                    $("#frmCreatePatient input").val('');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     //show success message
-                    var oMsj = $('#SaveResultTemplate').html();
-                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
-                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
-
-                    $("#Dialog_SaveResult").html(oMsj);
-                    $("#Dialog_SaveResult").dialog();
                 }
             });
             e.preventDefault(); //STOP default action
@@ -827,6 +804,81 @@ var UpsertAppointmentObject = {
 
         //submit ajax form        
         $("#frmCreatePatient").submit();
+    },
+
+    ValidateCreatePatient: function (vPatientModel)    {
+
+        var rules = {
+            Name: {
+                required: true,
+            },
+            IdentificationNumber: {
+                required: true,
+                minlength: 6,
+            },
+            Mobile: {
+                required: true,
+                maxlength: 10,
+                minlength: 10
+            },
+            MedicalPlan: {
+                required: true,
+            }
+        };
+
+        var messages = {
+            Name: {
+                required: "Debe ingresar el nombre",
+                return: false,
+            },
+            IdentificationNumber: {
+                required: "Debe ingresar la identificación",
+                minlength: "El número debe ser mayor a 6 dígitos",
+                return: false,
+            },
+            Mobile: {
+                required: "Debe ingresar un número móvil",
+                maxlength: "El número debe contener 10 digitos",
+                minlength: "El número debe contener 10 dígitos",
+                return: false,
+            },
+            MedicalPlan: {
+                required: "Debe ingresar el plan médico",
+                return: false,
+            }
+        };
+
+        $('#frmCreatePatient').validate({
+            errorClass: 'error help-inline',
+            errorElement: 'span',
+            validClass: 'success',
+            rules: rules, 
+            messages: messages
+        });
+
+        //Dialog create patient
+        $('#aCreatePatient').unbind('click');
+        $('#aCreatePatient').click(function () {
+            //init dialog
+            $("#Dialog_CreatePatient").dialog({
+                width: 800,
+                show: "clip",
+                hide: "blind",
+                buttons: {
+                    "Guardar": function () {
+                        if ($('#frmCreatePatient').valid())
+                        {
+                            UpsertAppointmentObject.CreatePatient();                            
+                        }                        
+                    },
+                    "Cancelar": function () {
+                        $(this).dialog("close");
+                        $("#frmCreatePatient input").val('');
+                        $("#frmCreatePatient span").empty();
+                    }
+                }
+            });
+        });
     },
 
     AddPatientAppointment: function (vPatientModel) {

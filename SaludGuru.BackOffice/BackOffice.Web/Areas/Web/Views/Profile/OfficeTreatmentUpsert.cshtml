@@ -84,7 +84,7 @@
                     @{
                         var TrInf_MPE = Model.CurrentTreatmentOffice == null ? null :
                             Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
-                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.MarketPlaceEnabled).
                                 Select(x => new
                                 {
                                     id = x.CategoryInfoId,
@@ -92,7 +92,7 @@
                                 }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
-                        if (TrInf_DF != null)
+                        if (TrInf_MPE != null)
                         {
                             <input type="hidden" id="TrInf_MarketPlaceEnabled" name="TrInf_MarketPlaceEnabled" value="@TrInf_MPE.id" />
                         }

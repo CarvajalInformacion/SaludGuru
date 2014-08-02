@@ -22,7 +22,8 @@ namespace BackOffice.Models.Patient
                 return CurrentPatient.PatientInfo.
                     Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
                     Select(y => y.Value).
-                    DefaultIfEmpty(string.Empty).
+                    DefaultIfEmpty(BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_PatientImage_Woman].Value).
                     FirstOrDefault();
             }
         }

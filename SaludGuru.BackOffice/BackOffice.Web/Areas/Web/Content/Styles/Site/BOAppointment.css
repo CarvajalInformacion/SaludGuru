@@ -578,6 +578,17 @@ div#Dialog_CreatePatient {
     overflow: hidden;
 }
 
+label.UserMessage {
+    width: 100% !important;
+    font-size: 12px !important;
+    margin-top: 10px;
+    line-height: 13px;
+}
+
+form#frmCreatePatient ul li span {
+    
+}
+
 /*-----Estilo cambiar de tamaño citas de agenda-----*/
 .ui-resizable-handle.ui-resizable-s {
     display: block !important;
