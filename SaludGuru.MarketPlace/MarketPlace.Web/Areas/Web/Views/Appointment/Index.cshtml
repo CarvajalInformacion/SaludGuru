@@ -54,11 +54,15 @@
             <div>
                 @foreach (var item in Model.PatientGroup)
                 {
+                    string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                x.Value == "true").
+                                Select(x => x.Value).FirstOrDefault();
+
                     <ul id="ulPatientList">
                         <li>
-                            @if (Model.PatientGroup.IndexOf(item) == 0)
+                            @if (currentPatient != null)
                             {
-                                <input type="radio" name="SelectedItem" value="@item.PatientPublicId" checked="checked">
+                                <input type="radio" name="SelectedItem" checked="checked" value="@item.PatientPublicId">
                                 <label>Yo</label>
                             }
                             else
@@ -76,8 +80,6 @@
         </li>
     </ul>
 </div>
-
-@*<a href="~/ControllersApi/AppointmentApiController.cs">~/ControllersApi/AppointmentApiController.cs</a>*@
 
 <div id="NewPatient" style="display:none;">
     <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
@@ -118,12 +120,11 @@
     <!--patient template-->
     <ul id="ulPatientTemplate">
         <li>
-            <input type="radio" name="SelectedItem" value="{PatientPublicId}" checked="checked">
+            <input type="radio" name="SelectedItem" value="{PatientPublicId}"  checked='checked'>
             <label>{PatientName}</label>
         </li>
     </ul>
 </div>
-
 
 @section inlinescripts
 {
@@ -132,7 +133,7 @@
         $("#isSomeBody").click(function () {
             $("#NewPatient").show();
         });
-        
+
         $("#GenderFemale").click(function () {
             $("#GenderMale").attr('checked', false);
         });
@@ -140,6 +141,5 @@
         $("#GenderMale").click(function () {
             $("#GenderFemale").attr('checked', false);
         });
-
     </script>
 }

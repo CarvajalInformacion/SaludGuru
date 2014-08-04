@@ -16,6 +16,7 @@
         Responsable = 1012,
         SendSMS = 1013,
         SendEmail = 1014,
+        IsMarketPlaceUser = 1015,
     }
 
     public enum enumAppointmentInfoType

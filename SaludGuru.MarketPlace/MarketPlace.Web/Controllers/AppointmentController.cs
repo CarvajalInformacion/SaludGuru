@@ -19,7 +19,6 @@ namespace MarketPlace.Web.Controllers
                 CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
                 PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId("17B1EF7E") //TODO: Ajustar el usuario no quemarlo
             };
-
             return View(oModel);
         }       
     }

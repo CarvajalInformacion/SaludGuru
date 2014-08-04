@@ -28,6 +28,7 @@ function AddPatientToList(vPatientModel) {
     debugger;
     var ApPatHtml = $('#ulPatientTemplate').html();
     ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
+    ApPatHtml = ApPatHtml.replace(/{checked='checked'}/gi, "checked='ckecked'");
     ApPatHtml = ApPatHtml.replace(/{PatientName}/gi, vPatientModel.Name + " " + vPatientModel.LastName );
     $('#ulPatientList').append(ApPatHtml);
     $('#NewPatient').hide();
