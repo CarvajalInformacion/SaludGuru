@@ -46,6 +46,13 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
+        public static List<ScheduleBusyModel> GetScheduleBusy
+            (string ProfilePublicId, string OfficePublicId, DateTime? StartDate, DateTime? EndDate, int? CategoryId)
+        {
+            return MedicalCalendarDataController.Instance.GetScheduleBusy
+                (ProfilePublicId, OfficePublicId, StartDate, EndDate, CategoryId);
+        }
+
         public static List<AppointmentModel> AppointmentGetByPatient(string PatientPublicId)
         {
             PatientModel CurrentPatient = Patient.PatientGetAllByPublicPatientId(PatientPublicId);
@@ -177,5 +184,19 @@ namespace MedicalCalendar.Manager.Controller
         {
             return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
         }
+
+        #region MarketPlace
+
+        public static List<AppointmentModel> MPAppointmentGetByOfficeId
+            (string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        {
+            List<AppointmentModel> oReturn = DAL.Controller.MedicalCalendarDataController.Instance.MPAppointmentGetByOfficeIdBasicInfo
+                (OfficePublicId, StartDateTime, EndDateTime);
+
+            return oReturn;
+        }
+
+        #endregion
+
     }
 }

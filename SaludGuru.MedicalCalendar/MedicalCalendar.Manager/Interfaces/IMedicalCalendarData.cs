@@ -42,6 +42,8 @@ namespace MedicalCalendar.Manager.Interfaces
         Models.Appointment.AppointmentModel AppointmentGetByIdPatientInfo(string AppointmentPublicId);
         List<MedicalCalendar.Manager.Models.Appointment.AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime);
 
+        List<Models.Appointment.AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
+
         //appointment info
         int AppointmentInfoCreate(string AppointmentPublicId, enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue);
         void AppointmentInfoModify(int AppointmentInfoId, string Value, string LargeValue);

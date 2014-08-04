@@ -62,5 +62,16 @@ namespace MedicalCalendar.Test
             Assert.AreEqual(true, result.Count > 0);
         }
 
+        [TestMethod]
+        public void MPAppointmentGetByOfficeId()
+        {
+            List<MedicalCalendar.Manager.Models.Appointment.AppointmentModel> result =
+                MedicalCalendar.Manager.Controller.Appointment.MPAppointmentGetByOfficeId
+                ("91917194",
+                new DateTime(2014, 1, 1),
+                new DateTime(2014, 12, 31));
+
+            Assert.AreEqual(true, result.Count > 0);
+        }
     }
 }

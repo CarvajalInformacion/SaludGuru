@@ -172,6 +172,15 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
         }
 
+        #region Marketplace
+
+        public List<AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        {
+            return DataFactory.MPAppointmentGetByOfficeIdBasicInfo(OfficePublicId, StartDateTime, EndDateTime);
+        }
+
+        #endregion
+
         #endregion
     }
 }

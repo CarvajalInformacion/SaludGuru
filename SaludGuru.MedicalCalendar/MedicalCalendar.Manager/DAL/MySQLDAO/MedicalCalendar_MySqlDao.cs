@@ -925,6 +925,45 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        #region Marketplace
+
+        public List<AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDateTime));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDateTime));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_AP_Appointment_GetByOfficeId_BasicInfo",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AppointmentModel> oReturn = null;
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from ap in response.DataTableResult.AsEnumerable()
+                     select new AppointmentModel()
+                     {
+                         AppointmentPublicId = ap.Field<string>("AppointmentPublicId"),
+                         Status = (enumAppointmentStatus)ap.Field<int>("AppointmentStatus"),
+                         StartDate = ap.Field<DateTime>("StartDate"),
+                         EndDate = ap.Field<DateTime>("EndDate"),
+                         OfficePublicId = ap.Field<string>("OfficePublicId"),
+                         OfficeName = ap.Field<string>("OfficeName"),
+                     }).ToList();
+            }
+            return oReturn;
+        }
+
+        #endregion
+
         #endregion
     }
 }
