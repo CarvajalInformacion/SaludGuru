@@ -27,6 +27,22 @@ namespace MedicalCalendar.Manager.Controller
 
             //get not available days for profile
 
+            List<SpecialDayModel> bm = MedicalCalendarDataController.Instance.GetScheduleBusy
+                (ProfilePublicId, null, StartDate, EndDate, null).
+                Where(x => x.MaxFreeTime.Seconds == 0).
+                GroupBy(x => new
+                {
+                    SpecialDayType = Models.enumSpecialDayType.NotAvailable,
+                    SpecialDay = x.EvalDate
+                }).
+                Select(x => new SpecialDayModel()
+                {
+                    SpecialDay = x.Key.SpecialDay,
+                    SpecialDayType = x.Key.SpecialDayType
+                }).ToList();
+
+            oReturn.AddRange(bm);
+
             return oReturn;
         }
 

@@ -41,6 +41,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.HolidayGetByCountry(CountryId);
         }
 
+        public List<ScheduleBusyModel> GetScheduleBusy(string ProfilePublicId, string OfficePublicId, DateTime? StartDate, DateTime? EndDate, int? CategoryId)
+        {
+            return DataFactory.GetScheduleBusy(ProfilePublicId, OfficePublicId, StartDate, EndDate, CategoryId);
+        }
+
         #endregion
 
         #region Patient
@@ -167,6 +172,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
         }
 
-        #endregion       
+        #endregion
     }
 }

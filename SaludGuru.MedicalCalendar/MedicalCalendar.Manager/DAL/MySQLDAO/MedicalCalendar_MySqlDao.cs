@@ -54,6 +54,49 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<ScheduleBusyModel> GetScheduleBusy
+            (string ProfilePublicId,
+            string OfficePublicId,
+            DateTime? StartDate,
+            DateTime? EndDate,
+            int? CategoryId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDate", StartDate));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEndDate", EndDate));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryId", CategoryId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "AP_GetScheduleBusy",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ScheduleBusyModel> oReturn = new List<ScheduleBusyModel>();
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from hd in response.DataTableResult.AsEnumerable()
+                     select new ScheduleBusyModel()
+                     {
+                         ScheduleAvailableId = hd.Field<int>("ScheduleAvailableId"),
+                         OfficePublicId = hd.Field<string>("OfficePublicId"),
+                         EvalDate = hd.Field<DateTime>("EvalDate"),
+                         MaxFreeTime = hd.Field<TimeSpan>("MaxFreeTime"),
+                         CategoryId = hd.Field<int>("CategoryId"),
+                     }).ToList();
+            }
+
+            return oReturn;
+        }
+
         #endregion
 
         #region Patient
@@ -327,41 +370,41 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             {
 
                 oReturn = (from pm in response.DataTableResult.AsEnumerable()
-                                  where !string.IsNullOrEmpty(pm.Field<string>("PatientPublicId"))
-                                  group pm by
-                                  new
-                                  {
-                                      PatientPublicId = pm.Field<string>("PatientPublicId"),
-                                      Name = pm.Field<string>("Name"),
-                                      LastName = pm.Field<string>("LastName"),
-                                  } into pmg
-                                  select new PatientModel
-                                  {
-                                      PatientPublicId = pmg.Key.PatientPublicId,
-                                      Name = pmg.Key.Name,
-                                      LastName = pmg.Key.LastName,
+                           where !string.IsNullOrEmpty(pm.Field<string>("PatientPublicId"))
+                           group pm by
+                           new
+                           {
+                               PatientPublicId = pm.Field<string>("PatientPublicId"),
+                               Name = pm.Field<string>("Name"),
+                               LastName = pm.Field<string>("LastName"),
+                           } into pmg
+                           select new PatientModel
+                           {
+                               PatientPublicId = pmg.Key.PatientPublicId,
+                               Name = pmg.Key.Name,
+                               LastName = pmg.Key.LastName,
 
-                                      PatientInfo = (from pi in response.DataTableResult.AsEnumerable()
-                                                     where pi.Field<int?>("PatientInfoId") != null &&
-                                                            pi.Field<string>("PatientPublicId") == pmg.Key.PatientPublicId
-                                                     group pi by
-                                                     new
-                                                     {
-                                                         PatientInfoId = pi.Field<int>("PatientInfoId"),
-                                                         PatientInfoType = pi.Field<int>("PatientInfoType"),
-                                                         Value = pi.Field<string>("Value"),
-                                                         LargeValue = pi.Field<string>("LargeValue"),
-                                                         CreateDate = pi.Field<DateTime>("InfoCreationDate"),
-                                                     } into pig
-                                                     select new PatientInfoModel()
-                                                     {
-                                                         PatientInfoId = pig.Key.PatientInfoId,
-                                                         PatientInfoType = (enumPatientInfoType)pig.Key.PatientInfoType,
-                                                         Value = pig.Key.Value,
-                                                         LargeValue = pig.Key.LargeValue,
-                                                         CreateDate = pig.Key.CreateDate,
-                                                     }).ToList(),
-                                  }).ToList();
+                               PatientInfo = (from pi in response.DataTableResult.AsEnumerable()
+                                              where pi.Field<int?>("PatientInfoId") != null &&
+                                                     pi.Field<string>("PatientPublicId") == pmg.Key.PatientPublicId
+                                              group pi by
+                                              new
+                                              {
+                                                  PatientInfoId = pi.Field<int>("PatientInfoId"),
+                                                  PatientInfoType = pi.Field<int>("PatientInfoType"),
+                                                  Value = pi.Field<string>("Value"),
+                                                  LargeValue = pi.Field<string>("LargeValue"),
+                                                  CreateDate = pi.Field<DateTime>("InfoCreationDate"),
+                                              } into pig
+                                              select new PatientInfoModel()
+                                              {
+                                                  PatientInfoId = pig.Key.PatientInfoId,
+                                                  PatientInfoType = (enumPatientInfoType)pig.Key.PatientInfoType,
+                                                  Value = pig.Key.Value,
+                                                  LargeValue = pig.Key.LargeValue,
+                                                  CreateDate = pig.Key.CreateDate,
+                                              }).ToList(),
+                           }).ToList();
             }
             return oReturn;
         }
