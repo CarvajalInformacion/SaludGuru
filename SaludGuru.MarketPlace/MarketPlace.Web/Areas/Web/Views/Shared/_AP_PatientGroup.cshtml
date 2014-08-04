@@ -1,63 +1,58 @@
 ﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
 
-<label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
 <div>
     <ul>
-        <div>
-            @foreach (var item in Model.PatientGroup)
-            {
-                <li>
-                    <input type="radio" id="SelectedItem" name="SelectedItem" value="@item.IsProfilePatient" checked="checked">
+        <li>
+            <div>
+                @foreach (var item in Model.PatientGroup)
+                {
+                    if (Model.PatientGroup.IndexOf(item) == 0)
+                    {
+                        <label>Yo</label>
+                        <input type="radio" id="SelectedItem" name="SelectedItem" value="@item.PatientPublicId" checked="checked">
+                    }
                     <label>@item.Name @item.LastName</label>
-                </li>
-            }
-            <div id="isSomeBody">
-                <label>Alguien más </label>
+                    <input type="radio" id="SelectedItem" name="SelectedItem" value="@item.PatientPublicId">
+                }
             </div>
-        </div>
+        </li>
+        <li>
+            <input id="isSomeBody" type="button" name="Btn" value="Alguien más" />
+        </li>
     </ul>
 </div>
 
-<div id="NewPatient" style="display:none;" >
-    <form action="@(Url.Action(MVC.Profile.ActionNames.Index, MVC.Profile.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }))">
+@*<a href="~/ControllersApi/AppointmentApiController.cs">~/ControllersApi/AppointmentApiController.cs</a>*@
+
+<div id="NewPatient" style="display:none;">
+    <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?UpsertAction=true">
         <ul>
             <li>
                 <label>Nombre</label>
-                <input type="text" id="Name" name="Name" value=" " />
+                <input type="text" id="Name" name="Name" />
             </li>
             <li>
                 <label>Apellido</label>
-                <input type="text" id="LastName" name="LastName" value=" " />
+                <input type="text" id="LastName" name="LastName" />
             </li>
             <li>
                 <label>Identificación</label>
-                <input type="text" id="Identification" name="Identification" value=" " />
+                <input type="text" id="Identification" name="Identification" />
             </li>
             <li>
                 <label>Fecha de nacimiento</label>
-                <input type="text" id="Birthday" name="Birthday" value=" " />
+                <input type="text" id="Birthday" name="Birthday" />
             </li>
             <li>
                 <label>Sexo</label>
-                <input type="checkbox" id="GenderMale" name="GenderMale" />
-                <input type="checkbox" id="GenderFemale" name="GenderFemale" />
+                <div>
+                    <label>Masculino</label>
+                    <input type="checkbox" id="GenderMale" name="GenderMale" />
+                    <label>Femenino</label>
+                    <input type="checkbox" id="GenderFemale" name="GenderFemale" />
+                </div>
             </li>
         </ul>
-        <input type="hidden" id="IsNewPatient" name="IsNewPatient" value="true" />
-        <input type="submit" id="Save" name="Save" value="Guardar" />
+        <a href="javascript:CreatePatient();">Guardar</a>
     </form>
-
 </div>
-
-@section inlinescripts
-{
-    <script type="text/javascript">
-
-        $("#isSomeBody").on("click", function () {
-            debugger;
-            $("#NewPatient").Show();
-            });
-
-    </script>
-}
-

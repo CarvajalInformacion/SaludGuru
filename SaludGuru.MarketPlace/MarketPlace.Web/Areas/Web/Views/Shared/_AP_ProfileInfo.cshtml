@@ -11,16 +11,11 @@
     }
     <ul>
         <li>
-            <label>@Model.CurrentProfile.Name</label>  
-        </li>
+            <label>@Model.CurrentProfile.Name</label> 
+            <label>@Model.CurrentProfile.LastName</label> 
+        </li>        
         <li>
-            <label>@Model.CurrentProfile.LastName</label>
-        </li>
-        <li>
-            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault();</label>
-        </li>
-        <li>
-            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.OfficeInfo).FirstOrDefault();</label>
-        </li>
+            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault()</label>
+        </li>        
     </ul>
 </div>

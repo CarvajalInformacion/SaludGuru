@@ -4,10 +4,8 @@
 }
 
 <h2>Index</h2>
-
 <div>
-    <form id="AppointmentForm" action="/" method="post">
-
+    <form id="AppointmentForm" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.Index, new { ProfilePublicId = "2C1D2510" }))">
         <ul>
             <li>
                 <label>Por favor escoge un seguro</label>
@@ -46,16 +44,102 @@
                     @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
                 </div>
             </li>
+        </ul>
+    </form>
+</div>
+
+<div>
+    <ul>
+        <li>
+            <div>
+                @foreach (var item in Model.PatientGroup)
+                {
+                    <ul id="ulPatientList">
+                        <li>
+                            @if (Model.PatientGroup.IndexOf(item) == 0)
+                            {
+                                <input type="radio" name="SelectedItem" value="@item.PatientPublicId" checked="checked">
+                                <label>Yo</label>
+                            }
+                            else
+                            {
+                                <input type="radio" name="SelectedItem" value="@item.PatientPublicId">
+                                <label>@item.Name @item.LastName</label>
+                            }
+                        </li>
+                    </ul>
+                }
+            </div>
+        </li>
+        <li>
+            <input id="isSomeBody" type="button" name="Btn" value="Alguien más" />
+        </li>
+    </ul>
+</div>
+
+@*<a href="~/ControllersApi/AppointmentApiController.cs">~/ControllersApi/AppointmentApiController.cs</a>*@
+
+<div id="NewPatient" style="display:none;">
+    <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
+        <ul>
             <li>
+                <label>Nombre</label>
+                <input type="text" id="Name" name="Name" />
+            </li>
+            <li>
+                <label>Apellido</label>
+                <input type="text" id="LastName" name="LastName" />
+            </li>
+            <li>
+                <label>Identificación</label>
+                <input type="text" id="Identification" name="Identification" />
+            </li>
+            <li>
+                <label>Fecha de nacimiento</label>
+                <input type="text" id="Birthday" name="Birthday" />
+            </li>
+            <li>
+                <label>Sexo</label>
                 <div>
-                   @Html.Partial(MVC.Web.Shared.Views._AP_PatientGroup, Model)
+                    <label>Masculino</label>
+                    <input type="checkbox" id="GenderMale" name="GenderMale" />
+                    <label>Femenino</label>
+                    <input type="checkbox" id="GenderFemale" name="GenderFemale" />
                 </div>
             </li>
-
-
         </ul>
-
-
+        <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
     </form>
-
 </div>
+
+<!--templates-->
+<div style="display:none">
+
+    <!--patient template-->
+    <ul id="ulPatientTemplate">
+        <li>
+            <input type="radio" name="SelectedItem" value="{PatientPublicId}" checked="checked">
+            <label>{PatientName}</label>
+        </li>
+    </ul>
+</div>
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+
+        $("#isSomeBody").click(function () {
+            $("#NewPatient").show();
+        });
+        
+        $("#GenderFemale").click(function () {
+            $("#GenderMale").attr('checked', false);
+        });
+
+        $("#GenderMale").click(function () {
+            $("#GenderFemale").attr('checked', false);
+        });
+
+    </script>
+}
