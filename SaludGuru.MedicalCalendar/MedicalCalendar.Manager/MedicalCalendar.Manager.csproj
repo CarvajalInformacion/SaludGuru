@@ -66,6 +66,7 @@
     <Compile Include="Models\Enumerations.cs" />
     <Compile Include="Models\General\HolidayModel.cs" />
     <Compile Include="Models\General\ItemModel.cs" />
+    <Compile Include="Models\General\ScheduleBusyModel.cs" />
     <Compile Include="Models\General\SpecialDayModel.cs" />
     <Compile Include="Models\Patient\PatientInfoModel.cs" />
     <Compile Include="Models\Patient\PatientModel.cs" />

@@ -8,6 +8,19 @@ namespace MedicalCalendar.Test
     public class AppointmentTest
     {
         [TestMethod]
+        public void GetSpecialDays()
+        {
+            List<MedicalCalendar.Manager.Models.General.SpecialDayModel> result =
+                MedicalCalendar.Manager.Controller.Appointment.GetSpecialDays
+                (1,
+                "2C1D2510",
+                new DateTime(2014, 1, 1),
+                new DateTime(2014, 12, 31));
+
+            Assert.AreEqual(true, result.Count > 0);
+        }
+
+        [TestMethod]
         public void AppointmentGetByOfficeId()
         {
             List<MedicalCalendar.Manager.Models.Appointment.AppointmentModel> result =

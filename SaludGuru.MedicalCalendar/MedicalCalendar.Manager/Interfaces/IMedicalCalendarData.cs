@@ -13,6 +13,7 @@ namespace MedicalCalendar.Manager.Interfaces
     {
         //calendar
         List<HolidayModel> HolidayGetByCountry(int CountryId);
+        List<ScheduleBusyModel> GetScheduleBusy(string ProfilePublicId, string OfficePublicId, DateTime? StartDate, DateTime? EndDate, int? CategoryId);
 
         //patinet
         string PatientCreate(string Name, string LastName, string ProfilePublicId, string UserPublicId);
