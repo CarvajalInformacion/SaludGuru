@@ -229,7 +229,7 @@ div#AppointmentUpsert, div.BlockAppointmentUpsert {
 
 /*************************VISTA CALENDARIO POR DIA**************************/
 div#divMeetingCalendar {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     margin: 0px 0px 0px 0px;
     /*height: 510px;*/
     width: calc(100%);
@@ -557,6 +557,53 @@ div.AppointmentStatus_1207 .fc-event-inner {
 }
 
 
+/*------Estilos vista mes-------*/
+
+.CalendarMonth div.BOVerMasMeetingCalendarList span.fc-event-title > div {
+    width: 155px;
+    border: none;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.CalendarMonth div#CalendarContent {
+    width: 126%;
+}
+
+.CalendarMonth div div div div div table tbody tr td div {
+    min-height: 20px;
+    min-width: 155px;
+}
+
+.CalendarMonth .fc-event.fc-event-hori.fc-event-start.fc-event-end {
+    position: absolute !important;
+    width: 150px !important;
+}
+
+.fc-grid .fc-day-number {
+    margin-top: 10px;
+}
+
+.CalendarMonth .fc-event-inner {
+    height: 60px;
+}
+
+span.fc-event-time {
+    display: none;
+}
+
+label.AppointmentCount_1201 {
+    height: 20px;
+}
+
+label.AppointmentCount_1202 {
+    height: 20px;
+}
+
+label.AppointmentCount_1203 {
+    height: 20px;
+}
+
 /*------Estilo PopUp registro pacientes.--------*/
 form#frmCreatePatient ul li label {
     width: 45%;
@@ -576,6 +623,16 @@ div#Dialog_CreatePatient {
     min-height: 240px !important;
     min-width: 380px !important;
     overflow: hidden;
+}
+
+label.UserMessage {
+    width: 100% !important;
+    font-size: 12px !important;
+    margin-top: 10px;
+    line-height: 13px;
+}
+
+form#frmCreatePatient ul li span {
 }
 
 /*-----Estilo cambiar de tamaño citas de agenda-----*/

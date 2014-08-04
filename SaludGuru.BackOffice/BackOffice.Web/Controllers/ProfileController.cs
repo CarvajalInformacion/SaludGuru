@@ -907,6 +907,12 @@ namespace BackOffice.Web.Controllers
                         },
                         new OfficeInfoModel()
                         {
+                            OfficeInfoId= string.IsNullOrEmpty(Request["CatId_MarketPlaceEnabled"])?0:int.Parse(Request["CatId_MarketPlaceEnabled"].ToString().Trim()),
+                            OfficeInfoType = enumOfficeInfoType.MarketPlaceEnabled,
+                            Value = (!string.IsNullOrEmpty(Request["MarketPlaceEnabled"]) && Request["MarketPlaceEnabled"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
+                        new OfficeInfoModel()
+                        {
                             OfficeInfoId = string.IsNullOrEmpty(Request["CatId_Telephone"])?0:int.Parse(Request["CatId_Telephone"].ToString().Trim()),
                             OfficeInfoType = enumOfficeInfoType.Telephone,
                             Value = Request["Telephone"].ToString(),
@@ -946,6 +952,12 @@ namespace BackOffice.Web.Controllers
                             CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_DurationTime"])?0:int.Parse(Request["TrInf_DurationTime"].ToString().Trim()),
                             OfficeCategoryInfoType = enumOfficeCategoryInfoType.DurationTime,
                             Value = Request["Treatment-duration"].ToString(),
+                        },
+                        new TreatmentOfficeInfoModel()
+                        {
+                            CategoryInfoId= string.IsNullOrEmpty(Request["TrInf_MarketPlaceEnabled"])?0:int.Parse(Request["TrInf_MarketPlaceEnabled"].ToString().Trim()),
+                            OfficeCategoryInfoType = enumOfficeCategoryInfoType.MarketPlaceEnabled,
+                            Value = (!string.IsNullOrEmpty(Request["MarketPlaceEnabled"]) && Request["MarketPlaceEnabled"].ToString().ToLower() == "on") ? "true" : "false",
                         },
                         new TreatmentOfficeInfoModel()
                         {

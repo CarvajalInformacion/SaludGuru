@@ -222,7 +222,7 @@
                     </li>
                     <li>
                         <label>Apellidos</label>
-                        <input id="LastName" name="LastName" class="required" type="text" />
+                        <input id="LastName" name="LastName" type="text"/>
                     </li>
                     <li>
                         <label>Número Identificación</label>
@@ -238,7 +238,10 @@
                     </li>
                     <li>
                         <label>Plan médico</label>
-                        <input id="MedicalPlan" name="MedicalPlan" type="text" />
+                        <input id="MedicalPlan" name="MedicalPlan" class="required" type="text" />
+                    </li>
+                    <li>
+                        <label class="UserMessage">El paciente creado desde este formulario recibirá mensajes vía email y sms por defecto. Para modificar estas opciones dirijase a la página de edición de paciente.</label>
                     </li>
                 </ul>
             </form>
@@ -249,57 +252,11 @@ else
 {
     <script type="text/javascript">
         $(document).ready(function () {
-
+            
             //init upsert appointment object
             UpsertAppointmentObject.Init({
                 DivId: 'AppointmentUpsertContainer',
                 DivBlockId: 'BlockAppointmentContainer',
-            });
-
-            //Validate PopUp
-            $('#frmCreatePatient').validate({
-                //debug: true,
-                errorClass: 'error help-inline',
-                validClass: 'success',
-                errorElement: 'span',
-                highlight: function (element, errorClass, validClass) {
-                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
-
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
-                },
-                rules: {
-                    Name: {
-                        required: true,
-                    },
-                    LastName: {
-                        required: true,
-                    },
-                    Identifitacion: {
-                        required: true,
-                        minlength: 6,
-                    },
-                    Mobile: {
-                        required: true,
-                        maxlength: 10,
-                        minlength: 10
-                    }
-                },
-                messages: {
-                    Name: {
-                        required: "Debe ingresar el nombre",
-                    },
-                    LastName: {
-                        required: "Debe ingresar el apellido",
-                    },
-                    IdentificationNumber: {
-                        required: "Debe ingresar la identificación"
-                    },
-                    Mobile: {
-                        required: "Debe ingresar un número móvil"
-                    }
-                }
             });
         });
     </script>

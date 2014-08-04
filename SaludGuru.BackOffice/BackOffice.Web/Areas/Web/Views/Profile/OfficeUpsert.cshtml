@@ -58,8 +58,32 @@
                     }
                 </li>
                 <li>
+                    @{
+                        var CatInfo_MPE = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                            (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.MarketPlaceEnabled).
+                            Select(x => new
+                            {
+                                id = x.OfficeInfoId,
+                                val = !string.IsNullOrEmpty(x.Value) && x.Value.ToLower() == "true" ? true : false
+                            }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                            if(CatInfo_MPE != null)
+                            {
+                                <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_MPE.id" />
+                            }
+                    }
                     <label>Visible en marketplace</label>
-                    <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                    @if(CatInfo_MPE != null && CatInfo_MPE.val)
+                    {
+                        <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" checked="checked" />                        
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                    }
+                    
                 </li>
                 <li>
                     @{
