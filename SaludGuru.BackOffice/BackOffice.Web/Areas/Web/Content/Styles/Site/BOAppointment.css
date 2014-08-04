@@ -519,7 +519,7 @@ div.AppointmentStatus_1207 .fc-event-inner {
 /******************************Calendar by month*************************************/
 
 /*hide next and preview*/
-#Calendar-Left .ui-datepicker-prev, #Calendar-Right .ui-datepicker-next {
+/*#Calendar-Left .ui-datepicker-prev, #Calendar-Right .ui-datepicker-next {
     border: none;
     border-radius: 12px;
     padding: 0px;
@@ -542,7 +542,7 @@ div.AppointmentStatus_1207 .fc-event-inner {
     display: none;
 }
 /*hide calendar all day event*/
-#divMeetingCalendar .fc-agenda-allday {
+/*#divMeetingCalendar .fc-agenda-allday {
     display: none;
 }
 
@@ -554,7 +554,7 @@ div.AppointmentStatus_1207 .fc-event-inner {
     height: 20px;
     border: none;
     vertical-align: middle;
-}
+}*/
 
 
 /*------Estilos vista mes-------*/
@@ -563,21 +563,22 @@ div.AppointmentStatus_1207 .fc-event-inner {
     width: 155px;
     border: none;
     vertical-align: top;
-    margin-top: 10px;
+    margin-top: -30px;
+    position: absolute;
 }
 
 .CalendarMonth div#CalendarContent {
-    width: 126%;
+    width: calc(126%);
 }
 
 .CalendarMonth div div div div div table tbody tr td div {
-    min-height: 20px;
+    min-height: 38px;
     min-width: 155px;
 }
 
 .CalendarMonth .fc-event.fc-event-hori.fc-event-start.fc-event-end {
     position: absolute !important;
-    width: 150px !important;
+    width: 155px !important;
 }
 
 .fc-grid .fc-day-number {
@@ -585,24 +586,59 @@ div.AppointmentStatus_1207 .fc-event-inner {
 }
 
 .CalendarMonth .fc-event-inner {
-    height: 60px;
+    /*height: 60px;*/
 }
 
 span.fc-event-time {
     display: none;
 }
 
+label.AppointmentCount_1201, label.AppointmentCount_1202,
+label.AppointmentCount_1203 {
+    border-style: solid !important;
+    border-width: 1px 1px 1px 6px !important;
+    padding: 10px 2px;
+}
+
 label.AppointmentCount_1201 {
     height: 20px;
+    border-color: #d6ab00 !important;
 }
+
+    label.AppointmentCount_1201:hover {
+        background-color: #ffeea5;
+    }
 
 label.AppointmentCount_1202 {
     height: 20px;
+    border-color: #88aa00 !important;
 }
+
+    label.AppointmentCount_1202:hover {
+        background-color: #e4ff77;
+    }
 
 label.AppointmentCount_1203 {
     height: 20px;
+    border-color: #d40000 !important;
 }
+
+    label.AppointmentCount_1203:hover {
+        background-color: #ffabab;
+    }
+
+.CalendarMonth div.fc-event-inner {
+    border: none;
+}
+
+div.BOVerMasMeetingCalendarList span.fc-event-title > div > label {
+    width: 100% !important;
+}
+
+.fc-event-time, .fc-event-title {
+padding: 0 0px;
+}
+
 
 /*------Estilo PopUp registro pacientes.--------*/
 form#frmCreatePatient ul li label {
