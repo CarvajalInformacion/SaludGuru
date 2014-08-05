@@ -256,7 +256,6 @@ var ProfileAppointmentObject = {
                             }
                         },
                     },
-                    rowTemplate: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event').html(),
                     columns: [{
                         field: 'Monday',
                         title: ' ',
