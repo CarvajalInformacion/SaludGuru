@@ -26,7 +26,11 @@
         @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
     </div>
     <!--Profile Map-->
-    <div></div>
+    <div>
+        <div id="divOfficeMap" style="width:800px;height:800px;">
+
+        </div>
+    </div>
 </div>
 @{
     Model.RenderScripts = true;
@@ -38,6 +42,17 @@
     @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
     <script type="text/javascript">
         $(document).ready(function () {
+
+            var mapOptions = {
+                center: new google.maps.LatLng(4.680258, -74.081769),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(
+                document.getElementById("divOfficeMap"),
+                mapOptions);
+
         });
     </script>
 }
