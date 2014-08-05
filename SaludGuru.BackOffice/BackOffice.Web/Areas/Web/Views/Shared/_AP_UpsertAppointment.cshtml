@@ -162,7 +162,8 @@
 
         <!--Save result message-->
         <div id="SaveResultTemplate">
-            <p>La cita {AppointmentPublicId} se ha procesado {Status}.</p>
+            @*<p>La cita {AppointmentPublicId} se ha procesado {Status}.</p>*@
+            <p>La cita se ha procesado {Status}.</p>
         </div>
     </div>
     <!--dialogs-->
@@ -238,7 +239,7 @@
                     </li>
                     <li>
                         <label>Plan médico</label>
-                        <input id="MedicalPlan" name="MedicalPlan" class="required" type="text" />
+                        <input id="MedicalPlan" name="MedicalPlan" type="text" />
                     </li>
                     <li>
                         <label class="UserMessage">El paciente creado desde este formulario recibirá mensajes vía email y sms por defecto. Para modificar estas opciones dirijase a la página de edición de paciente.</label>
