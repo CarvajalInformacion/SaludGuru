@@ -3,7 +3,7 @@
 .month {
     /*border: 1px solid;
     border-color: red;*/
-    max-width: 1020px !important;
+    min-width: 1020px !important;
     max-height: calc(100%) !important;
     font-size: 14px; 
     left: 50%;
