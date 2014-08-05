@@ -23,7 +23,17 @@
 
         <!--appointment grid template-->
         <div id="divAppointmentSchedule_Template_Grid">
-            <div class="SelOfficeGrid" id="divGrid_${OfficePublicId}"></div>
+            <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
+                <div id="divGrid_Title_${OfficePublicId}">
+                    <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
+                    <span id="spanHeader_${OfficePublicId}"></span>
+                    <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
+                </div>
+                <div id="divGrid_${OfficePublicId}"></div>
+                <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
+                    <a href="javascript:;">Buscar siguiente horario disponible</a>
+                </div>
+            </div>
         </div>
 
         <!--appointment grid event template-->

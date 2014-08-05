@@ -166,6 +166,9 @@ namespace MarketPlace.Web.ControllersApi
                 oStartDateTime,
                 oEndDateTime);
 
+            if (CurrentAppointment == null)
+                CurrentAppointment = new List<AppointmentModel>();
+
             //get event model
 
             //create header
