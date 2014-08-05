@@ -39,11 +39,13 @@
             <input type="checkbox" name="chb_${ComunicationType}_${NotificationGuru ? NotificationGuru.Value + '_' + NotificationGuru.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification)_'}" class="${NotificationGuru ? 'SelectedChecked' : ''}" />
         </div>
 
-
-        <div id="template_Header">
-            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            <input class="BOAgregarButtons" type="submit" value="Guardar" />
-        </div>
+        @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ReadOnly)
+        {
+            <div id="template_Header">
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input class="BOAgregarButtons" type="submit" value="Guardar" />
+            </div>
+        }
     </div>
     @{
         //get json office data

@@ -541,8 +541,9 @@ div.AppointmentStatus_1207 .fc-event-inner {
 #Calendar-Left .ui-datepicker-next {
     display: none;
 }
+
 /*hide calendar all day event*/
-/*#divMeetingCalendar .fc-agenda-allday {
+#divMeetingCalendar .fc-agenda-allday {
     display: none;
 }
 
@@ -554,7 +555,7 @@ div.AppointmentStatus_1207 .fc-event-inner {
     height: 20px;
     border: none;
     vertical-align: middle;
-}*/
+}
 
 
 /*------Estilos vista mes-------*/
@@ -583,10 +584,6 @@ div.AppointmentStatus_1207 .fc-event-inner {
 
 .fc-grid .fc-day-number {
     margin-top: 10px;
-}
-
-.CalendarMonth .fc-event-inner {
-    /*height: 60px;*/
 }
 
 span.fc-event-time {

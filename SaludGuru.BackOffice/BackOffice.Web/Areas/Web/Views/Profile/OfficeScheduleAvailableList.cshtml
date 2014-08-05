@@ -107,7 +107,7 @@
                 StartTime = DateTime.Today.Add(x.StartTime).ToString("hh:mm tt"),
                 EndTime = DateTime.Today.Add(x.EndTime).ToString("hh:mm tt"),
                 CreateDate = x.CreateDate.ToString("yyyy/MM/dd hh:mm tt"),
-            }).ToList());
+            }).OrderBy(x => x.ScheduleDayName).ToList());
 }
 @section inlinescripts
 {
