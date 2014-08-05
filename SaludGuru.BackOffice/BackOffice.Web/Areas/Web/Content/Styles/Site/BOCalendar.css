@@ -1,22 +1,17 @@
 /*-------Calendario por mes--------*/
 
-/*.fc-day-number {
-    margin-top: 10px;
+.month {
+    /*border: 1px solid;
+    border-color: red;*/
+    max-width: 1020px !important;
+    max-height: calc(100%) !important;
+    font-size: 14px; 
+    left: 50%;
+    margin-left: -510px !important;
+    position: absolute;   
 }
 
-body {
-    line-height: 1 !important;
-}
 
-span.fc-event-title div {
-    width: 100%;
-    border: none;
-    vertical-align: top;
-    margin-top: 2px;
-}
-
-.div#divMeetingCalendar {
-}*/
 
 /*-------Calendario por semana--------*/
 
