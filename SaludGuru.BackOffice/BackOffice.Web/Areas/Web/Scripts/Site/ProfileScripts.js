@@ -138,6 +138,10 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
             type: "json",
             data: vScheduleData,
         },
+        sortable: {
+            mode: "multiple",
+            allowUnsort: false
+        },
         columns: [{
             field: "ScheduleDayName",
             title: "Día",
@@ -153,7 +157,8 @@ function OfficeScheduleAvailableListGrid(vidDiv, vScheduleData) {
         }, {
             field: "ScheduleAvailableId",
             title: "&nbsp;",
-            template: $("#templateDelete").html()
+            template: $("#templateDelete").html(),
+            width: 300
         }],
     });
 }

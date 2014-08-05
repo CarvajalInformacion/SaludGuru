@@ -54,6 +54,7 @@
         OldProfileId = 426,
         ShortProfile = 427,
         MarketPlaceSlotDuration = 428,
+        FeaturedProfile = 429,
 
         ImageProfileLarge = 420,
         ImageProfileSmallOriginal = 421,

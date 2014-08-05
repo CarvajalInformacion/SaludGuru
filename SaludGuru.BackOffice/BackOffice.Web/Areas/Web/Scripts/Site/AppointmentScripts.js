@@ -820,9 +820,6 @@ var UpsertAppointmentObject = {
                 required: true,
                 maxlength: 10,
                 minlength: 10
-            },
-            MedicalPlan: {
-                required: true,
             }
         };
 
@@ -838,12 +835,8 @@ var UpsertAppointmentObject = {
             },
             Mobile: {
                 required: "Debe ingresar un número móvil",
-                maxlength: "El número debe contener 10 digitos",
+                maxlength: "El número debe contener 10 dígitos",
                 minlength: "El número debe contener 10 dígitos",
-                return: false,
-            },
-            MedicalPlan: {
-                required: "Debe ingresar el plan médico",
                 return: false,
             }
         };

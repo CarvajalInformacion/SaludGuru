@@ -823,6 +823,12 @@ namespace BackOffice.Web.Controllers
                         },
                         new ProfileInfoModel()
                         {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_FeaturedProfile"])?0:int.Parse(Request["CatId_FeaturedProfile"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.FeaturedProfile,
+                            Value = (!string.IsNullOrEmpty(Request["FeaturedProfile"]) && Request["FeaturedProfile"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
+                        new ProfileInfoModel()
+                        {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_ProfileText"])?0:int.Parse(Request["CatId_ProfileText"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.ProfileText,
                             LargeValue = Request["ProfileText"].ToString(),
