@@ -1004,7 +1004,6 @@
     <Content Include="Areas\Web\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Index.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_AP_ProfileInfo.cshtml" />
-    <Content Include="Areas\Web\Views\Shared\_AP_PatientGroup.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_ImageSlider.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_BasicInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_DetailInfo.cshtml" />

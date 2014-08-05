@@ -62,7 +62,7 @@
                         <li>
                             @if (currentPatient != null)
                             {
-                                <input type="radio" name="SelectedItem" checked="checked" value="@item.PatientPublicId">
+                                <input type="radio" id="SelectedItem" name="SelectedItem" checked="checked" value="@item.PatientPublicId">
                                 <label>Yo</label>
                             }
                             else
@@ -120,11 +120,14 @@
     <!--patient template-->
     <ul id="ulPatientTemplate">
         <li>
-            <input type="radio" name="SelectedItem" value="{PatientPublicId}"  checked='checked'>
+            <input type="radio" name="SelectedNewItem" value="{PatientPublicId}"  checked='checked'>
             <label>{PatientName}</label>
         </li>
     </ul>
 </div>
+
+
+
 
 @section inlinescripts
 {
