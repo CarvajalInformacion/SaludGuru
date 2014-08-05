@@ -463,20 +463,25 @@ namespace SaludGuruProfile.Manager.Controller
 
                     oReturn.RelatedOffice.All(of =>
                     {
-                        of.RelatedTreatment = oAuxOffice1.
-                                        RelatedOffice.
-                                        Where(x => x.OfficePublicId == of.OfficePublicId).
-                                        Select(x => x.RelatedTreatment).
-                                        FirstOrDefault().
-                                        ToList();
+                        if (oAuxOffice1 != null)
+                        {
+                            of.RelatedTreatment = oAuxOffice1.
+                                            RelatedOffice.
+                                            Where(x => x.OfficePublicId == of.OfficePublicId).
+                                            Select(x => x.RelatedTreatment).
+                                            FirstOrDefault().
+                                            ToList();
+                        }
 
-                        of.ScheduleAvailable = oAuxOffice2.
-                                        RelatedOffice.
-                                        Where(x => x.OfficePublicId == of.OfficePublicId).
-                                        Select(x => x.ScheduleAvailable).
-                                        FirstOrDefault().
-                                        ToList();
-
+                        if (oAuxOffice2 != null)
+                        {
+                            of.ScheduleAvailable = oAuxOffice2.
+                                            RelatedOffice.
+                                            Where(x => x.OfficePublicId == of.OfficePublicId).
+                                            Select(x => x.ScheduleAvailable).
+                                            FirstOrDefault().
+                                            ToList();
+                        }
 
                         return true;
                     });
