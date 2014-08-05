@@ -561,25 +561,31 @@ div.AppointmentStatus_1207 .fc-event-inner {
 /*------Estilos vista mes-------*/
 
 .CalendarMonth div.BOVerMasMeetingCalendarList span.fc-event-title > div {
-    width: 155px;
+    width: 124px;
     border: none;
     vertical-align: top;
     margin-top: -30px;
     position: absolute;
+    text-align: left;
 }
 
-.CalendarMonth div#CalendarContent {
-    width: calc(126%);
+.CalendarMonth div#CalendarContent .fc {
+    text-align: right !important;
 }
 
 .CalendarMonth div div div div div table tbody tr td div {
-    min-height: 38px;
-    min-width: 155px;
+    min-height: 38px !important;
+    min-width: 140px !important;
+    float: left !important;
+}
+
+.CalendarMonth .fc-day.fc-fri.fc-widget-content.fc-past{
+    width: 130px !important;
 }
 
 .CalendarMonth .fc-event.fc-event-hori.fc-event-start.fc-event-end {
     position: absolute !important;
-    width: 155px !important;
+    width: 20px !important;
 }
 
 .fc-grid .fc-day-number {
@@ -633,7 +639,7 @@ div.BOVerMasMeetingCalendarList span.fc-event-title > div > label {
 }
 
 .fc-event-time, .fc-event-title {
-padding: 0 0px;
+    padding: 0 0px;
 }
 
 
