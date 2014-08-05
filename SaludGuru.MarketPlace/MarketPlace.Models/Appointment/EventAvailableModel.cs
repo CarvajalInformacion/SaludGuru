@@ -20,5 +20,25 @@ namespace MarketPlace.Models.Appointment
 
         public EventAvailableDayModel Saturday { get; set; }
 
+        public bool SlotIsEmpty
+        {
+            get
+            {
+                if(Monday.AvailableDate == null &&
+                    Tuesday.AvailableDate == null &&
+                    Wednesday.AvailableDate == null &&
+                    Thursday.AvailableDate == null &&
+                    Friday.AvailableDate == null &&
+                    Saturday.AvailableDate == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

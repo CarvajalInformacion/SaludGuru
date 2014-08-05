@@ -37,4 +37,6 @@ function AddPatientToList(vPatientModel) {
     $('#Identification').val("");
     $('#GenderFemale').prop("checked", false);
     $('#GenderMale').prop("checked", false);
+    $('#SelectedItem').prop("checked", false);
+    
 }
