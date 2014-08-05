@@ -233,7 +233,6 @@ var ProfileAppointmentObject = {
 
     RenderOfficeSchedule: function (vOfficePublicId) {
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
-
         if (CurrentOfficeDiv.length == 1) {
             if (CurrentOfficeDiv.children().length == 0) {
                 //startup grid
@@ -244,7 +243,7 @@ var ProfileAppointmentObject = {
                         transport: {
                             read: function (options) {
                                 $.ajax({
-                                    url: '/api/ScheduleAvailableApi?ProfilePublicId=' + this.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&NextAvailableDate=true&StartDateTime=&EndDateTime=',
+                                    url: '/api/ScheduleAvailableApi?ProfilePublicId=' + ProfileAppointmentObject.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&TreatmentId=&NextAvailableDate=true&StartDateTime=',
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
