@@ -1,5 +1,7 @@
-﻿@model MarketPlace.Models.Profile.ProfileViewModel
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
 
+@{
+}
 
 @if (!Model.RenderScripts)
 {
@@ -88,12 +90,13 @@ else
                 OrderBy(x => x.OfficeName).ToList());
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            ProfileAppointmentObject.Init({
+        $(document).ready(function () {            
+            debugger;
+            AppointmentObject.APInit({
                 DivId: 'divAppointmentSchedule',
                 OfficeInfo : @Html.Raw(oOfficeInfo),
             });
-            ProfileAppointmentObject.RenderAsync();
+            AppointmentObject.APRenderAsync();
         });
     </script>
 }

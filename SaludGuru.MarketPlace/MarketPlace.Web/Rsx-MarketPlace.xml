@@ -9,6 +9,10 @@
     <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
     <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
 
+    <!--google maps-->
+    <key name="GoogleMaps_ApiKey">AIzaSyCsN3eW8uN-AK_mazEkvPyXZiRSqOTEweI</key>
+    <key name="GoogleMaps_Sensor">false</key>
+
     <!--Enabled Cities-->
     <key name="Cities">1,Bogotá;</key>
 
