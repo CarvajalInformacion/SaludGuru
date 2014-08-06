@@ -37,6 +37,13 @@ namespace MarketPlace.Web
 
                 #endregion
 
+                #region jquery-ui-map
+
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap").Include(
+                             "~/Areas/Web/Scripts/jquery-ui-map/jquery.ui.map.full.min.js"));
+
+                #endregion
+
                 #region Modernizr
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Web/Scripts/modernizr-*"));

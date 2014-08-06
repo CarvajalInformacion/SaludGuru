@@ -476,6 +476,7 @@
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\slider-v.gif" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
+    <Content Include="Areas\Web\Scripts\jquery-ui-map\jquery.ui.map.full.min.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.core.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.player.ytiframe.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.slider.js" />
@@ -1008,6 +1009,8 @@
     <Content Include="Areas\Web\Views\Shared\_P_BasicInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_DetailInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_Appointment.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_Appointment.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_P_Map.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -25,6 +25,14 @@
 
         public const string C_Cookie_CookieKey = "SaludGuruCookie";
 
+        #region Google maps
+
+        public const string C_Settings_GoogleMaps_ApiKey = "GoogleMaps_ApiKey";
+
+        public const string C_Settings_GoogleMaps_Sensor = "GoogleMaps_Sensor";
+
+        #endregion
+
         public const string C_Settings_Cities = "Cities";
 
         public const string C_Settings_SaludGuru_FacebookProfile = "SaludGuru_FacebookProfile";
