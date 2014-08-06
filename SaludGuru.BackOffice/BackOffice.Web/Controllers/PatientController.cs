@@ -127,7 +127,7 @@ namespace BackOffice.Web.Controllers
                          new PatientInfoModel()
                         {
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_MedicalPlan"])?0:int.Parse(Request["CatId_MedicalPlan"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.MedicalPlain,
+                            PatientInfoType = enumPatientInfoType.MedicalPlan,
                             Value = Request["MedicalPlan"].ToString(),
                         },
                         new PatientInfoModel()

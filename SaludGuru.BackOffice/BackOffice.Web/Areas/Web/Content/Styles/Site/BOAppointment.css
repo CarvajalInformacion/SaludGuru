@@ -328,7 +328,7 @@ span.fc-header-title {
             /*--- Solo para el selector de oficina ---*/
             height: 22px;
             position: absolute;
-            right: calc(38%);
+            right: calc(38%) !important;
             top: 1%;
         }
 
@@ -659,7 +659,7 @@ div.AppointmentStatus_1207 .fc-event-inner {
 
 /*------Estilo PopUp registro pacientes.--------*/
 form#frmCreatePatient ul li label {
-    width: 45%;
+    width: 47%;
     font-size: 15px;
     font-weight: normal;
 }
@@ -685,7 +685,9 @@ label.UserMessage {
     line-height: 13px;
 }
 
-form#frmCreatePatient ul li span {
+
+form#frmCreatePatient select#Insurance {
+    width: 50%;
 }
 
 /*-----Estilo cambiar de tamaño citas de agenda-----*/

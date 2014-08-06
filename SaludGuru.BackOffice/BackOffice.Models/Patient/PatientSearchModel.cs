@@ -76,6 +76,18 @@ namespace BackOffice.Models.Patient
             }
         }
 
+        public string Insurance
+        {
+            get
+            {
+                return CurrentPatient.PatientInfo.
+                    Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Insurance).
+                    Select(y => y.Value).
+                    DefaultIfEmpty(string.Empty).
+                    FirstOrDefault();
+            }
+        }
+
         public List<PatientInfoModel> Notes
         {
             get

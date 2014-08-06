@@ -113,13 +113,12 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public PatientSearchModel PatientUpsert(string UpsertAction)
         {
-
             string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
 
             PatientUpSertModel Model = new PatientUpSertModel();
 
             Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
-            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+            //Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
 
             //get request model
             PatientModel PatientToCreate = GetPatientInfoRequestModel();
@@ -165,8 +164,14 @@ namespace BackOffice.Web.ControllersApi
                         },  
                         new PatientInfoModel()
                         {
+                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Insurance"])?0:int.Parse(HttpContext.Current.Request["CatId_Insurance"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.Insurance,
+                            Value = HttpContext.Current.Request["Insurance"].ToString(),
+                        },
+                        new PatientInfoModel()
+                        {
                             PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_MedicalPlan"])?0:int.Parse(HttpContext.Current.Request["CatId_MedicalPlan"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.MedicalPlain,
+                            PatientInfoType = enumPatientInfoType.MedicalPlan,
                             Value = HttpContext.Current.Request["MedicalPlan"].ToString(),
                         },
                         new PatientInfoModel()

@@ -11,7 +11,7 @@
         Mobile = 1007,
         ProfileImage = 1008,
         Insurance = 1009,
-        MedicalPlain = 1010,
+        MedicalPlan = 1010,
         DoctorNotes = 1011,
         Responsable = 1012,
         SendSMS = 1013,

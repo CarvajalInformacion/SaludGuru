@@ -1570,6 +1570,7 @@ var AppointmentDetailObject = {
             ApPatHtml = ApPatHtml.replace(/{IdentificationNumber}/gi, vPatientModel.IdentificationNumber);
             ApPatHtml = ApPatHtml.replace(/{Mobile}/gi, vPatientModel.Mobile);
             ApPatHtml = ApPatHtml.replace(/{Email}/gi, vPatientModel.Email);
+            ApPatHtml = ApPatHtml.replace(/{Insurance}/gi, vPatientModel.Insurance);
             ApPatHtml = ApPatHtml.replace(/{PatientPublicId}/gi, vPatientModel.PatientPublicId);
 
             $('#lstPatient').append(ApPatHtml);
