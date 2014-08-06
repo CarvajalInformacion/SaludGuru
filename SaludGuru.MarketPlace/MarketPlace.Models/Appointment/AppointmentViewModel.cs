@@ -15,5 +15,7 @@ namespace MarketPlace.Models.Appointment
         public ProfileModel CurrentProfile { get; set; }
 
         public List<PatientModel> PatientGroup { get; set; }
+
+        public bool RenderScripts { get; set; }
     }
 }

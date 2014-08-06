@@ -1,6 +1,7 @@
 ﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
 @{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+    Model.RenderScripts = false;
 }
 
 <h2>Index</h2>
@@ -114,35 +115,59 @@
     </form>
 </div>
 
+<!--Profile Schedule-->
+
+<div id="FreeScheduleId" style="display:none">
+    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
+</div>
+
+<input type="button" id="DateInfoId" value= "Ver más info de la cita" /> 
+
 <!--templates-->
 <div style="display:none">
 
     <!--patient template-->
     <ul id="ulPatientTemplate">
         <li>
-            <input type="radio" name="SelectedNewItem" value="{PatientPublicId}"  checked='checked'>
+            <input type="radio" name="SelectedNewItem" value="{PatientPublicId}" checked='checked'>
             <label>{PatientName}</label>
         </li>
     </ul>
 </div>
 
-
-
-
+@{
+    Model.RenderScripts = true;
+}
 @section inlinescripts
 {
+    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
-
-        $("#isSomeBody").click(function () {
-            $("#NewPatient").show();
-        });
-
-        $("#GenderFemale").click(function () {
-            $("#GenderMale").attr('checked', false);
-        });
-
-        $("#GenderMale").click(function () {
-            $("#GenderFemale").attr('checked', false);
+        $(document).ready(function () {
+           
+            $("#isSomeBody").click(function () {
+                $("#NewPatient").show();
+            });
+            $("#GenderFemale").click(function () {
+                $("#GenderMale").attr('checked', false);
+            });
+            $("#GenderMale").click(function () {
+                $("#GenderFemale").attr('checked', false);
+            });
+            $("#DateInfoId").click(function () {
+                debugger;
+                $("#FreeScheduleId").show();
+            });
+            
+            //$("#FreeScheduleId").dialog({
+            //    autoOpen: false,
+            //    width: 600,
+            //    draggable: false,
+            //    resizable: false,
+            //    modal: true,
+            //    show: "fade",
+            //    hide: "fade",
+            //    closeText: 'X'
+            //});
         });
     </script>
 }

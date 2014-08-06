@@ -1,0 +1,102 @@
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
+
+@{
+}
+
+@if (!Model.RenderScripts)
+{
+    <div>
+        <ul id="divAppointmentSchedule_Menu"></ul>
+        <div id="divAppointmentSchedule">
+        </div>
+    </div>
+
+    <!--templates-->
+    <div style="display:none;">
+
+        <!--appointment menu template-->
+        <div id="divAppointmentSchedule_Template_Menu">
+            <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
+                <a href="javascript:;">${OfficeName}</a>
+            </li>
+        </div>
+
+        <!--appointment grid template-->
+        <div id="divAppointmentSchedule_Template_Grid">
+            <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
+                <div id="divGrid_Title_${OfficePublicId}">
+                    <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
+                    <span id="spanHeader_${OfficePublicId}"></span>
+                    <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
+                </div>
+                <div id="divGrid_${OfficePublicId}"></div>
+                <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
+                    <a href="javascript:;">Buscar siguiente horario disponible</a>
+                </div>
+            </div>
+        </div>
+
+        <!--appointment grid event template-->
+        <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
+            <a class="${Monday.CurrentStyle}" href="javascrip:;">
+                ${Monday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
+            <a class="${Tuesday.CurrentStyle}" href="javascrip:;">
+                ${Tuesday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
+            <a class="${Wednesday.CurrentStyle}" href="javascrip:;">
+                ${Wednesday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
+            <a class="${Thursday.CurrentStyle}" href="javascrip:;">
+                ${Thursday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
+            <a class="${Friday.CurrentStyle}" href="javascrip:;">
+                ${Friday.AvailableDateText}
+            </a>
+        </div>
+        <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
+            <a class="${Saturday.CurrentStyle}" href="javascrip:;">
+                ${Saturday.AvailableDateText}
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    //create office calendar object
+    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.
+            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+            Select(of =>
+                new
+                {
+                    ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
+    <script type="text/javascript">
+        $(document).ready(function () {            
+            debugger;
+            AppointmentObject.APInit({
+                DivId: 'divAppointmentSchedule',
+                OfficeInfo : @Html.Raw(oOfficeInfo),
+            });
+            AppointmentObject.APRenderAsync();
+        });
+    </script>
+}

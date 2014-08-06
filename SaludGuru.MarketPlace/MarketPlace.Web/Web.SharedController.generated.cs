@@ -36,6 +36,7 @@ namespace T4MVC.Web
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _AP_Appointment = "_AP_Appointment";
                 public readonly string _AP_ProfileInfo = "_AP_ProfileInfo";
                 public readonly string _L_Footer = "_L_Footer";
                 public readonly string _L_Header = "_L_Header";
@@ -46,6 +47,7 @@ namespace T4MVC.Web
                 public readonly string _P_ImageSlider = "_P_ImageSlider";
                 public readonly string _P_Map = "_P_Map";
             }
+            public readonly string _AP_Appointment = "~/Areas/Web/Views/Shared/_AP_Appointment.cshtml";
             public readonly string _AP_ProfileInfo = "~/Areas/Web/Views/Shared/_AP_ProfileInfo.cshtml";
             public readonly string _L_Footer = "~/Areas/Web/Views/Shared/_L_Footer.cshtml";
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";

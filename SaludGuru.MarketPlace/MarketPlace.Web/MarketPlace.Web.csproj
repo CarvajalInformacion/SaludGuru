@@ -1009,6 +1009,7 @@
     <Content Include="Areas\Web\Views\Shared\_P_BasicInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_DetailInfo.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_Appointment.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_AP_Appointment.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_P_Map.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
