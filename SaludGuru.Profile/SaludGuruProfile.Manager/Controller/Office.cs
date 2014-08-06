@@ -84,7 +84,17 @@ namespace SaludGuruProfile.Manager.Controller
         {
             ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsBasicInfo(ProfilePublicId);
 
-            ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsCategory(ProfilePublicId);
+            ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.ProfileGetFullAdminCategory(ProfilePublicId);
+
+            if (oAux != null)
+            {
+                oReturn.RelatedSpecialty = oAux.RelatedSpecialty;
+                oReturn.DefaultSpecialty = oAux.DefaultSpecialty;
+                oReturn.RelatedInsurance = oAux.RelatedInsurance;
+                oReturn.RelatedTreatment = oAux.RelatedTreatment;
+            }
+
+            oAux = DAL.Controller.ProfileDataController.Instance.OfficeGetScheduleSettingsCategory(ProfilePublicId);
 
             if (oAux != null && oAux.RelatedOffice != null)
             {
