@@ -243,6 +243,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />
+    <Content Include="Areas\Web\Content\Images\agendaMenuIcon.png" />
+    <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
+    <Content Include="Areas\Web\Content\Images\BOnotificationsSmall.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarCopy.png" />
+    <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
+    <Content Include="Areas\Web\Content\Images\calendarActionsSprite.png" />
+    <Content Include="Areas\Web\Content\Images\cerrar.png" />
+    <Content Include="Areas\Web\Content\Images\dashboardMenuIcon.png" />
+    <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
+    <Content Include="Areas\Web\Content\Images\iconocampanasonando.png" />
+    <Content Include="Areas\Web\Content\Images\logInDoctorSmall.png" />
+    <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
+    <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
+    <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.min.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css" />
@@ -476,6 +497,18 @@
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\slider-v.gif" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPAgenda.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPDoctorProfile.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPFooter.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPForms.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPGeneralStyles.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPHome.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPHomeSearchBox.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPPatientDashBoard.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPReset.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPResults.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPschedule.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPSearchBox.css" />
     <Content Include="Areas\Web\Scripts\jquery-ui-map\jquery.ui.map.full.min.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.core.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.player.ytiframe.js" />
@@ -490,6 +523,24 @@
     <Content Include="Areas\Web\Views\web.config" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.css.map" />
     <Content Include="Areas\Web\Content\Styles\bootstrap.css.map" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MuseoSans-100.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-BoldCondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Cond.woff" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-CondIt.otf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.eot" />
+    <Content Include="Areas\Web\Content\Fonts\MYRIADPRO-REGULAR.OTF" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.ttf" />
+    <Content Include="Areas\Web\Content\Fonts\MyriadPro-Regular.woff" />
     <None Include="Areas\Web\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
@@ -1039,9 +1090,6 @@
     <Folder Include="Areas\Mobile\Controllers\" />
     <Folder Include="Areas\Mobile\Models\" />
     <Folder Include="Areas\Mobile\Views\Shared\" />
-    <Folder Include="Areas\Web\Content\Fonts\" />
-    <Folder Include="Areas\Web\Content\Images\" />
-    <Folder Include="Areas\Web\Content\Styles\Site\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
