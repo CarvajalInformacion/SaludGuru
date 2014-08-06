@@ -588,45 +588,45 @@ div.AppointmentStatus_1207 .fc-event-inner {
     width: 20px !important;
 }
 
-.fc-grid .fc-day-number {
+.CalendarMonth .fc-grid .fc-day-number {
     margin-top: 10px;
 }
 
-span.fc-event-time {
+.CalendarMonth span.fc-event-time {
     display: none;
 }
 
-label.AppointmentCount_1201, label.AppointmentCount_1202,
-label.AppointmentCount_1203 {
+.CalendarMonth label.AppointmentCount_1201, .CalendarMonth label.AppointmentCount_1202,
+ .CalendarMonth label.AppointmentCount_1203 {
     border-style: solid !important;
     border-width: 1px 1px 1px 6px !important;
     padding: 10px 2px;
 }
 
-label.AppointmentCount_1201 {
+.CalendarMonth label.AppointmentCount_1201 {
     height: 20px;
     border-color: #d6ab00 !important;
 }
 
-    label.AppointmentCount_1201:hover {
+    .CalendarMonth label.AppointmentCount_1201:hover {
         background-color: #ffeea5;
     }
 
-label.AppointmentCount_1202 {
+.CalendarMonth label.AppointmentCount_1202 {
     height: 20px;
     border-color: #88aa00 !important;
 }
 
-    label.AppointmentCount_1202:hover {
+    .CalendarMonth label.AppointmentCount_1202:hover {
         background-color: #e4ff77;
     }
 
-label.AppointmentCount_1203 {
+.CalendarMonth label.AppointmentCount_1203 {
     height: 20px;
     border-color: #d40000 !important;
 }
 
-    label.AppointmentCount_1203:hover {
+    .CalendarMonth label.AppointmentCount_1203:hover {
         background-color: #ffabab;
     }
 
@@ -634,11 +634,11 @@ label.AppointmentCount_1203 {
     border: none;
 }
 
-div.BOVerMasMeetingCalendarList span.fc-event-title > div > label {
+.CalendarMonth div.BOVerMasMeetingCalendarList span.fc-event-title > div > label {
     width: 100% !important;
 }
 
-.fc-event-time, .fc-event-title {
+.CalendarMonth .fc-event-time, .fc-event-title {
     padding: 0 0px;
 }
 

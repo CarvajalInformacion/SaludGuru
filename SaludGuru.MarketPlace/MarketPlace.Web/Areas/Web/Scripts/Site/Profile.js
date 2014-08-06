@@ -373,3 +373,46 @@ var ProfileAppointmentObject = {
         });
     },
 };
+
+
+/*profile office appointment render method*/
+var ProfileMapObject = {
+
+    /*profile info*/
+    DivId: '',
+    lstOffice: new Array(),
+
+    /*init meeting calendar variables*/
+    Init: function (vInitObject) {
+        //init render info
+        this.DivId = vInitObject.DivId;
+
+        //init office info object array
+        $.each(vInitObject.OfficeInfo, function (index, value) {
+            //set key value pair for an office
+            ProfileMapObject.lstOffice[value.OfficePublicId] = value;
+        });
+    },
+
+    RenderAsync: function () {
+        //start map
+        $('#' + ProfileMapObject.DivId).gmap({
+            'center': '4.680258, -74.081769',
+            'zoom': 10,
+            'disableDefaultUI': true,
+        });
+
+        for (var item in this.lstOffice) {
+
+            $('#' + ProfileMapObject.DivId).gmap('addMarker', {
+                'position': '4.680258, -74.081769',
+            }).click(function () {
+                $('#' + ProfileMapObject.DivId).gmap('openInfoWindow',
+                    {
+                        'content': 'TEXT_AND_HTML_IN_INFOWINDOW jairo jairo'
+                    }, this);
+            });;
+
+        }
+    },
+};

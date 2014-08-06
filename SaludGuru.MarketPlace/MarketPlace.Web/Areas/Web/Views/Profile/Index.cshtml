@@ -26,7 +26,9 @@
         @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
     </div>
     <!--Profile Map-->
-    <div></div>
+    <div>
+        @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
+    </div>
 </div>
 @{
     Model.RenderScripts = true;
@@ -36,8 +38,5 @@
     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
     @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
     @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
-    <script type="text/javascript">
-        $(document).ready(function () {
-        });
-    </script>
+    @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
 }

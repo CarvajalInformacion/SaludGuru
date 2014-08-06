@@ -45,6 +45,7 @@ namespace T4MVC.Web
                 public readonly string _P_BasicInfo = "_P_BasicInfo";
                 public readonly string _P_DetailInfo = "_P_DetailInfo";
                 public readonly string _P_ImageSlider = "_P_ImageSlider";
+                public readonly string _P_Map = "_P_Map";
             }
             public readonly string _AP_Appointment = "~/Areas/Web/Views/Shared/_AP_Appointment.cshtml";
             public readonly string _AP_ProfileInfo = "~/Areas/Web/Views/Shared/_AP_ProfileInfo.cshtml";
@@ -55,6 +56,7 @@ namespace T4MVC.Web
             public readonly string _P_BasicInfo = "~/Areas/Web/Views/Shared/_P_BasicInfo.cshtml";
             public readonly string _P_DetailInfo = "~/Areas/Web/Views/Shared/_P_DetailInfo.cshtml";
             public readonly string _P_ImageSlider = "~/Areas/Web/Views/Shared/_P_ImageSlider.cshtml";
+            public readonly string _P_Map = "~/Areas/Web/Views/Shared/_P_Map.cshtml";
         }
     }
 
