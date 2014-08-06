@@ -118,15 +118,18 @@ namespace BackOffice.Web.ControllersApi
             PatientUpSertModel Model = new PatientUpSertModel();
 
             Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
-            //Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+            PatientModel PatientToCreate = new PatientModel();
 
-            //get request model
-            PatientModel PatientToCreate = GetPatientInfoRequestModel();
+            if (Model != null)
+            {
+                //get request model
+                PatientToCreate = GetPatientInfoRequestModel();
 
-            //create patient 
-            string oPatientPublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
+                //create patient 
+                string oPatientPublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
 
-            PatientToCreate = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oPatientPublicId);
+                PatientToCreate = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oPatientPublicId);
+            }
 
             return new PatientSearchModel(PatientToCreate);
         }
