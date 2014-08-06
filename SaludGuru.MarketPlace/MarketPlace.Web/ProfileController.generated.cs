@@ -95,7 +95,9 @@ namespace MarketPlace.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
+            public readonly string DoctorName = "DoctorName";
             public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string SpecialtyName = "SpecialtyName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,14 +119,16 @@ namespace MarketPlace.Web.Controllers
         public T4MVC_ProfileController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string DoctorName, string ProfilePublicId, string SpecialtyName);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult Index(string DoctorName, string ProfilePublicId, string SpecialtyName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "DoctorName", DoctorName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            IndexOverride(callInfo, ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyName", SpecialtyName);
+            IndexOverride(callInfo, DoctorName, ProfilePublicId, SpecialtyName);
             return callInfo;
         }
 

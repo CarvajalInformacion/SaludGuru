@@ -31,6 +31,7 @@ public static partial class MVC
     public static WebClass Web { get { return s_Web; } }
     public static MarketPlace.Web.Controllers.AppointmentController Appointment = new MarketPlace.Web.Controllers.T4MVC_AppointmentController();
     public static MarketPlace.Web.Controllers.BaseController Base = new MarketPlace.Web.Controllers.T4MVC_BaseController();
+    public static MarketPlace.Web.Controllers.ErrorController Error = new MarketPlace.Web.Controllers.T4MVC_ErrorController();
     public static MarketPlace.Web.Controllers.HomeController Home = new MarketPlace.Web.Controllers.T4MVC_HomeController();
     public static MarketPlace.Web.Controllers.ProfileController Profile = new MarketPlace.Web.Controllers.T4MVC_ProfileController();
     public static MarketPlace.Web.Controllers.SearchController Search = new MarketPlace.Web.Controllers.T4MVC_SearchController();
@@ -50,6 +51,7 @@ namespace T4MVC
     {
         public readonly string Name = "Web";
         public MarketPlace.Web.Areas.Web.Controllers.AppointmentController Appointment = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_AppointmentController();
+        public MarketPlace.Web.Areas.Web.Controllers.ErrorController Error = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_ErrorController();
         public MarketPlace.Web.Areas.Web.Controllers.HomeController Home = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_HomeController();
         public MarketPlace.Web.Areas.Web.Controllers.ProfileController Profile = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_ProfileController();
         public MarketPlace.Web.Areas.Web.Controllers.SearchController Search = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_SearchController();
