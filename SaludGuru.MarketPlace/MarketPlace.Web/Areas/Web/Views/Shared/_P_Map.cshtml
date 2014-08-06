@@ -3,12 +3,24 @@
 @if (!Model.RenderScripts)
 {
     <div>
-        <div id="divOfficeMap" style="width:800px;height:800px;">
+        <div id="divOfficeMap" style="width:700px;height:300px;">
         </div>
     </div>
 
     <!--templates-->
     <div style="display:none;">
+        <!--tool tip template-->
+        <div id="OfficeToolTip_divOfficeMap">
+            <div>
+                <img src="${ProfileImage}" />
+                <div>
+                    <label>${OfficeName}</label>
+                    <span>${Address}</span>
+                    <span>${Telephone}</span>
+                </div>
+            </div>
+
+        </div>
     </div>
 }
 else
@@ -30,17 +42,53 @@ else
                         FirstOrDefault(),
                     OfficePublicId = of.OfficePublicId,
                     OfficeName = of.Name,
-                    OfficeDescription = of.OfficeInfo,
+                    Geolocation = of.OfficeInfo.
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
+                    Address = of.OfficeInfo.
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
+                    Telephone = of.OfficeInfo.
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
                     IsDefault = of.IsDefault,
                     City = of.City,
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
+
+    List<double> lstLat = Model.CurrentProfile.RelatedOffice.
+            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+            Select(lat => lat.OfficeInfo.
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                        Select(x => Convert.ToDouble(x.Value.Split(',')[0], System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"))).
+                        DefaultIfEmpty(0).
+                        FirstOrDefault()).
+            ToList();
+
+    List<double> lstLon = Model.CurrentProfile.RelatedOffice.
+            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+            Select(lat => lat.OfficeInfo.
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                        Select(x => Convert.ToDouble(x.Value.Split(',')[1], System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"))).
+                        DefaultIfEmpty(0).
+                        FirstOrDefault()).
+            ToList();
+
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
             ProfileMapObject.Init({
                 DivId: 'divOfficeMap',
                 OfficeInfo : @Html.Raw(oOfficeInfo),
+                CenterMap: '@(((lstLat.Min() + lstLat.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")) + "," + ((lstLon.Min() + lstLon.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")))',
             });
             ProfileMapObject.RenderAsync();
         });

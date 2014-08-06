@@ -380,12 +380,14 @@ var ProfileMapObject = {
 
     /*profile info*/
     DivId: '',
+    CenterMap: '0,0',
     lstOffice: new Array(),
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
         //init render info
         this.DivId = vInitObject.DivId;
+        this.CenterMap = vInitObject.CenterMap;
 
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
@@ -395,24 +397,30 @@ var ProfileMapObject = {
     },
 
     RenderAsync: function () {
+        debugger;
         //start map
         $('#' + ProfileMapObject.DivId).gmap({
-            'center': '4.680258, -74.081769',
-            'zoom': 10,
+            'center': ProfileMapObject.CenterMap,
+            'zoom': 12,
             'disableDefaultUI': true,
         });
 
         for (var item in this.lstOffice) {
+            //get tool tip for office
+            var oToolTip = $('#OfficeToolTip_' + ProfileMapObject.DivId).html();
+            oToolTip = oToolTip.replace(/\${ProfileImage}/gi, ProfileMapObject.lstOffice[item].ProfileImage);
+            oToolTip = oToolTip.replace(/\${OfficeName}/gi, ProfileMapObject.lstOffice[item].OfficeName);
+            oToolTip = oToolTip.replace(/\${Address}/gi, ProfileMapObject.lstOffice[item].Address);
+            oToolTip = oToolTip.replace(/\${Telephone}/gi, ProfileMapObject.lstOffice[item].Telephone);
 
             $('#' + ProfileMapObject.DivId).gmap('addMarker', {
-                'position': '4.680258, -74.081769',
+                'position': ProfileMapObject.lstOffice[item].Geolocation,
             }).click(function () {
                 $('#' + ProfileMapObject.DivId).gmap('openInfoWindow',
                     {
-                        'content': 'TEXT_AND_HTML_IN_INFOWINDOW jairo jairo'
+                        'content': oToolTip
                     }, this);
-            });;
-
+            });
         }
     },
 };
