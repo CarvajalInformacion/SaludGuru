@@ -26,6 +26,11 @@
     <!--Facebook Icon-->
     <key name="Profile_FacebookIcon">https://s3.amazonaws.com/devsaludguruimg/0MPImages/FacebookIcon.jpg</key>
 
+    <!--invalid url characters-->
+    <key name="Url_Invalid_Char">
+      <![CDATA[á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
+    </key>
+
   </MarketPlace>
 </Settings>
 
