@@ -18,5 +18,15 @@ namespace BackOffice.Models.Patient
         public List<AppointmentModel> RelatedAppointment { get; set; }
 
         public List<SaludGuruProfile.Manager.Models.General.InsuranceModel> Insurance { get; set; }
+
+        public List<PatientInfoModel> Notes
+        {
+            get
+            {
+                return Patient.PatientInfo.
+                    Where(y => y.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.DoctorNotes).
+                    ToList();
+            }
+        }
     }
 }

@@ -66,6 +66,16 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult PatientNotes(string PatientPublicId)
+        {
+            PatientUpSertModel Model = new PatientUpSertModel()
+            {
+                Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
+            };
+
+            return View(Model);
+        }
+
         #region Private methods
 
         private PatientModel GetPatientInfoRequestModel()

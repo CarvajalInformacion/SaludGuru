@@ -1200,6 +1200,7 @@
     <Content Include="Areas\Web\Views\Shared\_AP_UpsertAppointment.cshtml" />
     <Content Include="Areas\Web\Views\Profile\RelatedProfileSearch.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Detail.cshtml" />
+    <Content Include="Areas\Web\Views\Patient\PatientNotes.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

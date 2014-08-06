@@ -111,3 +111,18 @@ function RenderPatientAppointment (vDivId, vPatientPublicId) {
         }]
     });
 }
+
+//init grid
+function PatientNotesListGrid(vidDiv, vDataPatientNotes) {
+    $('#' + vidDiv).kendoGrid({
+        //toolbar: [{ template: '<a href="' + oCreateUrl + '">Nueva Especialidad</a>' }],
+        dataSource: {
+            type: "json",
+            data: vDataPatientNotes,
+        },
+        columns: [{
+            field: "Id",
+            title: " "
+        }]
+    });
+}

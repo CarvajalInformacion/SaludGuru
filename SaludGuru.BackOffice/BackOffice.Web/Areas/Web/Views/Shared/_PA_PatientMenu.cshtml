@@ -35,6 +35,7 @@
         <h2>@(Model.Patient.Name + " " + Model.Patient.LastName)</h2>
     </div>
     <div>
+
         <ul>
             @foreach (BackOffice.Models.General.MenuPatientModel oMenu in PatientMenu)
             {
@@ -53,6 +54,11 @@
                         strAction = Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Citas";
+                        break;
+                    case BackOffice.Models.General.enumMenuPatient.Notes:
+                        strAction = Url.Action(MVC.Patient.ActionNames.PatientNotes, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Notas";
                         break;
                     default:
                         break;
