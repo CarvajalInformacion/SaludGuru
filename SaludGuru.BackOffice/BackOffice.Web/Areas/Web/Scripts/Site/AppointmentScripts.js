@@ -1,6 +1,6 @@
 ﻿/*calendar render method*/
 var CalendarObject = {
-
+    
     /*calendar info*/
     DivId: '',
     CountryId: '',
@@ -1095,6 +1095,20 @@ var UpsertAppointmentObject = {
         if (vAppointmentInfo != null) {
             $('#BlockDate').val(vAppointmentInfo.StartDate);
         }
+        else if (CalendarObject.StartDate != null) {
+            var vDateAux = '';
+            if (CalendarObject.StartDate.getDate() < 10) {
+                vDateAux = vDateAux + '0';
+            }
+            vDateAux = vDateAux + CalendarObject.StartDate.getDate() + '/';
+
+            if (CalendarObject.StartDate.getMonth() < 9) {
+                vDateAux = vDateAux + '0';
+            }
+            vDateAux = vDateAux + ((new Number(CalendarObject.StartDate.getMonth())) + 1) + '/' + CalendarObject.StartDate.getFullYear();
+
+            $('#BlockDate').val(vDateAux);
+        }
         else {
             $('#BlockDate').val('');
         }
@@ -1125,6 +1139,14 @@ var UpsertAppointmentObject = {
         }
         else {
             $('#BlockEndTime').val('');
+        }
+
+        //load actions
+        if (vAppointmentInfo != null) {
+            $('#BlockAppointmentContainer .AppointmentActionsCancel').show();
+        }
+        else {
+            $('#BlockAppointmentContainer .AppointmentActionsCancel').hide();
         }
 
         //display create appointment form
@@ -1184,6 +1206,51 @@ var UpsertAppointmentObject = {
 
         //submit ajax form
         $("#frmBlockAppointment").submit();
+    },
+
+    SaveUnBlockAppointment: function () {
+        
+        //ajax for unblock appointment
+        $.ajax(
+        {
+            url: '/api/AppointmentApi?BlockAppointmentPublicId=' + $('#BlockAppointmentPublicId').val(),
+            type: "POST",
+            success: function (data, textStatus, jqXHR) {
+                //refresh all controls
+                UpsertAppointmentObject.Refresh();
+
+                //show success message
+                var oMsj = $('#SaveResultTemplate').html();
+                oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                oMsj = oMsj.replace(/{Status}/gi, 'correctamente');
+
+                $("#Dialog_SaveResult").html(oMsj);
+                $("#Dialog_SaveResult").dialog();
+
+                //hidde create appointment form
+                $('#' + UpsertAppointmentObject.DivId).hide();
+                $('#' + UpsertAppointmentObject.DivBlockId).hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //refresh all controls
+                UpsertAppointmentObject.Refresh();
+
+                //show success message
+                var oMsj = $('#SaveResultTemplate').html();
+                oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                $("#Dialog_SaveResult").html(oMsj);
+                $("#Dialog_SaveResult").dialog();
+
+                //hidde create appointment form
+                $('#' + UpsertAppointmentObject.DivId).hide();
+                $('#' + UpsertAppointmentObject.DivBlockId).hide();
+            }
+        });
+
+        //hidde create appointment form
+        $('#' + this.DivBlockId).hide();
     },
 
     Refresh: function () {

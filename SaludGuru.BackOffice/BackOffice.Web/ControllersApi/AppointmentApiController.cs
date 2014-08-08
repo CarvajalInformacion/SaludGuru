@@ -158,6 +158,23 @@ namespace BackOffice.Web.ControllersApi
 
         [HttpPost]
         [HttpGet]
+        public void UnBlockAppointment(string BlockAppointmentPublicId)
+        {
+            if (!string.IsNullOrEmpty(BlockAppointmentPublicId))
+            { 
+                AppointmentModel AppointmentToUpsert = new AppointmentModel()
+                {
+                    AppointmentPublicId = BlockAppointmentPublicId,
+                    Status = enumAppointmentStatus.UnBlockCalendar,
+                };
+
+                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus
+                    (AppointmentToUpsert);
+            }
+        }
+
+        [HttpPost]
+        [HttpGet]
         public List<ScheduleEventMonthModel> GetAppoinmentByOfficeMonth(string OfficePublicId, string StartDate)
         {
             List<AppointmentMonthModel> lstAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetByOfficeIdMonth
