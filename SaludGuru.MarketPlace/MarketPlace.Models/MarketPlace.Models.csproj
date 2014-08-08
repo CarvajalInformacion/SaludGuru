@@ -60,6 +60,7 @@
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="Profile\ProfileViewModel.cs" />
+    <Compile Include="Profile\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

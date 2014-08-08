@@ -12,5 +12,11 @@ namespace MarketPlace.Models.Profile
         public ProfileModel CurrentProfile { get; set; }
 
         public bool RenderScripts { get; set; }
+
+        public bool IsNoIndex { get; set; }
+
+        public bool IsNoFollow { get; set; }
+
+        public bool IsRedirect { get; set; }
     }
 }

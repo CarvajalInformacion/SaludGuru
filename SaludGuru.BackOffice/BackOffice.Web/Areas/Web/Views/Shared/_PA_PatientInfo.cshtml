@@ -189,13 +189,12 @@
                 {
                     <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="@valueInsurance.id" />
                 }
-
             </li>
             <li>
                 @{
                     var CatInfo_MP = Model.Patient == null ? null :
                         Model.Patient.PatientInfo.Where
-                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.MedicalPlain).
+                            (x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.MedicalPlan).
                             Select(x => new { id = x.PatientInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();

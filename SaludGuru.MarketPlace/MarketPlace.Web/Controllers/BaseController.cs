@@ -122,5 +122,46 @@ namespace MarketPlace.Web.Controllers
         }
 
         #endregion
+
+        #region Url Methods
+
+        private static Dictionary<char, char> oReplaceChar;
+        public static Dictionary<char, char> ReplaceChar
+        {
+            get
+            {
+                if (oReplaceChar == null)
+                {
+                    oReplaceChar = new Dictionary<char, char>();
+                    MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Url_Invalid_Char].Value.
+                        Split(';').All(ch =>
+                        {
+                            char okey = ch.Split(',')[0][0];
+                            char oval = ch.Split(',')[1][0];
+                            oReplaceChar[okey] = oval;
+                            return true;
+                        });
+                }
+
+                return oReplaceChar;
+            }
+        }
+
+        public static string RemoveAccent(string strToEval)
+        {
+            string oReturn = strToEval.ToLower();
+
+            ReplaceChar.All(rc =>
+            {
+                oReturn = oReturn.Replace(rc.Key, rc.Value);
+                return true;
+            });
+
+            oReturn = string.Join("+", oReturn.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+
+            return oReturn;
+        }
+
+        #endregion
     }
 }

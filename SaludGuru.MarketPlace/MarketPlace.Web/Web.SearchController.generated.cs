@@ -57,6 +57,12 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SearchController Actions { get { return MVC.Web.Search; } }
@@ -83,6 +89,20 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string SpecialityName = "SpecialityName";
+            public readonly string TreatmentName = "TreatmentName";
+            public readonly string InsuranceName = "InsuranceName";
+            public readonly string CityName = "CityName";
+            public readonly string Query = "Query";
+            public readonly string Page = "Page";
+            public readonly string Order = "Order";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -93,7 +113,9 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Index = "Index";
             }
+            public readonly string Index = "~/Areas/Web/Views/Search/Index.cshtml";
         }
     }
 
@@ -103,13 +125,20 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         public T4MVC_SearchController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialityName, string TreatmentName, string InsuranceName, string CityName, string Query, string Page, string Order);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Index(string SpecialityName, string TreatmentName, string InsuranceName, string CityName, string Query, string Page, string Order)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialityName", SpecialityName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "TreatmentName", TreatmentName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "InsuranceName", InsuranceName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CityName", CityName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Query", Query);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Page", Page);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Order", Order);
+            IndexOverride(callInfo, SpecialityName, TreatmentName, InsuranceName, CityName, Query, Page, Order);
             return callInfo;
         }
 

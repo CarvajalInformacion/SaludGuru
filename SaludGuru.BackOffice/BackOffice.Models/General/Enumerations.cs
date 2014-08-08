@@ -54,7 +54,8 @@
     public enum enumMenuPatient
     {
         PatientInfo,
-        Appointment
+        Appointment,
+        Notes
     }
 
     public enum enumEditPermision

@@ -10,6 +10,18 @@
 
         #endregion
 
+        #region RouteNames
+
+        public const string C_RouteValue_IsNoFollow = "IsNoFollow";
+        public const string C_RouteValue_IsNoIndex = "IsNoIndex";
+        public const string C_RouteValue_IsRedirect = "IsRedirect";
+
+        public const string C_Route_Error_NotFound = "Error_NotFound";
+        public const string C_Route_Profile_Default = "Profile_Default";
+        public const string C_Route_Default = "Default";
+
+        #endregion
+
         #region Internal Settings
 
         public const string C_SettingsModuleName = "MarketPlace";
@@ -42,6 +54,12 @@
         public const string C_Settings_Profile_WebsiteIcon = "Profile_WebsiteIcon";
 
         public const string C_Settings_Profile_FacebookIcon = "Profile_FacebookIcon";
+
+        #endregion
+
+        #region Url
+
+        public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
 
         #endregion
 

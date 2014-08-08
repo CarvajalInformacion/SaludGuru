@@ -223,7 +223,7 @@
                     </li>
                     <li>
                         <label>Apellidos</label>
-                        <input id="LastName" name="LastName" type="text"/>
+                        <input id="LastName" name="LastName" type="text" />
                     </li>
                     <li>
                         <label>Número Identificación</label>
@@ -236,6 +236,26 @@
                     <li>
                         <label>Teléfono móvil</label>
                         <input id="Mobile" name="Mobile" class="required" type="text" />
+                    </li>
+                    <li>
+                        <label>Seguro</label>
+                        <select id="Insurance" name="Insurance">
+                            @{
+                                foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                                {
+                                    if (Model.CurrentProfile.RelatedInsurance != null)
+                                    {
+                                        <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        @{
+                            if(Model.CurrentProfile.RelatedInsurance != null)
+                            {
+                                <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+                            }
+                        }
                     </li>
                     <li>
                         <label>Plan médico</label>
@@ -253,7 +273,7 @@ else
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            
+
             //init upsert appointment object
             UpsertAppointmentObject.Init({
                 DivId: 'AppointmentUpsertContainer',

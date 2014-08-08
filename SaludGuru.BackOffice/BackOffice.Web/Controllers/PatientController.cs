@@ -66,6 +66,16 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult PatientNotes(string PatientPublicId)
+        {
+            PatientUpSertModel Model = new PatientUpSertModel()
+            {
+                Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(PatientPublicId),
+            };
+
+            return View(Model);
+        }
+
         #region Private methods
 
         private PatientModel GetPatientInfoRequestModel()
@@ -127,7 +137,7 @@ namespace BackOffice.Web.Controllers
                          new PatientInfoModel()
                         {
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_MedicalPlan"])?0:int.Parse(Request["CatId_MedicalPlan"].ToString().Trim()),
-                            PatientInfoType = enumPatientInfoType.MedicalPlain,
+                            PatientInfoType = enumPatientInfoType.MedicalPlan,
                             Value = Request["MedicalPlan"].ToString(),
                         },
                         new PatientInfoModel()
