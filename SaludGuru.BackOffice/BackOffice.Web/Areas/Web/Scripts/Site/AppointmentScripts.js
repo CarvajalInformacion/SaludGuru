@@ -322,6 +322,34 @@ var MettingCalendarObject = {
                             }
                         });
                     },
+                    eventResizeStart: function (event, jsEvent, ui, view) {
+                        UpsertAppointmentObject.RenderForm(null, null, event);
+                    },
+                    eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
+                        //set event start change
+                        UpsertAppointmentObject.SetNewEventDuration((event.end - event.start) / 60000);
+                        //show confirm dialog
+                        var ovRenderEvents = true;
+                        $("#Dialog_ResizeAppointment").dialog({
+                            buttons: {
+                                "Si": function () {
+                                    ovRenderEvents = false;
+                                    $(this).dialog("close");
+                                    UpsertAppointmentObject.SaveAppointment(true);
+                                },
+                                "No": function () {
+                                    ovRenderEvents = false;
+                                    $(this).dialog("close");
+                                    UpsertAppointmentObject.SaveAppointment(false);
+                                }
+                            },
+                            close: function (event, ui) {
+                                if (ovRenderEvents != null && ovRenderEvents == true) {
+                                    UpsertAppointmentObject.Refresh();
+                                }
+                            }
+                        });
+                    },
                     events: {
                         url: oEventUrl,
                     },
@@ -1148,6 +1176,13 @@ var UpsertAppointmentObject = {
             $('#StartTime').val(vNewEventStartTime);
         }
 
+    },
+
+    /*set new duration date from external events*/
+    SetNewEventDuration: function (NewDuration) {
+        if (NewDuration != null) {
+            $('#Duration').val(NewDuration);
+        }
     },
 
     /*render block appointment form*/
