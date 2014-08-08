@@ -1087,9 +1087,7 @@ var UpsertAppointmentObject = {
         }
 
         //load office
-        if (vAppointmentInfo != null) {
-            $('#BlockOfficePublicId').val(vAppointmentInfo.OfficePublicId);
-        }
+        $('#BlockOfficePublicId').val(MettingCalendarObject.CurrentPublicOfficeId);
 
         //load block date
         $('#BlockDate').datepicker();

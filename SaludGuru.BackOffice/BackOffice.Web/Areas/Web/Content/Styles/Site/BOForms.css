@@ -162,8 +162,8 @@ div.AppointmentFormStatus_1206 h4.changeToColorStatus {
     color:#414143;
 }
 /*BLOQUEAR AGENDA*/
-div.AppointmentFormStatus_1207 li#liAppointmentHeader {
-    background-color:#880034;
+div.AppointmentFormStatus_1207 li#liBlockAppointmentHeader {
+    background-color:#800000;
 }
 div.AppointmentFormStatus_1207 h4.changeToColorStatus {
     border-bottom:1px solid #880034;
