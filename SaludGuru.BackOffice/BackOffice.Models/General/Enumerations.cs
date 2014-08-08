@@ -55,7 +55,7 @@
     {
         PatientInfo,
         Appointment,
-        Notes
+        PatientNotes
     }
 
     public enum enumEditPermision
