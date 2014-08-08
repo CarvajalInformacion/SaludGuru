@@ -37,6 +37,7 @@
         Attendance = 1205,
         NotAttendance = 1206,
         BlockCalendar = 1207,
+        UnBlockCalendar = 1208,
     }
 
     public enum enumSpecialDayType

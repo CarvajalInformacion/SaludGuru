@@ -14,8 +14,7 @@ namespace MedicalCalendar.Test
                 MedicalCalendar.Manager.Controller.Appointment.GetSpecialDays
                 (1,
                 "2C1D2510",
-                new DateTime(2014, 1, 1),
-                new DateTime(2014, 12, 31));
+                new DateTime(2014, 1, 1));
 
             Assert.AreEqual(true, result.Count > 0);
         }
