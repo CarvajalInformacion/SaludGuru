@@ -18,7 +18,6 @@
                                     new { ProfilePublicId = Model.PrincipalProfile.ProfilePublicId })">
             <ul class="BOEditDaySetUp">
                 <li>
-
                     <label>Nombre</label>
                     <input type="hidden" id="divGridProfile-txtSearch-id" name="divGridProfile-txtSearch-id" value="" />
                     <input type="text" id="divGridProfile-txtSearch" name="divGridProfile-txtSearch" value="" />
@@ -32,7 +31,6 @@
                                 value = x.ProfilePublicId,
                             }).ToList());
                     }
-
                 </li>
                 <li>
                     <!--hiden fields-->
@@ -80,7 +78,7 @@
     <script type="text/javascript">
         var vDataRelatedProfileInfo = @Html.Raw(oRelatedProfileInfo)
         $(document).ready(function () {
-            //start office grid
+            //start RelatedProfileList grid
             RelatedProfileListGrid('divGridRelatedProfile', vDataRelatedProfileInfo);
 
             var vDataSpecialty = @Html.Raw(oProfileSearchData)

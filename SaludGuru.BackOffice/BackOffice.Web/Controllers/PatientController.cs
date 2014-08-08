@@ -66,6 +66,8 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+
+        #region Patient Notes
         public virtual ActionResult PatientNotes(string PatientPublicId)
         {
             PatientUpSertModel Model = new PatientUpSertModel()
@@ -75,6 +77,34 @@ namespace BackOffice.Web.Controllers
 
             return View(Model);
         }
+
+        public virtual ActionResult PatientNotesUpsert(string PatientPublicId, string Name, string LastName)
+        {
+            string ProfilePublicId = BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId;
+
+            PatientUpSertModel Model = new PatientUpSertModel();
+
+            Model.PatientOptions = MedicalCalendar.Manager.Controller.Patient.GetPatientOptions();
+            Model.Insurance = SaludGuruProfile.Manager.Controller.Insurance.GetAllAdmin(string.Empty);
+
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
+                && bool.Parse(Request["UpsertAction"]))
+            {
+                //get request model
+                PatientModel PatientToCreate = GetPatientNotes();
+                PatientToCreate.Name = Name;
+                PatientToCreate.LastName = LastName;
+
+                //create patient 
+                string oProfilePublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
+
+                //get updated profile info
+                Model.Patient = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(oProfilePublicId);
+            }
+            return RedirectToAction(MVC.Patient.ActionNames.PatientNotes, MVC.Patient.Name, new { PatientPublicId = PatientPublicId });
+        }
+
+        #endregion
 
         #region Private methods
 
@@ -157,15 +187,39 @@ namespace BackOffice.Web.Controllers
                             PatientInfoId = string.IsNullOrEmpty(Request["CatId_SendSMS"])?0:int.Parse(Request["CatId_SendSMS"].ToString().Trim()),
                             PatientInfoType = enumPatientInfoType.SendSMS,
                             Value = (!string.IsNullOrEmpty(Request["IsSendSMS"]) && Request["IsSendSMS"].ToString().ToLower() == "on") ? "true" : "false",
-                        }
+                        }                        
                     }
                 };
-
                 return oReturn;
             }
             return null;
         }
 
+        private PatientModel GetPatientNotes()
+        {
+            if(!string.IsNullOrEmpty(Request["UpsertAction"])
+                 && bool.Parse(Request["UpsertAction"]))
+            {
+                PatientModel pReturn = new PatientModel()
+                {
+                    PatientPublicId = Request["PatientPublicId"],
+                    LastModify = DateTime.Now,
+
+                    PatientInfo = new List<PatientInfoModel>() 
+                    {
+                        new PatientInfoModel()
+                        {
+                            PatientInfoId = string.IsNullOrEmpty(Request["CatId_NewNote"])?0:int.Parse(Request["CatId_NewNote"].ToString().Trim()),
+                            PatientInfoType = enumPatientInfoType.DoctorNotes,
+                            LargeValue = Request["NewNote"].ToString()
+                        }
+                    }
+                };
+                return pReturn;
+            }
+            return null;
+        }
+        
         #endregion
     }
 }

@@ -238,22 +238,23 @@
                         <input id="Mobile" name="Mobile" class="required" type="text" />
                     </li>
                     <li>
-                        <label>Seguro</label>
-                        <select id="Insurance" name="Insurance">
-                            @{
-                                foreach (var item in Model.CurrentProfile.RelatedInsurance)
-                                {
-                                    if (Model.CurrentProfile.RelatedInsurance != null)
+                        @{
+                            if (Model.CurrentProfile.RelatedInsurance != null)
+                            {
+                                <label>Seguro</label>
+                                <select id="Insurance" name="Insurance">
+                                @{
+                                    foreach (var item in Model.CurrentProfile.RelatedInsurance)
                                     {
+
                                         <option value="@item.CategoryId" selected="selected">@item.Name</option>
                                     }
                                 }
-                            }
-                        </select>
-                        @{
-                            if(Model.CurrentProfile.RelatedInsurance != null)
-                            {
-                                <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+                                </select>
+                                if (Model.CurrentProfile.RelatedInsurance != null)
+                                {
+                                    <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+                                }
                             }
                         }
                     </li>

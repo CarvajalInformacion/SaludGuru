@@ -75,7 +75,7 @@ table.ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end {
 }
 /*not available day*/
 .specialDay_2 a.ui-state-default {
-    background: #0026ff;
+    background: #6f82b7;
 }
 table.ui-datepicker-calendar > tbody > tr > td {
     font-size: 12px;
