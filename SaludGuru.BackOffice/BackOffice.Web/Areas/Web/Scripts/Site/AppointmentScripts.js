@@ -1,6 +1,6 @@
 ﻿/*calendar render method*/
 var CalendarObject = {
-    
+
     /*calendar info*/
     DivId: '',
     CountryId: '',
@@ -293,6 +293,34 @@ var MettingCalendarObject = {
                         else {
                             element.find('.fc-event-time').html(element.find('.fc-event-time').text());
                         }
+                    },
+                    eventDragStart: function (event, jsEvent, ui, view) {
+                        UpsertAppointmentObject.RenderForm(null, null, event);
+                    },
+                    eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+                        //set event start change
+                        UpsertAppointmentObject.SetNewEventStart(event.start);
+                        //show confirm dialog
+                        var ovRenderEvents = true;
+                        $("#Dialog_DragAppointment").dialog({
+                            buttons: {
+                                "Si": function () {
+                                    ovRenderEvents = false;
+                                    $(this).dialog("close");
+                                    UpsertAppointmentObject.SaveAppointment(true);
+                                },
+                                "No": function () {
+                                    ovRenderEvents = false;
+                                    $(this).dialog("close");
+                                    UpsertAppointmentObject.SaveAppointment(false);
+                                }
+                            },
+                            close: function (event, ui) {
+                                if (ovRenderEvents != null && ovRenderEvents == true) {
+                                    UpsertAppointmentObject.Refresh();
+                                }
+                            }
+                        });
                     },
                     events: {
                         url: oEventUrl,
@@ -673,7 +701,6 @@ var UpsertAppointmentObject = {
         }
 
         $('#liAppointmentHeader').html(oHeaderTemplate);
-
         //set action events on click
         $('#AppointmentUpsertActions .AppointmentActionsCancel').unbind('click');
         $('#AppointmentUpsertActions .AppointmentActionsCancel').click(function () {
@@ -1074,6 +1101,55 @@ var UpsertAppointmentObject = {
         $("#frmConfirmAppointment").submit();
     },
 
+    /*set new start date from external events*/
+    SetNewEventStart: function (NewEventStart) {
+
+        if (NewEventStart != null) {
+
+            var vNewEventStartDate = '';
+
+            //get start date
+            if (NewEventStart.getDate() < 10) {
+                vNewEventStartDate = vNewEventStartDate + '0';
+            }
+            vNewEventStartDate = vNewEventStartDate + NewEventStart.getDate() + '/';
+
+            if (NewEventStart.getMonth() < 9) {
+                vNewEventStartDate = vNewEventStartDate + '0';
+            }
+            vNewEventStartDate = vNewEventStartDate + ((new Number(NewEventStart.getMonth())) + 1) + '/' + NewEventStart.getFullYear();
+
+            $('#StartDate').val(vNewEventStartDate);
+            $('#StartDate').datepicker("setDate", vNewEventStartDate);
+
+            //get start time
+            var vNewEventStartTime = '';
+
+            if (NewEventStart.getHours() < 12) {
+                if (NewEventStart.getHours() < 10) {
+                    vNewEventStartTime = vNewEventStartTime + '0';
+                }
+                vNewEventStartTime = vNewEventStartTime + '' + NewEventStart.getHours() + ':{Min} AM';
+            }
+            else {
+                if ((NewEventStart.getHours() - 12) < 10) {
+                    vNewEventStartTime = vNewEventStartTime + '0';
+                }
+                vNewEventStartTime = vNewEventStartTime + '' + (NewEventStart.getHours() - 12) + ':{Min} PM';
+            }
+
+            if (NewEventStart.getMinutes() < 10) {
+                vNewEventStartTime = vNewEventStartTime.replace('{Min}', '0' + NewEventStart.getMinutes());
+            }
+            else {
+                vNewEventStartTime = vNewEventStartTime.replace('{Min}', NewEventStart.getMinutes());
+            }
+
+            $('#StartTime').val(vNewEventStartTime);
+        }
+
+    },
+
     /*render block appointment form*/
     RenderBlockForm: function (vAppointmentInfo) {
 
@@ -1209,7 +1285,7 @@ var UpsertAppointmentObject = {
     },
 
     SaveUnBlockAppointment: function () {
-        
+
         //ajax for unblock appointment
         $.ajax(
         {
