@@ -24,7 +24,7 @@ var CalendarObject = {
         //make ajax for special days
         $.ajax({
             type: "POST",
-            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId + '&StartDate=' + serverDateToString(this.StartDate) + '&EndDate=' + serverDateToString(this.EndDate)
+            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,
         }).done(function (data) {
 
             //left date picker
