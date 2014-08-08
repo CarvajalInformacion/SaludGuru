@@ -1,0 +1,150 @@
+.MPHeaderMainWrapper {
+    border-style:solid;
+    border-color:#808080;
+    border-width:1px 1px 3px 1px;
+    width: 100%;
+    height: 150px;
+    display:block;
+}
+.MPHeaderTopWrapper {
+    display: block;
+    border:1px solid green;
+    height: 32px;
+    width:100%;
+}
+.MPRightTopMenu {
+    display: block;
+    border:1px solid red;
+    height: 32px;
+    float:right;
+    width:auto;
+}
+    .MPRightTopMenu div, .MPRightTopMenu select{
+        float:left;
+        border:1px solid black;
+        height:32px;
+        width:auto;
+        padding: 0px 6px;
+        vertical-align: text-bottom;
+        font-size:14px;
+        line-height:28px;
+        margin-right:8px;
+    }
+        .MPRightTopMenu div:first-child {
+            color:#aad400;
+            margin-left:28px;
+        }
+        .MPRightTopMenu select:nth-child(2){
+            width:142px;
+            background-color:#fff;
+            border-radius:3px;
+        }
+        .MPRightTopMenu div:nth-child(3) {
+            background-image:url('/Areas/Web/Content/Images/BOnotificationsSmall.png');
+            background-position:1px 1px;
+            background-size:24px 26px;
+            background-repeat:no-repeat;
+            width:28px;
+        }
+        .MPRightTopMenu div:nth-child(4) label {
+            color:#333;
+        }
+        .MPRightTopMenu div:nth-child(4) img{
+            width:22px;
+            height:auto;
+            vertical-align:middle;
+        }
+/*************** MENU DE USUARIO **************/
+
+        #divUserMenu {
+            position:absolute;
+            top:34px;
+            right:74px;
+            height:auto;
+            background-color:#eaeae5;
+            border:1px solid #666;
+            padding: 0px;
+        }
+            #divUserMenu ul li {
+               display: block;
+                width: 100%;
+                height: auto;
+                padding: 0px 10px;
+                border-top: 1px solid #666;
+            }
+            #divUserMenu ul li:first-child {
+                border-top:none;
+            }
+            #divUserMenu ul li:hover, #divUserMenu ul li:active{
+                background-color:#d4d4cb;
+            }
+                #divUserMenu ul li a{
+                    width:100%;
+                    height:100%;
+                    display:block;
+                    color:#333;
+                }
+/************** BARRA DE BUSQUEDA **************/
+.MPHeaderSearchWrapper {
+    display: block;
+    border:1px solid blue;
+    height: 32px;
+    width:100%;
+}
+    .MPHeaderSearchWrapper a.MPSGlogo {
+        position:absolute;
+        left:2%; top:4%;
+        background-image:url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
+        background-repeat:no-repeat;
+        background-position:1px 1px;
+        background-size:85px auto;
+        width:86px; height:56px;
+        display: inline-block;
+    }
+    .MPHeaderSearchWrapper span {
+        display: block;
+        margin:30px auto 0px auto;
+        color: #AAD400;
+        font-size: 18px;
+        width: 54%;
+        min-width:720px;
+        border: 1px solid;
+        height: 20px;
+        line-height: 16px;
+        text-align: center;
+    }
+    .MPHeaderSearchWrapper div {
+        display: block;
+        margin:6px auto 0px auto;
+        color: #AAD400;
+        font-size: 18px;
+        width:54%;
+        min-width:720px;
+        border: 1px solid;
+        height:38px;
+        line-height: 16px;
+    }
+    .MPHeaderSearchWrapper div input {
+        border:1px solid #666;
+        height:38px;
+        width:93%;
+        background-color:#fff;
+        color:#333 !important;
+    }
+    .MPHeaderSearchWrapper div a {
+        display:inline-block;
+        float:right;
+        border:1px solid #666;
+        width:38px;
+        height:38px;
+        background-image:url('/Areas/Web/Content/Images/magGlassSmall.png');
+        background-repeat:no-repeat;
+        background-position: 1px 4px;
+        background-size: 34px auto;        
+    }
+        .MPHeaderSearchWrapper div input[placeholder] {
+            color:#999;
+            font-size:18px;
+            text-align:left;
+            vertical-align:middle;
+        }
