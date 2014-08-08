@@ -429,7 +429,7 @@
                         <input type="hidden" id="CatId_Keywords" name="CatId_Keywords" value="@CatInfo_KW.id" />
                     }
                 }
-                <label>Keywords</label>
+                <label>Palabras clave</label>
                 <textarea id="Keywords" name="Keywords" rows="15" cols="15">@(CatInfo_KW != null && !string.IsNullOrEmpty(CatInfo_KW.val) ? CatInfo_KW.val.TrimStart() : string.Empty)</textarea>
             </li>
             @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)

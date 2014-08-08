@@ -12,42 +12,43 @@
         }
     </div>
     <div class="BOProfileFormWrapper">
-        <div>
-            @{
-                string valueNotes = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.
-        Notes.Select(x => new{
-            PatientInfoType = x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.DoctorNotes,
-            Id = x.LargeValue + " - " + x.CreateDate.ToString("yyyy/MM/dd HH:mm"),
-        }).ToList());
-            }
+        @{
+            string valueNotes = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                Serialize(Model.
+                Notes.Select(x => new
+                {
+                    PatientInfoType = x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.DoctorNotes,
+                    Id = x.CreateDate.ToString("yyyy/MM/dd") + " - " + x.LargeValue,
+                }).ToList());
+        }
 
-            <div class="BOInsuranceTableWrapper">
-                <h3>Notas por paciente</h3>
-                <div id="divGridPatientNotes"></div>
-            </div>
-
-            <div id="templates" >
-                <div id="templateHeader">
-                    <form method="post" action="@(Url.Action(MVC.Patient.ActionNames.PatientNotesUpsert, MVC.Patient.Name,
+        <div class="BOInsuranceTableWrapper Notes">
+            <h3>Notas por paciente</h3>
+            <div id="divGridPatientNotes"></div>
+        </div>
+        <div id="template" style="display:none;">
+            <div id="templateHeader">
+                <form method="post" action="@(Url.Action(MVC.Patient.ActionNames.PatientNotesUpsert, MVC.Patient.Name,
                                                   new { PatientPublicId = Model.Patient.PatientPublicId, Name = Model.Patient.Name, LastName = Model.Patient.LastName }))">
-                        <ul class="BOEditDaySetUp">
-                            <li>
-                                <label>Nueva nota:</label>
-                                <textarea id="NewNote" name="NewNote" rows="2" cols="10">holas</textarea>
-                            </li>
-                            <li class="BOButtonContainerShort">
-                                <!--hiden fields-->
-                                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-                                <input id="Add" class="BOAgregarButtons" type="submit" value="Agregar" />
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                    <ul class="BOEditDaySetUp">
+                        <li>
+                            <label>Nueva nota:</label>
+                            <textarea id="NewNote" name="NewNote" rows="2" cols="30">&nbsp;</textarea>
+                        </li>
+                        <li class="BOButtonContainerShort">
+                            <!--hiden fields-->
+                            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                            <input id="Add" class="BOAgregarButtons" type="submit" value="Agregar" />
+                        </li>
+                    </ul>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 @section inlinescripts
 {
