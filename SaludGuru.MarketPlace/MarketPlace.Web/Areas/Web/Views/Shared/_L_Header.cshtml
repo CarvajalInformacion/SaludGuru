@@ -1,14 +1,9 @@
-﻿<div>
-    <div>
-        <div>
-            <a href="">Inicio</a>
-            <a href="">Blog pacientes</a>
-            <a href="">Blog doctores</a>
-            <a href="">Solicite su perfil gratis</a>
-        </div>
-        <div>
-            <div>
-                <span>Ciudad</span>
+﻿<div class="MPHeaderMainWrapper">
+    
+    <div class="MPHeaderTopWrapper">
+
+        <div class="MPRightTopMenu">
+                <div>Ciudad</div>
                 <select>
                     @{
                         var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
@@ -26,43 +21,37 @@
                         }
                     }
                 </select>
-            </div>
-            <div>
-                Notificaciones
-            </div>
-            <div>
+                <div>@*Notificaciones*@</div>
                 @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
                 {
                 <!--Render user login options-->
-                    <div>
-                        <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                            <label>Hola @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
-                            <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
-                        </div>
-                        <!--pop up user option menu-->
-                        <div id="divUserMenu" style="display:none;">
-                            <ul>
-                                <li>
-                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Index,MVC.UserProfile.Name)">Mis datos</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.FamilyGroup, MVC.UserProfile.Name)">Mi grupo familiar</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.ProfileList, MVC.UserProfile.Name)">Mis especialistas</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Treatment, MVC.UserProfile.Name)">Mis tratamientos</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                    <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
+                    <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+                </div>
+                <!--pop up user option menu-->
+                <div id="divUserMenu" style="display:none;">
+                    <ul>
+                        <li>
+                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Index,MVC.UserProfile.Name)">Mis datos</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.UserProfile.ActionNames.FamilyGroup, MVC.UserProfile.Name)">Mi grupo familiar</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.UserProfile.ActionNames.ProfileList, MVC.UserProfile.Name)">Mis especialistas</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Treatment, MVC.UserProfile.Name)">Mis tratamientos</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
                 }
                 else
                 {
@@ -81,17 +70,16 @@
                     <a href="@FBUrl">Login Facebook</a>
                 }
             </div>
-        </div>
     </div>
-    <div>
+    <div class="MPHeaderSearchWrapper">
+        <!--image guru-->
+        <a class="MPSGlogo" href=""></a>
+
+        <!--search box-->
+        <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
         <div>
-            <!--image guru-->
-            <a href=""><img src="" /></a>
-        </div>
-        <div>
-            <!--search box-->
-            <input type="text" id="inSearchBoxProfile" />
-            <a href="">Buscar</a>
+            <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+            <a href=""></a>
         </div>
     </div>
 </div>

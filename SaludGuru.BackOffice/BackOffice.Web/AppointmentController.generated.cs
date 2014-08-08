@@ -128,6 +128,7 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Day
         {
             public readonly string Date = "Date";
+            public readonly string SelectedOffice = "SelectedOffice";
         }
         static readonly ActionParamsClass_Week s_params_Week = new ActionParamsClass_Week();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -136,6 +137,7 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Week
         {
             public readonly string Date = "Date";
+            public readonly string SelectedOffice = "SelectedOffice";
         }
         static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -144,6 +146,7 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_List
         {
             public readonly string Date = "Date";
+            public readonly string SelectedOffice = "SelectedOffice";
         }
         static readonly ActionParamsClass_Month s_params_Month = new ActionParamsClass_Month();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -152,6 +155,7 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_Month
         {
             public readonly string Date = "Date";
+            public readonly string SelectedOffice = "SelectedOffice";
         }
         static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -185,50 +189,54 @@ namespace BackOffice.Web.Controllers
         public T4MVC_AppointmentController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void DayOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
+        partial void DayOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string SelectedOffice);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Day(string Date)
+        public override System.Web.Mvc.ActionResult Day(string Date, string SelectedOffice)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Day);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            DayOverride(callInfo, Date);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SelectedOffice", SelectedOffice);
+            DayOverride(callInfo, Date, SelectedOffice);
             return callInfo;
         }
 
         [NonAction]
-        partial void WeekOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
+        partial void WeekOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string SelectedOffice);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Week(string Date)
+        public override System.Web.Mvc.ActionResult Week(string Date, string SelectedOffice)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Week);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            WeekOverride(callInfo, Date);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SelectedOffice", SelectedOffice);
+            WeekOverride(callInfo, Date, SelectedOffice);
             return callInfo;
         }
 
         [NonAction]
-        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string SelectedOffice);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult List(string Date)
+        public override System.Web.Mvc.ActionResult List(string Date, string SelectedOffice)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            ListOverride(callInfo, Date);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SelectedOffice", SelectedOffice);
+            ListOverride(callInfo, Date, SelectedOffice);
             return callInfo;
         }
 
         [NonAction]
-        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date);
+        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string SelectedOffice);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Month(string Date)
+        public override System.Web.Mvc.ActionResult Month(string Date, string SelectedOffice)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            MonthOverride(callInfo, Date);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SelectedOffice", SelectedOffice);
+            MonthOverride(callInfo, Date, SelectedOffice);
             return callInfo;
         }
 

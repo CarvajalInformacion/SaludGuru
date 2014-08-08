@@ -506,6 +506,7 @@
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\slider-v.gif" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Areas\Web\Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
+    <Content Include="Areas\Web\Content\Styles\Site\MPHeader.css" />
     <Content Include="Areas\Web\Content\Styles\Site\MPAgenda.css" />
     <Content Include="Areas\Web\Content\Styles\Site\MPDoctorProfile.css" />
     <Content Include="Areas\Web\Content\Styles\Site\MPFooter.css" />

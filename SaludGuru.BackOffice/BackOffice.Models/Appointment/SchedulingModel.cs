@@ -46,5 +46,7 @@ namespace BackOffice.Models.Appointment
         public ScheduleEventModel CurrentAppointment { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public string SelectedOffice { get; set; }
     }
 }
