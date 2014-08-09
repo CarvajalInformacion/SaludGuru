@@ -1246,6 +1246,29 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public string MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vOldProfileId", OldProfileId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandText = "MP_P_Profile_GetProfilePublicIdFromOldId",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            if (response.ScalarResult != null)
+            {
+                return response.ScalarResult.ToString();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion
 
         #region Office

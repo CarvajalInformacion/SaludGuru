@@ -498,6 +498,11 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        public static string MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        {
+            return DAL.Controller.ProfileDataController.Instance.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
+        }
+
         #endregion
 
         #endregion
