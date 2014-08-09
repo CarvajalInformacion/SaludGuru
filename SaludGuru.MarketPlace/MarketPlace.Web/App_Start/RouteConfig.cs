@@ -23,7 +23,7 @@ namespace MarketPlace.Web
 
             #region NotFound
 
-            //Redirect doctor/{DoctorName}/{SpecialtyName}/{ProfilePublicId}
+            //contenido+no+encontrado
             routes.MapRoute(
                 name: "Error_NotFound",
                 url: "contenido+no+encontrado",
@@ -79,7 +79,8 @@ namespace MarketPlace.Web
                     SpecialtyName = string.Empty,
 
                     IsNoFollow = true,
-                    IsNoIndex = true
+                    IsNoIndex = true,
+                    IsCanonical = true,
                 }).DataTokens = rvdByArea;
 
             //doctor/{DoctorName}-{DoctorId}/{Specialty}
@@ -91,6 +92,7 @@ namespace MarketPlace.Web
                     controller = "Profile",
                     action = "Index",
                 }).DataTokens = rvdByArea;
+
             #endregion
 
             //default route

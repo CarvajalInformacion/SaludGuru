@@ -202,7 +202,7 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPProfileGetFullRelatedProfile(ProfilePublicId);
         }
 
-        public string MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        public ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
         {
             return DataFactory.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
         }

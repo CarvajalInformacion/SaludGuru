@@ -77,14 +77,18 @@ namespace MarketPlace.Web.Controllers
         //save cookie over request
         public void SetCookie(CookieModel CookieToUpdate)
         {
-            string strCookieKey = MarketPlace.Models.General.Constants.C_Cookie_CookieKey;
-            string strCookieValue = (new System.Web.Script.Serialization.JavaScriptSerializer()).Serialize(CookieToUpdate);
-
-            if (Request.Cookies.AllKeys.Any(x => x == strCookieKey))
+            try
             {
-                Request.Cookies.Remove(strCookieKey);
+                string strCookieKey = MarketPlace.Models.General.Constants.C_Cookie_CookieKey;
+                string strCookieValue = (new System.Web.Script.Serialization.JavaScriptSerializer()).Serialize(CookieToUpdate);
+
+                if (Request.Cookies.AllKeys.Any(x => x == strCookieKey))
+                {
+                    Request.Cookies.Remove(strCookieKey);
+                }
+                this.ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie(strCookieKey, strCookieValue));
             }
-            this.ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie(strCookieKey, strCookieValue));
+            catch { }
         }
 
         public CookieModel GetCookie()
@@ -136,8 +140,8 @@ namespace MarketPlace.Web.Controllers
                     MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Url_Invalid_Char].Value.
                         Split(';').All(ch =>
                         {
-                            char okey = ch.Split(',')[0][0];
-                            char oval = ch.Split(',')[1][0];
+                            char okey = char.Parse(ch.Split(',')[0]);
+                            char oval = char.Parse(ch.Split(',')[1].Replace("\\0", "\0"));
                             oReplaceChar[okey] = oval;
                             return true;
                         });
@@ -149,7 +153,7 @@ namespace MarketPlace.Web.Controllers
 
         public static string RemoveAccent(string strToEval)
         {
-            string oReturn = strToEval.ToLower();
+            string oReturn = strToEval.Trim().ToLower();
 
             ReplaceChar.All(rc =>
             {

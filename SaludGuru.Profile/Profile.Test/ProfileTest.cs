@@ -146,8 +146,8 @@ namespace Profile.Test
         {
             string OldProfileId = "35";
 
-            string oProfilePublicId = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
-            Assert.AreEqual(oProfilePublicId, "2C1D2510");
+            ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
+            Assert.AreEqual(oProfile.ProfilePublicId, "2C1D2510");
         }
 
 

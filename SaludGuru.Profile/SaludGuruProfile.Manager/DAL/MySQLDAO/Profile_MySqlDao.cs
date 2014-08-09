@@ -1246,27 +1246,87 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public string MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        public ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vOldProfileId", OldProfileId));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
                 CommandText = "MP_P_Profile_GetProfilePublicIdFromOldId",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
 
-            if (response.ScalarResult != null)
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
             {
-                return response.ScalarResult.ToString();
+                oReturn = new ProfileModel()
+                {
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+                    Name = response.DataTableResult.Rows[0].Field<string>("Name"),
+                    LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+
+
+                    RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
+                                        where sp.Field<int?>("CategoryType") != null &&
+                                                sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
+                                        group sp by
+                                        new
+                                        {
+                                            CategoryId = sp.Field<int>("CategoryId"),
+                                            Name = sp.Field<string>("CategoryName")
+                                        } into spg
+                                        select new SpecialtyModel()
+                                        {
+                                            CategoryId = spg.Key.CategoryId,
+                                            Name = spg.Key.Name,
+                                        }).ToList(),
+
+                    DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
+                                        where sp.Field<int?>("CategoryType") != null &&
+                                                sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
+                                                sp.Field<UInt64>("CategoryIsDefault") == 1
+                                        select new SpecialtyModel()
+                                        {
+                                            CategoryId = sp.Field<int>("CategoryId"),
+                                            Name = sp.Field<string>("CategoryName"),
+                                        }).FirstOrDefault(),
+
+                    RelatedInsurance = (from sp in response.DataTableResult.AsEnumerable()
+                                        where sp.Field<int?>("CategoryType") != null &&
+                                                sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
+                                        group sp by
+                                        new
+                                        {
+                                            CategoryId = sp.Field<int>("CategoryId"),
+                                            Name = sp.Field<string>("CategoryName")
+                                        } into spg
+                                        select new InsuranceModel()
+                                        {
+                                            CategoryId = spg.Key.CategoryId,
+                                            Name = spg.Key.Name,
+                                        }).ToList(),
+
+                    RelatedTreatment = (from sp in response.DataTableResult.AsEnumerable()
+                                        where sp.Field<int?>("CategoryType") != null &&
+                                                sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
+                                        group sp by
+                                        new
+                                        {
+                                            CategoryId = sp.Field<int>("CategoryId"),
+                                            Name = sp.Field<string>("CategoryName")
+                                        } into spg
+                                        select new TreatmentModel()
+                                        {
+                                            CategoryId = spg.Key.CategoryId,
+                                            Name = spg.Key.Name,
+                                        }).ToList()
+                };
             }
-            else
-            {
-                return null;
-            }
+            return oReturn;
         }
 
         #endregion

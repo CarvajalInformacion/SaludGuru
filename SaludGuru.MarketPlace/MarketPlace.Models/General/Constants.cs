@@ -15,6 +15,7 @@
         public const string C_RouteValue_IsNoFollow = "IsNoFollow";
         public const string C_RouteValue_IsNoIndex = "IsNoIndex";
         public const string C_RouteValue_IsRedirect = "IsRedirect";
+        public const string C_RouteValue_IsCanonical = "IsCanonical";
 
         public const string C_Route_Error_NotFound = "Error_NotFound";
         public const string C_Route_Profile_Default = "Profile_Default";

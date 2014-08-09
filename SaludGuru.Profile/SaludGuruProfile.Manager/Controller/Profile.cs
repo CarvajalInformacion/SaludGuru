@@ -498,7 +498,7 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
-        public static string MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        public static ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
         {
             return DAL.Controller.ProfileDataController.Instance.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
         }
