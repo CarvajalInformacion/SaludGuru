@@ -17,9 +17,19 @@
         public const string C_RouteValue_IsRedirect = "IsRedirect";
         public const string C_RouteValue_IsCanonical = "IsCanonical";
 
+        public const string C_Route_Default = "Default";
+
+        public const string C_Route_SearchQuery_Default = "SearchQuery_Default";
+
+        public const string C_Route_SearchCategory_City = "SearchCategory_City";
+        public const string C_Route_SearchCategory_InsuranceCity = "SearchCategory_InsuranceCity";
+        public const string C_Route_SearchCategory_SpecialtyCity = "SearchCategory_SpecialtyCity";
+        public const string C_Route_SearchCategory_SpecialtyInsuranceCity = "SearchCategory_SpecialtyInsuranceCity";
+        public const string C_Route_SearchCategory_TreatmentCity = "SearchCategory_TreatmentCity";
+        public const string C_Route_SearchCategory_TreatmentInsuranceCity = "SearchCategory_TreatmentInsuranceCity";
+
         public const string C_Route_Error_NotFound = "Error_NotFound";
         public const string C_Route_Profile_Default = "Profile_Default";
-        public const string C_Route_Default = "Default";
 
         #endregion
 

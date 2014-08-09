@@ -10,13 +10,11 @@ namespace MarketPlace.Web.Controllers
     public partial class SearchController : BaseController
     {
         public virtual ActionResult Index
-            (string SpecialityName,
+            (string SpecialtyName,
             string TreatmentName,
             string InsuranceName,
             string CityName,
-            string Query,
-            string Page,
-            string Order)
+            string Query)
         {
             SearchViewModel oModel = new SearchViewModel();
 
