@@ -18,6 +18,7 @@ border:none;
     left: 312px;
     top: 95%;
     padding: 0px !important;
+    z-index: 1;
 }
 .BOIncludeNewSpecialty li.BOButtonContainerShort {
     min-width: 641px; margin-top: -12px;
