@@ -44,43 +44,76 @@ function AddPatientToList(vPatientModel) {
 var AppointmentObject = {
 
     /*profile info*/
-    DivId: '',
+    DivAppointmentId: '',
+    selOfficeId: '',
+    selTreatmentId: '',
+
     lstOffice: new Array(),
 
-    /*init meeting calendar variables*/
-    APInit: function (vInitObject) {
+    ///*init meeting calendar variables*/
+    Init: function (vInitObject) {
+        debugger;
         //init render info
-        this.DivId = vInitObject.DivId;
+        this.DivAppointmentId = vInitObject.DivAppointmentId;
+        this.selOfficeId = vInitObject.selOfficeId;
+        this.selTreatmentId = vInitObject.selTreatmentId;
 
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
-            //set key value pair for an office
+            //set key value pair for an office            
             AppointmentObject.lstOffice[value.OfficePublicId] = value;
         });
     },
 
-    APRenderAsync: function () {
-        var oFirstRender = false;
+    RenderAsync: function () {
+        debugger;
+        //create office events
+        if (this.lstOffice.length > 1) {
+            $('#' + this.selOfficeId).change(function () {
+                var selectedVal = $('#' + this.selOfficeId).val();
+                AppointmentObject.ChangeOffice(selectedVal);
+            });
+        }
 
+        //create treatment event
+
+
+        //create init objects for appointment calendar
         for (var item in this.lstOffice) {
 
             //get office public id
-            this.lstOffice[item].OfficeDivId = this.DivId + '_' + this.lstOffice[item].OfficePublicId;
-
-            //crete calendar menu item
-            $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/\${OfficeName}/gi, this.lstOffice[item].OfficeName));
+            this.lstOffice[item].OfficeDivId = this.DivAppointmentId + '_' + this.lstOffice[item].OfficePublicId;
 
             //create div to put a calendar
-            $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
-
-            if (oFirstRender == false) {
-                this.APRenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
-                oFirstRender = true;
-            }
+            $('#' + this.DivAppointmentId).append($('#' + this.DivAppointmentId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
         }
     },
 
-    APRenderOfficeSchedule: function (vOfficePublicId) {
+    ChangeOffice: function (vOfficePublicId) {
+        debugger;
+      
+        var selectOffice = $('#' + this.selOfficeId).val();        
+        //Remove and add the new items 
+        $('#' + AppointmentObject.selTreatmentId).empty();
+        $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
+            $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
+        });
+        AppointmentObject.RenderOfficeSchedule(selectOffice);
+    },
+
+    ChangeTreatment: function (vTreatmentId) {
+
+    },
+
+    PageAppointmentMove: function (vOfficePublicId, vNewDate, vNextAvailableDate) {
+        $('#divGrid_' + vOfficePublicId).data("kendoGrid").dataSource.read({
+            NewDate: vNewDate,
+            NextAvailableDate: vNextAvailableDate,
+        });
+    },    
+
+    RenderOfficeSchedule: function (vOfficePublicId) {
+        debugger;
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
         if (CurrentOfficeDiv.length == 1) {
             if (CurrentOfficeDiv.children().length == 0) {
@@ -94,20 +127,25 @@ var AppointmentObject = {
 
                                 var vStartDate = '';
                                 var vNextAvailableDate = 'true';
-
+                                var vCategoryId = '';
+                                debugger;
                                 if (options.data != null && options.data.NewDate != null) {
                                     vStartDate = options.data.NewDate;
                                 }
 
                                 if (options.data != null && options.data.NextAvailableDate != null) {
-                                    vNextAvailableDate = options.data.NextAvailableDate;
+                                    vNextAvailableDate = options.data.NextAvailableDate;                            
+                                } 
+                                if (options.data != null && options.data.CategoryId != null) {
+                                    vCategoryId = options.data.CategoryId;
                                 }
 
-                                $.ajax({
-                                    url: '/api/ScheduleAvailableApi?ProfilePublicId=' + AppointmentObject.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&TreatmentId=&NextAvailableDate=' + vNextAvailableDate + '&StartDateTime=' + vStartDate,
+                                $.ajax({                                    
+                                    url: '/api/ScheduleAvailableApi?ProfilePublicId=' + AppointmentObject.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&TreatmentId=' + vCategoryId + '&NextAvailableDate=' + vNextAvailableDate + '&StartDateTime=' + vStartDate,
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
+                                        debugger;
                                         options.success(result);
                                     },
                                     error: function (result) {
@@ -121,39 +159,39 @@ var AppointmentObject = {
                         field: 'Monday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Monday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Monday').html()
                     }, {
                         field: 'Tuesday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Tuesday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Tuesday').html()
                     }, {
                         field: 'Wednesday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Wednesday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Wednesday').html()
                     }, {
                         field: 'Thursday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Thursday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Thursday').html()
                     }, {
                         field: 'Friday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Friday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Friday').html()
                     }, {
                         field: 'Saturday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + AppointmentObject.DivId + '_Template_Grid_Event_Saturday').html()
+                        template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Saturday').html()
                     }, {
 
                     }],
                     dataBound: function (e) {
                         //set header before render
                         var lstData = this.dataSource.view();
-
+                        debugger;
                         $('#spanHeader_' + vOfficePublicId).hide();
                         $('#divGrid_NotSchedule_' + vOfficePublicId).hide();
 
@@ -199,7 +237,12 @@ var AppointmentObject = {
                             });
 
                             $('#divGrid_NotSchedule_' + vOfficePublicId).show();
-                        }
+                        }                        
+                        $("#SelectedTreatment").change(function () {                            
+                            var selectedVal = $("#SelectedTreatment option:selected").val();
+                            AppointmentObject.PageMove(vOfficePublicId, lstData[0].CurrentDate, 'true', 
+                                selectedVal);
+                        });                       
                         e.preventDefault();
                     }
                 });
@@ -215,11 +258,38 @@ var AppointmentObject = {
         }
     },
 
-    PageMove: function (vOfficePublicId, vNewDate, vNextAvailableDate) {
+    PageMove: function (vOfficePublicId, vNewDate, vNextAvailableDate, vCategoryId) {
+        debugger;
         $('#divGrid_' + vOfficePublicId).data("kendoGrid").dataSource.read({
             NewDate: vNewDate,
             NextAvailableDate: vNextAvailableDate,
+            CategoryId: vCategoryId
         });
     },
+
+    SetHour: function (vCurrentHour)
+    {
+        debugger        
+        $('#StartDate').val(vCurrentHour);
+        $('#DateMoreInfoIdN').val(vCurrentHour);
+        $('#DateMoreInfoIdNN').val(vCurrentHour);
+        $("#FreeScheduleId").hide();        
+    },
 };
+
+$('#DateMoreInfoIdN').click(function () {
+    debugger;    
+    var selectedOfficeVal = $("#officeSelectedId option:selected").val();
+
+    AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
+    $("#FreeScheduleId").show();
+    $("#DateMoreInfoId").hide();
+});
+$('#DateMoreInfoIdNN').click(function () {
+    debugger;
+    var selectedOfficeVal = $("#officeSelectedId option:selected").val();
+    AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
+    $("#FreeScheduleId").show();
+    $("#DateMoreInfoId").hide();
+});
 
