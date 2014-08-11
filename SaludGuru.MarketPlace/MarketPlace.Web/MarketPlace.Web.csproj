@@ -1075,6 +1075,7 @@
     <Content Include="Areas\Web\Views\Shared\_P_Map.cshtml" />
     <Content Include="Areas\Web\Views\Search\Index.cshtml" />
     <Content Include="Areas\Web\Views\Error\NotFound.cshtml" />
+    <Content Include="Areas\Web\Views\Appointment\ConfirmationAppointment.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
