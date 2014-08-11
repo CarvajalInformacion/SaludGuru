@@ -67,6 +67,16 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult SpecialtyByTreatment(string SpecialtyId)
+        {
+            return View();
+        }
+
+        public virtual ActionResult SpecialtyBySpecialty(string SpecialtyId)
+        {
+            return View();
+        }
+
         #endregion
 
         #region private methods

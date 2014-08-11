@@ -876,30 +876,11 @@ var UpsertAppointmentObject = {
             }
         };
 
-        var messages = {
-            Name: {
-                required: "Debe ingresar el nombre",
-                return: false,
-            },
-            IdentificationNumber: {
-                required: "Debe ingresar la identificación",
-                minlength: "El número debe ser mayor a 6 dígitos",
-                return: false,
-            },
-            Mobile: {
-                required: "Debe ingresar un número móvil",
-                maxlength: "El número debe contener 10 dígitos",
-                minlength: "El número debe contener 10 dígitos",
-                return: false,
-            }
-        };
-
         $('#frmCreatePatient').validate({
             errorClass: 'error help-inline',
             errorElement: 'span',
             validClass: 'success',
             rules: rules,
-            messages: messages
         });
 
         //Dialog create patient
@@ -919,7 +900,6 @@ var UpsertAppointmentObject = {
                     "Cancelar": function () {
                         $(this).dialog("close");
                         $("#frmCreatePatient input").val('');
-                        $("#frmCreatePatient span").empty();
                     }
                 }
             });
