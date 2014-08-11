@@ -227,5 +227,17 @@ namespace Profile.Test
         //}
         #endregion
 
+        #region Category
+
+        [TestMethod]
+        public void MPCategoryGetAvailableCategory()
+        {
+            List<SaludGuruProfile.Manager.Interfaces.ICategoryModel> oCategory = SaludGuruProfile.Manager.Controller.Profile.MPCategoryGetAvailableCategory("Coomeva", "Alergología", "Drenaje Linfático manual");
+
+            Assert.AreEqual(oCategory.Count > 0, true);
+        }
+
+
+        #endregion
     }
 }

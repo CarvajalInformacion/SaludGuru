@@ -26,6 +26,9 @@ namespace SaludGuruProfile.Manager.Interfaces
         void CategoryInfoDelete(int CategoryInfoTypeId);
 
         List<ICategoryModel> CategoryGetAllAdmin(enumCategoryType categoryType, string Parameter);
+
+        List<ICategoryModel> MPCategoryGetAvailableCategory(string InsuranceName, string SpecialtyName, string TreatmentName);
+
         #endregion
 
         #region Profile

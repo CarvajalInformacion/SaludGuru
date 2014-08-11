@@ -283,6 +283,80 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oRetorno;
         }
 
+        public List<ICategoryModel> MPCategoryGetAvailableCategory(string InsuranceName, string SpecialtyName, string TreatmentName)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceName", InsuranceName));
+            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyName", SpecialtyName));
+            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentName", TreatmentName));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_C_Category_GetAvailableCategory",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ICategoryModel> oRetorno = new List<ICategoryModel>();
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oRetorno.AddRange(
+                    (from i in response.DataTableResult.AsEnumerable()
+                     where i.Field<int?>("CategoryId") != null &&
+                             i.Field<int?>("CategoryType") != null &&
+                           (enumCategoryType)i.Field<int>("CategoryType") == enumCategoryType.Insurance
+                     group i by
+                     new
+                     {
+                         CategoryId = i.Field<int>("CategoryId"),
+                         Name = i.Field<string>("Name"),
+                     } into ig
+                     select new InsuranceModel()
+                     {
+                         CategoryId = ig.Key.CategoryId,
+                         Name = ig.Key.Name,
+                     }).ToList<ICategoryModel>());
+
+                oRetorno.AddRange(
+                    (from i in response.DataTableResult.AsEnumerable()
+                     where i.Field<int?>("CategoryId") != null &&
+                             i.Field<int?>("CategoryType") != null &&
+                         (enumCategoryType)i.Field<int>("CategoryType") == enumCategoryType.Specialty
+                     group i by
+                     new
+                     {
+                         CategoryId = i.Field<int>("CategoryId"),
+                         Name = i.Field<string>("Name"),
+                     } into ig
+                     select new SpecialtyModel()
+                     {
+                         CategoryId = ig.Key.CategoryId,
+                         Name = ig.Key.Name,
+                     }).ToList<ICategoryModel>());
+
+                oRetorno.AddRange(
+                    (from i in response.DataTableResult.AsEnumerable()
+                     where i.Field<int?>("CategoryId") != null &&
+                             i.Field<int?>("CategoryType") != null &&
+                         (enumCategoryType)i.Field<int>("CategoryType") == enumCategoryType.Treatment
+                     group i by
+                     new
+                     {
+                         CategoryId = i.Field<int>("CategoryId"),
+                         Name = i.Field<string>("Name"),
+                     } into ig
+                     select new TreatmentModel()
+                     {
+                         CategoryId = ig.Key.CategoryId,
+                         Name = ig.Key.Name,
+                     }).ToList<ICategoryModel>());
+            }
+            return oRetorno;
+        }
+
         #endregion
 
         #region Profile

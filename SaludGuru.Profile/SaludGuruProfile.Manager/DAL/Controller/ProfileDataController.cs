@@ -83,6 +83,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.CategoryGetAllAdmin(categoryType, Parameter);
         }
 
+        public List<Interfaces.ICategoryModel> MPCategoryGetAvailableCategory(string InsuranceName, string SpecialtyName, string TreatmentName)
+        {
+            return DataFactory.MPCategoryGetAvailableCategory(InsuranceName, SpecialtyName, TreatmentName);
+        }
+
         #endregion
 
         #region Profile
