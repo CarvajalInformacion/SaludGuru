@@ -1329,9 +1329,10 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public List<AutocompleteModel> MPProfileSearchAC(string Query)
+        public List<AutocompleteModel> MPProfileSearchAC(int CityId, string Query)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
             lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
@@ -1360,11 +1361,23 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public List<ProfileModel> MPProfileSearchBasicInfo(string Query, int? CategoryId, int RowCount, int PageNumber)
+        public List<ProfileModel> MPProfileSearchBasicInfo
+            (bool IsQuery,
+            int CityId,
+            string Query,
+            int? InsuranceId,
+            int? SpecialtyId,
+            int? TreatmentId,
+            int RowCount,
+            int PageNumber)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
             lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
-            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryId", CategoryId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
             lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
             lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
 
@@ -1425,14 +1438,25 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public List<ProfileModel> MPProfileSearchCategory(string Query, int? CategoryId, int RowCount, int PageNumber)
+        public List<ProfileModel> MPProfileSearchCategory
+            (bool IsQuery,
+            int CityId,
+            string Query,
+            int? InsuranceId,
+            int? SpecialtyId,
+            int? TreatmentId,
+            int RowCount,
+            int PageNumber)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
             lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
-            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryId", CategoryId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
             lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
             lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
-
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
