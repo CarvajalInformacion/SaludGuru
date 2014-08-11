@@ -7,11 +7,11 @@
     <div class="divUpsert">
         <h3>Incluir una Nueva Especialidad</h3>
 
-        <form action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.SpecialtyInfo.CategoryId })" method="post">
+        <form id="SpecialtyInfoId" action="@Url.Action("SpecialtyUpsert", "Specialty", new { SpecialtyId = Model.SpecialtyInfo.CategoryId })" method="post">
             <ul class="BOIncludeNewSpecialty">
                 <li>
                     <label>Nombre</label>
-                    <input id="Name" name="Name" value="@(Model.SpecialtyInfo.Name == null ? string.Empty : Model.SpecialtyInfo.Name)" type="text" />
+                    <input id="Name" class="required" name="Name" value="@(Model.SpecialtyInfo.Name == null ? string.Empty : Model.SpecialtyInfo.Name)" type="text" />
                 </li>
                 <li>
                     @{
@@ -63,3 +63,38 @@
         </form>
     </div>
 </div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#SpecialtyInfoId').validate({
+                //debug: true,
+                errorClass: 'error help-inline',
+                validClass: 'success',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+                },
+                rules: {
+                    Name: {
+                        required: true,
+                    },
+                    DurationTime: {
+                        required: true
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "Debe ingresar el nombre.",
+
+                    }
+                }
+            });
+        });
+    </script>
+}
