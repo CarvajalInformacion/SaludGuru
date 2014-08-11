@@ -1,4 +1,5 @@
 ﻿using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,9 @@ namespace MarketPlace.Models.Appointment
         public List<PatientModel> PatientGroup { get; set; }
 
         public bool RenderScripts { get; set; }
+
+        public string CurrentOffice { get; set; }
+        
+        public string StartDate { get; set; }
     }
 }

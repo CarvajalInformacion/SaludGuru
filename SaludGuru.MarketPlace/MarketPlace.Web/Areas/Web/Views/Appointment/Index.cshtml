@@ -6,8 +6,44 @@
 
 <h2>Index</h2>
 <div>
-    <form id="AppointmentForm" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.Index, new { ProfilePublicId = "2C1D2510" }))">
+    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.Index, new { ProfilePublicId = "2C1D2510" }))">
         <ul>
+            @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
+            {
+                <li id="officeSelectedId" style="display:none">
+
+                    <label>Por favor selecciona un consultorio</label>
+                    <select id="SelectedOffice" name="SelectedOffice">
+                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
+                        {
+                            var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
+                            <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
+                            <input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@officeSelected.Name" />
+                        }
+                    </select>
+                </li>
+            }
+            else
+            {
+                <li id="officeSelectedId">
+                    <label>Por favor selecciona un consultorio</label>
+                    <select id="SelectedOffice" name="SelectedOffice">
+                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
+                        {
+                            if (Model.CurrentProfile != null && item.IsDefault == true)
+                            {
+                                <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
+                                @*<input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@item.Name" />*@
+                            }
+                            else
+                            {
+                                <option value="@item.OfficePublicId">@item.Name</option>
+                                
+                            }
+                        }
+                    </select>
+                </li>
+            }
             <li>
                 <label>Por favor escoge un seguro</label>
                 <select id="SelectedInsurance" name="SelectedInsurance">
@@ -27,7 +63,7 @@
             <li>
                 <label>Selecciona un tratamiento</label>
                 <select id="SelectedTreatment" name="SelectedTreatment">
-                    @foreach (var item in Model.CurrentProfile.RelatedTreatment)
+                    @foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
                     {
                         if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
                         {
@@ -44,42 +80,49 @@
                 <div>
                     @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
                 </div>
+            </li>           
+            <li>
+                <div>
+                    @foreach (var item in Model.PatientGroup)
+                    {
+                        string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                    x.Value == "true").
+                                    Select(x => x.Value).FirstOrDefault();
+
+                        <ul id="ulPatientList">
+                            <li>
+                                @if (currentPatient != null)
+                                {
+                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
+                                    <label>Yo</label>
+                                }
+                                else
+                                {
+                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
+                                    <label>@item.Name @item.LastName</label>
+                                }
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </li>
+            <li>
+                <div id="FreeScheduleId" style="display:none">
+                    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
+                    <input type="button" style="width:100px; height: 20px" id="DateLessInfoId" value="Ver menos info de la cita" />
+                </div>
+            </li>
+            <li>
+                <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
+            </li>
+            <li>
+                <div>
+                    <input type="hidden" id="StartDate" value="" />
+                    <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
+                </div>
             </li>
         </ul>
     </form>
-</div>
-
-<div>
-    <ul>
-        <li>
-            <div>
-                @foreach (var item in Model.PatientGroup)
-                {
-                    string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
-                                x.Value == "true").
-                                Select(x => x.Value).FirstOrDefault();
-
-                    <ul id="ulPatientList">
-                        <li>
-                            @if (currentPatient != null)
-                            {
-                                <input type="radio" id="SelectedItem" name="SelectedItem" checked="checked" value="@item.PatientPublicId">
-                                <label>Yo</label>
-                            }
-                            else
-                            {
-                                <input type="radio" name="SelectedItem" value="@item.PatientPublicId">
-                                <label>@item.Name @item.LastName</label>
-                            }
-                        </li>
-                    </ul>
-                }
-            </div>
-        </li>
-        <li>
-            <input id="isSomeBody" type="button" name="Btn" value="Alguien más" />
-        </li>
-    </ul>
 </div>
 
 <div id="NewPatient" style="display:none;">
@@ -111,17 +154,22 @@
                 </div>
             </li>
         </ul>
-        <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
+        <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
     </form>
 </div>
 
 <!--Profile Schedule-->
 
-<div id="FreeScheduleId" style="display:none">
-    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
-</div>
+@if (Model.StartDate != null)
+{
+    <input type="button" style="height: 20px" id="DateMoreInfoIdNN" value="@Model.StartDate" />
+}
+else
+{
+    <input type="button" style="height: 20px" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />    
+}
 
-<input type="button" id="DateInfoId" value= "Ver más info de la cita" /> 
+
 
 <!--templates-->
 <div style="display:none">
@@ -143,7 +191,6 @@
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
         $(document).ready(function () {
-           
             $("#isSomeBody").click(function () {
                 $("#NewPatient").show();
             });
@@ -153,21 +200,14 @@
             $("#GenderMale").click(function () {
                 $("#GenderFemale").attr('checked', false);
             });
-            $("#DateInfoId").click(function () {
-                debugger;
-                $("#FreeScheduleId").show();
-            });
-            
-            //$("#FreeScheduleId").dialog({
-            //    autoOpen: false,
-            //    width: 600,
-            //    draggable: false,
-            //    resizable: false,
-            //    modal: true,
-            //    show: "fade",
-            //    hide: "fade",
-            //    closeText: 'X'
+            //$("#DateMoreInfoId").click(function () {
+            //    $("#FreeScheduleId").show();
+            //    $("#DateMoreInfoId").hide();
             //});
+            $("#DateLessInfoId").click(function () {
+                $("#FreeScheduleId").hide();
+                $("#DateMoreInfoId").show();
+            });
         });
     </script>
 }

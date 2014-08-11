@@ -83,68 +83,68 @@ namespace MarketPlace.Web.Controllers
 
 
             //validate profile
-            if (ViewModel.CurrentProfile != null && ViewModel.CurrentProfile.ProfilePublicId == ProfilePublicId)
-            {
-                //eval route to redirect
-                if (ViewModel.IsRedirect)
-                {
-                    Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-                            MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                            new
-                            {
-                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
-                                ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
-                            })));
-                }
+            //    if (ViewModel.CurrentProfile != null && ViewModel.CurrentProfile.ProfilePublicId == ProfilePublicId)
+            //    {
+            //        //eval route to redirect
+            //        if (ViewModel.IsRedirect)
+            //        {
+            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+            //                    new
+            //                    {
+            //                        DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
+            //                        ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
+            //                        SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
+            //                    })));
+            //        }
 
-                //compare doctor names
-                if (DoctorName != BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName))
-                {
-                    Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-                            MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                            new
-                            {
-                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
-                                ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
-                            })));
-                }
+            //        //compare doctor names
+            //        if (DoctorName != BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName))
+            //        {
+            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+            //                    new
+            //                    {
+            //                        DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
+            //                        ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
+            //                        SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
+            //                    })));
+            //        }
 
-                //validate specialty for canonical
-                if (SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
-                {
-                    ViewModel.IsNoFollow = true;
-                    ViewModel.IsNoIndex = true;
-                    ViewModel.IsCanonical = true;
-                }
-            }
-            else if (string.IsNullOrEmpty(ProfilePublicId))
-            {
-                //redirect to home no profile id
-                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Default)));
-            }
-            else
-            {
-                //eval redirect from old Profesional 
-                SaludGuruProfile.Manager.Models.Profile.ProfileModel NewProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(ProfilePublicId);
+            //        //validate specialty for canonical
+            //        if (SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
+            //        {
+            //            ViewModel.IsNoFollow = true;
+            //            ViewModel.IsNoIndex = true;
+            //            ViewModel.IsCanonical = true;
+            //        }
+            //    }
+            //    else if (string.IsNullOrEmpty(ProfilePublicId))
+            //    {
+            //        //redirect to home no profile id
+            //        Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Default)));
+            //    }
+            //    else
+            //    {
+            //        //eval redirect from old Profesional 
+            //        SaludGuruProfile.Manager.Models.Profile.ProfileModel NewProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(ProfilePublicId);
 
-                if (NewProfile != null && !string.IsNullOrEmpty(NewProfile.ProfilePublicId))
-                {
-                    Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-                            MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                            new
-                            {
-                                DoctorName = BaseController.RemoveAccent(NewProfile.Name + " " + NewProfile.LastName),
-                                ProfilePublicId = NewProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(NewProfile.DefaultSpecialty.Name),
-                            })));
-                }
-                else
-                {
-                    Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-                }
-            }
+            //        if (NewProfile != null && !string.IsNullOrEmpty(NewProfile.ProfilePublicId))
+            //        {
+            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+            //                    new
+            //                    {
+            //                        DoctorName = BaseController.RemoveAccent(NewProfile.Name + " " + NewProfile.LastName),
+            //                        ProfilePublicId = NewProfile.ProfilePublicId,
+            //                        SpecialtyName = BaseController.RemoveAccent(NewProfile.DefaultSpecialty.Name),
+            //                    })));
+            //        }
+            //        else
+            //        {
+            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
+            //        }
+            //    }
         }
 
     }

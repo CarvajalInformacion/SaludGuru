@@ -28,6 +28,22 @@ namespace MarketPlace.Models.Appointment
             }
         }
 
+        public string AvailableDateTemplateText
+        {
+            get
+            {
+                if (IsHeader)
+                {
+                    return AvailableDate.Value.ToString("ddd dd", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+                }
+                else if (AvailableDate != null)
+                {
+                    return AvailableDate.Value.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+                }
+                return string.Empty;
+            }
+        }
+
         public string CurrentStyle
         {
             get
