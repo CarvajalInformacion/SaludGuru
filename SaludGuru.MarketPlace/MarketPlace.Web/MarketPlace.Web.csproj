@@ -1076,6 +1076,10 @@
     <Content Include="Areas\Web\Views\Search\Index.cshtml" />
     <Content Include="Areas\Web\Views\Error\NotFound.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\ConfirmationAppointment.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Breadcrumb.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Profile_Free.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Profile_Pay.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Profile_Basic.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

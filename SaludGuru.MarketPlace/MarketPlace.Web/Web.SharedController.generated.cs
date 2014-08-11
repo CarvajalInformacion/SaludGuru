@@ -46,6 +46,10 @@ namespace T4MVC.Web
                 public readonly string _P_DetailInfo = "_P_DetailInfo";
                 public readonly string _P_ImageSlider = "_P_ImageSlider";
                 public readonly string _P_Map = "_P_Map";
+                public readonly string _S_Breadcrumb = "_S_Breadcrumb";
+                public readonly string _S_Profile_Basic = "_S_Profile_Basic";
+                public readonly string _S_Profile_Free = "_S_Profile_Free";
+                public readonly string _S_Profile_Pay = "_S_Profile_Pay";
             }
             public readonly string _AP_Appointment = "~/Areas/Web/Views/Shared/_AP_Appointment.cshtml";
             public readonly string _AP_ProfileInfo = "~/Areas/Web/Views/Shared/_AP_ProfileInfo.cshtml";
@@ -57,6 +61,10 @@ namespace T4MVC.Web
             public readonly string _P_DetailInfo = "~/Areas/Web/Views/Shared/_P_DetailInfo.cshtml";
             public readonly string _P_ImageSlider = "~/Areas/Web/Views/Shared/_P_ImageSlider.cshtml";
             public readonly string _P_Map = "~/Areas/Web/Views/Shared/_P_Map.cshtml";
+            public readonly string _S_Breadcrumb = "~/Areas/Web/Views/Shared/_S_Breadcrumb.cshtml";
+            public readonly string _S_Profile_Basic = "~/Areas/Web/Views/Shared/_S_Profile_Basic.cshtml";
+            public readonly string _S_Profile_Free = "~/Areas/Web/Views/Shared/_S_Profile_Free.cshtml";
+            public readonly string _S_Profile_Pay = "~/Areas/Web/Views/Shared/_S_Profile_Pay.cshtml";
         }
     }
 
