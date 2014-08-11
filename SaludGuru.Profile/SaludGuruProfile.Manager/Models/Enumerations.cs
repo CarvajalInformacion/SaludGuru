@@ -48,7 +48,7 @@
         ModifyAppointment = 416,
         ReminderAppointment = 417,
         ReminderNextAppointment = 418,
-        SaleforceCode = 419,
+        SalesforceCode = 419,
         Mobile = 424,
         KeyWords = 425,
         OldProfileId = 426,
