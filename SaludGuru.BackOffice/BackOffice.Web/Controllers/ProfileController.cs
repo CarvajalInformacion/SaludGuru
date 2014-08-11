@@ -847,9 +847,9 @@ namespace BackOffice.Web.Controllers
                         },
                         new ProfileInfoModel()
                         {
-                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_SaleForce"])?0:int.Parse(Request["CatId_SaleForce"].ToString().Trim()),
-                            ProfileInfoType = enumProfileInfoType.SaleforceCode,
-                            Value = Request["Saleforce"].ToString(),
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_SalesForce"])?0:int.Parse(Request["CatId_SalesForce"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.SalesforceCode,
+                            Value = Request["Salesforce"].ToString(),
                         },
                         new ProfileInfoModel()
                         {
