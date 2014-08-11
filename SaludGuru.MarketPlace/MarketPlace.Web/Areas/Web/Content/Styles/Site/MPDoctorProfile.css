@@ -2,6 +2,7 @@
     border:1px solid purple;
     display:block;
     width:96%;
+    min-width:740px;
     margin:0px auto;
 }
 .MPProfileInfoWrapper {
@@ -264,7 +265,7 @@
         text-align:center;
     }
         .MPProfileInfoDetail div ul li a{
-            font-size:120%;
+            font-size:1.4em;
             line-height:22px;
             letter-spacing: -1px;
             color: #a4c02c;
@@ -318,7 +319,7 @@
         display: block;
         margin: 2px;
         background-color: #A4C02C;
-        font-size: 2.4em;
+        font-size: 2.1em;
         color:#333;
         text-align: center;
         width: 100%;
@@ -326,16 +327,117 @@
         line-height: 38px;
     }
     /************ LISTA OFICINAS ***********/
+    .MPProfileSchedule div > ul {
+        display:inline-block;
+        border:1px solid brown;
+        width:26.4%;
+        min-width:190px;
+        height:auto;
+        vertical-align:top;
+    }
     .MPProfileSchedule div > ul > li {
         display:block;
         border:1px solid grey;
-        width:334px; height:52px;
+        width:100%;
+        min-width:190px;
+        height:52px;
+        margin-top:12px;
+        text-align:left;
+        overflow:hidden;
+        white-space:nowrap; 
+        text-overflow:ellipsis;
     }
+        .MPProfileSchedule div > ul > li:first-child {
+            margin-top:82px;
+        }
+        .MPProfileSchedule div > ul > li:active {
+            border-right:none;
+        }
     .MPProfileSchedule div > ul > li a{
+        display: block;
+        width:100%;
+        height: 50px;
+        vertical-align: middle;
+        font-size: 1.7em;
+        color: #333;
+        background-color: #C0C1BD;
+        line-height: 46px;
+        text-indent: 12px;
     }
-
-
-
+        .MPProfileSchedule div > ul > li a:hover {
+            background-color: #fff; text-decoration:none;
+        }
+        .MPProfileSchedule div > ul > li a:active {
+            background-color: #fff;
+        }
+#divAppointmentSchedule {
+    display:inline-block;
+    border:1px solid green;
+    width:73%;
+    height:auto;
+    margin-left:-6px;
+    padding:28px 26px;
+}
+        div.SelOfficeGrid{
+            width:12px;
+            display:block;
+            border:4px solid green;
+            margin:0px auto;
+        }
+        #divAppointmentSchedule div.SelOfficeGrid > div{
+            display:block;
+            border:1px solid darkblue;
+            width:100%;
+            height:32px;
+            text-align:center;
+        }
+            div.SelOfficeGrid > div > a, div.SelOfficeGrid > div > span {
+                line-height:30px;
+                font-size:1.3em;
+            }
+            div.SelOfficeGrid > div > a {
+                color:#a4c02c;
+            }
+            div.SelOfficeGrid > div > span {
+                margin: 0px 8%;
+            }
+            /********* TABLA **********/
+            div.SelOfficeGrid > div.k-grid > div.k-grid-header {
+                display:none;
+            }
+            div.k-grid-content > table > tbody > tr:first-child{
+                background-color:#a4c02c;
+            }
+            div.k-grid-content > table > tbody > tr:first-child > td{
+                border-style: solid;
+                border-color: #666;
+                border-width:0px 1px 1px 0px;
+            }
+                div.k-grid-content > table > tbody > tr:first-child > td:hover{
+                    background-color:initial;
+                    cursor:initial;
+                }
+            div.k-grid-content > table > tbody > tr:first-child > td > a,
+            div.k-grid-content > table > tbody > tr > td > a{
+                color:#333; width:82px;
+                margin-left:-3px;
+            }
+            div.k-grid-content > table > tbody > tr:first-child > td > a:hover,
+            div.k-grid-content > table > tbody > tr > td > a:hover{
+                color:#333; text-decoration:none;
+            }
+                div.k-grid-content > table > tbody > tr:first-child > td > a:hover {
+                    cursor:initial;
+                }
+            div.k-grid-content > table > tbody > tr > td{
+                border-style: solid;
+                border-color: #666;
+                border-width:0px 1px 1px 0px;                
+            }
+                div.k-grid-content > table > tbody > tr > td:hover {
+                    cursor:pointer;
+                    background-color:#afacac;
+                }
 .MPProfileMap {
     border:1px solid grey;
     display:block;

@@ -632,5 +632,16 @@ namespace SaludGuruProfile.Manager.Controller
         }
 
         #endregion
+
+        #region Category
+        #region MarketPlace
+
+        public static List<Interfaces.ICategoryModel> MPCategoryGetAvailableCategory(string InsuranceName, string SpecialtyName, string TreatmentName)
+        {
+            return DAL.Controller.ProfileDataController.Instance.MPCategoryGetAvailableCategory(InsuranceName, SpecialtyName, TreatmentName);
+        }
+
+        #endregion
+        #endregion
     }
 }

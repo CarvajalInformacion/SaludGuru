@@ -3,7 +3,8 @@
 @if (!Model.RenderScripts)
 {
     <div>
-        <div id="divOfficeMap" style="width:700px;height:300px;">
+        <span>Ubicación del Doctor</span>
+        <div id="divOfficeMap">
         </div>
     </div>
 
@@ -65,7 +66,9 @@ else
     List<double> lstLat = Model.CurrentProfile.RelatedOffice.
             Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
             Select(lat => lat.OfficeInfo.
-                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation &&
+                                   !string.IsNullOrEmpty(x.Value) &&
+                                   x.Value.Split(',').Length >= 2).
                         Select(x => Convert.ToDouble(x.Value.Split(',')[0], System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"))).
                         DefaultIfEmpty(0).
                         FirstOrDefault()).
@@ -74,7 +77,9 @@ else
     List<double> lstLon = Model.CurrentProfile.RelatedOffice.
             Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
             Select(lat => lat.OfficeInfo.
-                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                        Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation &&
+                                   !string.IsNullOrEmpty(x.Value) &&
+                                   x.Value.Split(',').Length >= 2).
                         Select(x => Convert.ToDouble(x.Value.Split(',')[1], System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"))).
                         DefaultIfEmpty(0).
                         FirstOrDefault()).
