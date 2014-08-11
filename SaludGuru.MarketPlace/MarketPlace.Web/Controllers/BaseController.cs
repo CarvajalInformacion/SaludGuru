@@ -46,7 +46,7 @@ namespace MarketPlace.Web.Controllers
                 if (oEnabledCities == null)
                 {
                     oEnabledCities = MarketPlace.Models.General.InternalSettings.Instance
-                        [MarketPlace.Models.General.Constants.C_Settings_Cities].
+                        [MarketPlace.Models.General.Constants.C_Settings_City_Cities].
                         Value.
                         Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).
                         ToDictionary
@@ -55,6 +55,16 @@ namespace MarketPlace.Web.Controllers
                 }
                 return oEnabledCities;
             }
+        }
+
+        public static int DefaultCityId
+        {
+            get { return Convert.ToInt32(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_City_Default].Value); }
+        }
+
+        public static string DefaultCityName
+        {
+            get { return EnabledCities[Convert.ToInt32(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_City_Default].Value)]; }
         }
 
         private CookieModel oCurrentCookie;

@@ -13,6 +13,24 @@ namespace MarketPlace.Models.Profile
 
         public int CurrentPage { get; set; }
 
+        private int? oCurrentRowCount;
+        public int CurrentRowCount
+        {
+            get
+            {
+                if (oCurrentRowCount == null)
+                {
+                    oCurrentRowCount = Convert.ToInt32(
+                        MarketPlace.Models.General.InternalSettings.Instance
+                            [MarketPlace.Models.General.Constants.C_Settings_SearchPage_RowCount].Value.Trim());
+
+                    if (oCurrentRowCount <= 0)
+                        oCurrentRowCount = 20;
+                }
+                return (int)oCurrentRowCount;
+            }
+        }
+
         public int TotalProfile { get; set; }
 
         public bool RenderScripts { get; set; }

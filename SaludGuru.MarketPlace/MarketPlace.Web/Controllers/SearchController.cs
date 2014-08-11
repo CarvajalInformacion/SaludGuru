@@ -18,6 +18,7 @@ namespace MarketPlace.Web.Controllers
         {
             try
             {
+
                 //get basic model
                 SearchViewModel oModel = new SearchViewModel()
                 {
@@ -38,15 +39,43 @@ namespace MarketPlace.Web.Controllers
                             Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsQuery]),
                 };
 
-                if (oModel.IsQuery)
-                {
-                    //get query model
-                }
-                else
-                {
-                    //get category model
+                //eval redirect
+                EvalRedirect
+                    (oModel,
+                    SpecialtyName,
+                    TreatmentName,
+                    InsuranceName,
+                    CityName,
+                    Query);
 
-                }
+                //get page number
+                oModel.CurrentPage = Convert.ToInt32(Request["PageNumber"]);
+                if (oModel.CurrentPage < 0)
+                    oModel.CurrentPage = 0;
+
+                ////get profiles to show
+                //if (oModel.IsQuery)
+                //{
+                //    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
+                //        (true,
+                //        BaseController.EnabledCities.
+                //            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(CityName.Replace("+", " "))).
+                //            Select(x => x.Key).
+                //            DefaultIfEmpty(BaseController.DefaultCityId).
+                //            FirstOrDefault(),
+                //        Query.Replace("+", " "),
+                //        null,
+                //        null,
+                //        null,
+                //        oModel.CurrentRowCount,
+                //        oModel.CurrentPage);
+                //}
+                //else
+                //{
+
+
+                //    //oModel.AutocompleteResults = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC(Query);
+                //}
 
                 return View(oModel);
             }
@@ -78,75 +107,105 @@ namespace MarketPlace.Web.Controllers
             }
             else
             {
-
+                if (string.IsNullOrEmpty(vCityName))
+                {
+                    CallCategoryRedirect
+                        (vSpecialtyName.Replace("+", " "),
+                        vTreatmentName.Replace("+", " "),
+                        vInsuranceName.Replace("+", " "),
+                        BaseController.DefaultCityName);
+                }
+                else if (ViewModel.IsRedirect)
+                {
+                    CallCategoryRedirect
+                        (vSpecialtyName.Replace("+", " "),
+                        vTreatmentName.Replace("+", " "),
+                        vInsuranceName.Replace("+", " "),
+                        vCityName.Replace("+", " "));
+                }
             }
-
-
-            //validate profile
-            //    if (ViewModel.CurrentProfile != null && ViewModel.CurrentProfile.ProfilePublicId == ProfilePublicId)
-            //    {
-            //        //eval route to redirect
-            //        if (ViewModel.IsRedirect)
-            //        {
-            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-            //                    new
-            //                    {
-            //                        DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
-            //                        ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-            //                        SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
-            //                    })));
-            //        }
-
-            //        //compare doctor names
-            //        if (DoctorName != BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName))
-            //        {
-            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-            //                    new
-            //                    {
-            //                        DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
-            //                        ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-            //                        SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
-            //                    })));
-            //        }
-
-            //        //validate specialty for canonical
-            //        if (SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
-            //        {
-            //            ViewModel.IsNoFollow = true;
-            //            ViewModel.IsNoIndex = true;
-            //            ViewModel.IsCanonical = true;
-            //        }
-            //    }
-            //    else if (string.IsNullOrEmpty(ProfilePublicId))
-            //    {
-            //        //redirect to home no profile id
-            //        Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Default)));
-            //    }
-            //    else
-            //    {
-            //        //eval redirect from old Profesional 
-            //        SaludGuruProfile.Manager.Models.Profile.ProfileModel NewProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(ProfilePublicId);
-
-            //        if (NewProfile != null && !string.IsNullOrEmpty(NewProfile.ProfilePublicId))
-            //        {
-            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
-            //                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-            //                    new
-            //                    {
-            //                        DoctorName = BaseController.RemoveAccent(NewProfile.Name + " " + NewProfile.LastName),
-            //                        ProfilePublicId = NewProfile.ProfilePublicId,
-            //                        SpecialtyName = BaseController.RemoveAccent(NewProfile.DefaultSpecialty.Name),
-            //                    })));
-            //        }
-            //        else
-            //        {
-            //            Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-            //        }
-            //    }
         }
 
+        private void CallCategoryRedirect
+            (string vSpecialtyName,
+            string vTreatmentName,
+            string vInsuranceName,
+            string vCityName)
+        {
+            if (string.IsNullOrEmpty(vSpecialtyName) &&
+                string.IsNullOrEmpty(vTreatmentName) &&
+                string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_City,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                        })));
+            }
+            else if (string.IsNullOrEmpty(vSpecialtyName) &&
+                    string.IsNullOrEmpty(vTreatmentName) &&
+                    !string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_InsuranceCity,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                            InsuranceName = BaseController.RemoveAccent(vInsuranceName),
+                        })));
+            }
+            else if (!string.IsNullOrEmpty(vSpecialtyName) &&
+                    string.IsNullOrEmpty(vTreatmentName) &&
+                    string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyCity,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                            SpecialtyName = BaseController.RemoveAccent(vSpecialtyName),
+                        })));
+            }
+            else if (!string.IsNullOrEmpty(vSpecialtyName) &&
+                    string.IsNullOrEmpty(vTreatmentName) &&
+                    !string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyInsuranceCity,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                            SpecialtyName = BaseController.RemoveAccent(vSpecialtyName),
+                            InsuranceName = BaseController.RemoveAccent(vInsuranceName),
+                        })));
+            }
+            else if (string.IsNullOrEmpty(vSpecialtyName) &&
+                    !string.IsNullOrEmpty(vTreatmentName) &&
+                    string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentCity,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                            TreatmentName = BaseController.RemoveAccent(vTreatmentName),
+                        })));
+            }
+            else if (string.IsNullOrEmpty(vSpecialtyName) &&
+                    !string.IsNullOrEmpty(vTreatmentName) &&
+                    !string.IsNullOrEmpty(vInsuranceName))
+            {
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
+                        MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentInsuranceCity,
+                        new
+                        {
+                            CityName = BaseController.RemoveAccent(vCityName),
+                            TreatmentName = BaseController.RemoveAccent(vTreatmentName),
+                            InsuranceName = BaseController.RemoveAccent(vInsuranceName),
+                        })));
+            }
+        }
     }
 }
 

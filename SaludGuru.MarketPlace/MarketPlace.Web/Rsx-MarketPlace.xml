@@ -14,7 +14,8 @@
     <key name="GoogleMaps_Sensor">false</key>
 
     <!--Enabled Cities-->
-    <key name="Cities">1,Bogotá;</key>
+    <key name="City_Cities">1,Bogotá;</key>
+    <key name="City_Default">1</key>
 
     <!--SaludGuru Facebook-->
     <key name="SaludGuru_FacebookProfile">https://www.facebook.com/pages/Salud-Gurú/249567868524045?fref=ts</key>
@@ -30,6 +31,10 @@
     <key name="Url_Invalid_Char">
       <![CDATA[á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
     </key>
+    
+    <!--Search page-->
+    <key name="SearchPage_RowCount">20</key>
+  
 
   </MarketPlace>
 </Settings>
