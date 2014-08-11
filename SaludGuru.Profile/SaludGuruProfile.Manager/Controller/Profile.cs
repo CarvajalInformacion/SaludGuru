@@ -503,6 +503,35 @@ namespace SaludGuruProfile.Manager.Controller
             return DAL.Controller.ProfileDataController.Instance.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
         }
 
+        public static List<AutocompleteModel> MPProfileSearchAC(string Query)
+        {
+            return DAL.Controller.ProfileDataController.Instance.MPProfileSearchAC(Query);
+        }
+
+        public static List<ProfileModel> MPProfileSearch(string Query, int? CategoryId, int RowCount, int PageNumber)
+        {
+            List<ProfileModel> oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileSearchBasicInfo(Query, CategoryId, RowCount, PageNumber);
+
+            if (oReturn == null)
+                oReturn = new List<ProfileModel>();
+
+            List<ProfileModel> oAux = DAL.Controller.ProfileDataController.Instance.MPProfileSearchCategory(Query, CategoryId, RowCount, PageNumber);
+            if (oAux == null)
+                oAux = new List<ProfileModel>();
+
+            oReturn.All(p =>
+            {
+                p.RelatedSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedSpecialty).FirstOrDefault();
+                p.DefaultSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.DefaultSpecialty).FirstOrDefault();
+                p.RelatedInsurance = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedInsurance).FirstOrDefault();
+                p.RelatedTreatment = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedTreatment).FirstOrDefault();
+
+                return true;
+            });
+
+            return oReturn;
+        }
+
         #endregion
 
         #endregion
