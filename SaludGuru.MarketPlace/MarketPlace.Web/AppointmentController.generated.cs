@@ -63,6 +63,12 @@ namespace MarketPlace.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ConfirmationAppointment()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmationAppointment);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AppointmentController Actions { get { return MVC.Appointment; } }
@@ -80,12 +86,14 @@ namespace MarketPlace.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string ConfirmationAppointment = "ConfirmationAppointment";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string ConfirmationAppointment = "ConfirmationAppointment";
         }
 
 
@@ -98,6 +106,14 @@ namespace MarketPlace.Web.Controllers
             public readonly string ProfilePublicId = "ProfilePublicId";
             public readonly string OfficePublicId = "OfficePublicId";
             public readonly string Date = "Date";
+        }
+        static readonly ActionParamsClass_ConfirmationAppointment s_params_ConfirmationAppointment = new ActionParamsClass_ConfirmationAppointment();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ConfirmationAppointment ConfirmationAppointmentParams { get { return s_params_ConfirmationAppointment; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ConfirmationAppointment
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -129,6 +145,18 @@ namespace MarketPlace.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
             IndexOverride(callInfo, ProfilePublicId, OfficePublicId, Date);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ConfirmationAppointmentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ConfirmationAppointment(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmationAppointment);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ConfirmationAppointmentOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

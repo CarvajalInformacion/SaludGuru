@@ -2,6 +2,9 @@
 using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models;
+using SaludGuruProfile.Manager.Models.Office;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,31 +28,65 @@ namespace MarketPlace.Web.Controllers
             return View(oModel);
         }
 
-        public virtual ActionResult CreateAppointment()
+        public virtual ActionResult ConfirmationAppointment(string ProfilePublicId)
         {
+            ProfileModel oModel = new ProfileModel();
+            oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+
+            this.GetAppointmetRequest(oModel);
 
             return View();
         }
 
         #region Private Functions
-        private AppointmentModel GetAppointmetRequest()
+        private AppointmentModel GetAppointmetRequest(ProfileModel CurrentProfileModel)
         {
-
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
-                && bool.Parse(Request["UpsertAction"]))
+            && bool.Parse(Request["UpsertAction"]))
             {
+                OfficeModel SelectedOfficeModel = CurrentProfileModel.RelatedOffice.Where(x => x.OfficePublicId == Request["SelectedOffice"].ToString()).Select(x => x).FirstOrDefault();
+                TreatmentOfficeModel TreatmentSelected = SelectedOfficeModel.RelatedTreatment.Where(x => x.CategoryId == Convert.ToInt32(Request["SelectedTreatment"])).FirstOrDefault();
+                string DurationDate = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault();
+                DateTime prueba = Convert.ToDateTime(Request["StartDate"]).AddMinutes(12);
+                DateTime prueba2 = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault()));
+
                 AppointmentModel oReturn = new AppointmentModel()
                 {
                     OfficePublicId = Request["SelectedOffice"].ToString(),
                     Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
-
-                    StartDate = DateTime.ParseExact
-                        (Request["StartDate"].Replace(" ", "") + "T" + Request["StartTime"].Replace(" ", ""),
-                        "dd/MM/yyyyTh:mmtt",
-                        System.Globalization.CultureInfo.InvariantCulture),
-
-
+                    StartDate = Convert.ToDateTime(Request["StartDate"]),
+                    EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault())),                            
+                    AppointmentInfo = new List<AppointmentInfoModel>(),
+                    RelatedPatient = new List<PatientModel>(),
                 };
+                //treatment
+                int oTreatmentId = Convert.ToInt32(Request["SelectedTreatment"].Replace(" ", ""));
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId =  0,
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category,
+                        Value = oTreatmentId.ToString(),
+                    });
+
+                //after care
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = 0,
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare,
+                        LargeValue = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.AfterCare).Select(x => x.Value).FirstOrDefault(),
+                    });
+
+                //before care
+                oReturn.AppointmentInfo.Add
+                    (new AppointmentInfoModel()
+                    {
+                        AppointmentInfoId = 0,
+                        AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare,
+                        LargeValue = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.BeforeCare).Select(x => x.Value).FirstOrDefault(),
+                    });
+
                 return oReturn;
             }
             return null;

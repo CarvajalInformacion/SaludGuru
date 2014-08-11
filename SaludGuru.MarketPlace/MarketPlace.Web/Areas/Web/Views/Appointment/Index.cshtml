@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 <div>
-    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.Index, new { ProfilePublicId = "2C1D2510" }))">
+    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
@@ -38,7 +38,7 @@
                             else
                             {
                                 <option value="@item.OfficePublicId">@item.Name</option>
-                                
+
                             }
                         }
                     </select>
@@ -67,20 +67,22 @@
                     {
                         if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
                         {
-                            <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            <option value="@item.CategoryId" selected="selected">@item.Name</option>                            
                         }
                         else
                         {
                             <option value="@item.CategoryId">@item.Name</option>
                         }
+
                     }
+
                 </select>
             </li>
             <li>
                 <div>
                     @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
                 </div>
-            </li>           
+            </li>
             <li>
                 <div>
                     @foreach (var item in Model.PatientGroup)
@@ -117,7 +119,8 @@
             </li>
             <li>
                 <div>
-                    <input type="hidden" id="StartDate" value="" />
+                    <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
+                    <input type="hidden" name="StartDate" id="StartDate" value="" />
                     <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
                 </div>
             </li>
@@ -159,14 +162,13 @@
 </div>
 
 <!--Profile Schedule-->
-
 @if (Model.StartDate != null)
 {
     <input type="button" style="height: 20px" id="DateMoreInfoIdNN" value="@Model.StartDate" />
 }
 else
 {
-    <input type="button" style="height: 20px" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />    
+    <input type="button" style="height: 20px" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />
 }
 
 

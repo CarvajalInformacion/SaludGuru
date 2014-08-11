@@ -36,27 +36,27 @@
             </a>
         </div>
         <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
-            <a class="${Tuesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Tuesday.AvailableDate}');" href="javascript:">
+            <a class="${Tuesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Tuesday.AvailableDateTemplateText}');" href="javascript:">
                 ${Tuesday.AvailableDateText}
             </a>
         </div>
         <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
-            <a class="${Wednesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Wednesday.AvailableDate}');" href="javascript:">
+            <a class="${Wednesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Wednesday.AvailableDateTemplateText}');" href="javascript:">
                 ${Wednesday.AvailableDateText}
             </a>
         </div>
         <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
-            <a class="${Thursday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Thursday.AvailableDate}');" href="javascript:">
+            <a class="${Thursday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Thursday.AvailableDateTemplateText}');" href="javascript:">
                 ${Thursday.AvailableDateText}
             </a>
         </div>
         <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
-            <a class="${Friday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Friday.AvailableDate}');" href="javascript:">
+            <a class="${Friday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Friday.AvailableDateTemplateText}');" href="javascript:">
                 ${Friday.AvailableDateText}
             </a>
         </div>
         <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
-            <a class="${Saturday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Saturday.AvailableDate}');" href="javascript:">
+            <a class="${Saturday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Saturday.AvailableDateTemplateText}');" href="javascript:">
                 ${Saturday.AvailableDateText}
             </a>
         </div>
@@ -79,7 +79,7 @@ else
                     OfficeName = of.Name,
                     OfficeDivId = string.Empty,
                     IsDefault = of.IsDefault,
-                    TreatmentList = of.RelatedTreatment.Select(tr => new { tr.CategoryId, tr.Name }).ToList(),
+                    TreatmentList = of.RelatedTreatment.Select(tr => new { tr.CategoryId, tr.Name}).ToList(),
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
 

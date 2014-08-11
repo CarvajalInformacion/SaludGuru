@@ -60,7 +60,8 @@ var AppointmentObject = {
 
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
-            //set key value pair for an office            
+            //set key value pair for an office       
+            debugger;
             AppointmentObject.lstOffice[value.OfficePublicId] = value;
         });
     },
@@ -97,6 +98,7 @@ var AppointmentObject = {
         $('#' + AppointmentObject.selTreatmentId).empty();
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
             $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
+            $('#' + AppointmentObject.selTreatmentId).append('<input type="hidden" name="Slot" value=' + value + '>');
         });
         AppointmentObject.RenderOfficeSchedule(selectOffice);
     },
