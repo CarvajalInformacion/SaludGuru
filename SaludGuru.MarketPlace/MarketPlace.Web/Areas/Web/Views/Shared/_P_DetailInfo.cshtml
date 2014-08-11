@@ -33,7 +33,6 @@
 
 @if (!Model.RenderScripts)
 {
-    <div>
         <img src="@ovImageProfile" />
         <div>
             <ul>
@@ -52,27 +51,26 @@
             </ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
-                <div id="divProfileText" style="display:none;height:90px;overflow:hidden">
+                <div id="divProfileText">
                     <p>@ovProfileText.Trim()</p>
                     <a id="divProfileText_a" href="javascript:;"></a>
                 </div>
             }
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
-                <div id="divEducation" style="display:none;height:90px;overflow:hidden">
+                <div id="divEducation">
                     <p>@ovProfileEducation.Trim()</p>
                     <a id="divEducation_a" href="javascript:;"></a>
                 </div>
             }
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
-                <div id="divCertification" style="display:none;height:90px;overflow:hidden">
+                <div id="divCertification">
                     <p>@ovProfileCertification.Trim()</p>
                     <a id="divCertification_a" href="javascript:;"></a>
                 </div>
             }
         </div>
-    </div>
 }
 else
 {

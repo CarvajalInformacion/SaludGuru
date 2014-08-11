@@ -31,8 +31,8 @@
 
 @if (!Model.RenderScripts)
 {
-    <div>
-        <div>
+
+        <div class="MPProfileInfo_BasicInfo">
             @if (ovIsCertified)
             {
                 <!--certified image-->
@@ -48,26 +48,25 @@
             <span>@string.Join(", ", Model.CurrentProfile.RelatedInsurance.Select(x => x.Name))</span>
         </div>
         <!--Social Profile-->
-        <div>
-            @if (!string.IsNullOrEmpty(ovWebSite))
-            {
+    <div class="MPProfileInfo_Social">
+        @if (!string.IsNullOrEmpty(ovWebSite))
+        {
             <a href="@ovWebSite">
                 <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
                 <span>Página Web</span>
             </a>
-            }
-            @if (!string.IsNullOrEmpty(ovFacebook))
-            {
+        }
+        @if (!string.IsNullOrEmpty(ovFacebook))
+        {
             <a href="@ovFacebook">
                 <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
                 <span>Facebook</span>
             </a>
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook));width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=289174777912953" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:290px;" allowtransparency="true"></iframe>
-            }
-            else
-            {
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=289174777912953" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:290px;" allowtransparency="true"></iframe>
-            }
-        </div>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook));width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=289174777912953" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+        }
+        else
+        {
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=289174777912953" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+        }
     </div>
 }

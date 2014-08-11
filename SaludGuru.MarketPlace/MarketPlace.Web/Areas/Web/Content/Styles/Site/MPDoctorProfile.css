@@ -1,0 +1,312 @@
+.MPProfileGreatWrapper {
+    border:1px solid purple;
+    display:block;
+    width:96%;
+    margin:0px auto;
+}
+.MPProfileInfoWrapper {
+    border:1px solid green;
+    display:block;
+    width:98%;
+    height:442px;
+}
+    .MPProfileInfoImages {
+        border:1px solid red;
+        float:left;
+        width:60%;
+        height:442px;
+    }
+    .MPProfileInfoInfo {
+        border:1px solid blue;
+        float:right;
+        width:40%;
+        height:442px;
+    }
+.MPProfileInfoDetail {
+    border:1px solid darkred;
+    display:block;
+    width:100%;
+    height:230px;
+}
+.MPProfileSchedule {
+    border:1px solid darkgreen;
+    display:block;
+    width:100%;
+    height:486px;
+}
+.MPProfileMap {
+    border:1px solid grey;
+    display:block;
+    width:100%;
+    height:461px;
+}
+/******** IMAGE SLIDER ********/
+#divProfileSlide {
+    position: relative; 
+    top: 0px; left: 0px; 
+    width: 730px; height: 400px; 
+    background: #FFFFFF; 
+    overflow: hidden;
+}
+    /******* LOAD SCREEN *******/
+    .sliderLoad{
+        filter: alpha(opacity=70); 
+        opacity:0.7; 
+        position: absolute; 
+        display: block;
+        background-color: #FFFFFF; 
+        top: 0px; left: 0px;
+        width: 100%; height:100%;
+    }
+    .sliderLoad2{
+        position: absolute; 
+        display: block; 
+        background: url(../img/loading.gif) no-repeat center center;
+        top: 0px; left: 0px;
+        width: 100%; height:100%;
+    }
+    /* Slides Container */
+    .sliderContainer{
+        cursor: move; position: absolute; 
+        left: 0px; top: 0px;
+        width: 600px; height: 400px;
+        overflow:hidden;
+    }
+    .MPSliderDoctorName{
+        position: absolute; display: block; 
+        bottom: 10px; left: 0px;
+        width: auto; height: auto; padding:15px 12px; font-size:30px;
+        background-color:#ffffff;
+        filter: alpha(opacity=70); opacity:0.7;
+        max-width: 300px;
+        min-height: 70px;
+        overflow:hidden; 
+        white-space:nowrap; 
+        text-overflow:ellipsis;
+    }
+        .MPSliderDoctorName span{
+            line-height:30px;
+        }
+    /******** Thumbnail Navigator Skin Begin *********/
+
+.MPSliderjssort11 {
+    position: absolute; width: 130px; height: 400px; left:605px; top:0px;
+}
+.MPSliderjssort11Cursor {cursor: move;}
+.MPSliderjssort11P {
+    position: absolute; 
+    width: 130px; height: 95px; 
+    top: 0; left: 0;
+    }
+.MPSliderThNail {
+    width: 100%; height: 100%; 
+    border: none; position:absolute; 
+    top: 0; left: 0;
+}
+    /**** Thumbnail Item Skin Begin ****/
+    .jssort11 {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+        .jssort11 .i, .jssort11 .pav:hover .i {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            WIDTH: 60px;
+            HEIGHT: 30px;
+            border: white 1px dashed;
+        }
+
+        * html .jssort11 .i {
+            WIDTH /**/: 62px;
+            HEIGHT /**/: 32px;
+        }
+
+        .jssort11 .pav .i {
+            border: white 1px solid;
+        }
+
+        .jssort11 .t, .jssort11 .pav:hover .t {
+            position: absolute;
+            top: 3px;
+            left: 68px;
+            width: 129px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            color: #fc9835;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .jssort11 .pav .t, .jssort11 .phv .t, .jssort11 .p:hover .t {
+            color: #fff;
+        }
+
+        .jssort11 .c, .jssort11 .pav:hover .c {
+            position: absolute;
+            top: 38px;
+            left: 3px;
+            width: 197px;
+            height: 31px;
+            line-height: 31px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 400;
+            overflow: hidden;
+        }
+
+        .jssort11 .pav .c, .jssort11 .phv .c, .jssort11 .p:hover .c {
+            color: #fc9835;
+        }
+
+        .jssort11 .t, .jssort11 .c {
+            transition: color 2s;
+            -moz-transition: color 2s;
+            -webkit-transition: color 2s;
+            -o-transition: color 2s;
+        }
+
+        .jssort11 .p:hover .t, .jssort11 .phv .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .phv .c, .jssort11 .pav:hover .c {
+            transition: none;
+            -moz-transition: none;
+            -webkit-transition: none;
+            -o-transition: none;
+        }
+
+        .jssort11 .p {
+            background: #181818;
+        }
+
+        .jssort11 .pav, .jssort11 .pdn {
+            background: #462300;
+        }
+
+        .jssort11 .p:hover, .jssort11 .phv, .jssort11 .pav:hover {
+            background: #333;
+        }
+/***************** BASIC INFO ****************/
+.MPProfileInfo_BasicInfo {
+    border:1px solid red;
+    display:block;
+}
+    .MPProfileInfo_BasicInfo img{
+        border:1px solid red;
+        display:block;
+        float:left;
+        width: 50px;
+        height: auto;
+    }
+    .MPProfileInfo_BasicInfo span {
+        border: 1px solid #F00;
+        display: inline-block;
+        width:78.4%;
+        height: auto;
+        font-weight: bold;
+        letter-spacing: -1px;
+    }
+    .MPProfileInfo_BasicInfo span:nth-child(2){
+        font-size: 28px;
+        line-height:25px;
+        margin: 7px 0px 0px 10px;
+    }
+    .MPProfileInfo_BasicInfo span:nth-child(3){
+        font-size: 17px;
+        line-height: 20px;
+        margin: 0px 0px 0px 10px;
+    }
+.MPProfileInfo_Social{
+    border:1px solid green;
+    display:block;
+    width:auto;
+}
+    .MPProfileInfo_Social a{
+        border:1px solid green;
+        float:left;
+        width:68px; height:auto;
+        text-align:left;
+        margin-left:4px;
+        vertical-align:top;
+        clear:both;
+    }
+            .MPProfileInfo_Social a img{
+                border:1px solid green;
+                display:inline-block;
+                width:38px;
+                height:auto;
+            }
+            .MPProfileInfo_Social a span{
+                    border: 1px solid #008000;
+                    display: block;
+                    color: #666;
+                    font-size: 12px;
+                    line-height: 14px;
+                    width: 67px;
+                    }
+        .MPProfileInfo_Social iframe{
+            border: 1px solid #800080;
+            overflow: hidden;
+            margin-left: 10.6%;
+            width: 62%;
+            height: 340px;
+            }
+/*********** Profile Description ***********/
+.MPProfileInfoDetail img {
+    border:1px solid purple;
+    display:inline-block;
+    width:auto; height:200px;
+    margin:14px 0px 0px 1.3%;
+}
+.MPProfileInfoDetail div{
+    border: 1px solid #00F;
+    display: inline-block;
+    margin:14px 0px 0px 1.8%;
+    width: 84.1%;
+    height: auto;
+    vertical-align: top;
+    text-align:center;
+}
+    .MPProfileInfoDetail div ul li{
+        border:1px solid pink;
+        display:inline-block;
+        margin: 2px 0px 0px 0px;
+        height: auto;
+        width:32%;
+        text-align:center;
+    }
+        .MPProfileInfoDetail div ul li a{
+            font-size:22px;
+            line-height:22px;
+            letter-spacing: -1px;
+            color: #a4c02c;
+            font-weight: bold;
+        }
+            .MPProfileInfoDetail div ul li a:hover {
+                background-color:#ececec;
+                text-decoration:none;
+            }
+            .MPProfileInfoDetail div ul li a:active {
+                text-decoration:underline;
+            }
+            div#divProfileText, div#divEducation, div#divCertification{
+                margin:14px 0px 0px 0px; padding:0px;
+                width:100%; height:158px;
+            }
+.MPProfileInfoDetail div#divProfileText p,
+.MPProfileInfoDetail div#divEducation p,
+.MPProfileInfoDetail div#divCertification p{
+
+}
+.MPProfileInfoDetail div#divProfileText a,
+.MPProfileInfoDetail div#divEducation a,
+.MPProfileInfoDetail div#divCertification a {
+
+}
+.MPProfileInfoDetail {
+
+}
+.MPProfileInfoDetail {
+
+}
+.MPProfileInfoDetail {
+
+}

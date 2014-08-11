@@ -5,28 +5,28 @@
     Model.RenderScripts = false;
 }
 
-<div>
+<div class="MPProfileGreatWrapper">
     <!--Profile Basic Info-->
-    <div>
+    <div class="MPProfileInfoWrapper">
         <!--Profile Images-->
-        <div>
+        <div class="MPProfileInfoImages">
             @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
         </div>
         <!--Profile Basic Info Detail-->
-        <div>
+        <div class="MPProfileInfoInfo">
             @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
         </div>
     </div>
     <!--Profile Description-->
-    <div>
+    <div class="MPProfileInfoDetail">
         @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
     </div>
     <!--Profile Schedule-->
-    <div>
+    <div class="MPProfileSchedule">
         @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
     </div>
     <!--Profile Map-->
-    <div>
+    <div class="MPProfileMap">
         @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
     </div>
 </div>
