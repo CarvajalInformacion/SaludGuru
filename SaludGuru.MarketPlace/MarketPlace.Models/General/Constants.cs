@@ -16,6 +16,7 @@
         public const string C_RouteValue_IsNoIndex = "IsNoIndex";
         public const string C_RouteValue_IsRedirect = "IsRedirect";
         public const string C_RouteValue_IsCanonical = "IsCanonical";
+        public const string C_RouteValue_IsQuery = "IsQuery";
 
         public const string C_Route_Default = "Default";
 
