@@ -1329,6 +1329,201 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<AutocompleteModel> MPProfileSearchAC(string Query)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_P_Profile_SearchAC",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AutocompleteModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from ac in response.DataTableResult.AsEnumerable()
+                     select new AutocompleteModel()
+                     {
+                         Id = ac.Field<string>("Id"),
+                         IsQuery = ac.Field<int>("IsQuery") == 1 ? true : false,
+                         MatchQuery = ac.Field<string>("MatchQuery"),
+                         CategoryType = ac.Field<int>("IsQuery") == 1 ? null : (enumCategoryType?)((enumCategoryType)ac.Field<int>("Type")),
+                         ProfileType = ac.Field<int>("IsQuery") == 1 ? (enumProfileType?)((enumProfileType)ac.Field<int>("Type")) : null,
+                     }).ToList();
+            }
+            return oReturn;
+        }
+
+        public List<ProfileModel> MPProfileSearchBasicInfo(string Query, int? CategoryId, int RowCount, int PageNumber)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryId", CategoryId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_P_Profile_Search_BasicInfo",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from p in response.DataTableResult.AsEnumerable()
+                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
+                     group p by
+                     new
+                     {
+                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
+                         Name = p.Field<string>("Name"),
+                         LastName = p.Field<string>("LastName"),
+                         ProfileType = (enumProfileType)p.Field<int>("ProfileType"),
+                         ProfileStatus = (enumProfileStatus)p.Field<int>("ProfileStatus"),
+                     } into pg
+                     select new ProfileModel()
+                     {
+                         ProfilePublicId = pg.Key.ProfilePublicId,
+                         Name = pg.Key.Name,
+                         LastName = pg.Key.LastName,
+                         ProfileType = pg.Key.ProfileType,
+                         ProfileStatus = pg.Key.ProfileStatus,
+
+                         ProfileInfo = (from pinf in response.DataTableResult.AsEnumerable()
+                                        where pinf.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                              !string.IsNullOrEmpty(pinf.Field<string>("ProfilePublicId")) &&
+                                              pinf.Field<int?>("ProfileInfoId") != null
+                                        group pinf by
+                                        new
+                                        {
+                                            ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
+                                            ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
+                                            Value = pinf.Field<string>("ProfileInfoValue"),
+                                            LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
+                                        } into pinfg
+                                        select new ProfileInfoModel()
+                                        {
+                                            ProfileInfoId = pinfg.Key.ProfileInfoId,
+                                            ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
+                                            Value = pinfg.Key.Value,
+                                            LargeValue = pinfg.Key.LargeValue,
+                                        }).ToList()
+                     }).ToList();
+            }
+            return oReturn;
+        }
+
+        public List<ProfileModel> MPProfileSearchCategory(string Query, int? CategoryId, int RowCount, int PageNumber)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCategoryId", CategoryId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_P_Profile_Search_Category",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from p in response.DataTableResult.AsEnumerable()
+                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
+                     group p by
+                     new
+                     {
+                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
+
+                     } into pg
+                     select new ProfileModel()
+                     {
+
+                         ProfilePublicId = pg.Key.ProfilePublicId,
+
+
+                         RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
+                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                     sp.Field<int?>("CategoryType") != null &&
+                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
+                                             group sp by
+                                             new
+                                             {
+                                                 CategoryId = sp.Field<int>("CategoryId"),
+                                                 Name = sp.Field<string>("CategoryName")
+                                             } into spg
+                                             select new SpecialtyModel()
+                                             {
+                                                 CategoryId = spg.Key.CategoryId,
+                                                 Name = spg.Key.Name,
+                                             }).ToList(),
+
+                         DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
+                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                     sp.Field<int?>("CategoryType") != null &&
+                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
+                                                     sp.Field<UInt64>("CategoryIsDefault") == 1
+                                             select new SpecialtyModel()
+                                             {
+                                                 CategoryId = sp.Field<int>("CategoryId"),
+                                                 Name = sp.Field<string>("CategoryName"),
+                                             }).FirstOrDefault(),
+
+                         RelatedInsurance = (from sp in response.DataTableResult.AsEnumerable()
+                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                     sp.Field<int?>("CategoryType") != null &&
+                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
+                                             group sp by
+                                             new
+                                             {
+                                                 CategoryId = sp.Field<int>("CategoryId"),
+                                                 Name = sp.Field<string>("CategoryName")
+                                             } into spg
+                                             select new InsuranceModel()
+                                             {
+                                                 CategoryId = spg.Key.CategoryId,
+                                                 Name = spg.Key.Name,
+                                             }).ToList(),
+
+                         RelatedTreatment = (from sp in response.DataTableResult.AsEnumerable()
+                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                     sp.Field<int?>("CategoryType") != null &&
+                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
+                                             group sp by
+                                             new
+                                             {
+                                                 CategoryId = sp.Field<int>("CategoryId"),
+                                                 Name = sp.Field<string>("CategoryName")
+                                             } into spg
+                                             select new TreatmentModel()
+                                             {
+                                                 CategoryId = spg.Key.CategoryId,
+                                                 Name = spg.Key.Name,
+                                             }).ToList()
+                     }).ToList();
+            }
+            return oReturn;
+        }
+
         #endregion
 
         #region Office

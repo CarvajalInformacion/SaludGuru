@@ -207,6 +207,21 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
         }
 
+        public List<AutocompleteModel> MPProfileSearchAC(string Query)
+        {
+            return DataFactory.MPProfileSearchAC(Query);
+        }
+
+        public List<ProfileModel> MPProfileSearchBasicInfo(string Query, int? CategoryId, int RowCount, int PageNumber)
+        {
+            return DataFactory.MPProfileSearchBasicInfo(Query, CategoryId, RowCount, PageNumber);
+        }
+
+        public List<ProfileModel> MPProfileSearchCategory(string Query, int? CategoryId, int RowCount, int PageNumber)
+        {
+            return DataFactory.MPProfileSearchCategory(Query, CategoryId, RowCount, PageNumber);
+        }
+
         #endregion
 
         #region Office

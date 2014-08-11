@@ -60,6 +60,11 @@ namespace SaludGuruProfile.Manager.Interfaces
         ProfileModel MPProfileGetFullRelatedProfile(string ProfilePublicId);
         ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId);
 
+
+        List<AutocompleteModel> MPProfileSearchAC(string Query);
+        List<ProfileModel> MPProfileSearchBasicInfo(string Query, int? CategoryId, int RowCount, int PageNumber);
+        List<ProfileModel> MPProfileSearchCategory(string Query, int? CategoryId, int RowCount, int PageNumber);
+
         #endregion
 
         #region Office
