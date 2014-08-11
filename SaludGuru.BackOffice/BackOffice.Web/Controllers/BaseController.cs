@@ -383,6 +383,11 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuPatient.Appointment;
             }
+            else if (MVC.Patient.Name == CurrentControllerName &&
+                MVC.Patient.ActionNames.PatientNotes == CurrentActionName)
+            {
+                oReturn = enumMenuPatient.PatientNotes;
+            }
             return oReturn;
         }
 
