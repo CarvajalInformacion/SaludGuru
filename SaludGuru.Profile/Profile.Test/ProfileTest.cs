@@ -160,10 +160,11 @@ namespace Profile.Test
         [TestMethod]
         public void MPProfileSearch()
         {
-            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(true, 1, "á á", null, null, null, 20, 0);
+            int TotalRows;
+            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(true, 1, "á á", null, null, null, 2, 2, out TotalRows);
             Assert.AreEqual(oProfile.Count > 0, true);
 
-            oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(false, 1, null, 3, null, null, 20, 0);
+            oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(false, 1, null, 3, null, null, 20, 0, out TotalRows);
             Assert.AreEqual(oProfile.Count > 0, true);
         }
 

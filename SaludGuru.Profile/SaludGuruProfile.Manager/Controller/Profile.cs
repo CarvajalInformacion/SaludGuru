@@ -516,10 +516,11 @@ namespace SaludGuruProfile.Manager.Controller
             int? SpecialtyId,
             int? TreatmentId,
             int RowCount,
-            int PageNumber)
+            int PageNumber,
+            out int TotalRows)
         {
             List<ProfileModel> oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileSearchBasicInfo
-                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
+                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber, out TotalRows);
 
             if (oReturn == null)
                 oReturn = new List<ProfileModel>();

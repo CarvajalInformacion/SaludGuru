@@ -1369,8 +1369,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             int? SpecialtyId,
             int? TreatmentId,
             int RowCount,
-            int PageNumber)
+            int PageNumber,
+            out int TotalRows)
         {
+            TotalRows = 0;
+
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
             lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
@@ -1394,6 +1397,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             if (response.DataTableResult != null &&
                 response.DataTableResult.Rows.Count > 0)
             {
+                TotalRows = (int)response.DataTableResult.Rows[0].Field<Int64>("TotalRows");
+
                 oReturn =
                     (from p in response.DataTableResult.AsEnumerable()
                      where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))

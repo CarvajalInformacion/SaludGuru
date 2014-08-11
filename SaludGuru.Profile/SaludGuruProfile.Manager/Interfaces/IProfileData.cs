@@ -62,7 +62,7 @@ namespace SaludGuruProfile.Manager.Interfaces
 
 
         List<AutocompleteModel> MPProfileSearchAC(int CityId, string Query);
-        List<ProfileModel> MPProfileSearchBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber);
+        List<ProfileModel> MPProfileSearchBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber, out int TotalRows);
         List<ProfileModel> MPProfileSearchCategory(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber);
 
         #endregion
