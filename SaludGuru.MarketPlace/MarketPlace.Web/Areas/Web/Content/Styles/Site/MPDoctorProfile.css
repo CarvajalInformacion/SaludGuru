@@ -27,18 +27,7 @@
     display:block;
     width:100%;
     height:230px;
-}
-.MPProfileSchedule {
-    border:1px solid darkgreen;
-    display:block;
-    width:100%;
-    height:486px;
-}
-.MPProfileMap {
-    border:1px solid grey;
-    display:block;
-    width:100%;
-    height:461px;
+    font-size:1em;
 }
 /******** IMAGE SLIDER ********/
 #divProfileSlide {
@@ -253,14 +242,15 @@
 .MPProfileInfoDetail img {
     border:1px solid purple;
     display:inline-block;
-    width:auto; height:200px;
+    width:18.2%; height:auto;
     margin:14px 0px 0px 1.3%;
+    max-width:135px;
 }
 .MPProfileInfoDetail div{
     border: 1px solid #00F;
     display: inline-block;
     margin:14px 0px 0px 1.8%;
-    width: 84.1%;
+    width: 78.1%;
     height: auto;
     vertical-align: top;
     text-align:center;
@@ -274,7 +264,7 @@
         text-align:center;
     }
         .MPProfileInfoDetail div ul li a{
-            font-size:22px;
+            font-size:120%;
             line-height:22px;
             letter-spacing: -1px;
             color: #a4c02c;
@@ -288,25 +278,70 @@
                 text-decoration:underline;
             }
             div#divProfileText, div#divEducation, div#divCertification{
-                margin:14px 0px 0px 0px; padding:0px;
+                margin:14px 0px 0px 0px;
+                padding:5px 1.5% 0px 1.5%;
                 width:100%; height:158px;
+                text-align:left;
             }
-.MPProfileInfoDetail div#divProfileText p,
-.MPProfileInfoDetail div#divEducation p,
-.MPProfileInfoDetail div#divCertification p{
-
+                .MPProfileInfoDetail div#divProfileText p,
+                .MPProfileInfoDetail div#divEducation p,
+                .MPProfileInfoDetail div#divCertification p{
+                    font-size:14px;
+                    line-height:18px;
+                    color:#666;
+                    max-height:130px;
+                    overflow:auto;
+                }
+                    .MPProfileInfoDetail div#divProfileText a,
+                    .MPProfileInfoDetail div#divEducation a,
+                    .MPProfileInfoDetail div#divCertification a {
+                            border:none;
+                        height: 17px;
+                        width: auto;
+                        line-height: 15px;
+                        float: right;
+                        color: #A4C02C;
+                        font-weight: bold;
+                        text-align: right;
+                        display: block;
+                        font-size:15px;
+                    }
+/**************** Profile Schedule **************/
+.MPProfileSchedule {
+    border:1px solid darkgreen;
+    display:block;
+    width:100%;
+    height:auto;
+    padding: 0px 17px;
 }
-.MPProfileInfoDetail div#divProfileText a,
-.MPProfileInfoDetail div#divEducation a,
-.MPProfileInfoDetail div#divCertification a {
+    .MPProfileSchedule div > span:first-child{
+        display: block;
+        margin: 2px;
+        background-color: #A4C02C;
+        font-size: 2.4em;
+        color:#333;
+        text-align: center;
+        width: 100%;
+        height: 45px;
+        line-height: 38px;
+    }
+    /************ LISTA OFICINAS ***********/
+    .MPProfileSchedule div > ul > li {
+        display:block;
+        border:1px solid grey;
+        width:334px; height:52px;
+    }
+    .MPProfileSchedule div > ul > li a{
+    }
 
-}
-.MPProfileInfoDetail {
 
-}
-.MPProfileInfoDetail {
 
+.MPProfileMap {
+    border:1px solid grey;
+    display:block;
+    width:100%;
+    height:461px;
 }
-.MPProfileInfoDetail {
+.MPProfileMap a{
 
 }
