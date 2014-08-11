@@ -503,19 +503,31 @@ namespace SaludGuruProfile.Manager.Controller
             return DAL.Controller.ProfileDataController.Instance.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
         }
 
-        public static List<AutocompleteModel> MPProfileSearchAC(string Query)
+        public static List<AutocompleteModel> MPProfileSearchAC(int CityId, string Query)
         {
-            return DAL.Controller.ProfileDataController.Instance.MPProfileSearchAC(Query);
+            return DAL.Controller.ProfileDataController.Instance.MPProfileSearchAC(CityId, Query);
         }
 
-        public static List<ProfileModel> MPProfileSearch(string Query, int? CategoryId, int RowCount, int PageNumber)
+        public static List<ProfileModel> MPProfileSearch
+            (bool IsQuery,
+            int CityId,
+            string Query,
+            int? InsuranceId,
+            int? SpecialtyId,
+            int? TreatmentId,
+            int RowCount,
+            int PageNumber,
+            out int TotalRows)
         {
-            List<ProfileModel> oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileSearchBasicInfo(Query, CategoryId, RowCount, PageNumber);
+            List<ProfileModel> oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileSearchBasicInfo
+                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber, out TotalRows);
 
             if (oReturn == null)
                 oReturn = new List<ProfileModel>();
 
-            List<ProfileModel> oAux = DAL.Controller.ProfileDataController.Instance.MPProfileSearchCategory(Query, CategoryId, RowCount, PageNumber);
+            List<ProfileModel> oAux = DAL.Controller.ProfileDataController.Instance.MPProfileSearchCategory
+                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
+
             if (oAux == null)
                 oAux = new List<ProfileModel>();
 

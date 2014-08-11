@@ -10,20 +10,20 @@
     padding: 0px 6% 20px 6%;
 }
 
-.divUpsert{
-    margin-left: calc(14%);    
+.divUpsert {
+    margin-left: calc(14%);
 }
 
-.divUpsert h3{
-    margin: 10px 0px 10px 8% !important;
-}
-
-    .BOInsuranceTableWrapper h3 {
-        border: none;
-        width: auto;
-        margin: 10px 0px 10px 0%;
-        font-size: 20px;
+    .divUpsert h3 {
+        margin: 10px 0px 10px 8% !important;
     }
+
+.BOInsuranceTableWrapper h3 {
+    border: none;
+    width: auto;
+    margin: 10px 0px 10px 0%;
+    font-size: 20px;
+}
 
 #divGridInsurance div a, #divGridInsurance div.k-grid-content a,
 #divGridSpecialty div a, #divGridSpecialty div.k-grid-content a,
@@ -37,6 +37,11 @@
 
 #divGridProfile div a, #divGridProfile div.k-grid-content a {
     color: #99C21D;
+}
+
+input#DurationTime {
+    width: 200px;
+    height: 30px;
 }
 
 /************* INCLUIR INFO EN LISTA DE SEGUROS, ESPECIALIDADES O TRATAMIENTOS ************/
@@ -70,13 +75,13 @@
         .BOIncludeNewInsurance li label {
             text-align: center;
             width: 220px;
-            height: 32px; 
+            height: 32px;
         }
 
         .BOIncludeNewSpecialty li label {
             text-align: center;
             min-width: 220px;
-            height: 32px;            
+            height: 32px;
         }
 
         .BOIncludeNewInsurance li input[type="text"], .BOIncludeNewSpecialty li input[type="text"] {
@@ -144,4 +149,26 @@ ul.BOIncludeNewInsurance {
     width: 700px;
     min-width: 300px;
     height: auto;
+}
+
+/*--------- Validaciones de los formularios -----------*/
+form#TreatmentInfoId span#Name-error, span#DurationTime-error {
+    display: inline-block !important;
+    color: red;
+    margin-top: 11px;
+    margin-left: 224px;
+}
+
+form#SpecialtyInfoId span#Name-error {
+    display: inline-block !important;
+    color: red;
+    margin-top: 11px;
+    margin-left: 224px;
+}
+
+form#InsuranceInfoId span#Name-error {
+    display: inline-block !important;
+    color: red;
+    margin-top: 11px;
+    margin-left: 224px;
 }

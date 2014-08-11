@@ -233,6 +233,7 @@
                     <li>
                         <label>Nombre</label>
                         <input id="Name" name="Name" class="required" type="text" />
+                        <span id="Name-Required">*</span>
                     </li>
                     <li>
                         <label>Apellidos</label>
@@ -241,6 +242,7 @@
                     <li>
                         <label>Número Identificación</label>
                         <input id="IdentificationNumber" name="IdentificationNumber" type="text" />
+                        <span id="Identification-Required">*</span>
                     </li>
                     <li>
                         <label>Correo electrónico</label>
@@ -249,26 +251,27 @@
                     <li>
                         <label>Teléfono móvil</label>
                         <input id="Mobile" name="Mobile" class="required" type="text" />
+                        <span id="Mobile-Required">*</span>
                     </li>
                     <li>
                         @{
-    if (Model.CurrentProfile.RelatedInsurance != null)
-    {
-        <label>Seguro</label>
-                            <select id="Insurance" name="Insurance">
-                                @{
-        foreach (var item in Model.CurrentProfile.RelatedInsurance)
-        {
+                            if (Model.CurrentProfile.RelatedInsurance != null)
+                            {
+                                <label>Seguro</label>
+                                                    <select id="Insurance" name="Insurance">
+                                                        @{
+                                foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                                {
 
-            <option value="@item.CategoryId" selected="selected">@item.Name</option>
-        }
+                                    <option value="@item.CategoryId" selected="selected">@item.Name</option>
                                 }
-                            </select>
-        if (Model.CurrentProfile.RelatedInsurance != null)
-        {
-            <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
-        }
-    }
+                                                        }
+                                                    </select>
+                                if (Model.CurrentProfile.RelatedInsurance != null)
+                                {
+                                    <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+                                }
+                            }
                         }
                     </li>
                     <li>
@@ -277,6 +280,8 @@
                     </li>
                     <li>
                         <label class="UserMessage">El paciente creado desde este formulario recibirá mensajes vía email y sms por defecto. Para modificar estas opciones dirijase a la página de edición de paciente.</label>
+                        <br />
+                        <label class="Message-Required">Los campos con (*) son obligatorios.</label>
                     </li>
                 </ul>
             </form>
