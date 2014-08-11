@@ -81,6 +81,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientNotes);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult PatientNotesUpsert()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientNotesUpsert);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public PatientController Actions { get { return MVC.Web.Patient; } }
@@ -101,6 +107,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string PatientUpsert = "PatientUpsert";
             public readonly string AppointmentList = "AppointmentList";
             public readonly string PatientNotes = "PatientNotes";
+            public readonly string PatientNotesUpsert = "PatientNotesUpsert";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -110,6 +117,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string PatientUpsert = "PatientUpsert";
             public const string AppointmentList = "AppointmentList";
             public const string PatientNotes = "PatientNotes";
+            public const string PatientNotesUpsert = "PatientNotesUpsert";
         }
 
 
@@ -144,6 +152,16 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public class ActionParamsClass_PatientNotes
         {
             public readonly string PatientPublicId = "PatientPublicId";
+        }
+        static readonly ActionParamsClass_PatientNotesUpsert s_params_PatientNotesUpsert = new ActionParamsClass_PatientNotesUpsert();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PatientNotesUpsert PatientNotesUpsertParams { get { return s_params_PatientNotesUpsert; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PatientNotesUpsert
+        {
+            public readonly string PatientPublicId = "PatientPublicId";
+            public readonly string Name = "Name";
+            public readonly string LastName = "LastName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -217,6 +235,20 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientNotes);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
             PatientNotesOverride(callInfo, PatientPublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PatientNotesUpsertOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId, string Name, string LastName);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PatientNotesUpsert(string PatientPublicId, string Name, string LastName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientNotesUpsert);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Name", Name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "LastName", LastName);
+            PatientNotesUpsertOverride(callInfo, PatientPublicId, Name, LastName);
             return callInfo;
         }
 

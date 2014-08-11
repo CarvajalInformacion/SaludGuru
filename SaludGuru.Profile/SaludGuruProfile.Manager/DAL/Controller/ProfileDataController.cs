@@ -202,6 +202,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPProfileGetFullRelatedProfile(ProfilePublicId);
         }
 
+        public ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId)
+        {
+            return DataFactory.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
+        }
+
         #endregion
 
         #region Office

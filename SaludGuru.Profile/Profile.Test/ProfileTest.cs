@@ -141,6 +141,15 @@ namespace Profile.Test
             Assert.AreEqual(oProfile.ProfilePublicId, PublicProfileId);
         }
 
+        [TestMethod]
+        public void MPProfileGetProfilePublicIdFromOldId()
+        {
+            string OldProfileId = "35";
+
+            ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(OldProfileId);
+            Assert.AreEqual(oProfile.ProfilePublicId, "2C1D2510");
+        }
+
 
         #endregion
 

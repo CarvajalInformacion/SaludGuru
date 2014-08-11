@@ -18,5 +18,8 @@ namespace MarketPlace.Models.Profile
         public bool IsNoFollow { get; set; }
 
         public bool IsRedirect { get; set; }
+
+        public bool IsCanonical { get; set; }
+        
     }
 }

@@ -13,7 +13,7 @@ namespace MedicalCalendar.Manager.Controller
     public class Appointment
     {
         public static List<SpecialDayModel> GetSpecialDays
-            (int CountryId, string ProfilePublicId, DateTime StartDate, DateTime EndDate)
+            (int CountryId, string ProfilePublicId, DateTime StartDate)
         {
             List<SpecialDayModel> oReturn = new List<SpecialDayModel>();
 
@@ -28,7 +28,7 @@ namespace MedicalCalendar.Manager.Controller
             //get not available days for profile
 
             List<SpecialDayModel> bm = MedicalCalendarDataController.Instance.GetScheduleBusy
-                (ProfilePublicId, null, StartDate, EndDate, null).
+                (ProfilePublicId, null, StartDate, null, null).
                 Where(x => x.MaxFreeTime.Seconds == 0).
                 GroupBy(x => new
                 {

@@ -134,7 +134,7 @@ namespace BackOffice.Models.Appointment
 
         public string OfficePublicId { get { return CurrentAppointment.OfficePublicId; } }
 
-        public int Duration { get { return (CurrentAppointment.EndDate - CurrentAppointment.StartDate).Minutes; } }
+        public int Duration { get { return (int)(CurrentAppointment.EndDate - CurrentAppointment.StartDate).TotalMinutes; } }
 
         public string StartDate { get { return CurrentAppointment.StartDate.ToString("dd/MM/yyyy"); } }
 

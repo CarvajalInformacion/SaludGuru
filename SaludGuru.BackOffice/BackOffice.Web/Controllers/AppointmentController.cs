@@ -12,7 +12,7 @@ namespace BackOffice.Web.Controllers
 {
     public partial class AppointmentController : BaseController
     {
-        public virtual ActionResult Day(string Date)
+        public virtual ActionResult Day(string Date, string SelectedOffice)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
@@ -24,8 +24,8 @@ namespace BackOffice.Web.Controllers
                 dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
-            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = dtAux.AddDays(1);
+            oModel.CurrentStartDate = dtAux.Date;
+            oModel.CurrentEndDate = dtAux.AddDays(1).Date;
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Day;
@@ -33,10 +33,13 @@ namespace BackOffice.Web.Controllers
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
+            //get selected offcie
+            oModel.SelectedOffice = SelectedOffice;
+
             return View(oModel);
         }
 
-        public virtual ActionResult Week(string Date)
+        public virtual ActionResult Week(string Date, string SelectedOffice)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
@@ -49,14 +52,10 @@ namespace BackOffice.Web.Controllers
             }
 
             //get start week date
-            int intAuxDayAdd = dtAux.DayOfWeek - DayOfWeek.Monday;
-            if (intAuxDayAdd < 0)
-                intAuxDayAdd = intAuxDayAdd + 7;
+            dtAux = dtAux.AddDays((DayOfWeek.Sunday - dtAux.DayOfWeek) + 1);
 
-            dtAux = dtAux.AddDays((-1) * intAuxDayAdd);
-
-            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = dtAux.AddDays(7);
+            oModel.CurrentStartDate = dtAux.Date;
+            oModel.CurrentEndDate = dtAux.AddDays(7).Date;
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Week;
@@ -64,10 +63,13 @@ namespace BackOffice.Web.Controllers
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
+            //get selected offcie
+            oModel.SelectedOffice = SelectedOffice;
+
             return View(oModel);
         }
 
-        public virtual ActionResult List(string Date)
+        public virtual ActionResult List(string Date, string SelectedOffice)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
@@ -79,8 +81,8 @@ namespace BackOffice.Web.Controllers
                 dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
-            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = dtAux.AddDays(1);
+            oModel.CurrentStartDate = dtAux.Date;
+            oModel.CurrentEndDate = dtAux.AddDays(1).Date;
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.List;
@@ -88,10 +90,13 @@ namespace BackOffice.Web.Controllers
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
+            //get selected offcie
+            oModel.SelectedOffice = SelectedOffice;
+
             return View(oModel);
         }
 
-        public virtual ActionResult Month(string Date)
+        public virtual ActionResult Month(string Date, string SelectedOffice)
         {
             BackOffice.Models.Appointment.SchedulingModel oModel = new Models.Appointment.SchedulingModel();
 
@@ -103,14 +108,17 @@ namespace BackOffice.Web.Controllers
                 dtAux = DateTime.ParseExact(Date, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             }
 
-            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, 1, 0, 0, 0);
-            oModel.CurrentEndDate = dtAux.AddMonths(1);
+            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, 1, 0, 0, 0).Date;
+            oModel.CurrentEndDate = dtAux.AddMonths(1).Date;
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Month;
 
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
+            //get selected offcie
+            oModel.SelectedOffice = SelectedOffice;
 
             return View(oModel);
         }
@@ -248,6 +256,11 @@ namespace BackOffice.Web.Controllers
                     oModel.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Apmt.OfficePublicId).FirstOrDefault());
             }
 
+            if (oModel.CurrentAppointment != null)
+            {
+                oModel.SelectedOffice = oModel.CurrentAppointment.OfficePublicId;
+            }
+
             //get date
             DateTime dtAux = DateTime.Now;
 
@@ -261,8 +274,8 @@ namespace BackOffice.Web.Controllers
                 dtAux = oModel.CurrentAppointment.start;
             }
 
-            oModel.CurrentStartDate = new DateTime(dtAux.Year, dtAux.Month, dtAux.Day, 0, 0, 0);
-            oModel.CurrentEndDate = dtAux.AddDays(1);
+            oModel.CurrentStartDate = dtAux.Date;
+            oModel.CurrentEndDate = dtAux.AddDays(1).Date;
 
             //set current appointment type
             oModel.AppointmentType = enumAppointmentType.Detail;

@@ -690,6 +690,23 @@ form#frmCreatePatient select#Insurance {
     width: 50%;
 }
 
+.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+    line-height: normal;
+    height: 35px;
+}
+
+span#ui-id-2 {
+    margin-top: -3px;
+}
+
+div#Dialog_DragAppointment p {
+    line-height: 25px;
+}
+
+div#Dialog_ResizeAppointment p {
+    line-height: 25px;
+}
+
 /*-----Estilo cambiar de tamaño citas de agenda-----*/
 .ui-resizable-handle.ui-resizable-s {
     display: block !important;

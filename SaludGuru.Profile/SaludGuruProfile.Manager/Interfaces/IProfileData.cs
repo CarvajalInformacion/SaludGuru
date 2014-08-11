@@ -58,6 +58,7 @@ namespace SaludGuruProfile.Manager.Interfaces
         ProfileModel MPProfileGetFullOfficeCategory(string ProfilePublicId);
         ProfileModel MPProfileGetFullOfficeScheduleAvailable(string ProfilePublicId);
         ProfileModel MPProfileGetFullRelatedProfile(string ProfilePublicId);
+        ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId);
 
         #endregion
 

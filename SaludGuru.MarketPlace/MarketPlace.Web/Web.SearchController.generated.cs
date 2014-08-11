@@ -95,13 +95,11 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
-            public readonly string SpecialityName = "SpecialityName";
+            public readonly string SpecialtyName = "SpecialtyName";
             public readonly string TreatmentName = "TreatmentName";
             public readonly string InsuranceName = "InsuranceName";
             public readonly string CityName = "CityName";
             public readonly string Query = "Query";
-            public readonly string Page = "Page";
-            public readonly string Order = "Order";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -125,20 +123,18 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         public T4MVC_SearchController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialityName, string TreatmentName, string InsuranceName, string CityName, string Query, string Page, string Order);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialtyName, string TreatmentName, string InsuranceName, string CityName, string Query);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string SpecialityName, string TreatmentName, string InsuranceName, string CityName, string Query, string Page, string Order)
+        public override System.Web.Mvc.ActionResult Index(string SpecialtyName, string TreatmentName, string InsuranceName, string CityName, string Query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialityName", SpecialityName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyName", SpecialtyName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "TreatmentName", TreatmentName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "InsuranceName", InsuranceName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CityName", CityName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Query", Query);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Page", Page);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Order", Order);
-            IndexOverride(callInfo, SpecialityName, TreatmentName, InsuranceName, CityName, Query, Page, Order);
+            IndexOverride(callInfo, SpecialtyName, TreatmentName, InsuranceName, CityName, Query);
             return callInfo;
         }
 

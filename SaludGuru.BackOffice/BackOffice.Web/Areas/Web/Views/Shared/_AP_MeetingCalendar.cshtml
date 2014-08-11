@@ -8,7 +8,7 @@
     <div id="templatesMettingCalendar" style="display:none;">
         <!--metting calendar-->
         <div id="divMetting">
-            <div id="divOfficePublicId" style="width:100%;"></div>
+            <div id="divOfficePublicId" style="width:100%;" class="SelectorMettingCalendar"></div>
         </div>
         <!--metting header-->
         <div id="divMettingHeader">
@@ -46,6 +46,7 @@ else
                                                 MVC.Profile.Name,
                                                 new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, OfficePublicId = of.OfficePublicId }),
                     SlotMinutes = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.SlotMinutes).Select(x => Convert.ToInt32(x.Value) > 0 ? Convert.ToInt32(x.Value) : 30).DefaultIfEmpty(30).FirstOrDefault(),
+                    IsSelected = string.IsNullOrEmpty(Model.SelectedOffice) ? of.IsDefault : (Model.SelectedOffice == of.OfficePublicId),
                     TreatmentList = of.RelatedTreatment.Select(tr => new
                     {
                         TreatmentId = tr.CategoryId,
@@ -76,7 +77,7 @@ else
                 EndDateTime : new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
                 OfficeInfo : @Html.Raw(oOfficeInfo),
             });
-            MettingCalendarObject.RenderAsync();           
+            MettingCalendarObject.RenderAsync();
         });
     </script>
 }

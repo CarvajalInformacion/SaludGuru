@@ -115,7 +115,7 @@ function RenderPatientAppointment (vDivId, vPatientPublicId) {
 //init grid
 function PatientNotesListGrid(vidDiv, vDataPatientNotes) {
     $('#' + vidDiv).kendoGrid({
-        //toolbar: [{ template: '<a href="' + oCreateUrl + '">Nueva Especialidad</a>' }],
+        toolbar: [{ template: $("#templateHeader").html() }],
         dataSource: {
             type: "json",
             data: vDataPatientNotes,

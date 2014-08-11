@@ -2,19 +2,19 @@ div.patientAppointmentClass div table tbody tr td div {
     min-width: 800px;
 }
 
-div.patientAppointmentClass div table tbody tr td div a img {
-    width: auto;
-    height: 60px;
-    float: left;
-    margin-left: 7px;
-}
+    div.patientAppointmentClass div table tbody tr td div a img {
+        width: auto;
+        height: 60px;
+        float: left;
+        margin-left: 7px;
+    }
 
-div.patientAppointmentClass div table tbody tr td div a label {
-    float: left;
-    margin-top: 21px;
-    margin-left: 12px;
-    margin-right: 15px;
-}
+    div.patientAppointmentClass div table tbody tr td div a label {
+        float: left;
+        margin-top: 21px;
+        margin-left: 12px;
+        margin-right: 15px;
+    }
 
 label#Status {
     float: right !important;
@@ -88,4 +88,8 @@ label#TreatmentName {
 .AppointmentStatus_1207 {
     border-color: #800000;
     background-color: #ffaaaa;
+}
+
+.Notes {
+    border: none;
 }
