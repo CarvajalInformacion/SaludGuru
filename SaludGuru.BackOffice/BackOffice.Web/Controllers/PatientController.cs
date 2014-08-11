@@ -197,7 +197,7 @@ namespace BackOffice.Web.Controllers
 
         private PatientModel GetPatientNotes()
         {
-            if(!string.IsNullOrEmpty(Request["UpsertAction"])
+            if (!string.IsNullOrEmpty(Request["UpsertAction"])
                  && bool.Parse(Request["UpsertAction"]))
             {
                 PatientModel pReturn = new PatientModel()
@@ -219,7 +219,7 @@ namespace BackOffice.Web.Controllers
             }
             return null;
         }
-        
+
         #endregion
     }
 }

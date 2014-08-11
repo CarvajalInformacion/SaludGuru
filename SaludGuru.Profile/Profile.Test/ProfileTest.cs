@@ -150,6 +150,22 @@ namespace Profile.Test
             Assert.AreEqual(oProfile.ProfilePublicId, "2C1D2510");
         }
 
+        [TestMethod]
+        public void MPProfileSearchAC()
+        {
+            List<AutocompleteModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC("é mí");
+            Assert.AreEqual(oProfile.Count > 0, true);
+        }
+
+        [TestMethod]
+        public void MPProfileSearch()
+        {
+            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch("s má", null, 20, 0);
+            Assert.AreEqual(oProfile.Count > 0, true);
+
+            oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(null, 331, 20, 0);
+            Assert.AreEqual(oProfile.Count > 0, true);
+        }
 
         #endregion
 

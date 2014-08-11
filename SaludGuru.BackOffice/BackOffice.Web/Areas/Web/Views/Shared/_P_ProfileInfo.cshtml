@@ -8,21 +8,29 @@
     <form id="ProfileInfoFormId" action="@UrlAction" method="post">
         <ul>
             <h3>Datos del Perfil</h3>
+
             <li>
                 @{
                     var CatInfo_SC = Model.Profile == null ? null :
                         Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.SaleforceCode).
+                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.SalesforceCode).
                             Select(x => new { id = x.ProfileInfoId, val = x.Value }).
                                 DefaultIfEmpty(null).
                                 FirstOrDefault();
                     if (CatInfo_SC != null)
                     {
-                        <input type="hidden" id="CatId_SaleForce" name="CatId_SaleForce" value="@CatInfo_SC.id" />
+                        <input type="hidden" id="CatId_SalesForce" name="CatId_SalesForce" value="@CatInfo_SC.id" />
+                    }
+                    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                    {
+                        <label>Código Salesforce</label>
+                        <input id="Salesforce" name="Salesforce" class="required" value="@(CatInfo_SC == null ? string.Empty : CatInfo_SC.val)" type="text" />
+                    }
+                    else
+                    {
+                        <input id="Salesforce" name="Salesforce" value="@(CatInfo_SC == null ? string.Empty : CatInfo_SC.val)" type="hidden" />
                     }
                 }
-                <label>Código Saleforce</label>
-                <input id="Saleforce" name="Saleforce" class="required" value="@(CatInfo_SC == null ? string.Empty : CatInfo_SC.val)" type="text" />
             </li>
             <li>
                 <label>Nombre</label>
@@ -177,7 +185,7 @@
                         <input type="hidden" id="CatId_Mobil" name="CatId_Mobil" value="@CatInfo_MB.id" />
                     }
                 }
-                <label>Telefono móvil</label>
+                <label>Teléfono móvil</label>
                 <input id="Mobil" name="Mobil" value="@(CatInfo_MB == null ? string.Empty : CatInfo_MB.val)" type="text" />
             </li>
             <li>
@@ -241,28 +249,28 @@
             {
                 <li>
                     @{
-                        var CatInfo_D = Model.Profile == null ? null :
-                            Model.Profile.ProfileInfo.Where
-                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FeaturedProfile).
-                                Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
-                                    DefaultIfEmpty(null).
-                                    FirstOrDefault();
-                        if (CatInfo_D != null)
-                        {
-                            <input type="hidden" id="CatId_FeaturedProfile" name="CatId_FeaturedProfile" value="@CatInfo_D.id"  />
-                        }
+                var CatInfo_D = Model.Profile == null ? null :
+                    Model.Profile.ProfileInfo.Where
+                        (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FeaturedProfile).
+                        Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                if (CatInfo_D != null)
+                {
+                    <input type="hidden" id="CatId_FeaturedProfile" name="CatId_FeaturedProfile" value="@CatInfo_D.id" />
+                }
                     }
 
                     <label>Profesional destacado</label>
                     @{
-                        if (CatInfo_D != null && CatInfo_D.val)
-                        {
-                            <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" checked="checked" />
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" />
-                        }
+                if (CatInfo_D != null && CatInfo_D.val)
+                {
+                    <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" checked="checked" />
+                }
+                else
+                {
+                    <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" />
+                }
                     }
                 </li>
             }
