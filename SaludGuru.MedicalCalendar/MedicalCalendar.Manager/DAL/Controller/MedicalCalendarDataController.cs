@@ -95,6 +95,13 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.PatientGetOptions();
         }
 
+
+        public bool MPPatientTemporalUpsert(int PatientId, int ProfileId, Models.enumPatientState Status, int ProfileIdBO)
+        {
+            return DataFactory.MPPatientTemporalUpsert(PatientId, ProfileId, Status, ProfileIdBO);
+        }
+
+
         #region Market Place
 
         public List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
@@ -178,9 +185,8 @@ namespace MedicalCalendar.Manager.DAL.Controller
         {
             return DataFactory.MPAppointmentGetByOfficeIdBasicInfo(OfficePublicId, StartDateTime, EndDateTime);
         }
-
         #endregion
 
-        #endregion
+        #endregion       
     }
 }

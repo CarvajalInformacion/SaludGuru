@@ -217,7 +217,6 @@ var ProfileAppointmentObject = {
 
             //get office public id
             this.lstOffice[item].OfficeDivId = this.DivId + '_' + this.lstOffice[item].OfficePublicId;
-            debugger;
             //crete calendar menu item
             $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/\${OfficeName}/gi, this.lstOffice[item].OfficeName));
 
@@ -397,7 +396,6 @@ var ProfileMapObject = {
     },
 
     RenderAsync: function () {
-        debugger;
         //start map
         $('#' + ProfileMapObject.DivId).gmap({
             'center': ProfileMapObject.CenterMap,

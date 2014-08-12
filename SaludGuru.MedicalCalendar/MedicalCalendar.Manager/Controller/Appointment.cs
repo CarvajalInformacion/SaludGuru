@@ -196,7 +196,10 @@ namespace MedicalCalendar.Manager.Controller
             return oReturn;
         }
 
+        public static bool MPPatientTemporalUpsert(int PatientId, int ProfileId, Models.enumPatientState Status, int ProfileIdBO)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.MPPatientTemporalUpsert(PatientId, ProfileId, Status, ProfileIdBO);
+        }
         #endregion
-
     }
 }

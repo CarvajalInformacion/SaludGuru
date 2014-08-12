@@ -16,7 +16,7 @@
     }
 
     <div class="BOFormDataWrapper">
-        <form action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
+        <form id="OfficeInfoId" action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
             <ul>
 
                 <h3 class="BOCreateOfficeLabel">Crear Nuevo Consultorio</h3>
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <label>Ciudad</label>
-                    <select id="City" name="City">
+                    <select id="City" class="required" name="City">
                         @foreach (SaludGuruProfile.Manager.Models.General.CityModel tp in
                         Model.CitiesToSel.
                         OrderBy(x => x.CityName)
@@ -99,7 +99,7 @@
                         }
                     }
                     <label>Dirección</label>
-                    <input id="Address" name="Address" value="@(CatInfo_AD == null ? string.Empty : CatInfo_AD.val)" type="text" />
+                    <input id="Address" class="required" name="Address" value="@(CatInfo_AD == null ? string.Empty : CatInfo_AD.val)" type="text" />
                 </li>
                 <li>
                     @{
@@ -115,7 +115,7 @@
                         }
                     }
                     <label>Teléfono</label>
-                    <input id="Telephone" name="Telephone" value="@(CatInfo_TP == null ? string.Empty : CatInfo_TP.val)" type="text" />
+                    <input id="Telephone" class="required" name="Telephone" value="@(CatInfo_TP == null ? string.Empty : CatInfo_TP.val)" type="text" />
                 </li>
                 <li>
                     @{
@@ -132,6 +132,31 @@
                     }
                     <label>Geolocalización</label>
                     <input id="Geolocation" name="Geolocation" value="@(CatInfo_GL == null ? string.Empty : CatInfo_GL.val)" type="text" />
+                    @{
+                        if (CatInfo_GL != null && CatInfo_GL.val != string.Empty)
+                        {
+                            string[] gl = CatInfo_GL.val.ToString().Split(',');
+
+                            double limx1 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LongitudeMin].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limx2 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LongitudeMax].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limy1 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LatitudeMin].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limy2 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LatitudeMax].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+
+                            foreach (string s in gl)
+                            {
+                                double a = double.Parse(s, System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+
+                                if (a >= limx1 && a <= limx2 || a >= limy1 && a <= limy2)
+                                {
+
+                                }
+                                else
+                                {
+                                    <span class="error help-inline" style="display: block;">Los datos de geolocalización estan fuera del rango.</span>
+                                }
+                            }
+                        }
+                    }
                 </li>
                 <li>
                     <label>Duración de la cita (minutos)</label>
@@ -211,3 +236,47 @@
         </form>
     </div>
 </div>
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#OfficeInfoId').validate({
+                //debug: true,
+                errorClass: 'error help-inline',
+                validClass: 'success',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+                },
+                rules: {
+                    Name: {
+                        required: true,
+                    },
+                    Address: {
+                        required: true,
+                    },
+                    Telephone: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "Debe ingresar el nombre.",
+                    },
+                    Address: {
+                        required: "Debe ingresar la dirección.",
+                    },
+                    Telephone: {
+                        required: "Debe ingresar el teléfono.",
+                    }
+                }
+            });
+        });
+    </script>
+}
