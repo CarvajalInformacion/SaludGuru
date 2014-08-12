@@ -1,7 +1,7 @@
 ﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
 
-<label>@Model.CurrentProfile.DefaultSpecialty.Name</label>  
-<div>
+
+
     @{ //get image profile
         string ImgProfile = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
@@ -11,6 +11,9 @@
     }
     <ul>
         <li>
+            <label>@Model.CurrentProfile.DefaultSpecialty.Name</label>  
+        </li>
+        <li>
             <label>@Model.CurrentProfile.Name</label> 
             <label>@Model.CurrentProfile.LastName</label> 
         </li>        
@@ -18,4 +21,3 @@
             <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault()</label>
         </li>        
     </ul>
-</div>

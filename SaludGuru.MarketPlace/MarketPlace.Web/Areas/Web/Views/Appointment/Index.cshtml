@@ -5,14 +5,14 @@
 }
 <div class="MPFormDataWrapper">
     <span>Agendamiento de la cita</span>
-<div>
+
     <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
                 <li id="officeSelectedId" style="display:none">
-
-                    <label>Por favor selecciona un consultorio</label>
+                    <h2>Datos de la cita</h2>                    
+                    <label>Selecciona un consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
                         {
@@ -25,7 +25,8 @@
             else
             {
                 <li id="officeSelectedId">
-                    <label>Por favor selecciona un consultorio</label>
+                    <h2>Datos de la cita</h2>
+                    <label>Selecciona un consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
                         {
@@ -76,35 +77,29 @@
 
                 </select>
             </li>
-            <li>
-                <div>
-                    @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
-                </div>
-            </li>
-            <li>
-                <div>
-                    @foreach (var item in Model.PatientGroup)
-                    {
-                        string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
-                                    x.Value == "true").
-                                    Select(x => x.Value).FirstOrDefault();
+            <li class="MPAgendaPatientSelection">
+                <h2>Quien va a ver al Doctor:</h2>
+                @foreach (var item in Model.PatientGroup)
+                {
+                    string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                x.Value == "true").
+                                Select(x => x.Value).FirstOrDefault();
 
-                        <ul id="ulPatientList">
-                            <li>
-                                @if (currentPatient != null)
-                                {
-                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
-                                    <label>Yo</label>
-                                }
-                                else
-                                {
-                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
-                                    <label>@item.Name @item.LastName</label>
-                                }
-                            </li>
-                        </ul>
-                    }
-                </div>
+                    <div id="ulPatientList">
+                        
+                            @if (currentPatient != null)
+                            {
+                                <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
+                                <label>Yo</label>
+                            }
+                            else
+                            {
+                                <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
+                                <label>@item.Name @item.LastName</label>
+                            }
+                        
+                    </div>
+                }
             </li>
             <li>
                 <div id="FreeScheduleId" style="display:none">
@@ -123,7 +118,6 @@
             </li>
         </ul>
     </form>
-</div>
 
 <div id="NewPatient" style="display:none;">
     <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
@@ -157,6 +151,9 @@
         <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
     </form>
 </div>
+    <div class="MPAgendaDoctorProfile">
+        @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
+    </div>
 </div>
 
 
