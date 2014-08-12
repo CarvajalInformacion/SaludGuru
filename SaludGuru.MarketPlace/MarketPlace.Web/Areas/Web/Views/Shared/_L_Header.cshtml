@@ -1,29 +1,29 @@
 ﻿<div class="MPHeaderMainWrapper">
-    
+
     <div class="MPHeaderTopWrapper">
 
         <div class="MPRightTopMenu">
-                <div>Ciudad</div>
-                <select>
-                    @{
-                        var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+            <div>Ciudad</div>
+            <select>
+                @{
+                    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
 
-                        foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
+                    foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
+                    {
+                        if (item.Key == oBaseController.CurrentCookie.CurrentCity)
                         {
-                            if (item.Key == oBaseController.CurrentCookie.CurrentCity)
-                            {
-                                <option value="@item.Key" selected="selected">@item.Value</option>
-                            }
-                            else
-                            {
-                                <option value="@item.Key">@item.Value</option>
-                            }
+                            <option value="@item.Key" selected="selected">@item.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Key">@item.Value</option>
                         }
                     }
-                </select>
-                <div>@*Notificaciones*@</div>
-                @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
-                {
+                }
+            </select>
+            <div>@*Notificaciones*@</div>
+            @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
+            {
                 <!--Render user login options-->
                 <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
                     <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
@@ -52,34 +52,39 @@
                         </li>
                     </ul>
                 </div>
-                }
-                else
-                {
-                    //get login urls
-                    string RetUrl = Request.Url.ToString();
-                    string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
-                        [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                        .Value.Replace("{{UrlRetorno}}", RetUrl);
+            }
+            else
+            {
+                //get login urls
+                string RetUrl = Request.Url.ToString();
+                string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
+                    [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                    .Value.Replace("{{UrlRetorno}}", RetUrl);
 
-                    string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
-                        [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                        .Value.Replace("{{UrlRetorno}}", RetUrl);
+                string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
+                    [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                    .Value.Replace("{{UrlRetorno}}", RetUrl);
 
                 <!--Render autentications-->
-                    <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
-                    <a class="MPFacebookLogIn" href="@FBUrl"></a>
-                }
-            </div>
+                <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
+                <a class="MPFacebookLogIn" href="@FBUrl"></a>
+            }
+        </div>
     </div>
     <div class="MPHeaderSearchWrapper">
         <!--image guru-->
-        <a class="MPSGlogo" href=""></a>
+        <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Default, null)"></a>
 
         <!--search box-->
-        <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
-        <div>
-            <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-            <a href="javascript:SearchBoxObject.SearchTerm();"></a>
-        </div>
+        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
+            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index) { }
+        else
+        {
+            <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
+            <div>
+                <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+            </div>
+        }
     </div>
 </div>

@@ -16,10 +16,10 @@ namespace SaludGuru.FeedManager
             if (CurrentFeed == null)
             {
                 SaludGuru.FeedManager.Readers.FeedReaderController fr = new Readers.FeedReaderController();
-                CurrentFeed = fr.ReadAllFeed();
+                CurrentFeed = fr.ReadAllFeed().OrderBy(x => Guid.NewGuid()).Take(Quantity).ToList();
             }
 
-            return null;
+            return CurrentFeed;
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <FeedManager>
+
+    <key name="DefaultReader">WordPress</key>
+
+    <!--WordPress setting module-->
+    <key name="WordPress_AssemblyInfo">SaludGuru.FeedManager.Readers.WordPressReader,SaludGuru.FeedManager</key>
+    <key name="WordPress_Params">
+      <![CDATA[
+          <WordPress>
+            <key name="WordPress.FeedUrl">http://blog.saludguru.com/feed/</key>
+          </WordPress>
+      ]]>
+    </key>
+
+    <key name="DefaultImage">https://s3.amazonaws.com/devsaludguruimg/0MPImages/FeedDefault.jpg</key>
+
+  </FeedManager>
+</Settings>
+

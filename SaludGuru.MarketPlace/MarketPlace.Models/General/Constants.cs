@@ -80,6 +80,16 @@
 
         #endregion
 
+        #region Home Image
+
+        public const string C_Settings_HomeImage_Baseurl = "HomeImage_Baseurl";
+
+        public const string C_Settings_HomeImage_CountMin = "HomeImage_CountMin";
+
+        public const string C_Settings_HomeImage_CountMax = "HomeImage_CountMax";
+
+        #endregion
+
         #endregion
     }
 }

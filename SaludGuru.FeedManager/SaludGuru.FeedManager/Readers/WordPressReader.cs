@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
+using System.ServiceModel.Syndication;
+using System.Text.RegularExpressions;
 
 namespace SaludGuru.FeedManager.Readers
 {
@@ -35,7 +38,54 @@ namespace SaludGuru.FeedManager.Readers
 
         public List<Models.FeedReaderModel> ReadAllFeed()
         {
-            throw new NotImplementedException();
+            List<Models.FeedReaderModel> oReturn = new List<Models.FeedReaderModel>();
+
+            Models.FeedReaderModel oModel = new Models.FeedReaderModel();
+
+            SyndicationFeed feed;
+            using (XmlReader reader = XmlReader.Create(FileParams["WordPress.FeedUrl"]))
+            {
+                feed = SyndicationFeed.Load(reader);
+                reader.Close();
+            }
+
+            feed.Items.All(item =>
+            {
+                foreach (SyndicationElementExtension extension in item.ElementExtensions)
+                {
+                    XElement ele = extension.GetObject<XElement>();
+                    if (ele.Name.LocalName == "encoded" &&
+                        ele.Name.Namespace.ToString().Contains("content") &&
+                        ele.Value.IndexOf("<img") >= 0)
+                    {
+                        try
+                        {
+                            oModel.Image = Regex.Match
+                                (ele.Value,
+                                "<img.+?src=[\"'](.+?)[\"'].*?>",
+                                RegexOptions.IgnoreCase).Groups[1].Value;
+                            break;
+                        }
+                        catch { }
+                    }
+                }
+
+                if (string.IsNullOrEmpty(oModel.Image))
+                {
+                    oModel.Image = Models.Constants.C_Settings_DefaultImage;
+                }
+
+                oModel.Title = item.Title.Text;
+                oModel.Link = item.Links[0].Uri.ToString();
+                oModel.Description = item.Summary.Text;
+
+                //Add Model to List FeedReaderModel
+                oReturn.Add(oModel);
+                return true;
+            });
+
+
+            return oReturn;
         }
     }
 }
