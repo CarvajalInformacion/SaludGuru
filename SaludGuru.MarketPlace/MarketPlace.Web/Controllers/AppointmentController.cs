@@ -59,8 +59,6 @@ namespace MarketPlace.Web.Controllers
                 OfficeModel SelectedOfficeModel = CurrentProfileModel.RelatedOffice.Where(x => x.OfficePublicId == Request["SelectedOffice"].ToString()).Select(x => x).FirstOrDefault();
                 TreatmentOfficeModel TreatmentSelected = SelectedOfficeModel.RelatedTreatment.Where(x => x.CategoryId == Convert.ToInt32(Request["SelectedTreatment"])).FirstOrDefault();
                 string DurationDate = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault();
-                DateTime date = Convert.ToDateTime(Request["StartDate"]);
-                DateTime date2 = DateTime.Parse(Request["StartDate"]);
 
                 AppointmentModel oReturn = new AppointmentModel()
                 {
@@ -76,7 +74,7 @@ namespace MarketPlace.Web.Controllers
                 oReturn.AppointmentInfo.Add
                     (new AppointmentInfoModel()
                     {
-                        AppointmentInfoId =  0,
+                        AppointmentInfoId = 0,
                         AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category,
                         Value = oTreatmentId.ToString(),
                     });

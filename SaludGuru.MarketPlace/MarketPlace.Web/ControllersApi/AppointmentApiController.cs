@@ -16,9 +16,15 @@ namespace MarketPlace.Web.ControllersApi
         public PatientModel PatientUpsert(string ProfilePublicId)
         {
             PatientModel patientToCreate = this.GetRequestForNewPatient();
-            string result = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, "17B1EF7E"); //TODO: Ajustar el usuario no quemarlo
+            PatientModel modelToValidate = new PatientModel();
 
-            patientToCreate.PatientPublicId = result;
+            //Insert the new patient
+            string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, "17B1EF7E"); //TODO: Ajustar el usuario no quemarlo
+
+            //Compare if patientTemporal Exist
+            bool isTemporal = MedicalCalendar.Manager.Controller.Patient.MPPatientTemporalUpsert(resultPatientPublicId, ProfilePublicId, enumPatientState.New, "0");
+
+            patientToCreate.PatientPublicId = resultPatientPublicId;
             return patientToCreate;
         }
 
@@ -27,7 +33,7 @@ namespace MarketPlace.Web.ControllersApi
         {
             PatientModel oReturn = new PatientModel();
             PatientInfoModel oRequestInfo = new PatientInfoModel();
-            
+
             oReturn.IsProfilePatient = true;
             oReturn.Name = HttpContext.Current.Request["Name"].ToString();
             oReturn.LastName = HttpContext.Current.Request["LastName"].ToString();

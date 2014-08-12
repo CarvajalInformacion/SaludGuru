@@ -43,7 +43,7 @@ namespace MedicalCalendar.Manager.Interfaces
         List<MedicalCalendar.Manager.Models.Appointment.AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime);
 
         List<Models.Appointment.AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
-        bool MPPatientTemporalUpsert(int PatientId, int ProfileId, enumPatientState Status, int ProfileIdBO);
+        bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO);
 
         //appointment info
         int AppointmentInfoCreate(string AppointmentPublicId, enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue);
