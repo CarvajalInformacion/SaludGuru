@@ -1,4 +1,5 @@
 ﻿using MarketPlace.Models.Appointment;
+using MarketPlace.Models.Profile;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.General;
 using SaludGuruProfile.Manager.Models.Office;
@@ -17,100 +18,24 @@ namespace MarketPlace.Web.ControllersApi
     {
         [HttpPost]
         [HttpGet]
-        public List<AutocompleteModel> AutocompleteSearch
+        public List<AutocompleteViewModel> AutocompleteSearch
             (string IsAc, string CityId, string SearchParam)
         {
-            return SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
+            List<AutocompleteModel> AcResult = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
                 (Convert.ToInt32(CityId.Trim()), SearchParam);
-        }
 
-        [HttpPost]
-        [HttpGet]
-        public string GetSearchUrl
-            (string IsGetUrl, string CityId, string SearchParam)
-        {
-            AutocompleteModel oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-                    (Convert.ToInt32(CityId.Trim()), SearchParam).FirstOrDefault();
+            if (AcResult == null)
+                AcResult = new List<AutocompleteModel>();
 
-            string oReturn = GetUrlFromAcModel(oModel, CityId);
+            List<AutocompleteViewModel> oReturn = new List<AutocompleteViewModel>();
+
+            AcResult.All(x =>
+            {
+                oReturn.Add(new AutocompleteViewModel(x));
+                return true;
+            });
 
             return oReturn;
         }
-
-        #region PrivateMethods
-
-        private string GetUrlFromAcModel(AutocompleteModel AcModel, string CityId)
-        {
-            string oReturn = string.Empty;
-
-            if (AcModel == null || Convert.ToInt32(CityId) <= 0)
-            {
-                oReturn = HttpContext.Current.Server.UrlDecode(Url.Route(MarketPlace.Models.General.Constants.C_Route_Error_NotFound, null));
-            }
-            else if (AcModel.IsQuery)
-            {
-                oReturn = HttpContext.Current.Server.UrlDecode(Url.Route(
-                       MarketPlace.Models.General.Constants.C_Route_SearchQuery_Default,
-                       new
-                       {
-                           CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-                                MarketPlace.Web.Controllers.BaseController.
-                                    EnabledCities[Convert.ToInt32(CityId.Trim())]),
-                           Query = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.MatchQuery)
-                       }));
-            }
-            else
-            {
-                switch (AcModel.CategoryType.Value)
-                {
-                    case SaludGuruProfile.Manager.Models.enumCategoryType.Insurance:
-
-                        oReturn = HttpContext.Current.Server.UrlDecode(Url.Route(
-                            MarketPlace.Models.General.Constants.C_Route_SearchCategory_InsuranceCity,
-                            new
-                            {
-                                CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-                                    MarketPlace.Web.Controllers.BaseController.
-                                        EnabledCities[Convert.ToInt32(CityId.Trim())]),
-                                InsuranceName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-                            }));
-
-                        break;
-
-                    case SaludGuruProfile.Manager.Models.enumCategoryType.Specialty:
-
-                        oReturn = HttpContext.Current.Server.UrlDecode(Url.Route(
-                            MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyCity,
-                            new
-                            {
-                                CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-                                    MarketPlace.Web.Controllers.BaseController.
-                                        EnabledCities[Convert.ToInt32(CityId.Trim())]),
-                                SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-                            }));
-
-                        break;
-
-                    case SaludGuruProfile.Manager.Models.enumCategoryType.Treatment:
-
-                        oReturn = HttpContext.Current.Server.UrlDecode(Url.Route(
-                            MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentCity,
-                            new
-                            {
-                                CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-                                    MarketPlace.Web.Controllers.BaseController.
-                                        EnabledCities[Convert.ToInt32(CityId.Trim())]),
-                                SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-                            }));
-
-                        break;
-                }
-            }
-
-            return oReturn;
-
-        }
-
-        #endregion
     }
 }
