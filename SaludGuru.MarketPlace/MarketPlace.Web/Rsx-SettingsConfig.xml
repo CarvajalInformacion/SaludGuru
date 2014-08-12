@@ -6,4 +6,7 @@
   <Module name="Profile">
     <key name="location">\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\Rsx-Profile.xml</key>
   </Module>
+  <Module name="FeedManager">
+    <key name="location">\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\Rsx-FeedManager.xml</key>
+  </Module>
 </SettingsConfig>

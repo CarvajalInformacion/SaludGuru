@@ -89,6 +89,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SaludGuru.FeedManager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.FeedManager\developer\SaludGuru.FeedManager.dll</HintPath>
+    </Reference>
     <Reference Include="SaludGuruProfile.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuruProfile.Manager\developer\SaludGuruProfile.Manager.dll</HintPath>
     </Reference>
@@ -1083,6 +1086,9 @@
     <Content Include="Areas\Web\Views\Shared\_S_Profile_Pay.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Profile_Basic.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Rsx-FeedManager.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Rsx-MarketPlace.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1158,7 +1164,7 @@
     <PostBuildEvent>XCOPY "$(ProjectDir)$(OutDir)Rsx-SettingsConfig.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\" /y
 XCOPY "$(ProjectDir)$(OutDir)Rsx-MarketPlace.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\" /y
 XCOPY "$(ProjectDir)$(OutDir)Rsx-Profile.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\" /y
-
+XCOPY "$(ProjectDir)$(OutDir)Rsx-FeedManager.xml" "\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\" /y
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
