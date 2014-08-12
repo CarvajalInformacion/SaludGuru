@@ -3,5 +3,38 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
+<div>
+    <div>
+        <!--render breadcrumb, paging header-->
+        @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
+    </div>
+    <div>
+        <!--Render profiles-->
+        @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
+        {
+            var ProfileRender = new
+                {
+                    oCurrentProfile = oProfile,
+                    oCurrentModel = Model
+                };
 
+            switch (oProfile.ProfileStatus)
+            {
+                case SaludGuruProfile.Manager.Models.enumProfileStatus.Free:
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Free, ProfileRender);
+                    break;
+                case SaludGuruProfile.Manager.Models.enumProfileStatus.Basic:
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Basic, ProfileRender);
+                    break;
+                case SaludGuruProfile.Manager.Models.enumProfileStatus.Pay:
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Pay, ProfileRender);
+                    break;
+            }
+        }
+    </div>
+    <div>
+        <!--render breadcrumb, paging footer-->
+        @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
+    </div>
+</div>
 

@@ -1428,6 +1428,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                          Id = ac.Field<string>("Id"),
                          IsQuery = ac.Field<int>("IsQuery") == 1 ? true : false,
                          MatchQuery = ac.Field<string>("MatchQuery"),
+                         OriginalTerm = ac.Field<string>("OriginalTerm"),
                          CategoryType = ac.Field<int>("IsQuery") == 1 ? null : (enumCategoryType?)((enumCategoryType)ac.Field<int>("Type")),
                          ProfileType = ac.Field<int>("IsQuery") == 1 ? (enumProfileType?)((enumProfileType)ac.Field<int>("Type")) : null,
                      }).ToList();

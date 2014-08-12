@@ -31,8 +31,71 @@ function serverDateTimeToString(vDate) {
     return vDate.getFullYear() + '-' + ((new Number(vDate.getMonth())) + 1) + '-' + vDate.getDate() + 'T' + vDate.getHours() + ':' + vDate.getMinutes();
 }
 /*function start global pages controls*/
-function InitGlobalPagesControls() {
+function InitGlobalPagesControls(InitParams) {
 
+    InitSeachBox(InitParams.SearchBoxId, InitParams.CityId);
+
+}
+
+function InitSeachBox(SearchBoxId, CityId) {
+
+    if ($('#' + SearchBoxId).lenght > 0) {
+
+        $('#' + SearchBoxId).autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/api/SearchApi?IsAc=true&CityId=' + CityId + '&SearchParam=' + request.term,
+                    dataType: "json",
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+        });
+
+        $('#' + SearchBoxId).autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/api/SearchApi?IsAc=true&CityId=' + CityId + '&SearchParam=' + request.term,
+                    dataType: 'json',
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+            focus: function (event, ui) {
+                $('#' + SearchBoxId).val(ui.item.MatchQuery);
+                return false;
+            },
+            select: function (event, ui) {
+                //UpsertAppointmentObject.AddPatientAppointment({
+                //    ProfileImage: ui.item.ProfileImage,
+                //    Name: ui.item.Name,
+                //    IdentificationNumber: ui.item.IdentificationNumber,
+                //    Mobile: ui.item.Mobile,
+                //    Email: ui.item.Email,
+                //    PatientPublicId: ui.item.PatientPublicId
+                //});
+                //Layout_SearchBoxAcTemplate
+                //$('#getPatient').val('');
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+            var RenderItem = $('#divPatientAcItem').html();
+            RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
+            RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
+            RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
+            RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
+
+            return $("<li></li>")
+                .data("ui-autocomplete-item", item)
+                .append("<a><strong>" + RenderItem + "</strong></a>")
+                .appendTo(ul);
+        };
+
+    }
 }
 
 /*show hide user menu*/
