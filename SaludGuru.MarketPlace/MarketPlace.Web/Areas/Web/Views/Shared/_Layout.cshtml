@@ -39,9 +39,26 @@
     @*Render inline site scripts*@
     @RenderSection("inlinescripts", required: false)
 
+    @{var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;}
+
+    <!--Layout templates-->
+    <div style="display:none">
+        <div id="Layout_SearchBoxAcTemplate">
+            <div class="SearchBoxAc_${Type}">
+                <label>${MatchQuery}</label>
+            </div>
+
+        </div>
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
-            InitGlobalPagesControls();
+            InitGlobalPagesControls({
+
+                SearchBoxId: 'inSearchBoxProfile',
+                CityId: '@(oBaseController.CurrentCookie.CurrentCity)',
+
+            });
         });
     </script>
 
