@@ -1,0 +1,451 @@
+.MPFormDataWrapper {
+    display:block;
+    width: 98%;
+    border-width:0px 1px 0px 1px;
+    border-style:solid;
+    border-color:#999;
+    margin:0px auto;
+}
+.MPFormDataWrapper span{
+    font-size:1.6em;
+    line-height:22px;
+    color:#666;
+    display:inline-block;
+    margin-left:18px;
+    margin-top:18px;
+}
+.MPFormDataWrapper ul{
+    display:block;
+    margin:22px 0px 8px 80px;
+    width:72%;
+    min-width:348px;
+    height:auto;
+}
+.MPFormDataWrapper ul li{
+    display:block;
+    padding:10px 14px;
+    margin:0px;
+
+border:none;
+
+}
+.MPFormDataWrapper ul li label{
+    border:1px solid #999;
+    display:inline-block;
+    line-height:18px;
+    font-weight:bold;
+    background-color:#e6e6e6;
+    padding:4px 0px;
+    width:40%;
+    text-align:center;
+}
+.MPFormDataWrapper ul li input{
+    display:inline-block;
+    border:1px solid #999;
+    padding:5px 0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+}
+.MPFormDataWrapper ul li select{
+    display:inline-block;
+    border:1px solid #999;
+    padding:0px;
+    text-align:left;
+    background-color:#fff;
+    width:55%;
+    height:28px;
+    vertical-align:top;
+}
+.MPFormDataWrapper ul li textarea{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:55%;
+    height:100px;
+    vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
+}
+    .MPFormDataWrapper ul h3{
+        display: block;
+        margin: 0px 0px 0px 16px;
+        width: auto;
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+.MPFormDataWrapper ul li span{
+    display: block;
+    height: 4px;
+    color: red;
+    line-height: 18px;
+    margin: 10px 0px 0px 0px;
+    font-style: italic;
+    width: 95%;
+    text-align: right;
+}
+
+    .MPFormDataWrapper ul li p{
+        display:inline-block;
+        width:auto;
+        margin:0px 4px;
+    }
+    .MPFormDataWrapper ul li input[type="radio"]{
+        display:inline-block;
+        width:auto;
+    }
+    .MPFormDataWrapper ul li input[type="checkMPx"] {
+        display:inline-block;
+        width:auto;
+        margin-left:50px;
+    }
+
+    /******************FORMS AGENDA >> CALENDARIOS VISTAS ETC.******************/
+div#AppointmentUpsertContainer, div#BlockAppointmentContainer {
+    min-height: 322px;
+}
+div#AppointmentUpsert ul, div.BlockAppointmentUpsert ul{
+    display:block;
+    margin:0px;
+    width:100%;
+    min-width:348px;
+    height:auto;
+}
+div#AppointmentUpsert ul li, div.BlockAppointmentUpsert ul li{
+    display:block;
+    padding:2px 0px;
+    margin:0px;
+    border:NONE;
+    }
+
+/****************AQUI VIENEN TODOS LOS COLORCITOS***************/
+/*NUEVA CITA*/
+div.AppointmentFormStatus_1201 li#liAppointmentHeader {
+    background-color:#d6ab00;
+}
+div.AppointmentFormStatus_1201 h4.changeToColorStatus {
+    border-bottom:1px solid #d6ab00;
+    color:#d6ab00;
+}
+/*CITA CONFIRMADA*/
+div.AppointmentFormStatus_1202 li#liAppointmentHeader {
+    background-color:#88aa00;
+}
+div.AppointmentFormStatus_1202 h4.changeToColorStatus {
+    border-bottom:1px solid #88aa00;
+    color:#88aa00;
+}
+/*CITA CANCELADA*/
+div.AppointmentFormStatus_1203 li#liAppointmentHeader {
+    background-color:#d40000;
+}
+div.AppointmentFormStatus_1203 h4.changeToColorStatus {
+    border-bottom:1px solid #d40000;
+    color:#d40000;
+}
+/*CITA PENDIENTE ASISTENCIA*/
+div.AppointmentFormStatus_1204 li#liAppointmentHeader {
+    background-color:#800066;
+}
+div.AppointmentFormStatus_1204 h4.changeToColorStatus {
+    border-bottom:1px solid #800066;
+    color:#800066;
+}
+/*CITA SI ASISTENCIA*/
+div.AppointmentFormStatus_1205 li#liAppointmentHeader {
+    background-color:#39a500;
+}
+div.AppointmentFormStatus_1205 h4.changeToColorStatus {
+    border-bottom:1px solid #39a500;
+    color:#39a500;
+}
+/*CITA NO ASISTENCIA*/
+div.AppointmentFormStatus_1206 li#liAppointmentHeader {
+    background-color:#414143;
+}
+div.AppointmentFormStatus_1206 h4.changeToColorStatus {
+    border-bottom:1px solid #414143;
+    color:#414143;
+}
+/*BLOQUEAR AGENDA*/
+div.AppointmentFormStatus_1207 li#liBlockAppointmentHeader {
+    background-color:#800000;
+}
+div.AppointmentFormStatus_1207 h4.changeToColorStatus {
+    border-bottom:1px solid #880034;
+    color:#880034;
+}
+
+
+                div#AppointmentUpsert ul li:first-child,
+                div.BlockAppointmentUpsert ul li:first-child{
+                    width:100%; height:24px;
+                    padding:0px;
+                    margin-bottom:10px;
+                }
+                    div#AppointmentUpsert ul li:nth-child(7) > input{
+                        width:49%;
+                    }
+                    div.BlockAppointmentUpsert ul li:nth-child(7) > input {
+                        width: 54%;
+                    }
+                    div#AppointmentUpsert ul li:nth-child(7) > a,
+                    div.BlockAppointmentUpsert ul li:nth-child(7) > a
+                    {
+                        font-weight:bold;
+                        font-size:25px;
+                        color:green;
+                    }
+                div#AppointmentUpsert ul li:nth-child(8),
+                div.BlockAppointmentUpsert ul li:nth-child(8)
+                 {
+                    margin-top:10px;
+                }
+    div#AppointmentUpsert ul > li > span,
+    div#AppointmentUpsert ul > li > span > a,
+    div.BlockAppointmentUpsert ul > li > span
+    {
+        font-size:15px;
+        color:#fff;
+        line-height:15px;
+        margin-top:4px;
+    }
+        div#AppointmentUpsert ul > li > span > a,
+        div.BlockAppointmentUpsert ul > li > span > a{
+            background-color: #ECECEC;
+            padding: 0px 8px;
+            font-size: 14px;
+            color: #333;
+        }
+        div#AppointmentUpsert ul > li > span > a:hover,
+        div.BlockAppointmentUpsert ul > li > span > a:hover
+        {
+            background-color:#ccc;
+        }
+    div#AppointmentUpsert ul > li > span:first-child, 
+    div.BlockAppointmentUpsert ul > li > span:first-child{
+        float:left; margin-left:16px;
+        margin-bottom: 7px;
+    }
+    div#AppointmentUpsert ul > li > span:nth-child(2n),
+    div.BlockAppointmentUpsert ul > li > span:nth-child(2n){
+        float:right; margin-right:16px;
+    }
+    div#AppointmentUpsert ul > li > h4,
+    div.BlockAppointmentUpsert ul > li > h4{
+        display:block;
+        line-height:15px;
+        text-align:left;
+        margin-left:12px;
+        width:94%;
+        height:20px;
+    }
+div#AppointmentUpsert ul li label,
+div.BlockAppointmentUpsert ul li label{
+    display: inline-block;
+    line-height: 15px;
+    font-size: 14px;
+    background-color: #E6E6E6;
+    padding: 1px;
+    width: 38%;
+    text-align: left;
+}
+div#AppointmentUpsert ul li input,
+div.BlockAppointmentUpsert ul li input
+{
+    display: inline-block;
+    border: 1px solid #999;
+    padding: 0px 3px;
+    text-align: left;
+    background-color: #FFF;
+    width: 54%;
+    height:18px;
+    font-size:14px;
+    line-height:14px;
+}
+div#AppointmentUpsert ul li select,
+div.BlockAppointmentUpsert ul li select
+{
+    display: inline-block;
+    border: 1px solid #999;
+    padding: 0px;
+    text-align: left;
+    background-color: #FFF;
+    width: 54%;
+    height:18px;
+    vertical-align: top;
+    font-size:14px;
+    line-height:14px;
+}
+div#AppointmentUpsert ul li textarea,
+div.BlockAppointmentUpsert ul li textarea{
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:55%;
+    height:100px;
+    vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
+}
+div#AppointmentUpsert ul li > span.ui-spinner,
+div.BlockAppointmentUpsert ul li > span.ui-spinner{
+    height: 22px;
+    width: 54%;
+    margin: 0px;
+    display: inline-block;
+    padding: 0px;
+    float: none;
+    border-radius: 0px;
+}
+    div#AppointmentUpsert ul li > span.ui-spinner > input#Duration,
+    div.BlockAppointmentUpsert ul li > span.ui-spinner > input#Duration
+    {
+        width: 92%;
+        padding: 0px;
+        height: 20px;
+        margin: 0px 0px 0px -16px;
+        color: #333;
+    }
+
+/************************NUEVOS PACIENTES EN LA CITA***********************/
+div#AppointmentUpsert ul > li > ul#lstPatient {
+    display:block;
+    border:none;
+    width:100%;
+    height:auto;
+    margin:-4px 0px; padding:0px;
+}
+    div#AppointmentUpsert ul > li > ul#lstPatient li {
+        display:block;
+        margin:5px auto;
+        padding: 0px;
+        border: none;
+             width: 95%;
+        height:auto;
+        text-align: left;
+        background-color:#e6e6e6;
+    }
+
+    div.MPPatientPhotoContainer {
+        border:none;
+        display:inline-block;
+        width: 62px;
+        height: auto;
+        vertical-align: top;
+    }
+    div.MPPatientDataContainer{
+        border:none;
+        display:inline-block;
+        width: 258px;
+        height: auto;
+    }
+    div.MPPatientRemoveContainer{
+        border:none;
+        display:inline-block;
+        vertical-align: top;
+        min-height:62px;
+        width: auto; margin-top:3px;
+    }
+
+        div.MPPatientPhotoContainer > a > img {
+            margin: 4px;
+            width: 52px;
+            height: auto;
+        }
+         div.MPPatientDataContainer > a:first-child{
+            font-size:14px;
+            display: block;
+            line-height:18px;
+            width: 100%;
+            margin:0px;
+            text-decoration: underline;
+            color:#333;
+        }
+        div.MPPatientDataContainer > label {
+            font-size: 13px !important;
+            display: block !important;
+            line-height: 14px !important;
+            width: 100% !important;
+            margin: 0px;
+        }
+            div.MPPatientRemoveContainer a:first-child, div.MPPatientRemoveContainer a:nth-child(2){
+                display:block;
+                width:18px; height:18px;
+                    border:none;
+                background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
+                background-position: -336px -1065px;
+                background-size: 594px auto;
+            }
+             div.MPPatientRemoveContainer a:nth-child(2){
+                margin:25px 0px 0px 0px;
+                background-position: -351px -1119px;
+                background-size: 117px auto;
+                }
+/************************BARRITA DE LOS COMANDOS***************************/
+        div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands{
+            background-color:#ececec;
+            display:block;
+            height:34px;
+            width:100%;
+            border-top: 1px solid #666;
+        }
+            div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span{
+                background-image:url('/Areas/Web/Content/Images/MPAppointmentActionsSprite.png');
+                background-size:154px 24px;
+                background-repeat:no-repeat;
+                display:inline-block;
+                height:26px;
+                width:auto;
+                    border:none;
+                margin:4px 0px;
+                text-align:right;
+                padding-left: 30px;
+                line-height: 23px;
+                font-size: 14px;
+                color: #333;
+            }
+                div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span.AppointmentActionsCancel {
+                    background-position:4px 0px; 
+                }
+                div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span.AppointmentActionsConfirm {
+                    background-position:-40px 0px;
+                }
+                div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span.AppointmentActionsAccept {
+                    background-position:-127px 0px;
+                }
+                div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span.AppointmentActionsNew {
+                    background-position:-83px 0px;
+                }
+            div.MPAgendaCalendarWrapper div.MPAgendaCalendarAppointmentCommands span > a{
+                background-color: #F2F2F2;
+                height: 24px;
+                display: block;
+            }
+
+    div#AppointmentUpsert ul h3{
+        display: block;
+        margin: 0px 0px 0px 16px;
+        width: auto;
+        font-size: 20px;
+        line-height: 20px;
+    }
+    div#AppointmentUpsert ul li p{
+        display:inline-block;
+        width:auto;
+        margin:0px 4px;
+    }
+    .MPAppointmentsFormDataWrapper ul li input[type="radio"]{
+        display:inline-block;
+        width:auto;
+    }
+    .MPAppointmentsFormDataWrapper ul li input[type="checkMPx"] {
+        display:inline-block;
+        width:auto;
+        margin-left:50px;
+    }
+
+

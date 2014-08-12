@@ -155,10 +155,28 @@ namespace MarketPlace.Web
 
             #region Search query
 
-            //Redirect /Professional/Query?query={query}
+            //Redirect /Professional/Query?query={Query}
             routes.MapRoute(
                name: "R_SearchQuery_V1",
                url: "Professional/Query",
+               defaults: new
+               {
+                   controller = "Search",
+                   action = "Index",
+
+                   SpecialtyName = string.Empty,
+                   TreatmentName = string.Empty,
+                   InsuranceName = string.Empty,
+                   CityName = string.Empty,
+
+                   IsRedirect = true,
+                   IsQuery = true,
+               }).DataTokens = rvdByArea;
+
+            //Redirect doctores-{CityName}/{Query}
+            routes.MapRoute(
+               name: "R_SearchQuery_V2",
+               url: "doctores/{Query}",
                defaults: new
                {
                    controller = "Search",
@@ -192,10 +210,10 @@ namespace MarketPlace.Web
                    IsQuery = true,
                }).DataTokens = rvdByArea;
 
-            //doctores/{query}
+            //doctores-{CityName}/{Query}
             routes.MapRoute(
                name: "SearchQuery_Default",
-               url: "doctores/{query}",
+               url: "doctores-{CityName}/{Query}",
                defaults: new
                {
                    controller = "Search",
@@ -204,7 +222,6 @@ namespace MarketPlace.Web
                    SpecialtyName = string.Empty,
                    TreatmentName = string.Empty,
                    InsuranceName = string.Empty,
-                   CityName = string.Empty,
 
                    IsQuery = true,
                }).DataTokens = rvdByArea;

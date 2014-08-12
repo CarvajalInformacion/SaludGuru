@@ -3,8 +3,8 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
     Model.RenderScripts = false;
 }
-
-<h2>Index</h2>
+<div class="MPFormDataWrapper">
+    <span>Agendamiento de la cita</span>
 <div>
     <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
         <ul>
@@ -116,9 +116,9 @@
                 <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
             </li>
             <li>
-                <div>                    
+                <div>
                     <input type="hidden" name="StartDate" id="StartDate" value="" />
-                    <input type="submit" style="width:100px; height:20px" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
+                        <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
                 </div>
             </li>
         </ul>
@@ -157,6 +157,9 @@
         <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
     </form>
 </div>
+</div>
+
+
 
 <!--Profile Schedule-->
 @if (Model.StartDate != null)
@@ -190,6 +193,23 @@ else
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
         $(document).ready(function () {           
+            $("#isSomeBody").click(function () {
+                $("#NewPatient").show();
+            });
+            $("#GenderFemale").click(function () {
+                $("#GenderMale").attr('checked', false);
+            });
+            $("#GenderMale").click(function () {
+                $("#GenderFemale").attr('checked', false);
+            });
+            //$("#DateMoreInfoId").click(function () {
+            //    $("#FreeScheduleId").show();
+            //    $("#DateMoreInfoId").hide();
+            //});
+            $("#DateLessInfoId").click(function () {
+                $("#FreeScheduleId").hide();
+                $("#DateMoreInfoId").show();
+            });
         });
     </script>
 }
