@@ -29,34 +29,12 @@ namespace MarketPlace.Web.ControllersApi
         public string GetSearchUrl
             (string IsGetUrl, string CityId, string SearchParam)
         {
-            //get form data
-
-            //string Id = HttpContext.Current.Request["Id"];
-            //string ProfileType = HttpContext.Current.Request["ProfileType"];
-            //string CategoryType = HttpContext.Current.Request["CategoryType"];
-            //string MatchQuery = HttpContext.Current.Request["MatchQuery"];
-            //string IsQuery = HttpContext.Current.Request["IsQuery"];
-
-            //if (!string.IsNullOrEmpty(Id) &&
-            //    !string.IsNullOrEmpty(ProfileType) &&
-            //    !string.IsNullOrEmpty(CategoryType) &&
-            //    !string.IsNullOrEmpty(MatchQuery) &&
-            //    !string.IsNullOrEmpty(IsQuery))
-            //{
-
-            //}
-            //else
-            //{
-            //    List<AutocompleteModel> tmpResults = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-            //        (Convert.ToInt32(CityId.Trim()), SearchParam);
-            //}
             AutocompleteModel oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
                     (Convert.ToInt32(CityId.Trim()), SearchParam).FirstOrDefault();
 
             string oReturn = GetUrlFromAcModel(oModel, CityId);
 
             return oReturn;
-
         }
 
         #region PrivateMethods
