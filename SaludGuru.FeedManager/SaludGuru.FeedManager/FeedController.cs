@@ -13,20 +13,13 @@ namespace SaludGuru.FeedManager
 
         public static List<FeedReaderModel> GetFeed(int Quantity)
         {
-            List<FeedReaderModel> Model = new List<FeedReaderModel>();
-
             if (CurrentFeed == null)
             {
                 SaludGuru.FeedManager.Readers.FeedReaderController fr = new Readers.FeedReaderController();
-                CurrentFeed = fr.ReadAllFeed();
-
-                for(int i = 0; i < Quantity; i++)
-                {
-                    Model.Add(CurrentFeed[i]);
-                }
+                CurrentFeed = fr.ReadAllFeed().OrderBy(x => Guid.NewGuid()).Take(Quantity).ToList();
             }
 
-            return Model;
+            return CurrentFeed;
         }
     }
 }
