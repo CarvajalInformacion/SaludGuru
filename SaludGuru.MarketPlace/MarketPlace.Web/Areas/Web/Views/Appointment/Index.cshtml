@@ -121,7 +121,7 @@
                 <div>
                     <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
                     <input type="hidden" name="StartDate" id="StartDate" value="" />
-                    <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
+                    <input type="submit" style="width:100px; height:20px" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
                 </div>
             </li>
         </ul>
@@ -192,24 +192,7 @@ else
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#isSomeBody").click(function () {
-                $("#NewPatient").show();
-            });
-            $("#GenderFemale").click(function () {
-                $("#GenderMale").attr('checked', false);
-            });
-            $("#GenderMale").click(function () {
-                $("#GenderFemale").attr('checked', false);
-            });
-            //$("#DateMoreInfoId").click(function () {
-            //    $("#FreeScheduleId").show();
-            //    $("#DateMoreInfoId").hide();
-            //});
-            $("#DateLessInfoId").click(function () {
-                $("#FreeScheduleId").hide();
-                $("#DateMoreInfoId").show();
-            });
+        $(document).ready(function () {           
         });
     </script>
 }
