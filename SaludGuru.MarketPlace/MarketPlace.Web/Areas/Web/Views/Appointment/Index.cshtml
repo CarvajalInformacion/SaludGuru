@@ -3,163 +3,166 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
     Model.RenderScripts = false;
 }
+<div class="MPFormDataWrapper">
+    <span>Agendamiento de la cita</span>
+    <div>
+        <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
+            <ul>
+                @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
+                {
+                    <li id="officeSelectedId" style="display:none">
 
-<h2>Index</h2>
-<div>
-    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
-        <ul>
-            @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
-            {
-                <li id="officeSelectedId" style="display:none">
-
-                    <label>Por favor selecciona un consultorio</label>
-                    <select id="SelectedOffice" name="SelectedOffice">
-                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
-                        {
-                            var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
-                            <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
-                            <input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@officeSelected.Name" />
-                        }
-                    </select>
-                </li>
-            }
-            else
-            {
-                <li id="officeSelectedId">
-                    <label>Por favor selecciona un consultorio</label>
-                    <select id="SelectedOffice" name="SelectedOffice">
-                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
-                        {
-                            if (Model.CurrentProfile != null && item.IsDefault == true)
+                        <label>Por favor selecciona un consultorio</label>
+                        <select id="SelectedOffice" name="SelectedOffice">
+                            @foreach (var item in Model.CurrentProfile.RelatedOffice)
                             {
-                                <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
-                                @*<input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@item.Name" />*@
+                                var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
+                                <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
+                                <input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@officeSelected.Name" />
                             }
-                            else
+                        </select>
+                    </li>
+                }
+                else
+                {
+                    <li id="officeSelectedId">
+                        <label>Por favor selecciona un consultorio</label>
+                        <select id="SelectedOffice" name="SelectedOffice">
+                            @foreach (var item in Model.CurrentProfile.RelatedOffice)
                             {
-                                <option value="@item.OfficePublicId">@item.Name</option>
-
-                            }
-                        }
-                    </select>
-                </li>
-            }
-            <li>
-                <label>Por favor escoge un seguro</label>
-                <select id="SelectedInsurance" name="SelectedInsurance">
-                    @foreach (var item in Model.CurrentProfile.RelatedInsurance)
-                    {
-                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
-                        {
-                            <option value="@item.CategoryId" selected="selected">@item.Name</option>
-                        }
-                        else
-                        {
-                            <option value="@item.CategoryId">@item.Name</option>
-                        }
-                    }
-                </select>
-            </li>
-            <li>
-                <label>Selecciona un tratamiento</label>
-                <select id="SelectedTreatment" name="SelectedTreatment">
-                    @foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
-                    {
-                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
-                        {
-                            <option value="@item.CategoryId" selected="selected">@item.Name</option>                            
-                        }
-                        else
-                        {
-                            <option value="@item.CategoryId">@item.Name</option>
-                        }
-
-                    }
-
-                </select>
-            </li>
-            <li>
-                <div>
-                    @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
-                </div>
-            </li>
-            <li>
-                <div>
-                    @foreach (var item in Model.PatientGroup)
-                    {
-                        string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
-                                    x.Value == "true").
-                                    Select(x => x.Value).FirstOrDefault();
-
-                        <ul id="ulPatientList">
-                            <li>
-                                @if (currentPatient != null)
+                                if (Model.CurrentProfile != null && item.IsDefault == true)
                                 {
-                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
-                                    <label>Yo</label>
+                                    <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
+                                    @*<input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@item.Name" />*@
                                 }
                                 else
                                 {
-                                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
-                                    <label>@item.Name @item.LastName</label>
+                                    <option value="@item.OfficePublicId">@item.Name</option>
+
                                 }
-                            </li>
-                        </ul>
-                    }
-                </div>
-            </li>
-            <li>
-                <div id="FreeScheduleId" style="display:none">
-                    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
-                    <input type="button" style="width:100px; height: 20px" id="DateLessInfoId" value="Ver menos info de la cita" />
-                </div>
-            </li>
-            <li>
-                <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
-            </li>
-            <li>
-                <div>
-                    <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
-                    <input type="hidden" name="StartDate" id="StartDate" value="" />
-                    <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
-                </div>
-            </li>
-        </ul>
-    </form>
+                            }
+                        </select>
+                    </li>
+                }
+                <li>
+                    <label>Por favor escoge un seguro</label>
+                    <select id="SelectedInsurance" name="SelectedInsurance">
+                        @foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                        {
+                            if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </li>
+                <li>
+                    <label>Selecciona un tratamiento</label>
+                    <select id="SelectedTreatment" name="SelectedTreatment">
+                        @foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
+                        {
+                            if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+
+                        }
+
+                    </select>
+                </li>
+                <li>
+                    <div>
+                        @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        @foreach (var item in Model.PatientGroup)
+                        {
+                            string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                        x.Value == "true").
+                                        Select(x => x.Value).FirstOrDefault();
+
+                            <ul id="ulPatientList">
+                                <li>
+                                    @if (currentPatient != null)
+                                    {
+                                        <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
+                                        <label>Yo</label>
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
+                                        <label>@item.Name @item.LastName</label>
+                                    }
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </li>
+                <li>
+                    <div id="FreeScheduleId" style="display:none">
+                        @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
+                        <input type="button" style="width:100px; height: 20px" id="DateLessInfoId" value="Ver menos info de la cita" />
+                    </div>
+                </li>
+                <li>
+                    <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
+                </li>
+                <li>
+                    <div>
+                        <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
+                        <input type="hidden" name="StartDate" id="StartDate" value="" />
+                        <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <div id="NewPatient" style="display:none;">
+        <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
+            <ul>
+                <li>
+                    <label>Nombre</label>
+                    <input type="text" id="Name" name="Name" />
+                </li>
+                <li>
+                    <label>Apellido</label>
+                    <input type="text" id="LastName" name="LastName" />
+                </li>
+                <li>
+                    <label>Identificación</label>
+                    <input type="text" id="Identification" name="Identification" />
+                </li>
+                <li>
+                    <label>Fecha de nacimiento</label>
+                    <input type="text" id="Birthday" name="Birthday" />
+                </li>
+                <li>
+                    <label>Sexo</label>
+                    <div>
+                        <label>Masculino</label>
+                        <input type="checkbox" id="GenderMale" name="GenderMale" />
+                        <label>Femenino</label>
+                        <input type="checkbox" id="GenderFemale" name="GenderFemale" />
+                    </div>
+                </li>
+            </ul>
+            <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
+        </form>
+    </div>
 </div>
 
-<div id="NewPatient" style="display:none;">
-    <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
-        <ul>
-            <li>
-                <label>Nombre</label>
-                <input type="text" id="Name" name="Name" />
-            </li>
-            <li>
-                <label>Apellido</label>
-                <input type="text" id="LastName" name="LastName" />
-            </li>
-            <li>
-                <label>Identificación</label>
-                <input type="text" id="Identification" name="Identification" />
-            </li>
-            <li>
-                <label>Fecha de nacimiento</label>
-                <input type="text" id="Birthday" name="Birthday" />
-            </li>
-            <li>
-                <label>Sexo</label>
-                <div>
-                    <label>Masculino</label>
-                    <input type="checkbox" id="GenderMale" name="GenderMale" />
-                    <label>Femenino</label>
-                    <input type="checkbox" id="GenderFemale" name="GenderFemale" />
-                </div>
-            </li>
-        </ul>
-        <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
-    </form>
-</div>
+
 
 <!--Profile Schedule-->
 @if (Model.StartDate != null)
