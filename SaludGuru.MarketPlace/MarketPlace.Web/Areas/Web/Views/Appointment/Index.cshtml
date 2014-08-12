@@ -18,7 +18,6 @@
                         {
                             var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
                             <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
-                            <input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@officeSelected.Name" />
                         }
                     </select>
                 </li>
@@ -33,7 +32,6 @@
                             if (Model.CurrentProfile != null && item.IsDefault == true)
                             {
                                 <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
-                                @*<input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@item.Name" />*@
                             }
                             else
                             {
@@ -118,8 +116,7 @@
                 <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
             </li>
             <li>
-                <div>
-                    <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
+                <div>                    
                     <input type="hidden" name="StartDate" id="StartDate" value="" />
                     <input type="submit" style="width:100px; height:20px" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
                 </div>

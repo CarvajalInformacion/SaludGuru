@@ -47,7 +47,10 @@ namespace MarketPlace.Web.Controllers
                 //TODO: send message removed patient
             }
 
-            return View();
+            OfficeModel office = new OfficeModel();
+            //office = SaludGuruProfile.Manager.Controller.Office.
+
+            return View(appToCreate);
         }
 
         #region Private Functions
