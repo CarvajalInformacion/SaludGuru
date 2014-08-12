@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using MedicalCalendar.Manager.Models;
 
 namespace MedicalCalendar.Test
 {
@@ -19,10 +20,15 @@ namespace MedicalCalendar.Test
         [TestMethod]
         public void PatientGetByUserPublicId()
         {
-            int TotalRows;
             List<MedicalCalendar.Manager.Models.Patient.PatientModel> result = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId("17B1EF7E");
 
             Assert.AreEqual(true, result.Count > 0);
+        }
+
+        [TestMethod]
+        public void MPPatientTemporalUpsert()
+        {
+            bool result = MedicalCalendar.Manager.Controller.Appointment.MPPatientTemporalUpsert(10, 4, enumPatientState.New,  10);
         }
     }
 }

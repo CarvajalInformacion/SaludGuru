@@ -45,4 +45,12 @@
         Holiday = 1,
         NotAvailable = 2,
     }
+
+    public enum enumPatientState
+    { 
+        New = 1401,
+        Unified = 1402,
+        Descarted = 1403,
+        NewUnified = 1404
+    }
 }

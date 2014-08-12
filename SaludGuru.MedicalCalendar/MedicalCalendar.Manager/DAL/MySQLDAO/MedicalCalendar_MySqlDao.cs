@@ -962,6 +962,30 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+
+        public bool MPPatientTemporalUpsert(int PatientId, int ProfileId, enumPatientState Status, int ProfileIdBO)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vPatientIdMP", PatientId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileId", ProfileId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)Status));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfileIdBO", ProfileIdBO));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandText = "MP_PT_PatientTemporal_UpSert",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            if (response.ScalarResult != null)
+                return true;            
+            else            
+                return false;                        
+        }
+
         #endregion
 
         #endregion
