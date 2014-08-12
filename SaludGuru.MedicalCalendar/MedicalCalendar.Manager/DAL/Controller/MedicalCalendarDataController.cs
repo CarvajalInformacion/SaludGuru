@@ -1,4 +1,5 @@
-﻿using MedicalCalendar.Manager.Models.Appointment;
+﻿using MedicalCalendar.Manager.Models;
+using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.General;
 using MedicalCalendar.Manager.Models.Patient;
 using System;
@@ -95,12 +96,10 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.PatientGetOptions();
         }
 
-
-        public bool MPPatientTemporalUpsert(int PatientId, int ProfileId, Models.enumPatientState Status, int ProfileIdBO)
+        public bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO)
         {
-            return DataFactory.MPPatientTemporalUpsert(PatientId, ProfileId, Status, ProfileIdBO);
+            return DataFactory.MPPatientTemporalUpsert(PublicPatientId, PublicProfileId, Status, PublicPatientIdBO);
         }
-
 
         #region Market Place
 
@@ -184,7 +183,7 @@ namespace MedicalCalendar.Manager.DAL.Controller
         public List<AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
             return DataFactory.MPAppointmentGetByOfficeIdBasicInfo(OfficePublicId, StartDateTime, EndDateTime);
-        }
+        }        
         #endregion
 
         #endregion       

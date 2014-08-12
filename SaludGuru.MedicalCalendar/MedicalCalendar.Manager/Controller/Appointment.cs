@@ -1,4 +1,5 @@
 ﻿using MedicalCalendar.Manager.DAL.Controller;
+using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.General;
 using MedicalCalendar.Manager.Models.Patient;
@@ -194,12 +195,8 @@ namespace MedicalCalendar.Manager.Controller
                 (OfficePublicId, StartDateTime, EndDateTime);
 
             return oReturn;
-        }
+        }       
 
-        public static bool MPPatientTemporalUpsert(int PatientId, int ProfileId, Models.enumPatientState Status, int ProfileIdBO)
-        {
-            return DAL.Controller.MedicalCalendarDataController.Instance.MPPatientTemporalUpsert(PatientId, ProfileId, Status, ProfileIdBO);
-        }
         #endregion
     }
 }

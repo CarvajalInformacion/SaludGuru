@@ -3,8 +3,8 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
     Model.RenderScripts = false;
 }
-
-<h2>Index</h2>
+<div class="MPFormDataWrapper">
+    <span>Agendamiento de la cita</span>
 <div>
     <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
         <ul>
@@ -18,7 +18,6 @@
                         {
                             var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
                             <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
-                            <input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@officeSelected.Name" />
                         }
                     </select>
                 </li>
@@ -33,7 +32,6 @@
                             if (Model.CurrentProfile != null && item.IsDefault == true)
                             {
                                 <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
-                                @*<input type="hidden" name="SelectedOfficeName" id="SelectedOfficeName" value="@item.Name" />*@
                             }
                             else
                             {
@@ -119,9 +117,8 @@
             </li>
             <li>
                 <div>
-                    <input type="hidden" name="SlotD" value="@Model.CurrentProfile.RelatedOffice" />
                     <input type="hidden" name="StartDate" id="StartDate" value="" />
-                    <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
+                        <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
                 </div>
             </li>
         </ul>
@@ -160,6 +157,9 @@
         <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
     </form>
 </div>
+</div>
+
+
 
 <!--Profile Schedule-->
 @if (Model.StartDate != null)
@@ -192,7 +192,7 @@ else
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {           
             $("#isSomeBody").click(function () {
                 $("#NewPatient").show();
             });

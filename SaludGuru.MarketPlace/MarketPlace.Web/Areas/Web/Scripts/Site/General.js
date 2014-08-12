@@ -32,71 +32,78 @@ function serverDateTimeToString(vDate) {
 }
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitParams) {
-
-    InitSeachBox(InitParams.SearchBoxId, InitParams.CityId);
-
+    //init search box 
+    SearchBoxObject.Init({
+        InputId: InitParams.SearchBoxId,
+        CityId: InitParams.CityId,
+    });
+    SearchBoxObject.RenderAsync();
 }
 
-function InitSeachBox(SearchBoxId, CityId) {
+/*Searchbox objext*/
+var SearchBoxObject = {
 
-    if ($('#' + SearchBoxId).lenght > 0) {
+    /*profile info*/
+    InputId: '',
+    CityId: '1',
 
-        $('#' + SearchBoxId).autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: '/api/SearchApi?IsAc=true&CityId=' + CityId + '&SearchParam=' + request.term,
-                    dataType: "json",
-                    success: function (data) {
-                        response(data);
-                    }
-                });
-            },
-        });
+    /*init meeting calendar variables*/
+    Init: function (vInitObject) {
+        this.InputId = vInitObject.InputId;
+        this.CityId = vInitObject.CityId;
+    },
 
-        $('#' + SearchBoxId).autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: '/api/SearchApi?IsAc=true&CityId=' + CityId + '&SearchParam=' + request.term,
-                    dataType: 'json',
-                    success: function (data) {
-                        response(data);
-                    }
-                });
-            },
-            minLength: 2,
-            focus: function (event, ui) {
-                $('#' + SearchBoxId).val(ui.item.MatchQuery);
-                return false;
-            },
-            select: function (event, ui) {
-                //UpsertAppointmentObject.AddPatientAppointment({
-                //    ProfileImage: ui.item.ProfileImage,
-                //    Name: ui.item.Name,
-                //    IdentificationNumber: ui.item.IdentificationNumber,
-                //    Mobile: ui.item.Mobile,
-                //    Email: ui.item.Email,
-                //    PatientPublicId: ui.item.PatientPublicId
-                //});
-                //Layout_SearchBoxAcTemplate
-                //$('#getPatient').val('');
-                return false;
+    RenderAsync: function () {
+        if ($('#' + SearchBoxObject.InputId).length > 0) {
+
+            //init autocomplete
+            $('#' + SearchBoxObject.InputId).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/api/SearchApi?IsAc=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + request.term,
+                        dataType: 'json',
+                        type: "POST",
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                focus: function (event, ui) {
+                    $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.MatchQuery);
+                    return false;
+                },
+                select: function (event, ui) {
+                    SearchBoxObject.SearchTerm();
+                    return false;
+                }
+            }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+                var RenderItem = $('#' + SearchBoxObject.InputId + '_AcTemplate').html();
+                RenderItem = RenderItem.replace(/\${Type}/gi, item.Type);
+                RenderItem = RenderItem.replace(/\${MatchQuery}/gi, item.CurrentAcItem.MatchQuery);
+
+                return $("<li></li>")
+                    .data("ui-autocomplete-item", item)
+                    .append("<a><strong>" + RenderItem + "</strong></a>")
+                    .appendTo(ul);
+            };
+        }
+    },
+
+    SearchTerm: function () {
+        //find url to redirect
+        $.ajax({
+            url: '/Search/GetSearchUrl?IsGetUrl=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + $('#' + SearchBoxObject.InputId).val(),
+            dataType: "json",
+            type: "POST",
+        }).done(function (data, textStatus, jqXHR) {
+            if (data != null && data.Url.length > 0) {
+                window.location = data.Url;
             }
-        }).data("ui-autocomplete")._renderItem = function (ul, item) {
-
-            var RenderItem = $('#divPatientAcItem').html();
-            RenderItem = RenderItem.replace(/{ProfileImage}/gi, item.ProfileImage);
-            RenderItem = RenderItem.replace(/{Name}/gi, item.Name);
-            RenderItem = RenderItem.replace(/{IdentificationNumber}/gi, item.IdentificationNumber);
-            RenderItem = RenderItem.replace(/{Mobile}/gi, item.Mobile);
-
-            return $("<li></li>")
-                .data("ui-autocomplete-item", item)
-                .append("<a><strong>" + RenderItem + "</strong></a>")
-                .appendTo(ul);
-        };
-
+        });
     }
-}
+};
 
 /*show hide user menu*/
 function Header_ShowHideUserMenu(divId) {

@@ -1,5 +1,5 @@
 ﻿function CreatePatient() {
-    debugger;
+    ;
     //create ajax form object
     $("#CreatePatientForm").submit(function (e) {
         var postData = $(this).serializeArray();
@@ -10,7 +10,7 @@
             type: "POST",
             data: postData,
             success: function (data, textStatus, jqXHR) {
-                debugger;
+                ;
                 AddPatientToList(data);
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -37,7 +37,7 @@ function AddPatientToList(vPatientModel) {
     $('#GenderFemale').prop("checked", false);
     $('#GenderMale').prop("checked", false);
     $('#SelectedItem').prop("checked", false);
-
+    $('#SelectedPatientItem').prop("checked", false);
 }
 
 /*profile office appointment render method*/
@@ -52,7 +52,6 @@ var AppointmentObject = {
 
     ///*init meeting calendar variables*/
     Init: function (vInitObject) {
-        debugger;
         //init render info
         this.DivAppointmentId = vInitObject.DivAppointmentId;
         this.selOfficeId = vInitObject.selOfficeId;
@@ -61,13 +60,12 @@ var AppointmentObject = {
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
             //set key value pair for an office       
-            debugger;
+            ;
             AppointmentObject.lstOffice[value.OfficePublicId] = value;
         });
     },
 
     RenderAsync: function () {
-        debugger;
         //create office events
         if (this.lstOffice.length > 1) {
             $('#' + this.selOfficeId).change(function () {
@@ -91,9 +89,9 @@ var AppointmentObject = {
     },
 
     ChangeOffice: function (vOfficePublicId) {
-        debugger;
-      
-        var selectOffice = $('#' + this.selOfficeId).val();        
+        ;
+
+        var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
@@ -112,10 +110,10 @@ var AppointmentObject = {
             NewDate: vNewDate,
             NextAvailableDate: vNextAvailableDate,
         });
-    },    
+    },
 
     RenderOfficeSchedule: function (vOfficePublicId) {
-        debugger;
+
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
         if (CurrentOfficeDiv.length == 1) {
             if (CurrentOfficeDiv.children().length == 0) {
@@ -130,24 +128,24 @@ var AppointmentObject = {
                                 var vStartDate = '';
                                 var vNextAvailableDate = 'true';
                                 var vCategoryId = '';
-                                debugger;
+
                                 if (options.data != null && options.data.NewDate != null) {
                                     vStartDate = options.data.NewDate;
                                 }
 
                                 if (options.data != null && options.data.NextAvailableDate != null) {
-                                    vNextAvailableDate = options.data.NextAvailableDate;                            
-                                } 
+                                    vNextAvailableDate = options.data.NextAvailableDate;
+                                }
                                 if (options.data != null && options.data.CategoryId != null) {
                                     vCategoryId = options.data.CategoryId;
                                 }
 
-                                $.ajax({                                    
+                                $.ajax({
                                     url: '/api/ScheduleAvailableApi?ProfilePublicId=' + AppointmentObject.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&TreatmentId=' + vCategoryId + '&NextAvailableDate=' + vNextAvailableDate + '&StartDateTime=' + vStartDate,
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
-                                        debugger;
+                                        ;
                                         options.success(result);
                                     },
                                     error: function (result) {
@@ -193,7 +191,7 @@ var AppointmentObject = {
                     dataBound: function (e) {
                         //set header before render
                         var lstData = this.dataSource.view();
-                        debugger;
+
                         $('#spanHeader_' + vOfficePublicId).hide();
                         $('#divGrid_NotSchedule_' + vOfficePublicId).hide();
 
@@ -239,12 +237,12 @@ var AppointmentObject = {
                             });
 
                             $('#divGrid_NotSchedule_' + vOfficePublicId).show();
-                        }                        
-                        $("#SelectedTreatment").change(function () {                            
+                        }
+                        $("#SelectedTreatment").change(function () {
                             var selectedVal = $("#SelectedTreatment option:selected").val();
-                            AppointmentObject.PageMove(vOfficePublicId, lstData[0].CurrentDate, 'true', 
+                            AppointmentObject.PageMove(vOfficePublicId, lstData[0].CurrentDate, 'true',
                                 selectedVal);
-                        });                       
+                        });
                         e.preventDefault();
                     }
                 });
@@ -261,7 +259,7 @@ var AppointmentObject = {
     },
 
     PageMove: function (vOfficePublicId, vNewDate, vNextAvailableDate, vCategoryId) {
-        debugger;
+
         $('#divGrid_' + vOfficePublicId).data("kendoGrid").dataSource.read({
             NewDate: vNewDate,
             NextAvailableDate: vNextAvailableDate,
@@ -269,18 +267,17 @@ var AppointmentObject = {
         });
     },
 
-    SetHour: function (vCurrentHour, vCurrentHourUnFormated)
-    {
-        debugger        
+    SetHour: function (vCurrentHour, vCurrentHourUnFormated) {
+
         $('#StartDate').val(vCurrentHourUnFormated);
         $('#DateMoreInfoIdN').val(vCurrentHour);
         $('#DateMoreInfoIdNN').val(vCurrentHour);
-        $("#FreeScheduleId").hide();        
+        $("#FreeScheduleId").hide();
     },
 };
 
 $('#DateMoreInfoIdN').click(function () {
-    debugger;    
+
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
 
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
@@ -288,10 +285,29 @@ $('#DateMoreInfoIdN').click(function () {
     $("#DateMoreInfoId").hide();
 });
 $('#DateMoreInfoIdNN').click(function () {
-    debugger;
+
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
     $("#FreeScheduleId").show();
     $("#DateMoreInfoId").hide();
 });
-
+$('#SaveAppointmentId').click(function () {
+    debugger;
+    var startDate = $("#StartDate").val();
+    if (startDate == "") {
+        return false;
+    }
+});
+$("#isSomeBody").click(function () {
+    $("#NewPatient").show();
+});
+$("#GenderFemale").click(function () {
+    $("#GenderMale").attr('checked', false);
+});
+$("#GenderMale").click(function () {
+    $("#GenderFemale").attr('checked', false);
+});
+$("#DateLessInfoId").click(function () {
+    $("#FreeScheduleId").hide();
+    $("#DateMoreInfoId").show();
+});

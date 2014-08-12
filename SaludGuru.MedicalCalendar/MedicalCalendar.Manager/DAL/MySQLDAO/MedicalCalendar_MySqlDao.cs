@@ -963,14 +963,14 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
         }
 
 
-        public bool MPPatientTemporalUpsert(int PatientId, int ProfileId, enumPatientState Status, int ProfileIdBO)
+        public bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
-            lstParams.Add(DataInstance.CreateTypedParameter("vPatientIdMP", PatientId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfileId", ProfileId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicIdMP", PublicPatientId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", PublicProfileId));
             lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)Status));
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfileIdBO", ProfileIdBO));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicIdBO", PublicPatientIdBO));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
