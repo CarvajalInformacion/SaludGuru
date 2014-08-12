@@ -269,10 +269,10 @@ var AppointmentObject = {
         });
     },
 
-    SetHour: function (vCurrentHour)
+    SetHour: function (vCurrentHour, vCurrentHourUnFormated)
     {
         debugger        
-        $('#StartDate').val(vCurrentHour);
+        $('#StartDate').val(vCurrentHourUnFormated);
         $('#DateMoreInfoIdN').val(vCurrentHour);
         $('#DateMoreInfoIdNN').val(vCurrentHour);
         $("#FreeScheduleId").hide();        

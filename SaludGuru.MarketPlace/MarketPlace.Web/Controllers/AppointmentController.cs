@@ -31,9 +31,21 @@ namespace MarketPlace.Web.Controllers
         public virtual ActionResult ConfirmationAppointment(string ProfilePublicId)
         {
             ProfileModel oModel = new ProfileModel();
+            string NewAppointmentPublicId = string.Empty;
+            bool SendNotifications = false;
+            List<PatientModel> patientToRemove = new List<PatientModel>();
             oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
 
-            this.GetAppointmetRequest(oModel);
+            AppointmentModel appToCreate = new AppointmentModel();
+            appToCreate = this.GetAppointmetRequest(oModel);
+            NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(appToCreate, patientToRemove);
+
+            if (SendNotifications)
+            {
+                //TODO: send message new patient PatientNew
+
+                //TODO: send message removed patient
+            }
 
             return View();
         }
@@ -47,15 +59,15 @@ namespace MarketPlace.Web.Controllers
                 OfficeModel SelectedOfficeModel = CurrentProfileModel.RelatedOffice.Where(x => x.OfficePublicId == Request["SelectedOffice"].ToString()).Select(x => x).FirstOrDefault();
                 TreatmentOfficeModel TreatmentSelected = SelectedOfficeModel.RelatedTreatment.Where(x => x.CategoryId == Convert.ToInt32(Request["SelectedTreatment"])).FirstOrDefault();
                 string DurationDate = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault();
-                DateTime prueba = Convert.ToDateTime(Request["StartDate"]).AddMinutes(12);
-                DateTime prueba2 = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault()));
+                DateTime date = Convert.ToDateTime(Request["StartDate"]);
+                DateTime date2 = DateTime.Parse(Request["StartDate"]);
 
                 AppointmentModel oReturn = new AppointmentModel()
                 {
                     OfficePublicId = Request["SelectedOffice"].ToString(),
                     Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
                     StartDate = Convert.ToDateTime(Request["StartDate"]),
-                    EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault())),                            
+                    EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(DurationDate)),
                     AppointmentInfo = new List<AppointmentInfoModel>(),
                     RelatedPatient = new List<PatientModel>(),
                 };
@@ -86,6 +98,14 @@ namespace MarketPlace.Web.Controllers
                         AppointmentInfoType = MedicalCalendar.Manager.Models.enumAppointmentInfoType.BeforeCare,
                         LargeValue = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.BeforeCare).Select(x => x.Value).FirstOrDefault(),
                     });
+
+                //get patient to add
+                oReturn.RelatedPatient = Request["SelectedPatientItem"].Split(',').
+                    Where(x => !string.IsNullOrEmpty(x) && x.Replace(" ", "").Length == 8).
+                    Select(x => new PatientModel()
+                    {
+                        PatientPublicId = x.Replace(" ", "")
+                    }).ToList();
 
                 return oReturn;
             }

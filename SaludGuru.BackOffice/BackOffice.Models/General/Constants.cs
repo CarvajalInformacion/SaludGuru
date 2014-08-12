@@ -31,7 +31,15 @@
         public const string C_Settings_RemindersType = "Profile_RemindersType";
 
         public const string C_Settings_ComunicationType = "Profile_ComuicationType";
-        
+
+        public const string C_Settings_Georef_LatitudeMin = "Georef_LatitudeMin";
+
+        public const string C_Settings_Georef_LatitudeMax = "Georef_LatitudeMax";
+
+        public const string C_Settings_Georef_LongitudeMin = "Georef_LongitudeMin";
+
+        public const string C_Settings_Georef_LongitudeMax = "Georef_LongitudeMax";
+
         #endregion
 
         #region Profile Images
@@ -58,7 +66,7 @@
         public const string C_Settings_Appointment_TitleTemplate = "Appointment_TitleTemplate_{{StatusId}}";
         public const string C_Settings_Appointment_TitleTemplate_Month = "Appointment_TitleTemplate_Month";
         public const string C_Settings_Appointment_StatusName_New = "Appointment_StatusName_New";
-        public const string C_Settings_Appointment_StatusName = "Appointment_StatusName_{{StatusId}}";        
+        public const string C_Settings_Appointment_StatusName = "Appointment_StatusName_{{StatusId}}";
 
         #endregion
 
