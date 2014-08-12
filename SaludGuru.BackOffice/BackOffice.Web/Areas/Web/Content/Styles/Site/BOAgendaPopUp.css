@@ -90,7 +90,7 @@ div.ui-dialog-buttonset button {
         }
 
 
-span#Name-error, span#IdentificationNumber-error, span#Mobile-error {
+form#frmCreatePatient span#Name-error, form#frmCreatePatient span#IdentificationNumber-error, form#frmCreatePatient span#Mobile-error {
     display: none !important;
 }
 

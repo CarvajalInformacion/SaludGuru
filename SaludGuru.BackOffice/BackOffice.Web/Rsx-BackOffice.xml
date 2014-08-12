@@ -134,6 +134,12 @@
     <key name="Appointment_StatusName_1206">(Cita confirmada inasistencia)</key>
     <key name="Appointment_StatusName_1207">(Agenda bloqueada)</key>
 
+    <!--Georef limits-->
+    <key name="Georef_LatitudeMin">-79.214525</key>
+    <key name="Georef_LatitudeMax">-66.602210</key>
+    <key name="Georef_LongitudeMin">-4.466081</key>
+    <key name="Georef_LongitudeMax">12.575882</key>
+
   </BackOffice>
 </Settings>
 
