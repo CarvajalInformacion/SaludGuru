@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SettingsConfig>
   <Module name="FeedManager">
-    <key name="location">D:\Proyectos\Github\SaludGuru\SaludGuru.FeedManager\SaludGuru.FeedManagerTest\Rsx-FeedManager.xml</key>
+    <key name="location">D:\SaludGuru\SaludGuruV2.0\SaludGuru.FeedManager\SaludGuru.FeedManagerTest\Rsx-FeedManager.xml</key>
   </Module>
 </SettingsConfig>
