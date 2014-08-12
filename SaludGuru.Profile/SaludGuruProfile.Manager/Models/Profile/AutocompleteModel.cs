@@ -16,6 +16,8 @@ namespace SaludGuruProfile.Manager.Models.Profile
 
         public string MatchQuery { get; set; }
 
+        public string OriginalTerm { get; set; }
+
         public bool IsQuery { get; set; }
     }
 }
