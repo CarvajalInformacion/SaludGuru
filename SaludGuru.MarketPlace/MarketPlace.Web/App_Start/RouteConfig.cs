@@ -79,6 +79,21 @@ namespace MarketPlace.Web
 
             #endregion
 
+            #region Home
+
+            //home
+            routes.MapRoute(
+                            name: "Home",
+                            url: "",
+                            defaults: new
+                            {
+                                controller = "Home",
+                                action = "Index"
+                            }
+                        ).DataTokens = rvdByArea;
+
+            #endregion
+
             #region NotFound
 
             //contenido+no+encontrado
@@ -204,6 +219,25 @@ namespace MarketPlace.Web
                    TreatmentName = string.Empty,
                    InsuranceName = string.Empty,
                    CityName = string.Empty,
+
+                   Query = string.Empty,
+
+                   IsRedirect = true,
+                   IsQuery = true,
+               }).DataTokens = rvdByArea;
+
+            //doctores-{CityName}/{Query}
+            routes.MapRoute(
+               name: "SearchQuery_CityAll",
+               url: "doctores-{CityName}",
+               defaults: new
+               {
+                   controller = "Search",
+                   action = "Index",
+
+                   SpecialtyName = string.Empty,
+                   TreatmentName = string.Empty,
+                   InsuranceName = string.Empty,
 
                    Query = string.Empty,
 
