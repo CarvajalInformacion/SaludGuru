@@ -643,6 +643,12 @@ namespace SaludGuruProfile.Manager.Controller
         #endregion
 
         #region Category
+
+        public static void RelatedCategoryCreate(int CategoryParent, int CategoryChild)
+        {
+            DAL.Controller.ProfileDataController.Instance.RelatedCategoryCreate(CategoryParent, CategoryChild);
+        }
+
         #region MarketPlace
 
         public static List<Interfaces.ICategoryModel> MPCategoryGetAvailableCategory(string InsuranceName, string SpecialtyName, string TreatmentName)
@@ -651,6 +657,7 @@ namespace SaludGuruProfile.Manager.Controller
         }
 
         #endregion
+
         #endregion
     }
 }
