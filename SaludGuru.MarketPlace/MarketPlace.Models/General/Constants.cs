@@ -20,7 +20,10 @@
 
         public const string C_Route_Default = "Default";
 
+        public const string C_Route_Home = "Home";
+
         public const string C_Route_SearchQuery_Default = "SearchQuery_Default";
+        public const string C_Route_SearchQuery_CityAll = "SearchQuery_CityAll";
 
         public const string C_Route_SearchCategory_City = "SearchCategory_City";
         public const string C_Route_SearchCategory_InsuranceCity = "SearchCategory_InsuranceCity";
