@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SaludGuruProfile.Manager.Models.Profile;
 
 namespace MarketPlace.Web.Controllers
 {
@@ -10,7 +11,9 @@ namespace MarketPlace.Web.Controllers
     {
         public virtual ActionResult Index()
         {
-            return View();
+            ProfileModel Model = SaludGuruProfile.Manager.Controller.Profile.GetFeaturedProfile(1);
+
+            return View(Model);
         }
 
         public virtual ActionResult LogOutUser()

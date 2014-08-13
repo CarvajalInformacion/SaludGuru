@@ -69,7 +69,7 @@ namespace SaludGuruProfile.Manager.Interfaces
         List<ProfileModel> MPProfileSearchCategory(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber);
         List<ProfileModel> MPProfileSearchOfficeBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber);
 
-
+        ProfileModel GetFeaturedProfile(int Quantity);
 
         #endregion
 
