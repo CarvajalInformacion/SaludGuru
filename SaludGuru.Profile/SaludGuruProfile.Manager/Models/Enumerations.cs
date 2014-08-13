@@ -69,7 +69,8 @@
         Telephone = 702,
         Geolocation = 703,
         SlotMinutes = 704,
-        MarketPlaceEnabled = 705
+        MarketPlaceEnabled = 705,
+        OldOfficeId = 706,
     }
 
     public enum enumOfficeCategoryInfoType
