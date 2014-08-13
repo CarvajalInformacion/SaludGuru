@@ -434,6 +434,13 @@ namespace SaludGuruProfile.Manager.Controller
             ProfileDataController.Instance.RelatedProfileDelete(ProfilePublicIdParent, ProfilePublicIdChild);
         }
 
+        public static ProfileModel GetFeaturedProfile(int Quantity)
+        {
+            ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.GetFeaturedProfile(Quantity);
+
+            return oReturn;
+        }
+
         #region MarketPlace
 
         public static ProfileModel MPProfileGetFull(string ProfilePublicId)

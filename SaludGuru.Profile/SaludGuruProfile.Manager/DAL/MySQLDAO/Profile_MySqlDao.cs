@@ -1735,6 +1735,56 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public ProfileModel GetFeaturedProfile(int Quantity)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vQuantity", Quantity));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "P_Profile_GetFeaturedProfile",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            ProfileModel oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new ProfileModel()
+                {
+
+                    ProfilePublicId = response.DataTableResult.Rows[0].Field<string>("ProfilePublicId"),
+                    Name = response.DataTableResult.Rows[0].Field<string>("Name"),
+                    LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+                    ProfileInfo = new List<ProfileInfoModel>() 
+                                      { 
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = response.DataTableResult.Rows[0].Field<string>("TextProfile"),                                        
+                                            ProfileInfoType = enumProfileInfoType.ShortProfile,
+                                        },
+                                        new ProfileInfoModel()
+                                        {
+                                            Value = response.DataTableResult.Rows[0].Field<string>("Image"),               
+                                            ProfileInfoType = enumProfileInfoType.ImageProfileSmallOriginal,
+                                        }
+                                      },
+                    DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
+                                        where sp.Field<int?>("CategoryType") != null &&
+                                                sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
+                                                sp.Field<UInt64>("CategoryIsDefault") == 1
+                                        select new SpecialtyModel()
+                                        {
+                                            CategoryId = sp.Field<int>("CategoryId"),
+                                            Name = sp.Field<string>("CategoryName"),
+                                        }).FirstOrDefault()
+                };
+            }
+            return oReturn;
+        }
+
         #endregion
 
         #region Office

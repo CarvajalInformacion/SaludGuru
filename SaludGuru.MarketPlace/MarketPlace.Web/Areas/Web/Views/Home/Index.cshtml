@@ -1,47 +1,115 @@
-﻿@{
+﻿@Model SaludGuruProfile.Manager.Models.Profile
+@{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div id="SearchBoxID" class="MPHeaderSearchWrapper">
-    <!--search box-->
-    @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
+<div class="Content">
+    <div class="MPHeaderSearchWrapper SearchBox">
+        <!--search box-->
+        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
-    {
-        <div class="SearchBoxClass">
-            <span>Busca un especialista por nombre, especialidad, ciudad o seguro completamente gratis</span>
-            <div>
-                <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+        {
+            <div class="SearchBoxClass">
+                <span>Busca un especialista por nombre, especialidad, ciudad o seguro completamente gratis</span>
+                <div>
+                    <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+                    <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+                </div>
             </div>
+        }   
+    </div>
+    <hr class="featurette-divider __loop">
+    <div class="ContentImportant">
+        <div class="Profile">
+            <p>Profesional destacado:</p>
+            <label></label>
         </div>
-    }
-</div>
-<div id="ProfileId">
-
-</div>
-<div id="SocialNetworksId">
-
-</div>
-<div id="FeedId">
-    @{
-        List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(2);
-
-        SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
-        SaludGuru.FeedManager.Models.FeedReaderModel mMedicalMarketing = Feeds[1];
-    }
-    <div id="FeedLeftId">
-        <a target="_blank" href="@(mHealtyLive.Link)">
-            <img id="FeedImage" src="@(mHealtyLive.Image)" />
-        </a>
-        <label id="FeedTitle">@(mHealtyLive.Title)</label>
-        <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+        <div class="SocialNetworks">
+            <p>Redes Sociales</p>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:350px; height: 290px;"></iframe>
+        </div>
     </div>
-    <div id="FeedRightId">
-        <a target="_blank" href="@(mMedicalMarketing.Link)">
-            <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
-        </a>
-        <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
-        <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
+    <hr class="featurette-divider __loop">
+    <div class="Feed">
+        <p>Noticias</p>
+        @{
+            List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(2);
+
+            SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
+            SaludGuru.FeedManager.Models.FeedReaderModel mMedicalMarketing = Feeds[1];
+        }
+        <!-- Feed Left -->
+        <div class="FeedLeft">
+            <a target="_blank" href="@(mHealtyLive.Link)">
+                <img id="FeedImage" src="@(mHealtyLive.Image)" />
+            </a>
+            <label id="FeedTitle">@(mHealtyLive.Title)</label>
+            <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+        </div>
+        <!-- Feed Right -->
+        <div class="FeedRight">
+            <a target="_blank" href="@(mMedicalMarketing.Link)">
+                <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
+            </a>
+            <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+            <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
+        </div>
+    </div>
+    <hr class="featurette-divider __loop">
+    <div class="Demo">
+        <div class="criteriaBox">
+            <h3>ESPECIALIDADES DESTACADAS</h3>
+            <ul>
+                <li>
+                    <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
+                        <h3>Odontología</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
+                        <h3>Fisioterapia</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
+                        <h3>Cirugía Plástica</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
+                        <h3>Ginecología</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                        <h3>Medicina Estética</h3>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <h3>SEGUROS</h3>
+            <ul>
+                <li>
+                    <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
+                        <h3>Sura</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
+                        <h3>Allianz</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
+                        <h3>Colsanitas</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                        <h3>Medplus</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
-
