@@ -25,7 +25,7 @@
 
     <!--Message-->
     <!--RetrivePasswordEmail-->
-    <!--<key name="Message_Params_RetrivePasswordEmail">
+    <key name="Message_Params_RetrivePasswordEmail">
       <![CDATA[
           <Message>
           <key name="Agent">Agent_Mailman</key>
@@ -45,134 +45,7 @@
           Te esperamos,
           </html>
       ]]>
-    </key>-->
-
-
-    <!--Confirmation - Email Params-->
-    <key name="Message_Params_Email_AsignedAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Mensaje de confitmación de cita</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
     </key>
-
-    <!--Confirmation - Email Body-->
-    <key name="Message_Body_Email_AsignedAppointment">
-      <![CDATA[
-          <Message>                    
-             <html>
-                Se ha agendado una cita con el Dr.{ProfleName} el d&iacute;a {AppointmentDate}
-                a las {Hour}
-                en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
-                Si deseas ver informaci&oacute;n acerca de tu doctor, por favor sigue el siguiente
-                enlace {ProfileUrl} . 
-		        </html>
-          </Message>
-      ]]>
-    </key>
-
-    <!--Confirmation - Sms Params-->
-    <key name="Message_Params_Sms_AsignedAppointment">
-      <![CDATA[
-         <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-
-    <!--Confirmation - Sms Params-->
-    <key name="Message_Body_Sms_AsignedAppointment">
-      <![CDATA[Confirmacion de cita con Dr.{ProfleName} fecha {AppointmentDate} tel: {OfficePhone}. Confirmar/Cancelar {ConfirmCancelLink}]]>
-    </key>
-
-    <!--Confirmation - GuruNotification Body-->
-    <key name="Message_Body_GuruNotification_AsignedAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Confirmación de cita médica</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-
-    
-    <!--Cancel Appointment-->
-    <!--Cancel Appointment Email - -->
-    <key name="Message_Params_Email_CancelAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Cancelación de cita médica</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_Email_CancelAppointment">
-      <![CDATA[
-          <html>
-            Desafortunadamente el Dr. {ProfleName}, no puede
-            atenderte el día {AppointmentDate} a las {Hour} en el 
-            consultorio situado en {OfficeAddres}
-            Teléfono: {OfficePhone}. Debido  a {Reason}			
-            Para agendar una nueva fecha haz clic en {ReescheduleLink}
-            esto te llevará a la agenda disponible del Dr. {ProfleName}.
-          </html>
-      ]]>
-    </key>
-
-     <!--Cancel Appointment Sms-->
-    <key name="Message_Params_Sms_CancelAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_Sms_CancelAppointment">
-      <![CDATA[Cancelacion de cita con Dr.{ProfleName} el {AppointmentDate} {Hour} Reagendar {RescheduleLink}]]>
-    </key>
-    
-     <!--Cancel Appointment Notificaciones Gurú-->
-    <key name="Message_Params_GuruNotification_CancelAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_GuruNotification_CancelAppointment">
-      <![CDATA[este es el body del SMS]]>
-    </key>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!--ReminderNextAppointment-->
     <key name="Message_Params_ReminderNextAppointment">
@@ -237,7 +110,17 @@
       ]]>
     </key>
 
-
+    <!--ConfirmationReschedule-->
+    <key name="Message_Params_Confirmation">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Mensaje de cita reagendada</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
 
     <!--ConfirmationReschedule-->
     <key name="Message_Params_ConfirmationReschedule">
@@ -262,7 +145,29 @@
       ]]>
     </key>
 
-    
+    <!--CancelEMail-->
+    <key name="Message_Params_CancelEMail">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Cancelación de cita con el Dr.{DoctorName}</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_CancelEMail">
+      <![CDATA[
+          <html>
+            Desafortunadamente el Dr. {DoctorName}, no puede
+            atenderte el día{Date} a las {Hour} en el 
+            consultorio situado en {OfficeAddres}
+            Teléfono: {Telephone}. Debido  a {Reason}			
+            Para agendar una nueva fecha haz clic en {Link}
+            esto te llevará a la agenda disponible del Dr. {DoctorName}.
+          </html>
+      ]]>
+    </key>
 
     <!--MailAssignmentPro-->
     <key name="Message_Params_MailAssignmentPro">
@@ -323,7 +228,7 @@
           </html>
       ]]>
     </key>
-
+    
     <!--SMS-->
     <!--CancelSMSMessage-->
     <key name="Message_Params_CancelSMSMessage">
@@ -360,7 +265,7 @@
           </Message>
       ]]>
     </key>
-
+    
     <!--MissedAppSMSMessage-->
     <key name="Message_Params_MissedAppSMSMessage">
       <![CDATA[
@@ -396,9 +301,25 @@
           </Message>
       ]]>
     </key>
-
-
-   
+    
+    
+    <!--SMSConfirmation-->
+    <key name="Message_Params_SMSCancelation">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Inalambria</key> 
+            <key name="UsrSMSService">CarvajalINFOdcd</key> 
+            <key name="PswSMSService">gj2sYb</key> 
+          </Message>
+      ]]>
+    </key>
+    <key name="Message_Body_SMSCancelation">
+      <![CDATA[
+          <Message>
+            este es el body del SMS
+          </Message>
+      ]]>
+    </key>
   </Message>
 </Settings>
 

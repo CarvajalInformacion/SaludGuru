@@ -3,6 +3,7 @@ using BackOffice.Models.Patient;
 using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
@@ -41,6 +42,7 @@ namespace BackOffice.Web.ControllersApi
             List<PatientModel> PatientToRemove;
             List<PatientModel> PatientNew;
             bool SendNotifications = false;
+            bool SendNotifyOk = false;
 
             //get request info
             AppointmentModel AppointmentToUpsert = GetUpsertAppointmentRequestModel(out SendNotifications, out PatientNew, out PatientToRemove);
@@ -50,12 +52,20 @@ namespace BackOffice.Web.ControllersApi
 
             if (SendNotifications)
             {
-                //TODO: send message new patient PatientNew
+                ProfileModel oSource = new ProfileModel();
+                List<PatientModel> PatientSource = new List<PatientModel>();
+                PatientModel PatientItem = new PatientModel();
 
-                //TODO: send message removed patient
+                foreach (var item in AppointmentToUpsert.RelatedPatient)
+                {
+                    PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
+                    PatientSource.Add(PatientItem);
+                }
+                oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
+                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert);
+                //TODO: Validar si se hizo o no con el log
             }
-
-            //return appointment id
             return AppointmentPublicId;
         }
 
@@ -68,7 +78,6 @@ namespace BackOffice.Web.ControllersApi
             {
                 //get request info
                 bool SendNotifications = false;
-
                 //get send notifications
                 SendNotifications = Convert.ToBoolean(HttpContext.Current.Request["SendNotifications"].ToString());
 
@@ -161,7 +170,7 @@ namespace BackOffice.Web.ControllersApi
         public void UnBlockAppointment(string BlockAppointmentPublicId)
         {
             if (!string.IsNullOrEmpty(BlockAppointmentPublicId))
-            { 
+            {
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
                     AppointmentPublicId = BlockAppointmentPublicId,
@@ -391,15 +400,27 @@ namespace BackOffice.Web.ControllersApi
         private void DoCancelAppointment(AppointmentModel AppointmentToUpsert, bool SendNotifications)
         {
             AppointmentToUpsert.Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled;
-
+            bool SendNotifyOk = false;
             //update appointment status
             MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
 
             if (SendNotifications)
             {
-                //TODO: send message new patient PatientNew
+                ProfileModel oSource = new ProfileModel();
+                List<PatientModel> PatientSource = new List<PatientModel>();
+                PatientModel PatientItem = new PatientModel();
+                AppointmentModel AppointmentCompleteInfo = new AppointmentModel();
 
-                //TODO: send message removed patient
+                AppointmentCompleteInfo = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentToUpsert.AppointmentPublicId);
+                foreach (var item in AppointmentCompleteInfo.RelatedPatient)
+                {
+                    PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
+                    PatientSource.Add(PatientItem);
+                }
+                oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+
+                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.CancelAppointment, PatientSource, AppointmentCompleteInfo);
+                //TODO: Validar si se hizo o no con el log
             }
         }
 

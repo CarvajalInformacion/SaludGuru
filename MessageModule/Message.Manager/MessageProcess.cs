@@ -29,15 +29,18 @@ namespace Message.Manager
             //read queue
             List<MessageQueueModel> messageQueueList = new List<MessageQueueModel>();
             messageQueueList = this._controller.GetQueueMessage();
-            if (messageQueueList.Count > 0)
+            if (messageQueueList != null)
             {
-                foreach (MessageQueueModel item in messageQueueList)
-                    this.ProcessMesage(item);
+                if (messageQueueList.Count > 0)
+                {
+                    foreach (MessageQueueModel item in messageQueueList)
+                        this.ProcessMesage(item);
+                }
             }
         }
 
         public void AddResend(int messageQueueId)
-        { 
+        {
 
         }
 
@@ -57,7 +60,7 @@ namespace Message.Manager
             Message.Models.AgentModel oAgentConfig = new AgentModel()
             {
                 QueueItemToProcess = QueueItemToProcess,
-                MessageConfig = this.GetMessageConfig(QueueItemToProcess.MessageType),
+                MessageConfig = this.GetMessageConfig(QueueItemToProcess),
             };
             oAgentConfig.AgentConfig = GetAgentConfig(oAgentConfig.MessageConfig["Agent"]);
 
@@ -80,14 +83,48 @@ namespace Message.Manager
         /// </summary>
         /// <param name="MessageType">Tipo de mensaje a consultar</param>
         /// <returns>Llave y valor de la correspondiente configuración</returns>
-        private Dictionary<string, string> GetMessageConfig(string MessageType)
+        private Dictionary<string, string> GetMessageConfig(MessageQueueModel infoMessage)
         {
-            XDocument xDocMessType = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Params_" + MessageType].Value);
+            XDocument xDocMessType = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Params_" + infoMessage.MessageType].Value);
             Dictionary<string, string> MessageConfig = xDocMessType.Descendants("Message").Descendants("key").ToDictionary(k => k.Attribute("name").Value, v => v.Value);
-            XDocument xDocMessBody = XDocument.Parse(SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
-            MessageConfig.Add("Body", SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + MessageType].Value);
+            string xDocMessBody = SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["Message_Body_" + infoMessage.MessageType].Value;
+            
+            switch (infoMessage.MessageType)
+	        {
+                case "Email_AsignedAppointment":
+                    xDocMessBody = xDocMessBody.Replace("{ProfleName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfleName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    break;
+                case "Sms_AsignedAppointment":
+                    xDocMessBody = xDocMessBody.Replace("{ProfleName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfleName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    break;
+                    //guru
+                    //Cancelacion cita
+                case "Email_CanceAppointment":
+                    xDocMessBody = xDocMessBody.Replace("{ProfleName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfleName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{Reason}", infoMessage.MessageParameters.Where(x => x.Key == "Reason").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ReescheduleLink}", infoMessage.MessageParameters.Where(x => x.Key == "ReescheduleLink").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    break;
+                case "Sms_CancelAppointment":
+                    xDocMessBody = xDocMessBody.Replace("{ProfleName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfleName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());                    
+                    xDocMessBody = xDocMessBody.Replace("{ReescheduleLink}", infoMessage.MessageParameters.Where(x => x.Key == "ReescheduleLink").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    break;
+	        }
 
-            //MessageConfig.Add()
+            MessageConfig.Add("Body", xDocMessBody);
             return MessageConfig;
         }
 

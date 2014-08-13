@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SettingsConfig>
   <Module name="Message">
-    <key name="location">C:\Users\JOHMARVA\Documents\SOLUCION_SALUDGURU_V2\MessageModule\Message.Test\Rsx-Message.xml</key>
+    <key name="location">C:\Users\JOHMARVA\Source\Repos\SaludGuru\MessageModule\Message.Test\Rsx-Message.xml</key>
   </Module>
 </SettingsConfig>
