@@ -40,7 +40,7 @@ namespace SaludGuru.FeedManager.Readers
         {
             List<Models.FeedReaderModel> oReturn = new List<Models.FeedReaderModel>();
 
-            Models.FeedReaderModel oModel = new Models.FeedReaderModel();
+            string image = string.Empty;
 
             SyndicationFeed feed;
             using (XmlReader reader = XmlReader.Create(FileParams["WordPress.FeedUrl"]))
@@ -48,7 +48,6 @@ namespace SaludGuru.FeedManager.Readers
                 feed = SyndicationFeed.Load(reader);
                 reader.Close();
             }
-
             feed.Items.All(item =>
             {
                 foreach (SyndicationElementExtension extension in item.ElementExtensions)
@@ -60,7 +59,7 @@ namespace SaludGuru.FeedManager.Readers
                     {
                         try
                         {
-                            oModel.Image = Regex.Match
+                            image = Regex.Match
                                 (ele.Value,
                                 "<img.+?src=[\"'](.+?)[\"'].*?>",
                                 RegexOptions.IgnoreCase).Groups[1].Value;
@@ -70,17 +69,18 @@ namespace SaludGuru.FeedManager.Readers
                     }
                 }
 
-                if (string.IsNullOrEmpty(oModel.Image))
+                if (string.IsNullOrEmpty(image))
                 {
-                    oModel.Image = Models.Constants.C_Settings_DefaultImage;
-                }
-
-                oModel.Title = item.Title.Text;
-                oModel.Link = item.Links[0].Uri.ToString();
-                oModel.Description = item.Summary.Text;
+                    image = Models.Constants.C_Settings_DefaultImage;
+                }                
 
                 //Add Model to List FeedReaderModel
-                oReturn.Add(oModel);
+                oReturn.Add(new Models.FeedReaderModel { 
+                    Title = item.Title.Text,
+                    Link = item.Links[0].Uri.ToString(),
+                    Description = item.Summary.Text,
+                    Image = image,
+                });
                 return true;
             });
 
