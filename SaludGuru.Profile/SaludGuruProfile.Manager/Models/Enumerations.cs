@@ -11,7 +11,8 @@
     {
         Keyword = 601,
         DurationTime = 602,
-        MarketPlaceEnabled = 603
+        MarketPlaceEnabled = 603,
+        OldCategoryId = 604,
     }
 
     public enum enumProfileType
