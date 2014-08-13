@@ -1,10 +1,122 @@
-﻿@model MarketPlace.Models.Profile.SearchViewModel
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 
-@if (!Model.RenderScripts)
+@if (Model != null && !string.IsNullOrEmpty(Model.ProfilePublicId))
 {
+    <div style="line-height:normal;">
+        <div>
+            @{
+    //get is certified
+    var ovIsCertified = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
+            Select(x => Convert.ToBoolean(x.Value)).
+            DefaultIfEmpty(false).
+            FirstOrDefault();
 
-}
-else
-{
+    //get image profile
+    var ovImageProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+            Select(x => x.Value).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
 
+    //get default specialty
+    var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
+            Model.DefaultSpecialty :
+            (Model.RelatedSpecialty != null ?
+            Model.RelatedSpecialty.FirstOrDefault() :
+            null);
+
+    //get profile text
+    var ovShortProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get WebSite info
+    var ovWebSite = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
+            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
+            FirstOrDefault();
+
+    //get facebook profile
+    var ovFacebook = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
+            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
+            FirstOrDefault();
+
+    //get profile url
+    var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+        new
+        {
+            DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.Name + " " + Model.LastName),
+            ProfilePublicId = Model.ProfilePublicId,
+            SpecialtyName = ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(ovDefaultSpecialty.Name) : string.Empty,
+        }));
+
+            }
+
+            @if (ovIsCertified)
+            {
+            <!--certified image-->
+                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+            }
+            <a href="@ovProfileUrl">
+                <img src="@ovImageProfile" />
+            </a>
+            <a href="@ovProfileUrl">
+                <label>@(Model.Name + " " + Model.LastName)</label>
+            </a>
+            @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+            {
+            <!--Principal specialty-->
+                <span>@ovDefaultSpecialty.Name</span>
+            }
+            <span>@string.Join(", ", Model.RelatedInsurance.Select(x => x.Name).ToList())</span>
+            @if (!string.IsNullOrEmpty(ovWebSite))
+            {
+                <a href="@ovWebSite" target="_blank">
+                    <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
+                    <span>Página Web</span>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(ovFacebook))
+            {
+                <a href="@ovFacebook" target="_blank">
+                    <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
+                    <span>Facebook</span>
+                </a>
+            }
+
+            @{
+            SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
+            if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
+            {
+                oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
+                if (oCurrentOffice == null)
+                {
+                    oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+                }
+            }
+            }
+            @if (oCurrentOffice != null)
+            {
+                <div class="OfficeSelector">
+                    <span class="OfficeTextSelector">Ver datos de contacto</span>
+                    <div class="OfficeContactSelector" style="display:none;">
+                        <span>@oCurrentOffice.Name</span>
+                        <span>Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span>Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    </div>
+                </div>
+            }
+            <a href="@ovProfileUrl">Agendar tú cita con este profesional gratis.</a>
+        </div>
+        <div>
+            @if (!string.IsNullOrEmpty(ovShortProfile))
+            {
+                <span>@ovShortProfile</span>
+            }
+        </div>
+    </div>
 }

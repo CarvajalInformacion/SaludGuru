@@ -74,6 +74,10 @@ namespace MarketPlace.Models.Profile
             }
         }
 
+        public int CurrentCityId { get; set; }
+
+        public string CurrentQuery { get; set; }
+
         public int TotalRows { get; set; }
 
         public bool RenderScripts { get; set; }

@@ -1,10 +1,45 @@
-﻿@model MarketPlace.Models.Profile.SearchViewModel
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 
-@if (!Model.RenderScripts)
+@if (Model != null && !string.IsNullOrEmpty(Model.ProfilePublicId))
 {
+    <div style="line-height:normal;">
+        @{
+    //get default specialty
+    var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
+            Model.DefaultSpecialty :
+            (Model.RelatedSpecialty != null ?
+            Model.RelatedSpecialty.FirstOrDefault() :
+            null);
+        }
 
-}
-else
-{
-
+        <label>@(Model.Name + " " + Model.LastName)</label>
+        @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+        {
+                <!--Principal specialty-->
+            <span>@ovDefaultSpecialty.Name</span>
+        }
+        <span>@string.Join(", ", Model.RelatedInsurance.Select(x => x.Name).ToList())</span>
+        @{
+        SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
+        if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
+        {
+            oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
+            if (oCurrentOffice == null)
+            {
+                oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+            }
+        }
+        }
+        @if (oCurrentOffice != null)
+        {
+            <div class="OfficeSelector">
+                <span class="OfficeTextSelector">Ver datos de contacto</span>
+                <div class="OfficeContactSelector" style="display:none;">
+                    <span>@oCurrentOffice.Name</span>
+                    <span>Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    <span>Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                </div>
+            </div>
+        }
+    </div>
 }

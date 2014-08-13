@@ -51,14 +51,14 @@
     <div class="MPProfileInfo_Social">
         @if (!string.IsNullOrEmpty(ovWebSite))
         {
-            <a href="@ovWebSite">
+            <a href="@ovWebSite" target="_blank">
                 <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
                 <span>Página Web</span>
             </a>
         }
         @if (!string.IsNullOrEmpty(ovFacebook))
         {
-            <a href="@ovFacebook">
+            <a href="@ovFacebook" target="_blank">
                 <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
                 <span>Facebook</span>
             </a>

@@ -56,6 +56,13 @@ namespace MarketPlace.Web.Controllers
                     CityName,
                     Query);
 
+                //get city
+                oModel.CurrentCityId = BaseController.EnabledCities.
+                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(CityName.Replace("+", " "))).
+                            Select(x => x.Key).
+                            DefaultIfEmpty(BaseController.DefaultCityId).
+                            FirstOrDefault();
+
                 //get page number
                 oModel.CurrentPage = Convert.ToInt32(Request["PageNumber"]);
                 if (oModel.CurrentPage < 0)
@@ -65,13 +72,11 @@ namespace MarketPlace.Web.Controllers
                 //get profiles to show
                 if (oModel.IsQuery)
                 {
+                    oModel.CurrentQuery = Query.Replace("+", " ");
+
                     oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
                         (true,
-                        BaseController.EnabledCities.
-                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(CityName.Replace("+", " "))).
-                            Select(x => x.Key).
-                            DefaultIfEmpty(BaseController.DefaultCityId).
-                            FirstOrDefault(),
+                        oModel.CurrentCityId,
                         Query.Replace("+", " "),
                         null,
                         null,
@@ -85,15 +90,11 @@ namespace MarketPlace.Web.Controllers
                 {
                     oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
                         (false,
-                        BaseController.EnabledCities.
-                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(CityName.Replace("+", " "))).
-                            Select(x => x.Key).
-                            DefaultIfEmpty(BaseController.DefaultCityId).
-                            FirstOrDefault(),
+                        oModel.CurrentCityId,
                         null,
-                        oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
-                        oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
-                        oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
+                        !string.IsNullOrEmpty(InsuranceName) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
+                        !string.IsNullOrEmpty(SpecialtyName) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
+                        !string.IsNullOrEmpty(TreatmentName) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
                         oModel.CurrentRowCount,
                         oModel.CurrentPage,
                         out oTotalRowsAux);
@@ -111,10 +112,16 @@ namespace MarketPlace.Web.Controllers
         public virtual JsonResult GetSearchUrl
             (string IsGetUrl, string CityId, string SearchParam)
         {
-            AutocompleteModel oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-                    (Convert.ToInt32(CityId.Trim()), SearchParam).FirstOrDefault();
 
-            if (oModel == null)
+            var oModelAux = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
+                    (Convert.ToInt32(CityId.Trim()), SearchParam);
+
+            AutocompleteModel oModel;
+            if (oModelAux != null && oModelAux.Count > 0)
+            {
+                oModel = oModelAux.FirstOrDefault();
+            }
+            else
             {
                 oModel = new AutocompleteModel()
                 {
@@ -122,7 +129,8 @@ namespace MarketPlace.Web.Controllers
                     MatchQuery = SearchParam
                 };
             }
-            else if (oModel.IsQuery)
+
+            if (oModel.IsQuery)
             {
                 oModel.MatchQuery = SearchParam;
             }

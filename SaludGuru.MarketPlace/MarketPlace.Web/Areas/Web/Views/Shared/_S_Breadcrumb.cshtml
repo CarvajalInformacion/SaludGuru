@@ -1,10 +1,82 @@
 ﻿@model MarketPlace.Models.Profile.SearchViewModel
 
-@if (!Model.RenderScripts)
-{
+<div style="line-height:normal;">
+    <div>
+        @{
+            var ovUrlCityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId]);
+            var ovCityName = MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId];
+        }
+        @if (Model.IsQuery)
+        {
+            <a href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Default, null)" title="Home">Home</a>
+            <span> > </span>
+            <a href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchQuery_Default, new { CityName = ovUrlCityName })" title="doctores @ovCityName">doctores @ovCityName</a>
+            <span> > @Html.Raw(Model.CurrentQuery) </span>
+        }
+        else
+        {
+            @*if (Model.CurrentSpecialty != null && Model.CurrentInsurance != null && Model.CurrentTreatment == null)
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(ViewBag.speciality, null, null))" title="@ViewBag.speciality">@ViewBag.speciality</a><span> > </span> <a href="@Url.Content(StringUtils.GetSearchUrl(ViewBag.speciality, ViewBag.insurance, null))" title="@(ViewBag.speciality + " " + ViewBag.insurance)">@ViewBag.insurance</a><span> > @ViewBag.city</span>
+                }
+                if (!string.IsNullOrEmpty(ViewBag.speciality) && !string.IsNullOrEmpty(ViewBag.insurance) && string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(ViewBag.speciality, null, null))" title="@ViewBag.speciality">@ViewBag.speciality</a><span> > @ViewBag.insurance</span>
+                }
+                if (!string.IsNullOrEmpty(ViewBag.speciality) && string.IsNullOrEmpty(ViewBag.insurance) && string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > @ViewBag.speciality</span>
+                }
+                if (!string.IsNullOrEmpty(ViewBag.speciality) && string.IsNullOrEmpty(ViewBag.insurance) && !string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(ViewBag.speciality, null, null))" title="@ViewBag.speciality">@ViewBag.speciality</a><span> > seguros medicos en @ViewBag.city</span>
+                }
+                if (string.IsNullOrEmpty(ViewBag.speciality) && !string.IsNullOrEmpty(ViewBag.insurance) && !string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(null, null, null))" title="todas las especialidades">todas las especialidades</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(ViewBag.speciality, ViewBag.insurance, null))" title="@ViewBag.insurance">@ViewBag.insurance</a><span> > @ViewBag.city</span>
+                }
+                if (string.IsNullOrEmpty(ViewBag.speciality) && !string.IsNullOrEmpty(ViewBag.insurance) && string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(null, null, null))" title="todas las especialidades">todas las especialidades</a><span> > @ViewBag.insurance</span>
+                }
+                if (string.IsNullOrEmpty(ViewBag.speciality) && string.IsNullOrEmpty(ViewBag.insurance) && !string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > </span><a href="@Url.Content(StringUtils.GetSearchUrl(null, null, null))" title="todas las especialidades">todas las especialidades</a><span> > @ViewBag.city</span>
+                }
+                if (string.IsNullOrEmpty(ViewBag.speciality) && string.IsNullOrEmpty(ViewBag.insurance) && string.IsNullOrEmpty(ViewBag.city))
+                {
+                    <a href="@Url.Action("Index", "Home")" title="Home">Home</a><span> > todas las especialidades</span>
+                }*@
+        }
+    </div>
+    <div>
+        @{
+            var ovNextUrl = string.Empty;
+            var ovPreviewUrl = string.Empty;
 
-}
-else
-{
+            Uri tmpUrl = new Uri(Request.Url.ToString().Replace("?PageNumber=" + Request.QueryString["PageNumber"], string.Empty).Replace("&PageNumber=" + Request.QueryString["PageNumber"], string.Empty));
 
-}
+            if (Model.CurrentPage > 0)
+            {
+                ovPreviewUrl += tmpUrl;
+                ovPreviewUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage - 1);
+            }
+            if (Model.CurrentPage < Convert.ToInt32(Math.Floor((double)Model.TotalRows / (double)Model.CurrentRowCount)))
+            {
+                ovNextUrl += Request.Url.ToString().Replace("?PageNumber=" + Request.QueryString["PageNumber"], string.Empty).Replace("&PageNumber=" + Request.QueryString["PageNumber"], string.Empty);
+                ovNextUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage + 1);
+            }
+        }
+
+        @if (!string.IsNullOrEmpty(ovPreviewUrl))
+        {
+            <a href="@ovPreviewUrl">Anterior</a>
+        }
+
+        @if (!string.IsNullOrEmpty(ovNextUrl))
+        {
+            <a href="@ovNextUrl">Siguiente</a>
+        }
+
+    </div>
+</div>

@@ -12,22 +12,16 @@
         <!--Render profiles-->
         @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
         {
-            var ProfileRender = new
-                {
-                    oCurrentProfile = oProfile,
-                    oCurrentModel = Model
-                };
-
             switch (oProfile.ProfileStatus)
             {
                 case SaludGuruProfile.Manager.Models.enumProfileStatus.Free:
-                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Free, ProfileRender);
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Free, oProfile);
                     break;
                 case SaludGuruProfile.Manager.Models.enumProfileStatus.Basic:
-                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Basic, ProfileRender);
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Basic, oProfile);
                     break;
                 case SaludGuruProfile.Manager.Models.enumProfileStatus.Pay:
-                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Pay, ProfileRender);
+                    Html.RenderPartial(MVC.Web.Shared.Views._S_Profile_Pay, oProfile);
                     break;
             }
         }
@@ -37,4 +31,12 @@
         @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
     </div>
 </div>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fnInitContactOffice();
+        });
+    </script>
+}
 
