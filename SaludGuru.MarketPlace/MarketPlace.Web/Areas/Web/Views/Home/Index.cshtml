@@ -30,18 +30,18 @@
         SaludGuru.FeedManager.Models.FeedReaderModel mMedicalMarketing = Feeds[1];
     }
     <div id="FeedLeftId">
-        <a href="@(mHealtyLive.Link)">
+        <a target="_blank" href="@(mHealtyLive.Link)">
             <img id="FeedImage" src="@(mHealtyLive.Image)" />
         </a>
         <label id="FeedTitle">@(mHealtyLive.Title)</label>
-        <p id="FeedDescription">@mHealtyLive.Description)</p>
+        <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
     </div>
     <div id="FeedRightId">
-        <a href="@(mMedicalMarketing.Link)">
+        <a target="_blank" href="@(mMedicalMarketing.Link)">
             <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
         </a>
         <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
-        <p id="FeedDescription">@mMedicalMarketing.Description)</p>
+        <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
     </div>
 </div>
 

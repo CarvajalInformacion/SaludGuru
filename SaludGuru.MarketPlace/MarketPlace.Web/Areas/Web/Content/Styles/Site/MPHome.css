@@ -1,20 +1,61 @@
 div#FeedId {
     border: 1px solid;
     color: red;
+    width: calc(100%);
+    position: relative;
 }
 
-div#FeedLeftId{
+    div#FeedId p {
+        line-height: 20px;
+        width: calc(80%);
+        margin: 10px 0px 10px calc(10%);
+    }
+
+div#FeedLeftId, div#FeedRightId {
+    height: 300px;
+}
+
+div#FeedLeftId {
     border: 1px solid;
     color: brown;
     /*---Original Styles---*/
     min-width: calc(50%);
+    width: calc(50%);
     left: 0px;
+    position: relative;
+    float: left;
 }
 
-div#FeedRightId{
+div#FeedRightId {
     border: 1px solid;
     color: darkgreen;
     /*---Original Styles---*/
     min-width: calc(50%);
+    width: calc(50%);
     right: 0px;
+    position: relative;
+    float: right;
+}
+
+img#FeedImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 900px;
+    position: relative;
+    transition: all .3s ease;
+    z-index: 90;
+}
+
+    img#FeedImage:hover {
+        transform: scale(1.4);
+    }
+
+label#FeedTitle {
+    margin-top: 10px;
+    height: 15px;
+}
+
+p#FeedDescription {
+    margin-top: 10px;
+    line-height: 15px;
 }

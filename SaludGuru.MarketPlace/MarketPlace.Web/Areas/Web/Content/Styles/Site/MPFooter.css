@@ -9,6 +9,8 @@
     background-position: 98% -4px;
     background-color: #6c5d53;
     padding-top: 19px;
+    /*Mantener en el fondo de la página*/
+    clear: both;
 }
     .MPTextWrapper {
         display:block;

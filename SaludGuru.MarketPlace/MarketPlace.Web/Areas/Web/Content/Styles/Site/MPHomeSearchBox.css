@@ -1,7 +1,7 @@
 
 /*------ Background Search Box----------*/
 div#SearchBoxID {
-    background: url(https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_1.jpg) no-repeat;
+    background: url(https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_2.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     height: 400px !important;
@@ -41,53 +41,3 @@ div#SearchBoxID {
             text-align: left;
             opacity: 1 !important;
         }
-
-
-/*Estilos que van en MPHome, estan aquí solo para pruebas*/
-
-div#FeedId {
-    border: 1px solid;
-    color: red;
-    width: calc(100%);    
-    position: relative;
-}
-
-div#FeedLeftId, div#FeedRightId{
-    height: 300px;
-}
-
-div#FeedLeftId {
-    border: 1px solid;
-    color: brown;
-    /*---Original Styles---*/
-    min-width: calc(50%);
-    width: calc(50%);
-    left: 0px;
-    position: relative;
-}
-
-div#FeedRightId {
-    border: 1px solid;
-    color: darkgreen;
-    /*---Original Styles---*/
-    min-width: calc(50%);
-    width: calc(50%);
-    right: 0px;
-    position: relative;
-}
-
-img#FeedImage {
-    background-size: cover;
-    height: 100px;
-    border-radius: 5%;
-}
-
-label#FeedTitle{
-    margin-top: 10px;
-    height: 15px;
-}
-
-p#FeedDescription{
-    margin-top: 10px;
-    line-height: 15px;
-}
