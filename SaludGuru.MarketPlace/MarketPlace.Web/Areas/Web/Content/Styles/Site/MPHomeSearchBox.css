@@ -1,0 +1,93 @@
+
+/*------ Background Search Box----------*/
+div#SearchBoxID {
+    background: url(https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px !important;
+}
+
+    /*------ SearchBox Styles -----*/
+    div#SearchBoxID .SearchBoxClass {
+        width: 800px !important;
+        height: 30% !important;
+        background-color: rgba(255, 255, 255, 0.8);
+        margin-top: 11% !important;
+        color: transparent !important;
+    }
+
+        div#SearchBoxID .SearchBoxClass div {
+            color: transparent;
+        }
+
+            div#SearchBoxID .SearchBoxClass div a {
+                border: none;
+            }
+
+        div#SearchBoxID .SearchBoxClass span {
+            font-style: normal;
+            line-height: 1.2;
+            font-weight: bold;
+            font-size: 18px;
+            width: 800px !important;
+            opacity: 1 !important;
+            color: #535353;
+            border: none;
+        }
+
+        div#SearchBoxID .SearchBoxClass div input {
+            font-size: 1.07143rem;
+            font-style: italic;
+            text-align: left;
+            opacity: 1 !important;
+        }
+
+
+/*Estilos que van en MPHome, estan aquí solo para pruebas*/
+
+div#FeedId {
+    border: 1px solid;
+    color: red;
+    width: calc(100%);    
+    position: relative;
+}
+
+div#FeedLeftId, div#FeedRightId{
+    height: 300px;
+}
+
+div#FeedLeftId {
+    border: 1px solid;
+    color: brown;
+    /*---Original Styles---*/
+    min-width: calc(50%);
+    width: calc(50%);
+    left: 0px;
+    position: relative;
+}
+
+div#FeedRightId {
+    border: 1px solid;
+    color: darkgreen;
+    /*---Original Styles---*/
+    min-width: calc(50%);
+    width: calc(50%);
+    right: 0px;
+    position: relative;
+}
+
+img#FeedImage {
+    background-size: cover;
+    height: 100px;
+    border-radius: 5%;
+}
+
+label#FeedTitle{
+    margin-top: 10px;
+    height: 15px;
+}
+
+p#FeedDescription{
+    margin-top: 10px;
+    line-height: 15px;
+}

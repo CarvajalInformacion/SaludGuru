@@ -2,16 +2,46 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div>
+<div id="SearchBoxID" class="MPHeaderSearchWrapper">
     <!--search box-->
     @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
     {
-        <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
-        <div>
-            <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-            <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+        <div class="SearchBoxClass">
+            <span>Busca un especialista por nombre, especialidad, ciudad o seguro completamente gratis</span>
+            <div>
+                <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+            </div>
         </div>
     }
+</div>
+<div id="ProfileId">
+
+</div>
+<div id="SocialNetworksId">
+
+</div>
+<div id="FeedId">
+    @{
+        List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(2);
+
+        SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
+        SaludGuru.FeedManager.Models.FeedReaderModel mMedicalMarketing = Feeds[1];
+    }
+    <div id="FeedLeftId">
+        <a href="@(mHealtyLive.Link)">
+            <img id="FeedImage" src="@(mHealtyLive.Image)" />
+        </a>
+        <label id="FeedTitle">@(mHealtyLive.Title)</label>
+        <p id="FeedDescription">@mHealtyLive.Description)</p>
+    </div>
+    <div id="FeedRightId">
+        <a href="@(mMedicalMarketing.Link)">
+            <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
+        </a>
+        <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+        <p id="FeedDescription">@mMedicalMarketing.Description)</p>
+    </div>
 </div>
 
