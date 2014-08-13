@@ -1,142 +1,57 @@
-.MPButtonContainerLong {
-    display:block;
-
-border:none;
-    
-    width:90%;
-    height:38px;
-    margin:10px auto;
-}
-.MPButtonAdmin{
-    margin-left: 400px !important;
-}
-.MPButtonContainerShort{
-    background-color: #CCC;
-    position: fixed;
-    width: 77%;
-    height: 38px;
-    left: 312px;
-    top: 95%;
-    padding: 0px !important;
-    z-index: 1;
-}
-.MPIncludeNewSpecialty li.MPButtonContainerShort {
-    min-width: 641px; margin-top: -12px;
-}
-.MPButtons, .MPFormDataWrapper ul li input.MPButtons, input.MPAgregarButtons{
-    display:block;
-    float:right;
-    border:1px solid #333;
-    border-radius:3px;
-    padding:5px 12px;
-    cursor:pointer;
-    background-color:#5c9b00;
-    text-transform:uppercase;
-    font-family:'MuseoSans100';
-    font-size:20px;
-    line-height:20px;
-    color:#fff;
-    box-shadow:#000 2px 2px 3px;
-    vertical-align:top;
-    margin: 4px 25% auto auto;
-}
-input.MPAgregarButtons {
-    margin: 4px 1.8% auto auto;
-}
-.MPFormDataWrapper ul li input.MPButtons {
-    width:auto;
-}
-.MPButtons:hover, .MPFormDataWrapper ul li input.MPButtons:hover, .MPAgregarButtons:hover {
-    background-color:#73c100;
-    color:#333;
-}
-
-
-.MPButtonsErase, .MPButtonsImagesErase {
-    display:block;
-    float:right;
-    border:1px solid #333;
-    border-radius:2px;
-    padding:6px 7px 6px 34px;
-    cursor:pointer;
-    text-transform:uppercase;
-    font-family:'MuseoSans100';
-    font-size:15px;
-    line-height:18px;
-    color:#333;
-    box-shadow:#000 2px 2px 3px;
-    vertical-align:top;
-    background-image:url('/Areas/Web/Content/Images/iconosSprite1.png');
-    background-position:-142px -332px;
-    background-size:572px auto;
-}
-.MPButtonsImagesErase {
-    float:none;
-    margin:0px auto;
-}
-.MPButtonsImagesErase:hover {
-    box-shadow:#000 1px 1px 2px;
-}
-
-    .MPButtonsErase:hover, .MPButtonsErase:active {
-        box-shadow:#000 1px 1px 2px;
-    }
-.MPButtonContainerProfileImages {
-    display: inline-block;
-    border: medium none;
-    width: 12%;
+li.MPAgendaButtonWrapper, div.MPAgendaButtonWrapper{
+    display: block !important;
+    border: 1px solid #F00 !important;
+    width: auto;
     height: auto;
-    margin: 5px auto;
-    vertical-align:top;
+    margin: 0px auto 0px auto !important;
+    text-align:left;
 }
-.MPButtonContainerProfileImagesErase {
-    display:block;
-    border: medium none;
-    width: 97%;
-    height: auto;
-    margin: 4px auto;
-    vertical-align:top;
-    text-align:center;
+li.MPAgendaButtonWrapper input.MPAgendaButtons,
+div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
+    font-family: "MuseoSans100";
+    font-size: 16px;
+    line-height: 22px;
+    border: 1px solid #666;
+    margin:0px 0px 0px 9%; 
+    padding:0px 10px;
+    box-shadow: 1px 1px 1px #333;
+    background-color: #e6e6e6;
+    border-radius: 1px;    
+    cursor: pointer;
+    height:auto; width:auto;
+    text-indent: 0px;
 }
-.MPProfileImagesButtons {
-    display:block;
-    float:right;
-    border:1px solid #333;
-    border-radius:3px;
-    padding:2px 12px;
-    cursor:pointer;
-    background-color:#5c9b00;
-    text-transform:uppercase;
-    font-family:'MuseoSans100';
-    font-size:16px;
-    line-height:20px;
-    color:#fff;
-    box-shadow:#000 2px 2px 3px;
-    vertical-align:top;
-}
-.MPProfileImagesButtons:hover {
-    background-color:#73c100;
-}
-/**********PESTANAS ACTIVAS Y SUBMENUS**********/
-
-.MPMenuPrincipalPerfil div ul li.selected{
-    background-color: #FFF;
-    z-index: 10;
-    border-right: medium none #FFF;
-    position: relative;
-}
-    .MPMenuPrincipalPerfil div ul li.selected:first-child {
-        background-color: #FFF;
-        z-index: 10;
-        border-right: medium none #FFF;
-        position: relative;
+    div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate,
+    li.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
+        padding: 6px 10px;
+        margin: 6px;
+        background-color: #FF002D;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 20px;
     }
-
-    div.MPInfoOfficeSubmenu ul li.selected{
-        background-color: #ECECEC;
-        z-index: 10;
-        border-bottom: medium none #FFF;
-        position: relative;
-        text-decoration: underline;
-        box-shadow: 2px -1px 2px;
+    li.MPAgendaButtonWrapper input.MPAgendaButtons:hover, 
+    li.MPAgendaButtonWrapper input.MPAgendaButtons:active{
+        box-shadow: 1px 1px 0px #333;
+        background-color:#fff;
+    }
+/*GUARDAR*/
+a#itemSave {
+    border: 1px solid #333;
+    display: block;
+    width: 100px;
+    height: auto;
+    background-color: #E6E6E6;
+    margin: 12px auto;
+    color: #333;
+    text-align: center;
+    line-height:26px;
+    border-radius: 2px;
+    font-size: 1.3em;
+    box-shadow:2px 2px 1px #666;
+}
+    a#itemSave:hover{
+        text-decoration:none;
+        background-color:#fff;
+        box-shadow:1px 1px 1px #666;
     }

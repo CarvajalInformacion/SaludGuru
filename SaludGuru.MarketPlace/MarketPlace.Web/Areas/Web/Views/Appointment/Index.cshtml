@@ -4,7 +4,7 @@
     Model.RenderScripts = false;
 }
 <div class="MPFormDataWrapper">
-    <span>Agendamiento de la cita</span>
+    <span>Proceso de Agendamiento</span>
 
     <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
         <ul>
@@ -84,9 +84,8 @@
                     string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
                                 x.Value == "true").
                                 Select(x => x.Value).FirstOrDefault();
-
-                    <div id="ulPatientList">
-                        
+                    
+                    <div id="ulPatientList">                        
                             @if (currentPatient != null)
                             {
                                 <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
@@ -96,33 +95,45 @@
                             {
                                 <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
                                 <label>@item.Name @item.LastName</label>
-                            }
-                        
+                            }                        
                     </div>
                 }
             </li>
-            <li>
-                <div id="FreeScheduleId" style="display:none">
-                    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
-                    <input type="button" style="width:100px; height: 20px" id="DateLessInfoId" value="Ver menos info de la cita" />
-                </div>
+            <li class="MPAgendaButtonWrapper">
+                <input class="MPAgendaButtons" id="isSomeBody" type="button" name="Btn" value="Alguien más" />
             </li>
-            <li>
-                <input id="isSomeBody" style="width:20px; height:10px;" type="button" name="Btn" value="Alguien más" />
-            </li>
-            <li>
-                <div>
-                    <input type="hidden" name="StartDate" id="StartDate" value="" />
-                        <input type="submit" style="width:100px; height:20px" name="SaveAppointmentId" value="Agendar cita" />
-                </div>
+            <li class="MPAgendaButtonWrapper">
+                <!--Profile Schedule-->
+                @if (Model.StartDate != null)
+                {
+                    <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdNN" value="@Model.StartDate" />
+                }
+                else
+                {
+                    <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />
+                }
+            </li>            
+            <li class="MPAgendaButtonWrapper">
+                <input type="hidden" name="StartDate" id="StartDate" value="" />
+                <input class="MPAgendaButtonAcceptDate" type="submit" name="SaveAppointmentId" value="Agendar cita" />
             </li>
         </ul>
     </form>
+    
+    @*ESTE PEDAZO PINTA EL CALENDARIO DE CITAS DEL DOCTOR*@
+    <div class="laPmadre" id="FreeScheduleId" style="display:none">
+        @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
+        <div class="MPAgendaButtonWrapper">
+            <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="Cerrar calendario" />
+        </div>
+    </div>
 
+    @*ESTE PEDAZO PINTA EL FORMULARIO DEL NUEVO PACIENTE*@
 <div id="NewPatient" style="display:none;">
     <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
         <ul>
             <li>
+                <h2>Datos del nuevo paciente</h2>
                 <label>Nombre</label>
                 <input type="text" id="Name" name="Name" />
             </li>
@@ -139,40 +150,24 @@
                 <input type="text" id="Birthday" name="Birthday" />
             </li>
             <li>
-                <label>Sexo</label>
-                <div>
+                <h2>Sexo</h2>
                     <label>Masculino</label>
                     <input type="checkbox" id="GenderMale" name="GenderMale" />
                     <label>Femenino</label>
                     <input type="checkbox" id="GenderFemale" name="GenderFemale" />
-                </div>
             </li>
-        </ul>
-        <a id="itemSave" style="width:50px;height:20px" href="javascript:CreatePatient();">Guardar</a>
+            <li>
+                <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
+            </li>
+        </ul>      
     </form>
 </div>
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
     </div>
 </div>
-
-
-
-<!--Profile Schedule-->
-@if (Model.StartDate != null)
-{
-    <input type="button" style="height: 20px" id="DateMoreInfoIdNN" value="@Model.StartDate" />
-}
-else
-{
-    <input type="button" style="height: 20px" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />
-}
-
-
-
 <!--templates-->
 <div style="display:none">
-
     <!--patient template-->
     <ul id="ulPatientTemplate">
         <li>
