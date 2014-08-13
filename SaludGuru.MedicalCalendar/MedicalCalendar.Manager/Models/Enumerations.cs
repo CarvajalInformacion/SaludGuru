@@ -25,7 +25,8 @@
         AfterCare = 1103,
         BeforeCare = 1104,
         Note = 1105,
-        AppointmentNote = 1106
+        AppointmentNote = 1106,
+        CancelAppointementReason = 1107
     }
 
     public enum enumAppointmentStatus

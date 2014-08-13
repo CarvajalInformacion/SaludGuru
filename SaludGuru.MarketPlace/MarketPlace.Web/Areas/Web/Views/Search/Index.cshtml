@@ -3,8 +3,8 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <div>
+<div class="MPResultsGrandWrapper">
+    <div class="MPResultsBreadCrumbs">
         <!--render breadcrumb, paging header-->
         @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
     </div>
@@ -26,7 +26,7 @@
             }
         }
     </div>
-    <div>
+    <div class="MPResultsBreadCrumbs">
         <!--render breadcrumb, paging footer-->
         @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
     </div>
