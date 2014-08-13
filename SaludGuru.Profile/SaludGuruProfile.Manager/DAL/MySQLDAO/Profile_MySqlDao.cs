@@ -1628,6 +1628,113 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<ProfileModel> MPProfileSearchOfficeBasicInfo
+            (bool IsQuery,
+            int CityId,
+            string Query,
+            int? InsuranceId,
+            int? SpecialtyId,
+            int? TreatmentId,
+            int RowCount,
+            int PageNumber)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
+            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
+            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
+            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "MP_P_Profile_Search_Office_BasicInfo",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<ProfileModel> oReturn = null;
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn =
+                    (from p in response.DataTableResult.AsEnumerable()
+                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
+                     group p by
+                     new
+                     {
+                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
+
+                     } into pg
+                     select new ProfileModel()
+                     {
+
+                         ProfilePublicId = pg.Key.ProfilePublicId,
+
+                         RelatedOffice =
+                             (from o in response.DataTableResult.AsEnumerable()
+                              where o.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                    !string.IsNullOrEmpty(o.Field<string>("OfficePublicId"))
+                              group o by
+                              new
+                              {
+                                  OfficePublicId = o.Field<string>("OfficePublicId"),
+                                  Name = o.Field<string>("Name"),
+                                  IsDefault = o.Field<UInt64>("IsDefault") == 1 ? true : false,
+                                  CityId = (int)o.Field<Int32>("CityId"),
+                                  CityName = o.Field<string>("CityName"),
+                                  StateId = (int)o.Field<Int32>("StateId"),
+                                  StateName = o.Field<string>("StateName"),
+                                  CountryId = (int)o.Field<Int32>("CountryId"),
+                                  CountryName = o.Field<string>("CountryName"),
+                              } into og
+                              select new OfficeModel()
+                              {
+                                  OfficePublicId = og.Key.OfficePublicId,
+                                  Name = og.Key.Name,
+                                  IsDefault = og.Key.IsDefault,
+
+                                  City = new CityModel()
+                                  {
+                                      CityId = og.Key.CityId,
+                                      CityName = og.Key.CityName,
+                                      StateId = og.Key.StateId,
+                                      StateName = og.Key.StateName,
+                                      CountryId = og.Key.CountryId,
+                                      CountryName = og.Key.CountryName,
+                                  },
+
+                                  OfficeInfo =
+                                     (from oi in response.DataTableResult.AsEnumerable()
+                                      where oi.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                            oi.Field<int?>("OfficeInfoId") != null &&
+                                           oi.Field<string>("OfficePublicId") == og.Key.OfficePublicId
+                                      group oi by
+                                      new
+                                      {
+                                          OfficeInfoId = oi.Field<int>("OfficeInfoId"),
+                                          OfficeInfoType = oi.Field<int>("OfficeInfoType"),
+                                          Value = oi.Field<string>("OfficeInfoValue"),
+                                          LargeValue = oi.Field<string>("OfficeInfoLargeValue"),
+                                      } into oig
+                                      select new OfficeInfoModel()
+                                      {
+                                          OfficeInfoId = oig.Key.OfficeInfoId,
+                                          OfficeInfoType = (enumOfficeInfoType)oig.Key.OfficeInfoType,
+                                          Value = oig.Key.Value,
+                                          LargeValue = oig.Key.LargeValue
+                                      }).ToList(),
+
+                              }).ToList(),
+                     }).ToList();
+            }
+
+            return oReturn;
+        }
+
         #endregion
 
         #region Office

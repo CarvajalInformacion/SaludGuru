@@ -531,12 +531,21 @@ namespace SaludGuruProfile.Manager.Controller
             if (oAux == null)
                 oAux = new List<ProfileModel>();
 
+            List<ProfileModel> oAuxOf = DAL.Controller.ProfileDataController.Instance.MPProfileSearchOfficeBasicInfo
+                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
+
+            if (oAuxOf == null)
+                oAuxOf = new List<ProfileModel>();
+
+
             oReturn.All(p =>
             {
                 p.RelatedSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedSpecialty).FirstOrDefault();
                 p.DefaultSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.DefaultSpecialty).FirstOrDefault();
                 p.RelatedInsurance = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedInsurance).FirstOrDefault();
                 p.RelatedTreatment = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedTreatment).FirstOrDefault();
+
+                p.RelatedOffice = oAuxOf.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedOffice).FirstOrDefault();
 
                 return true;
             });

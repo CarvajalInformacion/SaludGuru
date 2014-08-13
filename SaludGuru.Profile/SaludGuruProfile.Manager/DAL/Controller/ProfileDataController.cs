@@ -227,6 +227,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPProfileSearchCategory(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
         }
 
+        public List<ProfileModel> MPProfileSearchOfficeBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber)
+        {
+            return DataFactory.MPProfileSearchOfficeBasicInfo(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
+        }
+
         #endregion
 
         #region Office
