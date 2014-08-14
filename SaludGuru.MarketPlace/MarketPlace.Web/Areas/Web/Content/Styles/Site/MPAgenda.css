@@ -77,3 +77,7 @@ div.laPmadre div{
         width: calc(100%);
         max-width: 617px;
     }
+/******** PANTALLA DE CONFIRMACION ********/
+div.MPAgendaConfirmationMessage{
+
+}
