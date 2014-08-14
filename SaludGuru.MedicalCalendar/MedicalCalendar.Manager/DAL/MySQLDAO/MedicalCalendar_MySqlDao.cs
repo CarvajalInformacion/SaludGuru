@@ -591,14 +591,14 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                              new
                              {
                                  AppointmentInfoId = api.Field<int>("AppointmentInfoId"),
-                                 AppintmentInfoType = api.Field<int>("AppintmentInfoType"),
+                                 AppointmentInfoType = api.Field<int>("AppointmentInfoType"),
                                  Value = api.Field<string>("AppointmentInfoValue"),
                                  LargeValue = api.Field<string>("AppointmentInfoLargeValue"),
                              } into apig
                              select new AppointmentInfoModel()
                              {
                                  AppointmentInfoId = apig.Key.AppointmentInfoId,
-                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppintmentInfoType,
+                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppointmentInfoType,
                                  Value = apig.Key.Value,
                                  LargeValue = apig.Key.LargeValue
                              }).ToList(),
@@ -661,14 +661,14 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                              new
                              {
                                  AppointmentInfoId = api.Field<int>("AppointmentInfoId"),
-                                 AppintmentInfoType = api.Field<int>("AppintmentInfoType"),
+                                 AppointmentInfoType = api.Field<int>("AppointmentInfoType"),
                                  Value = api.Field<string>("AppointmentInfoValue"),
                                  LargeValue = api.Field<string>("AppointmentInfoLargeValue"),
                              } into apig
                              select new AppointmentInfoModel()
                              {
                                  AppointmentInfoId = apig.Key.AppointmentInfoId,
-                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppintmentInfoType,
+                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppointmentInfoType,
                                  Value = apig.Key.Value,
                                  LargeValue = apig.Key.LargeValue
                              }).ToList(),
@@ -790,14 +790,14 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                              new
                              {
                                  AppointmentInfoId = api.Field<int>("AppointmentInfoId"),
-                                 AppintmentInfoType = api.Field<int>("AppintmentInfoType"),
+                                 AppointmentInfoType = api.Field<int>("AppointmentInfoType"),
                                  Value = api.Field<string>("AppointmentInfoValue"),
                                  LargeValue = api.Field<string>("AppointmentInfoLargeValue"),
                              } into apig
                              select new AppointmentInfoModel()
                              {
                                  AppointmentInfoId = apig.Key.AppointmentInfoId,
-                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppintmentInfoType,
+                                 AppointmentInfoType = (enumAppointmentInfoType)apig.Key.AppointmentInfoType,
                                  Value = apig.Key.Value,
                                  LargeValue = apig.Key.LargeValue
                              }).ToList(),
@@ -981,9 +981,9 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             });
 
             if (response.ScalarResult != null)
-                return true;            
-            else            
-                return false;                        
+                return true;
+            else
+                return false;
         }
 
         #endregion

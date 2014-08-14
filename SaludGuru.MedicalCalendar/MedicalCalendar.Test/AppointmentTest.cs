@@ -35,7 +35,7 @@ namespace MedicalCalendar.Test
         public void AppointmentGetById()
         {
             MedicalCalendar.Manager.Models.Appointment.AppointmentModel result =
-                MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById("3724568H");
+                MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById("14DB06E7");
 
             Assert.IsNotNull(result);
 
