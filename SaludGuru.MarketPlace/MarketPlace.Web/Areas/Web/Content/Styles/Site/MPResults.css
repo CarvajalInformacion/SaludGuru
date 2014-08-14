@@ -53,10 +53,13 @@
 /**** basico ****/
 /**** pago ****/
 div.MPResultsPaidProfile {
-    border:1px solid darkgreen;
-    display:block;
-    margin:0px 8px;
-    padding:12px;
+    border: 1px solid #666;
+    display: block;
+    margin:0px 8px 12px 8px;
+    padding: 12px;
+    background: linear-gradient(#fff, #ececec);
+    box-shadow: 2px 2px 1.3px;
+    border-radius: 3px;
 }
 div.MPResultsPaidProfile label,
 div.MPResultsPaidProfile span,
@@ -111,41 +114,78 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
             line-height: 16px;
         }
 /**********  DATOS CONTACTO **********/
-div.OfficeSelector {
-    border:1px solid red;
-    display:inline-block;
-    width:21%;
-    min-width:220px;
-    vertical-align:top;
-}
-div.OfficeSelector span{
-    border:1px solid #666;
-    background-color:#e6e6e6;
-    border-radius:2px;
-    padding:2px 6px;
-    cursor:pointer;
-}
-div.OfficeSelector span:hover{
-    background-color:#fff;
-}
-div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
-    border:none;
-    background-color:#fff;
-    cursor:auto;
-    font-size:1em;
-    display:inline-block;
+        div.OfficeSelector {
+            border: 1px solid #F00;
+            display: inline-block;
+            width: 100%;
+            min-width: 220px;
+            vertical-align: top;
+            margin: 7px 0px 0px 0px;
+        }
+        div.OfficeSelector span{
+            border:1px solid #666;
+            background-color:#bfde6d;
+            border-radius:2px;
+            padding:2px 6px;
+            cursor:pointer;            
+            width:100%;
+            color: #333;
+            text-align: center;
+        }
+            div.OfficeSelector span:hover{
+                background-color:#a6d134;
+            }
+            div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
+                border:none;
+                background-color:initial;
+                cursor:auto;
+                font-size:1em;
+                display:inline-block;
+                width: auto;
+            }
+@media screen and (max-width:1024px) {
+         div.OfficeSelector {
+            border: 1px solid #F00;
+            display: inline-block;
+            width: 100%;
+            min-width: 220px;
+            vertical-align: top;
+            margin: 7px 0px 0px 0px;
+        }
+        div.OfficeSelector span{
+            border:1px solid #666;
+            background-color:#bfde6d;
+            border-radius:2px;
+            padding:2px 6px;
+            cursor:pointer;            
+            width:100%;
+            color: #333;
+            text-align: center;
+        }
+            div.OfficeSelector span:hover{
+                background-color:#a6d134;
+            }
+            div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
+                border:none;
+                background-color:initial;
+                cursor:auto;
+                font-size:1em;
+                display:inline-block;
+                width: auto;
+            }
 }
 /********* enlace agenda gratis ********/
 .MPResultsBookAppFree {
     display: block !important;
-    padding: 6px 0px;
+    padding: 4px 0px;
     margin: 6px auto;
-    background-color:#92B92A;
-    width: 80%;
+    background-color: #92B92A;
+    width: 100%;
     text-align: center;
     font-size: 1.5em !important;
     border-radius: 3px;
-    color: #fff !important;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
 }
 .MPResultsBookAppFree:hover {
     background-color:#82A327;
@@ -155,7 +195,16 @@ div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
 div.MPResultsBookShortDescription {
     border: 1px solid #F00;
     display: inline-block;
-    width: 30%;
+    width:63%;
     min-width: 330px;
     vertical-align: top;
 }
+    @media screen and (max-width:1024px) {
+        div.MPResultsBookShortDescription {
+        border: 1px solid #F00;
+        display: inline-block;
+        width:46%;
+        min-width: 330px;
+        vertical-align: top;
+        }
+    }
