@@ -17,6 +17,7 @@
         SendSMS = 1013,
         SendEmail = 1014,
         IsMarketPlaceUser = 1015,
+        OldPatientId = 1016,
     }
 
     public enum enumAppointmentInfoType
@@ -48,7 +49,7 @@
     }
 
     public enum enumPatientState
-    { 
+    {
         New = 1401,
         Unified = 1402,
         Descarted = 1403,
