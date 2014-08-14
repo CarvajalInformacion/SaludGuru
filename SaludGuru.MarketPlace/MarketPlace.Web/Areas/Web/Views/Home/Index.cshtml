@@ -1,4 +1,4 @@
-﻿@Model SaludGuruProfile.Manager.Models.Profile
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 @{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
@@ -16,17 +16,49 @@
                     <a href="javascript:SearchBoxObject.SearchTerm();"></a>
                 </div>
             </div>
-        }   
+        }
     </div>
     <hr class="featurette-divider __loop">
     <div class="ContentImportant">
         <div class="Profile">
+            @{
+                var nameProfile = Model.Name.ToString();
+                var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
+                                                    Select(x => x.Value).
+                                                    DefaultIfEmpty(null).
+                                                    FirstOrDefault();
+                var defaultSpecialtyProfile = Model.DefaultSpecialty.Name.ToString();
+                var shortTextProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+                                                        Select(x => x.Value).
+                                                        DefaultIfEmpty(null).
+                                                        FirstOrDefault();
+            }
             <p>Profesional destacado:</p>
-            <label></label>
+            <div class="Image">
+                <img src="@imgProfile" />
+            </div>
+            <div class="ProfileInfo">
+                <label>@nameProfile</label>
+                <p>@defaultSpecialtyProfile</p>
+                <p>@shortTextProfile</p>
+            </div>
         </div>
         <div class="SocialNetworks">
             <p>Redes Sociales</p>
+            <!--Facebook-->
             <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:350px; height: 290px;"></iframe>
+
+            <!--LinkedIn-->
+            <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                lang: es_ES
+            </script>
+            <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+            </script>
+
+            <!--Google + -->
+            <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+            <div class="g-plusone"></div>
+            <!--Twitter-->
         </div>
     </div>
     <hr class="featurette-divider __loop">
