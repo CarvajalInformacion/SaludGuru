@@ -115,7 +115,7 @@
             </li>            
             <li class="MPAgendaButtonWrapper">
                 <input type="hidden" name="StartDate" id="StartDate" value="" />
-                <input class="MPAgendaButtonAcceptDate" type="submit" name="SaveAppointmentId" value="Agendar cita" />
+                <input class="MPAgendaButtonAcceptDate" type="submit" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
             </li>
         </ul>
     </form>
@@ -184,24 +184,6 @@
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
-        $(document).ready(function () {           
-            $("#isSomeBody").click(function () {
-                $("#NewPatient").show();
-            });
-            $("#GenderFemale").click(function () {
-                $("#GenderMale").attr('checked', false);
-            });
-            $("#GenderMale").click(function () {
-                $("#GenderFemale").attr('checked', false);
-            });
-            //$("#DateMoreInfoId").click(function () {
-            //    $("#FreeScheduleId").show();
-            //    $("#DateMoreInfoId").hide();
-            //});
-            $("#DateLessInfoId").click(function () {
-                $("#FreeScheduleId").hide();
-                $("#DateMoreInfoId").show();
-            });
-        });
+        
     </script>
 }

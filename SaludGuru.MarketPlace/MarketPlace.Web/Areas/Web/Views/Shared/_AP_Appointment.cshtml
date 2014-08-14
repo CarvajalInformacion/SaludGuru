@@ -79,7 +79,7 @@ else
                     OfficeName = of.Name,
                     OfficeDivId = string.Empty,
                     IsDefault = of.IsDefault,
-                    TreatmentList = of.RelatedTreatment.Select(tr => new { tr.CategoryId, tr.Name}).ToList(),
+                    TreatmentList = of.RelatedTreatment != null ? of.RelatedTreatment.Select(tr => new { tr.CategoryId, tr.Name }).ToList() : null,
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
 

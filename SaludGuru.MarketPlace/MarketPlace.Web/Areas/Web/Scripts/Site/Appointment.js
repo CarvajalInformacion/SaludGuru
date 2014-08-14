@@ -294,9 +294,14 @@ $('#DateMoreInfoIdNN').click(function () {
 $('#SaveAppointmentId').click(function () {
     debugger;
     var startDate = $("#StartDate").val();
+    var treatmentSelected = $("#SelectedTreatment").val();
     if (startDate == "") {
         return false;
     }
+    if (treatmentSelected == null) {
+        return false;
+    }
+
 });
 $("#isSomeBody").click(function () {
     $("#NewPatient").show();
