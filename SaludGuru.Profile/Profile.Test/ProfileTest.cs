@@ -236,8 +236,7 @@ namespace Profile.Test
 
             Assert.AreEqual(oCategory.Count > 0, true);
         }
-
-
+        
         #endregion
     }
 }

@@ -476,8 +476,7 @@ namespace SaludGuruProfile.Manager.Controller
                                             RelatedOffice.
                                             Where(x => x.OfficePublicId == of.OfficePublicId).
                                             Select(x => x.RelatedTreatment).
-                                            FirstOrDefault().
-                                            ToList();
+                                            FirstOrDefault();
                         }
 
                         if (oAuxOffice2 != null)
@@ -486,8 +485,7 @@ namespace SaludGuruProfile.Manager.Controller
                                             RelatedOffice.
                                             Where(x => x.OfficePublicId == of.OfficePublicId).
                                             Select(x => x.ScheduleAvailable).
-                                            FirstOrDefault().
-                                            ToList();
+                                            FirstOrDefault();
                         }
 
                         return true;
