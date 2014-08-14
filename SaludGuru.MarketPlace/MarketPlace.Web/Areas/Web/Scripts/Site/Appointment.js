@@ -88,21 +88,16 @@ var AppointmentObject = {
         }
     },
 
-    ChangeOffice: function (vOfficePublicId) {
-        ;
-
+    ChangeOffice: function (vOfficePublicId) {        
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
+        debugger;
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
             $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
             $('#' + AppointmentObject.selTreatmentId).append('<input type="hidden" name="Slot" value=' + value + '>');
         });
         AppointmentObject.RenderOfficeSchedule(selectOffice);
-    },
-
-    ChangeTreatment: function (vTreatmentId) {
-
     },
 
     PageAppointmentMove: function (vOfficePublicId, vNewDate, vNextAvailableDate) {
@@ -124,7 +119,7 @@ var AppointmentObject = {
                     dataSource: {
                         transport: {
                             read: function (options) {
-
+                                debugger;
                                 var vStartDate = '';
                                 var vNextAvailableDate = 'true';
                                 var vCategoryId = '';
@@ -301,7 +296,6 @@ $('#SaveAppointmentId').click(function () {
     if (treatmentSelected == null) {
         return false;
     }
-
 });
 $("#isSomeBody").click(function () {
     $("#NewPatient").show();
