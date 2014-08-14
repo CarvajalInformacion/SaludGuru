@@ -1743,7 +1743,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFeaturedProfile",
+                CommandText = "MP_Profile_GetFeaturedProfile",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });

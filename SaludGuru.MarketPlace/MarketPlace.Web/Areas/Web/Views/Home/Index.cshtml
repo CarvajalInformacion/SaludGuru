@@ -4,7 +4,7 @@
 }
 
 <div class="Content">
-    <div class="MPHeaderSearchWrapper SearchBox">
+    <div id="SearchBox" class="MPHeaderSearchWrapper SearchBox">
         <!--search box-->
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
@@ -146,14 +146,13 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script src="~/Areas/Web/Scripts/jquery-2.1.1.js" type="text/javascript">
 
-    $(document).ready(function () {
-        var count = 2; //Cantidad de imagenes almacenadas en S3
+    var count = 2; //Cantidad de imagenes almacenadas en S3
+    var img = Math.floor(Math.random() * count) + 1;
+    debugger;
+    var strImg = 'https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_' + img + '.jpg';
+    
+    $('SearchBox').css("background", strImg);
 
-        var img = $(".SearchBox").css({
-            background: 'url(https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_2.jpg) no-repeat'
-        });
-        alert(img);
-    });
 </script>
