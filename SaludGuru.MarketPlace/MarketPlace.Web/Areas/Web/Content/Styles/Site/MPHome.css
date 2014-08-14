@@ -1,40 +1,72 @@
-div#FeedId {
-    border: 1px solid;
-    color: red;
+/*------Estilos Home------*/
+#Content {
+    outline: 2px solid red;
     width: calc(100%);
-    position: relative;
 }
 
-    div#FeedId p {
-        line-height: 20px;
-        width: calc(80%);
-        margin: 10px 0px 10px calc(10%);
-    }
-
-div#FeedLeftId, div#FeedRightId {
-    height: 300px;
+p {
+    display: block;
+    width: auto;
+    height: auto;
+    line-height: 18px;
+    margin: 0px 0px 8px 0px;
+    padding: 0px;
 }
 
-div#FeedLeftId {
-    border: 1px solid;
-    color: brown;
-    /*---Original Styles---*/
-    min-width: calc(50%);
-    width: calc(50%);
-    left: 0px;
-    position: relative;
+.SearchBox, .ContentImportant, .Feed, .Demo {
+    width: 100%;
+    background-color: none;
+}
+
+/*-----Search Box------*/
+.SearchBox {
+    outline: 1px solid black;
+    height: 500px;
+}
+
+/*---Contenido Perfil destacado - Redes Sociales----*/
+.ContentImportant {
+    outline: 2px solid blue;
+    display: block;
+    margin: 0px;
+    height: auto;
+}
+
+.Profile, .SocialNetworks {
+    height: 550px;
+}
+
+/*-----Perfil Destacado-----*/
+.Profile {
+    outline: 1px solid yellow;
+    width: calc(70%);
     float: left;
 }
 
-div#FeedRightId {
-    border: 1px solid;
-    color: darkgreen;
-    /*---Original Styles---*/
-    min-width: calc(50%);
-    width: calc(50%);
-    right: 0px;
-    position: relative;
-    float: right;
+/*-----Redes Sociales-----*/
+.SocialNetworks {
+    outline: 1px solid darkred;
+    width: calc(30%);
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*-----Noticias------*/
+.Feed {
+    outline: 1px solid green;
+    display: block;
+    margin: 0px;
+}
+
+.FeedLeft, .FeedRight {
+    height: 300px;
+    width: 50%;
+}
+
+.Feed p {
+    line-height: 20px;
+    width: calc(80%);
+    margin: 10px 0px 10px calc(10%);
 }
 
 img#FeedImage {
@@ -59,3 +91,32 @@ p#FeedDescription {
     margin-top: 10px;
     line-height: 15px;
 }
+
+/*-----Noticias Izquierda------*/
+.FeedLeft{
+    outline: 1px solid yellow;
+    float: left;
+}
+
+/*-----Noticias Derecha-----*/
+.FeedRight{
+    outline: 1px solid darkred;
+    display:inline-block;
+    vertical-align:top;
+}
+
+/*-----Demo-------*/
+.Demo{
+    outline: 1px solid grey;
+    height: 300px;
+}
+
+/*---- Otros Estilos -----*/
+
+hr.featurette-divider.__loop{
+    width: 90%;
+}
+
+
+
+

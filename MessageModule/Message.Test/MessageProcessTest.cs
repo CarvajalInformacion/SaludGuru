@@ -9,7 +9,7 @@ namespace Message.Test
         [TestMethod]
         public void TestMethod1()
         {
-            //Assert.AreEqual(true,false);
+            //Assert.AreEqual(true,false;)
             Message.Manager.MessageProcess mgPr = new Message.Manager.MessageProcess();
             mgPr.StartProcess();
         }

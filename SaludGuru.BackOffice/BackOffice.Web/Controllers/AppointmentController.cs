@@ -1,6 +1,7 @@
 ﻿using BackOffice.Models.General;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -147,7 +148,7 @@ namespace BackOffice.Web.Controllers
             {
                 List<PatientModel> PatientToRemove;
                 List<PatientModel> PatientNew;
-                bool SendNotifications = false;
+                bool SendNotifications = true;
                 AppointmentModel AppointmentToUpsert = new AppointmentModel();
                 string NewAppointmentPublicId = string.Empty;
 
@@ -161,6 +162,10 @@ namespace BackOffice.Web.Controllers
 
                     if (SendNotifications)
                     {
+                        //SendNotifications = SendMessage(oModel.CurrentProfile, enumProfileInfoType.AsignedAppointment, PatientNew);
+                        //Message.Client.Models.CreateMessageRequest messageToSend = new Message.Client.Models.CreateMessageRequest();
+
+                        //messageToSend.NewMessage.
                         //TODO: send message new patient PatientNew
 
                         //TODO: send message removed patient
