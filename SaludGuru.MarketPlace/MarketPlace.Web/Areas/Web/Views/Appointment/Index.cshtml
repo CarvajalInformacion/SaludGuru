@@ -62,19 +62,21 @@
             <li>
                 <label>Selecciona un tratamiento</label>
                 <select id="SelectedTreatment" name="SelectedTreatment">
-                    @foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
+                    @if (Model.CurrentOffice != null)
                     {
-                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                        foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
                         {
-                            <option value="@item.CategoryId" selected="selected">@item.Name</option>                            
+                            if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
                         }
-                        else
-                        {
-                            <option value="@item.CategoryId">@item.Name</option>
-                        }
-
                     }
-
+                    
                 </select>
             </li>
             <li class="MPAgendaPatientSelection">
@@ -184,6 +186,9 @@
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
-        
+        $(document).ready(function () {
+            debugger;
+            AppointmentObject.ChangeOffice();
+        })
     </script>
 }

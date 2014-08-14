@@ -23,6 +23,34 @@
       ]]>
     </key>
 
+    <!--AssignedApp MP - Email Params-->
+    <key name="Message_Params_Email_AsignedAppointment">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Mensaje de confirmación de cita</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--AssignedApp MP - Email Body-->
+    <key name="Message_Body_Email_AsignedAppointment">
+      <![CDATA[
+          <Message>                    
+             <html>
+                Se ha agendado una cita con el Dr.{ProfleName} el d&iacute;a {AppointmentDate}
+                a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
+                
+                Siguenos en Link redes
+                Blog Link redes
+		        </html>
+          </Message>
+      ]]>
+    </key>
+
+
     <!--Confirmation - Email Params-->
     <key name="Message_Params_Email_AsignedAppointment">
       <![CDATA[
@@ -41,10 +69,11 @@
           <Message>                    
              <html>
                 Se ha agendado una cita con el Dr.{ProfleName} el d&iacute;a {AppointmentDate}
-                a las {Hour}
-                en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
-                Si deseas ver informaci&oacute;n acerca de tu doctor, por favor sigue el siguiente
-                enlace <a href="{ProfileUrl}">Confirmar/Cancelar </a> . 
+                a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
+                
+                enlace <a href="{ProfileUrl}">Ver Perfil del Dr. </a>.                                
+                 Siguenos en Link redes
+                Blog Link redes
 		        </html>
           </Message>
       ]]>
@@ -63,7 +92,7 @@
 
     <!--Confirmation - Sms Params-->
     <key name="Message_Body_Sms_AsignedAppointment">
-      <![CDATA[Confirmacion de cita con Dr.{ProfleName} fecha {AppointmentDate} tel: {OfficePhone}. <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
+      <![CDATA[Su cita ha sido asignada exitosamente: Dr(a).{ProfleName} fecha {AppointmentDate} Mas info. tel: {OfficePhone}.]]>
     </key>
 
     <!--Confirmation - GuruNotification Body-->
@@ -94,12 +123,14 @@
     <key name="Message_Body_Email_CancelAppointment">
       <![CDATA[
           <html>
-            Desafortunadamente el Dr. {ProfleName}, no puede
+            Desafortunadamente tu Dr(a). {ProfleName}, no puede
             atenderte el día {AppointmentDate} a las {Hour} en el 
             consultorio situado en {OfficeAddress}
             Teléfono: {OfficePhone}. Debido  a {Reason}			
-            Para agendar una nueva fecha haz clic en {ReescheduleLink}
-            esto te llevará a la agenda disponible del Dr. {ProfleName}.
+            Para agendar una nueva fecha haz clic en aquí {ReescheduleLink}     
+            
+            Síguenos en Link redes
+            Blog Link redes
           </html>
       ]]>
     </key>
@@ -115,7 +146,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_CancelAppointment">
-      <![CDATA[Cancelacion de cita con Dr.{ProfleName} el {AppointmentDate} {Hour} Reagendar {RescheduleLink}]]>
+      <![CDATA[Lamentablemente tu Dr(a).{ProfleName} no podra atenderte el {AppointmentDate} Reagendar {RescheduleLink} {OfficePhone}]]>
     </key>
 
     <!--Cancel Appointment Notificaciones Gurú-->
@@ -148,11 +179,13 @@
     <key name="Message_Body_Email_ModifyAppointment">
       <![CDATA[
           <html>
-            Te informamos que tu cita con el Dr.{ProfleName} el día 
-            {AppointmentDate} a las {Hour} en el consultorio 
-            situado en {OfficeAddress} Télefono {OfficePhone} ha sido 
-            modificada. Para conocer más detalles, sigue el siguiente 
-            enlace {ModifyAppDetailLink}.          
+            Te informamos que tu cita con Dr(a).{ProfleName} ha sido modificada:
+            Fecha {AppointmentDate} {Hour}
+            en el consultorio situado en {OfficeAddress} 
+            Télefono {OfficePhone}.
+            
+            Síguenos en Link redes
+            Blog Link redes
           </html>
       ]]>
     </key>
@@ -168,7 +201,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ModifyAppointment">
-      <![CDATA[Tu cita con Dr.{ProfleName} el {AppointmentDate} {Hour} ha sido modificada. Detalles {ModifyAppDetailLink}]]>
+      <![CDATA[Tu cita con Dr(a).{ProfleName} ha sido modificada para {AppointmentDate} {Hour}.]]>
     </key>
 
     <!--Modify Appointment Notificaciones Gurú-->
@@ -203,9 +236,15 @@
             <head>
                 <title>Recordatorio de tu cita a través de Salud Gurú</title>
             </head>
-            Te estamos contactando para recordarte tu cita médica con el Dr.{ProfleName} el día 
-            {AppointmentDate} a las {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. 
-           <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.          
+            Hola {PatientName} te recordamos tu cita médica con el Dr(a).{ProfleName} el día 
+            {AppointmentDate} {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. 
+            
+            Cuidados previos {BeforeCare} 
+            
+            <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.    
+            
+            Síguenos en Link redes
+            Blog Link redes
           </html>
       ]]>
     </key>
@@ -221,7 +260,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Recordatorio cita con Dr.{ProfleName} el {AppointmentDate} {Hour} <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
+      <![CDATA[Recuerda tu cita con Dr(a).{ProfleName} {AppointmentDate} {Hour} Tel:{OfficePhone} <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
     </key>
 
     <!--Modify GuruNotification_ReminderAppointment Gurú-->
