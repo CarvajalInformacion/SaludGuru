@@ -62,8 +62,12 @@ namespace BackOffice.Web.ControllersApi
                     PatientSource.Add(PatientItem);
                 }
                 oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
+                if (AppointmentToUpsert.AppointmentPublicId == null)                
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert);
+                else
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert);
 
-                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert);
+                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, PatientSource, AppointmentToUpsert);
                 //TODO: Validar si se hizo o no con el log
             }
             return AppointmentPublicId;
@@ -247,7 +251,7 @@ namespace BackOffice.Web.ControllersApi
                             (HttpContext.Current.Request["StartDate"].Replace(" ", "") + "T" + HttpContext.Current.Request["StartTime"].Replace(" ", ""),
                             "dd/MM/yyyyTh:mmtt",
                             System.Globalization.CultureInfo.InvariantCulture).
-                            AddMinutes(Convert.ToInt32(HttpContext.Current.Request["Duration"])),
+                            AddMinutes(Convert.ToInt32(!string.IsNullOrEmpty(HttpContext.Current.Request["Duration"]) ? Convert.ToInt32(HttpContext.Current.Request["Duration"]) : 0)),
 
                     AppointmentInfo = new List<AppointmentInfoModel>(),
 

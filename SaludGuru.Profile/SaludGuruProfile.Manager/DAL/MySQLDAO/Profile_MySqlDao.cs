@@ -904,7 +904,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
         {
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-
+            
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,

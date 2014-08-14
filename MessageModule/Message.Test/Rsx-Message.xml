@@ -23,38 +23,13 @@
       ]]>
     </key>
 
-    <!--Message-->
-    <!--RetrivePasswordEmail-->
-    <!--<key name="Message_Params_RetrivePasswordEmail">
-      <![CDATA[
-          <Message>
-          <key name="Agent">Agent_Mailman</key>
-          <key name="From">contacto@saludguru.com</key>
-          <key name="Subject">Salud Gurú - Información de cita médica.</key>
-          <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_RetrivePasswordEmail">
-      <![CDATA[
-          <html>
-          Hola,
-          {PatientName} Por favor sigue el siguiente enlace para generar una nueva contraseña: 
-          Podrás ingresar nuevamente a Salud Gurú con la nueva contraseña que generes.        
-          {Link}
-          Te esperamos,
-          </html>
-      ]]>
-    </key>-->
-
-
     <!--Confirmation - Email Params-->
     <key name="Message_Params_Email_AsignedAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Mailman</key>
             <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Mensaje de confitmación de cita</key>
+            <key name="Subject">Salud Gurú - Mensaje de confirmación de cita</key>
             <key name="MailmanPath">.\private$\Mailman</key>
           </Message>
       ]]>
@@ -69,7 +44,7 @@
                 a las {Hour}
                 en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
                 Si deseas ver informaci&oacute;n acerca de tu doctor, por favor sigue el siguiente
-                enlace {ProfileUrl} . 
+                enlace <a href="{ProfileUrl}">Confirmar/Cancelar </a> . 
 		        </html>
           </Message>
       ]]>
@@ -88,7 +63,7 @@
 
     <!--Confirmation - Sms Params-->
     <key name="Message_Body_Sms_AsignedAppointment">
-      <![CDATA[Confirmacion de cita con Dr.{ProfleName} fecha {AppointmentDate} tel: {OfficePhone}. Confirmar/Cancelar {ConfirmCancelLink}]]>
+      <![CDATA[Confirmacion de cita con Dr.{ProfleName} fecha {AppointmentDate} tel: {OfficePhone}. <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
     </key>
 
     <!--Confirmation - GuruNotification Body-->
@@ -103,7 +78,7 @@
       ]]>
     </key>
 
-    
+
     <!--Cancel Appointment-->
     <!--Cancel Appointment Email - -->
     <key name="Message_Params_Email_CancelAppointment">
@@ -121,7 +96,7 @@
           <html>
             Desafortunadamente el Dr. {ProfleName}, no puede
             atenderte el día {AppointmentDate} a las {Hour} en el 
-            consultorio situado en {OfficeAddres}
+            consultorio situado en {OfficeAddress}
             Teléfono: {OfficePhone}. Debido  a {Reason}			
             Para agendar una nueva fecha haz clic en {ReescheduleLink}
             esto te llevará a la agenda disponible del Dr. {ProfleName}.
@@ -129,7 +104,7 @@
       ]]>
     </key>
 
-     <!--Cancel Appointment Sms-->
+    <!--Cancel Appointment Sms-->
     <key name="Message_Params_Sms_CancelAppointment">
       <![CDATA[
           <Message>
@@ -142,8 +117,8 @@
     <key name="Message_Body_Sms_CancelAppointment">
       <![CDATA[Cancelacion de cita con Dr.{ProfleName} el {AppointmentDate} {Hour} Reagendar {RescheduleLink}]]>
     </key>
-    
-     <!--Cancel Appointment Notificaciones Gurú-->
+
+    <!--Cancel Appointment Notificaciones Gurú-->
     <key name="Message_Params_GuruNotification_CancelAppointment">
       <![CDATA[
           <Message>
@@ -158,175 +133,32 @@
     </key>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--ReminderNextAppointment-->
-    <key name="Message_Params_ReminderNextAppointment">
+    <!--Modify Appointment  -->
+    <!--Modify Appointment Email - -->
+    <key name="Message_Params_Email_ModifyAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Mailman</key>
             <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Recordatorio de tu nueva cita a través de Salud Gurú</key>
+            <key name="Subject">Salud Gurú - Modificación de cita médica</key>
             <key name="MailmanPath">.\private$\Mailman</key>
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_ReminderNextAppointment">
+    <key name="Message_Body_Email_ModifyAppointment">
       <![CDATA[
           <html>
-            Este es un recordatorio para que no olvides solicitar una nueva cita con el Dr.{DoctorName} por motivo {Reason}
+            Te informamos que tu cita con el Dr.{ProfleName} el día 
+            {AppointmentDate} a las {Hour} en el consultorio 
+            situado en {OfficeAddress} Télefono {OfficePhone} ha sido 
+            modificada. Para conocer más detalles, sigue el siguiente 
+            enlace {ModifyAppDetailLink}.          
           </html>
       ]]>
     </key>
 
-    <!--ReminderEmail-->
-    <key name="Message_Params_ReminderEmail">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Hola {PatientName}</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_ReminderEmail">
-      <![CDATA[
-          <html>
-            Te estamos contactando para que confirmes tu cita Médica 
-		        con el Dr.{DoctorName},
-            el día {Date} a las {Hour} en el consultorio situado en {OfficeAddress}
-			      Teléfono: {Telephone}			
-          </html>
-      ]]>
-    </key>
-
-    <!--ApptEmail-->
-    <key name="Message_Params_ApptEmail">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Pérdida de cita</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_ApptEmail">
-      <![CDATA[
-          <html>
-            No has asistido a tu cita médica con el Dr.{DoctorName},
-            el día {Date} a las {Hour} en el consultorio situado en {OfficeAddress}
-			      Teléfono: {Telephone}			
-            Para agendar una nueva fecha haz clic en {Link} esto te llevará a la agenda disponible del Dr.{DoctorName}.
-          </html>
-      ]]>
-    </key>
-
-
-
-    <!--ConfirmationReschedule-->
-    <key name="Message_Params_ConfirmationReschedule">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Mensaje de cita reagendada</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_ConfirmationReschedule">
-      <![CDATA[
-          <html>
-              Tu cita con el Dr.{DoctorName} ha sido reagendada para  
-              el día {Date} a las {Hour}
-              en el consultorio situado en 
-              {OfficeAddres}
-              Teléfono: {Telephone}
-          </html>
-      ]]>
-    </key>
-
-    
-
-    <!--MailAssignmentPro-->
-    <key name="Message_Params_MailAssignmentPro">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Hola, Dr.{DoctorName}</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_MailAssignmentPro">
-      <![CDATA[
-          <html>
-            este es el body del Email
-          </html>
-      ]]>
-    </key>
-
-    <!--MailAssignment-->
-    <key name="Message_Params_MailAssignment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Información de cita médica</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_MailAssignment">
-      <![CDATA[
-          <html>
-          El Sr(a).{ClientName} identificación {ClientIdentification}
-			    con teléfono: {Telephone}
-			    acaba de reservar una cita para el día {Date} a las 
-			    {Hour} en el consultorio {Address} para el paciente {PatientName}.
-		      </html>
-      ]]>
-    </key>
-
-    <!--MailConfirmation-->
-    <key name="Message_Params_MailConfirmation">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Mailman</key>
-            <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Mensaje de Confirmación de Cita</key>
-            <key name="MailmanPath">.\private$\Mailman</key>
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_MailConfirmation">
-      <![CDATA[
-          <html>
-            este es el body del Email
-          </html>
-      ]]>
-    </key>
-
-    <!--SMS-->
-    <!--CancelSMSMessage-->
-    <key name="Message_Params_CancelSMSMessage">
+    <!--Modify Appointment Sms-->
+    <key name="Message_Params_Sms_ModifyAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Inalambria</key> 
@@ -335,16 +167,12 @@
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_CancelSMSMessage">
-      <![CDATA[
-          <Message>
-            este es el body del SMS
-          </Message>
-      ]]>
+    <key name="Message_Body_Sms_ModifyAppointment">
+      <![CDATA[Tu cita con Dr.{ProfleName} el {AppointmentDate} {Hour} ha sido modificada. Detalles {ModifyAppDetailLink}]]>
     </key>
 
-    <!--ReminderSMSMessage-->
-    <key name="Message_Params_ReminderSMSMessage">
+    <!--Modify Appointment Notificaciones Gurú-->
+    <key name="Message_Params_GuruNotification_ModifyAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Inalambria</key> 
@@ -353,16 +181,37 @@
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_ReminderSMSMessage">
+    <key name="Message_Body_GuruNotification_ModifyAppointment">
+      <![CDATA[este es el body del SMS]]>
+    </key>
+
+    <!--Reminder Appointment  -->
+    <!--Reminder Appointment Email - -->
+    <key name="Message_Params_Email_ReminderAppointment">
       <![CDATA[
           <Message>
-            este es el body del SMS
+            <key name="Agent">Agent_Mailman</key>
+            <key name="From">contacto@saludguru.com</key>
+            <key name="Subject">Salud Gurú - Recordatorio de cita médica</key>
+            <key name="MailmanPath">.\private$\Mailman</key>
           </Message>
       ]]>
     </key>
+    <key name="Message_Body_Email_ReminderAppointment">
+      <![CDATA[
+          <html>
+            <head>
+                <title>Recordatorio de tu cita a través de Salud Gurú</title>
+            </head>
+            Te estamos contactando para recordarte tu cita médica con el Dr.{ProfleName} el día 
+            {AppointmentDate} a las {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. 
+           <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.          
+          </html>
+      ]]>
+    </key>
 
-    <!--MissedAppSMSMessage-->
-    <key name="Message_Params_MissedAppSMSMessage">
+    <!--Sms_ReminderAppointment Sms-->
+    <key name="Message_Params_Sms_ReminderAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Inalambria</key> 
@@ -371,16 +220,12 @@
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_MissedAppSMSMessage">
-      <![CDATA[
-          <Message>
-            este es el body del SMS
-          </Message>
-      ]]>
+    <key name="Message_Body_Sms_ReminderAppointment">
+      <![CDATA[Recordatorio cita con Dr.{ProfleName} el {AppointmentDate} {Hour} <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
     </key>
 
-    <!--AssignmentSMSMessage-->
-    <key name="Message_Params_AssignmentSMSMessage">
+    <!--Modify GuruNotification_ReminderAppointment Gurú-->
+    <key name="Message_Params_GuruNotification_ReminderAppointment">
       <![CDATA[
           <Message>
             <key name="Agent">Agent_Inalambria</key> 
@@ -389,16 +234,10 @@
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_AssignmentSMSMessage">
-      <![CDATA[
-          <Message>
-            este es el body del SMS
-          </Message>
-      ]]>
+    <key name="Message_Body_GuruNotification_ReminderAppointment">
+      <![CDATA[este es el body del SMS]]>
     </key>
 
-
-   
   </Message>
 </Settings>
 
