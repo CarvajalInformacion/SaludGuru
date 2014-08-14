@@ -23,10 +23,12 @@
     public enum enumAppointmentInfoType
     {
         Category = 1101,
+        OldAppointmentId = 1102,
         AfterCare = 1103,
         BeforeCare = 1104,
         CancelAppointementReason = 1105,
         AppointmentNote = 1106,
+        
     }
 
     public enum enumAppointmentStatus
