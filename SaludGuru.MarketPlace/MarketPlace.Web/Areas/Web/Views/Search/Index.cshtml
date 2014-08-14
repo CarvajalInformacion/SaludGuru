@@ -8,7 +8,7 @@
         <!--render breadcrumb, paging header-->
         @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
     </div>
-    <div>
+    <div class="MPResultsDoctorProfile">
         <!--Render profiles-->
         @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
         {

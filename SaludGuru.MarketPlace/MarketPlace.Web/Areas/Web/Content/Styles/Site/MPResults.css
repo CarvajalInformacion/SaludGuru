@@ -5,7 +5,7 @@
     color:#666;
     font-size:18px;
     letter-spacing:-0.6px;
-    line-height:18px;
+    line-height:22px;
 }
     .MPResultsGrandWrapper a:hover {
         color:#666;
@@ -25,6 +25,137 @@
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsModel,
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages{
     display:inline-block;
-    width:50%;
+    width:49.4%;
     border:1px solid darkblue;
+    vertical-align:top;
+    margin:8px 0px 8px 0px;
+}
+.MPResultsBreadCrumbsPages a {
+    float:right;
+}
+/********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
+/**** gratis ****/
+.MPResultsFreeProfile {
+    border:1px solid darkgreen;
+    display:block;
+    margin:0px 8px;
+    padding:12px;
+}
+.MPResultsFreeProfile label,
+.MPResultsFreeProfile span{
+    border:1px solid darkgreen;
+    display:inline-block;
+}
+.MPResultsFreeProfile span{
+}
+.MPResultsFreeProfile span{
+}
+/**** basico ****/
+/**** pago ****/
+div.MPResultsPaidProfile {
+    border:1px solid darkgreen;
+    display:block;
+    margin:0px 8px;
+    padding:12px;
+}
+div.MPResultsPaidProfile label,
+div.MPResultsPaidProfile span,
+div.MPResultsPaidProfile img,
+div.MPResultsPaidProfile a{
+    border:1px solid darkgreen;
+    display:inline-block;
+    vertical-align:top;
+}
+.MPResultsPaidProfile img:first-child{
+    width:5.4%;
+    min-width:46px;
+    height:auto;
+}
+.MPResultsPaidProfile > a:nth-child(2){width:auto; height:auto;}
+.MPResultsPaidProfile > a:nth-child(2) > img{
+    width:100%;
+    min-width:100px;
+    height:auto;
+}
+/***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
+div.MPResultsPaidProfileDoctorData {
+    border:1px solid red;
+    display:inline-block;
+    width:21%;
+    min-width:220px;
+    min-height: 196px;
+}
+div.MPResultsPaidProfileDoctorData > a:first-child{display:block;}
+div.MPResultsPaidProfileDoctorData > a:first-child > label{
+    font-size:1.5em;
+    line-height:24px;
+    cursor: pointer;
+}
+    div.MPResultsPaidProfileDoctorData > a:nth-child(4),
+    div.MPResultsPaidProfileDoctorData > a:nth-child(5){
+        display:inline-block;
+        width: 48%;
+        margin:6px 0px 0px 0px;
+    }
+        div.MPResultsPaidProfileDoctorData > a:nth-child(4) > img,
+        div.MPResultsPaidProfileDoctorData > a:nth-child(5) > img{
+            width:32%;
+            min-width:34px; height:auto;
+        }
+        div.MPResultsPaidProfileDoctorData > a:nth-child(4) > span,
+        div.MPResultsPaidProfileDoctorData > a:nth-child(5) > span{
+            font-size: 0.7em;
+            letter-spacing: 0px;
+            margin: 0px 0px 0px -4px;
+            width: 64%;
+            line-height: 16px;
+        }
+/**********  DATOS CONTACTO **********/
+div.OfficeSelector {
+    border:1px solid red;
+    display:inline-block;
+    width:21%;
+    min-width:220px;
+    vertical-align:top;
+}
+div.OfficeSelector span{
+    border:1px solid #666;
+    background-color:#e6e6e6;
+    border-radius:2px;
+    padding:2px 6px;
+    cursor:pointer;
+}
+div.OfficeSelector span:hover{
+    background-color:#fff;
+}
+div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
+    border:none;
+    background-color:#fff;
+    cursor:auto;
+    font-size:1em;
+    display:inline-block;
+}
+/********* enlace agenda gratis ********/
+.MPResultsBookAppFree {
+    display: block !important;
+    padding: 6px 0px;
+    margin: 6px auto;
+    background-color:#92B92A;
+    width: 80%;
+    text-align: center;
+    font-size: 1.5em !important;
+    border-radius: 3px;
+    color: #fff !important;
+}
+.MPResultsBookAppFree:hover {
+    background-color:#82A327;
+    text-decoration:none;
+}
+/** DESCRIPCION CORTA DEL DOCTOR **/
+div.MPResultsBookShortDescription {
+    border: 1px solid #F00;
+    display: inline-block;
+    width: 30%;
+    min-width: 330px;
+    vertical-align: top;
 }
