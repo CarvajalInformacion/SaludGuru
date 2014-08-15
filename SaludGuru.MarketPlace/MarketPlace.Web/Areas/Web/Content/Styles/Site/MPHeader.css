@@ -117,7 +117,6 @@
         font-size:18px;
         width:54%;
         min-width:720px;
-        border-bottom: 1px solid #82A327;
         height: 20px;
         line-height: 16px;
         text-align: center;
@@ -143,7 +142,7 @@
     .MPHeaderSearchWrapper div a {
         display:inline-block;
         float:right;
-        border:1px solid #666;
+            border:none;
         width:38px;
         height:38px;
         background-image:url('/Areas/Web/Content/Images/magGlassSmall.png');

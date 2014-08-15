@@ -13,6 +13,7 @@
     width:98%;
     height:442px;
     margin:0px auto;
+    padding: 8px 0px 0px 0px;
 }
     .MPProfileInfoImages {
             border:none;
@@ -21,10 +22,12 @@
         height:442px;
     }
     .MPProfileInfoInfo {
-        border:1px solid blue;
-        float:right;
-        width:40%;
-        height:442px;
+        float: right;
+        width: 39%;
+        height: 420px;
+        border-width: 0px 0px 0px 1px;
+        border-style: solid;
+        border-color: #666;        
     }
 .MPProfileInfoDetail {
     border:1px solid darkred;
@@ -181,6 +184,8 @@
 .MPProfileInfo_BasicInfo {
     border:1px solid red;
     display:block;
+    letter-spacing:-0.6px;
+    color:#666;
 }
     .MPProfileInfo_BasicInfo img{
         border:1px solid red;
@@ -198,9 +203,10 @@
         letter-spacing: -1px;
     }
     .MPProfileInfo_BasicInfo span:nth-child(2){
-        font-size: 28px;
         line-height:25px;
         margin: 7px 0px 0px 4px;
+        font-size: 1.5em;
+        line-height: 24px;
     }
     .MPProfileInfo_BasicInfo span:nth-child(3){
         font-size: 17px;

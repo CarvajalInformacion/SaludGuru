@@ -10,19 +10,41 @@ h1 {
     font-size: 30px !important;
 }
 
-.Content .SearchBox {
-    margin: -149px 0px 0px 0px !important;
-}
-
 .SearchBox, .ContentImportant, .Feed, .Demo {
     width: 100%;
 }
-
 /*-----Search Box------*/
 .SearchBox {
     /*outline: 1px solid black;*/
     height: 400px;
+    padding: 10% 0px 0px !important;
 }
+
+    .SearchBox .SearchBoxClass {
+        color: #AAD400;
+        font-size: 18px;
+        width: 54%;
+        min-width: 720px;
+        border: medium none;
+        height: 38px;
+        line-height: 16px;
+        margin: 0px auto;
+        position: relative;
+        top: 14px;
+    }
+
+        .SearchBox .SearchBoxClass div {
+            color: #AAD400;
+            font-size: 18px;
+            width: 54%;
+            min-width: 720px;
+            border: medium none;
+            height: 38px;
+            line-height: 16px;
+            margin: 0px auto;
+            position: relative;
+            top: 14px;
+        }
 
 /*---Contenido Perfil destacado - Redes Sociales----*/
 .ContentImportant {
