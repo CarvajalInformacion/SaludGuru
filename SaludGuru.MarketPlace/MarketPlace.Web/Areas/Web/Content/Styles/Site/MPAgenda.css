@@ -78,6 +78,63 @@ div.laPmadre div{
         max-width: 617px;
     }
 /******** PANTALLA DE CONFIRMACION ********/
-div.MPAgendaConfirmationMessage{
-
+div.MPAgendaConfirmationMessageGW{
+    display: block;
+    margin: 0px auto;
+    padding: 14px 0px;
+    border-style: solid;
+    border-width: 0px 1px;
+    border-color: #666;
+    width: 95%;
+    min-width: 768px;
+    height: auto;
 }
+    div.MPAgendaConfirmationMessage {
+        border: 1px solid #666;
+        display: block;
+        margin: 0px auto;
+        padding: 12px;
+        background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+        box-shadow: 2px 2px 1.3px;
+        border-radius: 3px;
+        width: 52%;
+        min-width: 320px;
+        height: auto;
+    }
+    div.MPAgendaConfirmationMessage label{
+        font-size: 1.4em;
+        line-height: 18px;
+        letter-spacing: -0.8px;
+    }
+    div.MPAgendaConfirmationMessage div{
+        display:inline-block;
+        border:1px solid orange;
+        width:auto;
+        height:auto;
+        margin:0px 0px 8px 0px;
+        line-height:16px;
+    }
+        div.MPAgendaConfirmationMessage div span {
+            width: auto;
+            display: inline-block;
+            font-size: 1.2em;
+            vertical-align: middle;
+            line-height:18px;
+        }
+        div.MPAgendaConfirmationMessage div img {
+            width: 10%;
+            min-width: 60px;
+            height: auto;
+            vertical-align: middle;
+            display: inline-block;
+            margin:0px 0px 0px 80px;
+        }
+        div.MPAgendaConfirmationMessage div span:nth-child(3),
+        div.MPAgendaConfirmationMessage div span:nth-child(4){
+            line-height:22px;
+            margin:6px 0px 0px 0px;
+        }
+        div.MPAgendaConfirmationMessage div span:nth-child(5){
+            font-size:1em;
+            margin:6px 0px 0px 0px;
+        }

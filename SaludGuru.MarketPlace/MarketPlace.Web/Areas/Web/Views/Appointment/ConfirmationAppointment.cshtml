@@ -4,15 +4,23 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <div class="MPAgendaDoctorData">
+<div class="MPAgendaConfirmationMessageGW">
+    <div class="MPAgendaConfirmationMessage">
         <label>Tu cita ha sido agendada correctamente!</label>
-        <p>
-            día @Model.StartDate  <br>
-            en la dirección @Model.OfficeName<br>
-            estamos enviando la confirmación de la cita a tu correo electrónico, <br>
-            si no la has recibido favor validar en la bandeja de correos no deseados.<br>
-            Horas antes de la cita, te enviaremos un recordatorio a tu correo electrónico y/o teléfono móvil.<br>
-        </p>
+        <div>
+            <span>El DR.'nombre del doctor'</span>
+            <img src=""/>
+            
+            <span>El día @Model.StartDate</span>
+            
+            
+            <span>En la dirección @Model.OfficeName</span>
+            
+            <span>
+                estamos enviando la confirmación de la cita a tu correo electrónico, <br>
+                si no la has recibido favor validar en la bandeja de correos no deseados.<br>
+                Horas antes de la cita, te enviaremos un recordatorio a tu correo electrónico y/o teléfono móvil.<br>
+            </span>
+        </div>
     </div>
 </div>
