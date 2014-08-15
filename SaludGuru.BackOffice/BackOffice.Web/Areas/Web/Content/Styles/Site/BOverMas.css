@@ -173,6 +173,10 @@ div.BOVerMasLeftColumn ul li > span.ui-spinner {
 .BOVerMasLeftColumn ul li textarea#BeforeCare {
     height: 130px;
 }
+.BOVerMasLeftColumn ul li textarea#taCancelReazonShowText {
+    height: 130px;
+}
+
 
 .BOVerMasRightColumn {
     border-left: 1px solid #666;

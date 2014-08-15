@@ -77,6 +77,13 @@
                         <label>Cuidados posteriores:</label>
                         <textarea id="BeforeCare" name="BeforeCare">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.BeforeCare)</textarea>
                     </li>
+                    @if (Model.CurrentAppointment.AppointmentCancelReason != null)
+                    {
+                        <li>
+                            <label>Razón de cancelación:</label>
+                            <textarea readonly="readonly" id="taCancelReazonShowText">@Model.CurrentAppointment.AppointmentCancelReason.LargeValue</textarea>
+                        </li>
+                    }
                 </ul>
                 <!--hidden fields-->
                 <div style="display:none;">
@@ -86,6 +93,7 @@
                     <input type="hidden" id="AppointmentPublicId" name="AppointmentPublicId" value="@(Model.CurrentAppointment != null && !string.IsNullOrEmpty(Model.CurrentAppointment.id) ? Model.CurrentAppointment.id : string.Empty)" />
                     <input type="hidden" id="PatientAppointmentCreate" name="PatientAppointmentCreate" />
                     <input type="hidden" id="PatientAppointmentDelete" name="PatientAppointmentDelete" />
+                    <input type="hidden" id="CancelationReason" name="CancelationReason" />
                 </div>
             </form>
         </div>
@@ -228,7 +236,7 @@
                 <a class="BOVerMasAllAppointmentsThisPatient" href="@(Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name)+"?PatientPublicId={PatientPublicId}")">Ver todas la citas de este paciente</a>
             </div>
             <!--remove patient container-->
-            
+
 
         </li>
     </ul>
@@ -264,6 +272,8 @@
 
     <!--Dialog cancel appointment-->
     <div id="Dialog_CancelAppointment" title="Guardar cambios">
+        <p>Razón de cancelación:</p>
+        <textarea id="taCancelationReason" rows="20" cols="20"></textarea>
         <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
     </div>
 

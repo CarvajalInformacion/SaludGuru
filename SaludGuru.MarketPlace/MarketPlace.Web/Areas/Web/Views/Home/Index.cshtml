@@ -30,6 +30,10 @@
                                                     Select(x => x.Value).
                                                     DefaultIfEmpty(null).
                                                     FirstOrDefault();
+                if (imgProfile == null)
+                {
+                    imgProfile = "~/Areas/Web/Content/Images/logoSaludGuruSmall.png";
+                }
                 var defaultSpecialtyProfile = Model.DefaultSpecialty.Name.ToString();
                 var shortTextProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
                                                         Select(x => x.Value).
@@ -46,10 +50,10 @@
                 <input class="MPButtons" type="submit" value="Agendar Cita" />
             </div>
         </div>
-        
+
         <div class="SocialNetworks">
             <!--Facebook-->
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:calc(90%); height: 290px;"></iframe>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:calc(54%); height: 290px;"></iframe>
 
             <p>Siguenos también en:</p>
             <!--LinkedIn-->
@@ -64,8 +68,8 @@
             <div class="g-plusone" data-href="https://plus.google.com/112797242838392317228/posts?hl=es-419"></div>
 
             <!--Twitter-->
-            <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large" data-dnt="true">Seguir a SaludGuru</a>
-
+            <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false">Seguir a &#64;SaludGuru</a>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
         </div>
     </div>
     <hr class="featurette-divider __loop">

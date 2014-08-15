@@ -31,6 +31,7 @@ public static partial class MVC
     public static WebClass Web { get { return s_Web; } }
     public static BackOffice.Web.Controllers.AppointmentController Appointment = new BackOffice.Web.Controllers.T4MVC_AppointmentController();
     public static BackOffice.Web.Controllers.BaseController Base = new BackOffice.Web.Controllers.T4MVC_BaseController();
+    public static BackOffice.Web.Controllers.ExternalAppointmentController ExternalAppointment = new BackOffice.Web.Controllers.T4MVC_ExternalAppointmentController();
     public static BackOffice.Web.Controllers.HomeController Home = new BackOffice.Web.Controllers.T4MVC_HomeController();
     public static BackOffice.Web.Controllers.InsuranceController Insurance = new BackOffice.Web.Controllers.T4MVC_InsuranceController();
     public static BackOffice.Web.Controllers.PatientController Patient = new BackOffice.Web.Controllers.T4MVC_PatientController();
@@ -54,6 +55,7 @@ namespace T4MVC
     {
         public readonly string Name = "Web";
         public BackOffice.Web.Areas.Web.Controllers.AppointmentController Appointment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_AppointmentController();
+        public BackOffice.Web.Areas.Web.Controllers.ExternalAppointmentController ExternalAppointment = new BackOffice.Web.Areas.Web.Controllers.T4MVC_ExternalAppointmentController();
         public BackOffice.Web.Areas.Web.Controllers.HomeController Home = new BackOffice.Web.Areas.Web.Controllers.T4MVC_HomeController();
         public BackOffice.Web.Areas.Web.Controllers.InsuranceController Insurance = new BackOffice.Web.Areas.Web.Controllers.T4MVC_InsuranceController();
         public BackOffice.Web.Areas.Web.Controllers.PatientController Patient = new BackOffice.Web.Areas.Web.Controllers.T4MVC_PatientController();

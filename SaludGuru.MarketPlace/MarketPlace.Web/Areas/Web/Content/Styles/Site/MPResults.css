@@ -20,15 +20,15 @@
     .MPResultsGrandWrapper div {
         margin:0px; padding:0px; 
         width:auto; height:auto;
-        border:1px solid orange;
+                border:none;
     }
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsModel,
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages{
     display:inline-block;
-    width:49.4%;
-    border:1px solid darkblue;
+    width:48.2%;
+        border:none;
     vertical-align:top;
-    margin:8px 0px 8px 0px;
+    margin:8px 0px 4px 8px;
 }
 .MPResultsBreadCrumbsPages a {
     float:right;
@@ -65,7 +65,7 @@ div.MPResultsPaidProfile label,
 div.MPResultsPaidProfile span,
 div.MPResultsPaidProfile img,
 div.MPResultsPaidProfile a{
-    border:1px solid darkgreen;
+        border:none;
     display:inline-block;
     vertical-align:top;
 }
@@ -79,10 +79,12 @@ div.MPResultsPaidProfile a{
     width:100%;
     min-width:100px;
     height:auto;
+    border:1px solid #666;
+    border-radius:2px;
 }
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
-    border:1px solid red;
+       border:none;
     display:inline-block;
     width:21%;
     min-width:220px;
@@ -94,11 +96,17 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
     line-height:24px;
     cursor: pointer;
 }
+    div.MPResultsPaidProfileDoctorData > span:nth-child(3){
+        margin: 4px 0px 4px 0px;
+        border-top: 1px solid #666;
+        border-bottom: 1px solid #666;
+    }
     div.MPResultsPaidProfileDoctorData > a:nth-child(4),
     div.MPResultsPaidProfileDoctorData > a:nth-child(5){
         display:inline-block;
         width: 48%;
         margin:6px 0px 0px 0px;
+        text-decoration:none;
     }
         div.MPResultsPaidProfileDoctorData > a:nth-child(4) > img,
         div.MPResultsPaidProfileDoctorData > a:nth-child(5) > img{
@@ -115,18 +123,18 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
         }
 /**********  DATOS CONTACTO **********/
         div.OfficeSelector {
-            border: 1px solid #F00;
+            border: none;
             display: inline-block;
-            width: 100%;
+            width:50%;
             min-width: 220px;
             vertical-align: top;
-            margin: 7px 0px 0px 0px;
+            margin: 6px 0px 0px 0px;
         }
         div.OfficeSelector span{
             border:1px solid #666;
             background-color:#bfde6d;
             border-radius:2px;
-            padding:2px 6px;
+            padding:4px 6px;
             cursor:pointer;            
             width:100%;
             color: #333;
@@ -145,18 +153,18 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
             }
 @media screen and (max-width:1024px) {
          div.OfficeSelector {
-            border: 1px solid #F00;
+                border:none;
             display: inline-block;
-            width: 100%;
+            width:50%;
             min-width: 220px;
             vertical-align: top;
-            margin: 7px 0px 0px 0px;
+            margin: 6px 0px 0px 0px;
         }
         div.OfficeSelector span{
             border:1px solid #666;
             background-color:#bfde6d;
             border-radius:2px;
-            padding:2px 6px;
+            padding:4px 6px;
             cursor:pointer;            
             width:100%;
             color: #333;
@@ -176,11 +184,11 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
 }
 /********* enlace agenda gratis ********/
 .MPResultsBookAppFree {
-    display: block !important;
+    display:inline-block !important;
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width: 100%;
+    width:48%;
     text-align: center;
     font-size: 1.5em !important;
     border-radius: 3px;
@@ -193,18 +201,18 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
 }
 /** DESCRIPCION CORTA DEL DOCTOR **/
 div.MPResultsBookShortDescription {
-    border: 1px solid #F00;
+        border:none;
     display: inline-block;
-    width:63%;
-    min-width: 330px;
+    width:62.5%;
     vertical-align: top;
+    margin:0px 0px 0px 12px;
 }
     @media screen and (max-width:1024px) {
         div.MPResultsBookShortDescription {
-        border: 1px solid #F00;
+            border:none;
         display: inline-block;
-        width:46%;
-        min-width: 330px;
+        width:44%;
         vertical-align: top;
+        margin:0px 0px 0px 12px;
         }
     }

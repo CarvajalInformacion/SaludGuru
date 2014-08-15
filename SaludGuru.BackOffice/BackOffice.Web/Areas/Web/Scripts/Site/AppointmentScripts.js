@@ -993,6 +993,7 @@ var UpsertAppointmentObject = {
             data: {
                 SendNotifications: vSendNotifications,
                 AppointmentPublicId: $('#AppointmentPublicId').val(),
+                CancelationReason: $('#taCancelationReason').val(),
             },
             success: function (data, textStatus, jqXHR) {
                 //refresh all controls
@@ -1811,7 +1812,8 @@ var AppointmentDetailObject = {
         $('#SendNotifications').val(vSendNotifications);
         //set action name
         $('#UpsertAction').val('CancelAppointment');
-
+        //set cancel reason
+        $('#CancelationReason').val($('#taCancelationReason').val());
         //submit form
         $("#frmAppointment").submit();
     },

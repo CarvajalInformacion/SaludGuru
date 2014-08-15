@@ -181,6 +181,8 @@
 
         <!--Dialog cancel appointment-->
         <div id="Dialog_CancelAppointment" title="Guardar cambios">
+            <p>Razón de cancelación:</p>
+            <textarea id="taCancelationReason" rows="20" cols="20"></textarea>
             <p>Desea enviar notificacion a el (los) pacientes de los cambios efectuados sobre la cita?</p>
         </div>
 
@@ -255,23 +257,23 @@
                     </li>
                     <li>
                         @{
-                            if (Model.CurrentProfile.RelatedInsurance != null)
-                            {
-                                <label>Seguro</label>
-                                                    <select id="Insurance" name="Insurance">
-                                                        @{
-                                foreach (var item in Model.CurrentProfile.RelatedInsurance)
-                                {
+    if (Model.CurrentProfile.RelatedInsurance != null)
+    {
+        <label>Seguro</label>
+                            <select id="Insurance" name="Insurance">
+                                @{
+        foreach (var item in Model.CurrentProfile.RelatedInsurance)
+        {
 
-                                    <option value="@item.CategoryId" selected="selected">@item.Name</option>
+            <option value="@item.CategoryId" selected="selected">@item.Name</option>
+        }
                                 }
-                                                        }
-                                                    </select>
-                                if (Model.CurrentProfile.RelatedInsurance != null)
-                                {
-                                    <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
-                                }
-                            }
+                            </select>
+        if (Model.CurrentProfile.RelatedInsurance != null)
+        {
+            <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+        }
+    }
                         }
                     </li>
                     <li>

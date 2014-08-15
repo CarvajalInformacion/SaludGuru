@@ -31,6 +31,10 @@ namespace BackOffice.Web.Controllers
                 else
                 {
                     //user is not autorized
+                    ViewData[BackOffice.Models.General.Constants.C_ViewData_UserNotAutorizedText] =
+                        BackOffice.Models.General.InternalSettings.Instance
+                        [BackOffice.Models.General.Constants.C_Settings_Login_UserNotAutorized].Value.
+                        Replace("{UserName}", BackOffice.Models.General.SessionModel.LoginUserEmail);
                 }
             }
             return View();

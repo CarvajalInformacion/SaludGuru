@@ -88,6 +88,15 @@ namespace BackOffice.Web.ControllersApi
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
                     AppointmentPublicId = HttpContext.Current.Request["AppointmentPublicId"].ToString(),
+                    Status = enumAppointmentStatus.Canceled,
+                    AppointmentInfo = new List<AppointmentInfoModel>() 
+                    { 
+                        new AppointmentInfoModel()
+                        {
+                            AppointmentInfoType = enumAppointmentInfoType.CancelAppointementReason,
+                            LargeValue = HttpContext.Current.Request["CancelationReason"],
+                        },
+                    },
                 };
 
                 //cancel appointment
@@ -111,7 +120,7 @@ namespace BackOffice.Web.ControllersApi
                 //get send reminded appointment
                 bool SendRemindedFuture = !string.IsNullOrEmpty(HttpContext.Current.Request["SendRemindedFuture"]);
 
-                DateTime RemindedDate;
+                DateTime? RemindedDate = null;
                 if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
                     SendRemindedFuture)
                 {
@@ -130,7 +139,8 @@ namespace BackOffice.Web.ControllersApi
                 MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
 
                 if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
-                    SendRemindedFuture)
+                    SendRemindedFuture &&
+                    RemindedDate != null)
                 {
                     //TODO: program remember mesaje RemindedDate
                 }
@@ -407,6 +417,14 @@ namespace BackOffice.Web.ControllersApi
             bool SendNotifyOk = false;
             //update appointment status
             MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+
+            //insert cancel reason
+            if (AppointmentToUpsert.AppointmentInfo.Any(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason))
+            {
+                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentInfoItem
+                        (AppointmentToUpsert.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).FirstOrDefault(),
+                        AppointmentToUpsert.AppointmentPublicId);
+            }
 
             if (SendNotifications)
             {
