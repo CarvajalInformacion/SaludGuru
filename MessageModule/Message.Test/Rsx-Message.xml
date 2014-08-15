@@ -39,13 +39,48 @@
     <key name="Message_Body_Email_AsignedAppointment">
       <![CDATA[
           <Message>                    
-             <html>
-                Se ha agendado una cita con el Dr.{ProfleName} el d&iacute;a {AppointmentDate}
-                a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
-                
-                Siguenos en Link redes
-                Blog Link redes
-		        </html>
+	                <html>
+	                <head>
+		                <title>
+			                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+		                </title>
+	                </head>
+	                <body style="width:46%; height:auto; border-style:solid; border-width:1px 0px; border-color:#666; font-family:'Verdana', Geneva, sans-serif; padding: 10px 16px 0px 16px;">
+	                <img style="width:99px; height:auto;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" />
+	                <label style="font-size:1em; display:block; font-weight:bold; margin-top:12px;">
+		                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+	                </label>
+                             <p>
+                                Se ha agendado una cita con el Dr.{ProfleName} el d&iacute;a {AppointmentDate}
+                                a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
+                              </p>
+                            <div style="width:100%; height:30px;">
+                                <span style="font-size: 0.7em;
+                vertical-align: middle;
+                display: inline-block;">Siguenos en</span>
+                                <img style="display: inline-block;
+                height: 20px;
+                width: auto;
+                vertical-align: middle;
+                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" title=""/>           
+                                <img style="display: inline-block;
+                height: 20px;
+                width: auto;
+                vertical-align: middle;
+                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" title=""/>
+                                <img style="display: inline-block;
+                height: 20px;
+                width: auto;
+                vertical-align: middle;
+                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" title=""/>
+                                <img style="display: inline-block;
+                height: 20px;
+                width: auto;
+                vertical-align: middle;
+                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" title=""/>
+			                </div>
+		                </body>	
+	                </html>
           </Message>
       ]]>
     </key>
