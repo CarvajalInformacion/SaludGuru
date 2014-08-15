@@ -203,6 +203,7 @@
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Web\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\Web\Controllers\ExternalAppointmentController.cs" />
     <Compile Include="Areas\Web\Controllers\UserController.cs" />
     <Compile Include="Areas\Web\Controllers\PatientController.cs" />
     <Compile Include="Areas\Web\Controllers\InsuranceController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="ControllersApi\PatientApiController.cs" />
     <Compile Include="ControllersApi\NotificationApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
+    <Compile Include="Controllers\ExternalAppointmentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
@@ -230,6 +232,9 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SpecialtyController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
+    <Compile Include="ExternalAppointmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +278,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.AppointmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web.ExternalAppointmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Web.HomeController.generated.cs">
@@ -1204,6 +1212,9 @@
     <Content Include="Areas\Web\Views\Profile\RelatedProfileSearch.cshtml" />
     <Content Include="Areas\Web\Views\Appointment\Detail.cshtml" />
     <Content Include="Areas\Web\Views\Patient\PatientNotes.cshtml" />
+    <Content Include="Areas\Web\Views\ExternalAppointment\Confirm.cshtml" />
+    <Content Include="Areas\Web\Views\ExternalAppointment\Index.cshtml" />
+    <Content Include="Areas\Web\Views\ExternalAppointment\Cancel.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

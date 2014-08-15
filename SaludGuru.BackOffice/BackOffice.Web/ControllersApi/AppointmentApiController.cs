@@ -120,7 +120,7 @@ namespace BackOffice.Web.ControllersApi
                 //get send reminded appointment
                 bool SendRemindedFuture = !string.IsNullOrEmpty(HttpContext.Current.Request["SendRemindedFuture"]);
 
-                DateTime RemindedDate;
+                DateTime? RemindedDate = null;
                 if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
                     SendRemindedFuture)
                 {
@@ -139,7 +139,8 @@ namespace BackOffice.Web.ControllersApi
                 MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
 
                 if (oStatus == MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance &&
-                    SendRemindedFuture)
+                    SendRemindedFuture &&
+                    RemindedDate != null)
                 {
                     //TODO: program remember mesaje RemindedDate
                 }
@@ -416,7 +417,7 @@ namespace BackOffice.Web.ControllersApi
             bool SendNotifyOk = false;
             //update appointment status
             MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
-            
+
             //insert cancel reason
             if (AppointmentToUpsert.AppointmentInfo.Any(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason))
             {
