@@ -531,6 +531,7 @@
     <Content Include="Areas\Web\Scripts\Jssor\jssor.slider.js" />
     <Content Include="Areas\Web\Scripts\Jssor\jssor.utils.js" />
     <Content Include="Areas\Web\Scripts\Site\Appointment.js" />
+    <Content Include="Areas\Web\Scripts\Site\Home.js" />
     <Content Include="Areas\Web\Scripts\Site\Search.js" />
     <Content Include="Areas\Web\Scripts\Site\Profile.js" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />

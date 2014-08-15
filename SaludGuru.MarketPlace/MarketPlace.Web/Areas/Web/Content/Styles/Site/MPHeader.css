@@ -52,6 +52,7 @@
             background-size:24px 26px;
             background-repeat:no-repeat;
             width:28px; border:none;
+            display: none;
         }
         .MPRightTopMenu div:nth-child(4) label {
             color:#333;

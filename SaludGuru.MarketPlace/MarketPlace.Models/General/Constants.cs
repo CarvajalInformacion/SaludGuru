@@ -74,6 +74,9 @@
 
         public const string C_Settings_SearchPage_RowCount = "SearchPage_RowCount";
 
+        public const string C_Settings_Profile_SmallImageDefault = "Profile_SmallImageDefault";
+
+
 
         #endregion
 
