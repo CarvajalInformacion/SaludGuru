@@ -24,7 +24,7 @@
     .MPProfileInfoInfo {
         float: right;
         width: 39%;
-        height: 420px;
+        height:auto;
         border-width: 0px 0px 0px 1px;
         border-style: solid;
         border-color: #666;        
@@ -186,6 +186,8 @@
     display:block;
     letter-spacing:-0.6px;
     color:#666;
+    margin: 0px auto;
+    width: 95%;
 }
     .MPProfileInfo_BasicInfo img{
         border:1px solid red;
