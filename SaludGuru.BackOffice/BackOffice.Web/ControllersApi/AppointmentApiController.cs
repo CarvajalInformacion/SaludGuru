@@ -63,11 +63,11 @@ namespace BackOffice.Web.ControllersApi
                 }
                 oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
                 if (AppointmentToUpsert.AppointmentPublicId == null)                
-                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert);
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert, false);
                 else
-                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert);
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert, false);
 
-                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, PatientSource, AppointmentToUpsert);
+                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, PatientSource, AppointmentToUpsert, false);
                 //TODO: Validar si se hizo o no con el log
             }
             return AppointmentPublicId;
@@ -423,7 +423,7 @@ namespace BackOffice.Web.ControllersApi
                 }
                 oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
-                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.CancelAppointment, PatientSource, AppointmentCompleteInfo);
+                SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.CancelAppointment, PatientSource, AppointmentCompleteInfo, false);
                 //TODO: Validar si se hizo o no con el log
             }
         }
