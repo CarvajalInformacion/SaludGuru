@@ -8,9 +8,8 @@
     /*------ SearchBox Styles -----*/
     .SearchBox .SearchBoxClass {
         width: 760px !important;
-        height: 30% !important;
+        height: 120px !important;
         background-color: rgba(255, 255, 255, 0.8);
-        margin-top: 11% !important;
     }
 
         .SearchBox .SearchBoxClass span {
@@ -21,6 +20,9 @@
             width: 760px !important;
             opacity: 1 !important;
             color: #535353;
+            position: relative;
+            top: 27px;
+            margin:12px auto 0px !important;
         }
 
         .SearchBox .SearchBoxClass div input {
