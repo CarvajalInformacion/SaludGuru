@@ -9,6 +9,19 @@
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
 
+    @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
+    {
+        <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    }
+    else if (ViewBag.NoIndex != null && ViewBag.NoIndex)
+    {
+        <meta name="ROBOTS" content="NOINDEX,">
+    }
+    else if (ViewBag.NoFollow != null && ViewBag.NoFollow)
+    {
+        <meta name="ROBOTS" content="NOFOLLOW">
+    }
+
     <!--Google +-->
     <!-- Inserta esta etiqueta en la sección "head" o justo antes de la etiqueta "body" de cierre. -->
     <script src="https://apis.google.com/js/platform.js" async defer>
@@ -60,14 +73,38 @@
         </div>
     </div>
 
+    <!--Layout dialog-->
+    <div style="display:none">
+        <div id="dialog_ScheduleAppointmentNotLogin">
+            <div>
+                <span>Para agendar una cita debe loguearse a traves de</span>
+                <!--Render autentications-->
+                <a class="MPGoogleLogIn" href=""></a>
+                <a class="MPFacebookLogIn" href=""></a>
+            </div>
+        </div>
+    </div>
+
+    @{
+        //get login urls
+        string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
+        [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+        .Value;
+
+        string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
+        [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+        .Value;
+    }
+
     <script type="text/javascript">
         $(document).ready(function () {
             InitGlobalPagesControls({
-
                 SearchBoxId: 'inSearchBoxProfile',
                 CityId: '@(oBaseController.CurrentCookie.CurrentCity)',
-
-            });
+                FBUrl: '@FBUrl',
+                GoogleUrl: '@GoogleUrl',
+                IsLogin: @MarketPlace.Models.General.SessionModel.UserIsLoggedIn.ToString().ToLower()
+                });
         });
     </script>
 </body>
