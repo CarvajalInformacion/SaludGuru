@@ -69,6 +69,18 @@ namespace BackOffice.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyUpsert);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SpecialtyByTreatment()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyByTreatment);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult SpecialtyBySpecialty()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyBySpecialty);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SpecialtyController Actions { get { return MVC.Specialty; } }
@@ -87,6 +99,8 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string SpecialtyList = "SpecialtyList";
             public readonly string SpecialtyUpsert = "SpecialtyUpsert";
+            public readonly string SpecialtyByTreatment = "SpecialtyByTreatment";
+            public readonly string SpecialtyBySpecialty = "SpecialtyBySpecialty";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,6 +108,8 @@ namespace BackOffice.Web.Controllers
         {
             public const string SpecialtyList = "SpecialtyList";
             public const string SpecialtyUpsert = "SpecialtyUpsert";
+            public const string SpecialtyByTreatment = "SpecialtyByTreatment";
+            public const string SpecialtyBySpecialty = "SpecialtyBySpecialty";
         }
 
 
@@ -112,6 +128,22 @@ namespace BackOffice.Web.Controllers
         public class ActionParamsClass_SpecialtyUpsert
         {
             public readonly string specialtyId = "specialtyId";
+        }
+        static readonly ActionParamsClass_SpecialtyByTreatment s_params_SpecialtyByTreatment = new ActionParamsClass_SpecialtyByTreatment();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SpecialtyByTreatment SpecialtyByTreatmentParams { get { return s_params_SpecialtyByTreatment; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SpecialtyByTreatment
+        {
+            public readonly string SpecialtyId = "SpecialtyId";
+        }
+        static readonly ActionParamsClass_SpecialtyBySpecialty s_params_SpecialtyBySpecialty = new ActionParamsClass_SpecialtyBySpecialty();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SpecialtyBySpecialty SpecialtyBySpecialtyParams { get { return s_params_SpecialtyBySpecialty; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SpecialtyBySpecialty
+        {
+            public readonly string SpecialtyId = "SpecialtyId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -153,6 +185,30 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyUpsert);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "specialtyId", specialtyId);
             SpecialtyUpsertOverride(callInfo, specialtyId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SpecialtyByTreatmentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialtyId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SpecialtyByTreatment(string SpecialtyId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyByTreatment);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyId", SpecialtyId);
+            SpecialtyByTreatmentOverride(callInfo, SpecialtyId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SpecialtyBySpecialtyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string SpecialtyId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SpecialtyBySpecialty(string SpecialtyId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyBySpecialty);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyId", SpecialtyId);
+            SpecialtyBySpecialtyOverride(callInfo, SpecialtyId);
             return callInfo;
         }
 

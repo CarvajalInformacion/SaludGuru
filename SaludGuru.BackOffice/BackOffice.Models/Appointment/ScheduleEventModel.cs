@@ -181,6 +181,8 @@ namespace BackOffice.Models.Appointment
 
         public string AppointmentNote { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AppointmentNote).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
 
+        public AppointmentInfoModel AppointmentCancelReason { get { return CurrentAppointment.AppointmentInfo.Any(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.CancelAppointementReason) ? CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.CancelAppointementReason).FirstOrDefault() : null; } }
+
         #endregion
 
         #region Related Appointment
