@@ -12,6 +12,22 @@ namespace MarketPlace.Models.Appointment
 
         public DateTime? AvailableDate { get; set; }
 
+        public string RequestDate
+        {
+            get
+            {
+                if (IsHeader)
+                {
+                    return string.Empty;
+                }
+                else if (AvailableDate != null)
+                {
+                    return AvailableDate.Value.ToString("yyyy-M-dTH:m");
+                }
+                return string.Empty;
+            }
+        }
+
         public string AvailableDateText
         {
             get

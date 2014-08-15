@@ -271,32 +271,32 @@ var ProfileAppointmentObject = {
                         field: 'Monday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Monday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Monday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
                         field: 'Tuesday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Tuesday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Tuesday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
                         field: 'Wednesday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Wednesday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Wednesday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
                         field: 'Thursday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Thursday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Thursday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
                         field: 'Friday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Friday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Friday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
                         field: 'Saturday',
                         title: ' ',
                         width: 100,
-                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Saturday').html()
+                        template: $('#' + ProfileAppointmentObject.DivId + '_Template_Grid_Event_Saturday').html().replace(/{OfficePublicId}/gi, vOfficePublicId)
                     }, {
 
                     }],

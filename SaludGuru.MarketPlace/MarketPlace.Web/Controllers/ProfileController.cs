@@ -37,6 +37,9 @@ namespace MarketPlace.Web.Controllers
                 //eval redirect
                 EvalRedirect(oModel, DoctorName, ProfilePublicId, SpecialtyName);
 
+                ViewBag.NoIndex = oModel.IsNoIndex;
+                ViewBag.NoFollow = oModel.IsNoFollow;
+
                 //render profile
                 return View(oModel);
             }
@@ -82,7 +85,8 @@ namespace MarketPlace.Web.Controllers
                 }
 
                 //validate specialty for canonical
-                if (SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
+                if (ViewModel.CurrentProfile.DefaultSpecialty == null ||
+                    SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
                 {
                     ViewModel.IsNoFollow = true;
                     ViewModel.IsNoIndex = true;

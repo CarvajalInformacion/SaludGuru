@@ -38,7 +38,41 @@ function InitGlobalPagesControls(InitParams) {
         CityId: InitParams.CityId,
     });
     SearchBoxObject.RenderAsync();
+
+
+    //init schedule appointment object
+    ScheduleAppointmentObject.Init({
+        FBUrl: InitParams.FBUrl,
+        GoogleUrl: InitParams.GoogleUrl,
+        IsLogin: InitParams.IsLogin,
+    });
 }
+
+/*schedule appointment*/
+var ScheduleAppointmentObject = {
+    FBUrl: '',
+    GoogleUrl: '',
+    IsLogin: false,
+
+    Init: function (vInitObject) {
+        this.FBUrl = vInitObject.FBUrl;
+        this.GoogleUrl = vInitObject.GoogleUrl;
+        this.IsLogin = vInitObject.IsLogin;
+    },
+
+    ScheduleAppointment: function (vLink) {
+        if (ScheduleAppointmentObject.IsLogin) {
+            window.location = vLink;
+        }
+        else {
+
+            $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
+            $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
+
+            $('#dialog_ScheduleAppointmentNotLogin').dialog();
+        }
+    }
+};
 
 /*Searchbox objext*/
 var SearchBoxObject = {
@@ -110,3 +144,4 @@ function Header_ShowHideUserMenu(divId) {
 
     $('#' + divId).toggle('slow');
 }
+
