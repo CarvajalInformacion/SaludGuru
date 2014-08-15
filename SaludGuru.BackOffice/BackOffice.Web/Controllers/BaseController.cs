@@ -501,6 +501,7 @@ namespace BackOffice.Web.Controllers
                             int ProgrameTime = Profile.ProfileInfo.Where(x => x.ProfileInfoType == MessageType).Select(x => x.LargeValue != "0" ? Convert.ToInt32(x.LargeValue) : 0).FirstOrDefault();
                             DateTime ApointmentDate = AppointmentInfo.StartDate.AddHours(ProgrameTime * -1);
 
+                            oMessage.NewMessage.ProgramTime = ApointmentDate;
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfleName", Value = Profile.Name + " " + Profile.LastName });
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });

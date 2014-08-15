@@ -34,9 +34,18 @@ namespace BackOffice.Web.Controllers
             //get schedule config
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Office.OfficeGetScheduleSettings(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
 
-            //get selected offcie
-            oModel.SelectedOffice = SelectedOffice;
-
+            //validate default office
+            if (string.IsNullOrEmpty(SelectedOffice) &&
+                oModel.CurrentProfile.RelatedOffice.Count > 0 &&
+                !oModel.CurrentProfile.RelatedOffice.Any(x => x.IsDefault))
+            {
+                oModel.SelectedOffice = oModel.CurrentProfile.RelatedOffice.FirstOrDefault().OfficePublicId;
+            }
+            else if (!string.IsNullOrEmpty(SelectedOffice))
+            {
+                //get selected office from request
+                oModel.SelectedOffice = SelectedOffice;
+            }
             return View(oModel);
         }
 
