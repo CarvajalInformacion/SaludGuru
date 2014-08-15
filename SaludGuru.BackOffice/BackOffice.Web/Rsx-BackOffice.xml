@@ -9,6 +9,8 @@
     <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/Login?UrlRetorno={{UrlRetorno}}</key>
     <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
 
+    <key name="Login_UserNotAutorized">El usuario {UserName} no esta autorizado para ingresar a la plataforma. Si tiene problemas con su registro envie un correo a contacto@saludguru.com o llamenos al telefono 6465555 ext 16624.</key>
+
     <!--Principal Menu-->
     <key name="PrincipalMenu_101">Administrator,Write;</key>
     <key name="PrincipalMenu_102">Profile,Write;Appointment,Write;Patient,Write;</key>
@@ -139,7 +141,6 @@
     <key name="Georef_LatitudeMax">-66.602210</key>
     <key name="Georef_LongitudeMin">-4.466081</key>
     <key name="Georef_LongitudeMax">12.575882</key>
-
   </BackOffice>
 </Settings>
 
