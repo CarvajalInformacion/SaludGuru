@@ -33,10 +33,10 @@
     <key name="ProfileImage_Admin">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_ProfileAdmin.png</key>
 
     <!--Reminder Types-->
-    <key name="Profile_RemindersType">417,418</key>
+    <key name="Profile_RemindersType">417</key>
 
     <!--Comunication Types-->
-    <key name="Profile_ComuicationType">413,414,415,416</key>
+    <key name="Profile_ComuicationType">413,414,415,416,418</key>
 
     <!--Default image patient-->
     <key name="PatientImage_Man">https://s3.amazonaws.com/devsaludguruimg/0BOImages/BO_PatientMan.png</key>
@@ -141,6 +141,15 @@
     <key name="Georef_LatitudeMax">-66.602210</key>
     <key name="Georef_LongitudeMin">-4.466081</key>
     <key name="Georef_LongitudeMax">12.575882</key>
+
+    <!--market place profile url-->
+    <key name="Profile_MarketPlaceUrl">http://www.saludguru.com/doctor/{ProfileName}-{ProfilePublicId}/{SpecialtyName}</key>    
+
+    <!--invalid url characters-->
+    <key name="Url_Invalid_Char">
+      <![CDATA[á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
+    </key>
+
   </BackOffice>
 </Settings>
 

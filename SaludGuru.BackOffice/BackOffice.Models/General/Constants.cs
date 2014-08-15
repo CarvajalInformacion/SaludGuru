@@ -48,6 +48,10 @@
 
         public const string C_Settings_Georef_LongitudeMax = "Georef_LongitudeMax";
 
+        public const string C_Settings_Profile_MarketPlaceUrl = "Profile_MarketPlaceUrl";
+
+        public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
+
         #endregion
 
         #region Profile Images

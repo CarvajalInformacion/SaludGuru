@@ -1,18 +1,21 @@
 .MPProfileGreatWrapper {
-    border:1px solid purple;
+    border-style: solid;
+    border-color: #666;
+    border-width: 0px 1px;
     display:block;
     width:96%;
     min-width:740px;
     margin:0px auto;
 }
 .MPProfileInfoWrapper {
-    border:1px solid green;
+        border:none;
     display:block;
     width:98%;
     height:442px;
+    margin:0px auto;
 }
     .MPProfileInfoImages {
-        border:1px solid red;
+            border:none;
         float:left;
         width:60%;
         height:442px;
