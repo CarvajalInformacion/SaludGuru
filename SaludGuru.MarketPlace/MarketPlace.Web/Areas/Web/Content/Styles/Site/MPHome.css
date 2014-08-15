@@ -16,13 +16,13 @@ h1 {
 
 /*-----Search Box------*/
 .SearchBox {
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
     height: 400px;
 }
 
 /*---Contenido Perfil destacado - Redes Sociales----*/
 .ContentImportant {
-    outline: 2px solid blue;
+    /*outline: 2px solid blue;*/
     display: block;
     margin: 0px;
     height: auto;
@@ -55,8 +55,9 @@ h1 {
 
 /*-----Perfil Destacado-----*/
 .Profile {
-    outline: 1px solid yellow;
+    /*outline: 1px solid yellow;*/
     width: calc(50%);
+    height: auto;
     margin: 0px 0px 0px calc(4%);
     float: left;
 }
@@ -71,9 +72,10 @@ h1 {
 }
 
 .Image {
-    outline: 1px solid blue;
+    /*outline: 1px solid blue;*/
     width: 30%;
     float: left;
+    margin: 40px 0px;
 }
 
     .Image img {
@@ -90,7 +92,7 @@ h1 {
 }
 
 .ProfileInfo {
-    outline: 1px solid green;
+    /*outline: 1px solid green;*/
     display: inline-block;
     vertical-align: top;
     width: 70%;
@@ -103,46 +105,59 @@ h1 {
     }
 
     .ProfileInfo p {
-        line-height: 30px;
-        margin: 0px 0px 0px 30px;
-        font-size: 20px;
+        line-height: 22px;
+        margin: 10px 0px 30px 40px;
+        font-size: 17px;
+        text-align: justify;
     }
 
 /*-----Redes Sociales-----*/
 .SocialNetworks {
-    outline: 1px solid darkred;
+    /*outline: 1px solid darkred;*/
     width: calc(40%);
+    height: auto;
     margin: 0px 0px 0px calc(3%);
     display: inline-block;
     vertical-align: top;
 }
 
+    /*-----Facebook-------*/
     .SocialNetworks iframe {
-        margin: 20px calc(5%);
+        margin: 24px calc(4%) !important;
     }
 
+    .SocialNetworks ._4s7c {
+        height: auto;
+    }
+    /*------Twitter-------*/
+    .SocialNetworks iframe#twitter-widget-0 {
+        float: right;
+        margin: -170px calc(14%) 0px 0px !important;
+    }
+    /*---------Linked In----------*/
     .SocialNetworks span.IN-widget {
-        height: 50px !important;
-        width: 110px !important;
-        margin: -14px 0px 0px calc(10%);
-        vertical-align: top !important;
+        height: auto;
+        width: auto;
+        float: right;
+        margin: -280px calc(10%) 0px 0px !important;
     }
-
+    /*-----Google +-------*/
     .SocialNetworks div#___plusone_0 {
-        height: 50px !important;
-        width: 110px !important;
-        margin: 6px 0px 0px calc(10%) !important;
-        vertical-align: top !important;
+        float: right !important;
+        margin: -240px calc(6%) 0px 0px !important;
     }
 
     .SocialNetworks p {
-        margin: 4%;
-        font-size: 20px;
+        font-size: 18px;
+        display: inline-block;
+        width: 31%;
+        vertical-align: top;
+        margin: 20px 0px 0px 0px;
     }
 
 /*-----Noticias------*/
 .Feed {
-    outline: 1px solid green;
+    /*outline: 1px solid green;*/
     display: block;
     margin: 0px;
 }
@@ -183,7 +198,7 @@ img#FeedImage {
     }
 
 label#FeedTitle {
-    margin: 10px;
+    margin: 10px calc(8%);
     line-height: 18px;
     width: calc(80%);
 }
@@ -195,20 +210,20 @@ p#FeedDescription {
 
 /*-----Noticias Izquierda------*/
 .FeedLeft {
-    outline: 1px solid yellow;
+    /*outline: 1px solid yellow;*/
     float: left;
 }
 
 /*-----Noticias Derecha-----*/
 .FeedRight {
-    outline: 1px solid darkred;
+    /*outline: 1px solid darkred;*/
     display: inline-block;
     vertical-align: top;
 }
 
 /*-----Demo-------*/
 .Demo {
-    outline: 1px solid grey;
+    /*outline: 1px solid grey;*/
     width: calc(90%);
     height: 300px;
     margin: 0px 0px 10px calc(5%);
@@ -239,7 +254,7 @@ p#FeedDescription {
     margin: 20px;
     display: inline-block;
     vertical-align: top;
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     height: 80%;
     float: right;
 }
