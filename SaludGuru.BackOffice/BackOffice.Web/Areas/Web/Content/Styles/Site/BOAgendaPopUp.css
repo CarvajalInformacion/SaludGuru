@@ -33,6 +33,19 @@
     margin: 8px 20px 9px 0px;
 }
 
+#Dialog_CancelAppointment textarea {
+    display:inline-block;
+    border:1px solid #999;
+    text-align:justify;
+    background-color:#fff;
+    width:80%;
+    height:100px;
+    vertical-align:top;
+    line-height: 15px;
+    font-size: 14px;
+
+}
+
 #Dialog_SaveResult p {
     line-height: 18px;
     font-size: 18px;

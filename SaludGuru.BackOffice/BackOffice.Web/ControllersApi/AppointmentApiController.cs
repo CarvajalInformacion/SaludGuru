@@ -62,7 +62,7 @@ namespace BackOffice.Web.ControllersApi
                     PatientSource.Add(PatientItem);
                 }
                 oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
-                if (AppointmentToUpsert.AppointmentPublicId == null)                
+                if (AppointmentToUpsert.AppointmentPublicId == null)
                     SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert);
                 else
                     SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert);
@@ -88,6 +88,15 @@ namespace BackOffice.Web.ControllersApi
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
                     AppointmentPublicId = HttpContext.Current.Request["AppointmentPublicId"].ToString(),
+                    Status = enumAppointmentStatus.Canceled,
+                    AppointmentInfo = new List<AppointmentInfoModel>() 
+                    { 
+                        new AppointmentInfoModel()
+                        {
+                            AppointmentInfoType = enumAppointmentInfoType.CancelAppointementReason,
+                            LargeValue = HttpContext.Current.Request["CancelationReason"],
+                        },
+                    },
                 };
 
                 //cancel appointment
@@ -407,6 +416,14 @@ namespace BackOffice.Web.ControllersApi
             bool SendNotifyOk = false;
             //update appointment status
             MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+            
+            //insert cancel reason
+            if (AppointmentToUpsert.AppointmentInfo.Any(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason))
+            {
+                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentInfoItem
+                        (AppointmentToUpsert.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).FirstOrDefault(),
+                        AppointmentToUpsert.AppointmentPublicId);
+            }
 
             if (SendNotifications)
             {

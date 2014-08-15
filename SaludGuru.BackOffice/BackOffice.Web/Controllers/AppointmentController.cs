@@ -1,4 +1,5 @@
 ﻿using BackOffice.Models.General;
+using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
 using SaludGuruProfile.Manager.Models;
@@ -216,12 +217,30 @@ namespace BackOffice.Web.Controllers
                     {
                         AppointmentPublicId = Request["AppointmentPublicId"].ToString(),
                         Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled,
+                        AppointmentInfo = new List<AppointmentInfoModel>() 
+                        { 
+                            new AppointmentInfoModel()
+                            {
+                                AppointmentInfoType = enumAppointmentInfoType.CancelAppointementReason,
+                                LargeValue =Request["CancelationReason"],
+                            },
+                        },
+
                     };
 
                     NewAppointmentPublicId = AppointmentToUpsert.AppointmentPublicId;
 
                     //update appointment status
                     MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(AppointmentToUpsert);
+
+                    //insert cancel reason
+                    if (AppointmentToUpsert.AppointmentInfo.Any(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason))
+                    {
+                        MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentInfoItem
+                                (AppointmentToUpsert.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).FirstOrDefault(),
+                                AppointmentToUpsert.AppointmentPublicId);
+                    }
+
 
                     if (SendNotifications)
                     {

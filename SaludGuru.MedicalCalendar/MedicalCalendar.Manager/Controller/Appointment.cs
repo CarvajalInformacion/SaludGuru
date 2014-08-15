@@ -145,6 +145,27 @@ namespace MedicalCalendar.Manager.Controller
                 AppointmentToUpSert.Status);
         }
 
+        public static void UpdateAppointmentInfoItem(AppointmentInfoModel AppointmentInfoToUpSert, string AppointmentPublicId)
+        {
+            if (AppointmentInfoToUpSert.AppointmentInfoId <= 0)
+            {
+                //create info
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentInfoCreate
+                    (AppointmentPublicId,
+                    AppointmentInfoToUpSert.AppointmentInfoType,
+                    AppointmentInfoToUpSert.Value,
+                    AppointmentInfoToUpSert.LargeValue);
+            }
+            else
+            {
+                //update info
+                DAL.Controller.MedicalCalendarDataController.Instance.AppointmentInfoModify
+                    (AppointmentInfoToUpSert.AppointmentInfoId,
+                    AppointmentInfoToUpSert.Value,
+                    AppointmentInfoToUpSert.LargeValue);
+            }
+        }
+
         public static List<AppointmentModel> AppointmentGetByOfficeId
             (string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)
         {
@@ -195,7 +216,7 @@ namespace MedicalCalendar.Manager.Controller
                 (OfficePublicId, StartDateTime, EndDateTime);
 
             return oReturn;
-        }       
+        }
 
         #endregion
     }
