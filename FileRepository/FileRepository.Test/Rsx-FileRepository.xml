@@ -9,8 +9,8 @@
           <S3>
             <key name="S3.Server">http://devsaludguruimg.s3-website-us-east-1.amazonaws.com</key>
             <key name="S3.Publish">http://devsaludguruimg.s3-website-us-east-1.amazonaws.com</key>
-            <key name="S3.AccessKeyId">AKIAJTGMF722MIKSJ25A</key>
-            <key name="S3.SecretAccessKey">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</key>
+            <key name="S3.AccessKeyId"></key>
+            <key name="S3.SecretAccessKey"></key>
             <key name="S3.BucketName">devsaludguruimg</key>
             <!--REDUCED_REDUNDANCY,GLACIER,STANDARD-->
             <key name="S3.StorageClass">REDUCED_REDUNDANCY</key>
