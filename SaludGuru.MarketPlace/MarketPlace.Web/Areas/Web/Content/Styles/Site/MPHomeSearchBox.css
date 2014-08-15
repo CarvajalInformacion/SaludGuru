@@ -1,14 +1,13 @@
 
 /*------ Background Search Box----------*/
 .SearchBox {
-    /*background: url(https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_2.jpg) no-repeat;*/
-    background-size: cover;
-    background-position: center;
+    background-size: cover !important;
+    background-position: center center !important;
 }
 
     /*------ SearchBox Styles -----*/
     .SearchBox .SearchBoxClass {
-        width: 800px !important;
+        width: 760px !important;
         height: 30% !important;
         background-color: rgba(255, 255, 255, 0.8);
         margin-top: 11% !important;
@@ -19,7 +18,7 @@
             line-height: 1.2;
             font-weight: bold;
             font-size: 18px;
-            width: 800px !important;
+            width: 760px !important;
             opacity: 1 !important;
             color: #535353;
         }

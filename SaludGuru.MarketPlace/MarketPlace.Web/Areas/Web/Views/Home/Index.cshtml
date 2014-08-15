@@ -4,7 +4,7 @@
 }
 
 <div class="Content">
-    <div id="SearchBox" class="MPHeaderSearchWrapper SearchBox">
+    <div class="MPHeaderSearchWrapper SearchBox">
         <!--search box-->
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
@@ -20,9 +20,12 @@
     </div>
     <hr class="featurette-divider __loop">
     <div class="ContentImportant">
+        <h1 class="ProfileH1">Profesional destacado:</h1>
+        <h1 class="SocialH1">Redes Sociales</h1>
         <div class="Profile">
             @{
                 var nameProfile = Model.Name.ToString();
+                var publicProfileId = Model.ProfilePublicId;
                 var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
                                                     Select(x => x.Value).
                                                     DefaultIfEmpty(null).
@@ -33,7 +36,6 @@
                                                         DefaultIfEmpty(null).
                                                         FirstOrDefault();
             }
-            <p>Profesional destacado:</p>
             <div class="Image">
                 <img src="@imgProfile" />
             </div>
@@ -41,13 +43,15 @@
                 <label>@nameProfile</label>
                 <p>@defaultSpecialtyProfile</p>
                 <p>@shortTextProfile</p>
+                <input class="MPButtons" type="submit" value="Agendar Cita" />
             </div>
         </div>
+        
         <div class="SocialNetworks">
-            <p>Redes Sociales</p>
             <!--Facebook-->
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:350px; height: 290px;"></iframe>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:calc(90%); height: 290px;"></iframe>
 
+            <p>Siguenos también en:</p>
             <!--LinkedIn-->
             <script src="//platform.linkedin.com/in.js" type="text/javascript">
                 lang: es_ES
@@ -57,13 +61,16 @@
 
             <!--Google + -->
             <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
-            <div class="g-plusone"></div>
+            <div class="g-plusone" data-href="https://plus.google.com/112797242838392317228/posts?hl=es-419"></div>
+
             <!--Twitter-->
+            <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large" data-dnt="true">Seguir a SaludGuru</a>
+
         </div>
     </div>
     <hr class="featurette-divider __loop">
     <div class="Feed">
-        <p>Noticias</p>
+        <h1>Noticias</h1>
         @{
             List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(2);
 
@@ -72,87 +79,112 @@
         }
         <!-- Feed Left -->
         <div class="FeedLeft">
+            <label id="FeedTitle">@(mHealtyLive.Title)</label>
             <a target="_blank" href="@(mHealtyLive.Link)">
                 <img id="FeedImage" src="@(mHealtyLive.Image)" />
             </a>
-            <label id="FeedTitle">@(mHealtyLive.Title)</label>
             <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
         </div>
         <!-- Feed Right -->
         <div class="FeedRight">
+            <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
             <a target="_blank" href="@(mMedicalMarketing.Link)">
                 <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
             </a>
-            <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
             <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
         </div>
     </div>
     <hr class="featurette-divider __loop">
     <div class="Demo">
+        <div class="NewDoctor">
+            <h1>Soy un Doctor</h1>
+            <img src="~/Areas/Web/Content/Images/logInDoctorSmall.png" />
+            <div class="InfoDoctor">
+                <h2>Bienvenido!</h2>
+                <p>Para solicitar un Demo gratuito de Salud Gurú.</p>
+                <a href="#" class="info">Click Aquí</a>
+            </div>
+        </div>
         <div class="criteriaBox">
-            <h3>ESPECIALIDADES DESTACADAS</h3>
-            <ul>
-                <li>
-                    <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
-                        <h3>Odontología</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
-                        <h3>Fisioterapia</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
-                        <h3>Cirugía Plástica</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
-                        <h3>Ginecología</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
-                        <h3>Medicina Estética</h3>
-                    </a>
-                </li>
-            </ul>
-            <br>
-            <h3>SEGUROS</h3>
-            <ul>
-                <li>
-                    <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
-                        <h3>Sura</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
-                        <h3>Allianz</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
-                        <h3>Colsanitas</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
-                        <h3>Medplus</h3>
-                    </a>
-                </li>
-            </ul>
+            <div class="FeaturedSP">
+                <h3>Especialidades Destacadas</h3>
+                <ul>
+                    <li>
+                        <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
+                            <h3>Odontología</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
+                            <h3>Fisioterapia</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
+                            <h3>Cirugía Plástica</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
+                            <h3>Ginecología</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                            <h3>Medicina Estética</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="Insurance">
+                <h3>Listado de Seguros</h3>
+                <ul>
+                    <li>
+                        <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
+                            <h3>Sura</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
+                            <h3>Allianz</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
+                            <h3>Colsanitas</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                            <h3>Medplus</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<script src="~/Areas/Web/Scripts/jquery-2.1.1.js" type="text/javascript">
+@section inlinescripts
+{
+    <script type="text/javascript">
 
-    var count = 2; //Cantidad de imagenes almacenadas en S3
-    var img = Math.floor(Math.random() * count) + 1;
-    debugger;
-    var strImg = 'https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_' + img + '.jpg';
-    
-    $('SearchBox').css("background", strImg);
+        var count = 3; //Cantidad de imagenes almacenadas en S3
+        var img = Math.floor(Math.random() * count) + 1;
+        var imageUrl = 'https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_' + img + '.jpg';
+        $(document).ready(function () {
+            $('.SearchBox').css('background', 'url("' + imageUrl + '") no-repeat');
+        });
 
-</script>
+        $('a').each(function () {
+            var a = new RegExp('/' + window.location.host + '/');
+            if (!a.test(this.href)) {
+                $(this).attr("target", "_blank");
+            }
+        });
+    </script>
+
+    <!--Scripts Social Networks-->
+    <!--Twitter-->
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+}

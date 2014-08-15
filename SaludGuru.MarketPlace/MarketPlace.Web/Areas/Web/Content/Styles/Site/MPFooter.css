@@ -1,7 +1,7 @@
 .MPMainWrapper {
     display: block;
     width: 100%;
-    min-width: 800px;
+    min-width: 760px;
     height: 82px;
     background-image: url('/Areas/Web/Content/Images/MPfooterImageSmall.png');
     background-repeat: no-repeat;
