@@ -4,18 +4,14 @@
     min-width: 750px;
 }
 
-p {
-    display: block;
-    width: auto;
-    height: auto;
-    line-height: 18px;
-    margin: 0px 0px 8px 0px;
-    padding: 0px;
+h1 {
+    margin: 0px 0px 8px 0px !important;
+    font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    font-size: 30px !important;
 }
 
 .SearchBox, .ContentImportant, .Feed, .Demo {
     width: 100%;
-    background-color: none;
 }
 
 /*-----Search Box------*/
@@ -31,6 +27,18 @@ p {
     margin: 0px;
     height: auto;
 }
+
+    .ContentImportant .ProfileH1 {
+        display: inline-block;
+        width: calc(50%);
+        margin: 8px 0px 4px calc(4%) !important;
+    }
+
+    .ContentImportant .SocialH1 {
+        display: inline-block;
+        width: calc(40%);
+        margin: 8px 0px 4px calc(3%) !important;
+    }
 
     .ContentImportant p {
         line-height: 20px;
@@ -48,8 +56,8 @@ p {
 /*-----Perfil Destacado-----*/
 .Profile {
     outline: 1px solid yellow;
-    width: calc(60%);
-    margin: 0px 0px 0px 40px;
+    width: calc(50%);
+    margin: 0px 0px 0px calc(4%);
     float: left;
 }
 
@@ -103,15 +111,33 @@ p {
 /*-----Redes Sociales-----*/
 .SocialNetworks {
     outline: 1px solid darkred;
-    width: 420px;
-    margin: 0px 0px 0px 30px;
+    width: calc(40%);
+    margin: 0px 0px 0px calc(3%);
     display: inline-block;
     vertical-align: top;
 }
 
+    .SocialNetworks iframe {
+        margin: 20px calc(5%);
+    }
+
+    .SocialNetworks span.IN-widget {
+        height: 50px !important;
+        width: 110px !important;
+        margin: -14px 0px 0px calc(10%);
+        vertical-align: top !important;
+    }
+
+    .SocialNetworks div#___plusone_0 {
+        height: 50px !important;
+        width: 110px !important;
+        margin: 6px 0px 0px calc(10%) !important;
+        vertical-align: top !important;
+    }
+
     .SocialNetworks p {
-        margin: 10px 0px 30px 20px;
-        font-size: 30px;
+        margin: 4%;
+        font-size: 20px;
     }
 
 /*-----Noticias------*/
@@ -122,18 +148,23 @@ p {
 }
 
 .FeedLeft, .FeedRight {
-    height: 300px;
+    height: auto;
     width: 46%;
-    margin: 0px 0px 0px 33px;
+    margin: 0px 0px calc(3%) calc(3%);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
 }
 
+.Feed h1 {
+    margin: 8px 0px 4px calc(4%) !important;
+}
+
 .Feed p {
-    line-height: 20px;
-    width: calc(80%);
-    margin: 10px 0px 30px 20px;
-    font-size: 30px;
+    line-height: 15px;
+    width: calc(90%);
+    margin: 0px 0px 20px 30px;
+    font-size: 15px;
+    text-align: justify;
 }
 
 img#FeedImage {
@@ -143,6 +174,8 @@ img#FeedImage {
     position: relative;
     transition: all .3s ease;
     z-index: 90;
+    margin: 30px;
+    float: left;
 }
 
     img#FeedImage:hover {
@@ -150,8 +183,9 @@ img#FeedImage {
     }
 
 label#FeedTitle {
-    margin-top: 10px;
-    height: 15px;
+    margin: 10px;
+    line-height: 18px;
+    width: calc(80%);
 }
 
 p#FeedDescription {
@@ -165,11 +199,6 @@ p#FeedDescription {
     float: left;
 }
 
-    .FeedLeft p {
-        line-height: 15px;
-        font-size: 16px;
-    }
-
 /*-----Noticias Derecha-----*/
 .FeedRight {
     outline: 1px solid darkred;
@@ -177,16 +206,11 @@ p#FeedDescription {
     vertical-align: top;
 }
 
-    .FeedRight p {
-        line-height: 15px;
-        font-size: 16px;
-    }
-
 /*-----Demo-------*/
 .Demo {
     outline: 1px solid grey;
-    width: 90%;
-    height: 255px;
+    width: calc(90%);
+    height: 300px;
     margin: 0px 0px 10px calc(5%);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
@@ -194,7 +218,8 @@ p#FeedDescription {
 
 .NewDoctor {
     float: left;
-    width: 340px;
+    width: 335px;
+    margin: 0px 0px 0px calc(4%);
 }
 
     .NewDoctor img {
@@ -204,14 +229,19 @@ p#FeedDescription {
 
 .InfoDoctor {
     display: inline-block;
-    width: 175px;
+    width: 50%;
+    line-height: 21px;
     vertical-align: top;
 }
 
 .Demo .criteriaBox {
-    width: 70%;
+    width: calc(40%);
+    margin: 20px;
     display: inline-block;
     vertical-align: top;
+    border: 1px solid green;
+    height: 80%;
+    float: right;
 }
 
 .criteriaBox div {
@@ -221,11 +251,13 @@ p#FeedDescription {
 
 .FeaturedSP {
     float: left;
+    margin: 20px;
 }
 
 .Insurance {
     display: inline-block;
     vertical-align: top;
+    margin: 20px;
 }
 
 /*---- Otros Estilos -----*/
