@@ -6,7 +6,7 @@
 <div class="MPFormDataWrapper">
     <span>Proceso de Agendamiento</span>
 
-    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = "2C1D2510", UpsertAction = true }))">
+    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true , Date = Model.StartDate}))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
