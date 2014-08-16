@@ -14,7 +14,7 @@ namespace Auth.Web.Controllers
             Uri oReturnUrl = base.GetReturnUrl(UrlRetorno);
             //get current application name
             string oAppName = base.GetAppNameByDomain(oReturnUrl);
-
+            ViewBag.AppName = oAppName;
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.FacebookClient FBClient = GetFBClient(oAppName);
 

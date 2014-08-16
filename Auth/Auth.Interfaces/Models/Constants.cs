@@ -24,5 +24,7 @@
 
         public const string C_AuthConnectionName = "AuthConnection";
 
+        public const string C_AuthAnalytics = "{AppName}_Analytics";
+
     }
 }

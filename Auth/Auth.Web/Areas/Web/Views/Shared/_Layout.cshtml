@@ -22,5 +22,18 @@
 
     @*Render inline site scripts*@
     @RenderSection("inlinescripts", required: false)
+
+    <!--Google Analitycs-->
+    @{
+        string AnalitycsScript = string.Empty;
+        if (ViewBag.AppName != null)
+        {
+            string AppName = ViewBag.AppName;
+            AnalitycsScript = SettingsManager.SettingsController.SettingsInstance.ModulesParams
+                    [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
+                    [Auth.Interfaces.Models.Constants.C_AuthAnalytics.Replace("{AppName}", AppName)].Value;
+        }
+    }
+    @AnalitycsScript
 </body>
 </html>

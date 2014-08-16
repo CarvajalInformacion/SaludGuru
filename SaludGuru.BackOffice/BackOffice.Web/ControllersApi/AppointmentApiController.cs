@@ -142,7 +142,22 @@ namespace BackOffice.Web.ControllersApi
                     SendRemindedFuture &&
                     RemindedDate != null)
                 {
+                    ProfileModel oSource = new ProfileModel();
+                    List<PatientModel> PatientSource = new List<PatientModel>();
+                    PatientModel PatientItem = new PatientModel();
+                    AppointmentModel AppToCreateNotify = new AppointmentModel();
+                    AppToCreateNotify = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentToUpsert.AppointmentPublicId);
+                    AppToCreateNotify.Status = AppointmentToUpsert.Status;
+
+                    foreach (var item in AppToCreateNotify.RelatedPatient)
+                    {
+                        PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
+                        PatientSource.Add(PatientItem);
+                    }
+                    AppToCreateNotify.StartDate = (DateTime)RemindedDate; 
+                    oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
                     //TODO: program remember mesaje RemindedDate
+                    BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderNextAppointment, PatientSource, AppToCreateNotify, false);
                 }
             }
         }

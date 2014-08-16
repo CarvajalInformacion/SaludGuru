@@ -21,7 +21,8 @@ namespace MarketPlace.Web.Controllers
             {
                 CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.ParseExact(Date.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture),
                 CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
-                PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId("17B1EF7E"), //TODO: Ajustar el usuario no quemarlo
+
+                PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId), //TODO: Ajustar el usuario no quemarlo
                 CurrentOffice = OfficePublicId,
                 StartDate = Date
             };
@@ -40,10 +41,18 @@ namespace MarketPlace.Web.Controllers
             appToCreate = this.GetAppointmetRequest(oModel);
             NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(appToCreate, patientToRemove);
 
-            if (SendNotifications)
+            if (true) //Armar la logica del sendNotifications
             {
-                //TODO: send message new patient PatientNew
+                List<PatientModel> PatientSource = new List<PatientModel>();
+                PatientModel PatientItem = new PatientModel();
 
+                foreach (var item in appToCreate.RelatedPatient)
+                {
+                    PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
+                    PatientSource.Add(PatientItem);
+                }
+                //TODO: send message new patient PatientNew
+                MarketPlace.Web.Controllers.BaseController.SendMessage(oModel, enumProfileInfoType.AsignedAppointment, PatientSource, appToCreate, true);
                 //TODO: send message removed patient
             }
 
