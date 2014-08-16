@@ -237,6 +237,16 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.GetFeaturedProfile(Quantity);
         }
 
+        public ProfileModel ProfileGetByAppointmentIdBasicInfo(string AppointmentPublicId)
+        {
+            return DataFactory.ProfileGetByAppointmentIdBasicInfo(AppointmentPublicId);
+        }
+
+        public ProfileModel ProfileGetByAppointmentIdCategory(string AppointmentPublicId)
+        {
+            return DataFactory.ProfileGetByAppointmentIdCategory(AppointmentPublicId);
+        }
+
         #endregion
 
         #region Office

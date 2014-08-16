@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SaludGuruProfile.Manager.Controller;
 using BackOffice.Models.General;
 using MedicalCalendar.Manager.Models.Appointment;
+using BackOffice.Models.Appointment;
 
 namespace BackOffice.Web.Controllers
 {
@@ -15,7 +16,11 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult Index(string AppointmentPublicId)
         {
             //get appoitment model
-            AppointmentModel oModel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
+            ExternalAppointmentViewModel oModel = new ExternalAppointmentViewModel
+            {
+                CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId),
+                CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetByAppointmentId(AppointmentPublicId),
+            };
 
             return View(oModel);
         }
@@ -23,18 +28,22 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult Confirm(string AppointmentPublicId)
         {
             //get appoitment model
-            AppointmentModel oModel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
-
-            if (oModel != null &&
-                oModel.RelatedPatient != null &&
-                oModel.RelatedPatient.Count == 1)
+            ExternalAppointmentViewModel oModel = new ExternalAppointmentViewModel
             {
-                oModel.Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Confirmed;
+                CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId),
+                CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetByAppointmentId(AppointmentPublicId),
+            };
+
+            if (oModel.CurrentAppointment != null &&
+                oModel.CurrentAppointment.RelatedPatient != null &&
+                oModel.CurrentAppointment.RelatedPatient.Count == 1)
+            {
+                oModel.CurrentAppointment.Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Confirmed;
 
                 //update appointment status
-                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(oModel);
+                MedicalCalendar.Manager.Controller.Appointment.UpdateAppointmentStatus(oModel.CurrentAppointment);
 
-                oModel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
+                oModel.CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
 
                 //TODO send confirm message
             }
@@ -46,15 +55,19 @@ namespace BackOffice.Web.Controllers
         public virtual ActionResult Cancel(string AppointmentPublicId)
         {
             //get appoitment model
-            AppointmentModel oModel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
+            ExternalAppointmentViewModel oModel = new ExternalAppointmentViewModel
+            {
+                CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId),
+                CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetByAppointmentId(AppointmentPublicId),
+            };
 
-            if (oModel != null &&
-                oModel.RelatedPatient != null &&
-                oModel.RelatedPatient.Count == 1)
+            if (oModel.CurrentAppointment != null &&
+                oModel.CurrentAppointment.RelatedPatient != null &&
+                oModel.CurrentAppointment.RelatedPatient.Count == 1)
             {
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
-                    AppointmentPublicId = oModel.AppointmentPublicId,
+                    AppointmentPublicId = oModel.CurrentAppointment.AppointmentPublicId,
                     Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.Canceled,
                     AppointmentInfo = new List<AppointmentInfoModel>() 
                     { 
@@ -77,7 +90,7 @@ namespace BackOffice.Web.Controllers
                             AppointmentToUpsert.AppointmentPublicId);
                 }
 
-                oModel = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
+                oModel.CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
 
                 //TODO send confirm message
             }
