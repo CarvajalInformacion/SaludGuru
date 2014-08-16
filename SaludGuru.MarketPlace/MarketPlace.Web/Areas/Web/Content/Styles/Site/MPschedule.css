@@ -63,8 +63,15 @@
         .MPProfileSchedule div > ul > li a:hover {
             background-color: #fff; text-decoration:none;
         }
-        .MPProfileSchedule div > ul > li a:active {
-            background-color: #fff;
+        .MPProfileSchedule div > ul > li.selected{
+            border-width:1px 0px 1px 1px !important; 
+            border-style:solid !important; 
+            border-color:#808080 !important;
+            position: relative;
+            z-index: 10;
+        }
+        li.selected a{
+            background-color: #fff !important;
         }
 #divAppointmentSchedule {
     display: inline-block;
@@ -140,4 +147,4 @@
                 div.k-grid-content > table > tbody > tr > td:hover {
                     cursor:pointer;
                     background-color:#afacac;
-                }
+                } 

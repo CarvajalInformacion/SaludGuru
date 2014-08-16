@@ -25,7 +25,7 @@
 }
     .MPRightTopMenu div, .MPRightTopMenu select{
         float:left;
-        border:1px solid black;
+            border:none;
         height:32px;
         width:auto;
         padding: 0px 6px;
