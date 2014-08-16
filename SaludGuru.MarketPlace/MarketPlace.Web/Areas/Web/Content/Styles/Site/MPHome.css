@@ -203,7 +203,7 @@ a.MPButtons {
 .FeedLeft, .FeedRight {
     height: auto;
     width: 46%;
-    margin: 0px 0px 0px calc(3%);
+    margin: 0px 0px 0px calc(4%);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
 }
@@ -256,7 +256,7 @@ p#FeedDescription {
 /*-----Noticias Izquierda------*/
 .FeedLeft {
     /*outline: 1px solid yellow;*/
-    float: left;
+     display:inline-block;
 }
 
     .FeedLeft p a {
@@ -268,6 +268,7 @@ p#FeedDescription {
     /*outline: 1px solid darkred;*/
     display: inline-block;
     vertical-align: top;
+    margin: 0px 0px 0px 8px;
 }
 
     .FeedRight p a {
