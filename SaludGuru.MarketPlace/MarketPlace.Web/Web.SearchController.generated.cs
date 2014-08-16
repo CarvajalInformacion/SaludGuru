@@ -63,6 +63,12 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetSearchUrl()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSearchUrl);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SearchController Actions { get { return MVC.Web.Search; } }
@@ -80,12 +86,14 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string GetSearchUrl = "GetSearchUrl";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string GetSearchUrl = "GetSearchUrl";
         }
 
 
@@ -100,6 +108,16 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             public readonly string InsuranceName = "InsuranceName";
             public readonly string CityName = "CityName";
             public readonly string Query = "Query";
+        }
+        static readonly ActionParamsClass_GetSearchUrl s_params_GetSearchUrl = new ActionParamsClass_GetSearchUrl();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetSearchUrl GetSearchUrlParams { get { return s_params_GetSearchUrl; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetSearchUrl
+        {
+            public readonly string IsGetUrl = "IsGetUrl";
+            public readonly string CityId = "CityId";
+            public readonly string SearchParam = "SearchParam";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,6 +153,20 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CityName", CityName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Query", Query);
             IndexOverride(callInfo, SpecialtyName, TreatmentName, InsuranceName, CityName, Query);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSearchUrlOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string IsGetUrl, string CityId, string SearchParam);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSearchUrl(string IsGetUrl, string CityId, string SearchParam)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSearchUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "IsGetUrl", IsGetUrl);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CityId", CityId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SearchParam", SearchParam);
+            GetSearchUrlOverride(callInfo, IsGetUrl, CityId, SearchParam);
             return callInfo;
         }
 

@@ -1,4 +1,4 @@
-﻿@model MedicalCalendar.Manager.Models.Appointment.AppointmentModel
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
 @{
     ViewBag.Title = "ConfirmationAppointmentView";
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
@@ -8,13 +8,12 @@
     <div class="MPAgendaConfirmationMessage">
         <label>Tu cita ha sido agendada correctamente!</label>
         <div>
-            <span>El DR.'nombre del doctor'</span>
+            <span>El DR. @Model.CurrentProfile.Name</span>
             <img src=""/>
             
             <span>El día @Model.StartDate</span>
             
-            
-            <span>En la dirección @Model.OfficeName</span>
+            <span>En la dirección @Model.CurrentOffice</span>
             
             <span>
                 estamos enviando la confirmación de la cita a tu correo electrónico, <br>

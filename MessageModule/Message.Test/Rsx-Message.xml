@@ -93,7 +93,7 @@
           <Message>
             <key name="Agent">Agent_Mailman</key>
             <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Mensaje de confirmación de cita</key>
+            <key name="Subject">Salud Gurú - Mensaje de asignación de cita</key>
             <key name="MailmanPath">.\private$\Mailman</key>
           </Message>
       ]]>
@@ -150,8 +150,8 @@
           </Message>
       ]]>
     </key>
-    
-     <!--Confirmation - Sms Params-->
+
+    <!--Confirmation - Sms Params-->
     <key name="Message_Params_Sms_MPAsignedAppointment">
       <![CDATA[
          <Message>
@@ -463,7 +463,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel:{OfficePhone} <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
+      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} Confirmar/Cancelar]]>
     </key>
 
     <!--Modify GuruNotification_ReminderAppointment Gurú-->
@@ -479,12 +479,6 @@
     <key name="Message_Body_GuruNotification_ReminderAppointment">
       <![CDATA[este es el body del SMS]]>
     </key>
-
-    
-    
-    
-  
-
 
     <!--Reminder Appointment  -->
     <!--Email_ReminderNextAppointmentt - -->

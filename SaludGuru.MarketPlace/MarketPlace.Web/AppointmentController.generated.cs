@@ -114,6 +114,7 @@ namespace MarketPlace.Web.Controllers
         public class ActionParamsClass_ConfirmationAppointment
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string Date = "Date";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -149,14 +150,15 @@ namespace MarketPlace.Web.Controllers
         }
 
         [NonAction]
-        partial void ConfirmationAppointmentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void ConfirmationAppointmentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string Date);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ConfirmationAppointment(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult ConfirmationAppointment(string ProfilePublicId, string Date)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmationAppointment);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            ConfirmationAppointmentOverride(callInfo, ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
+            ConfirmationAppointmentOverride(callInfo, ProfilePublicId, Date);
             return callInfo;
         }
 

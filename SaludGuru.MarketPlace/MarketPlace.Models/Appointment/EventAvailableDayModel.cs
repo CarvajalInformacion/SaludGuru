@@ -22,7 +22,7 @@ namespace MarketPlace.Models.Appointment
                 }
                 else if (AvailableDate != null)
                 {
-                    return AvailableDate.Value.ToString("yyyy-M-dTH:m");
+                    return AvailableDate.Value.ToString("yyyy-MM-dd hh:mm tt");
                 }
                 return string.Empty;
             }
