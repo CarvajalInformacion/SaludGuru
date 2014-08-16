@@ -14,7 +14,7 @@ namespace Auth.Web.Controllers
             Uri oReturnUrl = base.GetReturnUrl(UrlRetorno);
             //get current application name
             string oAppName = base.GetAppNameByDomain(oReturnUrl);
-
+            ViewBag.AppName = oAppName;
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.GoogleClient GMClient = GetGMClient(oAppName);
 
@@ -50,7 +50,7 @@ namespace Auth.Web.Controllers
 
             //get current application name
             string oAppName = base.GetAppNameByDomain(base.ReturnUrl);
-
+            ViewBag.AppName = oAppName;
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.GoogleClient GMClient = GetGMClient(oAppName);
 
