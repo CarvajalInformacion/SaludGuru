@@ -49,6 +49,9 @@
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>
+    <Reference Include="Message.Client">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\Message.Client\developer\Message.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationServer.Caching.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\AppFabric\Microsoft.ApplicationServer.Caching.Client.dll</HintPath>
