@@ -1,4 +1,4 @@
-﻿@model MedicalCalendar.Manager.Models.Appointment.AppointmentModel
+﻿@model BackOffice.Models.Appointment.ExternalAppointmentViewModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,18 +99,37 @@
     </style>
 </head>
 <body>
+
+    @{
+
+        string ImgProfile = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+            Select(x => x.Value).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+        string ProfileUrl = BackOffice.Models.General.InternalSettings.Instance
+            [BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.
+            Replace("{ProfileName}",
+            BackOffice.Web.Controllers.BaseController.RemoveAccent
+                (Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)).
+                Replace("{ProfilePublicId}",
+                Model.CurrentProfile.ProfilePublicId).
+                Replace("{SpecialtyName}", !string.IsNullOrEmpty(Model.CurrentProfile.DefaultSpecialty.Name) ?
+                BackOffice.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.DefaultSpecialty.Name) : string.Empty); }
+
     <div class="Content">
         <div class="Header">
             <img src="/Areas/Web/Content/Images/logoSaludGuruSmall.png" />
         </div>
         <div class="ProfileInfo">
-            <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png" />
-            <h1>Profesional</h1>
-            <h2>Especialidad por defecto</h2>
-            <p>Información de la cita en la oficina "@Model.OfficeName", en la dirección "", teléfono "", el día "" a la hora ""</p>
+            <img src="@ImgProfile" />
+            <h1><a href="@ProfileUrl">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</a></h1>
+            <h2>@(!string.IsNullOrEmpty(Model.CurrentProfile.DefaultSpecialty.Name) ? Model.CurrentProfile.DefaultSpecialty.Name : string.Empty)</h2>
+            <p>Usted tiene una cita en la oficina @Model.CurrentAppointment.OfficeName el @Model.CurrentAppointment.StartDate.ToString("ddd dd \\de MMMM del yyyy a las hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))</p>
         </div>
         <div class="Options">
-            <label>Haz cancelado la cita, para agendar una nueva cita con el mismo doctor haz "click aquí, de lo contrario puedes regresar al "inicio"</label>
+            <label><a href="@ProfileUrl">Haz cancelado la cita, para agendar una nueva cita con el mismo doctor haz "click aquí</a></label>
         </div>
     </div>
 </body>

@@ -1793,7 +1793,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_BasicInfo",
+                CommandText = "P_Profile_GetByAppointmentId_BasicInfo",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
@@ -1846,7 +1846,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "P_Profile_GetFullAdmin_Category",
+                CommandText = "P_Profile_GetByAppointmentId_Category",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
