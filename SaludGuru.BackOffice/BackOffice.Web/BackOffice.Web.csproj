@@ -375,6 +375,7 @@
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorComunicados.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorImagenes.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BODoctorOffice.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\BODashBoard.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOInsuranceSpecialityTreatments.css" />
     <Content Include="Areas\Web\Content\Styles\Site\BOForms.css" />
     <Content Include="Areas\Web\Content\Styles\jquery-ui-1.10.4.custom.css" />

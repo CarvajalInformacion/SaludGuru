@@ -24,7 +24,14 @@
             top: 27px;
             margin:0px auto 0px !important;
         }
-
+        .SearchBox .SearchBoxClass div span {
+            position: relative;
+            top: 63px !important;
+            display: block;
+            width: auto !important;
+            font-size:13px;
+            color:darkred;
+        }
         .SearchBox .SearchBoxClass div input {
             font-size: 1.07143rem;
             font-style: italic;

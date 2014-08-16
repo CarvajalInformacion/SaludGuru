@@ -441,6 +441,23 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        public static ProfileModel ProfileGetByAppointmentId(string AppointmentPublicId)
+        {
+            ProfileModel oReturn = DAL.Controller.ProfileDataController.Instance.ProfileGetByAppointmentIdBasicInfo(AppointmentPublicId);
+
+            ProfileModel oAux = DAL.Controller.ProfileDataController.Instance.ProfileGetByAppointmentIdCategory(AppointmentPublicId);
+
+            if (oAux != null)
+            {
+                oReturn.RelatedSpecialty = oAux.RelatedSpecialty;
+                oReturn.DefaultSpecialty = oAux.DefaultSpecialty;
+                oReturn.RelatedInsurance = oAux.RelatedInsurance;
+                oReturn.RelatedTreatment = oAux.RelatedTreatment;
+            }
+
+            return oReturn;
+        }
+
         #region MarketPlace
 
         public static ProfileModel MPProfileGetFull(string ProfilePublicId)

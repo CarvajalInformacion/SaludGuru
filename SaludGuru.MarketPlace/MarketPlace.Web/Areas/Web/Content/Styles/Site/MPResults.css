@@ -88,7 +88,8 @@ div.MPResultsPaidProfileDoctorData {
     display:inline-block;
     width:21%;
     min-width:220px;
-    min-height: 196px;
+    min-height:182px;
+    margin-left:6px;
 }
 div.MPResultsPaidProfileDoctorData > a:first-child{display:block;}
 div.MPResultsPaidProfileDoctorData > a:first-child > label{
@@ -121,10 +122,52 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
             width: 64%;
             line-height: 16px;
         }
+/** DESCRIPCION CORTA DEL DOCTOR **/
+div.MPResultsBookShortDescription {
+        border:none;
+    display: inline-block;
+    width:62%;
+    vertical-align: top;
+    margin:0px 0px 0px 12px;
+}
+    div.MPResultsBookShortDescription span{
+        height:auto;
+        max-height:116px;
+    }
+    @media screen and (max-width:1024px) {
+        div.MPResultsBookShortDescription {
+            border:none;
+        display: inline-block;
+        width:50%;
+        vertical-align: top;
+        margin:0px 0px 0px 12px;
+        }
+            div.MPResultsBookShortDescription span{
+                height:auto;
+                max-height:130px;
+                display: block;
+                text-align:left;
+            }
+    }
+    @media screen and (max-width:800px) {
+        div.MPResultsBookShortDescription {
+            border:none;
+        display: inline-block;
+        width:42%;
+        vertical-align: top;
+        margin:0px 0px 0px 12px;
+        }
+            div.MPResultsBookShortDescription span{
+                height:auto;
+                max-height:172px;
+                display: block;
+                text-align:left;
+            }
+    }
 /**********  DATOS CONTACTO **********/
         div.OfficeSelector {
             border: none;
-            display: inline-block;
+            display:block;
             width:50%;
             min-width: 220px;
             vertical-align: top;
@@ -150,12 +193,13 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
                 font-size:1em;
                 display:inline-block;
                 width: auto;
+                line-height: 12px;
             }
 @media screen and (max-width:1024px) {
          div.OfficeSelector {
-                border:none;
-            display: inline-block;
-            width:50%;
+            border: none;
+            display:block;
+            width:80%;
             min-width: 220px;
             vertical-align: top;
             margin: 6px 0px 0px 0px;
@@ -188,9 +232,9 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width:48%;
+    width: 50%;
     text-align: center;
-    font-size: 1.5em !important;
+    font-size: 1.2em !important;
     border-radius: 3px;
     color: #FFF !important;
     border: 1px solid #555 !important;
@@ -199,20 +243,31 @@ div.MPResultsPaidProfileDoctorData > a:first-child > label{
     background-color:#82A327;
     text-decoration:none;
 }
-/** DESCRIPCION CORTA DEL DOCTOR **/
-div.MPResultsBookShortDescription {
-        border:none;
-    display: inline-block;
-    width:62.5%;
-    vertical-align: top;
-    margin:0px 0px 0px 12px;
-}
-    @media screen and (max-width:1024px) {
-        div.MPResultsBookShortDescription {
-            border:none;
-        display: inline-block;
-        width:44%;
-        vertical-align: top;
-        margin:0px 0px 0px 12px;
-        }
+@media screen and (max-width:1024px) {
+    .MPResultsBookAppFree {
+    display:inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width:80%;
+    text-align: center;
+    font-size: 1.2em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
     }
+}
+@media screen and (max-width:800px) {
+    .MPResultsBookAppFree {
+    display:inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width: 80%;
+    text-align: center;
+    font-size: 1.2em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
+    }
+}

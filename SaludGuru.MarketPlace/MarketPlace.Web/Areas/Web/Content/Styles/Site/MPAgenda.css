@@ -90,7 +90,7 @@ div.MPAgendaConfirmationMessageGW{
     height: auto;
 }
     div.MPAgendaConfirmationMessage {
-        border: 1px solid #666;
+            border: 1px solid #666;
         display: block;
         margin: 0px auto;
         padding: 12px;
@@ -108,7 +108,7 @@ div.MPAgendaConfirmationMessageGW{
     }
     div.MPAgendaConfirmationMessage div{
         display:inline-block;
-        border:1px solid orange;
+        border:none;
         width:auto;
         height:auto;
         margin:0px 0px 8px 0px;
