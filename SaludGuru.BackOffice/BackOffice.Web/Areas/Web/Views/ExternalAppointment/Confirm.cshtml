@@ -6,15 +6,21 @@
     <title>SaludGuru - Confirmar asistencia</title>
 
     <style>
+        html, body {
+            margin: 0px;
+            height: 100%;
+        }
+
         .Content {
-            border: 2px solid red;
+            /*border: 2px solid red;*/
             display: block;
             background: linear-gradient(#fff, #ececec);
             min-width: 500px;
+            height: 100%;
         }
 
         .Header {
-            border: 1px solid blue;
+            /*border: 1px solid blue;*/
             height: auto;
         }
 
@@ -23,16 +29,18 @@
             .Header img {
                 width: 100px;
                 height: auto;
-                margin: 3%;
+                margin: 2% 0px 0px 1%;
             }
 
         /*Estilos de informacion del perfil*/
 
         .ProfileInfo {
-            border: 1px solid green;
+            /*border: 1px solid green;*/
             height: auto;
             width: 80%;
             margin: 10px 0px 5px 10%;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+            background: linear-gradient(#fff, #ececec);
         }
 
             .ProfileInfo img {
@@ -44,25 +52,35 @@
             .ProfileInfo h1 {
                 width: 50%;
                 display: block;
-                margin: -120px 0px 0px 130px;
+                margin: -100px 0px 0px 130px;
+                font-size: 26px;
+                color: #99c21d;
+                font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
             }
 
             .ProfileInfo h2 {
                 width: 90%;
                 display: block;
                 margin: 0px 0px 0px 130px;
+                line-height: 21px;
+                font-size: 18px;
+                text-align: justify;
+                font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             }
 
             .ProfileInfo p {
                 width: 90%;
-                margin: 70px 0px 0px 20px;
+                margin: 60px 0px 0px 20px;
                 text-align: justify;
+                line-height: 21px;
+                font-size: 17px;
+                font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             }
 
         /*Estilos para las opciones*/
 
         .Options {
-            border: 1px solid brown;
+            /*border: 1px solid brown;*/
             width: 60%;
             min-width: 250px;
             height: auto;
@@ -72,14 +90,18 @@
             .Options label {
                 width: 100%;
                 display: block;
+                margin: 7px 0px 7px 0px;
                 text-align: center;
+                line-height: 21px;
+                font-size: 18px;
+                font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             }
     </style>
 </head>
 <body>
     <div class="Content">
         <div class="Header">
-            <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_1.jpg" />
+            <img src="/Areas/Web/Content/Images/logoSaludGuruSmall.png" />
         </div>
         <div class="ProfileInfo">
             <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png" />
