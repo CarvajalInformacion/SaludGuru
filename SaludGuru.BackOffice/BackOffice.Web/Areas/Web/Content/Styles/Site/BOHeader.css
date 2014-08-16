@@ -404,6 +404,7 @@ span.ui-selectmenu-text:hover {
             background-repeat: no-repeat;
             background-position: 12px -315px;
             background-size: 50px 509px;
+            width: 74px;
         }
 
             .mainMenuItemWrapper li.dashboard a:hover, .mainMenuItemWrapper li.dashboard a:active, .mainMenuItemWrapper li.selected a {
@@ -470,6 +471,7 @@ span.ui-selectmenu-text:hover {
 
             .mainMenuItemWrapper li.pacientes a:hover, .mainMenuItemWrapper li.pacientes a:active, .mainMenuItemWrapper li.selected a {
                 background-image: url('/Areas/Web/Content/Images/iconosMainMenuHover.png');
+                width: 74px;
             }
 
 /*Secondary menu*/
