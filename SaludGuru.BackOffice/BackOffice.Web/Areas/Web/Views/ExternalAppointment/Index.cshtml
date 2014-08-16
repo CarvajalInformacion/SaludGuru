@@ -6,16 +6,139 @@
     <title>SaludGuru - Confirmar asistencia</title>
 
     <style>
+        .Content {
+            border: 2px solid red;
+            display: block;
+            background: linear-gradient(#fff, #ececec);
+            min-width: 500px;
+        }
+
+        /*Estilos de header de página*/
+
+        .Header {
+            border: 1px solid blue;
+            height: auto;
+        }
+
+            .Header img {
+                width: 100px;
+                height: auto;
+                margin: 3%;
+            }
+
+        /*Estilos de informacion del perfil*/
+
+        .ProfileInfo {
+            border: 1px solid green;
+            height: auto;
+            width: 80%;
+            margin: 10px 0px 5px 10%;
+        }
+
+            .ProfileInfo img {
+                width: 100px;
+                margin: 10px 0px 0px 10px;
+                display: inline-block;
+            }
+
+            .ProfileInfo h1 {
+                width: 50%;
+                display: block;
+                margin: -120px 0px 0px 130px;
+            }
+
+            .ProfileInfo h2 {
+                width: 90%;
+                display: block;
+                margin: 0px 0px 0px 130px;
+            }
+
+            .ProfileInfo p {
+                width: 90%;
+                margin: 70px 0px 0px 20px;
+                text-align: justify;
+            }
+
+        /*Estilos para las opciones*/
+
+        .Options {
+            border: 1px solid brown;
+            width: 60%;
+            min-width: 250px;
+            height: auto;
+            margin: 10px 0px 5px 22%;
+        }
+
+        .Buttoms {
+            border: 1px solid green;
+            width: 100%;
+            text-align: center;
+        }
+
+        .ConfirmButtom, .CancelButtom {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .ConfirmButtom {
+            border: 1px solid #333;
+            border-radius: 3px;
+            padding: 5px 12px;
+            cursor: pointer;
+            background-color: #5c9b00;
+            text-transform: uppercase;
+            font-family: 'MuseoSans100';
+            font-size: 20px;
+            line-height: 20px;
+            color: #fff;
+            box-shadow: #000 2px 2px 3px;
+        }
+
+        .CancelButtom {
+            margin: 0px 0px 0px 6%;
+            border: 1px solid #333;
+            border-radius: 3px;
+            padding: 5px 12px;
+            cursor: pointer;
+            background-color: #E74949;
+            text-transform: uppercase;
+            font-family: 'MuseoSans100';
+            font-size: 20px;
+            line-height: 20px;
+            color: #fff;
+            box-shadow: #000 2px 2px 3px;
+        }
+
+        .Options label {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div>
-        <a href="@Url.Action(MVC.ExternalAppointment.ActionNames.Confirm, MVC.ExternalAppointment.Name, new { AppointmentPublicId  = Model.AppointmentPublicId})">
-            Confirmar
-        </a>
-        <a href="@Url.Action(MVC.ExternalAppointment.ActionNames.Cancel, MVC.ExternalAppointment.Name, new { AppointmentPublicId  = Model.AppointmentPublicId})">
-            Cancelar
-        </a>
+
+    <div class="Content">
+        <div class="Header">
+            <img src="/Areas/Web/Content/Images/logoSaludGuruSmall.png" />
+        </div>
+        <div class="ProfileInfo">
+            <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png" />
+            <h1>Profesional</h1>
+            <h2>Especialidad por defecto</h2>
+            <p>Información de la cita en la oficina "", en la dirección "", teléfono "", el día "" a la hora ""</p>
+        </div>
+        <div class="Options">
+            <div class="Buttoms">
+                <a title="Confirmar" class="ConfirmButtom" href="@Url.Action(MVC.ExternalAppointment.ActionNames.Confirm, MVC.ExternalAppointment.Name, new { AppointmentPublicId  = Model.AppointmentPublicId})">
+                    Confirmar
+                </a>
+                <a title="Cancelar" class="CancelButtom" href="@Url.Action(MVC.ExternalAppointment.ActionNames.Cancel, MVC.ExternalAppointment.Name, new { AppointmentPublicId  = Model.AppointmentPublicId})">
+                    Cancelar
+                </a>
+            </div>
+            <label>Deseas visitar el perfil del doctor, click aquí</label>
+        </div>
     </div>
 </body>
 </html>

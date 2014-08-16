@@ -6,11 +6,90 @@
     <title>SaludGuru - Confirmar asistencia</title>
 
     <style>
+        .Content {
+            border: 2px solid red;
+            display: block;
+            background: linear-gradient(#fff, #ececec);
+            min-width: 500px;
+        }
+
+        .Header {
+            border: 1px solid blue;
+            height: auto;
+        }
+
+            /*Estilos de header de página*/
+
+            .Header img {
+                width: 100px;
+                height: auto;
+                margin: 3%;
+            }
+
+        /*Estilos de informacion del perfil*/
+
+        .ProfileInfo {
+            border: 1px solid green;
+            height: auto;
+            width: 80%;
+            margin: 10px 0px 5px 10%;
+        }
+
+            .ProfileInfo img {
+                width: 100px;
+                margin: 10px 0px 0px 10px;
+                display: inline-block;
+            }
+
+            .ProfileInfo h1 {
+                width: 50%;
+                display: block;
+                margin: -120px 0px 0px 130px;
+            }
+
+            .ProfileInfo h2 {
+                width: 90%;
+                display: block;
+                margin: 0px 0px 0px 130px;
+            }
+
+            .ProfileInfo p {
+                width: 90%;
+                margin: 70px 0px 0px 20px;
+                text-align: justify;
+            }
+
+        /*Estilos para las opciones*/
+
+        .Options {
+            border: 1px solid brown;
+            width: 60%;
+            min-width: 250px;
+            height: auto;
+            margin: 10px 0px 5px 22%;
+        }
+
+            .Options label {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
     </style>
 </head>
 <body>
-    <div>
-
+    <div class="Content">
+        <div class="Header">
+            <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_1.jpg" />
+        </div>
+        <div class="ProfileInfo">
+            <img src="https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png" />
+            <h1>Profesional</h1>
+            <h2>Especialidad por defecto</h2>
+            <p>Información de la cita en la oficina "@Model.OfficeName", en la dirección "", teléfono "", el día "" a la hora ""</p>
+        </div>
+        <div class="Options">
+            <label>Haz cancelado la cita, para agendar una nueva cita con el mismo doctor haz "click aquí, de lo contrario puedes regresar al "inicio"</label>
+        </div>
     </div>
 </body>
 </html>
