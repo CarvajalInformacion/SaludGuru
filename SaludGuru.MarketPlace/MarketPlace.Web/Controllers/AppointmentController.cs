@@ -19,7 +19,7 @@ namespace MarketPlace.Web.Controllers
         {
             AppointmentViewModel oModel = new AppointmentViewModel()
             {
-                CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.ParseExact(Date.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture),
+                CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date),
                 CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
 
                 PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId), //TODO: Ajustar el usuario no quemarlo
@@ -29,16 +29,18 @@ namespace MarketPlace.Web.Controllers
             return View(oModel);
         }
 
-        public virtual ActionResult ConfirmationAppointment(string ProfilePublicId)
+        public virtual ActionResult ConfirmationAppointment(string ProfilePublicId, string Date)
         {
+            AppointmentViewModel ViewModel = new AppointmentViewModel();
+
             ProfileModel oModel = new ProfileModel();
             string NewAppointmentPublicId = string.Empty;
             bool SendNotifications = false;
             List<PatientModel> patientToRemove = new List<PatientModel>();
             oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
 
-            AppointmentModel appToCreate = new AppointmentModel();
-            appToCreate = this.GetAppointmetRequest(oModel);
+            AppointmentModel appToCreate = new AppointmentModel();            
+            appToCreate = this.GetAppointmetRequest(oModel, Date);
             NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(appToCreate, patientToRemove);
 
             if (true) //Armar la logica del sendNotifications
@@ -57,13 +59,16 @@ namespace MarketPlace.Web.Controllers
             }
 
             OfficeModel office = new OfficeModel();
-            //office = SaludGuruProfile.Manager.Controller.Office.
+            office = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(appToCreate.OfficePublicId);
 
-            return View(appToCreate);
+            ViewModel.CurrentProfile = oModel;
+            ViewModel.CurrentOffice = office.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault();
+            ViewModel.StartDate = appToCreate.StartDate.ToString();
+            return View(ViewModel);
         }
 
         #region Private Functions
-        private AppointmentModel GetAppointmetRequest(ProfileModel CurrentProfileModel)
+        private AppointmentModel GetAppointmetRequest(ProfileModel CurrentProfileModel, string Date)
         {
             if (!string.IsNullOrEmpty(Request["UpsertAction"])
             && bool.Parse(Request["UpsertAction"]))
@@ -71,16 +76,46 @@ namespace MarketPlace.Web.Controllers
                 OfficeModel SelectedOfficeModel = CurrentProfileModel.RelatedOffice.Where(x => x.OfficePublicId == Request["SelectedOffice"].ToString()).Select(x => x).FirstOrDefault();
                 TreatmentOfficeModel TreatmentSelected = SelectedOfficeModel.RelatedTreatment.Where(x => x.CategoryId == Convert.ToInt32(Request["SelectedTreatment"])).FirstOrDefault();
                 string DurationDate = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault();
-
-                AppointmentModel oReturn = new AppointmentModel()
+                
+                AppointmentModel oReturn = new AppointmentModel();
+                if (Date == null)
                 {
-                    OfficePublicId = Request["SelectedOffice"].ToString(),
-                    Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
-                    StartDate = Convert.ToDateTime(Request["StartDate"]),
-                    EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(DurationDate)),
-                    AppointmentInfo = new List<AppointmentInfoModel>(),
-                    RelatedPatient = new List<PatientModel>(),
-                };
+                    oReturn = new AppointmentModel()
+                    {
+                        OfficePublicId = Request["SelectedOffice"].ToString(),
+                        Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
+                        StartDate = Convert.ToDateTime(Request["StartDate"]),
+                        EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(DurationDate)),
+                        AppointmentInfo = new List<AppointmentInfoModel>(),
+                        RelatedPatient = new List<PatientModel>(),
+                    };
+                }
+                else if (Date != null && Request["StartDate"] != "")
+                {
+                    oReturn = new AppointmentModel()
+                        {
+                            OfficePublicId = Request["SelectedOffice"].ToString(),
+                            Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
+                            StartDate = Convert.ToDateTime(Request["StartDate"]),
+                            EndDate = Convert.ToDateTime(Request["StartDate"]).AddMinutes(Convert.ToInt32(DurationDate)),
+                            AppointmentInfo = new List<AppointmentInfoModel>(),
+                            RelatedPatient = new List<PatientModel>(),
+                        };
+                }
+                else if (Date != null && Request["StartDate"] == "")
+                {
+                    DateTime Current = DateTime.Parse(Date);
+                    oReturn = new AppointmentModel()
+                    {
+                        OfficePublicId = Request["SelectedOffice"].ToString(),
+                        Status = MedicalCalendar.Manager.Models.enumAppointmentStatus.New,
+                        StartDate = Current,
+                        EndDate = Current.AddMinutes(Convert.ToInt32(DurationDate)),
+                        AppointmentInfo = new List<AppointmentInfoModel>(),
+                        RelatedPatient = new List<PatientModel>(),
+                    };
+                }
+
                 //treatment
                 int oTreatmentId = Convert.ToInt32(Request["SelectedTreatment"].Replace(" ", ""));
                 oReturn.AppointmentInfo.Add

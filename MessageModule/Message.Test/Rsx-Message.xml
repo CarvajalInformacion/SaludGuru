@@ -93,7 +93,7 @@
           <Message>
             <key name="Agent">Agent_Mailman</key>
             <key name="From">contacto@saludguru.com</key>
-            <key name="Subject">Salud Gurú - Mensaje de confirmación de cita</key>
+            <key name="Subject">Salud Gurú - Mensaje de asignación de cita</key>
             <key name="MailmanPath">.\private$\Mailman</key>
           </Message>
       ]]>
@@ -150,8 +150,8 @@
           </Message>
       ]]>
     </key>
-    
-     <!--Confirmation - Sms Params-->
+
+    <!--Confirmation - Sms Params-->
     <key name="Message_Params_Sms_MPAsignedAppointment">
       <![CDATA[
          <Message>
@@ -215,7 +215,7 @@
 	                <html>
 	                <head>
 		                <title>
-			                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+			                Salud Gur&uacute; - Cancelaci&oacute;n de cita m&eacute;dica.
 		                </title>
 	                </head>
 	                <body style="width:46%; height:auto; border-style:solid; border-width:1px 0px; border-color:#666; font-family:'Verdana', Geneva, sans-serif; padding: 10px 16px 0px 16px;">
@@ -229,7 +229,7 @@
                                 atenderte el día {AppointmentDate} a las {Hour} en el 
                                 consultorio situado en {OfficeAddress}
                                 Teléfono: {OfficePhone} por {Reason}.
-                                Para agendar una nueva fecha haz clic   <a href="{ReescheduleLink}">  Aquí </a>.                                     
+                                Para agendar una nueva fecha haz clic   <a href="{ProfileUrl}">  Aquí </a>.                                     
                               </p>
                             <div style="width:100%; height:30px;">
                                 <span style="font-size: 0.7em;
@@ -273,7 +273,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_CancelAppointment">
-      <![CDATA[Lamentablemente tu Dr(a).{ProfileName} no podra atenderte el {AppointmentDate} Reagendar {RescheduleLink} {OfficePhone}]]>
+      <![CDATA[Lamentablemente tu Dr(a).{ProfileName} no podra atenderte el {AppointmentDate} Reagendar {ProfileUrl} {OfficePhone}]]>
     </key>
 
     <!--Cancel Appointment Notificaciones Gurú-->
@@ -309,7 +309,7 @@
 	                <html>
 	                <head>
 		                <title>
-			                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+			                Salud Gur&uacute; - Modificaci&oacute;n de cita m&eacute;dica.
 		                </title>
 	                </head>
 	                <body style="width:46%; height:auto; border-style:solid; border-width:1px 0px; border-color:#666; font-family:'Verdana', Geneva, sans-serif; padding: 10px 16px 0px 16px;">
@@ -419,7 +419,7 @@
                                 <br>
                              <p>   
                                 Cuidados previos {BeforeCare}                                             
-                                <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.                                            
+                                <a href="https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId={ConfirmCancelLink}">Confirmar/Cancelar </a>.                                            
                              </p>
                             <div style="width:100%; height:30px;">
                                 <span style="font-size: 0.7em;
@@ -463,7 +463,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel:{OfficePhone} <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>.]]>
+      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} Confirmar/Cancelar]]>
     </key>
 
     <!--Modify GuruNotification_ReminderAppointment Gurú-->
@@ -479,12 +479,6 @@
     <key name="Message_Body_GuruNotification_ReminderAppointment">
       <![CDATA[este es el body del SMS]]>
     </key>
-
-    
-    
-    
-  
-
 
     <!--Reminder Appointment  -->
     <!--Email_ReminderNextAppointmentt - -->
