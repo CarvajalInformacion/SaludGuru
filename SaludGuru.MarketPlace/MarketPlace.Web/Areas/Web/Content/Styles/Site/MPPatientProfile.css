@@ -5,7 +5,6 @@
     border: none;
     margin: 0px auto;
 }
-
 .MPProfileMenuWrapper, .MPProfileFormWrapper, .MPProfileTableWrapper {
     display: inline-block;
     vertical-align: top;
@@ -17,7 +16,6 @@
     display: inline-block;
     padding-bottom: 20px;
 }
-
 .MPProfileFormWrapper, .MPProfileTableWrapper {
     border-width: 1px 0px 1px 1px;
     border-style: solid;
@@ -29,7 +27,6 @@
     margin: 0px 0px 0px -4px;
     padding-bottom: 25px;
 }
-
     .MPProfileFormWrapper h3 {
         display: block;
         margin: 10px 0px 10px 16px;
@@ -37,7 +34,6 @@
         font-size: 20px;
         line-height: 20px;
     }
-
     .MPProfileFormWrapper #divGridSpecialtyProfile, .MPProfileFormWrapper #divGridInsuranceProfile, .MPProfileFormWrapper #divGridTreatmentProfile {
         display: block;
         width: 98%;
@@ -45,7 +41,6 @@
     }
 
 /************* COLUMNA DE INFO DEL PERFIL ************/
-
 .MPMenuPrincipalPerfil {
     display: inline-block;
     width: 100%;
@@ -91,7 +86,6 @@
     border: none;
     z-index: 10;
 }
-
     .MPMenuPrincipalPerfil div ul li {
         display: block;
         margin: 0px;
@@ -102,19 +96,16 @@
         text-align: left;
         color: #333;
     }
-
         .MPMenuPrincipalPerfil div ul li:first-child {
             border-width: 1px 1px 1px 1px;
             border-style: solid;
             border-color: #999999;
         }
-
     .MPMenuPrincipalPerfil div ul li {
         border-width: 0px 1px 1px 1px;
         border-style: solid;
         border-color: #999999;
     }
-
         .MPMenuPrincipalPerfil div ul li:hover {
             cursor: pointer;
             background-color: #e7e3e0;
@@ -135,9 +126,6 @@ border-left:1px solid #999999;
     text-align:center;
     color:#333;
 }*/
-
-
-
         .MPMenuPrincipalPerfil div ul li a {
             display: block;
             margin: 0px 0px 0px 20px;
@@ -150,11 +138,9 @@ border-left:1px solid #999999;
             vertical-align: middle;
             color: #333;
         }
-
             .MPMenuPrincipalPerfil div ul li a:hover {
                 text-decoration: none;
             }
-
 /*********** ESTILOS DE LA TABLA DE ADMIN DE DOCS. *************/
 #divGridProfile-txtSearch, #divGridPatient-txtSearch {
     margin: 12px 0px 10px 7px;
@@ -185,8 +171,6 @@ border-left:1px solid #999999;
         background-color: #ddff55;
         color: #333;
     }
-
-
     .MPProfileTableWrapper #divGridOffice div a, #divGridOfficeTreatment div a{
         color: #03AAC2;
     }
