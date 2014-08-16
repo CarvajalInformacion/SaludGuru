@@ -126,7 +126,7 @@
             <img src="@ImgProfile" />
             <h1><a href="@ProfileUrl">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</a></h1>
             <h2>@(!string.IsNullOrEmpty(Model.CurrentProfile.DefaultSpecialty.Name) ? Model.CurrentProfile.DefaultSpecialty.Name : string.Empty)</h2>
-            <p>Usted tiene una cita en la oficina @Model.CurrentAppointment.OfficeName el @Model.CurrentAppointment.StartDate.ToString("ddd dd \\de MMMM del yyyy a las hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))</p>
+            <p>Usted tiene una cita en la oficina @Model.CurrentAppointment.OfficeName el @Model.CurrentAppointment.StartDate.ToString("ddd dd \\de MMMM \\del yyyy a la\\s hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))</p>
         </div>
         <div class="Options">
             <label><a href="@ProfileUrl">Se ha confirmado la cita, para ver el perfil del doctor nuevamente haz "click aquí"</a></label>
