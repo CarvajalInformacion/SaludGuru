@@ -207,6 +207,11 @@ namespace MedicalCalendar.Manager.Controller
             return DAL.Controller.MedicalCalendarDataController.Instance.AppointmentGetByOfficeIdMonth(OfficePublicId, StartDateTime);
         }
 
+        public static string GetAppointmentByOldId(string OldAppointmentId)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.GetAppointmentByOldId(OldAppointmentId);
+        }
+
         #region MarketPlace
 
         public static List<AppointmentModel> MPAppointmentGetByOfficeId

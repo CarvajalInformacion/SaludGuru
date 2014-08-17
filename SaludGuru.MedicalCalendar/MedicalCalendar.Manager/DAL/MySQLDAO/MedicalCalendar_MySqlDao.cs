@@ -925,6 +925,31 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public string GetAppointmentByOldId(string OldAppointmentId)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
+            lstParams.Add(DataInstance.CreateTypedParameter("vOldAppointmentId", OldAppointmentId));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandText = "AP_GetAppointmentByOldId",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            List<AppointmentMonthModel> oReturn = null;
+
+            if (response.ScalarResult != null)
+            {
+                return response.ScalarResult.ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         #region Marketplace
 
         public List<AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime)

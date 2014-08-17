@@ -187,6 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Web\Controllers\AgendaController.cs" />
     <Compile Include="Areas\Web\Controllers\AppointmentController.cs" />
     <Compile Include="Areas\Web\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Web\Controllers\UserProfileController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="ControllersApi\BaseApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />

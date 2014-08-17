@@ -45,6 +45,8 @@ namespace MedicalCalendar.Manager.Interfaces
         List<Models.Appointment.AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
         bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO);
 
+        string GetAppointmentByOldId(string OldAppointmentId);
+
         //appointment info
         int AppointmentInfoCreate(string AppointmentPublicId, enumAppointmentInfoType AppointmentInfoType, string Value, string LargeValue);
         void AppointmentInfoModify(int AppointmentInfoId, string Value, string LargeValue);
@@ -52,6 +54,8 @@ namespace MedicalCalendar.Manager.Interfaces
         //appointment patient
         void AppointmentPatientCreate(string AppointmentPublicId, string PatientPublicId);
         void AppointmentPatientDelete(string AppointmentPublicId, string PatientPublicId);
+
+
     }
 }
 
