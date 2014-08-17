@@ -7,6 +7,7 @@
     border-style:solid;
     border-color:#999;
     margin:0px auto;
+    min-height:400px;
 }
 .MPFormDataWrapper span{
     font-size:1.6em;
@@ -25,7 +26,7 @@
 .MPFormDataWrapper ul{
     display: block;
     height: auto;
-    border: 1px solid #008000;
+        border: none;
     text-align: center;
     width: AUTO;
     margin: 10px 0px;

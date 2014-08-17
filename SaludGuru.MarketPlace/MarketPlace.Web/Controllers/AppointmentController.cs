@@ -26,6 +26,12 @@ namespace MarketPlace.Web.Controllers
                 CurrentOffice = OfficePublicId,
                 StartDate = Date
             };
+
+            if (oModel.PatientGroup == null)
+            {
+                oModel.PatientGroup = new List<PatientModel>();
+            }
+
             return View(oModel);
         }
 
@@ -39,7 +45,7 @@ namespace MarketPlace.Web.Controllers
             List<PatientModel> patientToRemove = new List<PatientModel>();
             oModel = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
 
-            AppointmentModel appToCreate = new AppointmentModel();            
+            AppointmentModel appToCreate = new AppointmentModel();
             appToCreate = this.GetAppointmetRequest(oModel, Date);
             NewAppointmentPublicId = MedicalCalendar.Manager.Controller.Appointment.UpsertAppointmentInfo(appToCreate, patientToRemove);
 
@@ -76,7 +82,7 @@ namespace MarketPlace.Web.Controllers
                 OfficeModel SelectedOfficeModel = CurrentProfileModel.RelatedOffice.Where(x => x.OfficePublicId == Request["SelectedOffice"].ToString()).Select(x => x).FirstOrDefault();
                 TreatmentOfficeModel TreatmentSelected = SelectedOfficeModel.RelatedTreatment.Where(x => x.CategoryId == Convert.ToInt32(Request["SelectedTreatment"])).FirstOrDefault();
                 string DurationDate = TreatmentSelected.TreatmentOfficeInfo.Where(x => x.OfficeCategoryInfoType == enumOfficeCategoryInfoType.DurationTime).Select(x => x.Value).FirstOrDefault();
-                
+
                 AppointmentModel oReturn = new AppointmentModel();
                 if (Date == null)
                 {

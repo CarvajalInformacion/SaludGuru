@@ -1,6 +1,6 @@
 li.MPAgendaButtonWrapper, div.MPAgendaButtonWrapper{
     display: block !important;
-    border: 1px solid #F00 !important;
+    border:none;
     width: auto;
     height: auto;
     margin: 0px auto 0px auto !important;
@@ -16,7 +16,7 @@ div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
     padding:0px 10px;
     box-shadow: 1px 1px 1px #333;
     background-color: #e6e6e6;
-    border-radius: 1px;    
+    border-radius: 2px;    
     cursor: pointer;
     height:auto; width:auto;
     text-indent: 0px;
@@ -24,11 +24,19 @@ div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
     div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate,
     li.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
         padding: 6px 10px;
-        margin: 6px;
+        margin:6px 6px 6px 36px;
         background-color: #FF002D;
+        border:1px solid #666;
         border-radius: 2px;
         color: #fff;
         font-size: 20px;
+        box-shadow: 1px 1px 1px #333;
+        text-align:center;
+    }
+    div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate:hover,
+    li.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate:hover {
+        box-shadow: 1px 1px 0px #333;
+        background-color:#D81334;
     }
     li.MPAgendaButtonWrapper input.MPAgendaButtons:hover, 
     li.MPAgendaButtonWrapper input.MPAgendaButtons:active{
@@ -37,21 +45,21 @@ div.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate{
     }
 /*GUARDAR*/
 a#itemSave {
-    border: 1px solid #333;
+    border: 1px solid #666;
     display: block;
-    width: 100px;
+    width:278px;
     height: auto;
-    background-color: #E6E6E6;
+    background-color:#FF002D;
     margin: 12px auto;
-    color: #333;
+    color: #fff;
     text-align: center;
     line-height:26px;
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 1.3em;
     box-shadow:2px 2px 1px #666;
 }
     a#itemSave:hover{
         text-decoration:none;
-        background-color:#fff;
+        background-color:#D81334;
         box-shadow:1px 1px 1px #666;
     }
