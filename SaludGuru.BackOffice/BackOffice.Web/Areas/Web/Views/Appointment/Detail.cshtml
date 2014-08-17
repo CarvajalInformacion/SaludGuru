@@ -77,7 +77,7 @@
                         <label>Cuidados posteriores:</label>
                         <textarea id="BeforeCare" name="BeforeCare">@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.BeforeCare)</textarea>
                     </li>
-                    @if (Model.CurrentAppointment.AppointmentCancelReason != null)
+                    @if (Model.CurrentAppointment != null && Model.CurrentAppointment.AppointmentCancelReason != null)
                     {
                         <li>
                             <label>Razón de cancelación:</label>
