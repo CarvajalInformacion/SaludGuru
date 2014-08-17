@@ -1104,6 +1104,7 @@
     </Content>
     <Content Include="Rsx-SettingsConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
