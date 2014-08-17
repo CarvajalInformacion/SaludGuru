@@ -77,6 +77,14 @@ namespace MarketPlace.Web
                 }
             ).DataTokens = rvdByArea;
 
+            routes.MapRoute(
+                name: "Controller_Agenda",
+                url: "Agenda/{action}",
+                defaults: new
+                {
+                    controller = "Agenda",
+                }
+            ).DataTokens = rvdByArea;
             #endregion
 
             #region Home
