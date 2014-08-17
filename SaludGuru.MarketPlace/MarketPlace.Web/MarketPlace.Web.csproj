@@ -1092,6 +1092,7 @@
     <Content Include="Areas\Web\Views\Shared\_S_Profile_Free.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Profile_Pay.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Profile_Basic.cshtml" />
+    <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-FeedManager.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
