@@ -92,7 +92,7 @@ var AppointmentObject = {
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
-        debugger;
+        
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
             $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
             $('#' + AppointmentObject.selTreatmentId).append('<input type="hidden" name="Slot" value=' + value + '>');
@@ -119,7 +119,7 @@ var AppointmentObject = {
                     dataSource: {
                         transport: {
                             read: function (options) {
-                                debugger;
+                                
                                 var vStartDate = '';
                                 var vNextAvailableDate = 'true';
                                 var vCategoryId = '';
@@ -287,7 +287,7 @@ $('#DateMoreInfoIdNN').click(function () {
     $("#DateMoreInfoId").hide();
 });
 $('#SaveAppointmentId').click(function () {
-    debugger;
+    
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
     //if (startDate == "") {
@@ -296,6 +296,12 @@ $('#SaveAppointmentId').click(function () {
     if (treatmentSelected == null) {
         return false;
     }
+});
+$(document).mouseup(function (e) {
+    
+    var container = $("#NewPatient");
+        container.hide();
+    
 });
 $("#isSomeBody").click(function () {
     $("#NewPatient").show();

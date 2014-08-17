@@ -69,7 +69,8 @@ namespace MarketPlace.Web.Controllers
 
             ViewModel.CurrentProfile = oModel;
             ViewModel.CurrentOffice = office.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault();
-            ViewModel.StartDate = appToCreate.StartDate.ToString();
+            ViewModel.StartDate = appToCreate.StartDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+
             return View(ViewModel);
         }
 

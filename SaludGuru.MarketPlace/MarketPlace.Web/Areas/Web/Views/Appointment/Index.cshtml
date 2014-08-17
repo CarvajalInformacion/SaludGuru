@@ -81,7 +81,9 @@
             </li>
             <li class="MPAgendaPatientSelection">
                 <h2>Quien va a ver al Doctor:</h2>
-                @foreach (var item in Model.PatientGroup)
+                @if (Model.PatientGroup.Count > 0)
+                {
+                    foreach (var item in Model.PatientGroup)
                 {
                     string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
                                 x.Value == "true").
@@ -100,6 +102,13 @@
                             }                        
                     </div>
                 }
+                }
+                else
+                {
+                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
+                                <label>Yo</label>
+                }
+
             </li>
             <li class="MPAgendaButtonWrapper">
                 <input class="MPAgendaButtons" id="isSomeBody" type="button" name="Btn" value="Alguien más" />
