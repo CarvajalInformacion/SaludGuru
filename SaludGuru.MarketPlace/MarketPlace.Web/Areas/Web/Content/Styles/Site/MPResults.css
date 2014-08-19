@@ -34,14 +34,8 @@
     float:right;
 }
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
-/**** gratis ****/
-.MPResultsFreeProfile {
-}
-/**** basico ****/
-.MPResultsBasicProfile {
-}
-/**** pago ****/
-div.MPResultsPaidProfile {
+/**** pago, basico, gratis ****/
+div.MPResultsPaidProfile{
         border: none;
     display: block;
     margin:0px 8px 12px 8px;
@@ -58,6 +52,7 @@ div.MPResultsPaidProfile div{
 }
 div.MPResultsCertifiedWrapper,
 img.MPResultsCertified{display:inline-block;}
+
 div.MPResultsCertifiedWrapper {
     min-width:46px;
     width:5.2%;
@@ -73,9 +68,6 @@ img.MPResultsDoctorPicture{
     border:1px solid #666;
     border-radius:2px;
 }
-span.MPResultsSpecialityName,
-span.MPResultsInsuranceName {display:block ;}
-span.MPResultsSpecialityName {border-top:1px solid ;}
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
        border:none;
@@ -83,79 +75,92 @@ div.MPResultsPaidProfileDoctorData {
     width:21%;
     min-width:220px;
     min-height:182px;
-    margin-left:6px;
+    margin-left:8px;
 }
-div.MPResultsPaidProfileDoctorData > a:first-child{display:block;}
-div.MPResultsPaidProfileDoctorData > a:first-child > label{
+span.MPResultsSpecialityName,
+span.MPResultsInsuranceName,
+a.MPResultsPaidProfileDoctorName{
+    display:block;
+    border-bottom: 1px solid #666;
+    margin: 4px 0px 4px 0px;
+    height:auto;
+}
+a.MPResultsPaidProfileDoctorName label{
     font-size:1.5em;
     line-height:24px;
     cursor: pointer;
+    margin: 4px 0px 8px 0px !important;
 }
-    div.MPResultsPaidProfileDoctorData > span:nth-child(3){
-        margin: 4px 0px 4px 0px;
-        border-top: 1px solid #666;
-        border-bottom: 1px solid #666;
-    }
-    div.MPResultsPaidProfileDoctorData > a:nth-child(4),
-    div.MPResultsPaidProfileDoctorData > a:nth-child(5){
-        display:inline-block;
-        width: 48%;
-        margin:6px 0px 0px 0px;
-        text-decoration:none;
-    }
-        div.MPResultsPaidProfileDoctorData > a:nth-child(4) > img,
-        div.MPResultsPaidProfileDoctorData > a:nth-child(5) > img{
-            width:32%;
-            min-width:34px; height:auto;
-        }
-        div.MPResultsPaidProfileDoctorData > a:nth-child(4) > span,
-        div.MPResultsPaidProfileDoctorData > a:nth-child(5) > span{
+a.MPResultsPaidProfileDoctorWebsite,
+a.MPResultsPaidProfileDoctorFacebook{
+    display:inline-block;
+    width: 48%;
+    margin:6px 0px 0px 0px;
+    text-decoration:none;
+}
+a.MPResultsPaidProfileDoctorWebsite > img,
+a.MPResultsPaidProfileDoctorFacebook > img {
+    width: 26%;
+    min-width: 30px;
+    height: auto;
+}
+a.MPResultsPaidProfileDoctorWebsite > span,
+a.MPResultsPaidProfileDoctorFacebook > span{
             font-size: 0.7em;
             letter-spacing: 0px;
             margin: 0px 0px 0px -4px;
             width: 64%;
             line-height: 16px;
-        }
-/** DESCRIPCION CORTA DEL DOCTOR **/
-div.MPResultsBookShortDescription {
-        border:none;
-    display: inline-block;
-    width:62%;
-    vertical-align: top;
-    margin:0px 0px 0px 12px;
 }
-    div.MPResultsBookShortDescription span{
-        height:auto;
-        max-height:116px;
-    }
-    @media screen and (max-width:1024px) {
-        div.MPResultsBookShortDescription {
-            border:none;
+/** DESCRIPCION CORTA DEL DOCTOR **/
+        div.MPResultsDoctorDescriptionWrapper {
+        border:none;
         display: inline-block;
-        width:50%;
+        width:62%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
-            div.MPResultsBookShortDescription span{
-                height:auto;
-                max-height:130px;
-                display: block;
-                text-align:left;
+            span.MPResultsDoctorShortDescription{
+                        height:auto;
+                max-height:116px;
+            }
+    @media screen and (max-width:1280px) {
+        div.MPResultsDoctorDescriptionWrapper {
+        border:none;
+        display: inline-block;
+        width:55%;
+        vertical-align: top;
+        margin:0px 0px 0px 12px;
+        }
+            span.MPResultsDoctorShortDescription{
+                        height:auto;
+                max-height:116px;
+            }
+    }
+    @media screen and (max-width:1024px) {
+        div.MPResultsDoctorDescriptionWrapper {
+                    border:none;
+        display: inline-block;
+        width:45%;
+        vertical-align: top;
+        margin:0px 0px 0px 12px;
+        }
+            span.MPResultsDoctorShortDescription{
+                        height:auto;
+                max-height:116px;
             }
     }
     @media screen and (max-width:800px) {
-        div.MPResultsBookShortDescription {
-            border:none;
+        div.MPResultsDoctorDescriptionWrapper {
+                    border:none;
         display: inline-block;
         width:42%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
-            div.MPResultsBookShortDescription span{
-                height:auto;
-                max-height:172px;
-                display: block;
-                text-align:left;
+            span.MPResultsDoctorShortDescription{
+                        height:auto;
+                max-height:116px;
             }
     }
 /**********  DATOS CONTACTO **********/
@@ -165,61 +170,27 @@ div.MPResultsBookShortDescription {
             width:50%;
             min-width: 220px;
             vertical-align: top;
-            margin: 6px 0px 0px 0px;
+            margin: 8px 0px 0px 0px;
         }
         div.OfficeSelector span{
-            border:1px solid #666;
-            background-color:#bfde6d;
-            border-radius:2px;
-            padding:4px 6px;
-            cursor:pointer;            
+            cursor:pointer;       
             width:100%;
-            color: #333;
-            text-align: center;
+            color: forestgreen;
+            text-align: left;
+            font-weight:bold;
+            font-size:1em;
         }
             div.OfficeSelector span:hover{
-                background-color:#a6d134;
+                text-decoration:underline;
             }
             div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
-                border:none;
-                background-color:initial;
                 cursor:auto;
                 font-size:1em;
                 display:inline-block;
                 width: auto;
-                line-height: 12px;
+                line-height:16px;
+                text-decoration:none;
             }
-@media screen and (max-width:1024px) {
-         div.OfficeSelector {
-            border: none;
-            display:block;
-            width:80%;
-            min-width: 220px;
-            vertical-align: top;
-            margin: 6px 0px 0px 0px;
-        }
-        div.OfficeSelector span{
-            border:1px solid #666;
-            background-color:#bfde6d;
-            border-radius:2px;
-            padding:4px 6px;
-            cursor:pointer;            
-            width:100%;
-            color: #333;
-            text-align: center;
-        }
-            div.OfficeSelector span:hover{
-                background-color:#a6d134;
-            }
-            div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
-                border:none;
-                background-color:initial;
-                cursor:auto;
-                font-size:1em;
-                display:inline-block;
-                width: auto;
-            }
-}
 /********* enlace agenda gratis ********/
 .MPResultsBookAppFree {
     display:inline-block !important;
@@ -236,32 +207,4 @@ div.MPResultsBookShortDescription {
 .MPResultsBookAppFree:hover {
     background-color:#82A327;
     text-decoration:none;
-}
-@media screen and (max-width:1024px) {
-    .MPResultsBookAppFree {
-    display:inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width:80%;
-    text-align: center;
-    font-size: 1.2em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-    }
-}
-@media screen and (max-width:800px) {
-    .MPResultsBookAppFree {
-    display:inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width: 80%;
-    text-align: center;
-    font-size: 1.2em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-    }
 }
