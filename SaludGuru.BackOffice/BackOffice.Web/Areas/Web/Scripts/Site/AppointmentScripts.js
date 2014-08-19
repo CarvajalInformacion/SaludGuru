@@ -203,8 +203,8 @@ var MettingCalendarObject = {
                 if (this.CurrentAgentType == 'month') {
                     oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime);
                     oEditable = false;
-                    var oLeft = 'prev';
-                    var oRight = 'next';
+                    //oLeft = 'prev';
+                    //oRight = 'next';
                 }
 
 
