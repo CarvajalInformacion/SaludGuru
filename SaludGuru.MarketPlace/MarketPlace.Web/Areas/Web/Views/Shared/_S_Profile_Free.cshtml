@@ -37,18 +37,6 @@
             DefaultIfEmpty(string.Empty).
             FirstOrDefault();
 
-    //get WebSite info
-    var ovWebSite = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
-            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
-            FirstOrDefault();
-
-    //get facebook profile
-    var ovFacebook = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
-            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
-            FirstOrDefault();
-
     //get profile url
     var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
         new
@@ -59,15 +47,14 @@
         }));
 
         }
-
-        @if (ovIsCertified)
-        {
+        <div class="MPResultsCertifiedWrapper">
+            @if (ovIsCertified)
+            {
             <!--certified image-->
-            <div class="MPResultsCertifiedWrapper">
                 <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-            </div>
-        }
-        <a href="@ovProfileUrl">
+            }
+        </div>
+        <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
             <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
         </a>
         <div class="MPResultsPaidProfileDoctorData">
@@ -108,7 +95,7 @@
                     }
                     else
                     {
-                        <label>El Doctor no tiene información de contacto</label> 
+                        <span>El Doctor no tiene información de contacto</span> 
                     }
                 </div>
             </div>

@@ -61,12 +61,16 @@ div.MPResultsCertifiedWrapper {
 img.MPResultsCertified {
     width:100%; height:auto;
 }
-img.MPResultsDoctorPicture{
-    width:6%;
-    min-width:100px;
+a.MPResultsDoctorPictureWrapper{
+    width:8%;
+    min-width:92px;
     height:auto;
     border:1px solid #666;
     border-radius:2px;
+    display:inline-block;
+}
+img.MPResultsDoctorPicture{
+    width:100%; height:auto;
 }
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
@@ -170,7 +174,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             width:50%;
             min-width: 220px;
             vertical-align: top;
-            margin: 8px 0px 0px 0px;
+            margin:12px 0px 4px 0px;
         }
         div.OfficeSelector span{
             cursor:pointer;       
@@ -197,12 +201,54 @@ a.MPResultsPaidProfileDoctorFacebook > span{
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width: 50%;
+    width:100%;
     text-align: center;
     font-size: 1.2em !important;
     border-radius: 3px;
     color: #FFF !important;
     border: 1px solid #555 !important;
+}
+@media screen and (max-width:1280px) {
+    .MPResultsBookAppFree {
+    display:inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width:100%;
+    text-align: center;
+    font-size: 1.2em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
+    }
+}
+@media screen and (max-width:1024px) {
+    .MPResultsBookAppFree {
+    display:inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width:98%;
+    text-align: center;
+    font-size: 1.2em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
+    }
+}
+@media screen and (max-width:800px) {
+    .MPResultsBookAppFree {
+    display:inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width:104%;
+    text-align: center;
+    font-size: 1.2em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
+    }
 }
 .MPResultsBookAppFree:hover {
     background-color:#82A327;
