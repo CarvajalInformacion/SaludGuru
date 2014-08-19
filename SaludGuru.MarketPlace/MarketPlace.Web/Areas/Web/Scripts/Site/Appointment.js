@@ -297,14 +297,30 @@ $('#SaveAppointmentId').click(function () {
         return false;
     }
 });
-$(document).mouseup(function (e) {
-    
-    var container = $("#NewPatient");
-        container.hide();
-    
-});
+//$(document).mouseup(function (e) {
+//    var container = $("#NewPatient");
+//        container.hide(1000);    
+//});
 $("#isSomeBody").click(function () {
-    $("#NewPatient").show();
+    ////$("#NewPatientId").html("div .NewPatient");
+
+    //var htmlDivShow = $('#NewPatient').html();  
+    //$('#NewPatientId').append(htmlDivShow);
+
+    $("#NewPatient").show(1000);
+
+
+    //var htmlDivShow = $('#NewPatient').html();
+    //$('#NewPatientId').append(htmlDivShow);
+
+    //if ($('#NewPatientId').is(':hidden')) {
+        
+    //}
+    //else {
+    //    $('#NewPatientId').hide();
+    //}
+
+
 });
 $("#GenderFemale").click(function () {
     $("#GenderMale").attr('checked', false);
