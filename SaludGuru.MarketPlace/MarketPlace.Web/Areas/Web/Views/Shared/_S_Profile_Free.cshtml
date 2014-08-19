@@ -47,14 +47,13 @@
         }));
 
         }
-
-        @if (ovIsCertified)
-        {
+        <div class="MPResultsCertifiedWrapper">
+            @if (ovIsCertified)
+            {
             <!--certified image-->
-            <div class="MPResultsCertifiedWrapper">
                 <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-            </div>
-        }
+            }
+        </div>
         <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
             <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
         </a>
@@ -96,7 +95,7 @@
                     }
                     else
                     {
-                        <label>El Doctor no tiene información de contacto</label> 
+                        <span>El Doctor no tiene información de contacto</span> 
                     }
                 </div>
             </div>
