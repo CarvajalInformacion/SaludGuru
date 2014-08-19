@@ -36,52 +36,46 @@
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** gratis ****/
 .MPResultsFreeProfile {
-    border:1px solid darkgreen;
-    display:block;
-    margin:0px 8px;
-    padding:12px;
-}
-.MPResultsFreeProfile label,
-.MPResultsFreeProfile span{
-    border:1px solid darkgreen;
-    display:inline-block;
-}
-.MPResultsFreeProfile span{
-}
-.MPResultsFreeProfile span{
 }
 /**** basico ****/
+.MPResultsBasicProfile {
+}
 /**** pago ****/
 div.MPResultsPaidProfile {
-    border: 1px solid #666;
+        border: none;
     display: block;
     margin:0px 8px 12px 8px;
     padding: 12px;
     background: linear-gradient(#fff, #ececec);
-    box-shadow: 2px 2px 1.3px;
-    border-radius: 3px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    border-radius: 2px;
 }
 div.MPResultsPaidProfile label,
-div.MPResultsPaidProfile span,
 div.MPResultsPaidProfile img,
-div.MPResultsPaidProfile a{
-        border:none;
-    display:inline-block;
+div.MPResultsPaidProfile a,
+div.MPResultsPaidProfile div{
     vertical-align:top;
 }
-.MPResultsPaidProfile img:first-child{
-    width:5.4%;
+div.MPResultsCertifiedWrapper,
+img.MPResultsCertified{display:inline-block;}
+div.MPResultsCertifiedWrapper {
     min-width:46px;
+    width:5.2%;
     height:auto;
 }
-.MPResultsPaidProfile > a:nth-child(2){width:auto; height:auto;}
-.MPResultsPaidProfile > a:nth-child(2) > img{
-    width:100%;
+img.MPResultsCertified {
+    width:100%; height:auto;
+}
+img.MPResultsDoctorPicture{
+    width:6%;
     min-width:100px;
     height:auto;
     border:1px solid #666;
     border-radius:2px;
 }
+span.MPResultsSpecialityName,
+span.MPResultsInsuranceName {display:block ;}
+span.MPResultsSpecialityName {border-top:1px solid ;}
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
        border:none;
