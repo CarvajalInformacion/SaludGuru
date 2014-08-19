@@ -88,11 +88,11 @@ var AppointmentObject = {
         }
     },
 
-    ChangeOffice: function (vOfficePublicId) {        
+    ChangeOffice: function (vOfficePublicId) {
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
-        
+
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
             $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
             $('#' + AppointmentObject.selTreatmentId).append('<input type="hidden" name="Slot" value=' + value + '>');
@@ -119,7 +119,7 @@ var AppointmentObject = {
                     dataSource: {
                         transport: {
                             read: function (options) {
-                                
+
                                 var vStartDate = '';
                                 var vNextAvailableDate = 'true';
                                 var vCategoryId = '';
@@ -276,7 +276,7 @@ $('#DateMoreInfoIdN').click(function () {
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
 
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
-    $("#FreeScheduleId").show();
+    $("#FreeScheduleId").show(800);
     $("#DateMoreInfoId").hide();
 });
 $('#DateMoreInfoIdNN').click(function () {
@@ -287,7 +287,7 @@ $('#DateMoreInfoIdNN').click(function () {
     $("#DateMoreInfoId").hide();
 });
 $('#SaveAppointmentId').click(function () {
-    
+
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
     //if (startDate == "") {
@@ -297,30 +297,8 @@ $('#SaveAppointmentId').click(function () {
         return false;
     }
 });
-//$(document).mouseup(function (e) {
-//    var container = $("#NewPatient");
-//        container.hide(1000);    
-//});
 $("#isSomeBody").click(function () {
-    ////$("#NewPatientId").html("div .NewPatient");
-
-    //var htmlDivShow = $('#NewPatient').html();  
-    //$('#NewPatientId').append(htmlDivShow);
-
-    $("#NewPatient").show(1000);
-
-
-    //var htmlDivShow = $('#NewPatient').html();
-    //$('#NewPatientId').append(htmlDivShow);
-
-    //if ($('#NewPatientId').is(':hidden')) {
-        
-    //}
-    //else {
-    //    $('#NewPatientId').hide();
-    //}
-
-
+    $('#NewPatientId').show(800);
 });
 $("#GenderFemale").click(function () {
     $("#GenderMale").attr('checked', false);
@@ -329,6 +307,6 @@ $("#GenderMale").click(function () {
     $("#GenderFemale").attr('checked', false);
 });
 $("#DateLessInfoId").click(function () {
-    $("#FreeScheduleId").hide();
+    $("#FreeScheduleId").hide(800);
     $("#DateMoreInfoId").show();
 });
