@@ -61,12 +61,16 @@ div.MPResultsCertifiedWrapper {
 img.MPResultsCertified {
     width:100%; height:auto;
 }
-img.MPResultsDoctorPicture{
-    width:6%;
-    min-width:100px;
+a.MPResultsDoctorPictureWrapper{
+    width:8%;
+    min-width:92px;
     height:auto;
     border:1px solid #666;
     border-radius:2px;
+    display:inline-block;
+}
+img.MPResultsDoctorPicture{
+    width:100%; height:auto;
 }
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
