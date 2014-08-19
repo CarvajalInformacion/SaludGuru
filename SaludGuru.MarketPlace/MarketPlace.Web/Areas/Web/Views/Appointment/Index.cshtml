@@ -6,12 +6,12 @@
 <div class="MPFormDataWrapper">
     <span>Proceso de Agendamiento</span>
 
-    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true , Date = Model.StartDate}))">
+    <form id="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true, Date = Model.StartDate }))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
                 <li id="officeSelectedId" style="display:none">
-                    <h2>Datos de la cita</h2>                    
+                    <h2>Datos de la cita</h2>
                     <label>Selecciona un consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
@@ -76,7 +76,7 @@
                             }
                         }
                     }
-                    
+
                 </select>
             </li>
             <li class="MPAgendaPatientSelection">
@@ -84,12 +84,12 @@
                 @if (Model.PatientGroup.Count > 0)
                 {
                     foreach (var item in Model.PatientGroup)
-                {
-                    string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
-                                x.Value == "true").
-                                Select(x => x.Value).FirstOrDefault();
-                    
-                    <div id="ulPatientList">                        
+                    {
+                        string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                    x.Value == "true").
+                                    Select(x => x.Value).FirstOrDefault();
+
+                        <div id="ulPatientList">
                             @if (currentPatient != null)
                             {
                                 <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
@@ -99,14 +99,16 @@
                             {
                                 <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
                                 <label>@item.Name @item.LastName</label>
-                            }                        
-                    </div>
-                }
+                            }
+                        </div>
+                    }
                 }
                 else
                 {
-                    <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
-                                <label>Yo</label>
+                    <div id="ulPatientList">
+                        <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
+                        <label>Yo</label>
+                    </div>
                 }
 
             </li>
@@ -123,14 +125,14 @@
                 {
                     <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />
                 }
-            </li>            
+            </li>
             <li class="MPAgendaButtonWrapper">
                 <input type="hidden" name="StartDate" id="StartDate" value="" />
                 <input class="MPAgendaButtonAcceptDate" type="submit" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
             </li>
         </ul>
     </form>
-    
+
     @*ESTE PEDAZO PINTA EL CALENDARIO DE CITAS DEL DOCTOR*@
     <div class="laPmadre" id="FreeScheduleId" style="display:none">
         @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
@@ -140,39 +142,39 @@
     </div>
 
     @*ESTE PEDAZO PINTA EL FORMULARIO DEL NUEVO PACIENTE*@
-<div id="NewPatient" style="display:none;">
-    <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
-        <ul>
-            <li>
-                <h2>Datos del nuevo paciente</h2>
-                <label>Nombre</label>
-                <input type="text" id="Name" name="Name" />
-            </li>
-            <li>
-                <label>Apellido</label>
-                <input type="text" id="LastName" name="LastName" />
-            </li>
-            <li>
-                <label>Identificación</label>
-                <input type="text" id="Identification" name="Identification" />
-            </li>
-            <li>
-                <label>Fecha de nacimiento</label>
-                <input type="text" id="Birthday" name="Birthday" />
-            </li>
-            <li>
-                <h2>Sexo</h2>
+    <div id="NewPatient" style="display:none;">
+        <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=2c1d2510">
+            <ul>
+                <li>
+                    <h2>Datos del nuevo paciente</h2>
+                    <label>Nombre</label>
+                    <input type="text" id="Name" name="Name" />
+                </li>
+                <li>
+                    <label>Apellido</label>
+                    <input type="text" id="LastName" name="LastName" />
+                </li>
+                <li>
+                    <label>Identificación</label>
+                    <input type="text" id="Identification" name="Identification" />
+                </li>
+                <li>
+                    <label>Fecha de nacimiento</label>
+                    <input type="text" id="Birthday" name="Birthday" />
+                </li>
+                <li>
+                    <h2>Sexo</h2>
                     <label>Masculino</label>
                     <input type="checkbox" id="GenderMale" name="GenderMale" />
                     <label>Femenino</label>
                     <input type="checkbox" id="GenderFemale" name="GenderFemale" />
-            </li>
-            <li>
-                <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
-            </li>
-        </ul>      
-    </form>
-</div>
+                </li>
+                <li>
+                    <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
+                </li>
+            </ul>
+        </form>
+    </div>
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
     </div>
