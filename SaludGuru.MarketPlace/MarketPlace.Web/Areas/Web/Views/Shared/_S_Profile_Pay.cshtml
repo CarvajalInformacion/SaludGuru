@@ -58,10 +58,12 @@
         @if (ovIsCertified)
         {
             <!--certified image-->
-            <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+        <div class="MPResultsCertifiedWrapper">
+            <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+        </div>
         }
         <a href="@ovProfileUrl">
-            <img src="@ovImageProfile" />
+            <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
         </a>
         <div class="MPResultsPaidProfileDoctorData">
             <a href="@ovProfileUrl">
@@ -70,9 +72,9 @@
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                     <!--Principal specialty-->
-                <span>@ovDefaultSpecialty.Name</span>
+                <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
             }
-            <span>@string.Join(", ", Model.RelatedInsurance.Select(x => x.Name).ToList())</span>
+            <span class="MPResultsInsuranceName">@string.Join(", ", Model.RelatedInsurance.Select(x => x.Name).ToList())</span>
             @if (!string.IsNullOrEmpty(ovWebSite))
             {
                 <a href="@ovWebSite" target="_blank">
