@@ -25,6 +25,13 @@
                         <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
                     }
                 </li>
+                <li>
+                    @if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Month)
+                    {
+                        <a href="@Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-1).ToString("yyyy-M-d"), SelectedOffice = Model.SelectedOffice })"><</a>
+                        <a href="@Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(1).ToString("yyyy-M-d"), SelectedOffice = Model.SelectedOffice })">></a>
+                    }
+                </li>
             </ul>
         </div>
     </div>
