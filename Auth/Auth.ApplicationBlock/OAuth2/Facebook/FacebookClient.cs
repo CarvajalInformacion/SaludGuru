@@ -62,6 +62,7 @@ namespace DotNetOpenAuth.ApplicationBlock
             if ((authState != null) && (authState.AccessToken != null))
             {
                 string fieldsStr = (fields == null) || (fields.Length == 0) ? FacebookGraph.Fields.Defaults : string.Join(",", fields);
+                fieldsStr = string.Join(",", fieldsStr.Split(',').Distinct().ToList());
                 var request = System.Net.WebRequest.Create("https://graph.Facebook.com/me?access_token=" + Uri.EscapeDataString(authState.AccessToken) + "&fields=" + fieldsStr);
 
                 using (var response = request.GetResponse())
