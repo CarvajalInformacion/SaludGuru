@@ -19,7 +19,7 @@ namespace MarketPlace.Web.ControllersApi
             PatientModel modelToValidate = new PatientModel();
 
             //Insert the new patient
-            string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, "17B1EF7E"); //TODO: Ajustar el usuario no quemarlo
+            string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, "146D5E53"); //TODO: Ajustar el usuario no quemarlo
 
             //Compare if patientTemporal Exist
             bool isTemporal = MedicalCalendar.Manager.Controller.Patient.MPPatientTemporalUpsert(resultPatientPublicId, ProfilePublicId, enumPatientState.New, "0");

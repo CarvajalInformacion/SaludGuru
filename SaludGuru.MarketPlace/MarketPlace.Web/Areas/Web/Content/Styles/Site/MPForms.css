@@ -1,171 +1,193 @@
 /*********** ESTILOS DE LOS FORMULARIOS DE AGENDAMIENTO **********/
 .MPFormDataWrapper {
-    display:block;
+    display: block;
     width: 95%;
-    min-width:768px;
-    border-width:0px 1px 0px 1px;
-    border-style:solid;
-    border-color:#999;
-    margin:0px auto;
-    min-height:400px;
-}
-.MPFormDataWrapper span{
-    font-size:1.6em;
-    line-height:22px;
-    color:#666;
-    display:inline-block;
-    margin-left:18px;
-    margin-top:18px;
-    width:96%;
-}
-.MPFormDataWrapper form{
-    display:inline-block;
-    width:45%;
-    margin-left:6%;
-}
-.MPFormDataWrapper ul{
-    display: block;
-    height: auto;
-        border: none;
-    text-align: center;
-    width: AUTO;
-    margin: 10px 0px;
-}
-.MPFormDataWrapper ul li{
-    display:block;
-    padding:4px 3%;
-    margin:0px;
-    border:none;
-}
-.MPFormDataWrapper ul li h2 {
-    text-align:left;
-    margin-bottom:4px;
-}
-    .MPFormDataWrapper ul li label,
-    .MPFormDataWrapper ul li input,
-    .MPFormDataWrapper ul li select,
-    .MPFormDataWrapper ul li span {
-        font-size:14px;
-        line-height:14px;
-        width:40%;
-        display:inline-block;
-        border:1px solid #999;
-        text-align:center;
-    }
-.MPFormDataWrapper ul li label{    
-    line-height:18px;
-    font-weight:bold;
-    background-color:#e6e6e6;
-    padding:4px 0px;    
-}
-.MPFormDataWrapper ul li input{
-    padding:5px 0px;
-    text-align:left;
-    background-color:#fff;
-}
-.MPFormDataWrapper ul li select{
-    padding:0px;
-    text-align:left;
-    background-color:#fff;
-    height:28px;
-    vertical-align:top;
-}
-.MPFormDataWrapper ul li textarea{
-    text-align:justify;
-    background-color:#fff;
-    height:100px;
-    vertical-align:top;
-    line-height: 15px;
-    font-size: 14px;
-}
-    .MPFormDataWrapper ul h3{
-        display: block;
-        margin: 0px 0px 0px 16px;
-        width: auto;
-        font-size: 20px;
-        line-height: 20px;
-    }
-.MPFormDataWrapper ul li span{
-    display: block;
-    height: 4px;
-    color: red;
-    line-height: 18px;
-    margin: 10px 0px 0px 0px;
-    font-style: italic;
-    text-align: right;
+    min-width: 768px;
+    border-width: 0px 1px 0px 1px;
+    border-style: solid;
+    border-color: #999;
+    margin: 0px auto;
+    min-height: 400px;
 }
 
-    .MPFormDataWrapper ul li p{
-        display:inline-block;
-        width:auto;
-        margin:0px 4px;
+    .MPFormDataWrapper span {
+        font-size: 1.6em;
+        line-height: 22px;
+        color: #666;
+        display: inline-block;
+        margin-left: 18px;
+        margin-top: 18px;
+        width: 96%;
     }
-    .MPFormDataWrapper ul li input[type="radio"]{
-        display:inline-block;
-        width:auto;
+
+    .MPFormDataWrapper form {
+        display: inline-block;
+        width: 45%;
+        margin-left: 6%;
     }
-    .MPFormDataWrapper ul li input[type="checkMPx"] {
-        display:inline-block;
-        width:auto;
-        margin-left:50px;
+
+    .MPFormDataWrapper ul {
+        display: block;
+        height: auto;
+        border: none;
+        text-align: center;
+        width: AUTO;
+        margin: 10px 0px;
     }
+
+        .MPFormDataWrapper ul li {
+            display: block;
+            padding: 4px 3%;
+            margin: 0px;
+            border: none;
+        }
+
+            .MPFormDataWrapper ul li h2 {
+                text-align: left;
+                margin-bottom: 4px;
+            }
+
+            .MPFormDataWrapper ul li label,
+            .MPFormDataWrapper ul li input,
+            .MPFormDataWrapper ul li select,
+            .MPFormDataWrapper ul li span {
+                font-size: 14px;
+                line-height: 14px;
+                width: 40%;
+                display: inline-block;
+                border: 1px solid #999;
+                text-align: center;
+            }
+
+            .MPFormDataWrapper ul li label {
+                line-height: 18px;
+                font-weight: bold;
+                background-color: #e6e6e6;
+                padding: 4px 0px;
+            }
+
+            .MPFormDataWrapper ul li input {
+                padding: 5px 0px;
+                text-align: left;
+                background-color: #fff;
+            }
+
+            .MPFormDataWrapper ul li select {
+                padding: 0px;
+                text-align: left;
+                background-color: #fff;
+                height: 28px;
+                vertical-align: top;
+            }
+
+            .MPFormDataWrapper ul li textarea {
+                text-align: justify;
+                background-color: #fff;
+                height: 100px;
+                vertical-align: top;
+                line-height: 15px;
+                font-size: 14px;
+            }
+
+        .MPFormDataWrapper ul h3 {
+            display: block;
+            margin: 0px 0px 0px 16px;
+            width: auto;
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .MPFormDataWrapper ul li span {
+            display: block;
+            height: 4px;
+            color: red;
+            line-height: 18px;
+            margin: 10px 0px 0px 0px;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .MPFormDataWrapper ul li p {
+            display: inline-block;
+            width: auto;
+            margin: 0px 4px;
+        }
+
+        .MPFormDataWrapper ul li input[type="radio"] {
+            display: inline-block;
+            width: auto;
+        }
+
+        .MPFormDataWrapper ul li input[type="checkMPx"] {
+            display: inline-block;
+            width: auto;
+            margin-left: 50px;
+        }
 /************** QUIEN VA A VER AL DOCTOR **************/
 .MPAgendaPatientSelection {
-    text-align:left;
-    border:none;
+    text-align: left;
+    border: none;
 }
+
 #ulPatientList {
-        border:none;
+    border: none;
     margin: 3px auto 0px auto;
     padding: 0px;
     width: 80%;
     height: auto;
 }
+
     #ulPatientList input {
-        border:none;
-        width:auto;
+        border: none;
+        width: auto;
     }
-    #ulPatientList label{
+
+    #ulPatientList label {
         border: medium none;
         width: auto;
         line-height: 8px;
         height: 15px;
         margin: 0px;
-        background-color:#fff;
+        background-color: #fff;
     }
 /********** CREAR NUEVO PACIENTE **********/
 #NewPatient {
     height: auto;
-    width: auto;
+    width: 320px;
     z-index: 10;
-    position: absolute;
+    position: relative;
     background-color: #FFF;
-    margin: -250px 0px 0px 28%;
+    margin: 0px 0px 0px 77px;
     border: 1px solid #666;
     box-shadow: 2px 2px 2px #666;
     border-radius: 4px;
 }
-    #CreatePatientForm {
-        margin: 0px;
-        display: block;
-        width: auto;
+
+#CreatePatientForm {
+    margin: 0px;
+    display: block;
+    width: auto;
+}
+
+    #CreatePatientForm ul {
+        margin: 4px;
     }
-        #CreatePatientForm ul{
-            margin: 4px;
+
+        #CreatePatientForm ul li {
+            padding: 0px;
+            margin: 5px;
         }
-            #CreatePatientForm ul li {
-                padding: 0px;
-                margin: 5px;
+
+            #CreatePatientForm ul li label {
+                width: 50%;
+                padding: 2px;
+                vertical-align: top;
             }
-                #CreatePatientForm ul li label {
-                    width: 50%;
-                    padding: 2px;
-                    vertical-align: top;
-                }
-                #CreatePatientForm ul li input {
-                    width: 45%;
-                    height: 24px;
-                    line-height: 31px;
-                    padding: 0px;
-                    vertical-align: top;
-                }
+
+            #CreatePatientForm ul li input {
+                width: 45%;
+                height: 24px;
+                line-height: 31px;
+                padding: 0px;
+                vertical-align: top;
+            }
