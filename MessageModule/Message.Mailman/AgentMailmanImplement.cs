@@ -36,30 +36,58 @@ namespace Message.Mailman
             #endregion
             //validar todas las direcciones
             List<QueueParameterModel> mess = MessageToSend.QueueItemToProcess.MessageParameters.Where(x => x.Key == "TO").ToList();
+            if (mess.Count() == 0)
+            {
+                return null;
+            }
+
             addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
 
             foreach (AddressModel item in addresList)
             {
-                var messageQueue = new MessageQueue();
-                messageQueue.Path = MessageToSend.MessageConfig["MailmanPath"];
-                messageQueue.Formatter = new XmlMessageFormatter(new[] { typeof(MessageMailman) });
-                var mailMessage = new MessageMailman
+                if (string.IsNullOrEmpty(item.Address))
                 {
-                    From = new Address(MessageToSend.MessageConfig["From"]),
-                    To = new Address(item.Address),
-                    Subject = MessageToSend.MessageConfig["Subject"],
-                    Body = MessageToSend.MessageConfig["Body"],
-                    IsBodyHtml = true,
-                    RequestId = Guid.NewGuid().ToString().ToUpper()
-                };
-                modelToreturn.RelatedAddress = new List<AddressModel>();
-                modelToreturn.RelatedAddress.Add(item);
-                messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
+                    var mailMessage = new MessageMailman
+                    {
+                        From = new Address(MessageToSend.MessageConfig["From"]),
+                        Subject = MessageToSend.MessageConfig["Subject"],
+                        Body = MessageToSend.MessageConfig["Body"],
+                        IsBodyHtml = true,
+                        RequestId = Guid.NewGuid().ToString().ToUpper()
+                    };
+                    //Actualiza la cola
+                    this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, false, "La direccion de correo electronico esta vacia", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);
+                }
+                else
+                {
+                    var messageQueue = new MessageQueue();
+                    messageQueue.Path = MessageToSend.MessageConfig["MailmanPath"];
+                    messageQueue.Formatter = new XmlMessageFormatter(new[] { typeof(MessageMailman) });
+                    var mailMessage = new MessageMailman();
+                    try
+                    {
+                        mailMessage.From = new Address(MessageToSend.MessageConfig["From"]);
+                        mailMessage.To = new Address(item.Address);
+                        mailMessage.Subject = MessageToSend.MessageConfig["Subject"];
+                        mailMessage.Body = MessageToSend.MessageConfig["Body"];
+                        mailMessage.IsBodyHtml = true;
+                        mailMessage.RequestId = Guid.NewGuid().ToString().ToUpper();
 
-                //Actualiza la cola
-                if (!this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId))
-                {
-                    //TODO: Mandar logica para almacenar los logs
+                        modelToreturn.RelatedAddress = new List<AddressModel>();
+                        modelToreturn.RelatedAddress.Add(item);
+
+                        //Envia a la cola de Mailman
+                        messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
+                        Console.WriteLine(messageQueue.Id);
+
+                        //Actualiza la cola
+                        this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "Message added to the queue correctly", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);                        
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err.Message);
+                        this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, false, err.Message, MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);                        
+                    }                   
                 }
             }
             modelToreturn.Agent = addresList.FirstOrDefault().Agent;
@@ -83,7 +111,7 @@ namespace Message.Mailman
             List<AddressModel> addressList = new List<AddressModel>();
             return addressList = this._controller.UpsertAddress(address, agent);
         }
-        
+
         /// <summary>
         /// Funcion que envia el id del mensaje que va a ser enviado
         /// </summary>
@@ -92,6 +120,6 @@ namespace Message.Mailman
         {
             this._controller.AddToResendMsj(MessageProcessId);
         }
-        #endregion     
+        #endregion
     }
 }

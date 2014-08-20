@@ -33,44 +33,45 @@
 
 @if (!Model.RenderScripts)
 {
-        <img src="@ovImageProfile" />
-        <div>
-            <ul>
-                @if (!string.IsNullOrEmpty(ovProfileText))
-                {
-                    <li><a id="divProfileText_sel" href="javascript:;">Perfil profesional</a></li>
-                }
-                @if (!string.IsNullOrEmpty(ovProfileEducation))
-                {
-                    <li><a id="divEducation_sel" href="javascript:;">Educación</a></li>
-                }
-                @if (!string.IsNullOrEmpty(ovProfileCertification))
-                {
-                    <li><a id="divCertification_sel" href="javascript:;">Acreditaciones</a></li>
-                }
-            </ul>
+    <img src="@ovImageProfile" />
+    <span style="display:none;" class="MPProfileNoInfo">Este Profesional no Tiene Contenido Relacionado</span>
+    <div>
+        <ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
-                <div id="divProfileText">
-                    <p>@ovProfileText.Trim()</p>
-                    <a id="divProfileText_a" href="javascript:;"></a>
-                </div>
+                <li><a id="divProfileText_sel" href="javascript:;">Perfil profesional</a></li>
             }
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
-                <div id="divEducation">
-                    <p>@ovProfileEducation.Trim()</p>
-                    <a id="divEducation_a" href="javascript:;"></a>
-                </div>
+                <li><a id="divEducation_sel" href="javascript:;">Educación</a></li>
             }
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
-                <div id="divCertification">
-                    <p>@ovProfileCertification.Trim()</p>
-                    <a id="divCertification_a" href="javascript:;"></a>
-                </div>
+                <li><a id="divCertification_sel" href="javascript:;">Acreditaciones</a></li>
             }
-        </div>
+        </ul>
+        @if (!string.IsNullOrEmpty(ovProfileText))
+        {
+            <div id="divProfileText">
+                <p>@ovProfileText.Trim()</p>                
+                @*<a id="divProfileText_a" href="javascript:;"></a>*@
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(ovProfileEducation))
+        {
+            <div id="divEducation">
+                <p>@ovProfileEducation.Trim()</p>
+                @*<a id="divEducation_a" href="javascript:;"></a>*@
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(ovProfileCertification))
+        {
+            <div id="divCertification">
+                <p>@ovProfileCertification.Trim()</p>
+                @*<a id="divCertification_a" href="javascript:;"></a>*@
+            </div>
+        }
+    </div>
 }
 else
 {
@@ -82,6 +83,23 @@ else
                 ProfileCertificationId: 'divCertification',
             });
             ProfileDetailObject.RenderAsync();
+            $("#divProfileText_sel").addClass("MPProfileTextSelected");
+
+            $("#divProfileText_sel").click(function () {
+                $(this).addClass("MPProfileTextSelected");
+                $("#divEducation_sel").removeClass("MPProfileTextSelected");
+                $("#divCertification_sel").removeClass("MPProfileTextSelected");
+            });
+            $("#divEducation_sel").click(function () {                
+                $(this).addClass("MPProfileTextSelected");
+                $("#divProfileText_sel").removeClass("MPProfileTextSelected");
+                $("#divCertification_sel").removeClass("MPProfileTextSelected");
+            });
+            $("#divCertification_sel").click(function () {
+                $(this).addClass("MPProfileTextSelected");
+                $("#divProfileText_sel").removeClass("MPProfileTextSelected");
+                $("#divEducation_sel").removeClass("MPProfileTextSelected");
+            });
 
         });
     </script>

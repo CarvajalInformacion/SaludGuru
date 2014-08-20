@@ -462,7 +462,7 @@ namespace BackOffice.Web.Controllers
             foreach (enumMessageType mType in messageTypeList)
             {
                 foreach (PatientModel item in PatientList)
-                {                    
+                {
                     bool isPatientEmail = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendEmail).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
                     bool isPatientSms = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendSMS).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
                     if (mType == enumMessageType.Email && isPatientEmail)
@@ -518,7 +518,7 @@ namespace BackOffice.Web.Controllers
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ConfirmCancelLink", Value = string.Empty }); //TODO: Armar la URL
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentPublicId", Value = AppointmentInfo.AppointmentPublicId }); 
                                 break;
                             case enumProfileInfoType.ReminderNextAppointment:
 
@@ -536,8 +536,15 @@ namespace BackOffice.Web.Controllers
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault() });
 
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
-                        result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfilePublicId", Value = Profile.ProfilePublicId });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
+
+                        //Valid the key "To"
+                        string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
+                        if (keyTO != null)                        
+                            result = Message.Client.Client.Instance.CreateMessage(oMessage);                        
+                        else
+                            result.IsSuccess = false;
                     }
                     //Valid the conditions
                     if (mType == enumMessageType.Sms && isPatientSms)
@@ -593,10 +600,10 @@ namespace BackOffice.Web.Controllers
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ConfirmCancelLink", Value = AppointmentInfo.AppointmentPublicId}); 
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ConfirmCancelLink", Value = AppointmentInfo.AppointmentPublicId });
                                 break;
 
-                                
+
                             case enumProfileInfoType.ReminderNextAppointment:
 
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
@@ -614,8 +621,14 @@ namespace BackOffice.Web.Controllers
 
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
-                        result = Message.Client.Client.Instance.CreateMessage(oMessage);
-                    }                    
+
+                        //Valid the key "To"
+                        string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
+                        if (keyTO != null)
+                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                        else
+                            result.IsSuccess = false;
+                    }
                 }
             }
             return result.IsSuccess;

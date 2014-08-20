@@ -1,4 +1,50 @@
-﻿/*calendar render method*/
+﻿/*Timer methods*/
+function InitTimePicker(DivId, DialogDivId) {
+
+    $('#' + DivId).ptTimeSelect({
+        hoursLabel: 'Hora',
+        minutesLabel: 'Minutos',
+        setButtonLabel: 'Aceptar',
+        onClose: function () {
+            if ($('#' + DivId).val().indexOf('AM') >= 0) {
+
+                var AuxHour = new Number($('#' + DivId).val().substring(0, $('#' + DivId).val().indexOf(':')));
+
+                if (AuxHour < 6 || AuxHour == 12) {
+                    $('#' + DialogDivId).dialog({
+                        buttons: {
+                            "Aceptar": function () {
+                                $(this).dialog("close");
+                            },
+                            "Cambiar": function () {
+                                $(this).dialog("close");
+                                $('#' + DivId).val($('#' + DivId).val().replace(/AM/gi, 'PM'));
+                            }
+                        }
+                    });
+                }
+            }
+            else {
+                var AuxHour = new Number($('#' + DivId).val().substring(0, $('#' + DivId).val().indexOf(':')));
+                if (AuxHour > 7 && AuxHour != 12) {
+                    $('#' + DialogDivId).dialog({
+                        buttons: {
+                            "Aceptar": function () {
+                                $(this).dialog("close");
+                            },
+                            "Cambiar": function () {
+                                $(this).dialog("close");
+                                $('#' + DivId).val($('#' + DivId).val().replace(/PM/gi, 'AM'));
+                            }
+                        }
+                    });
+                }
+            }
+        },
+    });
+}
+
+/*calendar render method*/
 var CalendarObject = {
 
     /*calendar info*/
@@ -125,7 +171,8 @@ var MettingCalendarObject = {
     StartDateTime: new Date(),
     EndDateTime: new Date(),
     CurrentPublicOfficeId: '',
-
+    PreviewLink: '',
+    NextLink: '',
     /*full calendar info*/
     dayNamesSp: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
     dayNamesShortSp: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
@@ -143,6 +190,8 @@ var MettingCalendarObject = {
         this.CurrentAgentType = vInitObject.CurrentAgentType;
         this.StartDateTime = vInitObject.StartDateTime;
         this.EndDateTime = vInitObject.EndDateTime;
+        this.PreviewLink = vInitObject.PreviewLink;
+        this.NextLink = vInitObject.NextLink;
 
         //init office option list
         this.optionOffice = '<select id="selOffice_{OfficePublicId}">';
@@ -199,12 +248,17 @@ var MettingCalendarObject = {
                 var oEditable = true;
                 var oLeft = '';
                 var oRight = '';
+                var oHiddenDays = [];
 
                 if (this.CurrentAgentType == 'month') {
                     oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime);
                     oEditable = false;
-                    //oLeft = 'prev';
-                    //oRight = 'next';
+                    oLeft = 'prev';
+                    oRight = 'next';
+                }
+
+                if (this.CurrentAgentType == 'agendaWeek') {
+                    oHiddenDays = [0];
                 }
 
 
@@ -216,6 +270,7 @@ var MettingCalendarObject = {
                     defaultView: this.CurrentAgentType,
                     allDaySlot: false,
                     allDayText: ' ',
+                    hiddenDays: oHiddenDays,
 
                     contentHeight: this.CalendarHeight(),
                     slotMinutes: this.lstOffice[vOfficePublicId].SlotMinutes,
@@ -356,6 +411,19 @@ var MettingCalendarObject = {
                 });
                 //set start date
                 $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+
+                //set prev and next link for month view
+                if (this.CurrentAgentType == 'month') {
+
+                    $('.fc-button-prev').click(function () {
+                        window.location = MettingCalendarObject.PreviewLink + '&SelectedOffice=' + vOfficePublicId;
+                    });
+
+                    $('.fc-button-next').click(function () {
+                        window.location = MettingCalendarObject.NextLink + '&SelectedOffice=' + vOfficePublicId;
+                    });
+                }
+
             }
             else {
                 //refresh calendar events
@@ -365,11 +433,23 @@ var MettingCalendarObject = {
     },
 
     CalendarHeight: function () {
-        var contentHeightAux = $(window).height() - 170;
-
-        if (contentHeightAux < 300) {
-            contentHeightAux = 300;
+        var contentHeightAux = 300;
+        if (MettingCalendarObject.CurrentAgentType == 'basicDay' && window.location.pathname.toLowerCase() == '/appointment/detail') {
+            contentHeightAux = $(window).height() - 290;
+            if (contentHeightAux < 100) {
+                contentHeightAux = 100;
+            }
         }
+        else {
+            contentHeightAux = $(window).height() - 170;
+
+            if (contentHeightAux < 300) {
+                contentHeightAux = 300;
+            }
+        }
+        //set heigth for container element
+        $('#' + this.DivId).css('height', contentHeightAux + 'px');
+
         return contentHeightAux;
     },
 
@@ -464,8 +544,11 @@ var UpsertAppointmentObject = {
                 vMin = '0' + vStartDate.getMinutes();
             }
 
-            if (vStartDate.getHours() <= 12) {
+            if (vStartDate.getHours() < 12) {
                 oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' AM';
+            }
+            else if (vStartDate.getHours() == 12) {
+                oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' PM';
             }
             else {
                 oCurrentStartTime = (vStartDate.getHours() - 12) + ':' + vMin + ' PM';
@@ -566,11 +649,7 @@ var UpsertAppointmentObject = {
         $('#StartDate').datepicker("setDate", vCurrentStartDate);
 
         //load start time
-        $('#StartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('StartTime', 'Dialog_ValidateStartHour');
 
         $('#StartTime').val(vCurrentStartTime);
 
@@ -1206,11 +1285,7 @@ var UpsertAppointmentObject = {
         }
 
         //load block start time
-        $('#BlockStartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('BlockStartTime', 'Dialog_ValidateStartHour');
 
         if (vAppointmentInfo != null) {
             $('#BlockStartTime').val(vAppointmentInfo.StartTime);
@@ -1220,11 +1295,7 @@ var UpsertAppointmentObject = {
         }
 
         //load block end time
-        $('#BlockEndTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('BlockEndTime', 'Dialog_ValidateStartHour');
 
         if (vAppointmentInfo != null) {
             $('#BlockEndTime').val(vAppointmentInfo.EndTime);
@@ -1521,11 +1592,7 @@ var AppointmentDetailObject = {
         $('#StartDate').datepicker("setDate", vCurrentStartDate);
 
         //load start time
-        $('#StartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('StartTime', 'Dialog_ValidateStartHour');
 
         $('#StartTime').val(vCurrentStartTime);
     },
@@ -1563,6 +1630,7 @@ var AppointmentDetailObject = {
                     url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
                     dataType: 'json',
                     success: function (data) {
+                        debugger;
                         response(data);
                     }
                 });
@@ -1580,7 +1648,7 @@ var AppointmentDetailObject = {
                     Mobile: ui.item.Mobile,
                     Email: ui.item.Email,
                     PatientPublicId: ui.item.PatientPublicId,
-                    Notes: value.Notes,
+                    Notes: ui.item.Notes,
                 });
 
                 $('#getPatient').val('');

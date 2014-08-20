@@ -332,6 +332,9 @@ span.fc-header-title {
             top: 1%;
         }
 
+.basicDay {
+    overflow:hidden;
+}
 .basicDay span.fc-header-title h2 > ul li select {
     position: absolute;
     right: calc(27%);
@@ -710,4 +713,12 @@ div#Dialog_ResizeAppointment p {
 /*-----Estilo cambiar de tamaño citas de agenda-----*/
 .ui-resizable-handle.ui-resizable-s {
     display: block !important;
+}
+
+div#Dialog_ValidateStartHour p {
+    line-height: 25px;
+}
+
+div#Dialog_ValidateStartHour p {
+    line-height: 25px;
 }
