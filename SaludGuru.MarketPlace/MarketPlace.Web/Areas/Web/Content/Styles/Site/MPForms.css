@@ -220,3 +220,7 @@ input#itemClose {
                 padding: 0px;
                 vertical-align: top;
             }
+
+div.SelOfficeGrid div {
+    height: auto !important;
+}

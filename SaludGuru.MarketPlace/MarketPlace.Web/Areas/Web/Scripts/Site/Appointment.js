@@ -21,7 +21,12 @@
         e.unbind(); //unbind. to stop multiple form submit.
     });
 
+    CloseNewPatient();
     $("#CreatePatientForm").submit(); //Submit  the FORM
+}
+
+function CloseNewPatient() {
+    $("#NewPatientId").hide(800);
 }
 
 function AddPatientToList(vPatientModel) {
@@ -267,7 +272,7 @@ var AppointmentObject = {
         $('#StartDate').val(vCurrentHourUnFormated);
         $('#DateMoreInfoIdN').val(vCurrentHour);
         $('#DateMoreInfoIdNN').val(vCurrentHour);
-        $("#FreeScheduleId").hide();
+        $("#FreeScheduleId").hide(1000);
     },
 };
 
@@ -283,7 +288,7 @@ $('#DateMoreInfoIdNN').click(function () {
 
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
-    $("#FreeScheduleId").show();
+    $("#FreeScheduleId").show(1000);
     $("#DateMoreInfoId").hide();
 });
 $('#SaveAppointmentId').click(function () {
