@@ -711,3 +711,11 @@ div#Dialog_ResizeAppointment p {
 .ui-resizable-handle.ui-resizable-s {
     display: block !important;
 }
+
+div#Dialog_ValidateStartHour p {
+    line-height: 25px;
+}
+
+div#Dialog_ValidateStartHour p {
+    line-height: 25px;
+}

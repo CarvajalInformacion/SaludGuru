@@ -1,4 +1,50 @@
-﻿/*calendar render method*/
+﻿/*Timer methods*/
+function InitTimePicker(DivId, DialogDivId) {
+
+    $('#' + DivId).ptTimeSelect({
+        hoursLabel: 'Hora',
+        minutesLabel: 'Minutos',
+        setButtonLabel: 'Aceptar',
+        onClose: function () {
+            if ($('#' + DivId).val().indexOf('AM') >= 0) {
+
+                var AuxHour = new Number($('#' + DivId).val().substring(0, $('#' + DivId).val().indexOf(':')));
+
+                if (AuxHour < 6 || AuxHour == 12) {
+                    $('#' + DialogDivId).dialog({
+                        buttons: {
+                            "Aceptar": function () {
+                                $(this).dialog("close");
+                            },
+                            "Cambiar": function () {
+                                $(this).dialog("close");
+                                $('#' + DivId).val($('#' + DivId).val().replace(/AM/gi, 'PM'));
+                            }
+                        }
+                    });
+                }
+            }
+            else {
+                var AuxHour = new Number($('#' + DivId).val().substring(0, $('#' + DivId).val().indexOf(':')));
+                if (AuxHour > 7 && AuxHour != 12) {
+                    $('#' + DialogDivId).dialog({
+                        buttons: {
+                            "Aceptar": function () {
+                                $(this).dialog("close");
+                            },
+                            "Cambiar": function () {
+                                $(this).dialog("close");
+                                $('#' + DivId).val($('#' + DivId).val().replace(/PM/gi, 'AM'));
+                            }
+                        }
+                    });
+                }
+            }
+        },
+    });
+}
+
+/*calendar render method*/
 var CalendarObject = {
 
     /*calendar info*/
@@ -480,8 +526,11 @@ var UpsertAppointmentObject = {
                 vMin = '0' + vStartDate.getMinutes();
             }
 
-            if (vStartDate.getHours() <= 12) {
+            if (vStartDate.getHours() < 12) {
                 oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' AM';
+            }
+            else if (vStartDate.getHours() == 12) {
+                oCurrentStartTime = vStartDate.getHours() + ':' + vMin + ' PM';
             }
             else {
                 oCurrentStartTime = (vStartDate.getHours() - 12) + ':' + vMin + ' PM';
@@ -582,11 +631,7 @@ var UpsertAppointmentObject = {
         $('#StartDate').datepicker("setDate", vCurrentStartDate);
 
         //load start time
-        $('#StartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('StartTime', 'Dialog_ValidateStartHour');
 
         $('#StartTime').val(vCurrentStartTime);
 
@@ -1222,11 +1267,7 @@ var UpsertAppointmentObject = {
         }
 
         //load block start time
-        $('#BlockStartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('BlockStartTime', 'Dialog_ValidateStartHour');
 
         if (vAppointmentInfo != null) {
             $('#BlockStartTime').val(vAppointmentInfo.StartTime);
@@ -1236,11 +1277,7 @@ var UpsertAppointmentObject = {
         }
 
         //load block end time
-        $('#BlockEndTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('BlockEndTime', 'Dialog_ValidateStartHour');
 
         if (vAppointmentInfo != null) {
             $('#BlockEndTime').val(vAppointmentInfo.EndTime);
@@ -1537,11 +1574,7 @@ var AppointmentDetailObject = {
         $('#StartDate').datepicker("setDate", vCurrentStartDate);
 
         //load start time
-        $('#StartTime').ptTimeSelect({
-            hoursLabel: 'Hora',
-            minutesLabel: 'Minutos',
-            setButtonLabel: 'Aceptar',
-        });
+        InitTimePicker('StartTime', 'Dialog_ValidateStartHour');
 
         $('#StartTime').val(vCurrentStartTime);
     },
