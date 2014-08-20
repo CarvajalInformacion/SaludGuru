@@ -332,6 +332,9 @@ span.fc-header-title {
             top: 1%;
         }
 
+.basicDay {
+    overflow:hidden;
+}
 .basicDay span.fc-header-title h2 > ul li select {
     position: absolute;
     right: calc(27%);

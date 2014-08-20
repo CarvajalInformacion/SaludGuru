@@ -248,12 +248,17 @@ var MettingCalendarObject = {
                 var oEditable = true;
                 var oLeft = '';
                 var oRight = '';
+                var oHiddenDays = [];
 
                 if (this.CurrentAgentType == 'month') {
                     oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime);
                     oEditable = false;
                     oLeft = 'prev';
                     oRight = 'next';
+                }
+
+                if (this.CurrentAgentType == 'agendaWeek') {
+                    oHiddenDays = [0];
                 }
 
 
@@ -265,6 +270,7 @@ var MettingCalendarObject = {
                     defaultView: this.CurrentAgentType,
                     allDaySlot: false,
                     allDayText: ' ',
+                    hiddenDays: oHiddenDays,
 
                     contentHeight: this.CalendarHeight(),
                     slotMinutes: this.lstOffice[vOfficePublicId].SlotMinutes,
@@ -427,11 +433,23 @@ var MettingCalendarObject = {
     },
 
     CalendarHeight: function () {
-        var contentHeightAux = $(window).height() - 170;
-
-        if (contentHeightAux < 300) {
-            contentHeightAux = 300;
+        var contentHeightAux = 300;
+        if (MettingCalendarObject.CurrentAgentType == 'basicDay' && window.location.pathname.toLowerCase() == '/appointment/detail') {
+            contentHeightAux = $(window).height() - 290;
+            if (contentHeightAux < 100) {
+                contentHeightAux = 100;
+            }
         }
+        else {
+            contentHeightAux = $(window).height() - 170;
+
+            if (contentHeightAux < 300) {
+                contentHeightAux = 300;
+            }
+        }
+        //set heigth for container element
+        $('#' + this.DivId).css('height', contentHeightAux + 'px');
+
         return contentHeightAux;
     },
 
@@ -1612,6 +1630,7 @@ var AppointmentDetailObject = {
                     url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
                     dataType: 'json',
                     success: function (data) {
+                        debugger;
                         response(data);
                     }
                 });
@@ -1629,7 +1648,7 @@ var AppointmentDetailObject = {
                     Mobile: ui.item.Mobile,
                     Email: ui.item.Email,
                     PatientPublicId: ui.item.PatientPublicId,
-                    Notes: value.Notes,
+                    Notes: ui.item.Notes,
                 });
 
                 $('#getPatient').val('');
