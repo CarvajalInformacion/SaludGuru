@@ -71,7 +71,7 @@
         </a>
         <div class="MPResultsPaidProfileDoctorData">
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
-                <label>@(Model.Name + " " + Model.LastName)</label>
+                @(Model.Name + " " + Model.LastName)
             </a>
             
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))

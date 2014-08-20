@@ -3,9 +3,7 @@
 .MPResultsGrandWrapper label, 
 .MPResultsGrandWrapper a{
     color:#666;
-    font-size:1em;
     letter-spacing:-0.6px;
-    line-height:22px;
 }
     .MPResultsGrandWrapper a:hover {
         color:#666;
@@ -13,8 +11,8 @@
 .MPResultsGrandWrapper {
     display:block;
     margin:0px auto; padding:0px; 
-    border-style:solid; border-width:0px 1px; border-color:#666;
-    width:95%;
+    border:none;
+    width:100%;
     min-width:768px;
 }
     .MPResultsGrandWrapper div {
@@ -24,9 +22,38 @@
     }
 div.MPResultsBreadCrumbs {
     background-color: #92B92A;
-        color: #FFF;
-        height:28px;
+    color: #FFF;
+    height: 28px;
+    width: 80%;
+    margin: 0px auto;
 }
+@media screen and (max-width:800px) {
+    div.MPResultsBreadCrumbs {
+    background-color: #92B92A;
+    color: #FFF;
+    height: 28px;
+    width: 94%;
+    margin: 0px auto;
+    }
+}
+@media screen and (max-width:1024px) {
+    div.MPResultsBreadCrumbs {
+    background-color: #92B92A;
+    color: #FFF;
+    height: 28px;
+    width: 91%;
+    margin: 0px auto;
+    }
+}
+div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span{
+    color: #FFF;
+    line-height: 1.3em;
+    font-size: 1em;
+    letter-spacing: -0.5px;
+}
+    div.MPResultsBreadCrumbsModel a:hover {
+        color: #FFF;
+    }
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsModel,
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages{
     display:inline-block;
@@ -43,11 +70,36 @@ div.MPResultsBreadCrumbs {
 div.MPResultsPaidProfile{
         border: none;
     display: block;
-    margin:10px 8px 12px 8px;
+    margin:12px auto;
     padding: 12px;
     background: linear-gradient(#fff, #ececec);
     box-shadow:0px 1px 7px 0px #666;
     border-radius: 2px;
+    width:80%;
+}
+@media screen and (max-width:800px) {
+    div.MPResultsPaidProfile{
+        border: none;
+        display: block;
+        margin:12px auto;
+        padding: 12px;
+        background: linear-gradient(#fff, #ececec);
+        box-shadow:0px 1px 7px 0px #666;
+        border-radius: 2px;
+        width:94%;
+    }
+}
+@media screen and (max-width:1024px) {
+    div.MPResultsPaidProfile{
+        border: none;
+        display: block;
+        margin:12px auto;
+        padding: 12px;
+        background: linear-gradient(#fff, #ececec);
+        box-shadow:0px 1px 7px 0px #666;
+        border-radius: 2px;
+        width:91%;
+    }
 }
 div.MPResultsPaidProfile label,
 div.MPResultsPaidProfile img,
@@ -87,18 +139,23 @@ div.MPResultsPaidProfileDoctorData {
     margin-left:8px;
 }
 span.MPResultsSpecialityName,
-span.MPResultsInsuranceName,
-a.MPResultsPaidProfileDoctorName{
+span.MPResultsInsuranceName{
     display:block;
-    border-bottom: 1px solid #666;
-    margin: 4px 0px 4px 0px;
     height:auto;
+    margin:4px 0px !important;
+    line-height:1em;
 }
-a.MPResultsPaidProfileDoctorName label{
+span.MPResultsSpecialityName {
+    font-size:1.2em;
+}
+span.MPResultsInsuranceName {
+    font-size:0.9em;
+    letter-spacing: -0.4px;
+}
+a.MPResultsPaidProfileDoctorName{
     font-size:1.5em;
     line-height:24px;
-    cursor: pointer;
-    margin: 4px 0px 8px 0px !important;
+    cursor: pointer;    
 }
 a.MPResultsPaidProfileDoctorWebsite,
 a.MPResultsPaidProfileDoctorFacebook{
@@ -125,19 +182,22 @@ a.MPResultsPaidProfileDoctorFacebook > span{
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:62%;
+        width:58%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
             span.MPResultsDoctorShortDescription{
-                        height:auto;
-                max-height:116px;
+                height: auto;
+                max-height: 116px;
+                line-height: 1em;
+                font-size:14px;
+                letter-spacing: normal;
             }
     @media screen and (max-width:1280px) {
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:55%;
+        width:47%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -150,7 +210,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
         div.MPResultsDoctorDescriptionWrapper {
                     border:none;
         display: inline-block;
-        width:45%;
+        width:43%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -188,7 +248,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             color: forestgreen;
             text-align: left;
             font-weight:bold;
-            font-size:1em;
+            font-size:14px;
         }
             div.OfficeSelector span:hover{
                 text-decoration:underline;
@@ -196,7 +256,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             div.OfficeContactSelector {display:block; min-height:39px;}
             div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
                 cursor:auto;
-                font-size:1em;
+                font-size:0.9em;
                 display:inline-block;
                 width: auto;
                 line-height:16px;
@@ -204,57 +264,61 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             }
 /********* enlace agenda gratis ********/
 .MPResultsBookAppFree {
-    display:inline-block !important;
-    padding: 4px 0px;
-    margin:6px auto;
-    background-color: #92B92A;
-    width:100%;
-    text-align: center;
-    font-size: 1.2em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-}
-@media screen and (max-width:1280px) {
-    .MPResultsBookAppFree {
-    display:inline-block !important;
+    display: inline-block !important;
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width:100%;
+    width: 48%;
     text-align: center;
-    font-size: 1.2em !important;
+    font-size: 1.1em !important;
     border-radius: 3px;
     color: #FFF !important;
     border: 1px solid #555 !important;
+    line-height: 1.2em;
+}
+@media screen and (max-width:1280px) {
+    .MPResultsBookAppFree {
+    display: inline-block !important;
+    padding: 4px 0px;
+    margin: 6px auto;
+    background-color: #92B92A;
+    width: 48%;
+    text-align: center;
+    font-size: 1.1em !important;
+    border-radius: 3px;
+    color: #FFF !important;
+    border: 1px solid #555 !important;
+    line-height: 1.2em;
     }
 }
 @media screen and (max-width:1024px) {
     .MPResultsBookAppFree {
-    display:inline-block !important;
+    display: inline-block !important;
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width:98%;
+    width: 48%;
     text-align: center;
-    font-size: 1.2em !important;
+    font-size: 1.1em !important;
     border-radius: 3px;
     color: #FFF !important;
     border: 1px solid #555 !important;
+    line-height: 1.2em;
     }
 }
 @media screen and (max-width:800px) {
     .MPResultsBookAppFree {
-    display:inline-block !important;
+    display: inline-block !important;
     padding: 4px 0px;
     margin: 6px auto;
     background-color: #92B92A;
-    width:104%;
+    width: 48%;
     text-align: center;
-    font-size: 1.2em !important;
+    font-size: 1.1em !important;
     border-radius: 3px;
     color: #FFF !important;
     border: 1px solid #555 !important;
+    line-height: 1.2em;
     }
 }
 .MPResultsBookAppFree:hover {
