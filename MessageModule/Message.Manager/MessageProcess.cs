@@ -37,12 +37,10 @@ namespace Message.Manager
                     {
                         try
                         {
-                            this.ProcessMesage(item);
+                            this.ProcessMessage(item);
                         }
                         catch (Exception err)
-                        {
-                            
-                            
+                        {   
                         }                        
                     }
                 }
@@ -63,7 +61,7 @@ namespace Message.Manager
         /// </summary>
         /// <param name="QueueItemToProcess">Mensaje para enviar, tomado de la cola</param>
         /// <returns>Modelo con info del mensaje enviado</returns>
-        private Message.Models.MessageModel ProcessMesage(Message.Models.MessageQueueModel QueueItemToProcess)
+        private Message.Models.MessageModel ProcessMessage(Message.Models.MessageQueueModel QueueItemToProcess)
         {
             MessageModel oMsjReturn = new MessageModel();
             //validate config
@@ -169,7 +167,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
-                    xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Sms_ReminderAppointment":

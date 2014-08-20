@@ -418,9 +418,8 @@
                              </p>
                                 <br>
                              <p>   
-                                Cuidados previos {BeforeCare}      
-                                <a href="https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId={ConfirmCancelLink}">Confirmar/Cancelar </a>
-                                <a href="https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId={ConfirmCancelLink}">Confirmar/Cancelar </a>.                                            
+                                Cuidados previos {BeforeCare}   <br>                                   
+                                <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>                                                                         
                              </p>
                             <div style="width:100%; height:30px;">
                                 <span style="font-size: 0.7em;
@@ -464,7 +463,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} Confirmar/Cancelar]]>
+      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} {ConfirmCancelLink}]]>
     </key>
 
     <!--Modify GuruNotification_ReminderAppointment Gurú-->
