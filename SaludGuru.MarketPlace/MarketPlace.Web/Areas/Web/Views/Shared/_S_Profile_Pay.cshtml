@@ -21,7 +21,7 @@
     {
         ovImageProfile = MarketPlace.Models.General.InternalSettings.Instance
                  [MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value;
-    }            
+    }
 
     //get default specialty
     var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
@@ -61,7 +61,7 @@
         }));
 
         }
-            <!--certified image-->
+        <!--certified image-->
         <div class="MPResultsCertifiedWrapper">
             @if (ovIsCertified)
             {
@@ -75,7 +75,7 @@
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
                 <label>@(Model.Name + " " + Model.LastName)</label>
             </a>
-            
+
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                     <!--Principal specialty-->
@@ -97,7 +97,7 @@
                         <span>Facebook</span>
                     </a>
                 }
-            </div>            
+            </div>
         </div>
         <div class="MPResultsDoctorDescriptionWrapper">
             @if (!string.IsNullOrEmpty(ovShortProfile))
@@ -126,7 +126,12 @@
                     </div>
                 </div>
             }
-            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Agenda tú cita gratis con este profesional.</a>
+
+            @{
+                string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
+            }
+            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita gratis con este profesional.</a>
+            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional.</a>
         </div>
     </div>
 }
