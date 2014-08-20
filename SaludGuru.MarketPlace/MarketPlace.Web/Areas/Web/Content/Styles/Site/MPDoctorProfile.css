@@ -36,7 +36,7 @@
     border-width:1px 0px;
     border-color:#666;
     display:block;
-    width: 98%;
+    width:93%;
     height: auto;
     font-size: 1em;
     margin: 12px auto 0px auto;
@@ -294,7 +294,6 @@
     text-align: left;
     width: 81%;
 }
-
     .MPProfileInfoDetail div ul li{
         border:none;
         display:inline-block;
@@ -303,42 +302,53 @@
             font-size:1.4em;
             line-height:20px;
             letter-spacing:-1px;
-            color: #A4C02C;
-            font-weight: bold;
-            padding: 3px 15%;
-            margin: 0px 0px 0px 0px;
-            display: inline-block;
+            color:#A4C02C;
+            background-color:#ececec;
+            font-weight:bold;
+            padding:3px 15%;
+            margin:0px 0px 0px 0px;
+            display:inline-block;
+            border-width:1px 1px 0px 1px;
+            border-color:#666;
+            border-style:solid;
+            border-top-left-radius:3px;
+            border-top-right-radius:3px;
+            position:relative;
+            z-index:10;
+
         }
-            .MPProfileInfoDetail div ul li a:hover {
-                background-color:#ececec;
+            .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
+                background-color:#fff;
                 text-decoration:none;
             }
-            .MPProfileInfoDetail div ul li a:active {
-                text-decoration:underline;
+            .MPProfileInfoDetail div ul li a.MPProfileTextSelected {
+                border-bottom:1px solid #fff;
+                background-color:#fff;
+                margin-bottom:-1.5px;
             }
             div#divProfileText, div#divEducation, div#divCertification{
                 margin: 0px 0px 0px;
                 padding: 5px 1.5% 0px;
                 width: 100%;
-                height: auto;
+                height: auto !important;
                 text-align: left;
                 border-top: 1px solid #666;
             }
                 .MPProfileInfoDetail div#divProfileText p,
                 .MPProfileInfoDetail div#divEducation p,
                 .MPProfileInfoDetail div#divCertification p{
-                    font-size: 20px;
-                    line-height: 21px;
+                    font-size:1em;
+                    line-height:21px;
                     color:#666;
-                    max-height:130px;
-                    overflow:auto;
+                    height:auto;
+                    overflow:initial;
                     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
                 }
                     .MPProfileInfoDetail div#divProfileText a,
                     .MPProfileInfoDetail div#divEducation a,
                     .MPProfileInfoDetail div#divCertification a {
                             border:none;
-                        height: 17px;
+                        height:30px;
                         width: auto;
                         line-height: 18px;
                         float: right;
@@ -348,7 +358,6 @@
                         display: block;
                         font-size:18px;
                     }
-
 /************ MAPA ***********/
 .MPProfileMap {
     display:inline-block;
