@@ -32,7 +32,7 @@ namespace Message.Inalambria
             List<AddressModel> addressList = new List<AddressModel>();
             return addressList = this._controller.UpsertAddress(address, agent);
         }
-        
+
         #endregion
 
         #region Funciones Publicas
@@ -52,8 +52,11 @@ namespace Message.Inalambria
             #endregion
             //validar todas las direcciones
             List<QueueParameterModel> mess = MessageToSend.QueueItemToProcess.MessageParameters.Where(x => x.Key == "TO").ToList();
-            addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
-
+            if (mess.Count() != 0)
+                addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
+            else
+                return null;
+            
             foreach (AddressModel item in addresList)
             {
                 ServiceSendSoapClient sendSMS = new ServiceSendSoapClient("ServiceSendSoap12");
@@ -84,6 +87,6 @@ namespace Message.Inalambria
         {
             this._controller.AddToResendMsj(MessageProcessId);
         }
-        #endregion     
+        #endregion
     }
 }

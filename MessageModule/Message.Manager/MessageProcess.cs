@@ -34,7 +34,17 @@ namespace Message.Manager
                 if (messageQueueList.Count > 0)
                 {
                     foreach (MessageQueueModel item in messageQueueList)
-                        this.ProcessMesage(item);
+                    {
+                        try
+                        {
+                            this.ProcessMesage(item);
+                        }
+                        catch (Exception err)
+                        {
+                            
+                            
+                        }                        
+                    }
                 }
             }
         }
@@ -69,7 +79,7 @@ namespace Message.Manager
 
             oMsjReturn = Agent.SendMessage(oAgentConfig);
 
-            if (oMsjReturn != null)
+            if (oMsjReturn == null)
             {
                 //TODO: VERIFICAR SI HAY UN RESEND Y HACER LA OPERACION
             }
@@ -138,6 +148,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Email_ModifyAppointment":
+                    xDocMessBody = xDocMessBody.Replace("{PatientName}", infoMessage.MessageParameters.Where(x => x.Key == "PatientName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
@@ -159,6 +170,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "ConfirmCancelLink").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Sms_ReminderAppointment":
                     xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());

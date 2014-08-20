@@ -36,10 +36,17 @@ namespace Message.Mailman
             #endregion
             //validar todas las direcciones
             List<QueueParameterModel> mess = MessageToSend.QueueItemToProcess.MessageParameters.Where(x => x.Key == "TO").ToList();
+            if (mess.Count() == 0)
+                return null;
+            
             addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
 
             foreach (AddressModel item in addresList)
             {
+                if (string.IsNullOrEmpty(item.Address) )
+                {
+                    return null; //TODO: MANDAR AL LOG EL ID Y LA RAZÓN
+                }
                 var messageQueue = new MessageQueue();
                 messageQueue.Path = MessageToSend.MessageConfig["MailmanPath"];
                 messageQueue.Formatter = new XmlMessageFormatter(new[] { typeof(MessageMailman) });
@@ -83,7 +90,7 @@ namespace Message.Mailman
             List<AddressModel> addressList = new List<AddressModel>();
             return addressList = this._controller.UpsertAddress(address, agent);
         }
-        
+
         /// <summary>
         /// Funcion que envia el id del mensaje que va a ser enviado
         /// </summary>
@@ -92,6 +99,6 @@ namespace Message.Mailman
         {
             this._controller.AddToResendMsj(MessageProcessId);
         }
-        #endregion     
+        #endregion
     }
 }

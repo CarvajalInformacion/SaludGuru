@@ -127,6 +127,7 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
+        debugger;
         $.ajax({
             url: '/Search/GetSearchUrl?IsGetUrl=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + $('#' + SearchBoxObject.InputId).val(),
             dataType: "json",
