@@ -221,6 +221,22 @@ input#itemClose {
                 vertical-align: top;
             }
 
-div.SelOfficeGrid div {
+.GridAP div span {
+    display: inline-block !important;
+    width: 60% !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    margin: 10px 0px 10px 0px !important;
     height: auto !important;
+    border: none !important;
+    line-height: 0px !important;
+}
+
+.GridAP div a {
+    display: initial;
+    margin-left: 0 !important;
+}
+
+.GridAP div div.k-grid-content{
+    height: 341px !important;
 }
