@@ -22,6 +22,13 @@ namespace MarketPlace.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            //ensure only https navigation
+            if (!Context.Request.IsSecureConnection)
+                Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
+        }
+
         #region Enable web api session read
 
         private const string _WebApiPrefix = "api";

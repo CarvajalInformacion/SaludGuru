@@ -3,7 +3,7 @@
 .MPResultsGrandWrapper label, 
 .MPResultsGrandWrapper a{
     color:#666;
-    font-size:18px;
+    font-size:1em;
     letter-spacing:-0.6px;
     line-height:22px;
 }
@@ -22,13 +22,18 @@
         width:auto; height:auto;
                 border:none;
     }
+div.MPResultsBreadCrumbs {
+    background-color: #92B92A;
+        color: #FFF;
+        height:28px;
+}
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsModel,
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages{
     display:inline-block;
     width:48.2%;
         border:none;
     vertical-align:top;
-    margin:8px 0px 4px 8px;
+    margin:3px 0px 3px 8px;
 }
 .MPResultsBreadCrumbsPages a {
     float:right;
@@ -38,10 +43,10 @@
 div.MPResultsPaidProfile{
         border: none;
     display: block;
-    margin:0px 8px 12px 8px;
+    margin:10px 8px 12px 8px;
     padding: 12px;
     background: linear-gradient(#fff, #ececec);
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    box-shadow:0px 1px 7px 0px #666;
     border-radius: 2px;
 }
 div.MPResultsPaidProfile label,
@@ -171,10 +176,11 @@ a.MPResultsPaidProfileDoctorFacebook > span{
         div.OfficeSelector {
             border: none;
             display:block;
-            width:50%;
+            width:auto;
             min-width: 220px;
             vertical-align: top;
             margin:12px 0px 4px 0px;
+            min-height:39px;
         }
         div.OfficeSelector span{
             cursor:pointer;       
@@ -187,6 +193,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             div.OfficeSelector span:hover{
                 text-decoration:underline;
             }
+            div.OfficeContactSelector {display:block; min-height:39px;}
             div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
                 cursor:auto;
                 font-size:1em;
@@ -199,7 +206,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
 .MPResultsBookAppFree {
     display:inline-block !important;
     padding: 4px 0px;
-    margin: 6px auto;
+    margin:6px auto;
     background-color: #92B92A;
     width:100%;
     text-align: center;
