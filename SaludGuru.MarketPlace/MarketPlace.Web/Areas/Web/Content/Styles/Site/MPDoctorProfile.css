@@ -230,7 +230,7 @@
         border:none;
         display: block;
         width:90%;
-        margin: 7px auto 0px;
+        margin:10px auto 0px;
         BORDER: 1PX SOLID #666;
         border-radius: 3px;
         box-shadow: 2px 2px 2px #666;
@@ -238,40 +238,44 @@
 }
     .MPProfileInfo_Social a{
             border:none;
-        float:left;
-        width:68px; height:auto;
-        text-align:center;
-        margin:2px 2%;
+        display:block;
+        width:93%; height:auto;
+        text-align:left;
+        margin:4px 4%;
         vertical-align:top;
-        clear:both;
+        text-decoration: none;
     }
     .MPProfileInfo_Social a:first-child {
-        margin-top:6px !important;
+        margin-top:10px !important;
     }
             .MPProfileInfo_Social a img{
                     border:none;
                 display:inline-block;
-                width:38px;
+                width:28px;
                 height:auto;
             }
             .MPProfileInfo_Social a span{
-                        border:none;
-                    display: block;
-                    color: #666;
-                    font-size: 12px;
-                    line-height: 14px;
-                    width: 67px;
+                border: medium none;
+                display: inline-block;
+                color: #666;
+                font-size: 14px;
+                line-height: 16px;
+                vertical-align: top;
+                width: auto;
+                margin: 3px 0px 0px 0px;
                     }
         .MPProfileInfo_Social iframe{
-                border:none;
+                border-bottom:1px solid #999;
                 overflow: hidden;
-                width: 72%;
-                height: 318px;
-                margin: 6px 0px;
+                width:92%;
+                height:204px;
+                margin:6px auto 10px auto;
+                display: block;
             }
             ._4s7c {
                 overflow: hidden;
                 padding-bottom: 14px;
+                height:auto;
             }
 
 
@@ -358,24 +362,37 @@
                         display: block;
                         font-size:18px;
                     }
+.MPProfileNoInfo {
+    font-size: 1.5em;
+    line-height: 32px;
+    padding: 10px;
+    border: 1px solid #999;
+    margin: 7% 0px 0px 1%;
+    display: inline-block;
+    color: #666;
+    letter-spacing: -1px;
+    text-align: center;
+    width: 80%;
+    vertical-align: top;
+}
 /************ MAPA ***********/
 .MPProfileMap {
     display:inline-block;
-    width:56.6%;
+    width:100%;
     height:auto;
         border:none;
 }
     .MPProfileMap span{
         font-size: 30px;
-        margin: 0px 0px 0px 18px;
+        margin: 0px 0px 0px 31px;
         color: #333;
         line-height: 35px;
         letter-spacing: -2px;
     }
     .MPProfileMap div#divOfficeMap {
-        width:96%;
+        width:95%;
         height:300px;
-        margin:1px 0px 10px 18px;
+        margin:1px auto 10px auto;
         display:block;
         border:1px solid #666;
         border-radius: 3px;

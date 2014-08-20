@@ -21,7 +21,16 @@
     width:auto;
     background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
     background-repeat:repeat-x;
-    background-position: 0px;
+    background-position: 0px -2px;
+}
+span.MPHeadertopMenuLeftEnd {
+    border:none;
+    width:26px; height:33px;
+    float:left;
+    background-image: url('/Areas/Web/Content/Images/BOTopBar3.png');
+    background-repeat:no-repeat;
+    background-position: -5px -1px;
+    background-size: auto 33px;
 }
     .MPRightTopMenu div, .MPRightTopMenu select{
         float:left;
@@ -34,19 +43,19 @@
         line-height:28px;
         margin-right:8px;
     }
-        .MPRightTopMenu div:first-child {
+        .MPRightTopMenu div:nth-child(2) {
             color:#333;
             margin-left:28px; margin-right:0px;
             border: none;
         }
-        .MPRightTopMenu select:nth-child(2){
+        .MPRightTopMenu select:nth-child(3){
             width:142px;
             background-color:#fff;
             border-radius:2px;
             border: 1px solid #999;
             height: 30px; margin-top: 1px;
         }
-        .MPRightTopMenu div:nth-child(3) {
+        .MPRightTopMenu div:nth-child(4) {
             background-image:url('/Areas/Web/Content/Images/BOnotificationsSmall.png');
             background-position:1px 2px;
             background-size:24px 26px;
@@ -54,10 +63,10 @@
             width:28px; border:none;
             display: none;
         }
-        .MPRightTopMenu div:nth-child(4) label {
+        .MPRightTopMenu div:nth-child(5) label {
             color:#333;
         }
-        .MPRightTopMenu div:nth-child(4) img{
+        .MPRightTopMenu div:nth-child(5) img{
             width:22px;
             height:auto;
             vertical-align:middle;
