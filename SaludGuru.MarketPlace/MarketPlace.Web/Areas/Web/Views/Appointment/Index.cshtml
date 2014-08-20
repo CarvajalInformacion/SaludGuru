@@ -162,7 +162,7 @@
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
-                    <input type="text" id="Birthday" name="Birthday" />
+                    <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
                 </li>
                 <li>
                     <h2>Sexo</h2>
@@ -186,12 +186,12 @@
 <!--templates-->
 <div style="display:none">
     <!--patient template-->
-    <ul id="ulPatientTemplate">
-        <li>
-            <input type="radio" name="SelectedNewItem" value="{PatientPublicId}" checked='checked'>
+    <div id="ulPatientTemplate">
+        <div>
+            <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="{PatientPublicId}" checked='checked'>
             <label>{PatientName}</label>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
 
 @{
@@ -201,6 +201,17 @@
 {
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
+
+        $(function () {
+            var pickerOpts = {
+                showAnim: "drop",
+                duration: jQuery.support.boxModel ? 'normal' : 'slow',
+                changeMonth: true,
+                changeYear: true
+            };
+            $("#Birthday").datepicker(pickerOpts);
+        });
+
         $(document).ready(function () {
             AppointmentObject.ChangeOffice();
         })

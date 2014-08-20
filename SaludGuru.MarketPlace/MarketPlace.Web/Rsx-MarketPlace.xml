@@ -10,7 +10,7 @@
     <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
 
     <!--google maps-->
-    <key name="GoogleMaps_ApiKey">AIzaSyCsN3eW8uN-AK_mazEkvPyXZiRSqOTEweI</key>
+    <key name="GoogleMaps_ApiKey">AIzaSyBxRBzCtUdaEaPSNRHnCAcDwyp-1dOlIpg</key>
     <key name="GoogleMaps_Sensor">false</key>
 
     <!--Enabled Cities-->

@@ -32,6 +32,7 @@ function serverDateTimeToString(vDate) {
 }
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitParams) {
+    debugger;
     //init search box 
     SearchBoxObject.Init({
         InputId: InitParams.SearchBoxId,
@@ -88,7 +89,17 @@ var SearchBoxObject = {
     },
 
     RenderAsync: function () {
+
+        debugger;
+
         if ($('#' + SearchBoxObject.InputId).length > 0) {
+            debugger;
+            //init on enter event
+            $('#' + SearchBoxObject.InputId).keyup(function (e) {
+                if (e.keyCode == 13) {
+                    SearchBoxObject.SearchTerm();
+                }
+            });
 
             //init autocomplete
             $('#' + SearchBoxObject.InputId).autocomplete({
@@ -110,6 +121,10 @@ var SearchBoxObject = {
                 select: function (event, ui) {
                     SearchBoxObject.SearchTerm();
                     return false;
+                },
+                messages: {
+                    noResults: '',
+                    results: '',
                 }
             }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
@@ -127,13 +142,12 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
-        debugger;
         $.ajax({
             url: '/Search/GetSearchUrl?IsGetUrl=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + $('#' + SearchBoxObject.InputId).val(),
             dataType: "json",
             type: "POST",
         }).done(function (data, textStatus, jqXHR) {
-            if (data != null && data.Url.length > 0) {
+            if (data != null && data.Url != null && data.Url.length > 0) {
                 window.location = data.Url;
             }
         });

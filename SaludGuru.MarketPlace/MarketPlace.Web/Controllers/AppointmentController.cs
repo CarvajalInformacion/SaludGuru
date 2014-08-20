@@ -17,6 +17,13 @@ namespace MarketPlace.Web.Controllers
     {
         public virtual ActionResult Index(string ProfilePublicId, string OfficePublicId, string Date)
         {
+            List<PatientModel> pModel = new List<PatientModel>();
+            pModel = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+            if (pModel == null)
+            {
+                string resultPatientPublicId = CreateNewCurrentPatient(ProfilePublicId);
+            }
+
             AppointmentViewModel oModel = new AppointmentViewModel()
             {
                 CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date),
@@ -33,6 +40,45 @@ namespace MarketPlace.Web.Controllers
             }
 
             return View(oModel);
+        }
+
+        public string CreateNewCurrentPatient(string ProfilePublicId)
+        {
+            PatientModel newCurrentPatient = new PatientModel();
+
+            newCurrentPatient.IsProfilePatient = true;
+            newCurrentPatient.Name = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name;
+            newCurrentPatient.LastName = MarketPlace.Models.General.SessionModel.CurrentLoginUser.LastName;
+            newCurrentPatient.PatientInfo = new List<PatientInfoModel>() 
+                {
+                    new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.IdentificationNumber,
+                        Value = "0",
+                    },
+                    new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Birthday,
+                        Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Birthday.ToString(),
+                    },
+                     new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Gender,
+                        Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Gender.ToString(),
+                    },
+                    new PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser,
+                        Value = "true",
+                    },
+                };
+
+            //Insert the new patient
+            return MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(newCurrentPatient, ProfilePublicId, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
         }
 
         public virtual ActionResult ConfirmationAppointment(string ProfilePublicId, string Date)
@@ -162,6 +208,44 @@ namespace MarketPlace.Web.Controllers
                 return oReturn;
             }
             return null;
+        }
+
+        private PatientModel GetForNewPatient()
+        {
+            PatientModel oReturn = new PatientModel();
+            PatientInfoModel oRequestInfo = new PatientInfoModel();
+
+            oReturn.IsProfilePatient = true;
+            oReturn.Name = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name;
+            oReturn.LastName = MarketPlace.Models.General.SessionModel.CurrentLoginUser.LastName;
+            oReturn.PatientInfo = new List<PatientInfoModel>() 
+                {
+                    new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.IdentificationNumber,
+                        Value = "0",
+                    },
+                    new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Birthday,
+                        Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Birthday.ToString(),
+                    },
+                     new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Gender,
+                        Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Gender.ToString(),
+                    },
+                    new PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser,
+                        Value = "true",
+                    },
+                };
+            return oReturn;
         }
         #endregion
     }
