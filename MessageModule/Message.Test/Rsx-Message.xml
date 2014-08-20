@@ -418,7 +418,8 @@
                              </p>
                                 <br>
                              <p>   
-                                Cuidados previos {BeforeCare}                                             
+                                Cuidados previos {BeforeCare}      
+                                <a href="https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId={ConfirmCancelLink}">Confirmar/Cancelar </a>
                                 <a href="https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId={ConfirmCancelLink}">Confirmar/Cancelar </a>.                                            
                              </p>
                             <div style="width:100%; height:30px;">

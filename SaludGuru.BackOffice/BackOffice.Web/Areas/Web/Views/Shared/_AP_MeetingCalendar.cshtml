@@ -25,13 +25,6 @@
                         <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
                     }
                 </li>
-                <li>
-                    @if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Month)
-                    {
-                        <a href="@Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-1).ToString("yyyy-M-d"), SelectedOffice = Model.SelectedOffice })"><</a>
-                        <a href="@Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(1).ToString("yyyy-M-d"), SelectedOffice = Model.SelectedOffice })">></a>
-                    }
-                </li>
             </ul>
         </div>
     </div>
@@ -74,6 +67,13 @@ else
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
 
+    string PreviewLink = string.Empty;
+    string NextLink = string.Empty;
+    if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Month)
+    {
+        PreviewLink = Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-1).ToString("yyyy-M-d") });
+        NextLink = Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(1).ToString("yyyy-M-d") });
+    }
     <script type="text/javascript">
         $(document).ready(function () {
             //render metting calendar
@@ -82,6 +82,8 @@ else
                 CurrentAgentType: '@Model.defaultView',
                 StartDateTime : new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
                 EndDateTime : new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
+                PreviewLink : '@Html.Raw(PreviewLink)',
+                NextLink :  '@Html.Raw(NextLink)',
                 OfficeInfo : @Html.Raw(oOfficeInfo),
             });
             MettingCalendarObject.RenderAsync();

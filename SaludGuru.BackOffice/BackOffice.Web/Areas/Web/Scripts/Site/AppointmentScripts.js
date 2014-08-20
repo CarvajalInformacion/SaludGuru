@@ -125,7 +125,8 @@ var MettingCalendarObject = {
     StartDateTime: new Date(),
     EndDateTime: new Date(),
     CurrentPublicOfficeId: '',
-
+    PreviewLink: '',
+    NextLink: '',
     /*full calendar info*/
     dayNamesSp: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
     dayNamesShortSp: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
@@ -143,6 +144,8 @@ var MettingCalendarObject = {
         this.CurrentAgentType = vInitObject.CurrentAgentType;
         this.StartDateTime = vInitObject.StartDateTime;
         this.EndDateTime = vInitObject.EndDateTime;
+        this.PreviewLink = vInitObject.PreviewLink;
+        this.NextLink = vInitObject.NextLink;
 
         //init office option list
         this.optionOffice = '<select id="selOffice_{OfficePublicId}">';
@@ -203,8 +206,8 @@ var MettingCalendarObject = {
                 if (this.CurrentAgentType == 'month') {
                     oEventUrl = '/api/AppointmentApi?OfficePublicId=' + vOfficePublicId + '&StartDate=' + serverDateToString(this.StartDateTime);
                     oEditable = false;
-                    //oLeft = 'prev';
-                    //oRight = 'next';
+                    oLeft = 'prev';
+                    oRight = 'next';
                 }
 
 
@@ -356,6 +359,19 @@ var MettingCalendarObject = {
                 });
                 //set start date
                 $('#' + this.lstOffice[vOfficePublicId].OfficeDivId).fullCalendar('gotoDate', this.StartDateTime);
+
+                //set prev and next link for month view
+                if (this.CurrentAgentType == 'month') {
+
+                    $('.fc-button-prev').click(function () {
+                        window.location = MettingCalendarObject.PreviewLink + '&SelectedOffice=' + vOfficePublicId;
+                    });
+
+                    $('.fc-button-next').click(function () {
+                        window.location = MettingCalendarObject.NextLink + '&SelectedOffice=' + vOfficePublicId;
+                    });
+                }
+
             }
             else {
                 //refresh calendar events

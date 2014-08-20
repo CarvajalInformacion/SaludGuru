@@ -156,7 +156,7 @@ namespace BackOffice.Web.ControllersApi
                     }
                     AppToCreateNotify.StartDate = (DateTime)RemindedDate; 
                     oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
-                    //TODO: program remember mesaje RemindedDate
+                    //TODO: program the log qhit the result
                     BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderNextAppointment, PatientSource, AppToCreateNotify, false);
                 }
             }
