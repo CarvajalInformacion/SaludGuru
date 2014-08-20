@@ -33,7 +33,11 @@
     <Reference Include="Carvajal.Mail">
       <HintPath>..\Message.Manager\Librarys\Carvajal.Mail.dll</HintPath>
     </Reference>
+    <Reference Include="SettingsManager">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SettingsManager\developer\SettingsManager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
