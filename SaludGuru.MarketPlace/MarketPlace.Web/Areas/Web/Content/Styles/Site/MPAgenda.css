@@ -76,28 +76,33 @@ div#FreeScheduleId {
     border-radius: 4px;
 }
 
-div.laPmadre div {
+div.ProfileCalendar div {
     padding: 0px;
     margin: 5px;
     width: auto;
 }
 
-div.laPmadre > div > ul {
+div.ProfileCalendar > div > ul {
     display: none;
 }
 
-div.laPmadre > div > div, div.laPmadre > div > div > div {
+div.ProfileCalendar > div > div, div.ProfileCalendar > div > div > div {
     padding: 0px !important;
     margin: 0px;
     margin-left: 0px !important;
-    width: 99% !important;
+    width: 98% !important;
 }
 
-div.laPmadre {
+div.ProfileCalendar {
     margin: 0px;
     width: calc(100%);
     max-width: 617px;
 }
+
+.ProfileCalendar div#divAppointmentSchedule{
+    height: auto !important;
+}
+
 /******** PANTALLA DE CONFIRMACION ********/
 div.MPAgendaConfirmationMessageGW {
     display: block;

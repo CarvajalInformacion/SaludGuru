@@ -63,12 +63,10 @@
         <div class="MPResultsCertifiedWrapper">
             @if (ovIsCertified)
             {
-
                 <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-
             }
         </div>
-        <a href="@ovProfileUrl">
+        <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
             <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
         </a>
         <div class="MPResultsPaidProfileDoctorData">

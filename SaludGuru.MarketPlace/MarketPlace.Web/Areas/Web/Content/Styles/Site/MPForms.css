@@ -151,6 +151,35 @@
         background-color: #fff;
     }
 /********** CREAR NUEVO PACIENTE **********/
+div#NewPatientId {
+    border: 1px solid #666;
+    box-shadow: 2px 2px 2px #666;
+    border-radius: 4px;
+    width: 68%;
+}
+
+input#itemClose {
+    border: 1px solid #666;
+    display: inline-block;
+    height: auto !important;
+    width: 150px !important;
+    background-color: #FF002D;
+    color: #fff;
+    text-align: center;
+    line-height: 16px !important;
+    border-radius: 3px;
+    font-size: 1.3em;
+    box-shadow: 2px 2px 1px #666;
+    vertical-align: 0px !important;
+    padding: 5px !important;
+}
+
+    input#itemClose:hover {
+        box-shadow: 1px 1px 0px #333;
+        background-color: #D81334;
+    }
+
+
 #NewPatient {
     height: auto;
     width: 320px;
@@ -191,3 +220,7 @@
                 padding: 0px;
                 vertical-align: top;
             }
+
+div.SelOfficeGrid div {
+    height: auto !important;
+}
