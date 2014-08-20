@@ -39,13 +39,15 @@
 
     //get WebSite info
     var ovWebSite = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website &&
+                        !string.IsNullOrEmpty(x.Value)).
             Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
             FirstOrDefault();
 
     //get facebook profile
     var ovFacebook = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile &&
+                        !string.IsNullOrEmpty(x.Value)).
             Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
             FirstOrDefault();
 
@@ -90,7 +92,7 @@
                 }
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
-                    <a class="MPResultsPaidProfileDoctorFacebook" mpresultspaidprofiledoctorhref="@ovFacebook" target="_blank">
+                    <a class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
                         <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
                         <span>Facebook</span>
                     </a>

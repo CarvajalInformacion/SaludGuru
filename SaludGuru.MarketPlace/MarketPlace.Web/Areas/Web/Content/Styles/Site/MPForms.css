@@ -18,6 +18,8 @@
         margin-left: 18px;
         margin-top: 18px;
         width: 96%;
+        font-weight: bold;
+        color: #99c21d;
     }
 
     .MPFormDataWrapper form {
@@ -155,7 +157,7 @@ div#NewPatientId {
     border: 1px solid #666;
     box-shadow: 2px 2px 2px #666;
     border-radius: 4px;
-    width: 68%;
+    width: 363px;
 }
 
 input#itemClose {
@@ -237,6 +239,6 @@ input#itemClose {
     margin-left: 0 !important;
 }
 
-.GridAP div div.k-grid-content{
+.GridAP div div.k-grid-content {
     height: 341px !important;
 }

@@ -20,16 +20,16 @@
 <ul class="MPAgendaDoctorData">
     <li><img src="@ImgProfile" alt="@Model.CurrentProfile.Name" /></li>
 
-    <li>
+    <li class="ProfileInfoName">
         <a href="@ovProfileUrl">
             <label>@Model.CurrentProfile.Name</label>
             <label>@Model.CurrentProfile.LastName</label>
         </a>
     </li>
-    <li>
+    <li class="DefaultSpecialty">
         <label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
     </li>
-    <li>
+    <li class="RelatedOffice">
         <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault()</label>
     </li>
 </ul>

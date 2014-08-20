@@ -112,30 +112,37 @@ namespace MarketPlace.Web.Controllers
         public virtual JsonResult GetSearchUrl
             (string IsGetUrl, string CityId, string SearchParam)
         {
-
-            var oModelAux = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-                    (Convert.ToInt32(CityId.Trim()), SearchParam);
-
-            AutocompleteModel oModel;
-            if (oModelAux != null && oModelAux.Count > 0)
+            string oReturn = string.Empty;
+            try
             {
-                oModel = oModelAux.FirstOrDefault();
-            }
-            else
-            {
-                oModel = new AutocompleteModel()
+                var oModelAux = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
+                        (Convert.ToInt32(CityId.Trim()), SearchParam);
+
+                AutocompleteModel oModel;
+                if (oModelAux != null && oModelAux.Count > 0)
                 {
-                    IsQuery = true,
-                    MatchQuery = SearchParam
-                };
-            }
+                    oModel = oModelAux.FirstOrDefault();
+                }
+                else
+                {
+                    oModel = new AutocompleteModel()
+                    {
+                        IsQuery = true,
+                        MatchQuery = SearchParam
+                    };
+                }
 
-            if (oModel.IsQuery)
+                if (oModel.IsQuery)
+                {
+                    oModel.MatchQuery = SearchParam;
+                }
+
+                oReturn = GetUrlFromAcModel(oModel, CityId);
+            }
+            catch
             {
-                oModel.MatchQuery = SearchParam;
+                oReturn = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound));
             }
-
-            string oReturn = GetUrlFromAcModel(oModel, CityId);
 
             return Json(new { Url = oReturn });
         }

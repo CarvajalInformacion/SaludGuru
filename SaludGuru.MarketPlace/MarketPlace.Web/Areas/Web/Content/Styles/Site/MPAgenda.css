@@ -167,3 +167,24 @@ div.MPAgendaConfirmationMessage {
             font-size: 1em;
             margin: 6px 0px 0px 0px;
         }
+
+/*-----------New Styles----------*/
+
+.ProfileInfoName a label {
+    line-height: 14px !important;
+    color: #99c21d !important;
+    text-decoration: initial;
+    cursor: auto;
+}
+
+.DefaultSpecialty label {
+    margin: 28px 0px 0px 0px !important;
+}
+
+.RelatedOffice label {
+    margin: 40px 0px 0px 0px !important;
+    display: block !important;
+    width: auto !important;
+    line-height: 21px !important;
+    text-align: left !important;
+}
