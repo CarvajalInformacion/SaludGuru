@@ -37,12 +37,10 @@ namespace Message.Manager
                     {
                         try
                         {
-                            this.ProcessMesage(item);
+                            this.ProcessMessage(item);
                         }
                         catch (Exception err)
-                        {
-                            
-                            
+                        {   
                         }                        
                     }
                 }
@@ -63,7 +61,7 @@ namespace Message.Manager
         /// </summary>
         /// <param name="QueueItemToProcess">Mensaje para enviar, tomado de la cola</param>
         /// <returns>Modelo con info del mensaje enviado</returns>
-        private Message.Models.MessageModel ProcessMesage(Message.Models.MessageQueueModel QueueItemToProcess)
+        private Message.Models.MessageModel ProcessMessage(Message.Models.MessageQueueModel QueueItemToProcess)
         {
             MessageModel oMsjReturn = new MessageModel();
             //validate config

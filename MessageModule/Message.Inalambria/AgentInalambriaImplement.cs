@@ -55,21 +55,28 @@ namespace Message.Inalambria
             if (mess.Count() != 0)
                 addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
             else
+            {
                 return null;
+            }
             
             foreach (AddressModel item in addresList)
-            {
+            {               
                 ServiceSendSoapClient sendSMS = new ServiceSendSoapClient("ServiceSendSoap12");
                 sent = sendSMS.SendWithUser(MessageToSend.AgentConfig["UsrSMSService"], MessageToSend.AgentConfig["PswSMSService"], item.Address, MessageToSend.MessageConfig["Body"], null, "1").Status;
 
                 modelToreturn.RelatedAddress = new List<AddressModel>();
                 modelToreturn.RelatedAddress.Add(item);
 
-                //Actualiza la cola
-                if (!this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), MessageToSend.MessageConfig["Body"], item.AddressId))
+                if (sent)
                 {
-                    //TODO: Colocar la lógica para los logs;
+                    //Actualiza la cola
+                    this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), MessageToSend.MessageConfig["Body"], item.AddressId);                 
                 }
+                else
+                {
+                    this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, false, "El mensaje presenta errores y no pudeo ser enviado", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), MessageToSend.MessageConfig["Body"], item.AddressId);
+                    //this.AddResend(MessageToSend.QueueItemToProcess.)
+                }               
             }
 
             modelToreturn.Agent = addresList.FirstOrDefault().Agent;
