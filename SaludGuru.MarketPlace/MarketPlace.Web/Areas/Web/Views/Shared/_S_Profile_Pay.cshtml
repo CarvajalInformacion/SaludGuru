@@ -21,7 +21,7 @@
     {
         ovImageProfile = MarketPlace.Models.General.InternalSettings.Instance
                  [MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value;
-    }            
+    }
 
     //get default specialty
     var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
@@ -39,13 +39,15 @@
 
     //get WebSite info
     var ovWebSite = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website).
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website &&
+                        !string.IsNullOrEmpty(x.Value)).
             Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
             FirstOrDefault();
 
     //get facebook profile
     var ovFacebook = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile).
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile &&
+                        !string.IsNullOrEmpty(x.Value)).
             Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
             FirstOrDefault();
 
@@ -59,7 +61,7 @@
         }));
 
         }
-            <!--certified image-->
+        <!--certified image-->
         <div class="MPResultsCertifiedWrapper">
             @if (ovIsCertified)
             {
@@ -73,7 +75,7 @@
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
                 @(Model.Name + " " + Model.LastName)
             </a>
-            
+
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                     <!--Principal specialty-->
@@ -90,12 +92,12 @@
                 }
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
-                    <a class="MPResultsPaidProfileDoctorFacebook" mpresultspaidprofiledoctorhref="@ovFacebook" target="_blank">
+                    <a class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
                         <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
                         <span>Facebook</span>
                     </a>
                 }
-            </div>            
+            </div>
         </div>
         <div class="MPResultsDoctorDescriptionWrapper">
             @if (!string.IsNullOrEmpty(ovShortProfile))
@@ -124,7 +126,12 @@
                     </div>
                 </div>
             }
-            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Agenda tú cita gratis con este profesional.</a>
+
+            @{
+                string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
+            }
+            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita gratis con este profesional.</a>
+            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional.</a>
         </div>
     </div>
 }

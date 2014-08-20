@@ -77,18 +77,12 @@ namespace Message.Mailman
 
                         modelToreturn.RelatedAddress = new List<AddressModel>();
                         modelToreturn.RelatedAddress.Add(item);
-                        string FileName = ConfigurationManager.AppSettings["LogFile"].TrimEnd('/') + "/Log_" + DateTime.Now.ToString("yyyyMMddHHss") + ".txt";
 
-                        File.AppendAllText(FileName, "se supone q voy a entre a la cola");
-
+                        Console.WriteLine("Cuy");
                         //Envia a la cola de Mailman
                         messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
-                        if (!Directory.Exists(ConfigurationManager.AppSettings["LogFile"]))
-                            Directory.CreateDirectory(ConfigurationManager.AppSettings["LogFile"]);
-
-                        File.AppendAllText(FileName, "se supone q ya entre a la cola");
-
-                       //Actualiza la cola
+                        Console.WriteLine(messageQueue.CreateTime);
+                        //Actualiza la cola
                         this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "Message added to the queue correctly", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);
                     }
                     catch (Exception err)
