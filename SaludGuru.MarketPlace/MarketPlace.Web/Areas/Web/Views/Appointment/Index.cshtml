@@ -129,7 +129,7 @@
             </li>
             <li>
                 @*ESTE PEDAZO PINTA EL CALENDARIO DE CITAS DEL DOCTOR*@
-                <div class="laPmadre" id="FreeScheduleId" style="display:none">
+                <div class="ProfileCalendar" id="FreeScheduleId" style="display:none">
                     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
                     <div class="MPAgendaButtonWrapper">
                         <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="Cerrar calendario" />
@@ -167,9 +167,9 @@
                 <li>
                     <h2>Sexo</h2>
                     <label>Masculino</label>
-                    <input type="checkbox" id="GenderMale" name="GenderMale" />
+                    <input type="checkbox" id="GenderMale" value="false" name="Gender" />
                     <label>Femenino</label>
-                    <input type="checkbox" id="GenderFemale" name="GenderFemale" />
+                    <input type="checkbox" id="GenderFemale" value="true" checked="checked" name="Gender" />
                 </li>
                 <li>
                     <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
@@ -209,7 +209,52 @@
         $('#NewPatientId').append(htmlDivShow);
 
         $("#itemClose").click(function () {
-            $("#NewPatientId").hide(1000);
+            $("#NewPatientId").hide(800);
         });
+
+        $('#NewPatient').validate({
+            //debug: true,
+            errorClass: 'error help-inline',
+            validClass: 'success',
+            errorElement: 'span',
+            highlight: function (element, errorClass, validClass) {
+                $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+            },
+            rules: {
+                Name: {
+                    required: true,
+                },
+                LastName: {
+                    required: true,
+                },
+                Identification: {
+                    required: true,
+                },
+                Birthday: {
+                    required: true
+                }
+            },
+            messages: {
+                Name: {
+                    required: "Debe ingresar el nombre."
+                },
+                LastName: {
+                    required: "Debe ingresar el apellido."
+                },
+                Identification: {
+                    required: "Debe ingresar la identificación."
+                },
+                Birthday: {
+                    required: "Debe seleccionar una fecha."
+                }
+            }
+        });
+
+
+
     </script>
 }

@@ -276,7 +276,7 @@ $('#DateMoreInfoIdN').click(function () {
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
 
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
-    $("#FreeScheduleId").show(800);
+    $("#FreeScheduleId").show(1000);
     $("#DateMoreInfoId").hide();
 });
 $('#DateMoreInfoIdNN').click(function () {
@@ -307,6 +307,6 @@ $("#GenderMale").click(function () {
     $("#GenderFemale").attr('checked', false);
 });
 $("#DateLessInfoId").click(function () {
-    $("#FreeScheduleId").hide(800);
+    $("#FreeScheduleId").hide(1000);
     $("#DateMoreInfoId").show();
 });
