@@ -294,10 +294,10 @@ namespace MarketPlace.Web
                    IsRedirect = true
                }).DataTokens = rvdByArea;
 
-            //Redirect {SpecialityName}/seguros+medicos-todos
+            //Redirect {SpecialtyName}/seguros+medicos-todos
             routes.MapRoute(
                name: "R_SearchCategory_V1_2",
-               url: "{SpecialityName}/seguros+medicos-todos",
+               url: "{SpecialtyName}/seguros+medicos-todos",
                defaults: new
                {
                    controller = "Search",
@@ -313,10 +313,10 @@ namespace MarketPlace.Web
                    IsRedirect = true
                }).DataTokens = rvdByArea;
 
-            //Redirect {SpecialityName}/todos/todos
+            //Redirect {SpecialtyName}/todos/todos
             routes.MapRoute(
                name: "R_SearchCategory_V1_3",
-               url: "{SpecialityName}/todos/todos",
+               url: "{SpecialtyName}/todos/todos",
                defaults: new
                {
                    controller = "Search",
@@ -407,10 +407,10 @@ namespace MarketPlace.Web
                    IsRedirect = true
                }).DataTokens = rvdByArea;
 
-            //Redirect {SpecialityName}/todos/{CityName}
+            //Redirect {SpecialtyName}/todos/{CityName}
             routes.MapRoute(
                name: "R_SearchCategory_V1_8",
-               url: "{SpecialityName}/todos/{CityName}",
+               url: "{SpecialtyName}/todos/{CityName}",
                defaults: new
                {
                    controller = "Search",
@@ -425,10 +425,10 @@ namespace MarketPlace.Web
                    IsRedirect = true
                }).DataTokens = rvdByArea;
 
-            //Redirect {SpecialityName}/{InsuranceName}/todos
+            //Redirect {SpecialtyName}/{InsuranceName}/todos
             routes.MapRoute(
                name: "R_SearchCategory_V1_9",
-               url: "{SpecialityName}/{InsuranceName}/todos",
+               url: "{SpecialtyName}/{InsuranceName}/todos",
                defaults: new
                {
                    controller = "Search",
@@ -506,28 +506,10 @@ namespace MarketPlace.Web
                    IsRedirect = true
                }).DataTokens = rvdByArea;
 
-            //Redirect {SpecialityName}/{InsuranceName}
-            routes.MapRoute(
-               name: "R_SearchCategory_V2_4",
-               url: "{SpecialityName}/{InsuranceName}",
-               defaults: new
-               {
-                   controller = "Search",
-                   action = "Index",
-
-                   TreatmentName = string.Empty,
-                   CityName = string.Empty,
-
-                   Query = string.Empty,
-
-                   IsQuery = false,
-                   IsRedirect = true
-               }).DataTokens = rvdByArea;
-
-            //Redirect {SpecialityName}
+            //Redirect {SpecialtyName}
             routes.MapRoute(
                name: "R_SearchCategory_V2_5",
-               url: "{SpecialityName}",
+               url: "{SpecialtyName}",
                defaults: new
                {
                    controller = "Search",
@@ -580,10 +562,10 @@ namespace MarketPlace.Web
                    IsQuery = false,
                }).DataTokens = rvdByArea;
 
-            //{SpecialityName}/seguros+medicos-{CityName}
+            //{SpecialtyName}/seguros+medicos-{CityName}
             routes.MapRoute(
                name: "SearchCategory_SpecialtyCity",
-               url: "{SpecialityName}/seguros+medicos-{CityName}",
+               url: "{SpecialtyName}/seguros+medicos-{CityName}",
                defaults: new
                {
                    controller = "Search",
@@ -630,10 +612,30 @@ namespace MarketPlace.Web
                    IsQuery = false,
                }).DataTokens = rvdByArea;
 
-            //{SpecialityName}/{InsuranceName}/{CityName}
+            //Redirect {SpecialtyName}/{InsuranceName}
+            routes.MapRoute(
+               name: "R_SearchCategory_V2_4",
+               url: "{SpecialtyName}/{InsuranceName}",
+               defaults: new
+               {
+                   controller = "Search",
+                   action = "Index",
+
+                   TreatmentName = string.Empty,
+                   CityName = string.Empty,
+
+                   Query = string.Empty,
+
+                   IsQuery = false,
+                   IsRedirect = true
+               }).DataTokens = rvdByArea;
+
+            #region Redirect V2
+
+            //{SpecialtyName}/{InsuranceName}/{CityName}
             routes.MapRoute(
                name: "SearchCategory_SpecialtyInsuranceCity",
-               url: "{SpecialityName}/{InsuranceName}/{CityName}",
+               url: "{SpecialtyName}/{InsuranceName}/{CityName}",
                defaults: new
                {
                    controller = "Search",
@@ -645,6 +647,8 @@ namespace MarketPlace.Web
 
                    IsQuery = false,
                }).DataTokens = rvdByArea;
+
+            #endregion
 
             #endregion
 

@@ -21,21 +21,28 @@ namespace MarketPlace.Web.ControllersApi
         public List<AutocompleteViewModel> AutocompleteSearch
             (string IsAc, string CityId, string SearchParam)
         {
-            List<AutocompleteModel> AcResult = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-                (Convert.ToInt32(CityId.Trim()), SearchParam);
-
-            if (AcResult == null)
-                AcResult = new List<AutocompleteModel>();
-
-            List<AutocompleteViewModel> oReturn = new List<AutocompleteViewModel>();
-
-            AcResult.All(x =>
+            try
             {
-                oReturn.Add(new AutocompleteViewModel(x));
-                return true;
-            });
+                List<AutocompleteModel> AcResult = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
+                    (Convert.ToInt32(CityId.Trim()), SearchParam);
 
-            return oReturn;
+                if (AcResult == null)
+                    AcResult = new List<AutocompleteModel>();
+
+                List<AutocompleteViewModel> oReturn = new List<AutocompleteViewModel>();
+
+                AcResult.All(x =>
+                {
+                    oReturn.Add(new AutocompleteViewModel(x));
+                    return true;
+                });
+
+                return oReturn;
+            }
+            catch
+            {
+                return new List<AutocompleteViewModel>();
+            }
         }
     }
 }
