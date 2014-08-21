@@ -15,7 +15,7 @@ h1 {
 }
 
 .SearchBox, .ContentImportant, .Feed, .Demo {
-    width: 100%;
+    width: auto;
 }
 /*-----Search Box------*/
 .SearchBox {
@@ -67,27 +67,23 @@ h1 {
     color: #99c21d;
     font-size: 18px !important;
 }
-
-.SepDivHome {
-    width:100%;
-}
 /*---Contenido Perfil destacado - Redes Sociales - Mas buscado----*/
 .HomeFirstBlock {
     display: block;
     height: auto;
 }
 
-    .HomeFirstBlock .HomeFirstBlockLeft {
+    .HomeFirstBlockLeft {
         height: 500px;
         width: calc(60%);
         float: left;
         margin: 0px 0px 0px calc(8%);
     }
 
-    .HomeFirstBlock .HomeFirstBlockRigth {
+    .HomeFirstBlockRigth {
         height: 500px;
         width: calc(20%);
-        float: left;
+        display: inline-block;
         margin: 0px 0px 0px calc(4%);
     }
 
@@ -352,6 +348,10 @@ label#FeedTitle {
     height: auto;
 }
 
+.Demo a img{
+    width: 100%;
+}
+
 /*.NewDoctor {
     float: left;
     width: 335px;
@@ -404,10 +404,10 @@ label#FeedTitle {
 
 /*---- Otros Estilos -----*/
 
-/*hr.featurette-divider.__loop {
+hr.featurette-divider.__loop {
     width: 90%;
     border-top: 1px solid #99c21d;
-}*/
+}
 
 
 
