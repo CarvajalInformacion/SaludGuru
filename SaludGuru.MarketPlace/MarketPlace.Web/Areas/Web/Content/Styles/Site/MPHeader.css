@@ -65,8 +65,8 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
         vertical-align: text-bottom;
         margin:0px;
 }
-.MPRightTopMenu select{
-    float:left;
+    .MPRightTopMenu select{
+            float:left;
             width:142px;
             background-color:#fff;
             border-radius:2px;
@@ -79,13 +79,10 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
     height:16px;
     background-image: url('/Areas/Web/Content/Images/MPMas.png');
     background-repeat: no-repeat;
-    background-position: 0px 3px;
-    background-size: 18px auto;
+    background-position: 2px 4px;
+    background-size: 14px auto;
     float:right;
     margin:9px 2px 0px 3px;
-}
-.MPHeaderTopMas:hover{
-    margin:7px 2px 0px 3px;
 }
 /************** MENU MAS FORMAS DE LOGIN ***************/
 #ulLoginMoreOptions {
@@ -95,19 +92,34 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
     position:absolute;
     top: 32px;
     right: 12px;
-    width: auto;
-    padding: 6px 13px 6px 28px;
+    width: auto;    
     height: auto;
     z-index:25;
 }
-    #ulLoginMoreOptions li: {
+    #ulLoginMoreOptions li {
+        padding:10px 14px 0px 18px;
+        text-indent:20px;
+        height:36px;
+            border:none;
+        background-position:4px 5px;
+        background-repeat: no-repeat;
+    }
+    #ulLoginMoreOptions li:first-child {
+        background-image: url('/Areas/Web/Content/Images/googleIconSmall.png');        
+        background-size: 26px auto;
+    }
+    #ulLoginMoreOptions li:nth-child(2) {
+        background-image:url('/Areas/Web/Content/Images/facebookIconSmall.png');
+        background-size: 26px auto;
+    }
+    #ulLoginMoreOptions li:nth-child(3) {
+        background-image:url('/Areas/Web/Content/Images/MPOutlookLogo.png');                
+        background-size: 28px auto;
     }
 #ulLoginMoreOptions li a{
     line-height:1em;
     color:#333;
 }
-
-
 /************** NOT LOGGED IN ***************/
 .MPGoogleLogIn {
         border:none;
