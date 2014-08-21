@@ -4,8 +4,8 @@
         <div></div>
         <div class="MPRightTopMenu">
             <span class="MPHeadertopMenuLeftEnd"></span>
-            <div><a href="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_UrlBackOffice].Value">Soy doctor</a></div>
-            <div>Ciudad:</div>
+            <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" href="https://admin.saludguru.com.co">Soy doctor</a></div>
+            <div class="MPHeadertopMenuCiudad">| Ciudad:</div>
             <select>
                 @{
                     var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
@@ -23,7 +23,6 @@
                     }
                 }
             </select>
-            <div>@*Notificaciones*@</div>
             @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
             {
                 <!--Render user login options-->
@@ -70,10 +69,10 @@
                 string OutlookUrl = string.Empty;
 
                 <!--Render autentications-->
-                <span>Ingresar con:</span>
+                <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>
                 <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
                 <a class="MPFacebookLogIn" href="@FBUrl"></a>
-                <a href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');">Más</a>
+                <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');">Más</a>
                 <ul id="ulLoginMoreOptions" style="display:none;">
                     <li><a href="@GoogleUrl">Google</a></li>
                     <li><a href="@FBUrl">Facebook</a></li>
