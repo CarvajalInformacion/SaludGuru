@@ -26,8 +26,8 @@
             @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
             {
                 <!--Render user login options-->
-                <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                    <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
+                <div class="MPHeaderTopMenuUserName" onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                    <label> | Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
                     <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
                 </div>
                 <!--pop up user option menu-->
@@ -72,7 +72,7 @@
                 <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>
                 <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
                 <a class="MPFacebookLogIn" href="@FBUrl"></a>
-                <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');">Más</a>
+                <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
                 <ul id="ulLoginMoreOptions" style="display:none;">
                     <li><a href="@GoogleUrl">Google</a></li>
                     <li><a href="@FBUrl">Facebook</a></li>
