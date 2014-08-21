@@ -101,7 +101,9 @@
                 <label id="FeedTitle">@(mHealtyLive.Title)</label>
             </a>
             <a target="_blank" href="@(mHealtyLive.Link)">
-                <img id="FeedImage" src="@(mHealtyLive.Image)" />
+                <div class="divLeftImage">
+                    <img id="FeedImage" src="@(mHealtyLive.Image)" />
+                </div>
             </a>
             @(Html.Raw(mHealtyLive.Description))
         </div>
@@ -111,7 +113,9 @@
                 <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
             </a>
             <a target="_blank" href="@(mMedicalMarketing.Link)">
-                <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
+                <div class="divRightImage">
+                    <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
+                </div>
             </a>
             @(Html.Raw(mMedicalMarketing.Description))
         </div>

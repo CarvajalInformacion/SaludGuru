@@ -236,12 +236,8 @@ a.MPButtons {
 }
 
 img#FeedImage {
-    width: 148px;
-    height: auto;
-    border-radius: 3px;
-    z-index: 90;
-    margin: 30px;
-    float: left;
+    width: auto;
+    height: 100%;
 }
 
 label#FeedTitle {
@@ -264,6 +260,16 @@ label#FeedTitle {
         font-weight: bold;
     }
 
+.divLeftImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    z-index: 90;
+    margin: 30px;
+    float: left;
+    vertical-align: middle;
+}
+
 /*-----Noticias Derecha-----*/
 .FeedRight {
     /*outline: 1px solid darkred;*/
@@ -275,6 +281,16 @@ label#FeedTitle {
     .FeedRight p a {
         font-weight: bold;
     }
+
+.divRightImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    z-index: 90;
+    margin: 30px;
+    float: left;
+    vertical-align: middle;
+}
 
 /*-----Demo-------*/
 .Demo {
