@@ -2,15 +2,16 @@
     border:none;
     width: 100%;
     min-width:768px;
-    height: 150px;
+    height: auto;
+    min-height: 80px;
     display:block;
     box-shadow:0px 1px 7px 0px #555;
     position:relative;
-    z-index:2;
+    z-index:3;
 }
 .MPHeaderTopWrapper {
     display: block;
-        border:none;
+    border:none;
     height: 32px;
     width:100%;
 }
@@ -50,7 +51,7 @@ div.MPHeaderTopMenuSoyDoc {
         background-position: 0px 1px;
         background-size: 24px auto;
         background-repeat: no-repeat;
-        width: 118px;
+        width:108px;
         text-align:right;
 }
 div.MPHeadertopMenuSoyDoc a{
@@ -73,6 +74,40 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
             height: 30px; margin-top:1px;
             padding:0px;
         }
+.MPHeaderTopMas {
+    width:24px;
+    height:16px;
+    background-image: url('/Areas/Web/Content/Images/MPMas.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    background-size: 18px auto;
+    float:right;
+    margin:9px 2px 0px 3px;
+}
+.MPHeaderTopMas:hover{
+    margin:7px 2px 0px 3px;
+}
+/************** MENU MAS FORMAS DE LOGIN ***************/
+#ulLoginMoreOptions {
+    background-color:#ececec;
+    border:1px solid #666;
+    box-shadow:1px 1px 2px #666;
+    position:absolute;
+    top: 32px;
+    right: 12px;
+    width: auto;
+    padding: 6px 13px 6px 28px;
+    height: auto;
+    z-index:25;
+}
+    #ulLoginMoreOptions li: {
+    }
+#ulLoginMoreOptions li a{
+    line-height:1em;
+    color:#333;
+}
+
+
 /************** NOT LOGGED IN ***************/
 .MPGoogleLogIn {
         border:none;
@@ -127,8 +162,8 @@ width: 27px;
 /************** BARRA DE BUSQUEDA **************/
 .MPHeaderSearchWrapper {
     display: block;
-        border:none;
-    height: 32px;
+    border:none;
+    height: auto;
     width:100%;
 }
     .MPHeaderSearchWrapper a.MPSGlogo {
@@ -161,8 +196,8 @@ width: 27px;
         font-size: 18px;
         width:54%;
         min-width:720px;
-            border:none;
-        height:38px;
+        border:none;
+        height:58px;
         line-height: 16px;
     }
     .MPHeaderSearchWrapper div input {

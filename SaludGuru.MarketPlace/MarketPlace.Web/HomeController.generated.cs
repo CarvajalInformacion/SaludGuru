@@ -74,6 +74,10 @@ namespace MarketPlace.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string LegalTerms = "LegalTerms";
+            public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
+            public readonly string FAQ = "FAQ";
+            public readonly string Contact = "Contact";
             public readonly string LogOutUser = "LogOutUser";
         }
 
@@ -81,6 +85,10 @@ namespace MarketPlace.Web.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string LegalTerms = "LegalTerms";
+            public const string ConditionsAndRestrictions = "ConditionsAndRestrictions";
+            public const string FAQ = "FAQ";
+            public const string Contact = "Contact";
             public const string LogOutUser = "LogOutUser";
         }
 
@@ -112,6 +120,50 @@ namespace MarketPlace.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LegalTermsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LegalTerms()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LegalTerms);
+            LegalTermsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ConditionsAndRestrictionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ConditionsAndRestrictions()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConditionsAndRestrictions);
+            ConditionsAndRestrictionsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FAQOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FAQ()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FAQ);
+            FAQOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ContactOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Contact()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Contact);
+            ContactOverride(callInfo);
             return callInfo;
         }
 
