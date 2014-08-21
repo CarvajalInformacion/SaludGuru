@@ -281,6 +281,8 @@
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
     <Content Include="Areas\Web\Content\Images\MPfooterImageSmall.png" />
     <Content Include="Areas\Web\Content\Images\MPHeaderSoyDoc.png" />
+    <Content Include="Areas\Web\Content\Images\MPMas.png" />
+    <Content Include="Areas\Web\Content\Images\MPOutlookLogo.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.css" />
