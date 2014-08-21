@@ -4,6 +4,7 @@
         <div></div>
         <div class="MPRightTopMenu">
             <span class="MPHeadertopMenuLeftEnd"></span>
+            <div><a href="https://admin.saludguru.com.co">Soy doctor</a></div>
             <div>Ciudad:</div>
             <select>
                 @{
@@ -34,20 +35,20 @@
                 <div id="divUserMenu" style="display:none;">
                     <ul>
                         @*<li>
-                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Index,MVC.UserProfile.Name)">Mis datos</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.UserProfile.ActionNames.FamilyGroup, MVC.UserProfile.Name)">Mi grupo familiar</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.UserProfile.ActionNames.ProfileList, MVC.UserProfile.Name)">Mis especialistas</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Treatment, MVC.UserProfile.Name)">Mis tratamientos</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
-                        </li>*@
+                                <a href="@Url.Action(MVC.UserProfile.ActionNames.Index,MVC.UserProfile.Name)">Mis datos</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.UserProfile.ActionNames.FamilyGroup, MVC.UserProfile.Name)">Mi grupo familiar</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.UserProfile.ActionNames.ProfileList, MVC.UserProfile.Name)">Mis especialistas</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.UserProfile.ActionNames.Treatment, MVC.UserProfile.Name)">Mis tratamientos</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
+                            </li>*@
                         <li>
                             <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
                         </li>
@@ -67,8 +68,15 @@
                     .Value.Replace("{{UrlRetorno}}", RetUrl);
 
                 <!--Render autentications-->
+                <span>Ingresar con:</span>
                 <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
                 <a class="MPFacebookLogIn" href="@FBUrl"></a>
+                <a href="javascript:;">Más</a>
+                <ul style="display:none;">
+                    <li><a href="@GoogleUrl">Google</a></li>
+                    <li><a href="@FBUrl">Facebook</a></li>
+                    <li><a href="@GoogleUrl">Outlook</a></li>
+                </ul>
             }
         </div>
     </div>
@@ -84,7 +92,7 @@
             <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
             <div>
                 <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-                <a href="javascript:SearchBoxObject.SearchTerm();"></a> 
+                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
             </div>
         }
     </div>
