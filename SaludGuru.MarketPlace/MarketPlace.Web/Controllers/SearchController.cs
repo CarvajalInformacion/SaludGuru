@@ -23,6 +23,12 @@ namespace MarketPlace.Web.Controllers
                 //get basic model
                 SearchViewModel oModel = new SearchViewModel()
                 {
+                    CurrentSearchSpecialty = SpecialtyName,
+                    CurrentSearchTreatment = TreatmentName,
+                    CurrentSearchInsurance = InsuranceName,
+                    CurrentSearchQuery = Query,
+                    CurrentSearchCity = CityName,
+
                     IsNoFollow = !ControllerContext.RouteData.Values.
                         Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
                             Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
@@ -44,23 +50,18 @@ namespace MarketPlace.Web.Controllers
                 if (!oModel.IsQuery)
                 {
                     oModel.CurrentCategory = SaludGuruProfile.Manager.Controller.Profile.MPCategoryGetAvailableCategory
-                        (string.IsNullOrEmpty(InsuranceName) ? null : InsuranceName.Replace("+", " "),
-                        string.IsNullOrEmpty(SpecialtyName) ? null : SpecialtyName.Replace("+", " "),
-                        string.IsNullOrEmpty(TreatmentName) ? null : TreatmentName.Replace("+", " "));
+                        (string.IsNullOrEmpty(oModel.CurrentSearchInsurance) ? null : oModel.CurrentSearchInsurance.Replace("+", " "),
+                        string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) ? null : oModel.CurrentSearchSpecialty.Replace("+", " "),
+                        string.IsNullOrEmpty(oModel.CurrentSearchTreatment) ? null : oModel.CurrentSearchTreatment.Replace("+", " "));
                 }
 
                 //eval redirect
                 EvalRedirect
-                    (oModel,
-                    SpecialtyName,
-                    TreatmentName,
-                    InsuranceName,
-                    CityName,
-                    Query);
+                    (oModel);
 
                 //get city
                 oModel.CurrentCityId = BaseController.EnabledCities.
-                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(CityName.Replace("+", " "))).
+                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(oModel.CurrentSearchCity.Replace("+", " "))).
                             Select(x => x.Key).
                             DefaultIfEmpty(BaseController.DefaultCityId).
                             FirstOrDefault();
@@ -74,12 +75,10 @@ namespace MarketPlace.Web.Controllers
                 //get profiles to show
                 if (oModel.IsQuery)
                 {
-                    oModel.CurrentQuery = Query.Replace("+", " ");
-
                     oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
                         (true,
                         oModel.CurrentCityId,
-                        Query.Replace("+", " "),
+                        oModel.CurrentSearchQuery.Replace("+", " "),
                         null,
                         null,
                         null,
@@ -94,9 +93,9 @@ namespace MarketPlace.Web.Controllers
                         (false,
                         oModel.CurrentCityId,
                         null,
-                        !string.IsNullOrEmpty(InsuranceName) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
-                        !string.IsNullOrEmpty(SpecialtyName) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
-                        !string.IsNullOrEmpty(TreatmentName) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
                         oModel.CurrentRowCount,
                         oModel.CurrentPage,
                         out oTotalRowsAux);
@@ -120,12 +119,15 @@ namespace MarketPlace.Web.Controllers
                 var oModelAux = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
                         (Convert.ToInt32(CityId.Trim()), SearchParam);
 
-                AutocompleteModel oModel;
+                AutocompleteModel oModel = null;
                 if (oModelAux != null && oModelAux.Count > 0)
                 {
-                    oModel = oModelAux.FirstOrDefault();
+                    oModel = oModelAux.
+                        Where(x => x.OriginalTerm.ToLower().Equals(SearchParam.ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        FirstOrDefault();
                 }
-                else
+
+                if (oModel == null)
                 {
                     oModel = new AutocompleteModel()
                     {
@@ -152,24 +154,19 @@ namespace MarketPlace.Web.Controllers
         #region Private methods
 
         private void EvalRedirect
-            (SearchViewModel ViewModel,
-            string vSpecialtyName,
-            string vTreatmentName,
-            string vInsuranceName,
-            string vCityName,
-            string vQuery)
+            (SearchViewModel ViewModel)
         {
             if (ViewModel.IsQuery)
             {
                 if (ViewModel.IsRedirect)
                 {
-                    if (string.IsNullOrEmpty(vCityName))
+                    if (string.IsNullOrEmpty(ViewModel.CurrentSearchCity))
                     {
                         Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
                                 MarketPlace.Models.General.Constants.C_Route_SearchQuery_Default,
                                 new
                                 {
-                                    Query = vQuery,
+                                    Query = ViewModel.CurrentSearchQuery,
                                     CityName = BaseController.RemoveAccent(BaseController.DefaultCityName),
                                 })), true);
                     }
@@ -179,15 +176,15 @@ namespace MarketPlace.Web.Controllers
                                 MarketPlace.Models.General.Constants.C_Route_SearchQuery_Default,
                                 new
                                 {
-                                    Query = vQuery,
-                                    CityName = vCityName,
+                                    Query = ViewModel.CurrentSearchQuery,
+                                    CityName = ViewModel.CurrentSearchCity,
                                 })), true);
                     }
                 }
             }
             else
             {
-                if (string.IsNullOrEmpty(vCityName))
+                if (string.IsNullOrEmpty(ViewModel.CurrentSearchCity))
                 {
                     CallCategoryRedirect
                         (ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : null,
@@ -201,20 +198,20 @@ namespace MarketPlace.Web.Controllers
                         (ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : null,
                         ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : null,
                         ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : null,
-                        vCityName.Replace("+", " "));
+                        ViewModel.CurrentSearchCity.Replace("+", " "));
                 }
                 else if ((ViewModel.CurrentSpecialty != null &&
-                            BaseController.RemoveAccent(ViewModel.CurrentSpecialty.Name) != vSpecialtyName) ||
+                            BaseController.RemoveAccent(ViewModel.CurrentSpecialty.Name) != ViewModel.CurrentSearchSpecialty) ||
                         (ViewModel.CurrentInsurance != null &&
-                            BaseController.RemoveAccent(ViewModel.CurrentInsurance.Name) != vInsuranceName) ||
+                            BaseController.RemoveAccent(ViewModel.CurrentInsurance.Name) != ViewModel.CurrentSearchInsurance) ||
                         (ViewModel.CurrentTreatment != null &&
-                            BaseController.RemoveAccent(ViewModel.CurrentTreatment.Name) != vTreatmentName))
+                            BaseController.RemoveAccent(ViewModel.CurrentTreatment.Name) != ViewModel.CurrentSearchTreatment))
                 {
                     CallCategoryRedirect
                         (ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : null,
                         ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : null,
                         ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : null,
-                        vCityName.Replace("+", " "));
+                        ViewModel.CurrentSearchCity.Replace("+", " "));
                 }
             }
         }

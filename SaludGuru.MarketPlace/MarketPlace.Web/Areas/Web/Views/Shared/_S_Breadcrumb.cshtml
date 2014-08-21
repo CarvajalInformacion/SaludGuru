@@ -8,7 +8,7 @@
     }
     @if (Model.IsQuery)
     {
-        if (string.IsNullOrEmpty(Model.CurrentQuery))
+        if (string.IsNullOrEmpty(Model.CurrentSearchQuery))
         {
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
             <span> > doctores @ovCityName</span>
@@ -18,7 +18,7 @@
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
             <span> > </span>
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchQuery_CityAll, new { CityName = ovUrlCityName}))" title="doctores @ovCityName ">doctores @ovCityName</a>
-            <span> > @Html.Raw(Model.CurrentQuery) </span>
+            <span> > @Html.Raw(Model.CurrentSearchQuery.Replace("+"," ")) </span>
         }
     }
     else
