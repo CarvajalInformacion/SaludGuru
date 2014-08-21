@@ -216,7 +216,7 @@ input#itemClose {
             }
 
             #CreatePatientForm ul li input {
-                width: 45%;
+                width: 44%;
                 height: 24px;
                 line-height: 31px;
                 padding: 0px;
@@ -241,4 +241,28 @@ input#itemClose {
 
 .GridAP div div.k-grid-content {
     height: 341px !important;
+}
+
+/*------Validate Styles---------*/
+
+.required {
+    color: red;
+    border: none !important;
+    background: transparent !important;
+    width: auto !important;
+    margin: 4px 0px 4px -4px !important;
+    display: inline-block !important;
+}
+
+.message{
+    width: auto !important;
+    text-align: center !important;
+    color: red;
+    background: transparent !important;
+    margin: 7px 0px -10px 0px !important;
+    border: none !important;
+}
+
+span#Name-error, span#LastName-error, span#Identification-error, span#Birthday-error{
+    display: none !important;
 }

@@ -1,11 +1,12 @@
 .MPHeaderMainWrapper {
-    border-style:solid;
-    border-color:#808080;
-    border-width:0px 0px 3px 0px;
+    border:none;
     width: 100%;
     min-width:768px;
     height: 150px;
     display:block;
+    box-shadow:0px 1px 7px 0px #555;
+    position:relative;
+    z-index:2;
 }
 .MPHeaderTopWrapper {
     display: block;

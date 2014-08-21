@@ -1,5 +1,39 @@
-﻿function CreatePatient() {
-    ;
+﻿function ValidateCreatePatient() {
+
+    var rules = {
+        Name: {
+            required: true,
+        },
+        LastName: {
+            required: true,
+        },
+        Identification: {
+            required: true,
+            minlength: 5,
+        },
+        Birthday: {
+            required: true
+        }
+    };
+
+    $('#CreatePatientForm').validate({
+        errorClass: 'error help-inline',
+        validClass: 'success',
+        errorElement: 'span',
+        rules: rules,
+    });
+
+    if ($('#CreatePatientForm').valid()) {
+        CreatePatient();
+    }
+    else
+    {
+        $('#NewPatientId').show();
+    }
+}
+
+
+function CreatePatient() {
     //create ajax form object
     $("#CreatePatientForm").submit(function (e) {
         var postData = $(this).serializeArray();
@@ -23,10 +57,11 @@
 
     CloseNewPatient();
     $("#CreatePatientForm").submit(); //Submit  the FORM
+    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday").val('');
 }
 
 function CloseNewPatient() {
-    $("#NewPatientId").hide(800);
+    $("#NewPatientId").hide(800);    
 }
 
 function AddPatientToList(vPatientModel) {
@@ -43,6 +78,57 @@ function AddPatientToList(vPatientModel) {
     $('#GenderMale').prop("checked", false);
     $('#SelectedItem').prop("checked", false);
     $('#SelectedPatientItem').prop("checked", false);
+}
+
+var InitFunctionsNewPatient = {
+
+    InitialLoad: function(){
+        this.CalendarNewPatient();
+        this.CopyDiv();
+    },
+    
+    ChangeCheck: function () {
+        $('input#GenderMale').click(function () {
+            var $this = $(this);
+            // $this will contain a reference to the checkbox   
+            if ($this.is(':checked')) {
+                // the checkbox was checked
+                $("#GenderFemale").prop("checked", false);
+            }
+            else {
+                $("#GenderFemale").prop("checked", true);
+            }
+        });
+
+        $('input#GenderFemale').click(function () {
+            var $this = $(this);
+            // $this will contain a reference to the checkbox   
+            if ($this.is(':checked')) {
+                // the checkbox was checked 
+                $("#GenderMale").prop("checked", false);
+            }
+            else {
+                $("#GenderMale").prop("checked", true);
+            }
+        });
+    },
+
+    CalendarNewPatient: function () {
+        $(function () {
+            var pickerOpts = {
+                showAnim: "drop",
+                duration: jQuery.support.boxModel ? 'normal' : 'slow',
+                changeMonth: true,
+                changeYear: true
+            };
+            $("#Birthday").datepicker(pickerOpts);
+        });
+    },
+
+    CopyDiv: function () {
+        var htmlDivShow = $('#NewPatient').html();
+        $('#NewPatientId').append(htmlDivShow);
+    }
 }
 
 /*profile office appointment render method*/

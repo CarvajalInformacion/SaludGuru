@@ -151,28 +151,35 @@
                     <h2>Datos del nuevo paciente</h2>
                     <label>Nombre</label>
                     <input type="text" id="Name" name="Name" />
+                    <label class="required">*</label>
                 </li>
                 <li>
                     <label>Apellido</label>
                     <input type="text" id="LastName" name="LastName" />
+                    <label class="required">*</label>
                 </li>
                 <li>
                     <label>Identificación</label>
                     <input type="text" id="Identification" name="Identification" />
+                    <label class ="required">*</label>
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
                     <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
+                    <label class="required">*</label>
                 </li>
                 <li>
                     <h2>Sexo</h2>
                     <label>Masculino</label>
-                    <input type="checkbox" id="GenderMale" value="false" name="GenderMale" />
+                    <input type="checkbox" id="GenderMale" name="GenderMale" checked="checked" />
                     <label>Femenino</label>
-                    <input type="checkbox" id="GenderFemale" value="true" checked="checked" name="GenderFemale" />
+                    <input type="checkbox" id="GenderFemale" name="GenderFemale" />
                 </li>
                 <li>
-                    <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
+                    <label class="message">Los campos con (*) son obligatorios</label>
+                </li>
+                <li>
+                    <a id="itemSave" href="javascript:ValidateCreatePatient();">Guardar</a>
                     <input type="button" id="itemClose" value="Cerrar" />
                 </li>
             </ul>
@@ -202,70 +209,14 @@
     @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
     <script type="text/javascript">
 
-        $(function () {
-            var pickerOpts = {
-                showAnim: "drop",
-                duration: jQuery.support.boxModel ? 'normal' : 'slow',
-                changeMonth: true,
-                changeYear: true
-            };
-            $("#Birthday").datepicker(pickerOpts);
-        });
-
         $(document).ready(function () {
             AppointmentObject.ChangeOffice();
-        })
-
-        var htmlDivShow = $('#NewPatient').html();
-        $('#NewPatientId').append(htmlDivShow);
-
-        $("#itemClose").click(function () {
-            CloseNewPatient();
+            InitFunctionsNewPatient.InitialLoad();
+            InitFunctionsNewPatient.ChangeCheck();
+            $("#itemClose").click(function () {
+                CloseNewPatient();
+            });
         });
-
-        $('#NewPatient').validate({
-            //debug: true,
-            errorClass: 'error help-inline',
-            validClass: 'success',
-            errorElement: 'span',
-            highlight: function (element, errorClass, validClass) {
-                $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
-
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).parents(".error").removeClass(errorClass).addClass(validClass);
-            },
-            rules: {
-                Name: {
-                    required: true,
-                },
-                LastName: {
-                    required: true,
-                },
-                Identification: {
-                    required: true,
-                },
-                Birthday: {
-                    required: true
-                }
-            },
-            messages: {
-                Name: {
-                    required: "Debe ingresar el nombre."
-                },
-                LastName: {
-                    required: "Debe ingresar el apellido."
-                },
-                Identification: {
-                    required: "Debe ingresar la identificación."
-                },
-                Birthday: {
-                    required: "Debe seleccionar una fecha."
-                }
-            }
-        });
-
-
-
+        
     </script>
 }

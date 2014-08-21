@@ -78,30 +78,13 @@ namespace Message.Mailman
                         modelToreturn.RelatedAddress = new List<AddressModel>();
                         modelToreturn.RelatedAddress.Add(item);
 
-                        Console.WriteLine("Cuy");
                         //Envia a la cola de Mailman
                         messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
-                        Console.WriteLine(messageQueue.CreateTime);
                         //Actualiza la cola
                         this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "Message added to the queue correctly", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);
                     }
                     catch (Exception err)
                     {
-                        try
-                        {
-                            if (!Directory.Exists(ConfigurationManager.AppSettings["LogFile"]))
-                                Directory.CreateDirectory(ConfigurationManager.AppSettings["LogFile"]);
-
-                            string FileName = ConfigurationManager.AppSettings["LogFile"].TrimEnd('/') + "/Log_" + DateTime.Now.ToString("yyyyMMddHHss") + ".txt";
-
-                            File.AppendAllText(FileName,
-                                err.Message + "::" + err.StackTrace);
-
-                            if (err.InnerException != null)
-                                File.AppendAllText(FileName,
-                                    err.InnerException.Message + "::" + err.InnerException.StackTrace);
-                        }
-                        catch { }
                         this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, false, err.Message, MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), mailMessage.Body, item.AddressId);
                     }
                 }
