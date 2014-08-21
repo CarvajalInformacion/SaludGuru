@@ -100,6 +100,50 @@ namespace MarketPlace.Web
                             }
                         ).DataTokens = rvdByArea;
 
+            //terminos+legales
+            routes.MapRoute(
+                            name: "LegalTerms",
+                            url: "terminos+legales",
+                            defaults: new
+                            {
+                                controller = "Home",
+                                action = "LegalTerms"
+                            }
+                        ).DataTokens = rvdByArea;
+
+            //condiciones+y+restricciones
+            routes.MapRoute(
+                            name: "ConditionsAndRestrictions",
+                            url: "condiciones+y+restricciones",
+                            defaults: new
+                            {
+                                controller = "Home",
+                                action = "ConditionsAndRestrictions"
+                            }
+                        ).DataTokens = rvdByArea;
+
+            //preguntas+frecuentes
+            routes.MapRoute(
+                            name: "FAQ",
+                            url: "preguntas+frecuentes",
+                            defaults: new
+                            {
+                                controller = "Home",
+                                action = "FAQ"
+                            }
+                        ).DataTokens = rvdByArea;
+
+            //contacto+doctor
+            routes.MapRoute(
+                            name: "Contact",
+                            url: "contacto+doctor",
+                            defaults: new
+                            {
+                                controller = "Home",
+                                action = "Contact"
+                            }
+                        ).DataTokens = rvdByArea;
+
             #endregion
 
             #region NotFound
