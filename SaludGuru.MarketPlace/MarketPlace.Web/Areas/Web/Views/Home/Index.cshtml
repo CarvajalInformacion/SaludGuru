@@ -160,7 +160,9 @@
         }
         <!-- Feed Left -->
         <div class="FeedLeft">
-            <label id="FeedTitle">@(mHealtyLive.Title)</label>
+            <a target="_blank" href="@(mHealtyLive.Link)">
+                <label id="FeedTitle">@(mHealtyLive.Title)</label>
+            </a>
             <a target="_blank" href="@(mHealtyLive.Link)">
                 <div class="divLeftImage">
                     <img id="FeedImage" src="@(mHealtyLive.Image)" />
@@ -170,7 +172,9 @@
         </div>
         <!-- Feed Right -->
         <div class="FeedRight">
-            <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+            <a target="_blank" href="@(mMedicalMarketing.Link)">
+                <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+            </a>
             <a target="_blank" href="@(mMedicalMarketing.Link)">
                 <div class="divRightImage">
                     <img id="FeedImage" src="@(mMedicalMarketing.Image)" />

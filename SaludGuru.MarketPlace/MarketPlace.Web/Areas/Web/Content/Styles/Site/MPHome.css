@@ -237,7 +237,9 @@ a.MPButtons {
 
 img#FeedImage {
     width: auto;
-    height: 100%;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 label#FeedTitle {
@@ -264,10 +266,11 @@ label#FeedTitle {
     width: 150px;
     height: 150px;
     border-radius: 3px;
-    z-index: 90;
-    margin: 30px;
+    margin: 10px;
     float: left;
+    text-align: center;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 /*-----Noticias Derecha-----*/
@@ -286,10 +289,11 @@ label#FeedTitle {
     width: 150px;
     height: 150px;
     border-radius: 3px;
-    z-index: 90;
-    margin: 30px;
+    margin: 10px;
     float: left;
+    text-align: center;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 /*-----Demo-------*/
