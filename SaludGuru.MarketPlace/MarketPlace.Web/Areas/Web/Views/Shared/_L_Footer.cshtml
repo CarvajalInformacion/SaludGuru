@@ -1,9 +1,21 @@
 ﻿<div class="MPMainWrapper">
     <div class="MPTextWrapper">
-        <a href="">Quienes somos</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">Contacto</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">Solicitar un perfil gratis</a>&nbsp;
-        <a href="">Terminos legales</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">Aveas Data</a>
+        <ul>
+            <li>
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">Quiero que me contacten</a>
+            </li>
+            <li>
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))">Términos legales</a>
+            </li>
+            <li>
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions))">Condiciones y restricciones</a>
+            </li>
+            <li>
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ))">Preguntas frecuentes</a>
+            </li>  
+            @*<li>
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ))">Preguntas frecuentes</a>
+            </li>*@           
+        </ul>
     </div>
 </div>

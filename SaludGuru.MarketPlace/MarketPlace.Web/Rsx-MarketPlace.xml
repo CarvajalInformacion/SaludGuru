@@ -42,7 +42,12 @@
     
     <!--Profile image default-->
     <key name="Profile_SmallImageDefault">https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png</key>
-    
+
+    <!--Home Image Contact-->
+    <key name="HomeImage_Contact">https://s3.amazonaws.com/devsaludguruimg/0MPImages/HomeBannerSoyDoctor.jpg</key>
+
+    <key name="UrlBackOffice">https://admin.saludguru.com.co</key>
+
   </MarketPlace>
 </Settings>
 

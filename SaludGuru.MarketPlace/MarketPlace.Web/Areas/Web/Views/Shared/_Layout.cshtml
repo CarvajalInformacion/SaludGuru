@@ -22,11 +22,6 @@
         <meta name="ROBOTS" content="NOFOLLOW">
     }
 
-    <!--Google +-->
-    <!-- Inserta esta etiqueta en la sección "head" o justo antes de la etiqueta "body" de cierre. -->
-    <script src="https://apis.google.com/js/platform.js" async defer>
-        { lang: 'es-419' }
-    </script>
 </head>
 <body>
     <div>
@@ -97,9 +92,7 @@
     }
 
     <script type="text/javascript">
-        debugger;
         $(document).ready(function () {
-            debugger;
             InitGlobalPagesControls({
                 SearchBoxId: 'inSearchBoxProfile',
                 CityId: '@(oBaseController.CurrentCookie.CurrentCity)',
@@ -108,6 +101,11 @@
                 IsLogin: @MarketPlace.Models.General.SessionModel.UserIsLoggedIn.ToString().ToLower()
                 });
         });
+    </script>
+
+    <!--Google +-->
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        { lang: 'es-419' }
     </script>
 
     <!--Google analitycs-->
