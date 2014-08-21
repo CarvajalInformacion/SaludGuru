@@ -142,6 +142,26 @@ width: 27px;
     float:left;
     margin: 0px 0px 0px 4px;
 }
+/************** NOT LOGGED IN ***************/
+
+.MPHeaderTopMenuUserName{
+    float:left;
+    width: auto;
+    height: auto;
+    margin: 0px 12px 0px 8px;
+}
+.MPHeaderTopMenuUserName label{
+    font-weight: initial;
+    font-size: 1em !important;
+    cursor:pointer;
+    vertical-align: top;
+}
+    .MPHeaderTopMenuUserName img {
+        width:25px;
+        height:auto;
+        cursor:pointer;
+        vertical-align: bottom;
+    }
 /*************** MENU DE USUARIO **************/
         #divUserMenu {
             position:absolute;
