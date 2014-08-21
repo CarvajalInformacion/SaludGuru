@@ -397,7 +397,6 @@
     </key>
     <key name="Message_Body_Email_ReminderAppointment">
       <![CDATA[
-               <Message>                    
 	                <html>
 	                <head>
 		                <title>
@@ -414,12 +413,14 @@
                              </p>
                              <p>
                                 Te recordamos tu cita médica con el Dr(a).{ProfileName} el día 
-                                {AppointmentDate} {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. 
+                                {AppointmentDate} {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. <br>
+                                
+                                 <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>          
                              </p>
                                 <br>
                              <p>   
-                                Cuidados previos {BeforeCare}   <br>                                   
-                                <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>                                                                         
+                                Cuidados previos {BeforeCare}   <br>    
+                                                                                              
                              </p>
                             <div style="width:100%; height:30px;">
                                 <span style="font-size: 0.7em;
@@ -448,7 +449,6 @@
 			                </div>
 		                </body>	
 	                </html>
-          </Message>
       ]]>
     </key>
 
