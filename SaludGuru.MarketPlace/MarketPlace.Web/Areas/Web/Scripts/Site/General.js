@@ -32,7 +32,6 @@ function serverDateTimeToString(vDate) {
 }
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitParams) {
-    debugger;
     //init search box 
     SearchBoxObject.Init({
         InputId: InitParams.SearchBoxId,
@@ -90,10 +89,7 @@ var SearchBoxObject = {
 
     RenderAsync: function () {
 
-        debugger;
-
         if ($('#' + SearchBoxObject.InputId).length > 0) {
-            debugger;
             //init on enter event
             $('#' + SearchBoxObject.InputId).keyup(function (e) {
                 if (e.keyCode == 13) {

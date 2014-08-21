@@ -44,7 +44,9 @@ namespace MarketPlace.Web.Controllers
                 if (!oModel.IsQuery)
                 {
                     oModel.CurrentCategory = SaludGuruProfile.Manager.Controller.Profile.MPCategoryGetAvailableCategory
-                        (InsuranceName, SpecialtyName, TreatmentName);
+                        (string.IsNullOrEmpty(InsuranceName) ? null : InsuranceName.Replace("+", " "),
+                        string.IsNullOrEmpty(SpecialtyName) ? null : SpecialtyName.Replace("+", " "),
+                        string.IsNullOrEmpty(TreatmentName) ? null : TreatmentName.Replace("+", " "));
                 }
 
                 //eval redirect

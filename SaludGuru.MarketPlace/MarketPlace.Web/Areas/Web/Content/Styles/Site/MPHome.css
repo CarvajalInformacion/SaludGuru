@@ -4,6 +4,8 @@
     width: calc(100%);
     min-width: 750px;
     margin-top: -70px;
+    position: relative;
+    z-index: 2;
 }
 
 h1 {
