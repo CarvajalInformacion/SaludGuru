@@ -112,11 +112,13 @@ var SearchBoxObject = {
                 },
                 minLength: 2,
                 focus: function (event, ui) {
-                    $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.MatchQuery);
                     return false;
                 },
                 select: function (event, ui) {
-                    SearchBoxObject.SearchTerm();
+                    if (ui.item != null && ui.item.CurrentAcItem != null) {
+                        $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.MatchQuery);
+                        SearchBoxObject.SearchTerm();
+                    }
                     return false;
                 },
                 messages: {
