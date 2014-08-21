@@ -7,14 +7,4 @@ function fnInitHome(vInitObject) {
     $(document).ready(function () {
         $('.SearchBox').css('background', 'url("' + imageUrl + '") no-repeat');
     });
-
-    //target blank articles
-    $('a').each(function () {
-        var a = new RegExp('/' + window.location.host + '/');
-        if (!a.test(this.href)) {
-            $(this).attr("target", "_blank");
-        }
-    });
-
-
 }

@@ -13,19 +13,15 @@
 
 <div class="MPAgendaConfirmationMessageGW">
     <div class="MPAgendaConfirmationMessage">
-        <label>Tu cita ha sido agendada correctamente!</label>
         <div>
-            <span>El DR. @Model.CurrentProfile.Name</span>
+            <span>Cita agendada correctamente con el Dr/a. @Model.CurrentProfile.Name</span>
             <img src="@ImgProfile" alt="@Model.CurrentProfile.Name" />
-            
-            <span>El día @Model.StartDate</span>
-            
-            <span>En la dirección @Model.CurrentOffice</span>
-            
+            <span> el día @Model.StartDate</span>            
+            <span>en la @Model.CurrentOffice</span>            
             <span>
-                estamos enviando la confirmación de la cita a tu correo electrónico, <br>
-                si no la has recibido favor validar en la bandeja de correos no deseados.<br>
-                Horas antes de la cita, te enviaremos un recordatorio a tu correo electrónico y/o teléfono móvil.<br>
+                Enviaremos la confirmación de la cita a tu correo electrónico.<br>
+                Si no la has recibido, por favor revisar en la bandeja de correos no deseados.<br>
+                Previamente a la cita te enviaremos un recordatorio por correo electrónico y/o mensaje de texto.<br>
             </span>
         </div>
     </div>
