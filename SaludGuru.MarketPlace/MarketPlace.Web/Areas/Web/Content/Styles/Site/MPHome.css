@@ -200,7 +200,7 @@ h1 {
         color: #99c21d;
         font-size: 15px;
         font-weight: bold;
-    }
+}
 
 /*-----Redes Sociales-----*/
 /*.SocialNetworks {
@@ -230,19 +230,19 @@ h1 {
     }*/
 
 
-/*------Twitter-------*/
+    /*------Twitter-------*/
 /*.SocialNetworks iframe#twitter-widget-0 {
         float: right;
         margin: -170px calc(14%) 0px 0px !important;
     }*/
-/*---------Linked In----------*/
+    /*---------Linked In----------*/
 /*.SocialNetworks span.IN-widget {
         height: auto;
         width: auto;
         float: right;
         margin: -280px calc(10%) 0px 0px !important;
     }*/
-/*-----Google +-------*/
+    /*-----Google +-------*/
 /*.SocialNetworks div#___plusone_0 {
         float: right !important;
         margin: -240px calc(6%) 0px 0px !important;
@@ -285,12 +285,10 @@ h1 {
 }
 
 img#FeedImage {
-    width: 148px;
+    width: auto;
     height: auto;
-    border-radius: 3px;
-    z-index: 90;
-    margin: 30px;
-    float: left;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 label#FeedTitle {
@@ -313,6 +311,17 @@ label#FeedTitle {
         font-weight: bold;
     }
 
+.divLeftImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    margin: 10px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
 /*-----Noticias Derecha-----*/
 .FeedRight {
     /*outline: 1px solid darkred;*/
@@ -324,6 +333,17 @@ label#FeedTitle {
     .FeedRight p a {
         font-weight: bold;
     }
+
+.divRightImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    margin: 10px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
 
 /*-----Demo-------*/
 .Demo {
