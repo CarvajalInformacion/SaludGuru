@@ -10,7 +10,7 @@
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
         {
             <div class="SearchBoxClass">
-                <span>Busca un especialista por nombre, especialidad, ciudad o seguro completamente gratis</span>
+                <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
                 <div>
                     <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
                     <a href="javascript:SearchBoxObject.SearchTerm();"></a>
@@ -20,11 +20,11 @@
     </div>
     <hr class="featurette-divider __loop">
     <div class="ContentImportant">
-        <h1 class="ProfileH1">Profesional Destacado:</h1>
+        <h1 class="ProfileH1">Profesional Destacado</h1>
         <h1 class="SocialH1">Redes Sociales</h1>
         <div class="Profile">
             @{
-                var nameProfile = Model.Name.ToString();
+                var nameProfile = Model.Name.ToString() + " " + Model.LastName.ToString();
                 var publicProfileId = Model.ProfilePublicId;
                 var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
                                                     Select(x => x.Value).
@@ -69,7 +69,7 @@
             <!--Facebook-->
             <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true" style="width:calc(54%); height: 290px;"></iframe>
 
-            <p>Siguenos también en:</p>
+            <p>Síguenos también en:</p>
             <!--LinkedIn-->
             <script src="//platform.linkedin.com/in.js" type="text/javascript">
                 lang: es_ES
@@ -97,19 +97,23 @@
         }
         <!-- Feed Left -->
         <div class="FeedLeft">
-            <label id="FeedTitle">@(mHealtyLive.Title)</label>
+            <a target="_blank" href="@(mHealtyLive.Link)">
+                <label id="FeedTitle">@(mHealtyLive.Title)</label>
+            </a>
             <a target="_blank" href="@(mHealtyLive.Link)">
                 <img id="FeedImage" src="@(mHealtyLive.Image)" />
             </a>
-            <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+            @(Html.Raw(mHealtyLive.Description))
         </div>
         <!-- Feed Right -->
         <div class="FeedRight">
-            <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+            <a target="_blank" href="@(mMedicalMarketing.Link)">
+                <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
+            </a>
             <a target="_blank" href="@(mMedicalMarketing.Link)">
                 <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
             </a>
-            <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
+            @(Html.Raw(mMedicalMarketing.Description))
         </div>
     </div>
     <hr class="featurette-divider __loop">

@@ -32,6 +32,7 @@ function serverDateTimeToString(vDate) {
 }
 /*function start global pages controls*/
 function InitGlobalPagesControls(InitParams) {
+
     //init search box 
     SearchBoxObject.Init({
         InputId: InitParams.SearchBoxId,
@@ -156,3 +157,9 @@ function Header_ShowHideUserMenu(divId) {
     $('#' + divId).toggle('slow');
 }
 
+/*show hide login menu*/
+function Header_ShowHideLoginMenu(ulLoginId) {
+    debugger;
+    $('#' + ulLoginId).toggle('slow');
+
+}

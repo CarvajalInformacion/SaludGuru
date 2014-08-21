@@ -67,15 +67,17 @@
                     [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
                     .Value.Replace("{{UrlRetorno}}", RetUrl);
 
+                string OutlookUrl = string.Empty;
+
                 <!--Render autentications-->
                 <span>Ingresar con:</span>
                 <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
                 <a class="MPFacebookLogIn" href="@FBUrl"></a>
-                <a href="javascript:;">Más</a>
-                <ul style="display:none;">
+                <a href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');">Más</a>
+                <ul id="ulLoginMoreOptions" style="display:none;">
                     <li><a href="@GoogleUrl">Google</a></li>
                     <li><a href="@FBUrl">Facebook</a></li>
-                    <li><a href="@GoogleUrl">Outlook</a></li>
+                    <li><a href="@OutlookUrl">Outlook</a></li>
                 </ul>
             }
         </div>
@@ -89,7 +91,7 @@
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index) { }
         else
         {
-            <span>Busca un especialista por nombre, especialidad, ciudad o seguro; completamente gratis</span>
+            <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
             <div>
                 <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
                 <a href="javascript:SearchBoxObject.SearchTerm();"></a>
