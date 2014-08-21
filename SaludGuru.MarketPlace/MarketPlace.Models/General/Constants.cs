@@ -76,7 +76,9 @@
 
         public const string C_Settings_Profile_SmallImageDefault = "Profile_SmallImageDefault";
 
+        public const string C_Settings_HomeImage_Contact = "HomeImage_Contact";
 
+        public const string C_Settings_UrlBackOffice = "UrlBackOffice";
 
         #endregion
 

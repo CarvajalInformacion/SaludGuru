@@ -153,13 +153,10 @@ var SearchBoxObject = {
 
 /*show hide user menu*/
 function Header_ShowHideUserMenu(divId) {
-
     $('#' + divId).toggle('slow');
 }
 
 /*show hide login menu*/
 function Header_ShowHideLoginMenu(ulLoginId) {
-    debugger;
     $('#' + ulLoginId).toggle('slow');
-
 }
