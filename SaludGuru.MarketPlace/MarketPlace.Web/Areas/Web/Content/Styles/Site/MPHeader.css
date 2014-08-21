@@ -33,45 +33,68 @@ span.MPHeadertopMenuLeftEnd {
     background-position: -5px -1px;
     background-size: auto 33px;
 }
-    .MPRightTopMenu div, .MPRightTopMenu select{
+    .MPRightTopMenu div, 
+    .MPRightTopMenu select, 
+    a.MPHeaderTopMenuSoyDocLink,
+    .MPHeaderTopMenuIngresar,
+    .MPHeaderTopMas {
+        font-size:1em !important;
+        line-height: 1.8em !important;
+        height: 32px;
+        color: #333 !important;        
+    }
+div.MPHeaderTopMenuSoyDoc {
+        float: left;        
+        padding: 0px 0px 0px 0px;
+        background-image: url('/Areas/Web/Content/Images/MPHeaderSoyDoc.png');
+        background-position: 0px 1px;
+        background-size: 24px auto;
+        background-repeat: no-repeat;
+        width: 118px;
+        text-align:right;
+}
+div.MPHeadertopMenuSoyDoc a{
+    display: inline-block; 
+}
+div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
         float:left;
-            border:none;
-        height:32px;
+        border:none;
         width:auto;
         padding: 0px 6px;
         vertical-align: text-bottom;
-        font-size:14px;
-        line-height:28px;
-        margin-right:8px;
-    }
-        .MPRightTopMenu div:nth-child(2) {
-            color:#333;
-            margin-left:28px; margin-right:0px;
-            border: none;
-        }
-        .MPRightTopMenu select:nth-child(3){
+        margin:0px;
+}
+.MPRightTopMenu select{
+    float:left;
             width:142px;
             background-color:#fff;
             border-radius:2px;
             border: 1px solid #999;
-            height: 30px; margin-top: 1px;
+            height: 30px; margin-top:1px;
+            padding:0px;
         }
-        .MPRightTopMenu div:nth-child(4) {
-            background-image:url('/Areas/Web/Content/Images/BOnotificationsSmall.png');
-            background-position:1px 2px;
-            background-size:24px 26px;
-            background-repeat:no-repeat;
-            width:28px; border:none;
-            display: none;
-        }
-        .MPRightTopMenu div:nth-child(5) label {
-            color:#333;
-        }
-        .MPRightTopMenu div:nth-child(5) img{
-            width:22px;
-            height:auto;
-            vertical-align:middle;
-        }
+/************** NOT LOGGED IN ***************/
+.MPGoogleLogIn {
+        border:none;
+    background-image: url('/Areas/Web/Content/Images/googleIconSmall.png');
+    background-repeat: no-repeat;
+background-position: 0px 3px;
+background-size: 26px auto;
+width: 27px;
+    height: 30px;
+    float:left;    
+}
+.MPFacebookLogIn {
+        border:none;
+    background-image:url('/Areas/Web/Content/Images/facebookIconSmall.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    background-size: 26px auto;
+    width: 28px;
+    height: 30px;
+    float:left;
+    margin: 0px 0px 0px 4px;
+}
 /*************** MENU DE USUARIO **************/
         #divUserMenu {
             position:absolute;
@@ -166,26 +189,5 @@ span.MPHeadertopMenuLeftEnd {
             text-align:left;
             vertical-align:middle;
         }
-/************** NOT LOGGED IN ***************/
-.MPGoogleLogIn {
-        border:none;
-    background-image: url('/Areas/Web/Content/Images/googleIconSmall.png');
-    background-repeat: no-repeat;
-    background-position: 1px 4px;
-    background-size: 20px auto;
-    width: 24px;
-    height: 30px;
-    display: inline-block;    
-}
-.MPFacebookLogIn {
-        border:none;
-    background-image:url('/Areas/Web/Content/Images/facebookIconSmall.png');
-    background-repeat: no-repeat;
-    background-position: 1px 4px;
-    background-size: 20px auto;
-    width: 24px;
-    height: 30px;
-    display: inline-block;
-    margin: 0px 20px 0px 4px;
-}
+
 
