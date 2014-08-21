@@ -22,6 +22,12 @@
 
         public const string C_Route_Home = "Home";
 
+        public const string C_Route_LegalTerms = "LegalTerms";
+        public const string C_Route_ConditionsAndRestrictions = "ConditionsAndRestrictions";
+        public const string C_Route_FAQ = "FAQ";
+        public const string C_Route_Contact = "Contact";
+
+
         public const string C_Route_SearchQuery_Default = "SearchQuery_Default";
         public const string C_Route_SearchQuery_CityAll = "SearchQuery_CityAll";
 

@@ -78,7 +78,11 @@ namespace SaludGuru.FeedManager.Readers
                 oReturn.Add(new Models.FeedReaderModel { 
                     Title = item.Title.Text,
                     Link = item.Links[0].Uri.ToString(),
-                    Description = item.Summary.Text,
+                    Description = "<p>" + Regex.Match(
+                       item.Summary.Text,
+                       @"<p>\s*(.+?)\s*</p>",
+                       RegexOptions.IgnoreCase
+                    ).Groups[1].Value + "</p>",
                     Image = image,
                 });
                 return true;

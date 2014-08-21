@@ -16,6 +16,26 @@ namespace MarketPlace.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult LegalTerms()
+        {
+            return View();
+        }
+
+        public virtual ActionResult ConditionsAndRestrictions()
+        {
+            return View();
+        }
+
+        public virtual ActionResult FAQ()
+        {
+            return View();
+        }
+
+        public virtual ActionResult Contact()
+        {
+            return View();
+        }
+
         public virtual ActionResult LogOutUser()
         {
             base.LogOut();

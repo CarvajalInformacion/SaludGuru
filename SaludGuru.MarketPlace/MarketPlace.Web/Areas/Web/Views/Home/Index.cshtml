@@ -10,7 +10,7 @@
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
         {
             <div class="SearchBoxClass">
-                <span>Busca un especialista por nombre, especialidad, ciudad o seguro completamente gratis</span>
+                <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
                 <div>
                     <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
                     <a href="javascript:SearchBoxObject.SearchTerm();"></a>
@@ -22,9 +22,9 @@
     <div class="ContentImportant">
         <div>
             <span>Profesional Destacado</span>
-            <div class="Profile">
-                @{
-                var nameProfile = Model.Name.ToString();
+        <div class="Profile">
+            @{
+                var nameProfile = Model.Name.ToString() + " " + Model.LastName.ToString();
                 var publicProfileId = Model.ProfilePublicId;
                 var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
                                                     Select(x => x.Value).
@@ -49,77 +49,77 @@
                         SpecialtyName = !string.IsNullOrEmpty(defaultSpecialtyProfile) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(defaultSpecialtyProfile) : string.Empty,
                     }));
 
-                }
-                <div class="Image">
-                    <a href="@ovProfileUrl">
-                        <img src="@imgProfile" />
-                    </a>
-                </div>
-                <div class="ProfileInfo">
-                    <a href="@ovProfileUrl">
-                        <label>@nameProfile</label>
-                    </a>
-                    <p>@defaultSpecialtyProfile</p>
-                    <p>@shortTextProfile...</p>
-                    <a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>
-                </div>
+            }
+            <div class="Image">
+                <a href="@ovProfileUrl">
+                    <img src="@imgProfile" />
+                </a>
             </div>
+            <div class="ProfileInfo">
+                <a href="@ovProfileUrl">
+                    <label>@nameProfile</label>
+                </a>
+                <p>@defaultSpecialtyProfile</p>
+                <p>@shortTextProfile...</p>
+                <a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>
+            </div>
+        </div>
             <span>Lo más buscado</span>
-            <div class="criteriaBox">
-                <div class="FeaturedSP">
-                    <h2>Especialidades Destacadas</h2>
-                    <ul>
-                        <li>
-                            <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
-                                <h3>Odontología</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
-                                <h3>Fisioterapia</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
-                                <h3>Cirugía Plástica</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
-                                <h3>Ginecología</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
-                                <h3>Medicina Estética</h3>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="Insurance">
-                    <h2>Listado de Seguros</h2>
-                    <ul>
-                        <li>
-                            <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
-                                <h3>Sura</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
-                                <h3>Allianz</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
-                                <h3>Colsanitas</h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
-                                <h3>Medplus</h3>
-                            </a>
-                        </li>
-                    </ul>
+        <div class="criteriaBox">
+            <div class="FeaturedSP">
+                <h2>Especialidades Destacadas</h2>
+                <ul>
+                    <li>
+                        <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
+                            <h3>Odontología</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
+                            <h3>Fisioterapia</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
+                            <h3>Cirugía Plástica</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
+                            <h3>Ginecología</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                            <h3>Medicina Estética</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="Insurance">
+                <h2>Listado de Seguros</h2>
+                <ul>
+                    <li>
+                        <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
+                            <h3>Sura</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
+                            <h3>Allianz</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
+                            <h3>Colsanitas</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                            <h3>Medplus</h3>
+                        </a>
+                    </li>
+                </ul>
                 </div>
             </div>
         </div>
@@ -147,8 +147,8 @@
                     <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false">Seguir a &#64;SaludGuru</a>
                 </li>
             </ul>
+            </div>
         </div>
-    </div>
     <hr class="featurette-divider __loop">
     <div class="Feed">
         <span>Noticias</span>
