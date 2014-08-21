@@ -50,15 +50,48 @@ h1 {
             top: 14px;
         }
 
-/*---Contenido Perfil destacado - Redes Sociales----*/
-.ContentImportant {
-    /*outline: 2px solid blue;*/
+/*---Home blocks----*/
+.HomeBlocks {
+    /*height: 500px;*/
+    height: auto;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    background: linear-gradient(#fff, #ececec);
+    margin: 10px 0px 10px 0px;
+}
+
+.HombeBlockTitle {
+    display: inline-block;
+    height: 10px;
+    width: auto;
+    font-weight: bold;
+    color: #99c21d;
+    font-size: 18px !important;
+}
+
+.SepDivHome {
+    width:100%;
+}
+/*---Contenido Perfil destacado - Redes Sociales - Mas buscado----*/
+.HomeFirstBlock {
     display: block;
-    margin: 0px;
     height: auto;
 }
 
-    .ContentImportant .ProfileH1 {
+    .HomeFirstBlock .HomeFirstBlockLeft {
+        height: 500px;
+        width: calc(60%);
+        float: left;
+        margin: 0px 0px 0px calc(8%);
+    }
+
+    .HomeFirstBlock .HomeFirstBlockRigth {
+        height: 500px;
+        width: calc(20%);
+        float: left;
+        margin: 0px 0px 0px calc(4%);
+    }
+
+/*.ContentImportant .ProfileH1 {
         display: inline-block;
         width: calc(50%);
         margin: 8px 0px 4px calc(4%) !important;
@@ -74,28 +107,20 @@ h1 {
         font-weight: bold;
         color: #99c21d;
         font-size: 25px !important;
-    }
+    }*/
 
-    .ContentImportant p {
+/*.HomeFirstBlock p {
         line-height: 20px;
         width: calc(80%);
         margin: 10px 0px 30px 20px;
         font-size: 30px;
-    }
-
-.Profile, .SocialNetworks {
-    height: 500px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
-    background: linear-gradient(#fff, #ececec);
-}
+    }*/
 
 /*-----Perfil Destacado-----*/
 .Profile {
-    /*outline: 1px solid yellow;*/
-    width: calc(50%);
     height: auto;
-    margin: 0px 0px 0px calc(4%);
     float: left;
+    width: 100%;
 }
 
     .Profile p {
@@ -108,7 +133,6 @@ h1 {
 }
 
 .Image {
-    /*outline: 1px solid blue;*/
     width: 30%;
     float: left;
     margin: 40px 0px;
@@ -122,7 +146,6 @@ h1 {
     }
 
 .ProfileInfo {
-    /*outline: 1px solid green;*/
     display: inline-block;
     vertical-align: top;
     width: 70%;
@@ -143,84 +166,110 @@ h1 {
         text-align: justify;
     }
 
-a.MPButtons {
-    /*font-weight: bold;
-    margin: 10px 0px 10px 25px;
-    font-size: 17px;
-    text-align: justify;
-    line-height: 40px;*/
+/*a.MPButtons {
     font-weight: bold;
     margin: 10px 25px 10px 0px;
     font-size: 17px;
     text-align: center;
     line-height: 40px;
     float: right;
+}*/
+
+
+/*------lo mas buscado--------*/
+
+.criteriaBox {
+    height: auto;
+    float: left;
+    width: 100%;
 }
 
+    .criteriaBox div {
+        line-height: 24px;
+        width: 48%;
+        height: auto;
+        display: inline-block;
+        vertical-align: top;
+        float: left;
+    }
+
+    .criteriaBox li {
+        margin: 0px calc(8%);
+        line-height: 24px;
+        width: calc(100%);
+        color: #99c21d;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
 /*-----Redes Sociales-----*/
-.SocialNetworks {
-    /*outline: 1px solid darkred;*/
+/*.SocialNetworks {
     width: calc(40%);
     height: auto;
     margin: 0px 0px 0px calc(3%);
     display: inline-block;
     vertical-align: top;
+}*/
+
+/*-----Facebook-------*/
+.SocialNetworks {
 }
-
-    /*-----Facebook-------*/
-    .SocialNetworks iframe {
-        margin: 24px calc(4%) !important;
+    .SocialNetworks .fb {
+        width: 100%; 
+        height: 290px;
     }
 
-    .SocialNetworks ._4s7c {
+    .SocialNetworks .li {
+        float:left;
+        width: 100%; 
+        height: 50px;
+    }
+
+    /*.SocialNetworks ._4s7c {
         height: auto;
-    }
-    /*------Twitter-------*/
-    .SocialNetworks iframe#twitter-widget-0 {
+    }*/
+
+
+/*------Twitter-------*/
+/*.SocialNetworks iframe#twitter-widget-0 {
         float: right;
         margin: -170px calc(14%) 0px 0px !important;
-    }
-    /*---------Linked In----------*/
-    .SocialNetworks span.IN-widget {
+    }*/
+/*---------Linked In----------*/
+/*.SocialNetworks span.IN-widget {
         height: auto;
         width: auto;
         float: right;
         margin: -280px calc(10%) 0px 0px !important;
-    }
-    /*-----Google +-------*/
-    .SocialNetworks div#___plusone_0 {
+    }*/
+/*-----Google +-------*/
+/*.SocialNetworks div#___plusone_0 {
         float: right !important;
         margin: -240px calc(6%) 0px 0px !important;
-    }
+    }*/
 
-    .SocialNetworks p {
+/*.SocialNetworks p {
         font-size: 18px;
         display: inline-block;
         width: 31%;
         vertical-align: top;
         margin: 20px 0px 0px 0px;
-    }
+    }*/
 
 /*-----Noticias------*/
 .Feed {
-    /*outline: 1px solid green;*/
     display: block;
-    margin: 0px;
+    margin: 10px 0px 10px calc(8%);
 }
 
+.FeedRight {
+    margin: 0px 0px 0px calc(4%);
+}
 .FeedLeft, .FeedRight {
     height: auto;
-    width: 46%;
-    margin: 0px 0px 0px calc(4%);
+    width: 42%;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
-}
-
-.Feed h1 {
-    margin: 8px 0px 4px calc(4%) !important;
-    font-weight: bold;
-    color: #99c21d;
-    font-size: 25px !important;
 }
 
 .Feed p {
@@ -278,15 +327,12 @@ label#FeedTitle {
 
 /*-----Demo-------*/
 .Demo {
-    /*outline: 1px solid grey;*/
-    width: calc(90%);
-    height: 300px;
-    margin: 0px 0px 10px calc(5%);
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
-    background: linear-gradient(#fff, #ececec);
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-.NewDoctor {
+/*.NewDoctor {
     float: left;
     width: 335px;
     margin: 0px 0px 0px calc(4%);
@@ -334,49 +380,14 @@ label#FeedTitle {
         margin: 10px 0px 10px 25px;
         font-size: 17px;
         text-align: justify;
-    }
-
-.Demo .criteriaBox {
-    width: calc(40%);
-    margin: 20px;
-    display: inline-block;
-    vertical-align: top;
-    /*border: 1px solid green;*/
-    height: 80%;
-    float: right;
-}
-
-.criteriaBox div {
-    width: 200px;
-    height: auto;
-}
-
-.FeaturedSP {
-    float: left;
-    margin: 20px;
-}
-
-.Insurance {
-    display: inline-block;
-    vertical-align: top;
-    margin: 20px;
-}
-
-    .FeaturedSP h2, .Insurance h2 {
-        margin: 0px calc(-8%);
-        line-height: 24px;
-        width: calc(100%);
-        color: #99c21d;
-        font-size: 15px;
-        font-weight: bold;
-    }
+    }*/
 
 /*---- Otros Estilos -----*/
 
-hr.featurette-divider.__loop {
+/*hr.featurette-divider.__loop {
     width: 90%;
     border-top: 1px solid #99c21d;
-}
+}*/
 
-/*Estilo para sombras de contenidos*/
-/*box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.85);*/
+
+
