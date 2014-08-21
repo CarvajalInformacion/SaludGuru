@@ -29,6 +29,7 @@ public static partial class MVC
     public static MobileClass Mobile { get { return s_Mobile; } }
     static readonly WebClass s_Web = new WebClass();
     public static WebClass Web { get { return s_Web; } }
+    public static MarketPlace.Web.Controllers.AgendaController Agenda = new MarketPlace.Web.Controllers.T4MVC_AgendaController();
     public static MarketPlace.Web.Controllers.AppointmentController Appointment = new MarketPlace.Web.Controllers.T4MVC_AppointmentController();
     public static MarketPlace.Web.Controllers.BaseController Base = new MarketPlace.Web.Controllers.T4MVC_BaseController();
     public static MarketPlace.Web.Controllers.ErrorController Error = new MarketPlace.Web.Controllers.T4MVC_ErrorController();
@@ -50,6 +51,7 @@ namespace T4MVC
     public class WebClass
     {
         public readonly string Name = "Web";
+        public MarketPlace.Web.Areas.Web.Controllers.AgendaController Agenda = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_AgendaController();
         public MarketPlace.Web.Areas.Web.Controllers.AppointmentController Appointment = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_AppointmentController();
         public MarketPlace.Web.Areas.Web.Controllers.ErrorController Error = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_ErrorController();
         public MarketPlace.Web.Areas.Web.Controllers.HomeController Home = new MarketPlace.Web.Areas.Web.Controllers.T4MVC_HomeController();
