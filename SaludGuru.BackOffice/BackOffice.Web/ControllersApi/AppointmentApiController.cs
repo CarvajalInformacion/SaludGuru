@@ -62,11 +62,15 @@ namespace BackOffice.Web.ControllersApi
                     PatientSource.Add(PatientItem);
                 }
                 oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
-                if (AppointmentToUpsert.AppointmentPublicId == null)                
-                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert, false);
+                if (AppointmentToUpsert.AppointmentPublicId == null)
+                {
+                    AppointmentToUpsert.AppointmentPublicId = AppointmentPublicId;
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert, false); 
+                }
                 else
                     SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert, false);
-
+                
+                AppointmentToUpsert.AppointmentPublicId = AppointmentPublicId;
                 SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, PatientSource, AppointmentToUpsert, false);
                 //TODO: Validar si se hizo o no con el log
             }
@@ -154,7 +158,7 @@ namespace BackOffice.Web.ControllersApi
                         PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
                         PatientSource.Add(PatientItem);
                     }
-                    AppToCreateNotify.StartDate = (DateTime)RemindedDate; 
+                    AppToCreateNotify.StartDate = (DateTime)RemindedDate;
                     oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(BackOffice.Models.General.SessionModel.CurrentUserAutorization.ProfilePublicId);
                     //TODO: program the log qhit the result
                     BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderNextAppointment, PatientSource, AppToCreateNotify, false);

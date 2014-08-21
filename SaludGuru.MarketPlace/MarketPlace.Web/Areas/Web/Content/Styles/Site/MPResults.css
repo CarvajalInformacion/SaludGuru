@@ -60,14 +60,23 @@ div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span{
     width:48.2%;
         border:none;
     vertical-align:top;
-    margin:3px 0px 3px 8px;
+    margin:3px 0px 3px 8px;    
+}
+div.MPResultsBreadCrumbsPages {
+    text-align:right;
 }
 .MPResultsBreadCrumbsPages a {
     color: #FFF;
     line-height: 1.3em;
     font-size: 1em;
     letter-spacing: -0.5px;
-    float:right;
+}
+.MPResultsBreadCrumbsPages a:hover {
+    color: #FFF;
+}
+.MPResultsBreadCrumbsPages span{
+    color: #FFF;
+    text-decoration:none;
 }
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
@@ -178,9 +187,9 @@ a.MPResultsPaidProfileDoctorWebsite > span,
 a.MPResultsPaidProfileDoctorFacebook > span{
             font-size: 0.7em;
             letter-spacing: 0px;
-            margin: 0px 0px 0px -4px;
+            margin: 0px 0px 0px 1px;
             width: 64%;
-            line-height: 16px;
+            line-height:29px;
 }
 /** DESCRIPCION CORTA DEL DOCTOR **/
         div.MPResultsDoctorDescriptionWrapper {
@@ -261,7 +270,7 @@ a.MPResultsPaidProfileDoctorFacebook > span{
             div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
                 cursor:auto;
                 font-size:0.9em;
-                display:inline-block;
+                display:block;
                 width: auto;
                 line-height:16px;
                 text-decoration:none;
