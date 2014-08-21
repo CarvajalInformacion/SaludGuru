@@ -130,7 +130,7 @@
             @{
                 string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
             }
-            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita gratis con este profesional.</a>
+            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita con este doctor.</a>
             <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional.</a>
         </div>
     </div>
