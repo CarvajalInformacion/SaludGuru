@@ -1,4 +1,5 @@
-﻿using Message.Interfaces;
+﻿using BitlyDotNET.Interfaces;
+using Message.Interfaces;
 using Message.Models;
 using MessageModule.Controller;
 using System;
@@ -152,7 +153,8 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
-                    xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    string profileUrl = infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault();
+                    xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", ShortURL(profileUrl));
                     break;
                 case "Email_ModifyAppointment":
                     xDocMessBody = xDocMessBody.Replace("{PatientName}", infoMessage.MessageParameters.Where(x => x.Key == "PatientName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
@@ -176,14 +178,16 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
-                    xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ConfirmLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Confirm?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{CancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Cancel?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Sms_ReminderAppointment":
                     xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
-                    xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https:/www.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
+                    string urlShort = infoMessage.MessageParameters.Where(x => x.Key == "ConfirmCancelLink").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault();
+                    xDocMessBody = xDocMessBody.Replace("{ConfirmCancelLink}", ShortURL(urlShort));
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Email_ReminderNextAppointment":
@@ -225,6 +229,32 @@ namespace Message.Manager
             return oRetorno;
         }
 
+        /// <summary>
+        /// Funcion que utiliza Bitly para acortar la url y la devuelve
+        /// </summary>
+        /// <param name="link">Url que quiero acortar</param>
+        /// <returns>Url Corta</returns>
+        static string ShortURL(string link)
+        {
+            try
+            {  
+                string user = SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["UsrBitly"].Value;
+                string key = SettingsManager.SettingsController.SettingsInstance.ModulesParams["Message"]["KeyBitly"].Value;
+                IBitlyService service = new BitlyDotNET.Implementations.BitlyService(user, key);
+                if (string.IsNullOrEmpty(link))
+                {
+                    return string.Empty;
+                }
+                string shortened;
+                return service.Shorten(link, out shortened) == StatusCode.OK ? shortened : link;
+            }
+            catch
+            {   // para implementar log de errores
+                return link;
+            }
+        }
+
         #endregion
+
     }
 }
