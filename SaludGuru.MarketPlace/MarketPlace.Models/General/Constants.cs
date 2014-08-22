@@ -84,13 +84,15 @@
 
         public const string C_Settings_HomeImage_Contact = "HomeImage_Contact";
 
-        public const string C_Settings_UrlBackOffice = "UrlBackOffice";
-
         #endregion
 
         #region Url
 
         public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
+
+        public const string C_Settings_UrlBackOffice = "UrlBackOffice";
+
+        public const string C_Settings_UrlHttpExceptions = "UrlHttpExceptions";
 
         #endregion
 

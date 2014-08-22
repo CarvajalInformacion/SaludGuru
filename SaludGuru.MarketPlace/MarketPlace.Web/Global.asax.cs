@@ -22,11 +22,35 @@ namespace MarketPlace.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        protected static List<string> oUrlHttpExceptions;
+        protected static List<string> UrlHttpExceptions
+        {
+            get
+            {
+                if (oUrlHttpExceptions == null)
+                {
+                    oUrlHttpExceptions = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_UrlHttpExceptions].Value.Split(',').ToList();
+                }
+                return oUrlHttpExceptions;
+            }
+        }
+
+
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            //ensure only https navigation
-            if (!Context.Request.IsSecureConnection)
+            bool InsecureUrl = UrlHttpExceptions.Any(x => x.ToLower() == Request.Url.AbsolutePath.ToLower());
+
+            if (Context.Request.IsSecureConnection && InsecureUrl)
+            {
+                //not security zone
+                Response.Redirect(Context.Request.Url.ToString().Replace("https:", "http:"), true);
+            }
+            else if (!Context.Request.IsSecureConnection && !InsecureUrl)
+            {
+                //ensure only https navigation
                 Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
+            }
         }
 
         #region Enable web api session read

@@ -47,6 +47,7 @@ namespace T4MVC.Web
                 public readonly string _P_ImageSlider = "_P_ImageSlider";
                 public readonly string _P_Map = "_P_Map";
                 public readonly string _S_Breadcrumb = "_S_Breadcrumb";
+                public readonly string _S_Content_NoFound = "_S_Content_NoFound";
                 public readonly string _S_Profile_Basic = "_S_Profile_Basic";
                 public readonly string _S_Profile_Free = "_S_Profile_Free";
                 public readonly string _S_Profile_Pay = "_S_Profile_Pay";
@@ -62,6 +63,7 @@ namespace T4MVC.Web
             public readonly string _P_ImageSlider = "~/Areas/Web/Views/Shared/_P_ImageSlider.cshtml";
             public readonly string _P_Map = "~/Areas/Web/Views/Shared/_P_Map.cshtml";
             public readonly string _S_Breadcrumb = "~/Areas/Web/Views/Shared/_S_Breadcrumb.cshtml";
+            public readonly string _S_Content_NoFound = "~/Areas/Web/Views/Shared/_S_Content_NoFound.cshtml";
             public readonly string _S_Profile_Basic = "~/Areas/Web/Views/Shared/_S_Profile_Basic.cshtml";
             public readonly string _S_Profile_Free = "~/Areas/Web/Views/Shared/_S_Profile_Free.cshtml";
             public readonly string _S_Profile_Pay = "~/Areas/Web/Views/Shared/_S_Profile_Pay.cshtml";

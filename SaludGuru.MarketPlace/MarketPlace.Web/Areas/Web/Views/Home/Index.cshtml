@@ -51,11 +51,11 @@
                             }));
 
                     }
-                    <div class="Image">
-                        <a href="@ovProfileUrl">
+                    <a href="@ovProfileUrl">
+                        <div class="Image">
                             <img src="@imgProfile" />
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                     <div class="ProfileInfo">
                         <a href="@ovProfileUrl">
                             <label>@nameProfile</label>
@@ -66,73 +66,13 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <label class="HombeBlockTitle">Lo más buscado</label>
-                <div class="HomeBlocks criteriaBox">
-                    <div class="FeaturedSP">
-                        <label>Especialidades Destacadas</label>
-                        <ul>
-                            <li>
-                                <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
-                                    Odontología
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
-                                    Fisioterapia
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
-                                    Cirugía Plástica
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
-                                    Ginecología
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
-                                    Medicina Estética
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="Insurance">
-                        <label>Listado de Seguros</label>
-                        <ul>
-                            <li>
-                                <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
-                                    Sura
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
-                                    Allianz
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
-                                    Colsanitas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
-                                    Medplus
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="HomeFirstBlockRigth">
             <label class="HombeBlockTitle">Redes Sociales</label>
             <div class="HomeBlocks SocialNetworks">
                 <div>
                     <!--Facebook-->
-                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=250&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                 </div>
                 <ul>
                     <li>
@@ -157,15 +97,13 @@
     </div>
     <hr class="featurette-divider __loop">
     <div class="Feed">
-        <label class="HombeBlockTitle">Noticias</label>
-        <div>
-            @{
-                List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(2);
-
-                SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
-                SaludGuru.FeedManager.Models.FeedReaderModel mMedicalMarketing = Feeds[1];
-            }
-            <!-- Feed Left -->
+        @{
+            List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(1);
+            SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
+        }
+        <!-- Feed Left -->
+        <div class="HomeFirstBlockFeedLeft">
+            <label class="HombeBlockTitle">Noticias</label>
             <div class="HomeBlocks FeedLeft">
                 <a target="_blank" href="@(mHealtyLive.Link)">
                     <label id="FeedTitle">@(mHealtyLive.Title)</label>
@@ -176,18 +114,88 @@
                     </div>
                 </a>
                 <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+                <a class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
             </div>
-            <!-- Feed Right -->
-            <div class="HomeBlocks FeedRight">
-                <a target="_blank" href="@(mMedicalMarketing.Link)">
-                    <label id="FeedTitle">@(mMedicalMarketing.Title)</label>
-                </a>
-                <a target="_blank" href="@(mMedicalMarketing.Link)">
-                    <div class="divRightImage">
-                        <img id="FeedImage" src="@(mMedicalMarketing.Image)" />
-                    </div>
-                </a>
-                <p id="FeedDescription">@(Html.Raw(mMedicalMarketing.Description))</p>
+        </div>
+        <!-- Right Content-->
+        <div class="HomeFirstBlockFeedRigth">
+            <label class="HombeBlockTitle">Lo más buscado</label>
+            <div class="HomeBlocks criteriaBox">
+                <div class="FeaturedSP">
+                    <label>Especialidades Destacadas</label>
+                    <ul>
+                        <li>
+                            <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
+                                Odontología
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
+                                Fisioterapia
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
+                                Cirugía Plástica
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
+                                Ginecología
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                                Medicina Estética
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/homeopatia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Homeopatía">
+                                Homeopatía
+                            </a>
+                         </li>
+                        <li>
+                            <a href="/neumologia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Neumología">
+                                Neumología
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Insurance">
+                    <label>Listado de Seguros</label>
+                    <ul>
+                        <li>
+                            <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
+                                Sura
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
+                                Allianz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
+                                Colsanitas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                                Medplus
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/coomeva/bogota" title="Encuentra los mejores médicos de Coomeva">
+                                Coomeva
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/susalud/bogota" title="Encuentra los mejores médicos de Susalud">
+                                Susalud
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

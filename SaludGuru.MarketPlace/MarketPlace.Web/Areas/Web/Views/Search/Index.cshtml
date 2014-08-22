@@ -36,7 +36,7 @@
     }
     else
     {
-
+        @Html.Partial(MVC.Web.Shared.Views._S_Content_NoFound)
     }
 </div>
 @section inlinescripts
@@ -44,6 +44,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             fnInitContactOffice();
+            fnInitCertifiedToolTip();
         });
     </script>
 }
