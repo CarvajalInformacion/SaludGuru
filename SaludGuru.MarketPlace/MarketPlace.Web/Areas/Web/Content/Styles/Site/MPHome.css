@@ -1,6 +1,7 @@
 /*------Estilos Home------*/
 
 .Content {
+    /*border: 2px solid red;*/
     width: calc(100%);
     min-width: 750px;
     position: relative;
@@ -13,13 +14,14 @@ h1 {
     font-size: 30px !important;
 }
 
-.SearchBox, .ContentImportant, .Feed, .Demo {
-    width: auto;
+.SearchBox, .HomeFirstBlock, .Feed, .Demo {
+    width: 100%;
+    height: auto;
 }
 /*-----Search Box------*/
 .SearchBox {
-    /*outline: 1px solid black;*/
-    height: 400px;
+    outline: 1px solid black;
+    height: 400px !important;
     padding: 10% 0px 0px !important;
 }
 
@@ -51,7 +53,7 @@ h1 {
 
 /*---Home blocks----*/
 .HomeBlocks {
-    /*height: 500px;*/
+    /*border: 1px solid yellow;*/
     height: auto;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
@@ -68,23 +70,25 @@ h1 {
 }
 /*---Contenido Perfil destacado - Redes Sociales - Mas buscado----*/
 .HomeFirstBlock {
-    display: block;
-    height: auto;
+    /*border: 1px solid pink;*/
+    display: inline-block;
 }
 
-    .HomeFirstBlockLeft {
-        height: 500px;
-        width: calc(60%);
-        float: left;
-        margin: 0px 0px 0px calc(8%);
-    }
+.HomeFirstBlockLeft {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(62%);
+    float: left;
+    margin: 0px 0px 0px calc(6%);
+}
 
-    .HomeFirstBlockRigth {
-        height: 500px;
-        width: calc(20%);
-        display: inline-block;
-        margin: 0px 0px 0px calc(4%);
-    }
+.HomeFirstBlockRigth {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(27%);
+    display: inline-block;
+    margin: 0px 0px 0px calc(2%);
+}
 
 /*.ContentImportant .ProfileH1 {
         display: inline-block;
@@ -128,22 +132,27 @@ h1 {
 }
 
 .Image {
-    width: 30%;
+    width: calc(20%);
+    max-width: 160px;
+    height: auto;
+    border-radius: 3px;
+    margin: 10px 0px 10px 10px;
     float: left;
-    margin: 40px 0px;
+    text-align: center;
+    overflow: hidden;
 }
 
     .Image img {
-        width: 70%;
-        height: auto;
-        margin: 0% 0px 0px 21%;
-        border-radius: 3px;
+        width: 100%;
+        height: auto !important;
+        max-width: 100%;
+        overflow: hidden;
     }
 
 .ProfileInfo {
     display: inline-block;
-    vertical-align: top;
-    width: 70%;
+    width: calc(77%);
+    float: left;
 }
 
     .ProfileInfo label {
@@ -155,20 +164,21 @@ h1 {
     }
 
     .ProfileInfo p {
-        line-height: 21px;
-        margin: 10px 0px 10px 25px;
-        font-size: 17px;
+        width: calc(97%);
+        margin: 5px 0px 5px 5px;
         text-align: justify;
+        line-height: 21px;
+        font-size: 17px;
     }
 
-/*a.MPButtons {
+a.MPButtons {
     font-weight: bold;
-    margin: 10px 25px 10px 0px;
+    margin: 15px 15px 20px 0px;
     font-size: 17px;
-    text-align: center;
-    line-height: 40px;
     float: right;
-}*/
+    color: #99c21d;
+    text-decoration: initial;
+}
 
 
 /*------lo mas buscado--------*/
@@ -195,49 +205,40 @@ h1 {
         color: #99c21d;
         font-size: 15px;
         font-weight: bold;
-}
+    }
 
 /*-----Redes Sociales-----*/
-/*.SocialNetworks {
-    width: calc(40%);
-    height: auto;
-    margin: 0px 0px 0px calc(3%);
-    display: inline-block;
-    vertical-align: top;
-}*/
+
 
 /*-----Facebook-------*/
 .SocialNetworks {
+    /*border: 1px solid blue;*/
 }
+
     .SocialNetworks .fb {
-        width: 100%; 
-        height: 290px;
+        width: 100%;
+        height: 230px;
     }
 
     .SocialNetworks .li {
-        float:left;
-        width: 100%; 
+        float: left;
+        width: 100%;
         height: 50px;
     }
 
-    /*.SocialNetworks ._4s7c {
-        height: auto;
-    }*/
-
-
-    /*------Twitter-------*/
+/*------Twitter-------*/
 /*.SocialNetworks iframe#twitter-widget-0 {
         float: right;
         margin: -170px calc(14%) 0px 0px !important;
     }*/
-    /*---------Linked In----------*/
+/*---------Linked In----------*/
 /*.SocialNetworks span.IN-widget {
         height: auto;
         width: auto;
         float: right;
         margin: -280px calc(10%) 0px 0px !important;
     }*/
-    /*-----Google +-------*/
+/*-----Google +-------*/
 /*.SocialNetworks div#___plusone_0 {
         float: right !important;
         margin: -240px calc(6%) 0px 0px !important;
@@ -253,18 +254,24 @@ h1 {
 
 /*-----Noticias------*/
 .Feed {
-    display: block;
-    margin: 10px 0px 10px calc(8%);
+    /*border: 1px solid red;*/
+    display: inline-block;
 }
 
-.FeedRight {
-    margin: 0px 0px 0px calc(4%);
-}
-.FeedLeft, .FeedRight {
+.HomeFirstBlockFeedLeft {
+    /*border: 1px solid red;*/
     height: auto;
-    width: 42%;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
-    background: linear-gradient(#fff, #ececec);
+    width: calc(62%);
+    float: left;
+    margin: 0px 0px 0px calc(6%);
+}
+
+.HomeFirstBlockFeedRigth {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(27%);
+    display: inline-block;
+    margin: 0px 0px 0px calc(2%);
 }
 
 .Feed p {
@@ -275,7 +282,11 @@ h1 {
     font-size: 17px;
 }
 
-.Feed > a {
+a.BlogButtom {
+    font-weight: bold;
+    margin: 10px 25px 20px 0px;
+    font-size: 17px;
+    float: right;
     color: #99c21d;
 }
 
@@ -317,96 +328,50 @@ label#FeedTitle {
     overflow: hidden;
 }
 
-/*-----Noticias Derecha-----*/
-.FeedRight {
-    /*outline: 1px solid darkred;*/
-    display: inline-block;
-    vertical-align: top;
-    margin: 0px 0px 0px 8px;
+/*-----Info Derecha-----*/
+.FeaturedSP {
+    margin: 0px 0px 0px 3px;
 }
 
-    .FeedRight p a {
-        font-weight: bold;
+    .FeaturedSP label {
+        font-size: 14px;
+        text-align: center;
     }
 
-.divRightImage {
-    width: 150px;
-    height: 150px;
-    border-radius: 3px;
-    margin: 10px;
-    float: left;
+    .FeaturedSP ul li {
+        font-size: 13px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
+
+.Insurance {
+    font-size: 14px;
     text-align: center;
-    vertical-align: middle;
-    overflow: hidden;
 }
+
+    .Insurance ul li {
+        font-size: 13px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
 
 /*-----Demo-------*/
 .Demo {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.Demo a img{
-    width: 100%;
-}
-
-/*.NewDoctor {
-    float: left;
-    width: 335px;
-    margin: 0px 0px 0px calc(4%);
-}
-
-    .NewDoctor h1 {
-        font-weight: bold;
-        color: #99c21d;
-        font-size: 25px !important;
-        margin: 10px 0px !important;
-    }
-
-    .NewDoctor img {
-        width: 160px;
-        height: auto;
-    }
-
-.InfoDoctor {
+    /*border: 1px solid blue;*/
     display: inline-block;
-    width: 50%;
-    line-height: 21px;
-    vertical-align: top;
 }
 
-    .InfoDoctor p {
-        width: calc(90%);
-        margin: 0px 0px 20px 30px;
-        text-align: justify;
-        line-height: 21px;
-        font-size: 17px;
+    .Demo a img {
+        width: 90%;
+        margin: 0px 0px 0px calc(5%);
+        /*border: 1px solid red;*/
     }
-
-    .InfoDoctor h2 {
-        margin: 10px calc(8%);
-        line-height: 24px;
-        width: calc(80%);
-        color: #99c21d;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .InfoDoctor a {
-        font-weight: bold;
-        line-height: 21px;
-        margin: 10px 0px 10px 25px;
-        font-size: 17px;
-        text-align: justify;
-    }*/
 
 /*---- Otros Estilos -----*/
 
 hr.featurette-divider.__loop {
-    width: 90%;
+    width: 91%;
     border-top: 1px solid #99c21d;
+    /*border: 1px solid green;*/
+    margin: 1% 0px 1% 6%;
 }
-
-
-
