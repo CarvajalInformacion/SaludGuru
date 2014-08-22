@@ -62,13 +62,16 @@
 
         }
         <!--certified image-->
-        
+        <div class="MPResultsCertified">
             @if (ovIsCertified)
             {
-            <img class="MPResultsCertified SelCertifiedImage" title="Este profesional esta certificado por Saludguru" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+
+                <img class="MPResultsCertified SelCertifiedImage" title="Este profesional esta certificado por Saludguru" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+
             }
+        </div>
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
-        <div class="MPResultsPaidProfileDoctorData">
+        <div class="MPResultsPaidProfileDoctorPicture">
             <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
                 <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
             </a>
@@ -90,14 +93,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
         @*SEGUNDA COLUMNA DATICOS*@
         <div class="MPResultsPaidProfileDoctorData">
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
@@ -107,19 +102,20 @@
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                     <!--Principal specialty-->
-            <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
+                <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
             }
+            <label class="MPResultsEnsurance">Seguros médicos:</label>
             <ul>
                 @foreach (string str in Model.RelatedInsurance.Select(x => x.Name).ToList())
                 {
-                <li class="MPResultsInsuranceName">@str</li>
+                    <li class="MPResultsInsuranceName">@str</li>
                 }
             </ul>
         </div>
         <div class="MPResultsDoctorDescriptionWrapper">
             @if (!string.IsNullOrEmpty(ovShortProfile))
             {
-            <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
+                <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
             }
             @{
             SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
@@ -134,20 +130,22 @@
             }
             @if (oCurrentOffice != null)
             {
-            <div class="OfficeSelector">
-                <span class="OfficeTextSelector">Ver datos de contacto</span>
-                <div class="OfficeContactSelector" style="display:none;">
-                    <span>Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                    <span>Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                <div class="OfficeSelector">
+                    <span class="OfficeTextSelector">Ver datos de contacto</span>
+                    <div class="OfficeContactSelector" style="display:none;">
+                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    </div>
                 </div>
-            </div>
             }
-
+        </div>
+        <div class="MPResultsDoctorLinksWrapper">
             @{
     string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
             }
-            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita con este doctor.</a>
-            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional.</a>
+            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita con este doctor</a>
+            <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional</a>
         </div>
     </div>
 }
