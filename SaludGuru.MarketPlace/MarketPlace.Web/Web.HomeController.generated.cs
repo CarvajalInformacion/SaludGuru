@@ -104,10 +104,12 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
+                public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
                 public readonly string LegalTerms = "LegalTerms";
             }
             public readonly string ConditionsAndRestrictions = "~/Areas/Web/Views/Home/ConditionsAndRestrictions.cshtml";
+            public readonly string Contact = "~/Areas/Web/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Areas/Web/Views/Home/Index.cshtml";
             public readonly string LegalTerms = "~/Areas/Web/Views/Home/LegalTerms.cshtml";
         }
