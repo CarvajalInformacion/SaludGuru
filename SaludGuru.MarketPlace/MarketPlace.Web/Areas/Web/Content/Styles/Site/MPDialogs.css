@@ -1,11 +1,27 @@
+/*****************Todos los dialogos*********************/
+.ui-dialog-title {
+    display: block;
+    line-height: 1em;
+    color: #333;
+    font-weight: normal;
+    margin: -3px 0px 0px 0px !important;
+}
+
+.ui-dialog-titlebar-close {
+    background-image: url('/Areas/Web/Content/Images/BOAppointmentActionsSprite.png');
+    background-repeat: no-repeat;
+    background-size: auto 14px;
+    background-position: 0px 0px;
+
+}
+
 /******* DIALOGO DEL BOTON "AGENDA UNA CITA CON ESTE DOCTOR" *******/
 #dialog_ScheduleAppointmentNotLogin {
     display: block;
     width: 94% !important;
     height: auto !important;
     margin: 10px auto;
-    font-family: 1.8em;
-color: #333;
+    color: #333;
 }
 #dialog_ScheduleAppointmentNotLogin span{
     display: block;
@@ -22,3 +38,4 @@ color: #333;
     height: 38px;
     background-size: 33px;
 }
+
