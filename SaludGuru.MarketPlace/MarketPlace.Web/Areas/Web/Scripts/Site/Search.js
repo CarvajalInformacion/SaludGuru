@@ -6,14 +6,6 @@ function fnInitContactOffice() {
     });
 }
 
-function fnInitCertifiedToolTip() {
 
-    $('.SelCertifiedImage').tooltip({
-        show: {
-            effect: "slideDown",
-            delay: 250
-        },
-    });
-}
 
 
