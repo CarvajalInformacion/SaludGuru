@@ -147,7 +147,8 @@ namespace BackOffice.Models.Appointment
             get
             {
                 return CurrentAppointment.AppointmentInfo.
-                    Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category).
+                    Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.Category &&
+                            !string.IsNullOrEmpty(x.Value)).
                     Select(x => Convert.ToInt32(x.Value)).
                     DefaultIfEmpty(0).
                     FirstOrDefault();
