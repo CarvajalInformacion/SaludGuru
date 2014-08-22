@@ -62,13 +62,13 @@
 
         }
         <!--certified image-->
-        <div class="MPResultsCertifiedWrapper">
+        
             @if (ovIsCertified)
             {
             <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
             }
-        </div>
-        <div>
+        @*PRIMERA COLUMNA FOTICO FACEBOOK*@
+        <div class="MPResultsPaidProfileDoctorData">
             <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
                 <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
             </a>
@@ -89,6 +89,16 @@
                 }
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+        @*SEGUNDA COLUMNA DATICOS*@
         <div class="MPResultsPaidProfileDoctorData">
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
                 @(Model.Name + " " + Model.LastName)
