@@ -48,6 +48,8 @@
 
     <key name="UrlBackOffice">https://admin.saludguru.com.co</key>
 
+    <key name="UrlHttpExceptions">/contacto+doctor,</key>
+
   </MarketPlace>
 </Settings>
 
