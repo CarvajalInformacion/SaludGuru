@@ -11,44 +11,63 @@ namespace MarketPlace.Models.Profile
 {
     public class SearchViewModel
     {
+        public string CurrentSearchCity { get; set; }
+
+        public string CurrentSearchQuery { get; set; }
+
         public List<ProfileModel> CurrentProfile { get; set; }
 
         public List<ICategoryModel> CurrentCategory { get; set; }
+
+        public string CurrentSearchInsurance { get; set; }
 
         private InsuranceModel oCurrentInsurance;
         public InsuranceModel CurrentInsurance
         {
             get
             {
-                if (oCurrentInsurance == null)
+                if (oCurrentInsurance == null && !string.IsNullOrEmpty(CurrentSearchInsurance))
                 {
-                    oCurrentInsurance = CurrentCategory.Where(x => x.GetType() == typeof(InsuranceModel)).Select(x => (InsuranceModel)x).FirstOrDefault();
+                    oCurrentInsurance = CurrentCategory.
+                        Where(x => x.GetType() == typeof(InsuranceModel) &&
+                            x.Name.ToLower().Equals(CurrentSearchInsurance.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Select(x => (InsuranceModel)x).FirstOrDefault();
                 }
                 return oCurrentInsurance;
             }
         }
+
+        public string CurrentSearchSpecialty { get; set; }
 
         private SpecialtyModel oCurrentSpecialty;
         public SpecialtyModel CurrentSpecialty
         {
             get
             {
-                if (oCurrentSpecialty == null)
+                if (oCurrentSpecialty == null && !string.IsNullOrEmpty(CurrentSearchSpecialty))
                 {
-                    oCurrentSpecialty = CurrentCategory.Where(x => x.GetType() == typeof(SpecialtyModel)).Select(x => (SpecialtyModel)x).FirstOrDefault();
+                    oCurrentSpecialty = CurrentCategory.
+                        Where(x => x.GetType() == typeof(SpecialtyModel) &&
+                            x.Name.ToLower().Equals(CurrentSearchSpecialty.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Select(x => (SpecialtyModel)x).FirstOrDefault();
                 }
                 return oCurrentSpecialty;
             }
         }
+
+        public string CurrentSearchTreatment { get; set; }
 
         private TreatmentModel oCurrentTreatment;
         public TreatmentModel CurrentTreatment
         {
             get
             {
-                if (oCurrentTreatment == null)
+                if (oCurrentTreatment == null && !string.IsNullOrEmpty(CurrentSearchTreatment))
                 {
-                    oCurrentTreatment = CurrentCategory.Where(x => x.GetType() == typeof(TreatmentModel)).Select(x => (TreatmentModel)x).FirstOrDefault();
+                    oCurrentTreatment = CurrentCategory.
+                        Where(x => x.GetType() == typeof(TreatmentModel) &&
+                            x.Name.ToLower().Equals(CurrentSearchSpecialty.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Select(x => (TreatmentModel)x).FirstOrDefault();
                 }
                 return oCurrentTreatment;
             }
@@ -75,8 +94,6 @@ namespace MarketPlace.Models.Profile
         }
 
         public int CurrentCityId { get; set; }
-
-        public string CurrentQuery { get; set; }
 
         public int TotalRows { get; set; }
 
