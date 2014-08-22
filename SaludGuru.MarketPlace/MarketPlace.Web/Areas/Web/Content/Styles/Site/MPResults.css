@@ -186,7 +186,11 @@ span.MPResultsInsuranceName{
 span.MPResultsSpecialityName {
     font-size:1.2em;
 }
-span.MPResultsInsuranceName {
+li.MPResultsInsuranceName {
+        width: 104px;
+    line-height: 1em;
+    border: 1px solid;
+    display: inline-block;
     font-size:0.9em;
     letter-spacing: -0.4px;
 }
