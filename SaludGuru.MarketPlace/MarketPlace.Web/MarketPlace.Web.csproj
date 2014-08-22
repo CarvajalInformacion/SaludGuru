@@ -1106,6 +1106,7 @@
     <Content Include="Areas\Web\Views\Home\LegalTerms.cshtml" />
     <Content Include="Areas\Web\Views\Home\ConditionsAndRestrictions.cshtml" />
     <Content Include="Areas\Web\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Content_NoFound.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-FeedManager.xml">
