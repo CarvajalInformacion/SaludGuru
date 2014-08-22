@@ -47,24 +47,29 @@
         }));
 
         }
-        <div class="MPResultsCertifiedWrapper">
+        <div class="MPResultsCertified">
             @if (ovIsCertified)
             {
             <!--certified image-->
-                <img class="MPResultsCertified" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+            <img class="MPResultsCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
             }
         </div>
-        <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
-            <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
-        </a>
+        @*PRIMERA COLUMNA FOTICO FACEBOOK*@
+        <div class="MPResultsPaidProfileDoctorPicture">
+            <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
+                <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
+            </a>
+        </div>
+
+        @*SEGUNDA COLUMNA DATICOS*@
         <div class="MPResultsPaidProfileDoctorData">
-            <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
+            <a class="MPResultsPaidProfileDoctorName" href="javascript:;">
                 <label>@(Model.Name + " " + Model.LastName)</label>
             </a>
 
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
-                    <!--Principal specialty-->
+                        <!--Principal specialty-->
                 <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
             }
         </div>
@@ -89,9 +94,8 @@
                 <div class="OfficeContactSelector" style="display:none;">
                     @if (oCurrentOffice != null)
                     {
-                        <span>@oCurrentOffice.Name</span>
-                        <span>Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                        <span>Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                     }
                     else
                     {

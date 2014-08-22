@@ -173,10 +173,9 @@ a.MPResultsPaidProfileDoctorFacebook > span{
 }
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
-       border:none;
+    border:none;
     display:inline-block;
-    width: auto;
-    max-width:218px;
+    width:218px;
     height:auto;
     margin: 0px 0px 0px 8px;
 }
@@ -300,14 +299,14 @@ a.MPResultsPaidProfileDoctorName{
                     background-repeat:no-repeat;
                 }
                 span.OfficeContactAddress {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSprite.png');
-                    background-position:-2px 3px;
-                    background-size:43px auto;
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+                    background-position: -6px -1px;
+                    background-size: 27px auto;
                 }
                 span.OfficeContactTelephone {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSprite.png');
-                    background-position:-11px -9px;
-                    background-size:29px auto;
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+                    background-position: 0px 2px;
+                    background-size: 18px auto;
                 }
 /***** ENLACES DE VER PERFIL Y AGENDAR CITA *************/
 .MPResultsDoctorLinksWrapper {
