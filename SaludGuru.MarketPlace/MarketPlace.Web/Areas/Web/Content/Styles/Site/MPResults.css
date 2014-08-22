@@ -1,12 +1,15 @@
 /********** ESTILOS DE LA PAGINA DE RESULTADOS DE DOCTORES ********/
-.MPResultsGrandWrapper span, 
-.MPResultsGrandWrapper label, 
-.MPResultsGrandWrapper a{
+.MPResultsGrandWrapper span,
+.MPResultsGrandWrapper label {
     color:#666;
     letter-spacing:-0.6px;
 }
+.MPResultsGrandWrapper a{
+    color:#92B92A;
+    letter-spacing:-0.6px;
+}
     .MPResultsGrandWrapper a:hover {
-        color:#666;
+        color:#92B92A;
     }
 .MPResultsGrandWrapper {
     display:block;
@@ -16,12 +19,10 @@
     min-width:768px;
 }
     .MPResultsGrandWrapper div {
-        margin:0px; padding:0px; 
-        width:auto; height:auto;
-                border:none;
+        margin:0px; padding:0px; height:auto;
     }
 div.MPResultsBreadCrumbs {
-    background-color: #92B92A;
+    background-color:#92B92A;
     color: #FFF;
     height: 28px;
     width: 80%;
@@ -120,20 +121,21 @@ div.MPResultsPaidProfile a,
 div.MPResultsPaidProfile div{
     vertical-align:top;
 }
-div.MPResultsCertifiedWrapper,
-img.MPResultsCertified{display:inline-block;}
-
-div.MPResultsCertifiedWrapper {
-    min-width:46px;
-    width:5.2%;
-    height:auto;
-}
 img.MPResultsCertified {
-    width:100%; height:auto;
+    min-width:46px;
+    width:6.9%;
+    height:auto;
+    display:inline-block;
+}
+.MPResultsPaidProfileDoctorPicture {
+    border:none;
+    display:inline-block;
+    width:2%;
+    min-width:120px;
+    min-height:182px;
 }
 a.MPResultsDoctorPictureWrapper{
-    width:8%;
-    min-width:92px;
+    width:auto;
     height:auto;
     border:1px solid #666;
     border-radius:2px;
@@ -142,14 +144,37 @@ a.MPResultsDoctorPictureWrapper{
 img.MPResultsDoctorPicture{
     width:100%; height:auto;
 }
+/************* FACEBOOK Y SITIO WEB **************/
+.MPResultsPaidProfileDoctorSocial {
+    display:block;
+    width:100%; height:auto;
+}
+a.MPResultsPaidProfileDoctorWebsite,
+a.MPResultsPaidProfileDoctorFacebook{
+    display: block;
+    width: 100%;
+    margin: 6px 0px 4px 0px;
+    text-decoration: none;
+}
+a.MPResultsPaidProfileDoctorWebsite > img,
+a.MPResultsPaidProfileDoctorFacebook > img {
+    width: 26%;
+    height: auto;
+}
+a.MPResultsPaidProfileDoctorWebsite > span,
+a.MPResultsPaidProfileDoctorFacebook > span{
+            font-size: 0.7em;
+            letter-spacing: 0px;
+            margin: 0px 0px 0px 1px;
+            width: 64%;
+            line-height:29px;
+}
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
        border:none;
     display:inline-block;
-    width:21%;
-    min-width:220px;
-    min-height:182px;
-    margin-left:8px;
+    width: auto;
+    height:auto;
 }
 span.MPResultsSpecialityName,
 span.MPResultsInsuranceName{
@@ -169,27 +194,6 @@ a.MPResultsPaidProfileDoctorName{
     font-size:1.5em;
     line-height:24px;
     cursor: pointer;    
-}
-a.MPResultsPaidProfileDoctorWebsite,
-a.MPResultsPaidProfileDoctorFacebook{
-    display:inline-block;
-    width: 48%;
-    margin:6px 0px 0px 0px;
-    text-decoration:none;
-}
-a.MPResultsPaidProfileDoctorWebsite > img,
-a.MPResultsPaidProfileDoctorFacebook > img {
-    width: 26%;
-    min-width: 30px;
-    height: auto;
-}
-a.MPResultsPaidProfileDoctorWebsite > span,
-a.MPResultsPaidProfileDoctorFacebook > span{
-            font-size: 0.7em;
-            letter-spacing: 0px;
-            margin: 0px 0px 0px 1px;
-            width: 64%;
-            line-height:29px;
 }
 /** DESCRIPCION CORTA DEL DOCTOR **/
         div.MPResultsDoctorDescriptionWrapper {

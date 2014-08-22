@@ -5,3 +5,15 @@ function fnInitContactOffice() {
         $(this).find('.OfficeContactSelector').fadeIn('slow');
     });
 }
+
+function fnInitCertifiedToolTip() {
+
+    $('.SelCertifiedImage').tooltip({
+        show: {
+            effect: "slideDown",
+            delay: 250
+        },
+    });
+}
+
+

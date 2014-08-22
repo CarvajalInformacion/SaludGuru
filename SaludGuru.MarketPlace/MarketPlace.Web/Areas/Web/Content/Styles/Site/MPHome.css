@@ -120,6 +120,7 @@ h1 {
     height: auto;
     float: left;
     width: 100%;
+    min-height: 288px;
 }
 
     .Profile p {
@@ -173,7 +174,7 @@ h1 {
 
 a.MPButtons {
     font-weight: bold;
-    margin: 15px 15px 20px 0px;
+    margin: 14% 15px 20px 0px;
     font-size: 17px;
     float: right;
     color: #99c21d;
@@ -186,6 +187,7 @@ a.MPButtons {
 .criteriaBox {
     height: auto;
     float: left;
+    min-height: 210px;
     width: 100%;
 }
 
@@ -217,40 +219,37 @@ a.MPButtons {
 
     .SocialNetworks .fb {
         width: 100%;
-        height: 230px;
+        height: 178px;
     }
 
-    .SocialNetworks .li {
-        float: left;
+    .SocialNetworks ul li {
         width: 100%;
-        height: 50px;
+        height: 35px;
+        text-align: center;
     }
 
 /*------Twitter-------*/
-/*.SocialNetworks iframe#twitter-widget-0 {
-        float: right;
-        margin: -170px calc(14%) 0px 0px !important;
-    }*/
-/*---------Linked In----------*/
-/*.SocialNetworks span.IN-widget {
-        height: auto;
-        width: auto;
-        float: right;
-        margin: -280px calc(10%) 0px 0px !important;
-    }*/
-/*-----Google +-------*/
-/*.SocialNetworks div#___plusone_0 {
-        float: right !important;
-        margin: -240px calc(6%) 0px 0px !important;
-    }*/
+/*iframe#twitter-widget-0 {
+    margin: 10px 0px 10px 0px !important;
+}*/
 
-/*.SocialNetworks p {
-        font-size: 18px;
-        display: inline-block;
-        width: 31%;
-        vertical-align: top;
-        margin: 20px 0px 0px 0px;
-    }*/
+/*---------Linked In----------*/
+/*span.IN-widget {
+    float: left !important;
+    margin: 0px 0px 0px calc(5%) !important;
+}*/
+
+/*-----Google +-------*/
+div#___plusone_0 {
+    width: 190px !important;
+    display: block !important;
+    height: auto !important;
+    margin: 5px auto !important;
+}
+
+iframe#I0_1408669437247{
+    width: 100% !important;
+}
 
 /*-----Noticias------*/
 .Feed {
@@ -336,6 +335,7 @@ label#FeedTitle {
     .FeaturedSP label {
         font-size: 14px;
         text-align: center;
+        font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
     }
 
     .FeaturedSP ul li {
@@ -344,9 +344,17 @@ label#FeedTitle {
         margin: 0px 0px 0px 0px;
     }
 
+        .FeaturedSP ul li a {
+            color: #99c21d;
+            font-size: 15px;
+            font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-weight: normal;
+        }
+
 .Insurance {
     font-size: 14px;
     text-align: center;
+    font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
 }
 
     .Insurance ul li {
@@ -354,6 +362,13 @@ label#FeedTitle {
         text-align: center;
         margin: 0px 0px 0px 0px;
     }
+
+        .Insurance ul li a {
+            color: #99c21d;
+            font-size: 15px;
+            font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-weight: normal;
+        }
 
 /*-----Demo-------*/
 .Demo {
