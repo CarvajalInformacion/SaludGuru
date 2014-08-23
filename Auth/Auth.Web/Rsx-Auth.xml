@@ -13,7 +13,6 @@
 
     <!--Internal Login-->
 
-
     <!--Facebook-->
     <key name="FB_marketplace_Enabled">true</key>
     <key name="FB_marketplace_AppId">639144966168984</key>
@@ -32,6 +31,16 @@
     <key name="GM_backoffice_AppId">65284956123-78ptq4tubr8a2d1um9hkq7tmvnr6lrn2.apps.googleusercontent.com</key>
     <key name="GM_backoffice_AppSecret">noc1gdOdcRsW26RPPU6KFPdl</key>
 
+    <!--Windows live-->
+    <key name="WL_marketplace_Enabled">true</key>
+    <key name="WL_marketplace_AppId">0000000040128E5E</key>
+    <key name="WL_marketplace_AppSecret">S5gk1bo12swpp5dPq7zL7zxPv9kHmA1S</key>
+
+    <key name="WL_backoffice_Enabled">true</key>
+    <key name="WL_backoffice_AppId">0000000040128E5E</key>
+    <key name="WL_backoffice_AppSecret">S5gk1bo12swpp5dPq7zL7zxPv9kHmA1S</key>
+
+    <!--Analitycs-->
     <key name="backoffice_Analytics">
       <![CDATA[
         <script>
@@ -61,7 +70,5 @@
       ]]>
     </key>
   </Auth>
-
-
 </Settings>
 

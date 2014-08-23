@@ -243,6 +243,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Web\Controllers\WLLoginController.cs" />
     <Compile Include="Areas\Web\Controllers\FBLoginController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -259,6 +260,7 @@
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FBLoginController.cs" />
+    <Compile Include="Controllers\WLLoginController.cs" />
     <Compile Include="Controllers\GoogleLoginController.cs" />
     <Compile Include="Controllers\InternalLoginController.cs" />
     <Compile Include="FBLoginController.generated.cs">
@@ -389,6 +391,7 @@
     </Content>
     <Content Include="T4MVC.tt.hooks.t4" />
     <Content Include="T4MVC.tt.settings.xml" />
+    <Content Include="Areas\Web\Views\WLLogin\Login.cshtml" />
     <None Include="Properties\PublishProfiles\Auth_1.pubxml" />
   </ItemGroup>
   <ItemGroup>

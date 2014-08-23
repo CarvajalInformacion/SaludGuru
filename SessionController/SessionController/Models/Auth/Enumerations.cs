@@ -10,6 +10,7 @@
     public enum enumLoginType
     {
         Facebook = 1,
-        Google = 2
+        Google = 2,
+        WindowsLive = 3,
     }
 }
