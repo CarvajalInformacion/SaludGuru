@@ -28,10 +28,11 @@ namespace Auth.Web.Controllers
 
                 //user is not login
                 WLClient.RequestUserAuthorization(scope: new[] { 
-                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Basic,
-                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Birthday,
-                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Emails,
-                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.SignIn});
+                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Basic});
+                            //,
+                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Birthday,
+                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Emails,
+                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.SignIn});
             }
             else
             {
@@ -66,17 +67,18 @@ namespace Auth.Web.Controllers
         //create facebook instance
         DotNetOpenAuth.ApplicationBlock.WindowsLiveClient GetWLClient(string AppName)
         {
-            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient client = new DotNetOpenAuth.ApplicationBlock.WindowsLiveClient();
+            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient client = 
+                new DotNetOpenAuth.ApplicationBlock.WindowsLiveClient();
 
             //appid
             client.ClientIdentifier = SettingsManager.SettingsController.SettingsInstance.ModulesParams
-                                    [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
-                                    [Auth.Interfaces.Models.Constants.C_WL_AppId.Replace("{AppName}", AppName)].Value;
+                        [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
+                        [Auth.Interfaces.Models.Constants.C_WL_AppId.Replace("{AppName}", AppName)].Value;
             //secret key
             client.ClientCredentialApplicator = DotNetOpenAuth.OAuth2.ClientCredentialApplicator.PostParameter
-                                (SettingsManager.SettingsController.SettingsInstance.ModulesParams
-                                    [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
-                                    [Auth.Interfaces.Models.Constants.C_WL_AppSecret.Replace("{AppName}", AppName)].Value);
+                        (SettingsManager.SettingsController.SettingsInstance.ModulesParams
+                            [Auth.Interfaces.Models.Constants.C_SettingsModuleName]
+                            [Auth.Interfaces.Models.Constants.C_WL_AppSecret.Replace("{AppName}", AppName)].Value);
 
             return client;
         }

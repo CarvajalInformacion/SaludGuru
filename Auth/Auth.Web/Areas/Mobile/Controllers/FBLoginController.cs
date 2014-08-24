@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Auth.Web.Areas.Mobile.Controllers
 {
-    public class FBLoginController : Auth.Web.Controllers.FBLoginController
+    public partial class FBLoginController : Auth.Web.Controllers.FBLoginController
     {
 
     }
