@@ -80,12 +80,14 @@ var ProfileDetailObject = {
     ProfileTextId: '',
     ProfileEducationId: '',
     ProfileCertificationId: '',
+    OfficeId: '',
 
     /*init variables*/
     Init: function (vInitObject) {
         this.ProfileTextId = vInitObject.ProfileTextId;
         this.ProfileEducationId = vInitObject.ProfileEducationId;
         this.ProfileCertificationId = vInitObject.ProfileCertificationId;
+        this.OfficeId = vInitObject.OfficeId;
     },
 
     RenderAsync: function () {
@@ -124,6 +126,18 @@ var ProfileDetailObject = {
 
             if (IsRender == false) {
                 ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileCertificationId);
+                IsRender = true;
+            }
+        }
+
+        if ($('#' + ProfileDetailObject.OfficeId).length > 0) {
+
+            $('#' + ProfileDetailObject.OfficeId + '_sel').click(function () {
+                ProfileDetailObject.ShowTab(ProfileDetailObject.OfficeId);
+            });
+
+            if (IsRender == false) {
+                ProfileDetailObject.ShowTab(ProfileDetailObject.OfficeId);
                 IsRender = true;
             }
         }
