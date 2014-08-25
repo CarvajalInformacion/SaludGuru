@@ -211,7 +211,7 @@ a.MPResultsPaidProfileDoctorName{
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:58%;
+        width:54%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -221,12 +221,14 @@ a.MPResultsPaidProfileDoctorName{
                 line-height: 1em;
                 font-size:14px;
                 letter-spacing: normal;
+                overflow:hidden;
+                text-overflow:ellipsis;
             }
     @media screen and (max-width:1280px) {
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:49%;
+        width:45%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -239,7 +241,7 @@ a.MPResultsPaidProfileDoctorName{
         div.MPResultsDoctorDescriptionWrapper {
                     border:none;
         display: inline-block;
-        width:43%;
+        width:40%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -252,7 +254,7 @@ a.MPResultsPaidProfileDoctorName{
         div.MPResultsDoctorDescriptionWrapper {
                     border:none;
         display: inline-block;
-        width:42%;
+        width:38%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -322,39 +324,6 @@ a.MPResultsPaidProfileDoctorName{
     font-size: 1.1em !important;
     color: #92B92A !important;
     line-height: 1.2em;
-}
-@media screen and (max-width:1280px) {
-    .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span{
-    display: inline-block !important;
-    padding:0px; margin:0px;
-    width:auto;
-    text-align: left;
-    font-size: 1.1em !important;
-    color: #92B92A !important;
-    line-height: 1.2em;
-    }
-}
-@media screen and (max-width:1024px) {
-    .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
-    display: inline-block !important;
-    padding:0px; margin:0px;
-    width:auto;
-    text-align: left;
-    font-size: 1.1em !important;
-    color: #92B92A !important;
-    line-height: 1.2em;
-    }
-}
-@media screen and (max-width:800px) {
-    .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
-    display: inline-block !important;
-    padding:0px; margin:0px;
-    width:auto;
-    text-align: left;
-    font-size: 1.1em !important;
-    color: #92B92A !important;
-    line-height: 1.2em;
-    }
 }
 .MPResultsBookAppFree:hover {
     text-decoration:underline;
