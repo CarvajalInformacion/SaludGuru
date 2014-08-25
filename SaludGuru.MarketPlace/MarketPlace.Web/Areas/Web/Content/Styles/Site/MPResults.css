@@ -221,6 +221,8 @@ a.MPResultsPaidProfileDoctorName{
                 line-height: 1em;
                 font-size:14px;
                 letter-spacing: normal;
+                overflow:hidden;
+                text-overflow:ellipsis;
             }
     @media screen and (max-width:1280px) {
         div.MPResultsDoctorDescriptionWrapper {
