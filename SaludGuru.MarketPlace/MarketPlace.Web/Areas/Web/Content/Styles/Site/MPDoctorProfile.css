@@ -1,4 +1,33 @@
 .MPProfileGreatWrapper {
+    border: solid 1px red;
+    display:block;
+    width:95%;
+    min-width:740px;
+    margin:0px auto;
+}
+
+.MPProfileLeftWrapper {
+    border: solid 1px red;
+    display:block;
+    width:45%;
+    float:left;
+}
+
+.MPProfileRigthWrapper {
+    border: solid 1px red;
+    display:block;
+    width:53%;
+    float:left;
+}
+
+.MPProfileBottomWrapper {
+    border: solid 1px red;
+    display:block;
+    width:100%;
+    float:left;
+}
+
+/*.MPProfileGreatWrapper {
     border-style: solid;
     border-color: #666;
     border-width: 0px 1px;
@@ -44,154 +73,187 @@
     border-radius: 3px;
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
-}
+}*/
 /******** IMAGE SLIDER ********/
 #divProfileSlide {
-    position: relative; 
-    top: 0px; left: 0px; 
-    width: 730px; height: 400px; 
-    background: #FFFFFF; 
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 730px;
+    height: 400px;
+    background: #FFFFFF;
     overflow: hidden;
 }
-    /******* LOAD SCREEN *******/
-    .sliderLoad{
-        filter: alpha(opacity=70); 
-        opacity:0.7; 
-        position: absolute; 
-        display: block;
-        background-color: #FFFFFF; 
-        top: 0px; left: 0px;
-        width: 100%; height:100%;
+/******* LOAD SCREEN *******/
+.sliderLoad {
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    position: absolute;
+    display: block;
+    background-color: #FFFFFF;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.sliderLoad2 {
+    position: absolute;
+    display: block;
+    background: url(../img/loading.gif) no-repeat center center;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+/* Slides Container */
+/*This is the inside container*/
+.sliderContainer {
+    cursor: move;
+    position: relative;
+    left: 150px;
+    top: 0px;
+    width: 450px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.MPSliderDoctorName {
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    left: 0px;
+    width: auto;
+    height: auto;
+    padding: 15px 12px;
+    font-size: 30px;
+    background-color: #ffffff;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    max-width: 300px;
+    min-height: 70px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+    .MPSliderDoctorName span {
+        line-height: 30px;
     }
-    .sliderLoad2{
-        position: absolute; 
-        display: block; 
-        background: url(../img/loading.gif) no-repeat center center;
-        top: 0px; left: 0px;
-        width: 100%; height:100%;
-    }
-    /* Slides Container */
-    /*This is the inside container*/
-    .sliderContainer{
-        cursor: move; position: relative; 
-        left: 150px; top: 0px;
-        width: 450px; height: 400px;
-        overflow:hidden;
-    }
-    .MPSliderDoctorName{
-        position: absolute; display: block; 
-        bottom: 10px; left: 0px;
-        width: auto; height: auto; padding:15px 12px; font-size:30px;
-        background-color:#ffffff;
-        filter: alpha(opacity=70); opacity:0.7;
-        max-width: 300px;
-        min-height: 70px;
-        overflow:hidden; 
-        white-space:nowrap; 
-        text-overflow:ellipsis;
-    }
-        .MPSliderDoctorName span{
-            line-height:30px;
-        }
-    /******** Thumbnail Navigator Skin Begin *********/
+/******** Thumbnail Navigator Skin Begin *********/
 
 .MPSliderjssort11 {
-    position: absolute; width: 130px; height: 400px; left:605px; top:0px;
+    position: absolute;
+    width: 130px;
+    height: 400px;
+    left: 605px;
+    top: 0px;
 }
-.MPSliderjssort11Cursor {cursor: move;}
+
+.MPSliderjssort11Cursor {
+    cursor: move;
+}
+
 .MPSliderjssort11P {
-    position: absolute; 
-    width: 130px; height: 95px; 
-    top: 0; left: 0;
-    }
-.MPSliderThNail {
-    width: 100%; height: 100%; 
-    border: none; position:absolute; 
-    top: 0; left: 0;
+    position: absolute;
+    width: 130px;
+    height: 95px;
+    top: 0;
+    left: 0;
 }
-    /**** Thumbnail Item Skin Begin ****/
-    .jssort11 {
-        font-family: Arial, Helvetica, sans-serif;
+
+.MPSliderThNail {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/**** Thumbnail Item Skin Begin ****/
+.jssort11 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    .jssort11 .i, .jssort11 .pav:hover .i {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        WIDTH: 60px;
+        HEIGHT: 30px;
+        border: white 1px dashed;
     }
-        .jssort11 .i, .jssort11 .pav:hover .i {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            WIDTH: 60px;
-            HEIGHT: 30px;
-            border: white 1px dashed;
-        }
 
-        * html .jssort11 .i {
-            WIDTH /**/: 92px;
-            HEIGHT /**/: 32px;
-        }
+    * html .jssort11 .i {
+        WIDTH /**/: 92px;
+        HEIGHT /**/: 32px;
+    }
 
-        .jssort11 .pav .i {
-            border: white 1px solid;
-        }
+    .jssort11 .pav .i {
+        border: white 1px solid;
+    }
 
-        .jssort11 .t, .jssort11 .pav:hover .t {
-            position: absolute;
-            top: 3px;
-            left: 200px;
-            width: 129px;
-            height: 32px;
-            line-height: 32px;
-            text-align: right;
-            color: #fc9835;
-            font-size: 13px;
-            font-weight: 700;
-        }
+    .jssort11 .t, .jssort11 .pav:hover .t {
+        position: absolute;
+        top: 3px;
+        left: 200px;
+        width: 129px;
+        height: 32px;
+        line-height: 32px;
+        text-align: right;
+        color: #fc9835;
+        font-size: 13px;
+        font-weight: 700;
+    }
 
-        .jssort11 .pav .t, .jssort11 .phv .t, .jssort11 .p:hover .t {
-            color: #fff;
-        }
+    .jssort11 .pav .t, .jssort11 .phv .t, .jssort11 .p:hover .t {
+        color: #fff;
+    }
 
-        .jssort11 .c, .jssort11 .pav:hover .c {
-            position: absolute;
-            top: 38px;
-            left: 3px;
-            width: 197px;
-            height: 31px;
-            line-height: 31px;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 400;
-            overflow: hidden;
-        }
+    .jssort11 .c, .jssort11 .pav:hover .c {
+        position: absolute;
+        top: 38px;
+        left: 3px;
+        width: 197px;
+        height: 31px;
+        line-height: 31px;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 400;
+        overflow: hidden;
+    }
 
-        .jssort11 .pav .c, .jssort11 .phv .c, .jssort11 .p:hover .c {
-            color: #fc9835;
-        }
+    .jssort11 .pav .c, .jssort11 .phv .c, .jssort11 .p:hover .c {
+        color: #fc9835;
+    }
 
-        .jssort11 .t, .jssort11 .c {
-            transition: color 2s;
-            -moz-transition: color 2s;
-            -webkit-transition: color 2s;
-            -o-transition: color 2s;
-        }
+    .jssort11 .t, .jssort11 .c {
+        transition: color 2s;
+        -moz-transition: color 2s;
+        -webkit-transition: color 2s;
+        -o-transition: color 2s;
+    }
 
-        .jssort11 .p:hover .t, .jssort11 .phv .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .phv .c, .jssort11 .pav:hover .c {
-            transition: none;
-            -moz-transition: none;
-            -webkit-transition: none;
-            -o-transition: none;
-        }
+    .jssort11 .p:hover .t, .jssort11 .phv .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .phv .c, .jssort11 .pav:hover .c {
+        transition: none;
+        -moz-transition: none;
+        -webkit-transition: none;
+        -o-transition: none;
+    }
 
-        .jssort11 .p {
-            background: #181818;
-        }
+    .jssort11 .p {
+        background: #181818;
+    }
 
-        .jssort11 .pav, .jssort11 .pdn {
-            background: #462300;
-        }
+    .jssort11 .pav, .jssort11 .pdn {
+        background: #462300;
+    }
 
         .jssort11 .p:hover, .jssort11 .phv, .jssort11 .pav:hover {
             background: #333;
         }
 /***************** BASIC INFO ****************/
-.MPProfileInfo_BasicInfo {
+/*.MPProfileInfo_BasicInfo {
         border:none;
     display:block;
     letter-spacing:-0.6px;
@@ -276,11 +338,11 @@
                 overflow: hidden;
                 padding-bottom: 14px;
                 height:auto;
-            }
+            }*/
 
 
 /*********** Profile Description ***********/
-.MPProfileInfoDetail img {
+/*.MPProfileInfoDetail img {
     border: 1px solid #333;
     display: inline-block;
     height: auto;
@@ -374,9 +436,9 @@
     text-align: center;
     width: 80%;
     vertical-align: top;
-}
+}*/
 /************ MAPA ***********/
-.MPProfileMap {
+/*.MPProfileMap {
     display:inline-block;
     width:100%;
     height:auto;
@@ -427,4 +489,4 @@
     font-size:1.1em;
     line-height:26px;
     margin-top:12px;
-}
+}*/
