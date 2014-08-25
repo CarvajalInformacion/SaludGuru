@@ -32,4 +32,7 @@
     <li class="RelatedOffice">
         <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault()</label>
     </li>
+    <li class="InfoOffice">
+        <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+    </li>
 </ul>
