@@ -62,7 +62,7 @@
             @if (ovIsCertified)
             {
                 <!--certified image-->
-                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+                <img class="SelCertifiedImage" title="Este profesional esta certificado por Saludguru" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
             }
             <!--Professional name-->
             <label>@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
@@ -95,4 +95,12 @@
             </div>
         </div>
     </div>
+}
+else
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fnInitToolTip('.SelCertifiedImage');
+        });
+    </script>
 }
