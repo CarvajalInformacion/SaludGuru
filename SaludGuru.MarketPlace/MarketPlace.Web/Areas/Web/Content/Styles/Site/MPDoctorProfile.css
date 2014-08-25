@@ -6,88 +6,159 @@
     width: 100%;
     min-width: 768px;
 }
-.MPProfileColumnsWrapper{
+
+.MPProfileColumnsWrapper {
     border: solid 1px green;
     display: block;
     margin: 0px auto;
     padding: 0px;
-    width:80%;
-    text-align:center;
-    line-height:1em;
+    width: 80%;
+    text-align: center;
+    line-height: 1em;    
 }
-@media screen and (max-width:1024px){
-    .MPProfileColumnsWrapper{
+
+@media screen and (max-width:1024px) {
+    .MPProfileColumnsWrapper {
         border: solid 1px green;
         display: block;
         margin: 0px auto;
         padding: 0px;
-        width:91%;
-        text-align:center;
-        line-height:1em;
+        width: 95%;
+        text-align: center;
+        line-height: 1em;
     }
 }
 /********* COLUMNAS  *********/
 .MPProfileLeftWrapper,
-.MPProfileRigthWrapper{
+.MPProfileRigthWrapper {
     border: solid 1px red;
-    display:inline-block;    
-    vertical-align:top;
-    height:auto;
+    display: inline-block;
+    vertical-align: top;
+    height: auto;
     text-align: left;
 }
+
 .MPProfileLeftWrapper {
-    width:45%;
+    width: 45%;
 }
+
 .MPProfileRigthWrapper {
-    margin:0px 0px 0px 4px;
-    width:54%;
+    margin: 0px 0px 0px 4px;
+    width: 54%;
 }
+
 .MPProfileBottomWrapper {
     border: solid 1px yellow;
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
 }
 /******** BLOQUE INFORMACION DEL DOCTOR ********/
-
 .MPProfileInfo_BasicInfo,
 .MPProfileInfo_BasicInfoRight {
-    border:1px solid blue;
-    display:inline-block;
-    text-align:left;
+    border: 1px solid blue;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+
+.MPProfileInfo_BasicInfo {
+    width: auto;
+    overflow: hidden;
+}
+
+    div.MPProfileCertified,
+    img.MPProfileCertified {
+        min-width: 46px;
+        height: auto;
+        display: inline-block;
+        vertical-align: top;
+        width:62px !important;
+    }
+
+        img.MPProfileDoctorImage {
+            border: 1px solid #666;
+            border-radius: 2px;
+            display: inline-block;
+            width:142px;
+            height: auto;
+            vertical-align: top;
+        }
+.MPProfileInfo_BasicInfoRight {
+    border: 1px solid blue;
+    letter-spacing: -0.6px;
+    width:48.8%;
+}
+.MPProfileDoctorName {
+    line-height:24px;
+    font-size:1.3em;
+    color:#333;
+}
+.MPProfileSpecialityName {
+    display: block;
+    height: auto;
+    margin: 4px 0px !important;
+    line-height:1em;
+    font-size:1.2em;
+    color: #666;
+}
+div.MPProfileInsuranceColumn,
+div.MPProfileSpecialtyColumn {
+    display:block;    
+    vertical-align:top;
+    width:auto;
+}
+.MPProfileInsurance {
+    color: #666;
+    letter-spacing:0px;
+    font-size: 0.8em;
+    line-height: 1em;
+    margin: 6px 0px;
+}
+li.MPProfileInsuranceName {
+    width:auto;
+    line-height: 1em;
+    border: medium none;
+    display:block;
+    font-size:0.9em;
+    letter-spacing:0px;
+    text-indent:8px;
+}
+/******** SITIO WEB Y CONTROL FACEBOOK ********/
+.MPProfileInfo_Social {
+    border: 1px solid purple;
+    display: block;
+    width: 100%;
+}
+    .MPProfileInfo_Social a {
+        display:block;
+        width:28%;
+        margin: 6px 0px 4px;
+        text-decoration: none;
+        color: #92B92A;
+        letter-spacing: -0.6px;
+        border:1px solid green;
+        vertical-align:top;
+    }
+    .MPProfileInfo_Social img {
+        width: 26%;
+        height: auto; vertical-align: middle;
+    }
+    .MPProfileInfo_Social span {
+        font-size: 0.8em;
+        letter-spacing: 0px;
+        margin: 0px 0px 0px 1px;
+        width: 64%;
+        line-height:29px;
+        color: #666;
+    }
+.MPProfileInfo_Social iframe{
+    border:none; 
+    overflow:hidden; 
+    height:60px;
+    width:auto;
+    display:block;
     vertical-align:top;
 }
-.MPProfileInfo_BasicInfo {    
-    width:146px;
-    overflow:hidden;
-}
-    .MPProfileInfo_BasicInfo img{
-        border:1px solid #666;
-        border-radius:2px;
-        display:block;
-        width:145px;
-        height:auto;
-    }
-    .MPProfileInfo_Social{
-        border:none;
-        display: block;
-        width:100%;
-}
-    .MPProfileInfo_Social a{
-            border:1px solid blue;
-        display:block;
-        width:auto; height:auto;
-        text-align:left;
-        margin:4px 4%;
-        vertical-align:top;
-        text-decoration: none;
-    }
-
-    .MPProfileInfo_BasicInfoRight{
-        border:1px solid blue;    
-        letter-spacing:-0.6px;
-        width:62.5%;
-    }
-
 /*.MPProfileGreatWrapper {
     border-style: solid;
     border-color: #666;

@@ -28,7 +28,8 @@ li.MPAgendaButtonWrapper, div.MPAgendaButtonWrapper {
     li.MPAgendaButtonWrapper input.MPAgendaButtonAcceptDate {
         padding: 6px 10px;
         margin: 6px 6px 6px 36px;
-        background-color: #FF002D;
+        /*background-color: #FF002D;*/
+        background-color: #FF6580;
         border: 1px solid #666;
         border-radius: 2px;
         color: #fff;
@@ -64,10 +65,10 @@ a#itemSave {
     /*display: block;*/
     /*width:278px;*/
     display: inline-block;
-    width: 150px;
+    width: 170px;
     height: auto;
     background-color: #99C21D;
-    margin: 12px auto;
+    margin: 12px 0px 5px 75px;
     color: #fff;
     text-align: center;
     line-height: 26px;
@@ -87,17 +88,17 @@ a#itemSave {
 /*CERRAR*/
 input#itemClose {
     border: 1px solid #666;
-    display: inline-block;
-    height: auto !important;
-    width: auto !important;
+    /* display: inline-block; */
+    /* height: auto !important; */
+    /* width: auto !important; */
     background-color: #FF6580;
     color: #fff;
-    text-align: center;
+    /* text-align: center; */
     line-height: 10px !important;
     border-radius: 3px;
     font-size: 1.3em;
     padding: 5px !important;
-    margin-left: 80%;
+    margin-left: 92%;
     margin-top: 1%;
 }
 
