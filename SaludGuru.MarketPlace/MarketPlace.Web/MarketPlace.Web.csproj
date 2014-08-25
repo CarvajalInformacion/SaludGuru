@@ -277,6 +277,7 @@
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
     <Content Include="Areas\Web\Content\Images\calendarActionsSprite.png" />
     <Content Include="Areas\Web\Content\Images\cerrar.png" />
+    <Content Include="Areas\Web\Content\Images\close.png" />
     <Content Include="Areas\Web\Content\Images\dashboardMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
@@ -285,6 +286,7 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\Images\MPConfirm.png" />
     <Content Include="Areas\Web\Content\Images\MPfooterImageSmall.png" />
     <Content Include="Areas\Web\Content\Images\MPHeaderSoyDoc.png" />
     <Content Include="Areas\Web\Content\Images\MPMas.png" />

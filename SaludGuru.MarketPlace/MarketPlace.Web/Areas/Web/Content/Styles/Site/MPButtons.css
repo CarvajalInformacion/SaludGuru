@@ -104,3 +104,9 @@ input#itemClose {
     input#itemClose:hover {
         background-color: #D81334;
     }
+
+input#DateLessInfoId {
+    float: right;
+    width: auto !important;
+    padding: 0px 7px 2px 7px;
+}

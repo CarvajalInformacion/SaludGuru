@@ -86,6 +86,16 @@ var InitFunctionsNewPatient = {
         this.CalendarNewPatient();
         this.CopyDiv();
     },
+
+    ChangeCheckNewPatient: function(){
+        $('input#SelectedPatientItem').click(function () {
+            var $this = $(this);
+            if ($this.is(':checked')) {
+                CloseNewPatient();
+            }
+            else { }
+        });
+    },
     
     ChangeCheck: function () {
         $('input#GenderMale').click(function () {

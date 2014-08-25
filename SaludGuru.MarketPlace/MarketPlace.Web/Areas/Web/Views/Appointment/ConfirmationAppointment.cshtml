@@ -13,9 +13,12 @@
 
 <div class="MPAgendaConfirmationMessageGW">
     <div class="MPAgendaConfirmationMessage">
+        <div class="ImgConfirmation">
+            <img src="~/Areas/Web/Content/Images/MPConfirm.png" />
+        </div>
         <div class="TextConfirmation">
             <span>Cita agendada correctamente con el <strong>Dr/a. @Model.CurrentProfile.Name @Model.CurrentProfile.LastName</strong></span>
-            <span> el día <strong>@Model.StartDate</strong></span>            
+            <span> el día <strong>@Model.StartDate</strong></span>
             <span>en la <strong>@Model.CurrentOffice</strong></span>
             <span>
                 Enviaremos la confirmación de la cita a tu correo electrónico.<br>
@@ -23,7 +26,7 @@
                 Previamente a la cita te enviaremos un recordatorio por correo electrónico y/o mensaje de texto.<br>
             </span>
         </div>
-    </div>
+</div>
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Web.Shared.Views._AP_ProfileInfo, Model)
     </div>
