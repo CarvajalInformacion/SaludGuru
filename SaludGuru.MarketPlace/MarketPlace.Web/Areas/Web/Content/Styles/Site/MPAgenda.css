@@ -170,19 +170,19 @@ div.MPAgendaConfirmationMessage {
 .ImgConfirmation {
     display: inline-block !important;
     float: left;
-    width: 20% !important;
+    width: 14% !important;
     height: auto !important;
     min-width: 80px !important;
     /* text-align: center; */
     margin: 9px 0px 0px 0px !important;
 }
 
-.ImgConfirmation img {
-width: 100%;
-height: auto;
-/* display: inline-block; */
-/* float: left; */
-}
+    .ImgConfirmation img {
+        width: 100%;
+        height: auto;
+        /* display: inline-block; */
+        /* float: left; */
+    }
 
 .ProfileImage {
     width: 100% !important;
@@ -241,13 +241,13 @@ div.MPAgendaConfirmationMessage div span:nth-child(5) {
 }
 
 input#GenderMale {
-width: 15px !important;
-margin: 0px 0px 0px 0px !important;
+    width: 15px !important;
+    margin: 0px 0px 0px 0px !important;
 }
 
 input#GenderFemale {
-width: 15px !important;
-margin: 0px 0px 0px 0px !important;
+    width: 15px !important;
+    margin: 0px 0px 0px 0px !important;
 }
 
 
