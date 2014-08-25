@@ -387,6 +387,22 @@ $('#SaveAppointmentId').click(function () {
     if (treatmentSelected == null) {
         return false;
     }
+    //Validate legal terms
+    $('#AppointmentForm').validate({ // initialize the plugin
+        errorClass: 'error help-inline',
+        validClass: 'success',
+        errorElement: 'span',
+        rules: {
+            'LegalTerms': {
+                required: true,
+            }
+        },
+        messages: {
+            'LegalTerms': {
+                required: "Debes aceptar los términos y condiciones.",
+            }
+        }
+    });
 });
 $("#isSomeBody").click(function () {
     $('#NewPatientId').show(800);

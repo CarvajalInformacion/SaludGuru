@@ -3,7 +3,7 @@
 div.MPAgendaDoctorProfile {
     display: inline-block;
     width: 45%;
-    margin: 10px 0px 0px 0px;
+    /* margin: 10px 0px 0px 0px; */
     border: 1px solid #666;
     text-align: left;
     vertical-align: top;
@@ -19,7 +19,8 @@ div.MPAgendaDoctorProfile {
     div.MPAgendaDoctorProfile ul {
         display: inline-block;
         width: 95%;
-        margin: 6px 0px 14px 14px;
+        /*margin: 6px 0px 14px 14px;*/
+        margin: 18px 0px 14px 14px;
         border: none;
         text-align: left;
     }
@@ -42,12 +43,13 @@ div.MPAgendaDoctorProfile {
 
 ul.MPAgendaDoctorData li:nth-child(2),
 ul.MPAgendaDoctorData li:nth-child(3),
-ul.MPAgendaDoctorData li:nth-child(4) {
-    display: block;
-    border: none;
-    width: auto;
-    height: 26px;
-    margin: 3px 0px 0px 0px;
+ul.MPAgendaDoctorData li:nth-child(4),
+ul.MPAgendaDoctorData li:nth-child(5) {
+    /* display: block; */
+    /* border: none; */
+    /*width: auto;*/
+    /* height: 26px; */
+    /* margin: 3px 0px 0px 0px; */
 }
 
 ul.MPAgendaDoctorData li label:first-child,
@@ -101,15 +103,29 @@ div.ProfileCalendar {
 
 /******** PANTALLA DE CONFIRMACION ********/
 div.MPAgendaConfirmationMessageGW {
-    display: block;
+    display: inline-block;
     margin: 0px auto;
     padding: 14px 0px;
     border-style: solid;
     border-width: 0px 1px;
     border-color: #666;
-    width: 95%;
+    width: 100%;
     min-width: 768px;
     height: auto;
+    text-align: center;
+    min-height: 220px;
+}
+
+.MPAgendaConfirmationMessageGW .MPAgendaDoctorProfile {
+    border: 1px solid #666 !important;
+    width: 45% !important;
+    height: auto;
+    display: inline-block !important;
+    position: relative;
+}
+
+.MPAgendaConfirmationMessageGW .MPAgendaDoctorProfile h2 {
+    display: none;
 }
 
 div.MPAgendaConfirmationMessage {
@@ -120,9 +136,12 @@ div.MPAgendaConfirmationMessage {
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
     box-shadow: 2px 2px 1.3px;
     border-radius: 3px;
-    width: 52%;
     min-width: 320px;
     height: auto;
+    width: 45%;
+    float: left;
+    display: block;
+    margin: 0px 0px 0px 3% !important;
 }
 
     div.MPAgendaConfirmationMessage label {
@@ -136,55 +155,88 @@ div.MPAgendaConfirmationMessage {
         border: none;
         width: auto;
         height: auto;
-        margin: 0px 0px 8px 0px;
+        margin: 20px 10px 10px 10px;
         line-height: 16px;
     }
 
         div.MPAgendaConfirmationMessage div span {
-            width: auto;
-            display: inline-block;
-            font-size: 1.2em;
-            vertical-align: middle;
-            line-height: 18px;
+            /* width: auto; */
+            /* display: inline-block; */
+            /* font-size: 1.2em; */
+            /* vertical-align: middle; */
+            /* line-height: 18px; */
         }
 
-        div.MPAgendaConfirmationMessage div img {
-            width: 10%;
-            min-width: 60px;
-            height: auto;
-            vertical-align: middle;
-            display: inline-block;
-            margin: 0px 0px 0px 80px;
-        }
+.ProfileImage {
+    width: 100% !important;
+    text-align: center;
+    margin: 10px 0px 10px 0px !important;
+}
 
-        div.MPAgendaConfirmationMessage div span:nth-child(3),
-        div.MPAgendaConfirmationMessage div span:nth-child(4) {
-            line-height: 22px;
-            margin: 6px 0px 0px 0px;
-        }
+    .ProfileImage img {
+        width: 100px;
+        height: auto;
+    }
 
-        div.MPAgendaConfirmationMessage div span:nth-child(5) {
-            font-size: 1em;
-            margin: 6px 0px 0px 0px;
-        }
+.TextConfirmation {
+    text-align: justify !important;
+}
+
+div.MPAgendaConfirmationMessage div span:nth-child(3),
+div.MPAgendaConfirmationMessage div span:nth-child(4) {
+    line-height: 22px;
+    margin: 6px 0px 0px 0px;
+}
+
+div.MPAgendaConfirmationMessage div span:nth-child(5) {
+    /* font-size: 1em; */
+    /* margin: 6px 0px 0px 0px; */
+}
 
 /*-----------New Styles----------*/
 
-.ProfileInfoName a label {
-    line-height: 14px !important;
-    color: #99c21d !important;
-    text-decoration: initial;
-    cursor: auto;
+.ProfileInfoName {
+    margin: 7px 0px 0px 0px;
 }
 
+    .ProfileInfoName a label {
+        line-height: 22px !important;   
+        color: #99c21d !important;
+        text-decoration: initial;
+        cursor: auto;
+    }
+
 .DefaultSpecialty label {
-    margin: 28px 0px 0px 0px !important;
+    margin: 10px 0px 0px 0px !important;
+    line-height: 20px !important;
 }
 
 .RelatedOffice label {
-    margin: 40px 0px 0px 0px !important;
-    display: block !important;
-    width: auto !important;
-    line-height: 21px !important;
-    text-align: left !important;
+    width: 61% !important;
+    line-height: 20px !important;
+    margin: 10px 0px 0px 0px !important;
 }
+
+.InfoOffice label {
+    width: 61% !important;
+    line-height: 20px !important;
+    margin: 10px 0px 0px 0px !important;
+}
+
+
+/*Border Divs*/
+.MPFormDataWrapper {
+    border: 1px solid red !important;
+}
+
+    .MPFormDataWrapper form {
+        border: 1px solid green !important;
+    }
+
+        .MPFormDataWrapper form ul {
+            border: 1px solid yellow !important;
+        }
+
+            .MPFormDataWrapper form ul li {
+                border: 1px solid lime !important;
+            }
