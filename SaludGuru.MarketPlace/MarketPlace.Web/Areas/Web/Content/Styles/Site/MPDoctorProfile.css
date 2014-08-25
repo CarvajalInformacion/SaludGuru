@@ -1,31 +1,92 @@
 .MPProfileGreatWrapper {
-    border: solid 1px red;
-    display:block;
-    width:95%;
-    min-width:740px;
-    margin:0px auto;
+    border: solid 1px purple;
+    display: block;
+    margin: 0px auto;
+    padding: 0px;
+    width: 100%;
+    min-width: 768px;
 }
-
+.MPProfileColumnsWrapper{
+    border: solid 1px green;
+    display: block;
+    margin: 0px auto;
+    padding: 0px;
+    width:80%;
+    text-align:center;
+    line-height:1em;
+}
+@media screen and (max-width:1024px){
+    .MPProfileColumnsWrapper{
+        border: solid 1px green;
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width:91%;
+        text-align:center;
+        line-height:1em;
+    }
+}
+/********* COLUMNAS  *********/
+.MPProfileLeftWrapper,
+.MPProfileRigthWrapper{
+    border: solid 1px red;
+    display:inline-block;    
+    vertical-align:top;
+    height:auto;
+    text-align: left;
+}
 .MPProfileLeftWrapper {
-    border: solid 1px red;
-    display:block;
     width:45%;
-    float:left;
 }
-
 .MPProfileRigthWrapper {
-    border: solid 1px red;
-    display:block;
-    width:53%;
-    float:left;
+    margin:0px 0px 0px 4px;
+    width:54%;
 }
-
 .MPProfileBottomWrapper {
-    border: solid 1px red;
+    border: solid 1px yellow;
     display:block;
     width:100%;
-    float:left;
 }
+/******** BLOQUE INFORMACION DEL DOCTOR ********/
+
+.MPProfileInfo_BasicInfo,
+.MPProfileInfo_BasicInfoRight {
+    border:1px solid blue;
+    display:inline-block;
+    text-align:left;
+    vertical-align:top;
+}
+.MPProfileInfo_BasicInfo {    
+    width:146px;
+    overflow:hidden;
+}
+    .MPProfileInfo_BasicInfo img{
+        border:1px solid #666;
+        border-radius:2px;
+        display:block;
+        width:145px;
+        height:auto;
+    }
+    .MPProfileInfo_Social{
+        border:none;
+        display: block;
+        width:100%;
+}
+    .MPProfileInfo_Social a{
+            border:1px solid blue;
+        display:block;
+        width:auto; height:auto;
+        text-align:left;
+        margin:4px 4%;
+        vertical-align:top;
+        text-decoration: none;
+    }
+
+    .MPProfileInfo_BasicInfoRight{
+        border:1px solid blue;    
+        letter-spacing:-0.6px;
+        width:62.5%;
+    }
 
 /*.MPProfileGreatWrapper {
     border-style: solid;
@@ -253,22 +314,7 @@
             background: #333;
         }
 /***************** BASIC INFO ****************/
-/*.MPProfileInfo_BasicInfo {
-        border:none;
-    display:block;
-    letter-spacing:-0.6px;
-    color:#666;
-    margin: 0px auto;
-    width: 95%;
-}
-    .MPProfileInfo_BasicInfo img{
-            border:none;
-        display:block;
-        float:left;
-        width: 46px;
-        height: auto;
-        margin: 4px 0px 0px 0px;
-    }
+/*
     .MPProfileInfo_BasicInfo span {
             border:none;
         display: inline-block;
@@ -288,25 +334,7 @@
         line-height: 20px;
         margin: 0px 0px 0px 4px;
     }
-.MPProfileInfo_Social{
-        border:none;
-        display: block;
-        width:90%;
-        margin:10px auto 0px;
-        BORDER: 1PX SOLID #666;
-        border-radius: 3px;
-        box-shadow: 2px 2px 2px #666;
-        background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
-}
-    .MPProfileInfo_Social a{
-            border:none;
-        display:block;
-        width:93%; height:auto;
-        text-align:left;
-        margin:4px 4%;
-        vertical-align:top;
-        text-decoration: none;
-    }
+
     .MPProfileInfo_Social a:first-child {
         margin-top:10px !important;
     }

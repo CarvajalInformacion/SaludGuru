@@ -40,7 +40,13 @@
 @if (!Model.RenderScripts)
 {
     <div class="MPProfileInfo_BasicInfo">
-        <div>
+
+            @if (ovIsCertified)
+            {
+            <!--certified image-->
+            <img class="MPResultsCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+            }
+
             <img src="@ovImageProfile" />
             <!--Social Profile-->
             <div class="MPProfileInfo_Social">
@@ -55,43 +61,38 @@
                         <span>Página Web</span>
                     </a>
                 }
+                
             </div>
-
-        </div>
+    </div>
+    <div class="MPProfileInfo_BasicInfoRight">
+        
+        <!--Professional name-->
+        <label>@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
+        @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+        {
+            <!--Principal specialty-->
+            <span>@ovDefaultSpecialty.Name</span>
+        }
         <div>
-            @if (ovIsCertified)
-            {
-                <!--certified image-->
-                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-            }
-            <!--Professional name-->
-            <label>@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
-            @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
-            {
-                <!--Principal specialty-->
-                <span>@ovDefaultSpecialty.Name</span>
-            }
             <div>
-                <div>
-                    <!--Related Insurance-->
-                    <label>Seguros médicos:</label>
-                    <ul>
-                        @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
-                        {
-                            <li>@str</li>
-                        }
-                    </ul>
-                </div>
-                <div>
-                    <!--Related Insurance-->
-                    <label>Especialidades:</label>
-                    <ul>
-                        @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
-                        {
-                            <li>@str</li>
-                        }
-                    </ul>
-                </div>
+                <!--Related Insurance-->
+                <label>Seguros médicos:</label>
+                <ul>
+                    @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
+                    {
+                    <li>@str</li>
+                    }
+                </ul>
+            </div>
+            <div>
+                <!--Related Insurance-->
+                <label>Especialidades:</label>
+                <ul>
+                    @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
+                    {
+                    <li>@str</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
