@@ -13,13 +13,13 @@
     .MPFormDataWrapper span {
         font-size: 1.6em;
         line-height: 22px;
-        color: #666;
+        /*color: #666;*/
         display: inline-block;
         /* margin-left: 18px; */
         /* margin-top: 18px; */
         width: 80%;
-        font-weight: bold;
-        color: #99c21d;
+        /*font-weight: bold;*/
+        /*color: #99c21d;*/
         margin: 18px 0px 10px 18px;
     }
 
@@ -165,10 +165,10 @@ div#ulPatientList label {
 .MPFormDataWrapper ul li span {
     display: block;
     height: 4px;
-    color: red;
+    /*color: red;*/
     line-height: 18px;
     margin: 10px 0px 0px 0px;
-    font-style: italic;
+    /*font-style: italic;*/
     text-align: right;
 }
 
@@ -225,6 +225,16 @@ div#NewPatientId {
     width: 363px;
 }
 
+label.titleNewPatien {
+    width: 200px !important;
+    margin: 0px 0px 10px 0px !important;
+    font-weight: bold !important;
+}
+
+label.GenderLi {
+    margin: 2px -30px 5px 73px !important;
+}
+
 #NewPatient {
     height: auto;
     width: 320px;
@@ -253,13 +263,15 @@ div#NewPatientId {
         }
 
             #CreatePatientForm ul li label {
-                width: 50%;
+                width: 45%;
                 padding: 2px;
                 vertical-align: top;
+                margin: 0px 0px 0px 40px;
+                font-weight: normal;
             }
 
             #CreatePatientForm ul li input {
-                width: 44%;
+                width: 38%;
                 height: 24px;
                 line-height: 31px;
                 padding: 0px;
@@ -302,7 +314,7 @@ div#NewPatientId {
     text-align: center !important;
     color: red;
     background: transparent !important;
-    margin: 7px 0px -10px 0px !important;
+    /*margin: 7px 0px -10px 0px !important;*/
     border: none !important;
 }
 
@@ -313,5 +325,6 @@ span#Name-error, span#LastName-error, span#Identification-error, span#Birthday-e
 #LegalTerms-error {
     display: inline-block !important;
     margin: 0px 0px 20px 10px;
+    color: red;
     /*position: absolute;*/
 }
