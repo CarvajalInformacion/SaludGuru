@@ -3,9 +3,11 @@ var ProfileSliderObject = {
 
     /*profile info*/
     JssorSlider: null,
+    DivId: '',
 
-    /*init meeting calendar variables*/
-    Init: function () {
+    /*init variables*/
+    Init: function (vInitObject) {
+        this.DivId = vInitObject.DivId;
     },
 
     RenderAsync: function () {
@@ -43,7 +45,7 @@ var ProfileSliderObject = {
         };
 
         //start slider
-        this.JssorSlider = new $JssorSlider$('divProfileSlide', options);
+        this.JssorSlider = new $JssorSlider$(this.DivId, options);
 
         //scale slider
         this.ScaleSlider();
@@ -79,7 +81,7 @@ var ProfileDetailObject = {
     ProfileEducationId: '',
     ProfileCertificationId: '',
 
-    /*init meeting calendar variables*/
+    /*init variables*/
     Init: function (vInitObject) {
         this.ProfileTextId = vInitObject.ProfileTextId;
         this.ProfileEducationId = vInitObject.ProfileEducationId;
@@ -327,7 +329,7 @@ var ProfileMapObject = {
     CenterMap: '0,0',
     lstOffice: new Array(),
 
-    /*init meeting calendar variables*/
+    /*init variables*/
     Init: function (vInitObject) {
         //init render info
         this.DivId = vInitObject.DivId;
