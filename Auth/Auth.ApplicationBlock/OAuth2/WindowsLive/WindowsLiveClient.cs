@@ -4,178 +4,205 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace DotNetOpenAuth.ApplicationBlock {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
-	using System.Text;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using System.Web;
-	using DotNetOpenAuth.Messaging;
-	using DotNetOpenAuth.OAuth2;
+namespace DotNetOpenAuth.ApplicationBlock
+{
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web;
+    using DotNetOpenAuth.Messaging;
+    using DotNetOpenAuth.OAuth2;
 
-	public class WindowsLiveClient : WebServerClient {
-		private static readonly AuthorizationServerDescription WindowsLiveDescription = new AuthorizationServerDescription {
-			TokenEndpoint = new Uri("https://oauth.live.com/token"),
-			AuthorizationEndpoint = new Uri("https://oauth.live.com/authorize"),
-			ProtocolVersion = ProtocolVersion.V20
-		};
+    public class WindowsLiveClient : WebServerClient
+    {
+        private static readonly AuthorizationServerDescription WindowsLiveDescription = new AuthorizationServerDescription
+        {
+            TokenEndpoint = new Uri("https://oauth.live.com/token"),
+            AuthorizationEndpoint = new Uri("https://oauth.live.com/authorize"),
+            ProtocolVersion = ProtocolVersion.V20
+        };
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WindowsLiveClient"/> class.
-		/// </summary>
-		public WindowsLiveClient()
-			: base(WindowsLiveDescription) {
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WindowsLiveClient"/> class.
+        /// </summary>
+        public WindowsLiveClient()
+            : base(WindowsLiveDescription)
+        {
+        }
 
-		public async Task<IOAuth2Graph> GetGraphAsync(IAuthorizationState authState, string[] fields = null, CancellationToken cancellationToken = default(CancellationToken)) {
-			if ((authState != null) && (authState.AccessToken != null)) {
-				var httpClient = new HttpClient(this.CreateAuthorizingHandler(authState));
-				using (var response = await httpClient.GetAsync("https://apis.live.net/v5.0/me", cancellationToken)) {
-					response.EnsureSuccessStatusCode();
-					using (var responseStream = await response.Content.ReadAsStreamAsync()) {
-						// string debugJsonStr = new StreamReader(responseStream).ReadToEnd();
-						WindowsLiveGraph windowsLiveGraph = WindowsLiveGraph.Deserialize(responseStream);
+        public async Task<IOAuth2Graph> GetGraphAsync(IAuthorizationState authState, string[] fields = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if ((authState != null) && (authState.AccessToken != null))
+            {
+                var httpClient = new HttpClient(this.CreateAuthorizingHandler(authState));
+                using (var response = await httpClient.GetAsync("https://apis.live.net/v5.0/me", cancellationToken))
+                {
+                    response.EnsureSuccessStatusCode();
+                    using (var responseStream = await response.Content.ReadAsStreamAsync())
+                    {
+                        // string debugJsonStr = new StreamReader(responseStream).ReadToEnd();
+                        WindowsLiveGraph windowsLiveGraph = WindowsLiveGraph.Deserialize(responseStream);
 
-						// picture type resolution test 1
-						// &type=small 96x96
-						// &type=medium 96x96
-						// &type=large 448x448
-						windowsLiveGraph.AvatarUrl =
-							new Uri("https://apis.live.net/v5.0/me/picture?access_token=" + Uri.EscapeDataString(authState.AccessToken));
+                        // picture type resolution test 1
+                        // &type=small 96x96
+                        // &type=medium 96x96
+                        // &type=large 448x448
+                        windowsLiveGraph.AvatarUrl =
+                            new Uri("https://apis.live.net/v5.0/me/picture?access_token=" + Uri.EscapeDataString(authState.AccessToken));
 
-						return windowsLiveGraph;
-					}
-				}
-			}
+                        return windowsLiveGraph;
+                    }
+                }
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		/// <summary>
-		/// Well-known scopes defined by the Windows Live service.
-		/// </summary>
-		/// <remarks>
-		/// This sample includes just a few scopes.  For a complete list of scopes please refer to:
-		/// http://msdn.microsoft.com/en-us/library/hh243646.aspx
-		/// </remarks>
-		public static class Scopes {
-			#region Core Scopes
+        public IOAuth2Graph GetGraph(IAuthorizationState authState, string[] fields = null)
+        {
+            if ((authState != null) && (authState.AccessToken != null))
+            {
+                var request =
+                        WebRequest.Create("https://apis.live.net/v5.0/me?access_token=" +
+                        Uri.EscapeDataString(authState.AccessToken));
+                using (var response = request.GetResponse())
+                {
+                    using (var responseStream = response.GetResponseStream())
+                    {
+                        return WindowsLiveGraph.Deserialize(responseStream);
+                    }
+                }
+            }
+            return null;
+        }
 
-			/// <summary>
-			/// The ability of an app to read and update a user's info at any time. Without this scope, an app can access the user's info only while the user is signed in to Live Connect and is using your app.
-			/// </summary>
-			public const string OfflineAccess = "wl.offline_access";
+        /// <summary>
+        /// Well-known scopes defined by the Windows Live service.
+        /// </summary>
+        /// <remarks>
+        /// This sample includes just a few scopes.  For a complete list of scopes please refer to:
+        /// http://msdn.microsoft.com/en-us/library/hh243646.aspx
+        /// </remarks>
+        public static class Scopes
+        {
+            #region Core Scopes
 
-			/// <summary>
-			/// Single sign-in behavior. With single sign-in, users who are already signed in to Live Connect are also signed in to your website.
-			/// </summary>
-			public const string SignIn = "wl.signin";
+            /// <summary>
+            /// The ability of an app to read and update a user's info at any time. Without this scope, an app can access the user's info only while the user is signed in to Live Connect and is using your app.
+            /// </summary>
+            public const string OfflineAccess = "wl.offline_access";
 
-			/// <summary>
-			/// Read access to a user's basic profile info. Also enables read access to a user's list of contacts.
-			/// </summary>
-			public const string Basic = "wl.basic";
+            /// <summary>
+            /// Single sign-in behavior. With single sign-in, users who are already signed in to Live Connect are also signed in to your website.
+            /// </summary>
+            public const string SignIn = "wl.signin";
 
-			#endregion
+            /// <summary>
+            /// Read access to a user's basic profile info. Also enables read access to a user's list of contacts.
+            /// </summary>
+            public const string Basic = "wl.basic";
 
-			#region Extended Scopes
+            #endregion
 
-			/// <summary>
-			/// Read access to a user's birthday info including birth day, month, and year.
-			/// </summary>
-			public const string Birthday = "wl.birthday";
+            #region Extended Scopes
 
-			/// <summary>
-			/// Read access to a user's calendars and events.
-			/// </summary>
-			public const string Calendars = "wl.calendars";
+            /// <summary>
+            /// Read access to a user's birthday info including birth day, month, and year.
+            /// </summary>
+            public const string Birthday = "wl.birthday";
 
-			/// <summary>
-			/// Read and write access to a user's calendars and events.
-			/// </summary>
-			public const string CalendarsUpdate = "wl.calendars_update";
+            /// <summary>
+            /// Read access to a user's calendars and events.
+            /// </summary>
+            public const string Calendars = "wl.calendars";
 
-			/// <summary>
-			/// Read access to the birth day and birth month of a user's contacts. Note that this also gives read access to the user's birth day, birth month, and birth year.
-			/// </summary>
-			public const string ContactsBirthday = "wl.contacts_birthday";
+            /// <summary>
+            /// Read and write access to a user's calendars and events.
+            /// </summary>
+            public const string CalendarsUpdate = "wl.calendars_update";
 
-			/// <summary>
-			/// Creation of new contacts in the user's address book.
-			/// </summary>
-			public const string ContactsCreate = "wl.contacts_create";
+            /// <summary>
+            /// Read access to the birth day and birth month of a user's contacts. Note that this also gives read access to the user's birth day, birth month, and birth year.
+            /// </summary>
+            public const string ContactsBirthday = "wl.contacts_birthday";
 
-			/// <summary>
-			/// Read access to a user's calendars and events. Also enables read access to any calendars and events that other users have shared with the user.
-			/// </summary>
-			public const string ContactsCalendars = "wl.contacts_calendars";
+            /// <summary>
+            /// Creation of new contacts in the user's address book.
+            /// </summary>
+            public const string ContactsCreate = "wl.contacts_create";
 
-			/// <summary>
-			/// Read access to a user's albums, photos, videos, and audio, and their associated comments and tags. Also enables read access to any albums, photos, videos, and audio that other users have shared with the user.
-			/// </summary>
-			public const string ContactsPhotos = "wl.contacts_photos";
+            /// <summary>
+            /// Read access to a user's calendars and events. Also enables read access to any calendars and events that other users have shared with the user.
+            /// </summary>
+            public const string ContactsCalendars = "wl.contacts_calendars";
 
-			/// <summary>
-			/// Read access to Microsoft SkyDrive files that other users have shared with the user. Note that this also gives read access to the user's files stored in SkyDrive.
-			/// </summary>
-			public const string ContactsSkydrive = "wl.contacts_skydrive";
+            /// <summary>
+            /// Read access to a user's albums, photos, videos, and audio, and their associated comments and tags. Also enables read access to any albums, photos, videos, and audio that other users have shared with the user.
+            /// </summary>
+            public const string ContactsPhotos = "wl.contacts_photos";
 
-			/// <summary>
-			/// Read access to a user's personal, preferred, and business email addresses.
-			/// </summary>
-			public const string Emails = "wl.emails";
+            /// <summary>
+            /// Read access to Microsoft SkyDrive files that other users have shared with the user. Note that this also gives read access to the user's files stored in SkyDrive.
+            /// </summary>
+            public const string ContactsSkydrive = "wl.contacts_skydrive";
 
-			/// <summary>
-			/// Creation of events on the user's default calendar.
-			/// </summary>
-			public const string EventsCreate = "wl.events_create";
+            /// <summary>
+            /// Read access to a user's personal, preferred, and business email addresses.
+            /// </summary>
+            public const string Emails = "wl.emails";
 
-			/// <summary>
-			/// Enables signing in to the Windows Live Messenger Extensible Messaging and Presence Protocol (XMPP) service.
-			/// </summary>
-			public const string Messenger = "wl.messenger";
+            /// <summary>
+            /// Creation of events on the user's default calendar.
+            /// </summary>
+            public const string EventsCreate = "wl.events_create";
 
-			/// <summary>
-			/// Read access to a user's personal, business, and mobile phone numbers.
-			/// </summary>
-			public const string PhoneNumbers = "wl.phone_numbers";
+            /// <summary>
+            /// Enables signing in to the Windows Live Messenger Extensible Messaging and Presence Protocol (XMPP) service.
+            /// </summary>
+            public const string Messenger = "wl.messenger";
 
-			/// <summary>
-			/// Read access to a user's photos, videos, audio, and albums.
-			/// </summary>
-			public const string Photos = "wl.photos";
+            /// <summary>
+            /// Read access to a user's personal, business, and mobile phone numbers.
+            /// </summary>
+            public const string PhoneNumbers = "wl.phone_numbers";
 
-			/// <summary>
-			/// Read access to a user's postal addresses.
-			/// </summary>
-			public const string PostalAddresses = "wl.postal_addresses";
+            /// <summary>
+            /// Read access to a user's photos, videos, audio, and albums.
+            /// </summary>
+            public const string Photos = "wl.photos";
 
-			/// <summary>
-			/// Enables updating a user's status message.
-			/// </summary>
-			public const string Share = "wl.share";
+            /// <summary>
+            /// Read access to a user's postal addresses.
+            /// </summary>
+            public const string PostalAddresses = "wl.postal_addresses";
 
-			/// <summary>
-			/// Read access to a user's files stored in SkyDrive.
-			/// </summary>
-			public const string Skydrive = "wl.skydrive";
+            /// <summary>
+            /// Enables updating a user's status message.
+            /// </summary>
+            public const string Share = "wl.share";
 
-			/// <summary>
-			/// Read and write access to a user's files stored in SkyDrive.
-			/// </summary>
-			public const string SkydriveUpdate = "wl.skydrive_update";
+            /// <summary>
+            /// Read access to a user's files stored in SkyDrive.
+            /// </summary>
+            public const string Skydrive = "wl.skydrive";
 
-			/// <summary>
-			/// Read access to a user's employer and work position information.
-			/// </summary>
-			public const string WorkProfile = "wl.work_profile";
+            /// <summary>
+            /// Read and write access to a user's files stored in SkyDrive.
+            /// </summary>
+            public const string SkydriveUpdate = "wl.skydrive_update";
 
-			#endregion
-		}
-	}
+            /// <summary>
+            /// Read access to a user's employer and work position information.
+            /// </summary>
+            public const string WorkProfile = "wl.work_profile";
+
+            #endregion
+        }
+    }
 }

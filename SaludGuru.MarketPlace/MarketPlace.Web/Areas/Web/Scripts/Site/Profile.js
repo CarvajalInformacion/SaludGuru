@@ -3,9 +3,11 @@ var ProfileSliderObject = {
 
     /*profile info*/
     JssorSlider: null,
+    DivId: '',
 
-    /*init meeting calendar variables*/
-    Init: function () {
+    /*init variables*/
+    Init: function (vInitObject) {
+        this.DivId = vInitObject.DivId;
     },
 
     RenderAsync: function () {
@@ -43,7 +45,7 @@ var ProfileSliderObject = {
         };
 
         //start slider
-        this.JssorSlider = new $JssorSlider$('divProfileSlide', options);
+        this.JssorSlider = new $JssorSlider$(this.DivId, options);
 
         //scale slider
         this.ScaleSlider();
@@ -79,7 +81,7 @@ var ProfileDetailObject = {
     ProfileEducationId: '',
     ProfileCertificationId: '',
 
-    /*init meeting calendar variables*/
+    /*init variables*/
     Init: function (vInitObject) {
         this.ProfileTextId = vInitObject.ProfileTextId;
         this.ProfileEducationId = vInitObject.ProfileEducationId;
@@ -93,100 +95,45 @@ var ProfileDetailObject = {
         if ($('#' + ProfileDetailObject.ProfileTextId).length > 0) {
 
             $('#' + ProfileDetailObject.ProfileTextId + '_sel').click(function () {
-
-                $('#' + ProfileDetailObject.ProfileEducationId).hide();
-                $('#' + ProfileDetailObject.ProfileCertificationId).hide();
-                $('#' + ProfileDetailObject.ProfileTextId).fadeIn('slow');
-            });
-
-            $('#' + ProfileDetailObject.ProfileTextId + '_a').html('Ver más');
-
-            $('#' + ProfileDetailObject.ProfileTextId + '_a').click(function () {
-
-                if ($('#' + ProfileDetailObject.ProfileTextId).height() == 90) {
-
-                    $('#' + ProfileDetailObject.ProfileTextId).animate({ height: '100%' });
-                    $(this).html('Ver menos');
-                }
-                else {
-                    $('#' + ProfileDetailObject.ProfileTextId).animate({ height: '90px' });
-                    $(this).html('Ver más');
-                }
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileTextId);
             });
 
             if (IsRender == false) {
-                $('#' + ProfileDetailObject.ProfileTextId).show();
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileTextId);
                 IsRender = true;
-            }
-            else {
-                $('#' + ProfileDetailObject.ProfileTextId).hide();
             }
         }
 
         if ($('#' + ProfileDetailObject.ProfileEducationId).length > 0) {
 
             $('#' + ProfileDetailObject.ProfileEducationId + '_sel').click(function () {
-
-                $('#' + ProfileDetailObject.ProfileTextId).hide();
-                $('#' + ProfileDetailObject.ProfileCertificationId).hide();
-                $('#' + ProfileDetailObject.ProfileEducationId).fadeIn('slow');
-            });
-
-            $('#' + ProfileDetailObject.ProfileEducationId + '_a').html('Ver más');
-
-            $('#' + ProfileDetailObject.ProfileEducationId + '_a').click(function () {
-
-                if ($('#' + ProfileDetailObject.ProfileEducationId).height() == 90) {
-
-                    $('#' + ProfileDetailObject.ProfileEducationId).animate({ height: '100%' });
-                    $(this).html('Ver menos');
-                }
-                else {
-                    $('#' + ProfileDetailObject.ProfileEducationId).animate({ height: '90px' });
-                    $(this).html('Ver más');
-                }
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileEducationId);
             });
 
             if (IsRender == false) {
-                $('#' + ProfileDetailObject.ProfileEducationId).show();
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileEducationId);
                 IsRender = true;
-            }
-            else {
-                $('#' + ProfileDetailObject.ProfileEducationId).hide();
             }
         }
 
         if ($('#' + ProfileDetailObject.ProfileCertificationId).length > 0) {
 
             $('#' + ProfileDetailObject.ProfileCertificationId + '_sel').click(function () {
-                $('#' + ProfileDetailObject.ProfileTextId).hide();
-                $('#' + ProfileDetailObject.ProfileEducationId).hide();
-                $('#' + ProfileDetailObject.ProfileCertificationId).fadeIn('slow');
-            });
-
-            $('#' + ProfileDetailObject.ProfileCertificationId + '_a').html('Ver más');
-
-            $('#' + ProfileDetailObject.ProfileCertificationId + '_a').click(function () {
-
-                if ($('#' + ProfileDetailObject.ProfileCertificationId).height() == 90) {
-
-                    $('#' + ProfileDetailObject.ProfileCertificationId).animate({ height: '100%' });
-                    $(this).html('Ver menos');
-                }
-                else {
-                    $('#' + ProfileDetailObject.ProfileCertificationId).animate({ height: '90px' });
-                    $(this).html('Ver más');
-                }
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileCertificationId);
             });
 
             if (IsRender == false) {
-                $('#' + ProfileDetailObject.ProfileCertificationId).show();
+                ProfileDetailObject.ShowTab(ProfileDetailObject.ProfileCertificationId);
                 IsRender = true;
             }
-            else {
-                $('#' + ProfileDetailObject.ProfileCertificationId).hide();
-            }
         }
+    },
+
+    ShowTab: function (DivId) {
+        $('.selProfileDescriptions').hide();
+        $('.selProfileDescriptions').removeClass('selected');
+        $('#' + DivId).addClass('selected');
+        $('#' + DivId).fadeIn('slow');
     },
 };
 
@@ -382,7 +329,7 @@ var ProfileMapObject = {
     CenterMap: '0,0',
     lstOffice: new Array(),
 
-    /*init meeting calendar variables*/
+    /*init variables*/
     Init: function (vInitObject) {
         //init render info
         this.DivId = vInitObject.DivId;

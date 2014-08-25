@@ -3,8 +3,8 @@
 // Don't change it directly as your change would get overwritten.  Instead, make changes
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
-// Make sure the compiler doesn't complain about missing Xml comments
-#pragma warning disable 1591
+// Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
+#pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
 using System;
@@ -33,6 +33,7 @@ public static partial class MVC
     public static Auth.Web.Controllers.FBLoginController FBLogin = new Auth.Web.Controllers.T4MVC_FBLoginController();
     public static Auth.Web.Controllers.GoogleLoginController GoogleLogin = new Auth.Web.Controllers.T4MVC_GoogleLoginController();
     public static Auth.Web.Controllers.InternalLoginController InternalLogin = new Auth.Web.Controllers.T4MVC_InternalLoginController();
+    public static Auth.Web.Controllers.WLLoginController WLLogin = new Auth.Web.Controllers.T4MVC_WLLoginController();
 }
 
 namespace T4MVC
@@ -41,6 +42,8 @@ namespace T4MVC
     public class MobileClass
     {
         public readonly string Name = "Mobile";
+        public Auth.Web.Areas.Mobile.Controllers.FBLoginController FBLogin = new Auth.Web.Areas.Mobile.Controllers.T4MVC_FBLoginController();
+        public Auth.Web.Areas.Mobile.Controllers.GoogleLoginController GoogleLogin = new Auth.Web.Areas.Mobile.Controllers.T4MVC_GoogleLoginController();
         public Auth.Web.Areas.Mobile.Controllers.InternalLoginController InternalLogin = new Auth.Web.Areas.Mobile.Controllers.T4MVC_InternalLoginController();
         public T4MVC.Mobile.SharedController Shared = new T4MVC.Mobile.SharedController();
     }
@@ -51,6 +54,7 @@ namespace T4MVC
         public Auth.Web.Areas.Web.Controllers.FBLoginController FBLogin = new Auth.Web.Areas.Web.Controllers.T4MVC_FBLoginController();
         public Auth.Web.Areas.Web.Controllers.GoogleLoginController GoogleLogin = new Auth.Web.Areas.Web.Controllers.T4MVC_GoogleLoginController();
         public Auth.Web.Areas.Web.Controllers.InternalLoginController InternalLogin = new Auth.Web.Areas.Web.Controllers.T4MVC_InternalLoginController();
+        public Auth.Web.Areas.Web.Controllers.WLLoginController WLLogin = new Auth.Web.Areas.Web.Controllers.T4MVC_WLLoginController();
         public T4MVC.Web.SharedController Shared = new T4MVC.Web.SharedController();
     }
 }
@@ -85,6 +89,44 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
 
 namespace Links
 {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static class Scripts {
+        private const string URLPATH = "~/Scripts";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
+        public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+        public static readonly string jquery_2_1_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.intellisense.min.js") ? Url("jquery-2.1.1.intellisense.min.js") : Url("jquery-2.1.1.intellisense.js");
+        public static readonly string jquery_2_1_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.min.js") ? Url("jquery-2.1.1.min.js") : Url("jquery-2.1.1.js");
+        public static readonly string jquery_2_1_1_min_js = Url("jquery-2.1.1.min.js");
+        public static readonly string jquery_2_1_1_min_map = Url("jquery-2.1.1.min.map");
+        public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
+        public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
+        public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
+        public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
+        public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
+        public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
+        public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
+        public static readonly string respond_matchmedia_addListener_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.matchmedia.addListener.min.js") ? Url("respond.matchmedia.addListener.min.js") : Url("respond.matchmedia.addListener.js");
+        public static readonly string respond_matchmedia_addListener_min_js = Url("respond.matchmedia.addListener.min.js");
+        public static readonly string respond_min_js = Url("respond.min.js");
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static class Content {
+        private const string URLPATH = "~/Content";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string bootstrap_theme_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-theme.min.css") ? Url("bootstrap-theme.min.css") : Url("bootstrap-theme.css");
+             
+        public static readonly string bootstrap_theme_css_map = Url("bootstrap-theme.css.map");
+        public static readonly string bootstrap_theme_min_css = Url("bootstrap-theme.min.css");
+        public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
+             
+        public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
+        public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+    }
+
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {
@@ -125,6 +167,6 @@ internal static class T4MVCHelpers {
 
 
 #endregion T4MVC
-#pragma warning restore 1591
+#pragma warning restore 1591, 3008, 3009
 
 

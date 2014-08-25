@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Auth.Web.Areas.Mobile.Controllers
 {
-    public class GoogleLoginController : Auth.Web.Controllers.GoogleLoginController
+    public partial class GoogleLoginController : Auth.Web.Controllers.GoogleLoginController
     {
        
     }

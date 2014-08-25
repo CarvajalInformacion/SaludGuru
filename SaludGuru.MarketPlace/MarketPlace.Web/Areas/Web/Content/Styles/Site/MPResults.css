@@ -120,30 +120,32 @@ div.MPResultsPaidProfile img,
 div.MPResultsPaidProfile a,
 div.MPResultsPaidProfile div{
     vertical-align:top;
-}
-img.MPResultsCertified {
-    min-width:46px;
-    width:6.9%;
-    height:auto;
-    display:inline-block;
-}
+}   
+     div.MPResultsCertified,
+     img.MPResultsCertified {
+        min-width:46px;
+        width:6.9%;
+        height:auto;
+        display:inline-block;
+    }
+        img.MPResultsCertified {
+            width:100%;
+        }
 .MPResultsPaidProfileDoctorPicture {
     border:none;
     display:inline-block;
-    width:2%;
-    min-width:120px;
-    min-height:182px;
+    width:108px;
 }
-a.MPResultsDoctorPictureWrapper{
-    width:auto;
-    height:auto;
-    border:1px solid #666;
-    border-radius:2px;
-    display:inline-block;
-}
-img.MPResultsDoctorPicture{
-    width:100%; height:auto;
-}
+    a.MPResultsDoctorPictureWrapper{
+        width:auto;
+        height:auto;
+        border:1px solid #666;
+        border-radius:2px;
+        display:inline-block;
+    }
+        img.MPResultsDoctorPicture{
+            width:100%; height:auto; max-width:108px;
+        }
 /************* FACEBOOK Y SITIO WEB **************/
 .MPResultsPaidProfileDoctorSocial {
     display:block;
@@ -171,14 +173,15 @@ a.MPResultsPaidProfileDoctorFacebook > span{
 }
 /***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
 div.MPResultsPaidProfileDoctorData {
-       border:none;
+    border:none;
     display:inline-block;
-    width: auto;
+    width:218px;
     height:auto;
+    margin: 0px 0px 0px 8px;
 }
 span.MPResultsSpecialityName,
 span.MPResultsInsuranceName{
-    display:block;
+    display:block;  
     height:auto;
     margin:4px 0px !important;
     line-height:1em;
@@ -186,20 +189,29 @@ span.MPResultsInsuranceName{
 span.MPResultsSpecialityName {
     font-size:1.2em;
 }
-span.MPResultsInsuranceName {
+li.MPResultsInsuranceName {
+        width:84px;
+    line-height: 1em;
+        border:none;
+    display: inline-block;
     font-size:0.9em;
     letter-spacing: -0.4px;
 }
 a.MPResultsPaidProfileDoctorName{
     font-size:1.5em;
     line-height:24px;
-    cursor: pointer;    
+    cursor: pointer;
+}
+.MPResultsEnsurance {
+    font-size:0.8em;
+    line-height:1em;
+    margin:6px 0px 6px 0px;
 }
 /** DESCRIPCION CORTA DEL DOCTOR **/
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:58%;
+        width:54%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -209,12 +221,14 @@ a.MPResultsPaidProfileDoctorName{
                 line-height: 1em;
                 font-size:14px;
                 letter-spacing: normal;
+                overflow:hidden;
+                text-overflow:ellipsis;
             }
     @media screen and (max-width:1280px) {
         div.MPResultsDoctorDescriptionWrapper {
         border:none;
         display: inline-block;
-        width:49%;
+        width:45%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -227,7 +241,7 @@ a.MPResultsPaidProfileDoctorName{
         div.MPResultsDoctorDescriptionWrapper {
                     border:none;
         display: inline-block;
-        width:43%;
+        width:40%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -240,7 +254,7 @@ a.MPResultsPaidProfileDoctorName{
         div.MPResultsDoctorDescriptionWrapper {
                     border:none;
         display: inline-block;
-        width:42%;
+        width:38%;
         vertical-align: top;
         margin:0px 0px 0px 12px;
         }
@@ -257,12 +271,12 @@ a.MPResultsPaidProfileDoctorName{
             min-width: 220px;
             vertical-align: top;
             margin:12px 0px 4px 0px;
-            min-height:39px;
+            min-height:58px;
         }
         div.OfficeSelector span{
             cursor:pointer;       
             width:100%;
-            color: forestgreen;
+            color: #92B92A;
             text-align: left;
             font-weight:bold;
             font-size:14px;
@@ -275,70 +289,44 @@ a.MPResultsPaidProfileDoctorName{
                 cursor:auto;
                 font-size:0.9em;
                 display:block;
-                width: auto;
-                line-height:16px;
+                width:auto;
+                line-height:1.6em;
                 text-decoration:none;
+                color:#666;
+                text-align:left;
+                text-indent:20px;
             }
+                span.OfficeContactTelephone,
+                span.OfficeContactAddress {
+                    background-repeat:no-repeat;
+                }
+                span.OfficeContactAddress {
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+                    background-position: -6px -1px;
+                    background-size: 27px auto;
+                }
+                span.OfficeContactTelephone {
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+                    background-position: 0px 2px;
+                    background-size: 18px auto;
+                }
+/***** ENLACES DE VER PERFIL Y AGENDAR CITA *************/
+.MPResultsDoctorLinksWrapper {
+    width:100%;
+    text-align:right;
+}
 /********* enlace agenda gratis ********/
-.MPResultsBookAppFree {
+.MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
     display: inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width: 48%;
-    text-align: center;
+    padding:0px; margin:0px;
+    width:auto;
+    text-align: left;
     font-size: 1.1em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
+    color: #92B92A !important;
     line-height: 1.2em;
-}
-@media screen and (max-width:1280px) {
-    .MPResultsBookAppFree {
-    display: inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width: 48%;
-    text-align: center;
-    font-size: 1.1em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-    line-height: 1.2em;
-    }
-}
-@media screen and (max-width:1024px) {
-    .MPResultsBookAppFree {
-    display: inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width: 48%;
-    text-align: center;
-    font-size: 1.1em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-    line-height: 1.2em;
-    }
-}
-@media screen and (max-width:800px) {
-    .MPResultsBookAppFree {
-    display: inline-block !important;
-    padding: 4px 0px;
-    margin: 6px auto;
-    background-color: #92B92A;
-    width: 48%;
-    text-align: center;
-    font-size: 1.1em !important;
-    border-radius: 3px;
-    color: #FFF !important;
-    border: 1px solid #555 !important;
-    line-height: 1.2em;
-    }
 }
 .MPResultsBookAppFree:hover {
-    background-color:#82A327;
-    text-decoration:none;
+    text-decoration:underline;
 }
+
+

@@ -163,3 +163,14 @@ function Header_ShowHideLoginMenu(ulLoginId) {
     debugger;
     $('#' + ulLoginId).toggle('slow');
 }
+
+/*Site tooltips*/
+function fnInitToolTip(vSelector) {
+    
+    $(vSelector).tooltip({
+        show: {
+            effect: "slideDown",
+            delay: 250
+        },
+    });
+}

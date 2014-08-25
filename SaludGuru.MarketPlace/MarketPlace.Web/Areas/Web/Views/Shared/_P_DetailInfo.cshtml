@@ -1,13 +1,6 @@
 ﻿@model MarketPlace.Models.Profile.ProfileViewModel
 
 @{
-    //get image profile
-    var ovImageProfile = Model.CurrentProfile.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
-            Select(x => x.Value).
-            DefaultIfEmpty(string.Empty).
-            FirstOrDefault();
-
     //get profile text
     var ovProfileText = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ProfileText).
@@ -15,14 +8,14 @@
             DefaultIfEmpty(string.Empty).
             FirstOrDefault();
 
-    //get profile text
+    //get education text
     var ovProfileEducation = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Education).
             Select(x => x.LargeValue).
             DefaultIfEmpty(string.Empty).
             FirstOrDefault();
 
-    //get profile text
+    //get certification text
     var ovProfileCertification = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Certification).
             Select(x => x.LargeValue).
@@ -33,8 +26,6 @@
 
 @if (!Model.RenderScripts)
 {
-    <img src="@ovImageProfile" />
-    <span style="display:none;" class="MPProfileNoInfo">Este Profesional no Tiene Contenido Relacionado</span>
     <div>
         <ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
@@ -49,26 +40,46 @@
             {
                 <li><a id="divCertification_sel" href="javascript:;">Acreditaciones</a></li>
             }
+            @if (Model.CurrentProfile.RelatedOffice != null &&
+                Model.CurrentProfile.RelatedOffice.Count > 0)
+            {
+                <li><a id="divOffice_sel" href="javascript:;">Datos de contacto</a></li>
+            }
         </ul>
         @if (!string.IsNullOrEmpty(ovProfileText))
         {
-            <div id="divProfileText">
-                <p>@ovProfileText.Trim()</p>                
-                @*<a id="divProfileText_a" href="javascript:;"></a>*@
+            <div id="divProfileText" class="selProfileDescriptions">
+                <p>@ovProfileText.Trim()</p>
             </div>
         }
         @if (!string.IsNullOrEmpty(ovProfileEducation))
         {
-            <div id="divEducation">
+            <div id="divEducation" class="selProfileDescriptions">
                 <p>@ovProfileEducation.Trim()</p>
-                @*<a id="divEducation_a" href="javascript:;"></a>*@
             </div>
         }
         @if (!string.IsNullOrEmpty(ovProfileCertification))
         {
-            <div id="divCertification">
+            <div id="divCertification" class="selProfileDescriptions">
                 <p>@ovProfileCertification.Trim()</p>
-                @*<a id="divCertification_a" href="javascript:;"></a>*@
+            </div>
+        }
+        @if (Model.CurrentProfile.RelatedOffice != null &&
+            Model.CurrentProfile.RelatedOffice.Count > 0)
+        {
+            <div id="divOffice" class="selProfileDescriptions">
+                <ul>
+                    @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+                    {
+                        <li>
+                            <div class="OfficeContactSelector" style="display:none;">
+                                <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                            </div>
+                            <span>--------</span>
+                        </li>
+                    }
+                </ul>
             </div>
         }
     </div>
@@ -81,26 +92,9 @@ else
                 ProfileTextId: 'divProfileText',
                 ProfileEducationId: 'divEducation',
                 ProfileCertificationId: 'divCertification',
+                OfficeId: 'divOffice',
             });
             ProfileDetailObject.RenderAsync();
-            $("#divProfileText_sel").addClass("MPProfileTextSelected");
-
-            $("#divProfileText_sel").click(function () {
-                $(this).addClass("MPProfileTextSelected");
-                $("#divEducation_sel").removeClass("MPProfileTextSelected");
-                $("#divCertification_sel").removeClass("MPProfileTextSelected");
-            });
-            $("#divEducation_sel").click(function () {                
-                $(this).addClass("MPProfileTextSelected");
-                $("#divProfileText_sel").removeClass("MPProfileTextSelected");
-                $("#divCertification_sel").removeClass("MPProfileTextSelected");
-            });
-            $("#divCertification_sel").click(function () {
-                $(this).addClass("MPProfileTextSelected");
-                $("#divProfileText_sel").removeClass("MPProfileTextSelected");
-                $("#divEducation_sel").removeClass("MPProfileTextSelected");
-            });
-
         });
     </script>
 }

@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
+  
   <Message>
     <!--Agent Cofig-->
-
+    <key  name="UsrBitly" key="o_7thpacqbhr">o_7thpacqbhr</key>
+    <key  name="KeyBitly" key="R_e8ebf6a0ef584813a43fe3299627da09">R_e8ebf6a0ef584813a43fe3299627da09</key>
     <!--Mailman-->
     <key name="Agent_Mailman">
       <![CDATA[
@@ -415,12 +417,13 @@
                                 Te recordamos tu cita médica con el Dr(a).{ProfileName} el día 
                                 {AppointmentDate} {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. <br>
                                 
-                                 <a href="{ConfirmCancelLink}">Confirmar/Cancelar </a>          
+                                <a href="{ConfirmLink}">Puedes confirmar tu cita aquí</a>       <br>   
+                                o <br>
+                                <a href="{CancelLink}">Cancela aquí</a>   
                              </p>
                                 <br>
                              <p>   
-                                Cuidados previos {BeforeCare}   <br>    
-                                                                                              
+                                Cuidados previos {BeforeCare}   <br>                                                                                                  
                              </p>
                             <div style="width:100%; height:30px;">
                                 <span style="font-size: 0.7em;
