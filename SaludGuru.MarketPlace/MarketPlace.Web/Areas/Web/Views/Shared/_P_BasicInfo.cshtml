@@ -8,6 +8,14 @@
             DefaultIfEmpty(false).
             FirstOrDefault();
 
+    //get image profile
+    var ovImageProfile = Model.CurrentProfile.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+            Select(x => x.Value).
+            DefaultIfEmpty(MarketPlace.Models.General.InternalSettings.Instance
+                    [MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value).
+            FirstOrDefault();
+
     //get default specialty
     var ovDefaultSpecialty = Model.CurrentProfile.DefaultSpecialty != null ?
             Model.CurrentProfile.DefaultSpecialty :
@@ -31,42 +39,60 @@
 
 @if (!Model.RenderScripts)
 {
-
     <div class="MPProfileInfo_BasicInfo">
-        @if (ovIsCertified)
-        {
-                <!--certified image-->
-            <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-        }
-        @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
-        {
-                <!--Principal specialty-->
-            <span>@ovDefaultSpecialty.Name</span>
-        }
+        <div>
+            <img src="@ovImageProfile" />
+            <!--Social Profile-->
+            <div class="MPProfileInfo_Social">
+                @if (!string.IsNullOrEmpty(ovFacebook))
+                {
+                    <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook))&amp;width&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:62px;" allowtransparency="true"></iframe>
+                }
+                @if (!string.IsNullOrEmpty(ovWebSite))
+                {
+                    <a href="@ovWebSite" target="_blank">
+                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
+                        <span>Página Web</span>
+                    </a>
+                }
+            </div>
 
-        <!--Related Insurance-->
-        <span>@string.Join(", ", Model.CurrentProfile.RelatedInsurance.Select(x => x.Name))</span>
-    </div>
-        <!--Social Profile-->
-    <div class="MPProfileInfo_Social">
-        @if (!string.IsNullOrEmpty(ovFacebook))
-        {
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook));width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-            <a href="@ovFacebook" target="_blank">
-                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
-                <span>Facebook</span>
-            </a>
-        }
-        @if (!string.IsNullOrEmpty(ovWebSite))
-        {
-            <a href="@ovWebSite" target="_blank">
-                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                <span>Página Web</span>
-            </a>
-        }
-        else
-        {
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-        }
+        </div>
+        <div>
+            @if (ovIsCertified)
+            {
+                <!--certified image-->
+                <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+            }
+            <!--Professional name-->
+            <label>@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
+            @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+            {
+                <!--Principal specialty-->
+                <span>@ovDefaultSpecialty.Name</span>
+            }
+            <div>
+                <div>
+                    <!--Related Insurance-->
+                    <label>Seguros médicos:</label>
+                    <ul>
+                        @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
+                        {
+                            <li>@str</li>
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <!--Related Insurance-->
+                    <label>Especialidades:</label>
+                    <ul>
+                        @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
+                        {
+                            <li>@str</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 }
