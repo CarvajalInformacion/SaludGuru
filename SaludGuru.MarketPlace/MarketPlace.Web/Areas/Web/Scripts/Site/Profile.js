@@ -33,7 +33,7 @@ var ProfileSliderObject = {
                 $ChanceToShow: 2,
 
                 $Loop: 2,
-                $AutoCenter: 3,
+                $AutoCenter: 2,
                 $Lanes: 1,
                 $SpacingX: 2,
                 $SpacingY: 2,
