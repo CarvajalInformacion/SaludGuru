@@ -26,7 +26,6 @@
 
 @if (!Model.RenderScripts)
 {
-    <span style="display:none;" class="MPProfileNoInfo">Este Profesional no Tiene Contenido Relacionado</span>
     <div>
         <ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
@@ -40,6 +39,11 @@
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
                 <li><a id="divCertification_sel" href="javascript:;">Acreditaciones</a></li>
+            }
+            @if (Model.CurrentProfile.RelatedOffice != null &&
+                Model.CurrentProfile.RelatedOffice.Count > 0)
+            {
+                <li><a id="divOffice_sel" href="javascript:;">Datos de contacto</a></li>
             }
         </ul>
         @if (!string.IsNullOrEmpty(ovProfileText))
@@ -60,6 +64,24 @@
                 <p>@ovProfileCertification.Trim()</p>
             </div>
         }
+        @if (Model.CurrentProfile.RelatedOffice != null &&
+            Model.CurrentProfile.RelatedOffice.Count > 0)
+        {
+            <div id="divOffice" class="selProfileDescriptions">
+                <ul>
+                    @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+                    {
+                        <li>
+                            <div class="OfficeContactSelector" style="display:none;">
+                                <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                            </div>
+                            <span>--------</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 }
 else
@@ -70,6 +92,7 @@ else
                 ProfileTextId: 'divProfileText',
                 ProfileEducationId: 'divEducation',
                 ProfileCertificationId: 'divCertification',
+                OfficeId: 'divOffice',
             });
             ProfileDetailObject.RenderAsync();
         });
