@@ -133,13 +133,111 @@
     width: auto;
     overflow: hidden;
 }
+
+
+/*------Media Styles-------*/
+
+/*
+    Rangos 
+     > 1280
+    1279 <=> 1200
+    1199 <=> 1024
+    1023 <=> 900
+    899 <=> 768
+    768 <
+    */
+/*----Media Profile Info-----*/
+@media (min-width: 1280px) {
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 53% !important;
+    }
+}
+
+@media (min-width: 1124px) and (max-width: 1279px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 47% !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1123px) {
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 43% !important;
+    }
+}
+
+
+@media (min-width: 980px) and (max-width: 1023px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 63% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 979px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 67% !important;
+    }
+
+    .MPProfileCertified {
+        width: 28% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 50px !important;
+    }
+}
+
+@media (max-width: 899px) {
+
+    .MPProfileInfo_BasicInfo {
+    }
+
+    .MPProfileDoctorImage {
+        width: 120px !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 100% !important;
+    }
+}
+/*--------------------------------------*/
+
 div.MPProfileCertified,
 img.MPProfileCertified {
     min-width: 46px;
     height: auto;
     display: inline-block;
     vertical-align: top;
-    width: 62px !important;
+    /*width: 62px !important;*/
+    width: 62px;
 }
 img.MPProfileDoctorImage {
     border: 1px solid #666;
@@ -206,7 +304,7 @@ li.MPProfileInsuranceName {
         margin: 4px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
-        letter-spacing: -0.6px;            
+        letter-spacing: -0.6px;
         vertical-align: top;
     }
 
@@ -353,7 +451,7 @@ div#divOffice ul li {
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin:8px auto 0px auto;
+    margin: 8px auto 0px auto;
     BORDER: 1px solid #666;
     border-radius:2px;
     box-shadow: 2px 2px 2px #666;
@@ -372,7 +470,8 @@ div#divOffice ul li {
 }
     .MPProfileCallendarWrapper ul{
         margin-bottom:-4px;
-    }
+}
+
     .MPProfileCallendarWrapper ul li {
         border: none;
         display: inline-block;
@@ -420,7 +519,7 @@ div#divOffice ul li {
     text-align: left;
     border: none !important;
     border-top: 1px solid #666 !important;
-    display:block !important;
+    display: block !important;
     margin: 0px auto -5px !important;
     padding:0px !important;
     border-radius: initial !important;
