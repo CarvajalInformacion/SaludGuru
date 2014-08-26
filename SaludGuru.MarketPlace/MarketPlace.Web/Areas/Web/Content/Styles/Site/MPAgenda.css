@@ -229,13 +229,13 @@ div.MPAgendaConfirmationMessage div span:nth-child(5) {
 }
 
 .RelatedOffice label {
-    width: 61% !important;
+    width: auto !important;
     line-height: 20px !important;
     margin: 10px 0px 0px 0px !important;
 }
 
 .InfoOffice label {
-    width: 61% !important;
+    width: auto !important;
     line-height: 20px !important;
     margin: 10px 0px 0px 0px !important;
 }
@@ -250,6 +250,24 @@ input#GenderFemale {
     margin: 0px 0px 0px 0px !important;
 }
 
+
+li.ProfileInfoName, li.DefaultSpecialty, li.RelatedOffice, li.InfoOffice {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+@media (min-width: 980px) {
+    li.ProfileInfoName, li.DefaultSpecialty, li.RelatedOffice, li.InfoOffice {
+        width: 71%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 979px) {
+    li.ProfileInfoName, li.DefaultSpecialty, li.RelatedOffice, li.InfoOffice {
+        width: 50%;
+    }
+}
 
 /*Border Divs*/
 .MPFormDataWrapper {

@@ -23,7 +23,9 @@ namespace MarketPlace.Web.Controllers
             {
                 string resultPatientPublicId = CreateNewCurrentPatient(ProfilePublicId);
             }
-
+            DateTime currDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date);            
+            string datePass = currDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));           
+            
             AppointmentViewModel oModel = new AppointmentViewModel()
             {
                 CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date),
@@ -31,7 +33,7 @@ namespace MarketPlace.Web.Controllers
 
                 PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId), //TODO: Ajustar el usuario no quemarlo
                 CurrentOffice = OfficePublicId,
-                StartDate = Date
+                StartDate = datePass
             };
 
             if (oModel.PatientGroup == null)
@@ -114,7 +116,7 @@ namespace MarketPlace.Web.Controllers
             office = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(appToCreate.OfficePublicId);
 
             ViewModel.CurrentProfile = oModel;
-            ViewModel.CurrentOffice = office.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault();
+            ViewModel.CurrentOffice = office.OfficePublicId;
             ViewModel.StartDate = appToCreate.StartDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
 
             return View(ViewModel);
