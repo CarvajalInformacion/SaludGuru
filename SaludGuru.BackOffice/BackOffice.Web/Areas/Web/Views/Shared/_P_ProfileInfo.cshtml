@@ -275,29 +275,29 @@
                 </li>
                 <li>
                     @{
-                var CatInfo_AL = Model.Profile == null ? null :
-                    Model.Profile.ProfileInfo.Where
-                        (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FeaturedProfile).
-                        Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
-                            DefaultIfEmpty(null).
-                            FirstOrDefault();
-                if (CatInfo_AL != null)
-                {
-                    <input type="hidden" id="CatId_AgendaOnline" name="CatId_AgendaOnline" value="@CatInfo_AL.id" />
-                }
+                        var CatInfo_AL = Model.Profile == null ? null :
+                            Model.Profile.ProfileInfo.Where
+                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
+                                Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_AL != null)
+                        {
+                            <input type="hidden" id="CatId_AgendaOnline" name="CatId_AgendaOnline" value="@CatInfo_AL.id" />
+                        }
                     }
 
                     <label>Agenda en línea</label>
                     @{
-                if (CatInfo_AL != null && CatInfo_AL.val)
-                {
-                    <input type="checkbox" id="AgendaOnline" name="AgendaOnline" checked="checked" />
-                }
-                else
-                {
-                    <input type="checkbox" id="AgendaOnline" name="AgendaOnline" />
-                }
-}
+                        if (CatInfo_AL != null && CatInfo_AL.val)
+                        {
+                            <input type="checkbox" id="AgendaOnline" name="AgendaOnline" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="AgendaOnline" name="AgendaOnline" />
+                        }
+                    }
                 </li>
             }
             <li>
