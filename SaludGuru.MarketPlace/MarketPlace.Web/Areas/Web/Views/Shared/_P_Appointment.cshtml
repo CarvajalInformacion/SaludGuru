@@ -4,9 +4,8 @@
 @if (!Model.RenderScripts)
 {
     string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
-    
+
     <div>
-        <span>Agenda tu cita gratis</span>
         <ul id="divAppointmentSchedule_Menu"></ul>
         <div id="divAppointmentSchedule">
         </div>
@@ -14,6 +13,14 @@
 
     <!--templates-->
     <div style="display:none;">
+
+        <!--office info template-->
+        <div id="divAppointmentSchedule_Template_OfficeInfo">
+            <div class="OfficeContactSelector">
+                <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
+            </div>
+        </div>
 
         <!--appointment menu template-->
         <div id="divAppointmentSchedule_Template_Menu">
@@ -25,6 +32,7 @@
         <!--appointment grid template-->
         <div id="divAppointmentSchedule_Template_Grid">
             <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
+                <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
                 <div id="divGrid_Title_${OfficePublicId}">
                     <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
                     <span id="spanHeader_${OfficePublicId}"></span>
@@ -89,6 +97,8 @@ else
                         OfficeDivId = string.Empty,
                         IsDefault = of.IsDefault,
                         City = of.City,
+                        OfficeAddress = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                        OfficeTelephone = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
                     }).OrderBy(x => x.IsDefault).
                     OrderBy(x => x.OfficeName).ToList());
 

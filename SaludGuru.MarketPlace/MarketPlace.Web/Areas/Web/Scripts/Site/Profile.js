@@ -183,6 +183,11 @@ var ProfileAppointmentObject = {
 
             //create div to put a calendar
             $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
+            //show office basic info
+            var vOfficeInfo = $('#' + this.DivId + '_Template_OfficeInfo').html();
+            vOfficeInfo = vOfficeInfo.replace(/\${Address}/gi, this.lstOffice[item].OfficeAddress);
+            vOfficeInfo = vOfficeInfo.replace(/\${Telephone}/gi, this.lstOffice[item].OfficeTelephone);
+            $('#divGrid_OfficeInfo_' + this.lstOffice[item].OfficePublicId).html(vOfficeInfo);
 
             if (oFirstRender == false) {
                 this.RenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
