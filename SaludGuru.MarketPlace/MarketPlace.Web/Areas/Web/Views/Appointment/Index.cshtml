@@ -135,18 +135,25 @@
                     <div class="MPAgendaButtonWrapper">
                         <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="x" title="Cerrar" />
                     </div>
-                    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)                   
+                    @Html.Partial(MVC.Web.Shared.Views._AP_Appointment, Model)
                 </div>
             </li>
             <li class="LegalTermsLi">
                 <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))" target="_blank">
                     <label class="LegalTerms">Aceptar términos y condiciones.</label>
                 </a>
-                <input type="checkbox" id="LegalTerms" name="LegalTerms" />                
+                <input type="checkbox" id="LegalTerms" name="LegalTerms" />
             </li>
             <li class="MPAgendaButtonWrapper">
-                <input type="hidden" name="StartDate" id="StartDate" value="" />
-                
+                @if (Model.StartDate != null)
+                {
+                    <input type="hidden" name="StartDate" id="StartDate" value="@Model.CurrentDate" />
+                }
+                else
+                {
+                    <input type="hidden" name="StartDate" id="StartDate" value="" />
+                }
+
                 <input class="MPAgendaButtonAcceptDate" type="submit" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
             </li>
         </ul>
@@ -219,7 +226,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            
+
             InitFunctionsNewPatient.InitialLoad();
             InitFunctionsNewPatient.ChangeCheck();
             InitFunctionsNewPatient.ChangeCheckNewPatient();

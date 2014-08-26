@@ -389,7 +389,7 @@ $('#DateMoreInfoIdNN').click(function () {
     $("#DateMoreInfoId").hide();
 });
 $('#SaveAppointmentId').click(function () {
-
+    debugger;
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
     if (startDate == "") {
