@@ -34,5 +34,11 @@ namespace Auth.Client.DAL.Controller
         {
             return DataFactory.GetUserList(UserPublicIdList);
         }
+
+
+        public List<SessionController.Models.Auth.User> GetUserListByEmailList(string UserEmailList)
+        {
+            return DataFactory.GetUserListByEmailList(UserEmailList);
+        }
     }
 }

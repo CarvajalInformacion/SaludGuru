@@ -829,6 +829,12 @@ namespace BackOffice.Web.Controllers
                         },
                         new ProfileInfoModel()
                         {
+                            ProfileInfoId = string.IsNullOrEmpty(Request["CatId_AgendaOnline"])?0:int.Parse(Request["CatId_AgendaOnline"].ToString().Trim()),
+                            ProfileInfoType = enumProfileInfoType.AgendaOnline,
+                            Value = (!string.IsNullOrEmpty(Request["AgendaOnline"]) && Request["AgendaOnline"].ToString().ToLower() == "on") ? "true" : "false",
+                        },
+                        new ProfileInfoModel()
+                        {
                             ProfileInfoId = string.IsNullOrEmpty(Request["CatId_ProfileText"])?0:int.Parse(Request["CatId_ProfileText"].ToString().Trim()),
                             ProfileInfoType = enumProfileInfoType.ProfileText,
                             LargeValue = Request["ProfileText"].ToString(),

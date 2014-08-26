@@ -220,57 +220,83 @@
                 <label>Perfil de facebook</label>
                 <input id="FacebookProfile" name="FacebookProfile" value="@(CatInfo_FB == null ? string.Empty : CatInfo_FB.val)" type="text" />
             </li>
-            <li>
-                @{
-                    var CatInfo_IC = Model.Profile == null ? null :
-                        Model.Profile.ProfileInfo.Where
-                            (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
-                            Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
-                                DefaultIfEmpty(null).
-                                FirstOrDefault();
-                    if (CatInfo_IC != null)
-                    {
-                        <input type="hidden" id="CatId_IsCertified" name="CatId_IsCertified" value="@CatInfo_IC.id" />
-                    }
-                }
-                <label>Profesional certificado</label>
-                @{
-                    if (CatInfo_IC != null && CatInfo_IC.val)
-                    {
-                        <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
-                    }
-                    else
-                    {
-                        <input type="checkbox" id="IsCertified" name="IsCertified" />
-                    }
-                }
-            </li>
             @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
             {
                 <li>
                     @{
-                var CatInfo_D = Model.Profile == null ? null :
-                    Model.Profile.ProfileInfo.Where
-                        (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FeaturedProfile).
-                        Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
-                            DefaultIfEmpty(null).
-                            FirstOrDefault();
-                if (CatInfo_D != null)
-                {
-                    <input type="hidden" id="CatId_FeaturedProfile" name="CatId_FeaturedProfile" value="@CatInfo_D.id" />
-                }
+                        var CatInfo_IC = Model.Profile == null ? null :
+                            Model.Profile.ProfileInfo.Where
+                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
+                                Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_IC != null)
+                        {
+                            <input type="hidden" id="CatId_IsCertified" name="CatId_IsCertified" value="@CatInfo_IC.id" />
+                        }
+                    }
+                    <label>Profesional certificado</label>
+                    @{
+                        if (CatInfo_IC != null && CatInfo_IC.val)
+                        {
+                            <input type="checkbox" id="IsCertified" name="IsCertified" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="IsCertified" name="IsCertified" />
+                        }
+                    }
+                </li>
+                <li>
+                    @{
+                        var CatInfo_D = Model.Profile == null ? null :
+                            Model.Profile.ProfileInfo.Where
+                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FeaturedProfile).
+                                Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_D != null)
+                        {
+                            <input type="hidden" id="CatId_FeaturedProfile" name="CatId_FeaturedProfile" value="@CatInfo_D.id" />
+                        }
                     }
 
                     <label>Profesional destacado</label>
                     @{
-                if (CatInfo_D != null && CatInfo_D.val)
-                {
-                    <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" checked="checked" />
-                }
-                else
-                {
-                    <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" />
-                }
+                        if (CatInfo_D != null && CatInfo_D.val)
+                        {
+                            <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="FeaturedProfile" name="FeaturedProfile" />
+                        }
+                    }
+                </li>
+                <li>
+                    @{
+                        var CatInfo_AL = Model.Profile == null ? null :
+                            Model.Profile.ProfileInfo.Where
+                                (x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
+                                Select(x => new { id = x.ProfileInfoId, val = string.IsNullOrEmpty(x.Value) ? false : bool.Parse(x.Value) }).
+                                    DefaultIfEmpty(null).
+                                    FirstOrDefault();
+                        if (CatInfo_AL != null)
+                        {
+                            <input type="hidden" id="CatId_AgendaOnline" name="CatId_AgendaOnline" value="@CatInfo_AL.id" />
+                        }
+                    }
+
+                    <label>Agenda en línea</label>
+                    @{
+                        if (CatInfo_AL != null && CatInfo_AL.val)
+                        {
+                            <input type="checkbox" id="AgendaOnline" name="AgendaOnline" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="AgendaOnline" name="AgendaOnline" />
+                        }
                     }
                 </li>
             }
