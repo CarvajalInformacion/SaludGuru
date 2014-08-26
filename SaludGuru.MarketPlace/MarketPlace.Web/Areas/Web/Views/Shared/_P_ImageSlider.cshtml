@@ -7,8 +7,9 @@
         <div u="slides" class="PrincipalSlide">
             @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel oImg in Model.CurrentProfile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral).ToList())
             {
+                @*style="background-image:url(@oImg.Value);background-repeat:no-repeat;background-position-y:center;"*@
                 <div>
-                    <img u="image" src="@oImg.Value" style="width: 100%; height: auto;" />
+                    <img u="image" src="@oImg.Value"/>
                 </div>
             }
         </div>

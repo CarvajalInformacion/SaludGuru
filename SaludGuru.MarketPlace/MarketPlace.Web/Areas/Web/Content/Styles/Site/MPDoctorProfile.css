@@ -192,18 +192,16 @@ li.MPProfileInsuranceName {
         overflow: hidden;
     }
 
-    #divProfileSlide .PrincipalSlide div{
+    /*#divProfileSlide .PrincipalSlide div{
         position:relative !important;
         display:inline-block;
         vertical-align: middle !important;
-    }
+    }*/
 
-        #divProfileSlide .PrincipalSlide img {
-            position:relative !important;
-            display:inline-block;
-            height: auto !important;
-            vertical-align: middle !important;
-        }
+        /*#divProfileSlide .PrincipalSlide img {
+            width: 350px !important;
+            height: 250px !important;
+        }*/
 
 /*.MPProfileGreatWrapper {
     border-style: solid;
