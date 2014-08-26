@@ -366,7 +366,7 @@ div#divOffice ul li {
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin: 12px auto 0px auto;
+    margin:8px auto 0px auto;
     BORDER: 1px solid #666;
     border-radius: 3px;
     box-shadow: 2px 2px 2px #666;
@@ -381,27 +381,26 @@ div#divOffice ul li {
     min-height: 100px;
     vertical-align: top;
     text-align: left;
-    width: 94%;
+    width: 96%;
 }
-
     .MPProfileCallendarWrapper ul li {
         border: none;
         display: inline-block;
     }
 
-a.MPProfileCallendarTabs {
-    font-size: 1.4em;
+.MPProfileCallendarTabs {
+    font-size: 1.2em !important;
     line-height: 20px;
     letter-spacing: -1px;
-    color: #A4C02C;
+    color: #A4C02C !important;
     background-color: #ececec;
     font-weight: bold;
     padding: 3px 10px 3px 10px;
     margin: 0px 0px 0px 0px;
     display: inline-block;
-    border-width: 1px 1px 0px 1px;
-    border-color: #666;
-    border-style: solid;
+    border-width: 1px 1px 0px 1px !important;
+    border-color: #666 !important;
+    border-style: solid !important;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     position: relative;
@@ -409,37 +408,38 @@ a.MPProfileCallendarTabs {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 128px;
+    max-width: 200px;
 }
 
-.MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail div ul li a:active {
-    background-color: #fff;
-    text-decoration: none;
+.MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail ul li a:active {
+    background-color: #fff !important;
+    text-decoration: none !important;
 }
 
-.MPProfileCallendarWrapper ul li a.selected {
-    border-bottom: 1px solid #FBFBFB;
-    margin-bottom: -1.5px;
-    background: transparent;
+.MPProfileCallendarWrapper ul li.selected {
+    border-bottom: 1px solid #FBFBFB !important;
+    margin-bottom: -1.5px !important;
+    background: transparent !important;
 }
 
 .MPProfileCallendarCallendar {
     margin: 0px 0px 0px;
     padding: 5px 1.5% 0px;
-    width: 100%;
+    width: 100% !important;
     height: auto !important;
     text-align: left;
-    border-top: 1px solid #666;
+    border: none !important;
+    border-top: 1px solid #666 !important;
+    display:block !important;
+    margin: 0px auto -5px !important;
+    padding: 5px 42px !important;
+    border-radius: initial !important;
+    box-shadow: none !important;
+}
+#divAppointmentSchedule_Template_OfficeInfo{
+    border:1px solid green;
 }
 
-    .MPProfileCallendarCallendar p {
-        font-size: 1em;
-        line-height: 21px;
-        color: #666;
-        height: auto;
-        overflow: initial;
-        font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
-    }
 
 
 /************ MAPA ***********/

@@ -7,98 +7,28 @@
 
 
     <div class="MPProfileCallendarWrapper">
-        <ul>
-            <li>
-                <a id="divAppointmentSchedule_Menu"></a>
-            </li>
-            <li>
-                <a class="MPProfileCallendarTabs" href="">direccion uno</a>
-            </li>
-            <li>
-                <a class="MPProfileCallendarTabs" href="">direccion dos</a>
-            </li>
-            <li>
-                <a class="MPProfileCallendarTabs" href="">direccion tres</a>
-            </li>
-            <li>
-                <a class="MPProfileCallendarTabs" href="">direccion cuatro</a>
-            </li>
-            <li>
-                <a class="MPProfileCallendarTabs" href="">direccion cinco</a>
-            </li>
+        <ul id="divAppointmentSchedule_Menu">
         </ul>
 
-        <div class="MPProfileCallendarCallendar">
-            <p>pancho</p>
+        <div class="MPProfileCallendarCallendar" id="divAppointmentSchedule">
         </div>
-        <div class="MPProfileCallendarCallendar">
-            <p>pancho dos</p>
-        </div>
-        <div class="MPProfileCallendarCallendar">
-            <p>pancho tres</p>
-        </div>
-        <div class="MPProfileCallendarCallendar">
-            <p>pancho cuatro</p>
-        </div>
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div>
-        
-        <div id="divAppointmentSchedule">
-        </div>
 
         <!--templates-->
         <div style="display:none;">
 
-            <!--office info template-->
-            <ul>
-                <li>
-                    <div id="divAppointmentSchedule_Template_OfficeInfo">
-                        <div class="OfficeContactSelector">
-                            <span class="OfficeContactAddress">Dirección: ${Address}</span>
-                            <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
-                        </div>
-                    </div>
+            <!--appointment menu template-->
+            <ul id="divAppointmentSchedule_Template_Menu">
+                <li id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
+                    <a class="MPProfileCallendarTabs" href="javascript:;">${OfficeName}</a>
                 </li>
             </ul>
-            <!--appointment menu template-->
-            <div id="divAppointmentSchedule_Template_Menu">
-                <ul>
-                    <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
-                        <a href="javascript:;">${OfficeName}</a>
-                    </li>
-                </ul>
+
+            <!--office info template-->
+            <div id="divAppointmentSchedule_Template_OfficeInfo">
+                <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
             </div>
 
             <!--appointment grid template-->
