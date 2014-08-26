@@ -6,17 +6,26 @@
     width: 100%;
     min-width: 768px;
 }
-
 .MPProfileColumnsWrapper {
     border: solid 1px green;
     display: block;
     margin: 0px auto;
     padding: 0px;
-    width: 80%;
-    text-align: center;
+    width: 82%;
+    text-align: left;
     line-height: 1em;    
 }
-
+@media screen and (max-width:1280px) {
+    .MPProfileColumnsWrapper {
+        border: solid 1px green;
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width:92%;
+        text-align:left;
+        line-height: 1em;
+    }
+}
 @media screen and (max-width:1024px) {
     .MPProfileColumnsWrapper {
         border: solid 1px green;
@@ -24,7 +33,29 @@
         margin: 0px auto;
         padding: 0px;
         width: 95%;
-        text-align: center;
+        text-align:left;
+        line-height: 1em;
+    }
+}
+@media screen and (max-width:800px) {
+    .MPProfileColumnsWrapper {
+        border: solid 1px green;
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width: 98%;
+        text-align:left;
+        line-height: 1em;
+    }
+}
+@media screen and (max-width:768px) {
+    .MPProfileColumnsWrapper {
+        border: solid 1px green;
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width:100%;
+        text-align:left;
         line-height: 1em;
     }
 }
@@ -37,16 +68,48 @@
     height: auto;
     text-align: left;
 }
-
 .MPProfileLeftWrapper {
     width: 45%;
 }
-
+@media screen and (max-width:1024px) {
+    .MPProfileLeftWrapper {
+        width: 40%;
+    }
+}
+@media screen and (max-width:800px) {
+    .MPProfileLeftWrapper {
+        width: 34%;
+    }
+}
+@media screen and (max-width:768px) {
+    .MPProfileLeftWrapper {
+        width: 34%;
+    }
+}
+/*************************************/
 .MPProfileRigthWrapper {
     margin: 0px 0px 0px 4px;
     width: 54%;
 }
-
+@media screen and (max-width:1024px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width:58.8%;
+    }
+}
+@media screen and (max-width:800px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width:64.8%;
+    }
+}
+@media screen and (max-width:768px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width:64.8%;
+    }
+}
+/*************************************/
 .MPProfileBottomWrapper {
     border: solid 1px yellow;
     display: block;
@@ -60,7 +123,6 @@
     text-align: left;
     vertical-align: top;
 }
-
 .MPProfileInfo_BasicInfo {
     width: auto;
     overflow: hidden;
@@ -138,7 +200,7 @@ li.MPProfileInsuranceName {
 
     .MPProfileInfo_Social a {
         display:block;
-        width:28%;
+        width:42%;
         margin:4px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
@@ -151,6 +213,7 @@ li.MPProfileInsuranceName {
         width: 26%;
         height: auto;
         vertical-align: middle;
+        max-width:32px;
     }
 
     .MPProfileInfo_Social span {
@@ -208,7 +271,7 @@ li.MPProfileInsuranceName {
 }
 .MPProfileInfoDetail div{
     border: medium none;
-    display: inline-block;
+    display:block;
     margin: 15px auto 15px auto;
     height: auto;
     min-height:100px;
@@ -270,6 +333,9 @@ li.MPProfileInsuranceName {
                     overflow:initial;
                     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
                 }
+                    div#divOffice ul li {
+                        width:90%;
+                    }
 
 /*.MPProfileGreatWrapper {
     border-style: solid;
