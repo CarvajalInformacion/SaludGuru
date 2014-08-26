@@ -48,26 +48,26 @@
         </ul>
         @if (!string.IsNullOrEmpty(ovProfileText))
         {
-            <div id="divProfileText" class="selProfileDescriptions">
+            <div id="divProfileText" class="selProfileDescriptions" style="display:none;">
                 <p>@ovProfileText.Trim()</p>
             </div>
         }
         @if (!string.IsNullOrEmpty(ovProfileEducation))
         {
-            <div id="divEducation" class="selProfileDescriptions">
+            <div id="divEducation" class="selProfileDescriptions" style="display:none;">
                 <p>@ovProfileEducation.Trim()</p>
             </div>
         }
         @if (!string.IsNullOrEmpty(ovProfileCertification))
         {
-            <div id="divCertification" class="selProfileDescriptions">
+            <div id="divCertification" class="selProfileDescriptions" style="display:none;">
                 <p>@ovProfileCertification.Trim()</p>
             </div>
         }
         @if (Model.CurrentProfile.RelatedOffice != null &&
             Model.CurrentProfile.RelatedOffice.Count > 0)
         {
-            <div id="divOffice" class="selProfileDescriptions">
+            <div id="divOffice" class="selProfileDescriptions" style="display:none;">
                 <ul>
                     @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
                     {
