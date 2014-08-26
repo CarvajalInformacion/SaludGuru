@@ -29,7 +29,7 @@
 
     <!--invalid url characters-->
     <key name="Url_Invalid_Char">
-      <![CDATA[á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
+      <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
     </key>
     
     <!--Search page-->
