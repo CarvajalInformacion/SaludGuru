@@ -1,5 +1,5 @@
 .MPProfileGreatWrapper {
-    border: solid 1px purple;
+        border:none;
     display: block;
     margin: 0px auto;
     padding: 0px;
@@ -8,7 +8,6 @@
 }
 
 .MPProfileColumnsWrapper {
-    border: solid 1px green;
     display: block;
     margin: 0px auto;
     padding: 0px;
@@ -19,7 +18,6 @@
 
 @media screen and (max-width:1280px) {
     .MPProfileColumnsWrapper {
-        border: solid 1px green;
         display: block;
         margin: 0px auto;
         padding: 0px;
@@ -31,7 +29,6 @@
 
 @media screen and (max-width:1024px) {
     .MPProfileColumnsWrapper {
-        border: solid 1px green;
         display: block;
         margin: 0px auto;
         padding: 0px;
@@ -43,7 +40,6 @@
 
 @media screen and (max-width:800px) {
     .MPProfileColumnsWrapper {
-        border: solid 1px green;
         display: block;
         margin: 0px auto;
         padding: 0px;
@@ -55,7 +51,6 @@
 
 @media screen and (max-width:768px) {
     .MPProfileColumnsWrapper {
-        border: solid 1px green;
         display: block;
         margin: 0px auto;
         padding: 0px;
@@ -67,17 +62,16 @@
 /********* COLUMNAS  *********/
 .MPProfileLeftWrapper,
 .MPProfileRigthWrapper {
-    border: solid 1px red;
+        border:none;
     display: inline-block;
     vertical-align: top;
     height: auto;
     text-align: left;
 }
-
 .MPProfileLeftWrapper {
     width: 45%;
+    padding-top: 10px;
 }
-
 @media screen and (max-width:1024px) {
     .MPProfileLeftWrapper {
         width: 40%;
@@ -123,24 +117,22 @@
 }
 /*************************************/
 .MPProfileBottomWrapper {
-    border: solid 1px yellow;
+        border:none;
     display: block;
     width: 100%;
 }
 /******** BLOQUE INFORMACION DEL DOCTOR ********/
 .MPProfileInfo_BasicInfo,
 .MPProfileInfo_BasicInfoRight {
-    border: 1px solid blue;
+        border:none;
     display: inline-block;
     text-align: left;
     vertical-align: top;
 }
-
 .MPProfileInfo_BasicInfo {
     width: auto;
     overflow: hidden;
 }
-
 div.MPProfileCertified,
 img.MPProfileCertified {
     min-width: 46px;
@@ -149,7 +141,6 @@ img.MPProfileCertified {
     vertical-align: top;
     width: 62px !important;
 }
-
 img.MPProfileDoctorImage {
     border: 1px solid #666;
     border-radius: 2px;
@@ -160,7 +151,7 @@ img.MPProfileDoctorImage {
 }
 
 .MPProfileInfo_BasicInfoRight {
-    border: 1px solid blue;
+       border:none;
     letter-spacing: -0.6px;
     width: 48.8%;
 }
@@ -170,7 +161,6 @@ img.MPProfileDoctorImage {
     font-size: 1.3em;
     color: #333;
 }
-
 .MPProfileSpecialityName {
     display: block;
     height: auto;
@@ -179,14 +169,12 @@ img.MPProfileDoctorImage {
     font-size: 1.2em;
     color: #666;
 }
-
 div.MPProfileInsuranceColumn,
 div.MPProfileSpecialtyColumn {
     display: block;
     vertical-align: top;
     width: auto;
 }
-
 .MPProfileInsurance {
     color: #666;
     letter-spacing: 0px;
@@ -206,19 +194,19 @@ li.MPProfileInsuranceName {
 }
 /******** SITIO WEB Y CONTROL FACEBOOK ********/
 .MPProfileInfo_Social {
-    border: 1px solid purple;
+        border: none;
     display: block;
     width: 100%;
 }
 
     .MPProfileInfo_Social a {
+            border:none;
         display: block;
         width: 42%;
         margin: 4px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
-        letter-spacing: -0.6px;
-        border: 1px solid green;
+        letter-spacing: -0.6px;            
         vertical-align: top;
     }
 
@@ -256,8 +244,8 @@ li.MPProfileInsuranceName {
     height: 250px;
     background: #FFF;
     overflow: hidden;
+    margin-top:6px;
 }
-
     #divProfileSlide .PrincipalSlide {
         cursor: move;
         position: absolute;
@@ -381,7 +369,7 @@ div#divOffice ul li {
     min-height: 100px;
     vertical-align: top;
     text-align: left;
-    width: 96%;
+    width:98%;
 }
     .MPProfileCallendarWrapper ul li {
         border: none;
@@ -432,20 +420,69 @@ div#divOffice ul li {
     border-top: 1px solid #666 !important;
     display:block !important;
     margin: 0px auto -5px !important;
-    padding: 5px 42px !important;
+    padding:0px !important;
     border-radius: initial !important;
     box-shadow: none !important;
 }
-#divAppointmentSchedule_Template_OfficeInfo{
-    border:1px solid green;
+.MPProfileOfficeContactSelector{
+    display: block;
+    margin:8px auto;
+    height: auto;
+    min-height: 100px;
+    vertical-align: top;
+    text-align: left;
+    width:95%;
 }
-
-
-
+div.MPProfileOfficeContactSelector span{
+            cursor:pointer;       
+            width:100%;
+            color: #92B92A;
+            text-align: left;
+            font-weight:bold;
+            font-size:14px;
+        }
+            div.MPProfileOfficeContactSelector span:hover{
+                text-decoration:underline;
+            }
+            div.MPProfileOfficeContactSelector {display:block; min-height:39px;}
+            div.MPProfileOfficeContactSelector span, div.MPProfileOfficeContactSelector span:hover{
+                cursor:auto;
+                font-size:0.9em;
+                display:block;
+                width:auto;
+                line-height:1.6em;
+                text-decoration:none;
+                color:#666;
+                text-align:left;
+                text-indent:20px;
+            }
+                span.OfficeContactTelephone,
+                span.OfficeContactAddress {
+                    background-repeat:no-repeat;
+                }
+                span.OfficeContactAddress {
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+                    background-position: -6px -1px;
+                    background-size: 27px auto;
+                }
+                span.OfficeContactTelephone {
+                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+                    background-position: 0px 2px;
+                    background-size: 18px auto;
+                }
+.MPProfileCalendarWeekTop{
+    margin: 20px 0px 0px;
+    border-top: 1px solid #666 !important;
+    display: block;
+}
 /************ MAPA ***********/
 #divOfficeMap {
     width: 100%;
     height: 250px;
+    margin: 14px 0px 0px 0px;
+    border: 1px solid #666;
+    box-shadow: 2px 2px 2px #666;
+    border-radius:2px;
 }
 
     #divOfficeMap .OfficeMapToolTip {
