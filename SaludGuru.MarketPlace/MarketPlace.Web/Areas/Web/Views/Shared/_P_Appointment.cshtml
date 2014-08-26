@@ -5,78 +5,154 @@
 {
     string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
 
+
+    <div class="MPProfileCallendarWrapper">
+        <ul>
+            <li>
+                <a id="divAppointmentSchedule_Menu"></a>
+            </li>
+            <li>
+                <a class="MPProfileCallendarTabs" href="">direccion uno</a>
+            </li>
+            <li>
+                <a class="MPProfileCallendarTabs" href="">direccion dos</a>
+            </li>
+            <li>
+                <a class="MPProfileCallendarTabs" href="">direccion tres</a>
+            </li>
+            <li>
+                <a class="MPProfileCallendarTabs" href="">direccion cuatro</a>
+            </li>
+            <li>
+                <a class="MPProfileCallendarTabs" href="">direccion cinco</a>
+            </li>
+        </ul>
+
+        <div class="MPProfileCallendarCallendar">
+            <p>pancho</p>
+        </div>
+        <div class="MPProfileCallendarCallendar">
+            <p>pancho dos</p>
+        </div>
+        <div class="MPProfileCallendarCallendar">
+            <p>pancho tres</p>
+        </div>
+        <div class="MPProfileCallendarCallendar">
+            <p>pancho cuatro</p>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div>
-        <ul id="divAppointmentSchedule_Menu"></ul>
+        
         <div id="divAppointmentSchedule">
         </div>
-    </div>
 
-    <!--templates-->
-    <div style="display:none;">
+        <!--templates-->
+        <div style="display:none;">
 
-        <!--office info template-->
-        <div id="divAppointmentSchedule_Template_OfficeInfo">
-            <div class="OfficeContactSelector">
-                <span class="OfficeContactAddress">Dirección: ${Address}</span>
-                <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
+            <!--office info template-->
+            <ul>
+                <li>
+                    <div id="divAppointmentSchedule_Template_OfficeInfo">
+                        <div class="OfficeContactSelector">
+                            <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                            <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!--appointment menu template-->
+            <div id="divAppointmentSchedule_Template_Menu">
+                <ul>
+                    <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
+                        <a href="javascript:;">${OfficeName}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--appointment grid template-->
+            <div id="divAppointmentSchedule_Template_Grid">
+                <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
+                    <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
+                    <div id="divGrid_Title_${OfficePublicId}">
+                        <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
+                        <span id="spanHeader_${OfficePublicId}"></span>
+                        <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
+                    </div>
+                    <div id="divGrid_${OfficePublicId}"></div>
+                    <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
+                        <a href="javascript:;">Buscar siguiente horario disponible</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--appointment grid event template-->
+            <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
+                <a class="${Monday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Monday.RequestDate}")');">
+                    ${Monday.AvailableDateText}
+                </a>
+            </div>
+            <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
+                <a class="${Tuesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Tuesday.RequestDate}")');">
+                    ${Tuesday.AvailableDateText}
+                </a>
+            </div>
+            <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
+                <a class="${Wednesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Wednesday.RequestDate}")');">
+                    ${Wednesday.AvailableDateText}
+                </a>
+            </div>
+            <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
+                <a class="${Thursday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Thursday.RequestDate}")');">
+                    ${Thursday.AvailableDateText}
+                </a>
+            </div>
+            <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
+                <a class="${Friday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Friday.RequestDate}")');">
+                    ${Friday.AvailableDateText}
+                </a>
+            </div>
+            <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
+                <a class="${Saturday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Saturday.RequestDate}")');">
+                    ${Saturday.AvailableDateText}
+                </a>
             </div>
         </div>
 
-        <!--appointment menu template-->
-        <div id="divAppointmentSchedule_Template_Menu">
-            <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
-                <a href="javascript:;">${OfficeName}</a>
-            </li>
-        </div>
-
-        <!--appointment grid template-->
-        <div id="divAppointmentSchedule_Template_Grid">
-            <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
-                <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
-                <div id="divGrid_Title_${OfficePublicId}">
-                    <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
-                    <span id="spanHeader_${OfficePublicId}"></span>
-                    <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
-                </div>
-                <div id="divGrid_${OfficePublicId}"></div>
-                <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
-                    <a href="javascript:;">Buscar siguiente horario disponible</a>
-                </div>
-            </div>
-        </div>
-
-        <!--appointment grid event template-->
-        <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
-            <a class="${Monday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Monday.RequestDate}")');">
-                ${Monday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
-            <a class="${Tuesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Tuesday.RequestDate}")');">
-                ${Tuesday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
-            <a class="${Wednesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Wednesday.RequestDate}")');">
-                ${Wednesday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
-            <a class="${Thursday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Thursday.RequestDate}")');">
-                ${Thursday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
-            <a class="${Friday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Friday.RequestDate}")');">
-                ${Friday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
-            <a class="${Saturday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Saturday.RequestDate}")');">
-                ${Saturday.AvailableDateText}
-            </a>
-        </div>
     </div>
+
+
 }
 else
 {
