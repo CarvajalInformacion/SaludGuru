@@ -290,7 +290,7 @@ li.MPProfileInsuranceName {
             color:#A4C02C;
             background-color:#ececec;
             font-weight:bold;
-            padding:3px 15%;
+            padding:3px 10px 3px 10px;
             margin:0px 0px 0px 0px;
             display:inline-block;
             border-width:1px 1px 0px 1px;
@@ -300,16 +300,15 @@ li.MPProfileInsuranceName {
             border-top-right-radius:3px;
             position:relative;
             z-index:10;
-
         }
             .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
                 background-color:#fff;
                 text-decoration:none;
             }
-            .MPProfileInfoDetail div ul li a.MPProfileTextSelected {
-                border-bottom:1px solid #fff;
-                background-color:#fff;
+            .MPProfileInfoDetail div ul li a.selected {
+                border-bottom:1px solid #FBFBFB;
                 margin-bottom:-1.5px;
+                background: transparent;
             }
             div#divProfileText, 
             div#divEducation, 
@@ -336,6 +335,11 @@ li.MPProfileInsuranceName {
                     div#divOffice ul li {
                         width:90%;
                     }
+
+
+
+
+
 
 /*.MPProfileGreatWrapper {
     border-style: solid;
