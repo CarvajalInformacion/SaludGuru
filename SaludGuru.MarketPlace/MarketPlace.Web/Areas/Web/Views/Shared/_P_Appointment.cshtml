@@ -9,12 +9,10 @@
     <div class="MPProfileCallendarWrapper">
         <ul id="divAppointmentSchedule_Menu">
         </ul>
-
         <div class="MPProfileCallendarCallendar" id="divAppointmentSchedule">
         </div>
     </div>
     <div>
-
         <!--templates-->
         <div style="display:none;">
 
@@ -26,16 +24,18 @@
             </ul>
 
             <!--office info template-->
-            <div id="divAppointmentSchedule_Template_OfficeInfo">
-                <span class="OfficeContactAddress">Dirección: ${Address}</span>
-                <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
-            </div>
+                    <div id="divAppointmentSchedule_Template_OfficeInfo">
+                        <div class="MPProfileOfficeContactSelector">
+                            <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                            <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
+                        </div>
+                    </div>
 
             <!--appointment grid template-->
             <div id="divAppointmentSchedule_Template_Grid">
                 <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
                     <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
-                    <div id="divGrid_Title_${OfficePublicId}">
+                    <div class="MPProfileCalendarWeekTop" id="divGrid_Title_${OfficePublicId}">
                         <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
                         <span id="spanHeader_${OfficePublicId}"></span>
                         <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
