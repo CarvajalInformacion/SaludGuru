@@ -572,18 +572,25 @@ div.MPProfileOfficeContactSelector span{
                     background-size: 18px auto;
                 }
 .MPProfileCalendarWeekTop{
-    margin: 20px 0px 0px;
+    margin:20px 0px 0px;
     border-top: 1px solid #666 !important;
     display: block;
 }
 .k-grid td {
-    line-height: 1em !important;
+    line-height: 1.3em !important;
     padding: 0.2em 0.1em !important;
     overflow: hidden !important;
     vertical-align: middle !important;
     text-overflow: ellipsis !important;
     font-size: 0.9em !important;
     letter-spacing: -0.3px !important;
+}
+div.k-grid-content {
+    width:100% !important;
+}
+div.k-grid-content > table > colgroup > col {
+    box-sizing: content-box;
+    width:70px !important;
 }
 
 /************ MAPA ***********/

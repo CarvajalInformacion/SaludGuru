@@ -20,7 +20,6 @@ h1 {
 }
 /*-----Search Box------*/
 .SearchBox {
-    outline: 1px solid black;
     height: 400px !important;
     padding: 10% 0px 0px !important;
 }
@@ -245,10 +244,11 @@ div#___plusone_0 {
     display: block !important;
     height: auto !important;
     margin: 5px auto !important;
+
 }
 
 iframe#I0_1408669437247{
-    width: 100% !important;
+    /*width: 100% !important;*/
 }
 
 /*-----Noticias------*/
