@@ -340,7 +340,6 @@ div#divOffice {
     overflow: initial;
     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
 }
-
 div#divOffice ul li {
     width: 90%;
 }
@@ -356,7 +355,7 @@ div#divOffice ul li {
     font-size: 1em;
     margin:8px auto 0px auto;
     BORDER: 1px solid #666;
-    border-radius: 3px;
+    border-radius:2px;
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
 }
@@ -371,14 +370,17 @@ div#divOffice ul li {
     text-align: left;
     width:98%;
 }
+    .MPProfileCallendarWrapper ul{
+        margin-bottom:-4px;
+    }
     .MPProfileCallendarWrapper ul li {
         border: none;
         display: inline-block;
     }
 
 .MPProfileCallendarTabs {
-    font-size: 1.2em !important;
-    line-height: 20px;
+    font-size:0.9em !important;
+    line-height:18px;
     letter-spacing: -1px;
     color: #A4C02C !important;
     background-color: #ececec;
@@ -396,7 +398,7 @@ div#divOffice ul li {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width:175px;
 }
 
 .MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail ul li a:active {
@@ -475,6 +477,15 @@ div.MPProfileOfficeContactSelector span{
     border-top: 1px solid #666 !important;
     display: block;
 }
+.k-grid td {
+    line-height: 1em !important;
+    padding: 0.2em 0.1em !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.9em !important;
+}
+
 /************ MAPA ***********/
 #divOfficeMap {
     width: 100%;
