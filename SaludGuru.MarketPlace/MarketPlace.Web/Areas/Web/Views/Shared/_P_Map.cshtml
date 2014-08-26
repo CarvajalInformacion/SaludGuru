@@ -3,7 +3,6 @@
 @if (!Model.RenderScripts)
 {
     <div>
-        <span>Ubicación del Doctor</span>
         <div id="divOfficeMap">
         </div>
     </div>
@@ -12,11 +11,11 @@
     <div style="display:none;">
         <!--tool tip template-->
         <div id="OfficeToolTip_divOfficeMap">
-            <div>
-                <img src="${ProfileImage}" />
-                <div>
-                    <span>Dirección: ${Address}</span>
-                    <span>Teléfono: ${Telephone}</span>
+            <div class="OfficeMapToolTip">
+                <img src="" />
+                <div class="OfficeContactSelector">
+                    <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                    <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
                 </div>
             </div>
 
