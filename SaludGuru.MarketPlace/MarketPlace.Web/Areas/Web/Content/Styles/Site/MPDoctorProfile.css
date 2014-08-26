@@ -72,56 +72,62 @@
         height: auto;
         display: inline-block;
         vertical-align: top;
-        width:62px !important;
+    width: 62px !important;
     }
 
         img.MPProfileDoctorImage {
             border: 1px solid #666;
             border-radius: 2px;
             display: inline-block;
-            width:142px;
+    width: 142px;
             height: auto;
             vertical-align: top;
         }
+
 .MPProfileInfo_BasicInfoRight {
     border: 1px solid blue;
     letter-spacing: -0.6px;
-    width:48.8%;
+    width: 48.8%;
 }
+
 .MPProfileDoctorName {
-    line-height:24px;
-    font-size:1.3em;
-    color:#333;
+    line-height: 24px;
+    font-size: 1.3em;
+    color: #333;
 }
+
 .MPProfileSpecialityName {
     display: block;
     height: auto;
     margin: 4px 0px !important;
-    line-height:1em;
-    font-size:1.2em;
+    line-height: 1em;
+    font-size: 1.2em;
     color: #666;
 }
+
 div.MPProfileInsuranceColumn,
 div.MPProfileSpecialtyColumn {
-    display:block;    
-    vertical-align:top;
-    width:auto;
+    display: block;
+    vertical-align: top;
+    width: auto;
 }
+
 .MPProfileInsurance {
     color: #666;
-    letter-spacing:0px;
+    letter-spacing: 0px;
     font-size: 0.8em;
     line-height: 1em;
     margin: 6px 0px;
 }
+
 li.MPProfileInsuranceName {
-    width:auto;
+    width: auto;
     line-height: 1em;
     border: medium none;
-    display:block;
-    font-size:0.9em;
-    letter-spacing:0px;
-    text-indent:8px;
+    display: block;
+    font-size: 0.9em;
+    letter-spacing: 0px;
+    text-indent: 8px;
 }
 /******** SITIO WEB Y CONTROL FACEBOOK ********/
 .MPProfileInfo_Social {
@@ -129,6 +135,7 @@ li.MPProfileInsuranceName {
     display: block;
     width: 100%;
 }
+
     .MPProfileInfo_Social a {
         display:block;
         width:28%;
@@ -136,28 +143,53 @@ li.MPProfileInsuranceName {
         text-decoration: none;
         color: #92B92A;
         letter-spacing: -0.6px;
-        border:1px solid green;
-        vertical-align:top;
+        border: 1px solid green;
+        vertical-align: top;
     }
+
     .MPProfileInfo_Social img {
         width: 26%;
-        height: auto; vertical-align: middle;
+        height: auto;
+        vertical-align: middle;
     }
+
     .MPProfileInfo_Social span {
         font-size: 0.8em;
         letter-spacing: 0px;
         margin: 0px 0px 0px 1px;
         width: 64%;
-        line-height:29px;
+        line-height: 29px;
         color: #666;
     }
-.MPProfileInfo_Social iframe{
-    border:none; 
-    overflow:hidden; 
-    height:60px;
-    width:auto;
-    display:block;
-    vertical-align:top;
+
+    .MPProfileInfo_Social iframe {
+        border: none;
+        overflow: hidden;
+        height: 60px;
+        width: auto;
+        display: block;
+        vertical-align: top;
+    }
+
+/******** IMAGE SLIDER ********/
+#divProfileSlide {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 460px;
+    height: 250px;
+    background: #FFF;
+    overflow: hidden;
+}
+
+    #divProfileSlide .PrincipalSlide {
+        cursor: move;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 350px;
+        height: 250px;
+        overflow: hidden;
 }
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
 .MPProfileInfoDetail {

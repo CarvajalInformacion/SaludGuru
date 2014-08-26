@@ -13,7 +13,7 @@ var ProfileSliderObject = {
     RenderAsync: function () {
 
         var options = {
-            $AutoPlay: true,
+            $AutoPlay: false,
             $AutoPlaySteps: 1,
             $AutoPlayInterval: 10000,
             $PauseOnHover: 3,
@@ -33,11 +33,11 @@ var ProfileSliderObject = {
                 $ChanceToShow: 2,
 
                 $Loop: 2,
-                $AutoCenter: 3,
+                $AutoCenter: 2,
                 $Lanes: 1,
                 $SpacingX: 2,
                 $SpacingY: 2,
-                $DisplayPieces: 4,
+                $DisplayPieces: 3,
                 $ParkingPosition: 0,
                 $Orientation: 2,
                 $DisableDrag: false
@@ -80,12 +80,14 @@ var ProfileDetailObject = {
     ProfileTextId: '',
     ProfileEducationId: '',
     ProfileCertificationId: '',
+    OfficeId: '',
 
     /*init variables*/
     Init: function (vInitObject) {
         this.ProfileTextId = vInitObject.ProfileTextId;
         this.ProfileEducationId = vInitObject.ProfileEducationId;
         this.ProfileCertificationId = vInitObject.ProfileCertificationId;
+        this.OfficeId = vInitObject.OfficeId;
     },
 
     RenderAsync: function () {
@@ -127,12 +129,24 @@ var ProfileDetailObject = {
                 IsRender = true;
             }
         }
+
+        if ($('#' + ProfileDetailObject.OfficeId).length > 0) {
+
+            $('#' + ProfileDetailObject.OfficeId + '_sel').click(function () {
+                ProfileDetailObject.ShowTab(ProfileDetailObject.OfficeId);
+            });
+
+            if (IsRender == false) {
+                ProfileDetailObject.ShowTab(ProfileDetailObject.OfficeId);
+                IsRender = true;
+            }
+        }
     },
 
     ShowTab: function (DivId) {
         $('.selProfileDescriptions').hide();
-        $('.selProfileDescriptions').removeClass('selected');
-        $('#' + DivId).addClass('selected');
+        $('.selProfileDescriptionsa').removeClass('selected');
+        $('#' + DivId + '_sel').addClass('selected');
         $('#' + DivId).fadeIn('slow');
     },
 };

@@ -190,6 +190,7 @@ var AppointmentObject = {
     },
 
     ChangeOffice: function (vOfficePublicId) {
+        debugger;
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
@@ -391,9 +392,10 @@ $('#SaveAppointmentId').click(function () {
 
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
-    //if (startDate == "") {
-    //    return false;
-    //}
+    if (startDate == "") {
+        $('#DateMoreInfoIdN').val("Aun no has seleccionado una hora para tu cita");
+        return false;
+    }
     if (treatmentSelected == null) {
         return false;
     }

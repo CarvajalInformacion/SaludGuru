@@ -220,7 +220,7 @@ div.MPAgendaConfirmationMessage div span:nth-child(5) {
         line-height: 22px !important;
         color: #99c21d !important;
         text-decoration: initial;
-        cursor: auto;
+        cursor: inherit;
     }
 
 .DefaultSpecialty label {
