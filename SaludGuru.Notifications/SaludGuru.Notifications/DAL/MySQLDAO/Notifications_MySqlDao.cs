@@ -18,7 +18,7 @@ namespace SaludGuru.Notifications.DAL.MySQLDAO
             DataInstance = new ADO.MYSQL.MySqlImplement(SaludGuru.Notifications.Models.Constants.C_NotificationConnectionName);
         }
 
-        public int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNoticaficationType NotificationType, string Title, string Body)
+        public int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNotificationType NotificationType, string Title, string Body)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -86,7 +86,7 @@ namespace SaludGuru.Notifications.DAL.MySQLDAO
                                           UserPublicId = pm.Field<string>("PublicUserIdFrom"),
                                       },
                                       Status = (enumNotificationStatus)pm.Field<int>("Status"),
-                                      NotificationType = (enumNoticaficationType)pm.Field<int>("NotificationType"),
+                                      NotificationType = (enumNotificationType)pm.Field<int>("NotificationType"),
                                       Title = pm.Field<string>("Title"),
                                       Body = pm.Field<string>("Body"),
                                       LastModify = pm.Field<DateTime>("LastModify"),

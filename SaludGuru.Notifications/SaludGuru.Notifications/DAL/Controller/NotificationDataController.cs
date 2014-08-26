@@ -33,7 +33,7 @@ namespace SaludGuru.Notifications.DAL.Controller
 
         #endregion
 
-        public int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNoticaficationType NotificationType, string Title, string Body)
+        public int NotificationCreate(string PublicUserId, string PublicUserFrom, enumNotificationStatus NotificationStatus, enumNotificationType NotificationType, string Title, string Body)
         {
             return DataFactory.NotificationCreate(PublicUserId, PublicUserFrom, NotificationStatus, NotificationType, Title, Body);
         }

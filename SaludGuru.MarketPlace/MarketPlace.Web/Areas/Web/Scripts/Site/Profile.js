@@ -183,6 +183,11 @@ var ProfileAppointmentObject = {
 
             //create div to put a calendar
             $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
+            //show office basic info
+            var vOfficeInfo = $('#' + this.DivId + '_Template_OfficeInfo').html();
+            vOfficeInfo = vOfficeInfo.replace(/\${Address}/gi, this.lstOffice[item].OfficeAddress);
+            vOfficeInfo = vOfficeInfo.replace(/\${Telephone}/gi, this.lstOffice[item].OfficeTelephone);
+            $('#divGrid_OfficeInfo_' + this.lstOffice[item].OfficePublicId).html(vOfficeInfo);
 
             if (oFirstRender == false) {
                 this.RenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
@@ -367,13 +372,14 @@ var ProfileMapObject = {
         for (var item in this.lstOffice) {
             //get tool tip for office
             var oToolTip = $('#OfficeToolTip_' + ProfileMapObject.DivId).html();
-            oToolTip = oToolTip.replace(/\${ProfileImage}/gi, ProfileMapObject.lstOffice[item].ProfileImage);
+            oToolTip = oToolTip.replace(/<img src=""/gi, '<img src="' + ProfileMapObject.lstOffice[item].ProfileImage + '"');
             oToolTip = oToolTip.replace(/\${OfficeName}/gi, ProfileMapObject.lstOffice[item].OfficeName);
             oToolTip = oToolTip.replace(/\${Address}/gi, ProfileMapObject.lstOffice[item].Address);
             oToolTip = oToolTip.replace(/\${Telephone}/gi, ProfileMapObject.lstOffice[item].Telephone);
 
             $('#' + ProfileMapObject.DivId).gmap('addMarker', {
                 'position': ProfileMapObject.lstOffice[item].Geolocation,
+                //'height': '10px'
             }).click(function () {
                 $('#' + ProfileMapObject.DivId).gmap('openInfoWindow',
                     {
