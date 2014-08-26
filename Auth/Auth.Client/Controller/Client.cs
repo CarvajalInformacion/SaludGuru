@@ -12,5 +12,10 @@ namespace Auth.Client.Controller
         {
             return DAL.Controller.ClientDataController.Instance.GetUserList(UserPublicIdList);
         }
+
+        public static List<SessionController.Models.Auth.User> GetUserListByEmailList(string UserEmailList)
+        {
+            return DAL.Controller.ClientDataController.Instance.GetUserListByEmailList(UserEmailList);
+        }
     }
 }
