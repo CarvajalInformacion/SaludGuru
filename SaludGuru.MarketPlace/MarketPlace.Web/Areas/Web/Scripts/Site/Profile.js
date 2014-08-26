@@ -13,7 +13,7 @@ var ProfileSliderObject = {
     RenderAsync: function () {
 
         var options = {
-            $AutoPlay: true,
+            $AutoPlay: false,
             $AutoPlaySteps: 1,
             $AutoPlayInterval: 10000,
             $PauseOnHover: 3,
@@ -37,7 +37,7 @@ var ProfileSliderObject = {
                 $Lanes: 1,
                 $SpacingX: 2,
                 $SpacingY: 2,
-                $DisplayPieces: 4,
+                $DisplayPieces: 3,
                 $ParkingPosition: 0,
                 $Orientation: 2,
                 $DisableDrag: false
@@ -145,8 +145,8 @@ var ProfileDetailObject = {
 
     ShowTab: function (DivId) {
         $('.selProfileDescriptions').hide();
-        $('.selProfileDescriptions').removeClass('selected');
-        $('#' + DivId).addClass('selected');
+        $('.selProfileDescriptionsa').removeClass('selected');
+        $('#' + DivId + '_sel').addClass('selected');
         $('#' + DivId).fadeIn('slow');
     },
 };

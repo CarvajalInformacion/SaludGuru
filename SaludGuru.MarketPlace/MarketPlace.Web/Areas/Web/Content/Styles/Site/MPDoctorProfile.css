@@ -177,7 +177,7 @@ li.MPProfileInsuranceName {
     top: 0px;
     left: 0px;
     width: 460px;
-    height: 300px;
+    height: 250px;
     background: #FFF;
     overflow: hidden;
 }
@@ -188,12 +188,21 @@ li.MPProfileInsuranceName {
         left: 0px;
         top: 0px;
         width: 350px;
-        height: 300px;
+        height: 250px;
         overflow: hidden;
     }
 
+    #divProfileSlide .PrincipalSlide div{
+        position:relative !important;
+        display:inline-block;
+        vertical-align: middle !important;
+    }
+
         #divProfileSlide .PrincipalSlide img {
+            position:relative !important;
+            display:inline-block;
             height: auto !important;
+            vertical-align: middle !important;
         }
 
 /*.MPProfileGreatWrapper {
