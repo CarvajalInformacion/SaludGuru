@@ -19,7 +19,7 @@
         <div class="TextConfirmation">
             <span>Cita agendada correctamente con el <strong>Dr/a. @Model.CurrentProfile.Name @Model.CurrentProfile.LastName</strong></span>
             <span> el día <strong>@Model.StartDate</strong></span>
-            <span>en la <strong>@Model.CurrentOffice</strong></span>
+            <span>en la <strong>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</strong></span>
             <span>
                 Enviaremos la confirmación de la cita a tu correo electrónico.<br>
                 Si no la has recibido, por favor revisar en la bandeja de correos no deseados.
