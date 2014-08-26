@@ -61,6 +61,8 @@
         ImageProfileSmallOriginal = 421,
         ImageProfileLargeOriginal = 422,
         ImageGeneralOriginal = 423,
+
+        AgendaOnline = 430,
     }
 
     public enum enumOfficeInfoType

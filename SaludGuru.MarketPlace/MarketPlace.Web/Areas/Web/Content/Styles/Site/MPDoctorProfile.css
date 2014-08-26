@@ -1,5 +1,5 @@
 .MPProfileGreatWrapper {
-        border:none;
+    border: none;
     display: block;
     margin: 0px auto;
     padding: 0px;
@@ -62,16 +62,18 @@
 /********* COLUMNAS  *********/
 .MPProfileLeftWrapper,
 .MPProfileRigthWrapper {
-        border:none;
+    border: none;
     display: inline-block;
     vertical-align: top;
     height: auto;
     text-align: left;
 }
+
 .MPProfileLeftWrapper {
     width: 45%;
     padding-top: 10px;
 }
+
 @media screen and (max-width:1024px) {
     .MPProfileLeftWrapper {
         width: 40%;
@@ -117,30 +119,136 @@
 }
 /*************************************/
 .MPProfileBottomWrapper {
-        border:none;
+    border: none;
     display: block;
     width: 100%;
 }
 /******** BLOQUE INFORMACION DEL DOCTOR ********/
 .MPProfileInfo_BasicInfo,
 .MPProfileInfo_BasicInfoRight {
-        border:none;
+    border: none;
     display: inline-block;
     text-align: left;
     vertical-align: top;
 }
+
 .MPProfileInfo_BasicInfo {
     width: auto;
     overflow: hidden;
 }
+
+.MPProfileInfo_BasicInfoRight {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    background: linear-gradient(#fff, #ececec);
+    padding: 10px 10px 10px 10px;
+    min-height: 210px !important;
+}
+
+/*------Media Styles-------*/
+
+/*
+    Rangos 
+     > 1280
+    1279 <=> 1200
+    1199 <=> 1024
+    1023 <=> 900
+    899 <=> 768
+    768 <
+    */
+/*----Media Profile Info-----*/
+@media (min-width: 1280px) {
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 53% !important;
+    }
+}
+
+@media (min-width: 1124px) and (max-width: 1279px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 47% !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1123px) {
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 43% !important;
+    }
+}
+
+
+@media (min-width: 980px) and (max-width: 1023px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 63% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 979px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 63% !important;
+    }
+
+    .MPProfileCertified {
+        width: 28% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 50px !important;
+    }
+}
+
+@media (max-width: 899px) {
+
+    .MPProfileInfo_BasicInfo {
+    }
+
+    .MPProfileDoctorImage {
+        width: 120px !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 100% !important;
+    }
+}
+/*--------------------------------------*/
+
 div.MPProfileCertified,
 img.MPProfileCertified {
     min-width: 46px;
     height: auto;
     display: inline-block;
     vertical-align: top;
-    width: 62px !important;
+    /*width: 62px !important;*/
+    width: 62px;
 }
+
 img.MPProfileDoctorImage {
     border: 1px solid #666;
     border-radius: 2px;
@@ -151,7 +259,7 @@ img.MPProfileDoctorImage {
 }
 
 .MPProfileInfo_BasicInfoRight {
-       border:none;
+    border: none;
     letter-spacing: -0.6px;
     width: 48.8%;
 }
@@ -161,6 +269,7 @@ img.MPProfileDoctorImage {
     font-size: 1.3em;
     color: #333;
 }
+
 .MPProfileSpecialityName {
     display: block;
     height: auto;
@@ -169,12 +278,14 @@ img.MPProfileDoctorImage {
     font-size: 1.2em;
     color: #666;
 }
+
 div.MPProfileInsuranceColumn,
 div.MPProfileSpecialtyColumn {
     display: block;
     vertical-align: top;
     width: auto;
 }
+
 .MPProfileInsurance {
     color: #666;
     letter-spacing: 0px;
@@ -194,19 +305,19 @@ li.MPProfileInsuranceName {
 }
 /******** SITIO WEB Y CONTROL FACEBOOK ********/
 .MPProfileInfo_Social {
-        border: none;
+    border: none;
     display: block;
     width: 100%;
 }
 
     .MPProfileInfo_Social a {
-            border:none;
+        border: none;
         display: block;
         width: 42%;
         margin: 4px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
-        letter-spacing: -0.6px;            
+        letter-spacing: -0.6px;
         vertical-align: top;
     }
 
@@ -244,8 +355,9 @@ li.MPProfileInsuranceName {
     height: 250px;
     background: #FFF;
     overflow: hidden;
-    margin-top:6px;
+    margin-top: 6px;
 }
+
     #divProfileSlide .PrincipalSlide {
         cursor: move;
         position: absolute;
@@ -354,9 +466,9 @@ div#divOffice ul li {
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin:8px auto 0px auto;
+    margin: 8px auto 0px auto;
     BORDER: 1px solid #666;
-    border-radius: 3px;
+    border-radius: 2px;
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
 }
@@ -369,16 +481,21 @@ div#divOffice ul li {
     min-height: 100px;
     vertical-align: top;
     text-align: left;
-    width:98%;
+    width: 98%;
 }
-    .MPProfileCallendarWrapper ul li {
-        border: none;
-        display: inline-block;
+
+    .MPProfileCallendarWrapper ul {
+        margin-bottom: -4px;
     }
 
+        .MPProfileCallendarWrapper ul li {
+            border: none;
+            display: inline-block;
+        }
+
 .MPProfileCallendarTabs {
-    font-size: 1.2em !important;
-    line-height: 20px;
+    font-size: 0.9em !important;
+    line-height: 18px;
     letter-spacing: -1px;
     color: #A4C02C !important;
     background-color: #ececec;
@@ -396,7 +513,7 @@ div#divOffice ul li {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width: 175px;
 }
 
 .MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail ul li a:active {
@@ -418,63 +535,86 @@ div#divOffice ul li {
     text-align: left;
     border: none !important;
     border-top: 1px solid #666 !important;
-    display:block !important;
+    display: block !important;
     margin: 0px auto -5px !important;
-    padding:0px !important;
+    padding: 0px !important;
     border-radius: initial !important;
     box-shadow: none !important;
 }
-.MPProfileOfficeContactSelector{
+
+.MPProfileOfficeContactSelector {
     display: block;
-    margin:8px auto;
+    margin: 8px auto;
     height: auto;
     min-height: 100px;
     vertical-align: top;
     text-align: left;
-    width:95%;
+    width: 95%;
 }
-div.MPProfileOfficeContactSelector span{
-            cursor:pointer;       
-            width:100%;
-            color: #92B92A;
-            text-align: left;
-            font-weight:bold;
-            font-size:14px;
-        }
-            div.MPProfileOfficeContactSelector span:hover{
-                text-decoration:underline;
-            }
-            div.MPProfileOfficeContactSelector {display:block; min-height:39px;}
-            div.MPProfileOfficeContactSelector span, div.MPProfileOfficeContactSelector span:hover{
-                cursor:auto;
-                font-size:0.9em;
-                display:block;
-                width:auto;
-                line-height:1.6em;
-                text-decoration:none;
-                color:#666;
-                text-align:left;
-                text-indent:20px;
-            }
-                span.OfficeContactTelephone,
-                span.OfficeContactAddress {
-                    background-repeat:no-repeat;
-                }
-                span.OfficeContactAddress {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
-                    background-position: -6px -1px;
-                    background-size: 27px auto;
-                }
-                span.OfficeContactTelephone {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
-                    background-position: 0px 2px;
-                    background-size: 18px auto;
-                }
-.MPProfileCalendarWeekTop{
+
+div.MPProfileOfficeContactSelector span {
+    cursor: pointer;
+    width: 100%;
+    color: #92B92A;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+    div.MPProfileOfficeContactSelector span:hover {
+        text-decoration: underline;
+    }
+
+div.MPProfileOfficeContactSelector {
+    display: block;
+    min-height: 39px;
+}
+
+    div.MPProfileOfficeContactSelector span, div.MPProfileOfficeContactSelector span:hover {
+        cursor: auto;
+        font-size: 0.9em;
+        display: block;
+        width: auto;
+        line-height: 1.6em;
+        text-decoration: none;
+        color: #666;
+        text-align: left;
+        text-indent: 20px;
+    }
+
+span.OfficeContactTelephone,
+span.OfficeContactAddress {
+    background-repeat: no-repeat;
+}
+
+span.OfficeContactAddress {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -6px -1px;
+    background-size: 27px auto;
+}
+
+span.OfficeContactTelephone {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 0px 2px;
+    background-size: 18px auto;
+}
+
+.MPProfileCalendarWeekTop {
     margin: 20px 0px 0px;
     border-top: 1px solid #666 !important;
     display: block;
 }
+
+.k-grid td {
+    line-height: 1em !important;
+    padding: 0.2em 0.1em !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.9em !important;
+    letter-spacing: -0.3px !important;
+}
+
 /************ MAPA ***********/
 #divOfficeMap {
     width: 100%;
@@ -482,7 +622,7 @@ div.MPProfileOfficeContactSelector span{
     margin: 14px 0px 0px 0px;
     border: 1px solid #666;
     box-shadow: 2px 2px 2px #666;
-    border-radius:2px;
+    border-radius: 2px;
 }
 
     #divOfficeMap .OfficeMapToolTip {
