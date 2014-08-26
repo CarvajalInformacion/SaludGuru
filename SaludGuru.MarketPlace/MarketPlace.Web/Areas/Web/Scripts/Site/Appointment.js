@@ -190,6 +190,7 @@ var AppointmentObject = {
     },
 
     ChangeOffice: function (vOfficePublicId) {
+        debugger;
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();

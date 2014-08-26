@@ -219,12 +219,16 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            AppointmentObject.ChangeOffice();
+            
             InitFunctionsNewPatient.InitialLoad();
             InitFunctionsNewPatient.ChangeCheck();
             InitFunctionsNewPatient.ChangeCheckNewPatient();
             $("#itemClose").click(function () {
                 CloseNewPatient();
+            });
+            $('#SelectedOffice').click(function () {
+                debugger;
+                AppointmentObject.ChangeOffice();
             });
         });
     </script>

@@ -13,7 +13,7 @@
     {
         DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName),
         ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
-        SpecialtyName = !string.IsNullOrEmpty(Model.CurrentProfile.DefaultSpecialty.Name) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.DefaultSpecialty.Name) : string.Empty,
+        SpecialtyName = (Model.CurrentProfile.DefaultSpecialty != null) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.DefaultSpecialty.Name) : string.Empty,
     }));
 }
 <h2>Estas agendando una cita con</h2>
@@ -27,7 +27,15 @@
         </a>
     </li>
     <li class="DefaultSpecialty">
-        <label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
+        @if (Model.CurrentProfile.DefaultSpecialty != null)
+        {
+            <label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
+        }
+        else
+        {
+            <label></label>
+        }
+
     </li>
     <li class="RelatedOffice">
         <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.IsDefault == true).Select(x => x.Name).FirstOrDefault()</label>
