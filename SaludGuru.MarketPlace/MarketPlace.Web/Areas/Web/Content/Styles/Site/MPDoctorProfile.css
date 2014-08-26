@@ -484,6 +484,7 @@ div.MPProfileOfficeContactSelector span{
     vertical-align: middle !important;
     text-overflow: ellipsis !important;
     font-size: 0.9em !important;
+    letter-spacing: -0.3px !important;
 }
 
 /************ MAPA ***********/
