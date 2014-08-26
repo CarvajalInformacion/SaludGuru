@@ -357,6 +357,91 @@ div#divOffice ul li {
     width: 90%;
 }
 
+/************* TABS CALENDARIO PROFESIONAL ************/
+.MPProfileScheduleCallendar {
+    border-style: solid;
+    border-width: 1px 0px;
+    border-color: #666;
+    display: block;
+    width: 100%;
+    height: auto;
+    font-size: 1em;
+    margin: 12px auto 0px auto;
+    BORDER: 1px solid #666;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #666;
+    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+}
+
+.MPProfileCallendarWrapper {
+    border: medium none;
+    display: block;
+    margin: 15px auto 15px auto;
+    height: auto;
+    min-height: 100px;
+    vertical-align: top;
+    text-align: left;
+    width: 94%;
+}
+
+    .MPProfileCallendarWrapper ul li {
+        border: none;
+        display: inline-block;
+    }
+
+a.MPProfileCallendarTabs {
+    font-size: 1.4em;
+    line-height: 20px;
+    letter-spacing: -1px;
+    color: #A4C02C;
+    background-color: #ececec;
+    font-weight: bold;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 0px 0px 0px;
+    display: inline-block;
+    border-width: 1px 1px 0px 1px;
+    border-color: #666;
+    border-style: solid;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 128px;
+}
+
+.MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail div ul li a:active {
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.MPProfileCallendarWrapper ul li a.selected {
+    border-bottom: 1px solid #FBFBFB;
+    margin-bottom: -1.5px;
+    background: transparent;
+}
+
+.MPProfileCallendarCallendar {
+    margin: 0px 0px 0px;
+    padding: 5px 1.5% 0px;
+    width: 100%;
+    height: auto !important;
+    text-align: left;
+    border-top: 1px solid #666;
+}
+
+    .MPProfileCallendarCallendar p {
+        font-size: 1em;
+        line-height: 21px;
+        color: #666;
+        height: auto;
+        overflow: initial;
+        font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    }
+
+
 /************ MAPA ***********/
 #divOfficeMap {
     width: 100%;
