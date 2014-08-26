@@ -6,7 +6,7 @@
         No_Leida = 1302
     }
 
-    public enum enumNoticaficationType
+    public enum enumNotificationType
     {
         CitaCreada = 1501,
         CitaCancelada = 1502,

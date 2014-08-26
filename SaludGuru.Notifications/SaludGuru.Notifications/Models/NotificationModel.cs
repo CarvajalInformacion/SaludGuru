@@ -17,6 +17,6 @@ namespace SaludGuru.Notifications.Models
         public string Body { get; set; }
         public DateTime LastModify { get; set; }
         public DateTime CreateDate { get; set; }
-        public enumNoticaficationType NotificationType { get; set; }
+        public enumNotificationType NotificationType { get; set; }
     }
 }
