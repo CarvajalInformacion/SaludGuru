@@ -3,98 +3,104 @@
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 
     Model.RenderScripts = false;
-}
-    <div class="MPProfileGreatWrapper">
-        <div class="MPProfileColumnsWrapper">
-            @if (1 == 1)
-            {
-                @*Metting enabled*@
 
-                <div class="MPProfileLeftWrapper">
-                    <!--Profile Basic Info-->
-                    <div class="MPProfileInfoInfo">
-                        @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-                    </div>
-                    <!--Profile Images-->
-                    <div class="MPProfileInfoImages">
-                        @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-                    </div>
+    bool ScheduleEnabled = Model.CurrentProfile.ProfileInfo.
+        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
+        Select(x => x.Value == "true" ? true : false).
+        DefaultIfEmpty(false).
+        FirstOrDefault();
+}
+<div class="MPProfileGreatWrapper">
+    <div class="MPProfileColumnsWrapper">
+        @if (ScheduleEnabled)
+        {
+            @*Metting enabled*@
+
+            <div class="MPProfileLeftWrapper">
+                <!--Profile Basic Info-->
+                <div class="MPProfileInfoInfo">
+                    @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
                 </div>
-                <div class="MPProfileRigthWrapper">
-                    <!--Profile Schedule-->
-                    <div class="MPProfileScheduleCallendar">
-                        @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
-                    </div>
-                    <!--Profile Map-->
-                    <div class="MPProfileMap">
-                        @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
-                    </div>
+                <!--Profile Images-->
+                <div class="MPProfileInfoImages">
+                    @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
                 </div>
+            </div>
+            <div class="MPProfileRigthWrapper">
+                <!--Profile Schedule-->
+                <div class="MPProfileScheduleCallendar">
+                    @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
+                </div>
+                <!--Profile Map-->
+                <div class="MPProfileMap">
+                    @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
+                </div>
+            </div>
+                <!--Profile Description-->
+            <div class="MPProfileInfoDetail">
+                @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
+            </div>
+        }
+        else
+        {
+            @*Metting disabled*@
+            <div class="MPProfileLeftWrapper">
+                <!--Profile Basic Info-->
+                <div class="MPProfileInfoInfo">
+                    @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
+                </div>
+                <!--Profile Images-->
+                <div class="MPProfileInfoImages">
+                    @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
+                </div>
+            </div>
+            <div class="MPProfileRigthWrapper">
                 <!--Profile Description-->
                 <div class="MPProfileInfoDetail">
                     @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
                 </div>
-            }
-            else
-            {
-                @*Metting disabled*@
-                <div class="MPProfileLeftWrapper">
-                    <!--Profile Basic Info-->
-                    <div class="MPProfileInfoInfo">
-                        @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-                    </div>
-                    <!--Profile Images-->
-                    <div class="MPProfileInfoImages">
-                        @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-                    </div>
+                <!--Profile Map-->
+                <div class="MPProfileMap">
+                    @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
                 </div>
-                <div class="MPProfileRigthWrapper">
-                    <!--Profile Description-->
-                    <div class="MPProfileInfoDetail">
-                        @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
-                    </div>
-                    <!--Profile Map-->
-                    <div class="MPProfileMap">
-                        @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
-                    </div>
-                </div>
-            }
             </div>
-        </div>
+        }
+    </div>
+</div>
 
 
-    @*<!--Profile Basic Info-->
-        <div class="MPProfileInfoWrapper">
-            <!--Profile Images-->
-            <div class="MPProfileInfoImages">
-                @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-            </div>
-            <!--Profile Basic Info Detail-->
-            <div class="MPProfileInfoInfo">
-                @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-            </div>
+@*<!--Profile Basic Info-->
+    <div class="MPProfileInfoWrapper">
+        <!--Profile Images-->
+        <div class="MPProfileInfoImages">
+            @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
         </div>
-        <!--Profile Description-->
-        <div class="MPProfileInfoDetail">
-            @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
+        <!--Profile Basic Info Detail-->
+        <div class="MPProfileInfoInfo">
+            @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
         </div>
-        <!--Profile Schedule-->
-        <div class="MPProfileSchedule">
-            @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
-        </div>
-        <!--Profile Map-->
-        <div class="MPProfileMap">
-            @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
-        </div>
-        <div class="MPProfileNotas">
-            <div>Notas</div>
-        </div>
-        <div class="MPProfileTestimony">
-            <div>Testimonios</div>
-        </div>
-        <div class="MPProfileVideos">
-            <div>Videos</div>
-        </div>*@
+    </div>
+    <!--Profile Description-->
+    <div class="MPProfileInfoDetail">
+        @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
+    </div>
+    <!--Profile Schedule-->
+    <div class="MPProfileSchedule">
+        @Html.Partial(MVC.Web.Shared.Views._P_Appointment, Model)
+    </div>
+    <!--Profile Map-->
+    <div class="MPProfileMap">
+        @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
+    </div>
+    <div class="MPProfileNotas">
+        <div>Notas</div>
+    </div>
+    <div class="MPProfileTestimony">
+        <div>Testimonios</div>
+    </div>
+    <div class="MPProfileVideos">
+        <div>Videos</div>
+    </div>*@
 
 @{
     Model.RenderScripts = true;
