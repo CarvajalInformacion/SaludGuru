@@ -400,7 +400,7 @@ li.MPProfileInsuranceName {
         }
 
             .MPProfileInfoDetail div ul li a {
-                font-size: 1.4em;
+                font-size: 1.1em;
                 line-height: 20px;
                 letter-spacing: -1px;
                 color: #A4C02C;
@@ -416,6 +416,10 @@ li.MPProfileInsuranceName {
                 border-top-right-radius: 3px;
                 position: relative;
                 z-index: 10;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 175px;
             }
 
                 .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
@@ -544,7 +548,7 @@ div#divOffice ul li {
 
 .MPProfileOfficeContactSelector {
     display: block;
-    margin: 8px auto;
+    margin:6px auto;
     height: auto;
     min-height: 100px;
     vertical-align: top;
@@ -555,8 +559,8 @@ div#divOffice ul li {
 div.MPProfileOfficeContactSelector span {
     cursor: pointer;
     width: 100%;
-            color: #92B92A;
-            text-align: left;
+    color: #92B92A;
+    text-align: left;
     font-weight: bold;
     font-size: 14px;
 }
@@ -575,7 +579,7 @@ div.MPProfileOfficeContactSelector {
         font-size: 0.9em;
         display: block;
         width: auto;
-        line-height: 1.6em;
+        line-height:1.4em;
         text-decoration: none;
         color: #666;
         text-align: left;
@@ -599,7 +603,7 @@ div.MPProfileOfficeContactSelector {
                     background-size: 18px auto;
                 }
 .MPProfileCalendarWeekTop{
-    margin:20px 0px 0px;
+    margin:0px 0px 0px;
     border-top: 1px solid #666 !important;
     display: block;
 }
@@ -649,6 +653,20 @@ div.k-grid-content > table > colgroup > col {
             height: auto;
             float: left;
         }
+        span.MPProfileOfficeContactTelephone,
+        span.MPProfileOfficeContactAddress {
+            background-repeat:no-repeat;
+        }
+        span.MPProfileOfficeContactAddress {
+                background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+                background-position: -1px -2px;
+                background-size: 21px auto;
+                }
+        span.MPProfileOfficeContactTelephone {
+            background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+            background-position: 1px -1px;
+            background-size: 16px auto;
+            }
 
 
 /*.MPProfileGreatWrapper {

@@ -51,6 +51,7 @@
 
         public const string C_Settings_Login_FBUrl = "{{AreaName}}_Login_FBUrl";
         public const string C_Settings_Login_GoogleUrl = "{{AreaName}}_Login_GoogleUrl";
+        public const string C_Settings_Login_WindowsLiveUrl = "{{AreaName}}_Login_WindowsLiveUrl";
 
         #endregion
 

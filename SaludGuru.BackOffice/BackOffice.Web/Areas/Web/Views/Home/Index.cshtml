@@ -14,16 +14,21 @@
         string GoogleUrl = BackOffice.Models.General.InternalSettings.Instance
             [BackOffice.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", BackOffice.Web.Controllers.BaseController.AreaName)]
             .Value.Replace("{{UrlRetorno}}", RetUrl);
+
+        string OutlookUrl = BackOffice.Models.General.InternalSettings.Instance
+            [BackOffice.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", BackOffice.Web.Controllers.BaseController.AreaName)]
+            .Value.Replace("{{UrlRetorno}}", RetUrl);
     }
     <!--Login section-->
     <div class="logoSaludGuru"></div>
     <div class="logInBandWrapper">
         <div class="logInDocIllustration"></div>
         <div class="logInElementsWrapper">
-            <span>Puedes ingresar usando tu usuario de Google o Facebook</span>
+            <span>Puedes ingresar usando tu usuario de Google, Facebook o Hotmail</span>
             <div class="logInIconsWrapper">
                 <a href="@GoogleUrl"><img src="/Areas/Web/Content/Images/googleIconSmall.png" alt="Login Google" title="Login Google" /></a>
                 <a href="@FBUrl"><img src="/Areas/Web/Content/Images/facebookIconSmall.png" alt="Login con Facebook" title="Login con Facebook" /></a>
+                <a href="@OutlookUrl"><img src="/Areas/Web/Content/Images/MPOutlookLogo.png" alt="Login con Outlook" title="Login con Outlook" /></a>
             </div>
             @if (ViewData[BackOffice.Models.General.Constants.C_ViewData_UserNotAutorizedText] != null &&
                 !string.IsNullOrEmpty(ViewData[BackOffice.Models.General.Constants.C_ViewData_UserNotAutorizedText].ToString()))

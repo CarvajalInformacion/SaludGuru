@@ -190,7 +190,6 @@ var AppointmentObject = {
     },
 
     ChangeOffice: function (vOfficePublicId) {
-        debugger;
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
         $('#' + AppointmentObject.selTreatmentId).empty();
@@ -389,7 +388,6 @@ $('#DateMoreInfoIdNN').click(function () {
     $("#DateMoreInfoId").hide();
 });
 $('#SaveAppointmentId').click(function () {
-    debugger;
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
     if (startDate == "") {
