@@ -6,7 +6,7 @@
       <![CDATA[
           <applications>
             <key name="marketplace">https://localhost:44302/,http://localhost:56847/,https://localhost:44303/</key>
-            <key name="backoffice">https://devadmin.saludguru.com.co:44302/,https://localhost:44302/,http://localhost:56847/,https://localhost:44304/,http://localhost:8326/,http://localhost:8864/,https://localhost:44303/</key>
+            <key name="backoffice">https://devadmin.saludguru.com.co:44302/,https://devadmin.saludguru.com.co:44304/,https://localhost:44302/,http://localhost:56847/,https://localhost:44304/,http://localhost:8326/,http://localhost:8864/,https://localhost:44303/</key>
           </applications>
       ]]>
     </key>
