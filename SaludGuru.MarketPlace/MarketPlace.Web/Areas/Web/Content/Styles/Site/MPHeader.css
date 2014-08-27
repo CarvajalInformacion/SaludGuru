@@ -1,4 +1,4 @@
-.MPHeaderMainWrapper {
+z.MPHeaderMainWrapper {
     border:none;
     width: 100%;
     min-width:768px;
@@ -140,6 +140,18 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
 .MPFacebookLogIn {
         border:none;
     background-image:url('/Areas/Web/Content/Images/facebookIconSmall.png');
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    background-size: 26px auto;
+    width: 28px;
+    height: 30px;
+    margin: 0px 0px 0px 4px;
+    display:inline-block;
+    vertical-align:top;
+}
+.MPOutlookLogIn {
+        border:none;
+    background-image:url('/Areas/Web/Content/Images/MPOutlookLogo.png');
     background-repeat: no-repeat;
     background-position: 0px 3px;
     background-size: 26px auto;
