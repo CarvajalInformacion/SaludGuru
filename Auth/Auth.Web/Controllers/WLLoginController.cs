@@ -41,23 +41,23 @@ namespace Auth.Web.Controllers
                         authorization, null);
 
                 //create model login
-                SessionController.Models.Auth.User UserToLogin = GetUserToLogin(oauth2Graph);
+                //SessionController.Models.Auth.User UserToLogin = GetUserToLogin(oauth2Graph);
 
-                //login user
-                UserToLogin = base.LoginUser(UserToLogin);
+                ////login user
+                //UserToLogin = base.LoginUser(UserToLogin);
 
-                //Add Log
-                CarvajalLog.LogController Log = new CarvajalLog.LogController();
-                Log.SaveLog(new CarvajalLog.Models.AuthLogModel()
-                {
-                    UserId = UserToLogin.UserId,
-                    LogAction = UserToLogin.GetType().ToString(),
-                    IsSuccessfull = 1,
-                    ErrorMessage = "el usuario inició sesión correctamente",
-                });
+                ////Add Log
+                //CarvajalLog.LogController Log = new CarvajalLog.LogController();
+                //Log.SaveLog(new CarvajalLog.Models.AuthLogModel()
+                //{
+                //    UserId = UserToLogin.UserId,
+                //    LogAction = UserToLogin.GetType().ToString(),
+                //    IsSuccessfull = 1,
+                //    ErrorMessage = "el usuario inició sesión correctamente",
+                //});
 
-                //return to site
-                Response.Redirect(oReturnUrl.ToString());
+                ////return to site
+                //Response.Redirect(oReturnUrl.ToString());
             }
 
             return View();
