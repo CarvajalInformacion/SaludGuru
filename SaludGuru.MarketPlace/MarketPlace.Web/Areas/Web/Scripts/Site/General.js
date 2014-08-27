@@ -164,7 +164,6 @@ function Header_ShowHideUserMenu(divId) {
 
 /*show hide login menu*/
 function Header_ShowHideLoginMenu(ulLoginId) {
-    debugger;
     $('#' + ulLoginId).toggle('slow');
 }
 
