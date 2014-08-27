@@ -316,8 +316,11 @@
   <ItemGroup>
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />
+    <Content Include="Areas\Web\Content\Images\agendaMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\ajax-loader.gif" />
     <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
+    <Content Include="Areas\Web\Content\Images\BOnotificationsSmall.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar3.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBar4.png" />
     <Content Include="Areas\Web\Content\Images\BOTopBarArrow.png" />
@@ -325,6 +328,7 @@
     <Content Include="Areas\Web\Content\Images\BOTopBarLeftTipLong.png" />
     <Content Include="Areas\Web\Content\Images\calendarActionsSprite.png" />
     <Content Include="Areas\Web\Content\Images\cerrar.png" />
+    <Content Include="Areas\Web\Content\Images\dashboardMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\doctorTest.jpg" />
     <Content Include="Areas\Web\Content\Images\facebookIconSmall.png" />
     <Content Include="Areas\Web\Content\Images\googleIconSmall.png" />
@@ -340,9 +344,12 @@
     <Content Include="Areas\Web\Content\Images\logoSaludGuruSmall.png" />
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
+    <Content Include="Areas\Web\Content\Images\MPOutlookLogo.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1503.png" />
+    <Content Include="Areas\Web\Content\Images\pacientesMenuIcon.png" />
+    <Content Include="Areas\Web\Content\Images\perfilMenuIcon.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
