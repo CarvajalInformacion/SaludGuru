@@ -32,7 +32,7 @@ namespace SaludGuru.Notifications.DAL.MySQLDAO
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
                 CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
-                CommandText = "N_Notification_Create",
+                CommandText = "N_Notifiation_Create",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
