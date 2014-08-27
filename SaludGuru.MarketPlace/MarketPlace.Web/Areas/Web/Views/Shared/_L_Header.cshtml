@@ -66,7 +66,9 @@
                     [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
                     .Value.Replace("{{UrlRetorno}}", RetUrl);
 
-                string OutlookUrl = string.Empty;
+                string OutlookUrl = MarketPlace.Models.General.InternalSettings.Instance
+                    [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                    .Value.Replace("{{UrlRetorno}}", RetUrl);
 
                 <!--Render autentications-->
                 <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>

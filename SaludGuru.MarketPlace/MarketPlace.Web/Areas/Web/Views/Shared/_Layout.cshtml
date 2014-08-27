@@ -71,24 +71,29 @@
     <!--Layout dialog-->
     <div style="display:none">
         <div id="dialog_ScheduleAppointmentNotLogin" title="Ingreso requerido">
-                <span>Para agendar una cita debe ingresar a traves de:</span>
-                <!--Render autentications-->
-                <div>
-                    <a class="MPGoogleLogIn" href=""></a>
-                    <a class="MPFacebookLogIn" href=""></a>
-                </div>
+            <span>Para agendar una cita debe ingresar a traves de:</span>
+            <!--Render autentications-->
+            <div>
+                <a class="MPGoogleLogIn" href=""></a>
+                <a class="MPFacebookLogIn" href=""></a>
+                <a class="MPOutlookLogIn" href=""></a>
+            </div>
         </div>
     </div>
 
     @{
         //get login urls
         string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
-        [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-        .Value;
+            [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
 
         string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
-        [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-        .Value;
+            [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
+
+        string OutlookUrl = MarketPlace.Models.General.InternalSettings.Instance
+            [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
     }
 
     <script type="text/javascript">
@@ -98,6 +103,7 @@
                 CityId: '@(oBaseController.CurrentCookie.CurrentCity)',
                 FBUrl: '@FBUrl',
                 GoogleUrl: '@GoogleUrl',
+                OutlookUrl: '@OutlookUrl',
                 IsLogin: @MarketPlace.Models.General.SessionModel.UserIsLoggedIn.ToString().ToLower()
                 });
         });

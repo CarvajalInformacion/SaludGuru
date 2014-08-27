@@ -13,13 +13,13 @@ namespace SaludGuru.Notifications.Controller
     {
         public static int NotificationCreate(NotificationModel NotificationToCreate)
         {
-            return DAL.Controller.NotificationDataController.Instance.NotificationCreate
-                (NotificationToCreate.PublicUserId,
-                NotificationToCreate.UserFrom.UserPublicId,
-                NotificationToCreate.Status,
-                NotificationToCreate.NotificationType,
-                NotificationToCreate.Title,
-                NotificationToCreate.Body);
+            return NotificationDataController.Instance.NotificationCreate
+                    (NotificationToCreate.PublicUserId,
+                    NotificationToCreate.UserFrom.UserPublicId,
+                    NotificationToCreate.Status,
+                    NotificationToCreate.NotificationType,
+                    NotificationToCreate.Title,
+                    NotificationToCreate.Body);
         }
 
         public static void UpdateStatus(enumNotificationStatus NewStatus, int NotificationId)

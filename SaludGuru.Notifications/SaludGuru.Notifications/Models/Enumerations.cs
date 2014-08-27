@@ -15,5 +15,6 @@
         ReminderAppointment = 1505,
         ReminderNextAppointment = 1506,
         Survey = 1507,
+        ModifyAppointment = 1508
     }
 }

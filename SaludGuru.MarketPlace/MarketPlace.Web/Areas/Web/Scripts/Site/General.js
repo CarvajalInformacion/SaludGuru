@@ -45,6 +45,7 @@ function InitGlobalPagesControls(InitParams) {
     ScheduleAppointmentObject.Init({
         FBUrl: InitParams.FBUrl,
         GoogleUrl: InitParams.GoogleUrl,
+        OutlookUrl:InitParams.OutlookUrl,
         IsLogin: InitParams.IsLogin,
     });
 }
@@ -53,12 +54,14 @@ function InitGlobalPagesControls(InitParams) {
 var ScheduleAppointmentObject = {
     FBUrl: '',
     GoogleUrl: '',
+    OutlookUrl: '',
     IsLogin: false,
 
     Init: function (vInitObject) {
         this.FBUrl = vInitObject.FBUrl;
         this.GoogleUrl = vInitObject.GoogleUrl;
         this.IsLogin = vInitObject.IsLogin;
+        this.OutlookUrl = vInitObject.OutlookUrl;
     },
 
     ScheduleAppointment: function (vLink) {
@@ -69,6 +72,7 @@ var ScheduleAppointmentObject = {
 
             $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
             $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
+            $('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
 
             $('#dialog_ScheduleAppointmentNotLogin').dialog();
         }
