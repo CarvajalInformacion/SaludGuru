@@ -396,6 +396,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Areas\Web\Views\WLLogin\StartLogin.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Areas\Web\Views\WLLogin\Login.cshtml" />
     <None Include="Properties\PublishProfiles\Auth_1.pubxml" />

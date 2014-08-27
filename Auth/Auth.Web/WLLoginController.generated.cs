@@ -59,9 +59,9 @@ namespace Auth.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Login()
+        public virtual System.Web.Mvc.ActionResult StartLogin()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StartLogin);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,21 +79,23 @@ namespace Auth.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string StartLogin = "StartLogin";
             public readonly string Login = "Login";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string StartLogin = "StartLogin";
             public const string Login = "Login";
         }
 
 
-        static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
+        static readonly ActionParamsClass_StartLogin s_params_StartLogin = new ActionParamsClass_StartLogin();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
+        public ActionParamsClass_StartLogin StartLoginParams { get { return s_params_StartLogin; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Login
+        public class ActionParamsClass_StartLogin
         {
             public readonly string UrlRetorno = "UrlRetorno";
         }
@@ -117,14 +119,25 @@ namespace Auth.Web.Controllers
         public T4MVC_WLLoginController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UrlRetorno);
+        partial void StartLoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UrlRetorno);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Login(string UrlRetorno)
+        public override System.Web.Mvc.ActionResult StartLogin(string UrlRetorno)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StartLogin);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UrlRetorno", UrlRetorno);
+            StartLoginOverride(callInfo, UrlRetorno);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Login()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UrlRetorno", UrlRetorno);
-            LoginOverride(callInfo, UrlRetorno);
+            LoginOverride(callInfo);
             return callInfo;
         }
 

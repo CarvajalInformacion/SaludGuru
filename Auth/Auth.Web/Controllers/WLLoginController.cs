@@ -8,14 +8,20 @@ namespace Auth.Web.Controllers
 {
     public partial class WLLoginController : BaseController
     {
-        public virtual ActionResult Login(string UrlRetorno)
+        public virtual ActionResult StartLogin(string UrlRetorno)
         {
             //get return url
-            Uri oReturnUrl = base.GetReturnUrl(UrlRetorno);
+            base.ReturnUrl = base.GetReturnUrl(UrlRetorno);
+            return RedirectToAction(MVC.WLLogin.ActionNames.Login, MVC.WLLogin.Name);
+        }
+
+        public virtual ActionResult Login()
+        {
             //get current application name
-            string oAppName = base.GetAppNameByDomain(oReturnUrl);
+            string oAppName = base.GetAppNameByDomain(base.ReturnUrl);
             ViewBag.AppName = oAppName;
-            //get fb client 
+
+            //get wl client 
             DotNetOpenAuth.ApplicationBlock.WindowsLiveClient WLClient = GetWLClient(oAppName);
 
             //validate autentication
@@ -23,16 +29,11 @@ namespace Auth.Web.Controllers
 
             if (authorization == null)
             {
-                //preserve return url before request
-                base.ReturnUrl = oReturnUrl;
-
                 //user is not login
                 WLClient.RequestUserAuthorization(scope: new[] { 
-                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Basic});
-                            //,
-                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Birthday,
-                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Emails,
-                            //DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.SignIn});
+                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Basic,
+                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Emails,
+                            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient.Scopes.Birthday});
             }
             else
             {
@@ -41,25 +42,24 @@ namespace Auth.Web.Controllers
                         authorization, null);
 
                 //create model login
-                //SessionController.Models.Auth.User UserToLogin = GetUserToLogin(oauth2Graph);
+                SessionController.Models.Auth.User UserToLogin = GetUserToLogin(oauth2Graph);
 
-                ////login user
-                //UserToLogin = base.LoginUser(UserToLogin);
+                //login user
+                UserToLogin = base.LoginUser(UserToLogin);
 
-                ////Add Log
-                //CarvajalLog.LogController Log = new CarvajalLog.LogController();
-                //Log.SaveLog(new CarvajalLog.Models.AuthLogModel()
-                //{
-                //    UserId = UserToLogin.UserId,
-                //    LogAction = UserToLogin.GetType().ToString(),
-                //    IsSuccessfull = 1,
-                //    ErrorMessage = "el usuario inició sesión correctamente",
-                //});
+                //Add Log
+                CarvajalLog.LogController Log = new CarvajalLog.LogController();
+                Log.SaveLog(new CarvajalLog.Models.AuthLogModel()
+                {
+                    UserId = UserToLogin.UserId,
+                    LogAction = UserToLogin.GetType().ToString(),
+                    IsSuccessfull = 1,
+                    ErrorMessage = "el usuario inició sesión correctamente",
+                });
 
-                ////return to site
-                //Response.Redirect(oReturnUrl.ToString());
+                //return to site
+                Response.Redirect(base.ReturnUrl.ToString());
             }
-
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace Auth.Web.Controllers
         //create facebook instance
         DotNetOpenAuth.ApplicationBlock.WindowsLiveClient GetWLClient(string AppName)
         {
-            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient client = 
+            DotNetOpenAuth.ApplicationBlock.WindowsLiveClient client =
                 new DotNetOpenAuth.ApplicationBlock.WindowsLiveClient();
 
             //appid
