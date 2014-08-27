@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using SaludGuru.Notifications.Models;
+using SessionController.Models.Auth;
 
 namespace SaludGuru.Notification.Test
 {
@@ -11,8 +12,17 @@ namespace SaludGuru.Notification.Test
         [TestMethod]
         public void NotificationCreateTest()
         {
-            //int oProfile = SaludGuru.Notifications.Controller.Notification.NotificationCreate("12345678", "", , "Test", "Método de prueba");
-            //Assert.AreEqual(oProfile > 0, true);
+            NotificationModel oBj = new NotificationModel();
+
+            oBj.Body = "Esto es una prueba";
+            oBj.NotificationType = enumNotificationType.CancelAppointment;
+            oBj.PublicUserId = "0000000";
+            oBj.Status = enumNotificationStatus.Leida;
+            oBj.Title = "";
+            oBj.UserFrom = new User();
+
+            int oProfile = SaludGuru.Notifications.Controller.Notification.NotificationCreate(oBj);
+            Assert.AreEqual(oProfile > 0, true);
         }
 
         [TestMethod]
