@@ -400,7 +400,7 @@ li.MPProfileInsuranceName {
         }
 
             .MPProfileInfoDetail div ul li a {
-                font-size: 1.4em;
+                font-size: 1.1em;
                 line-height: 20px;
                 letter-spacing: -1px;
                 color: #A4C02C;
@@ -416,6 +416,10 @@ li.MPProfileInsuranceName {
                 border-top-right-radius: 3px;
                 position: relative;
                 z-index: 10;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 175px;
             }
 
                 .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
