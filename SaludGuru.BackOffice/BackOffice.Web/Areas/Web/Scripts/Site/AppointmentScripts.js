@@ -1506,7 +1506,86 @@ var AppointmentDetailObject = {
 
         //render appointment actions
         this.RenderActions(oCurrentAppointmentStatus);
+
+        //Create patient        
+        AppointmentDetailObject.ValidateCreatePatient();
     },
+
+    CreatePatient: function () {
+        //create ajax form object
+        $("#frmCreatePatient").submit(function (e) {
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            $.ajax(
+            {
+                url: formURL,
+                type: "POST",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                    $("#Dialog_CreatePatient").dialog("close");
+                    AppointmentDetailObject.AddPatientAppointment(data);
+                    $("#frmCreatePatient input").val('');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //show success message
+                }
+            });
+            e.preventDefault(); //STOP default action
+            e.unbind(); //unbind. to stop multiple form submit.
+        });
+
+        //submit ajax form        
+        $("#frmCreatePatient").submit();
+    },
+
+    ValidateCreatePatient: function (vPatientModel) {
+
+        var rules = {
+            Name: {
+                required: true,
+            },
+            IdentificationNumber: {
+                required: true,
+                minlength: 6,
+            },
+            Mobile: {
+                required: true,
+                maxlength: 10,
+                minlength: 10
+            }
+        };
+
+        $('#frmCreatePatient').validate({
+            errorClass: 'error help-inline',
+            errorElement: 'span',
+            validClass: 'success',
+            rules: rules,
+        });
+
+        //Dialog create patient
+        $('#aCreatePatient').unbind('click');
+        $('#aCreatePatient').click(function () {
+            //init dialog
+            $("#Dialog_CreatePatient").dialog({
+                width: 800,
+                show: "clip",
+                hide: "blind",
+                buttons: {
+                    "Guardar": function () {
+                        if ($('#frmCreatePatient').valid()) {
+                            AppointmentDetailObject.CreatePatient();
+                        }
+                    },
+                    "Cancelar": function () {
+                        $(this).dialog("close");
+                        $("#frmCreatePatient input").val('');
+                    }
+                }
+            });
+        });
+    },
+    
+
 
     RenderOffice: function (vCurrentOfficePublicId, vCurrentStartDate, vCurrentStartTime) {
 
