@@ -32,9 +32,9 @@ namespace Auth.DAL.Controller
         #endregion
 
         #region Implemented methods
-        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, SessionController.Models.Auth.enumLoginType LoginTypeId)
+        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, SessionController.Models.Auth.enumLoginType LoginTypeId, string Email)
         {
-            return DataFactory.UpsertUser(Name, LastName, Birthday, Gender, ProviderId, LoginTypeId);
+            return DataFactory.UpsertUser(Name, LastName, Birthday, Gender, ProviderId, LoginTypeId, Email);
         }
 
         public SessionController.Models.Auth.User GetUser(string UserPublicId)

@@ -19,7 +19,14 @@ namespace Auth.DAL.MySqlDao
         }
 
         #region Implemented methods
-        public string UpsertUser(string Name, string LastName, DateTime? Birthday, bool? Gender, string ProviderId, SessionController.Models.Auth.enumLoginType LoginTypeId)
+        public string UpsertUser
+            (string Name, 
+            string LastName, 
+            DateTime? Birthday, 
+            bool? Gender, 
+            string ProviderId, 
+            SessionController.Models.Auth.enumLoginType LoginTypeId,
+            string Email)
         {
             List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
 
@@ -29,6 +36,7 @@ namespace Auth.DAL.MySqlDao
             lstParams.Add(DataInstance.CreateTypedParameter("vGender", Gender));
             lstParams.Add(DataInstance.CreateTypedParameter("vProviderId", ProviderId));
             lstParams.Add(DataInstance.CreateTypedParameter("vLoginTypeId", (byte)LoginTypeId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEmail", Email));
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {

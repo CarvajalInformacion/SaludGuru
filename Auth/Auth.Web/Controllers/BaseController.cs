@@ -106,7 +106,8 @@ namespace Auth.Web.Controllers
                 OriginalInfo.Birthday,
                 OriginalInfo.Gender,
                 OriginalInfo.UserLogins.First().ProviderId,
-                OriginalInfo.UserLogins.First().LoginType.Value);
+                OriginalInfo.UserLogins.First().LoginType.Value,
+                OriginalInfo.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.Email).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault());
 
             //get temp user info
             oRetorno = Auth.DAL.Controller.AuthDataController.Instance.GetUser(oRetorno.UserPublicId);
