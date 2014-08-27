@@ -92,9 +92,9 @@ div.SelOfficeGrid {
 
 #divAppointmentSchedule div.SelOfficeGrid > div {
     display: block;
-    border: NONE;
+    border:none;
     width: 100.2%;
-    height: 32px;
+    height: auto;
     text-align: center;
 }
 
