@@ -244,11 +244,13 @@ div#___plusone_0 {
     display: block !important;
     height: auto !important;
     margin: 5px auto !important;
-
+    overflow: hidden;
 }
-
+iframe.easyXDM_IN_Lib_li_gen_1409095708252_0_provider {
+    width: 100% !important;
+}
 iframe#I0_1408669437247{
-    /*width: 100% !important;*/
+    width: 100% !important;
 }
 
 /*-----Noticias------*/
