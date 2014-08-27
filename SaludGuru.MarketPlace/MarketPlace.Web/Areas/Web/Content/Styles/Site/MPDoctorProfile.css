@@ -649,6 +649,20 @@ div.k-grid-content > table > colgroup > col {
             height: auto;
             float: left;
         }
+        span.MPProfileOfficeContactTelephone,
+        span.MPProfileOfficeContactAddress {
+            background-repeat:no-repeat;
+        }
+        span.MPProfileOfficeContactAddress {
+                background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+                background-position: -1px -2px;
+                background-size: 21px auto;
+                }
+        span.MPProfileOfficeContactTelephone {
+            background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+            background-position: 1px -1px;
+            background-size: 16px auto;
+            }
 
 
 /*.MPProfileGreatWrapper {
