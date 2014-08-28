@@ -116,11 +116,11 @@ var NotificationObject = {
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
-
+                debugger;
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
-                valSet = valSet.replace('{NotificationText}', item.Body);
+                valSet = valSet.replace('{NotificationText}', item.Title);
                 //ulNotificationList
                 $("#ulNotificationList").append(valSet);
 

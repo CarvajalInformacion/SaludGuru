@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
-  
+
   <Message>
     <!--Agent Cofig-->
-    <key  name="UsrBitly" key="o_7thpacqbhr">o_7thpacqbhr</key>
-    <key  name="KeyBitly" key="R_e8ebf6a0ef584813a43fe3299627da09">R_e8ebf6a0ef584813a43fe3299627da09</key>
+    <key name="UsrBitly">o_7thpacqbhr</key>
+    <key name="KeyBitly">R_e8ebf6a0ef584813a43fe3299627da09</key>
+
     <!--Mailman-->
     <key name="Agent_Mailman">
       <![CDATA[
@@ -25,6 +26,15 @@
       ]]>
     </key>
 
+    <!--Inalambria-->
+    <key name="Agent_Notifications">
+      <![CDATA[
+          <Agent>
+            <key name="Assemblie">Message.Notifications.AgentNotificationImplement, Message.Notifications</key>                      
+          </Agent>
+      ]]>
+    </key>
+
     <!--AssignedApp MP - Email Params-->
     <key name="Message_Params_Email_MPAsignedAppointment">
       <![CDATA[
@@ -39,55 +49,53 @@
 
     <!--AssignedApp MP - Email Body-->
     <key name="Message_Body_Email_MPAsignedAppointment">
-      <![CDATA[
-          <Message>                    
-	                <html>
-	                <head>
-		                <title>
-			                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
-		                </title>
-	                </head>
-	                <body style="width:46%; height:auto; border-style:solid; border-width:1px 0px; border-color:#666; font-family:'Verdana', Geneva, sans-serif; padding: 10px 16px 0px 16px;">
-	                <img style="width:99px; height:auto;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" />
-	                <label style="font-size:1em; display:block; font-weight:bold; margin-top:12px;">
-		                Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
-	                </label>
-                             <p>
-                                Hola {PatientName}!
-                                Se ha agendado una cita con el Dr.{ProfileName} el d&iacute;a {AppointmentDate}
-                                a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
-                              </p>
-                            <div style="width:100%; height:30px;">
-                                <span style="font-size: 0.7em;
-                vertical-align: middle;
-                display: inline-block;">Recuerda que tambi&eacute;n puedes seguirnos en</span>
-                                <img style="display: inline-block;
-                height: auto;
-                width: auto;
-                vertical-align: middle;
-                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/facebookIconSmallest.png" title=""/>           
-                                <img style="display: inline-block;
-                height: auto;
-                width: auto;
-                vertical-align: middle;
-                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/googleIconSmallest.png" title=""/>
-                                <img style="display: inline-block;
-                height: auto;
-                width: auto;
-                vertical-align: middle;
-                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/linkedinSmall.png" title=""/>
-                                <img style="display: inline-block;
-                height: auto;
-                width: auto;
-                vertical-align: middle;
-                margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/twitterSmall.png" title=""/>
-			                </div>
-		                </body>	
-	                </html>
-          </Message>
+      <![CDATA[                        
+	    <html>
+	    <head>
+		    <title>
+			    Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+		    </title>
+	    </head>
+	    <body style="width:46%; height:auto; border-style:solid; border-width:1px 0px; border-color:#666; font-family:'Verdana', Geneva, sans-serif; padding: 10px 16px 0px 16px;">
+	    <img style="width:99px; height:auto;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/logoEmailGuru.png" />
+	    <label style="font-size:1em; display:block; font-weight:bold; margin-top:12px;">
+		    Salud Gur&uacute; - Asignaci&oacute;n de cita m&eacute;dica.
+	    </label>
+                  <p>
+                    Hola {PatientName}!
+                    Se ha agendado una cita con el Dr.{ProfileName} el d&iacute;a {AppointmentDate}
+                    a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.              
+                  </p>
+                <div style="width:100%; height:30px;">
+                    <span style="font-size: 0.7em;
+    vertical-align: middle;
+    display: inline-block;">Recuerda que tambi&eacute;n puedes seguirnos en</span>
+                    <img style="display: inline-block;
+    height: auto;
+    width: auto;
+    vertical-align: middle;
+    margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/facebookIconSmallest.png" title=""/>           
+                    <img style="display: inline-block;
+    height: auto;
+    width: auto;
+    vertical-align: middle;
+    margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/googleIconSmallest.png" title=""/>
+                    <img style="display: inline-block;
+    height: auto;
+    width: auto;
+    vertical-align: middle;
+    margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/linkedinSmall.png" title=""/>
+                    <img style="display: inline-block;
+    height: auto;
+    width: auto;
+    vertical-align: middle;
+    margin: 4px;" src="https://s3.amazonaws.com/devsaludguruimg/0Messaging/twitterSmall.png" title=""/>
+			    </div>
+		    </body>	
+	    </html>
+          
       ]]>
     </key>
-
 
     <!--Confirmation - Email Params-->
     <key name="Message_Params_Email_AsignedAppointment">
@@ -208,6 +216,7 @@
             <key name="From">contacto@saludguru.com</key>
             <key name="Subject">Salud Gurú - Cancelación de cita médica</key>
             <key name="MailmanPath">.\private$\Mailman</key>
+            <key name="SendToProcessRelatedMsj">true</key>
           </Message>
       ]]>
     </key>
@@ -271,25 +280,12 @@
             <key name="Agent">Agent_Inalambria</key> 
             <key name="UsrSMSService">CarvajalINFOdcd</key> 
             <key name="PswSMSService">gj2sYb</key> 
+            <key name="SendToProcessRelatedMsj">true</key>
           </Message>
       ]]>
     </key>
     <key name="Message_Body_Sms_CancelAppointment">
       <![CDATA[Lamentablemente tu Dr(a).{ProfileName} no podra atenderte el {AppointmentDate} Reagendar {ProfileUrl} {OfficePhone}]]>
-    </key>
-
-    <!--Cancel Appointment Notificaciones Gurú-->
-    <key name="Message_Params_GuruNotification_CancelAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_GuruNotification_CancelAppointment">
-      <![CDATA[este es el body del SMS]]>
     </key>
 
 
@@ -371,19 +367,6 @@
       <![CDATA[Tu cita con Dr(a).{ProfileName} ha sido modificada para {AppointmentDate} {Hour}.]]>
     </key>
 
-    <!--Modify Appointment Notificaciones Gurú-->
-    <key name="Message_Params_GuruNotification_ModifyAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_GuruNotification_ModifyAppointment">
-      <![CDATA[este es el body del SMS]]>
-    </key>
 
     <!--Reminder Appointment  -->
     <!--Reminder Appointment Email - -->
@@ -469,19 +452,6 @@
       <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} {ConfirmCancelLink}]]>
     </key>
 
-    <!--Modify GuruNotification_ReminderAppointment Gurú-->
-    <key name="Message_Params_GuruNotification_ReminderAppointment">
-      <![CDATA[
-          <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
-          </Message>
-      ]]>
-    </key>
-    <key name="Message_Body_GuruNotification_ReminderAppointment">
-      <![CDATA[este es el body del SMS]]>
-    </key>
 
     <!--Reminder Appointment  -->
     <!--Email_ReminderNextAppointmentt - -->
@@ -559,21 +529,207 @@
       <![CDATA[Es hora de agendar tu cita con el Dr(a). {ProfileName}]]>
     </key>
 
-    <!--Modify GuruNotification_ReminderAppointment Gurú-->
-    <key name="Message_Params_GuruNotification_ReminderAppointment">
+   
+
+    <!--**NOTIFICACIONES**-->
+
+    <!--MP-->
+    <!--AssignedApp MP - Notification Params-->
+    <key name="Message_Params_GuruNotification_MPAsignedAppointment">
       <![CDATA[
           <Message>
-            <key name="Agent">Agent_Inalambria</key> 
-            <key name="UsrSMSService">CarvajalINFOdcd</key> 
-            <key name="PswSMSService">gj2sYb</key> 
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Han agendado una cita por saludguru.com.co</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1501</key>
           </Message>
       ]]>
     </key>
-    <key name="Message_Body_GuruNotification_ReminderAppointment">
-      <![CDATA[este es el body del SMS]]>
+
+    <!--AssignedApp MP - Notification Body-->
+    <key name="Message_Body_GuruNotification_MPAsignedAppointment">
+      <![CDATA[  
+          El paciente {PatientName} ha agendado una cita con el Dr(a). {ProfileName}
+          el día {AppointmentDate} hora {Hour}.
+          ]]>
+    </key>
+
+    <!--Confirmation MP -->
+    <!--Confirmation MP - Notification Params-->
+    <key name="Message_Params_GuruNotification_MPConfirmedAppointment">
+      <![CDATA[
+           <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Confirmación de cita por SaludGuru.com.co</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1504</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--Confirm MP - Notification Body-->
+    <key name="Message_Body_GuruNotification_MPConfirmedAppointment">
+      <![CDATA[  
+          El paciente {PatientName} ha confirmado una cita con el Dr(a). {ProfileName}
+          el día {Date} hora {Hour}.
+          ]]>
+    </key>
+
+    <!--Cancel MP -->
+    <!--Cancel MP - Notification Params-->
+    <key name="Message_Params_GuruNotification_MPCancelAppointment">
+      <![CDATA[
+         <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Cancelación de cita por medio de SaludGuru.com.co</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1502</key>
+            <key name="SendToProcessRelatedMsj">true</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--Cancel MP - Notification Body-->
+    <key name="Message_Body_GuruNotification_MPCancelAppointment">
+      <![CDATA[  
+          El paciente {PatientName} ha cancelado una cita con el Dr(a). {ProfileName}
+          el día {Date} hora {Hour}.
+          ]]>
     </key>
 
 
+    <!--BO-->
+    <!--Cancel BO -->
+    <!--Cancel BO - Notification Params-->
+    <key name="Message_Params_GuruNotification_CancelAppointment">
+      <![CDATA[
+         <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Cancelación de cita</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1502</key>
+            <key name="SendToProcessRelatedMsj">true</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--Cancel BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_CancelAppointment">
+      <![CDATA[  
+          Lamentablemente el Dr(a). {ProfileName} no puede atenderte por {Reason}          
+          el día {AppointmentDate} hora {Hour}.
+          ]]>
+    </key>
+
+    <!--Asigned BO -->
+    <!--Asigned BO - Notification Params-->
+    <key name="Message_Params_GuruNotification_AsignedAppointment">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Confirmación de cita</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1504</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--Asigned BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_AsignedAppointment">
+      <![CDATA[  
+          Hola {PatientName}!
+          Se ha agendado una cita con el Dr.{ProfileName} el d&iacute;a {AppointmentDate}
+          a las {Hour} en el consultorio situado en {OfficeAddress} tel&eacute;fono {OfficePhone}.        
+          ]]>
+    </key>
+
+    <!--Modify BO  -->
+    <!--Modify BO - Notification Params-->
+    <key name="Message_Params_GuruNotification_ModifyAppointment">
+      <![CDATA[
+          <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Modificación de cita</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1508</key>
+          </Message>
+      ]]>
+    </key>
+
+    <!--Modify BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_ModifyAppointment">
+      <![CDATA[  
+          Hola {PatientName}!
+         Tu cita con el Dr.{ProfileName} en el consultorio {OfficeAddress} el día {AppointmentDate}
+         hora {Hour} ha sido modificada. mas detalles {OfficePhone}.
+         ]]>
+    </key>
+
+    <!--Reminder BO  -->
+    <!--Reminder BO - Notification Params-->
+    <key name="Message_Params_GuruNotification_ReminderAppointment">
+      <![CDATA[
+        <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Recordatorio de tu cita médica</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1505</key>
+        </Message>
+      ]]>
+    </key>
+
+    <!--Reminder BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_ReminderAppointment">
+      <![CDATA[  
+          Hola {PatientName}!
+         Te recordamos tu cita con el Dr.{ProfileName} en el consultorio {Address} el día {Date}
+         hora {Hour} ha sido modificada. mas detalles {OfficePhone}.
+         Cuidados previos {BeforeCare}.
+         ]]>
+    </key>
+
+    <!--Reminder Next BO  -->
+    <!--Reminder Next BO - Notification Params-->
+    <key name="Message_Params_GuruNotification_ReminderNextAppointment">
+      <![CDATA[
+        <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Hora de agendar tu próxima cita médica</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1506</key>
+        </Message>
+      ]]>
+    </key>
+
+    <!--Reminder Next BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_ReminderNextAppointment">
+      <![CDATA[  
+         Hola {PatientName}!
+         Te recordamos que de acuerdo a la recomendación de tu Dr(a) {ProfileName} es momento de agendar tu cita.         
+         ]]>
+    </key>
+
+
+    <!--New Patient  -->
+    <!-- New Patient Notify-->
+    <key name="Message_Params_GuruNotification_NewPatient">
+      <![CDATA[
+        <Message>
+            <key name="Agent">Agent_Notifications</key>            
+            <key name="Title">Tienes un nuevo paciente!</key>
+            <key name="Status">1302</key>
+            <key name="NotificationType">1506</key>
+        </Message>
+      ]]>
+    </key>
+
+    <!--Reminder Next BO - Notification Body-->
+    <key name="Message_Body_GuruNotification_NewPatient">
+      <![CDATA[  
+         Ahora {PatientName}
+         es nuevo paciente del Dr(a) {ProfileName}.         
+         ]]>
+    </key>
   </Message>
 </Settings>
 

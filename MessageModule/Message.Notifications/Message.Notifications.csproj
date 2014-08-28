@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48540FF3-A712-4347-B9A0-40C1A5023D95}</ProjectGuid>
+    <ProjectGuid>{1F0A2CA6-EB60-4812-BE62-644053B87748}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Message.Manager</RootNamespace>
-    <AssemblyName>Message.Manager</AssemblyName>
+    <RootNamespace>Message.Notifications</RootNamespace>
+    <AssemblyName>Message.Notifications</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BitlyDotNET">
-      <HintPath>..\packages\Bitly.Net.0.0.6.0\lib\BitlyDotNET.dll</HintPath>
+    <Reference Include="Auth.Client">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\Auth.Client\developer\Auth.Client.dll</HintPath>
     </Reference>
-    <Reference Include="SettingsManager">
-      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SettingsManager\developer\SettingsManager.dll</HintPath>
+    <Reference Include="SaludGuru.Notifications">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Notifications\developer\SaludGuru.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="SessionController">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SessionController\developer\SessionController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,14 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageProcess.cs" />
+    <Compile Include="AgentNotificationImplement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Message.Client\Message.Client.csproj">
-      <Project>{bf3ac4d4-522c-45bd-a2c5-9511858f8022}</Project>
-      <Name>Message.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Message.DAL\Message.DAL.csproj">
       <Project>{1e884e31-ffcf-4dda-bf63-24e1a950b476}</Project>
       <Name>Message.DAL</Name>
@@ -65,27 +64,10 @@
       <Project>{c85b3dd9-70a7-4738-8ba5-0fe04ef02839}</Project>
       <Name>Message.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Message.Mailman\Message.Mailman.csproj">
-      <Project>{1778d44b-31f5-4602-a086-44ff77a7e3fc}</Project>
-      <Name>Message.Mailman</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Message.Models\Message.Models.csproj">
       <Project>{65bd15f2-3262-4e42-a686-da819cab3360}</Project>
       <Name>Message.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Message.Notifications\Message.Notifications.csproj">
-      <Project>{1f0a2ca6-eb60-4812-be62-644053b87748}</Project>
-      <Name>Message.Notifications</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Librarys\Carvajal.Mail.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
