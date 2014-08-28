@@ -138,10 +138,10 @@
 }
 
 .MPProfileInfo_BasicInfoRight {
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    /*box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
     background: linear-gradient(#fff, #ececec);
     padding: 10px 10px 10px 10px;
-    min-height: 210px !important;
+    min-height: 210px !important;*/
 }
 
 /*------Media Styles-------*/
@@ -235,6 +235,11 @@
 
     .MPProfileInfo_BasicInfoRight {
         width: 100% !important;
+        margin-top: 10px;
+    }
+
+    hr.featurette-divider.__loop.ProfileBasicInfo {
+        display: inline-block !important;
     }
 }
 /*--------------------------------------*/
@@ -305,7 +310,7 @@ li.MPProfileInsuranceName {
 }
 /******** SITIO WEB Y CONTROL FACEBOOK ********/
 .MPProfileInfo_Social {
-        border: none;
+    border: none;
     display: block;
     width: 100%;
 }
@@ -313,9 +318,9 @@ li.MPProfileInsuranceName {
     .MPProfileInfo_Social a {
         border: none;
         display: inline-block;
-        width:170px;
-        min-width:98px;
-        margin:9px 0px 4px 10px;
+        width: 170px;
+        min-width: 98px;
+        margin: 9px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
         letter-spacing: -0.6px;
@@ -323,10 +328,10 @@ li.MPProfileInsuranceName {
     }
 
     .MPProfileInfo_Social img {
-        width:22%;
+        width: 22%;
         height: auto;
         vertical-align: middle;
-        max-width:26px;
+        max-width: 26px;
     }
 
     .MPProfileInfo_Social span {
@@ -344,7 +349,7 @@ li.MPProfileInsuranceName {
         vertical-align: top;
         width: 180px;
         display: inline-block;
-        height: 75px;
+        height: 85px;
         margin: 2px 0px 2px 0px;
     }
 
@@ -371,30 +376,21 @@ li.MPProfileInsuranceName {
     }
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
 .MPProfileInfoDetail {
-    border-style: solid;
-    border-width: 1px 0px;
-    border-color: #666;
     display: block;
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin:10px auto 0px auto;
-    BORDER: 1px solid #666;
-    border-radius: 3px;
-    box-shadow: 2px 2px 2px #666;
-    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
-    min-height: 218px;
 }
 
     .MPProfileInfoDetail div {
         border: medium none;
         display: block;
-        margin: 15px auto 15px auto;
+        margin: 20px auto 20px auto;
         height: auto;
         min-height: 100px;
         vertical-align: top;
         text-align: left;
-        width: 94%;
+        width: 100%;
     }
 
         .MPProfileInfoDetail div ul li {
@@ -410,7 +406,7 @@ li.MPProfileInsuranceName {
                 background-color: #ececec;
                 font-weight: bold;
                 padding: 3px 10px 3px 10px;
-                margin: 0px 0px 0px 0px;
+                margin: 0px 0px -1px 0px;
                 display: inline-block;
                 border-width: 1px 1px 0px 1px;
                 border-color: #666;
@@ -433,7 +429,7 @@ li.MPProfileInsuranceName {
                 .MPProfileInfoDetail div ul li a.selected {
                     border-bottom: 1px solid #FBFBFB;
                     margin-bottom: -1.5px;
-                    background-color:#fff;
+                    background-color: #fff;
                 }
 
 div#divProfileText,
@@ -445,9 +441,15 @@ div#divOffice {
     width: 100%;
     height: auto !important;
     text-align: left;
-    border-top: 1px solid #666;
-    position:relative;
-    z-index:2;
+    box-shadow: 2px 2px 2px #666;
+    border: 1px solid #666;
+    position: relative;
+    min-height: 150px;
+    z-index: 2;
+}
+
+div#divProfileText p{
+    margin-bottom: 10px;
 }
 
 .MPProfileInfoDetail div#divProfileText p,
@@ -481,6 +483,7 @@ div#divOffice ul li {
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
 }
+
 .MPProfileCallendarWrapper {
     border: medium none;
     display: block;
@@ -494,13 +497,13 @@ div#divOffice ul li {
 
     .MPProfileCallendarWrapper ul {
         margin-bottom: -4px;
-}
-
-    .MPProfileCallendarWrapper ul li {
-        border: none;
-        display: inline-block;
-        margin:;
     }
+
+        .MPProfileCallendarWrapper ul li {
+            border: none;
+            display: inline-block;
+            margin:;
+        }
 
 .MPProfileCallendarTabs {
     font-size: 0.9em !important;
@@ -534,9 +537,9 @@ div#divOffice ul li {
     border-bottom: 1px solid #FBFBFB !important;
     margin-bottom: -1.5px !important;
     background: transparent !important;
-    position:relative;
-    z-index:3 !important;
-    background-color:#fff !important;
+    position: relative;
+    z-index: 3 !important;
+    background-color: #fff !important;
 }
 
 .MPProfileCallendarCallendar {
@@ -556,7 +559,7 @@ div#divOffice ul li {
 
 .MPProfileOfficeContactSelector {
     display: block;
-    margin:6px auto;
+    margin: 6px auto;
     height: auto;
     min-height: 100px;
     vertical-align: top;
@@ -575,43 +578,44 @@ div.MPProfileOfficeContactSelector span {
 
     div.MPProfileOfficeContactSelector span:hover {
         text-decoration: underline;
-        }
+    }
 
 div.MPProfileOfficeContactSelector {
     display: block;
     min-height: 39px;
-            }
+}
 
     div.MPProfileOfficeContactSelector span, div.MPProfileOfficeContactSelector span:hover {
         cursor: auto;
         font-size: 0.9em;
         display: block;
         width: auto;
-        line-height:1.4em;
+        line-height: 1.4em;
         text-decoration: none;
         color: #666;
         text-align: left;
         text-indent: 20px;
-            }
+    }
 
-                span.OfficeContactTelephone,
-                span.OfficeContactAddress {
+span.OfficeContactTelephone,
+span.OfficeContactAddress {
     background-repeat: no-repeat;
-                }
+}
 
-                span.OfficeContactAddress {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
-                    background-position: -6px -1px;
-                    background-size: 27px auto;
-                }
+span.OfficeContactAddress {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -6px -1px;
+    background-size: 27px auto;
+}
 
-                span.OfficeContactTelephone {
-                    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
-                    background-position: 0px 2px;
-                    background-size: 18px auto;
-                }
-.MPProfileCalendarWeekTop{
-    margin:0px 0px 0px;
+span.OfficeContactTelephone {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 0px 2px;
+    background-size: 18px auto;
+}
+
+.MPProfileCalendarWeekTop {
+    margin: 0px 0px 0px;
     border-top: 1px solid #666 !important;
     display: block;
 }
@@ -625,13 +629,15 @@ div.MPProfileOfficeContactSelector {
     font-size: 0.9em !important;
     letter-spacing: -0.3px !important;
 }
+
 div.k-grid-content {
-    width:100% !important;
+    width: 100% !important;
 }
-div.k-grid-content > table > colgroup > col {
-    box-sizing: content-box;
-    width:70px !important;
-}
+
+    div.k-grid-content > table > colgroup > col {
+        box-sizing: content-box;
+        width: 70px !important;
+    }
 
 /************ MAPA ***********/
 #divOfficeMap {
@@ -661,17 +667,20 @@ div.k-grid-content > table > colgroup > col {
             height: auto;
             float: left;
         }
-        span.MPProfileOfficeContactTelephone,
-        span.MPProfileOfficeContactAddress {
-            background-repeat:no-repeat;
-        }
-        span.MPProfileOfficeContactAddress {
-                background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
-                background-position: -1px -2px;
-                background-size: 21px auto;
-                }
-        span.MPProfileOfficeContactTelephone {
-            background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
-            background-position: 1px -1px;
-            background-size: 16px auto;
-            }
+
+span.MPProfileOfficeContactTelephone,
+span.MPProfileOfficeContactAddress {
+    background-repeat: no-repeat;
+}
+
+span.MPProfileOfficeContactAddress {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -1px -2px;
+    background-size: 21px auto;
+}
+
+span.MPProfileOfficeContactTelephone {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 1px -1px;
+    background-size: 16px auto;
+}
