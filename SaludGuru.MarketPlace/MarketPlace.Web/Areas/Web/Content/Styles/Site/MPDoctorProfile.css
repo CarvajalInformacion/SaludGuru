@@ -475,29 +475,29 @@ div#divOffice ul li {
 
 /************* TABS CALENDARIO PROFESIONAL ************/
 .MPProfileScheduleCallendar {
-    border-style: solid;
-    border-width: 1px 0px;
-    border-color: #666;
     display: block;
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin: 8px auto 0px auto;
-    BORDER: 1px solid #666;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px #666;
-    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+    margin:0px auto 0px auto;
 }
 
 .MPProfileCallendarWrapper {
     border: medium none;
     display: block;
-    margin: 15px auto 15px auto;
+    margin: 0px auto 0px auto;
     height: auto;
     min-height: 100px;
     vertical-align: top;
     text-align: left;
     width: 98%;
+
+    BORDER: 1px solid #666;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px #666;
+    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+
+
 }
 
     .MPProfileCallendarWrapper ul {
