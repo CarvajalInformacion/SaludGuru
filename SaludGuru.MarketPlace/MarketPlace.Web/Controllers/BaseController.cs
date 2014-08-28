@@ -308,8 +308,8 @@ namespace MarketPlace.Web.Controllers
                 oMessage.NewMessage.UserAction = MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserId.ToString();
                 oMessage.NewMessage.ProgramTime = DateTime.Now;
                 oMessage.NewMessage.MessageType = "GuruNotification_NewPatient";
-                
-                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name });
+
+                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name + PatientList.FirstOrDefault().LastName});
                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
                 
                 List<string> emailRelatedList = new List<string>();
