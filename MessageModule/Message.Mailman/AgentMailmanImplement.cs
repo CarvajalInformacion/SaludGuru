@@ -65,6 +65,10 @@ namespace Message.Mailman
                         modelToreturn.MessageResult = err.Message + " ";                   
                 }
             }
+            if (true)
+            {
+                
+            }
             modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
             modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
             modelToreturn.MessageType = MessageToSend.MessageConfig["Subject"];
