@@ -155,8 +155,9 @@ a.MPResultsPaidProfileDoctorWebsite,
 a.MPResultsPaidProfileDoctorFacebook{
     display: block;
     width: 100%;
-    margin: 6px 0px 4px 0px;
+    margin: 0px 4px;
     text-decoration: none;
+    height: 24px;
 }
 a.MPResultsPaidProfileDoctorWebsite > img,
 a.MPResultsPaidProfileDoctorFacebook > img {
@@ -269,10 +270,10 @@ a.MPResultsPaidProfileDoctorName{
             border: none;
             display:block;
             width:auto;
+            height:auto;
             min-width: 220px;
             vertical-align: top;
             margin:12px 0px 4px 0px;
-            min-height:58px;
         }
         div.OfficeSelector span{
             cursor:pointer;       
