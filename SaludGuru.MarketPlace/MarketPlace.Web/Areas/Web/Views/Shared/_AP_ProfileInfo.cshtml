@@ -37,10 +37,24 @@
         }
 
     </li>
-    <li class="RelatedOffice">        
-        <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</label>
+    <li class="RelatedOffice">
+        @if (Model.CurrentOffice != null)
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</label>
+        }
+        else
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Select(x => x.Name).FirstOrDefault()</label>
+        }
     </li>
-    <li class="InfoOffice">        
-        <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+    <li class="InfoOffice">
+        @if (Model.CurrentOffice != null)
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+        }
+        else
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+        }
     </li>
 </ul>

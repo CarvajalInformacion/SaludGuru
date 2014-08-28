@@ -11,7 +11,6 @@
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi" style="display:none">
-                    <h2>Datos de la cita</h2>
                     <label>Selecciona el consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
@@ -25,7 +24,6 @@
             else
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi">
-                    <h2>Datos de la cita</h2>
                     <label>Selecciona el consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
@@ -62,7 +60,7 @@
             <li class="TreatmentSelectedLi">
                 <label>Escoge tu tratamiento</label>
                 <select id="SelectedTreatment" name="SelectedTreatment">
-                    @if (Model.CurrentOffice != null)
+                    @if (Model.CurrentOffice != null || Model.CurrentProfile.RelatedOffice != null)
                     {
                         foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
                         {
@@ -168,22 +166,22 @@
                     <label class="titleNewPatien">Datos del nuevo paciente</label>
                     <label>Nombre</label>
                     <input type="text" id="Name" name="Name" />
-                    <label class="required">*</label>
+                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Apellido</label>
                     <input type="text" id="LastName" name="LastName" />
-                    <label class="required">*</label>
+                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Identificación</label>
                     <input type="text" id="Identification" name="Identification" />
-                    <label class="required">*</label>
+                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
                     <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
-                    <label class="required">*</label>
+                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Sexo</label>

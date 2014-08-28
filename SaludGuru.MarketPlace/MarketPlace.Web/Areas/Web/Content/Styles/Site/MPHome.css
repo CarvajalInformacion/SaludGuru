@@ -22,7 +22,7 @@ h1 {
 .SearchBox {
     height: 400px !important;
     padding: 10% 0px 0px !important;
-    margin: 45px 0px 0px 0px;
+    margin:0px 0px 0px 0px;
 }
 
     .SearchBox .SearchBoxClass {

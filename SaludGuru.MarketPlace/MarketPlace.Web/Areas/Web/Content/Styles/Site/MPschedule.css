@@ -124,15 +124,19 @@ div.k-grid-content {
     overflow-x: auto;
     overflow-y: auto;
 }
+.k-grid table {
+    border-spacing: 5px !important;
+}
 
     div.k-grid-content > table > tbody > tr:first-child {
-        background-color: #a4c02c;
+        background-color:none;
     }
-
         div.k-grid-content > table > tbody > tr:first-child > td {
             border-style: solid;
-            border-color: #666;
+            border-color: #FFF;
             border-width: 0px 1px 1px 0px;
+            font-weight: bold;
+            color: #666 !important;
         }
 
             div.k-grid-content > table > tbody > tr:first-child > td:hover {
@@ -145,11 +149,13 @@ div.k-grid-content {
                 color: #333;
                 width: 82px;
                 margin-left: -3px;
+                font-size:12px;
+                letter-spacing:normal;
             }
 
                 div.k-grid-content > table > tbody > tr:first-child > td > a:hover,
                 div.k-grid-content > table > tbody > tr > td > a:hover {
-                    color: #333;
+                    color:#fff;
                     text-decoration: none;
                 }
 
@@ -159,16 +165,21 @@ div.k-grid-content {
 
     div.k-grid-content > table > tbody > tr > td {
         border-style: solid;
-        border-color: #666;
-        border-width: 0px 1px 1px 0px;
+        border-color:#B6DE3F;
+        border-width: 1px;
+        border-radius: 3px;
     }
 
         div.k-grid-content > table > tbody > tr > td:hover {
             cursor: pointer;
-            background-color: #afacac;
+            background-color: #B6DE3F;            
         }
 
 
 a#aBefore_192BD698 {
     margin-left: 60%;
+}
+
+.HeaderStyle:hover {
+    color:#333 !important;
 }

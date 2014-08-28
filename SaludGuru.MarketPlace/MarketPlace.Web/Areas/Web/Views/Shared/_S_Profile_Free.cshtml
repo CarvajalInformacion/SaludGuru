@@ -58,13 +58,13 @@
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                         <!--Principal specialty-->
-                <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
+            <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
             }
         </div>
         <div class="MPResultsDoctorDescriptionWrapper">
             @if (!string.IsNullOrEmpty(ovShortProfile))
             {
-                <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
+            <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
             }
             @{
             SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
@@ -82,16 +82,19 @@
                 <div class="OfficeContactSelector" style="display:none;">
                     @if (oCurrentOffice != null)
                     {
-                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                     }
                     else
                     {
-                        <span>El Doctor no tiene información de contacto</span> 
+                    <span>El Doctor no tiene información de contacto</span>
                     }
                 </div>
             </div>
 
+        </div>
+        <div class="MPResultsDoctorLinksWrapper">
+            <a class="MPResultsBookAppFree" href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">Soy este profesional</a>
         </div>
     </div>
 }
