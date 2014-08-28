@@ -312,10 +312,10 @@ li.MPProfileInsuranceName {
 
     .MPProfileInfo_Social a {
         border: none;
-        display: block;
-        width: 42%;
+        display: inline-block;
+        width:170px;
         min-width:98px;
-        margin:4px 0px 4px 10px;
+        margin:9px 0px 4px 10px;
         text-decoration: none;
         color: #92B92A;
         letter-spacing: -0.6px;
@@ -378,11 +378,12 @@ li.MPProfileInsuranceName {
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin: 12px auto 0px auto;
+    margin:10px auto 0px auto;
     BORDER: 1px solid #666;
     border-radius: 3px;
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+    min-height: 218px;
 }
 
     .MPProfileInfoDetail div {
@@ -432,19 +433,21 @@ li.MPProfileInsuranceName {
                 .MPProfileInfoDetail div ul li a.selected {
                     border-bottom: 1px solid #FBFBFB;
                     margin-bottom: -1.5px;
-                    background: transparent;
+                    background-color:#fff;
                 }
 
 div#divProfileText,
 div#divEducation,
 div#divCertification,
 div#divOffice {
-    margin: 0px 0px 0px;
+    margin: -2px 0px 0px 0px;
     padding: 5px 1.5% 0px;
     width: 100%;
     height: auto !important;
     text-align: left;
     border-top: 1px solid #666;
+    position:relative;
+    z-index:2;
 }
 
 .MPProfileInfoDetail div#divProfileText p,
@@ -478,7 +481,6 @@ div#divOffice ul li {
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
 }
-
 .MPProfileCallendarWrapper {
     border: medium none;
     display: block;
@@ -497,6 +499,7 @@ div#divOffice ul li {
     .MPProfileCallendarWrapper ul li {
         border: none;
         display: inline-block;
+        margin:;
     }
 
 .MPProfileCallendarTabs {
@@ -531,6 +534,9 @@ div#divOffice ul li {
     border-bottom: 1px solid #FBFBFB !important;
     margin-bottom: -1.5px !important;
     background: transparent !important;
+    position:relative;
+    z-index:3 !important;
+    background-color:#fff !important;
 }
 
 .MPProfileCallendarCallendar {
