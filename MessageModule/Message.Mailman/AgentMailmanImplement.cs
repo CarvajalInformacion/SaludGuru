@@ -34,7 +34,7 @@ namespace Message.Mailman
             #region Variables
             MessageModel modelToreturn = new MessageModel();
             #endregion
-            
+
             foreach (AddressModel item in MessageToSend.AddressToSend)
             {
                 MessageQueue messageQueue = new MessageQueue();
@@ -54,20 +54,17 @@ namespace Message.Mailman
                     modelToreturn.RelatedAddress.Add(item);
 
                     //Envia a la cola de Mailman
-                    messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);                  
+                    messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
                 }
                 catch (Exception err)
                 {
                     modelToreturn.isSuccess = false;
-                    if (!string.IsNullOrEmpty(err.InnerException.Message))                    
-                        modelToreturn.MessageResult = err.Message + " " + err.InnerException.Message;
-                    else
-                        modelToreturn.MessageResult = err.Message + " ";                   
+                    modelToreturn.MessageResult = err.Message + " ";
                 }
             }
             if (true)
             {
-                
+
             }
             modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
             modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
