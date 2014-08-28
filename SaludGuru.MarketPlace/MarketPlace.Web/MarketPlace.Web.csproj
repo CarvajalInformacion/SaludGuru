@@ -46,6 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Auth.Client">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\Auth.Client\developer\Auth.Client.dll</HintPath>
+    </Reference>
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>

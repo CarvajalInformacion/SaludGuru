@@ -11,5 +11,6 @@ namespace Message.Models
         public Message.Models.MessageQueueModel QueueItemToProcess { get; set; }
         public Dictionary<string, string> AgentConfig { get; set; }
         public Dictionary<string, string> MessageConfig { get; set; }
+        public List<AddressModel> AddressToSend { get; set; }
     }
 }

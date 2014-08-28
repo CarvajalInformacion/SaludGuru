@@ -16,6 +16,12 @@ namespace Message.Interfaces
         /// </summary>
         /// <returns>Lista de mensajes</returns>
         List<MessageQueueModel> GetQueueMessage();
+
+        /// <summary>
+        /// Funcion que obtiene todos los mensajes
+        /// </summary>
+        /// <returns>Lista de mensajes</returns>
+        List<MessageQueueModel> GetQueueMessageToInspect();
         #endregion
 
         #region ProcessMessage
