@@ -21,18 +21,6 @@ namespace Message.Inalambria
         /// </summary>
         private MessageDataController _controller = new MessageDataController();
 
-        /// <summary>
-        /// Funcion que valida si la dirección de sms a la que se va a enviar existe, de no ser así, la crea.
-        /// </summary>
-        /// <param name="address">Dirección a validar</param>
-        /// <param name="agent">Medio de envio(Inalambria, Infobip,...)</param>
-        /// <returns>Lista de direcciones</returns>
-        private List<AddressModel> UpsertAddress(string address, string agent)
-        {
-            List<AddressModel> addressList = new List<AddressModel>();
-            return addressList = this._controller.UpsertAddress(address, agent);
-        }
-
         #endregion
 
         #region Funciones Publicas
@@ -50,16 +38,8 @@ namespace Message.Inalambria
             MessageModel modelToreturn = new MessageModel();
             bool sent = false;
             #endregion
-            //validar todas las direcciones
-            List<QueueParameterModel> mess = MessageToSend.QueueItemToProcess.MessageParameters.Where(x => x.Key == "TO").ToList();
-            if (mess.Count() != 0)
-                addresList = this.UpsertAddress(mess.FirstOrDefault().Value, MessageToSend.MessageConfig["Agent"]);
-            else
-            {
-                return null;
-            }
-            
-            foreach (AddressModel item in addresList)
+           
+            foreach (AddressModel item in MessageToSend.AddressToSend)
             {               
                 ServiceSendSoapClient sendSMS = new ServiceSendSoapClient("ServiceSendSoap12");
                 sent = sendSMS.SendWithUser(MessageToSend.AgentConfig["UsrSMSService"], MessageToSend.AgentConfig["PswSMSService"], item.Address, MessageToSend.MessageConfig["Body"], null, "1").Status;
@@ -69,31 +49,28 @@ namespace Message.Inalambria
 
                 if (sent)
                 {
-                    //Actualiza la cola
-                    this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, true, "", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), MessageToSend.MessageConfig["Body"], item.AddressId);                 
+                    modelToreturn.isSuccess = true;
+                    modelToreturn.MessageResult = "Message added correctly to the system queue";                 
                 }
                 else
-                {
-                    this._controller.CreateQueueProcess(MessageToSend.QueueItemToProcess.MessageQueueId, false, "El mensaje presenta errores y no pudeo ser enviado", MessageToSend.QueueItemToProcess.MessageType, MessageToSend.MessageConfig["Agent"].ToString(), MessageToSend.MessageConfig["Body"], item.AddressId);
-                    //this.AddResend(MessageToSend.QueueItemToProcess.)
+                {                    
+                    modelToreturn.isSuccess = false;
+                    modelToreturn.MessageResult = "The message could not be sent to the queue system";
                 }               
             }
 
-            modelToreturn.Agent = addresList.FirstOrDefault().Agent;
+            modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
             modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
             modelToreturn.MessageType = MessageToSend.MessageConfig["Agent"];
             modelToreturn.TimeSent = DateTime.Now;
             return modelToreturn;
-        }
+        }       
+        #endregion
 
-        /// <summary>
-        /// Funcion que envia el id del mensaje que va a ser enviado
-        /// </summary>
-        /// <param name="MessageProcessId">id del proceso</param>
+
         public void AddResend(int MessageProcessId)
         {
-            this._controller.AddToResendMsj(MessageProcessId);
+            throw new NotImplementedException();
         }
-        #endregion
     }
 }

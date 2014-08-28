@@ -14,6 +14,7 @@ namespace Message.Models
         public DateTime TimeSent { get; set; }
         public string BodyMessage { get; set; }
         public List<AddressModel> RelatedAddress { get; set; }
-
+        public string MessageResult { get; set; }
+        public bool isSuccess { get; set; }
     }
 }

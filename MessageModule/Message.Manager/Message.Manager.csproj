@@ -73,6 +73,10 @@
       <Project>{65bd15f2-3262-4e42-a686-da819cab3360}</Project>
       <Name>Message.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Message.Notifications\Message.Notifications.csproj">
+      <Project>{1f0a2ca6-eb60-4812-be62-644053b87748}</Project>
+      <Name>Message.Notifications</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Librarys\Carvajal.Mail.dll" />

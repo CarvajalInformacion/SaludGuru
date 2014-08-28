@@ -226,5 +226,66 @@ namespace Message.DAL.MySqlDao
             }
             return idReturnList;
         }
+
+        /// <summary>
+        /// Funcion que obtiene todos los mensajes 
+        /// </summary>
+        /// <returns>Lista de mensajes</returns>
+        public List<MessageQueueModel> GetQueueMessageToInspect()
+        {
+            #region Variables
+            List<MessageQueueModel> modelList = null;
+            #endregion
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "Mg_GetAll_B_MessageQueue",
+                CommandType = System.Data.CommandType.StoredProcedure
+            });
+
+            if (response.DataTableResult != null &&
+                response.DataTableResult.Rows.Count > 0)
+            {
+                modelList = new List<MessageQueueModel>();
+                modelList = (from l in response.DataTableResult.AsEnumerable()
+                             where !l.IsNull("MessageQueueId")
+                             group l by
+                             new
+                             {
+                                 MessageQueueId = l.Field<int>("MessageQueueId"),
+                                 MessageType = l.Field<string>("MessageType"),
+                                 ProgramTime = l.Field<DateTime>("ProgramTime"),
+                                 UserAction = l.Field<string>("UserAction"),
+                                 CreateDate = l.Field<DateTime>("CreateDate"),
+                             } into lig
+                             select new MessageQueueModel()
+                             {
+                                 MessageQueueId = lig.Key.MessageQueueId,
+                                 MessageType = lig.Key.MessageType,
+                                 ProgramTime = lig.Key.ProgramTime,
+                                 UserAction = lig.Key.UserAction,
+                                 CreateDate = lig.Key.CreateDate,
+                                 MessageParameters = (from ui in response.DataTableResult.AsEnumerable()
+                                                      where !ui.IsNull("MessageParameterId") && ui.Field<int>("MessageQueueId") == lig.Key.MessageQueueId
+                                                      group ui by
+                                                      new
+                                                      {
+                                                          MessageParameterId = ui.Field<int>("MessageParameterId"),
+                                                          Key = ui.Field<string>("ItemKey"),
+                                                          Value = ui.Field<string>("Value"),
+                                                          CreateDate = ui.Field<DateTime>("CreateDate"),
+
+                                                      } into mgpa
+                                                      select new QueueParameterModel
+                                                      {
+                                                          MessageParameterId = mgpa.Key.MessageParameterId,
+                                                          Key = mgpa.Key.Key,
+                                                          Value = mgpa.Key.Value,
+                                                          CreateDate = mgpa.Key.CreateDate,
+                                                      }).ToList(),
+                             }).ToList();
+            }
+            return modelList;
+        }
     }
 }

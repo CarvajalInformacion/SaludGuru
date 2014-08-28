@@ -81,5 +81,11 @@ namespace MessageModule.Controller
         {
             throw new NotImplementedException();
         }
+
+
+        public List<MessageQueueModel> GetQueueMessageToInspect()
+        {
+            return this.DataFactory.GetQueueMessageToInspect();
+        }
     }
 }
