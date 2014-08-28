@@ -11,7 +11,6 @@
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi" style="display:none">
-                    <h2>Datos de la cita</h2>
                     <label>Selecciona el consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
@@ -25,7 +24,6 @@
             else
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi">
-                    <h2>Datos de la cita</h2>
                     <label>Selecciona el consultorio</label>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
@@ -62,7 +60,7 @@
             <li class="TreatmentSelectedLi">
                 <label>Escoge tu tratamiento</label>
                 <select id="SelectedTreatment" name="SelectedTreatment">
-                    @if (Model.CurrentOffice != null)
+                    @if (Model.CurrentOffice != null || Model.CurrentProfile.RelatedOffice != null)
                     {
                         foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
                         {

@@ -68,62 +68,6 @@
             </div>
         </div>
         <div class="HomeFirstBlockRigth">
-            <label class="HombeBlockTitle">Redes Sociales</label>
-            <div class="HomeBlocks SocialNetworks">
-                <div>
-                    <!--Facebook-->
-                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=250&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-                </div>
-                <ul>
-                    <li>
-                        <!--Google + -->
-                        <div class="g-plusone" data-annotation="inline" data-width="300"></div>
-                    </li>
-                    <li>
-                        <!--LinkedIn-->
-                        @*<script src="//platform.linkedin.com/in.js" type="text/javascript">
-                                lang: es_ES
-                            </script>
-                            <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
-                            </script>*@
-                        <script src="//platform.linkedin.com/in.js" type="text/javascript">
-                            lang: es_ES
-                        </script>
-                        <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
-                        </script>
-                    </li>
-                    <li>
-                        <!--Twitter-->
-                        <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false">Seguir a &#64;SaludGuru</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <hr class="featurette-divider __loop">
-    <div class="Feed">
-        @{
-            List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(1);
-            SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
-        }
-        <!-- Feed Left -->
-        <div class="HomeFirstBlockFeedLeft">
-            <label class="HombeBlockTitle">Noticias</label>
-            <div class="HomeBlocks FeedLeft">
-                <a target="_blank" href="@(mHealtyLive.Link)">
-                    <label id="FeedTitle">@(mHealtyLive.Title)</label>
-                </a>
-                <a target="_blank" href="@(mHealtyLive.Link)">
-                    <div class="divLeftImage">
-                        <img id="FeedImage" src="@(mHealtyLive.Image)" />
-                    </div>
-                </a>
-                <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
-                <a class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
-            </div>
-        </div>
-        <!-- Right Content-->
-        <div class="HomeFirstBlockFeedRigth">
             <label class="HombeBlockTitle">Lo más buscado</label>
             <div class="HomeBlocks criteriaBox">
                 <div class="FeaturedSP">
@@ -201,6 +145,62 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider __loop">
+    <div class="Feed">
+        @{
+            List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(1);
+            SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
+        }
+        <!-- Feed Left -->
+        <div class="HomeFirstBlockFeedLeft">
+            <label class="HombeBlockTitle">Noticias</label>
+            <div class="HomeBlocks FeedLeft">
+                <a target="_blank" href="@(mHealtyLive.Link)">
+                    <label id="FeedTitle">@(mHealtyLive.Title)</label>
+                </a>
+                <a target="_blank" href="@(mHealtyLive.Link)">
+                    <div class="divLeftImage">
+                        <img id="FeedImage" src="@(mHealtyLive.Image)" />
+                    </div>
+                </a>
+                <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+                <a class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
+            </div>
+        </div>
+        <!-- Right Content-->
+        <div class="HomeFirstBlockFeedRigth">
+            <label class="HombeBlockTitle">Redes Sociales</label>
+            <div class="HomeBlocks SocialNetworks">
+                <div>
+                    <!--Facebook-->
+                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=250&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+                <ul>
+                    <li>
+                        <!--Google + -->
+                        <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+                    </li>
+                    <li>
+                        <!--LinkedIn-->
+                        @*<script src="//platform.linkedin.com/in.js" type="text/javascript">
+                        lang: es_ES
+                    </script>
+                    <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+                    </script>*@
+                        <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                            lang: es_ES
+                        </script>
+                        <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+                        </script>
+                    </li>
+                    <li>
+                        <!--Twitter-->
+                        <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false">Seguir a &#64;SaludGuru</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

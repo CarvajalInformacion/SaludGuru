@@ -192,7 +192,7 @@ var AppointmentObject = {
     ChangeOffice: function (vOfficePublicId) {
         var selectOffice = $('#' + this.selOfficeId).val();
         //Remove and add the new items 
-        $('#' + AppointmentObject.selTreatmentId).empty();
+        //$('#' + AppointmentObject.selTreatmentId).empty();
 
         $.each(this.lstOffice[selectOffice].TreatmentList, function (index, value) {
             $('#' + AppointmentObject.selTreatmentId).append('<option value=' + value.CategoryId + '>' + value.Name + '</option>');
