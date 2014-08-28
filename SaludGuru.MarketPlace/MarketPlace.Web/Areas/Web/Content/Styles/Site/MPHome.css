@@ -120,7 +120,7 @@ h1 {
     height: auto;
     float: left;
     width: 100%;
-    min-height: 288px;
+    min-height: 210px;
 }
 
     .Profile p {
@@ -174,7 +174,7 @@ h1 {
 
 a.MPButtons {
     font-weight: bold;
-    margin: 14% 15px 20px 0px;
+    margin: 2% 15px;
     font-size: 17px;
     float: right;
     color: #99c21d;
