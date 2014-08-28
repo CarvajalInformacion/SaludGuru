@@ -65,6 +65,12 @@ namespace MarketPlace.Web.Controllers
                         PatientInfoType = enumPatientInfoType.Birthday,
                         Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.Birthday.ToString(),
                     },
+                    new PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Email,
+                        Value = MarketPlace.Models.General.SessionModel.LoginUserEmail.ToString(),
+                    },
                      new  PatientInfoModel()
                     {
                         PatientInfoId = 0,
