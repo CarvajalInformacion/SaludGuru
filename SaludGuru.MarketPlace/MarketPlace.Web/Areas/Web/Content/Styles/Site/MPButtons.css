@@ -34,7 +34,7 @@ li.MPAgendaButtonWrapper, div.MPAgendaButtonWrapper {
         border-radius: 2px;
         color: #fff;
         font-size: 20px;
-        box-shadow: 1px 1px 1px #333;
+        /*box-shadow: 1px 1px 1px #333;*/
         text-align: center;
     }
 
@@ -97,7 +97,7 @@ input#itemClose {
     line-height: 10px !important;
     border-radius: 3px;
     font-size: 1.3em;
-    padding: 5px !important;
+    padding: 3px !important;
     margin-left: 92%;
     margin-top: 1%;
 }
@@ -109,5 +109,5 @@ input#itemClose {
 input#DateLessInfoId {
     float: right;
     width: auto !important;
-    padding: 0px 7px 2px 7px;
+    padding: 0px 4px 0px 4px !important;
 }

@@ -111,7 +111,7 @@ namespace Message.Manager
                         this.SendToProcessWhitOutAgent(item, oAgentConfig.AddressToSend.FirstOrDefault().AddressId);                                        
 	            }                
             }
-            else
+            else if (oAgentConfig.AddressToSend.Count() > 0)
             {
                 oMsjReturn = Agent.SendMessage(oAgentConfig);
                 foreach (var item in oMsjReturn.RelatedAddress)
@@ -128,8 +128,8 @@ namespace Message.Manager
                     {
                         this.AddResend(QueueItemToProcess.MessageQueueId);
                     }
-                }
-            }           
+                }       
+            }             
 
             /*trace log message*/
             return oMsjReturn;
