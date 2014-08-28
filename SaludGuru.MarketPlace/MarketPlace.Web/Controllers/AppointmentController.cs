@@ -22,10 +22,21 @@ namespace MarketPlace.Web.Controllers
             if (pModel == null)
             {
                 string resultPatientPublicId = CreateNewCurrentPatient(ProfilePublicId);
+             
+                List<PatientModel> PatientSource = new List<PatientModel>();
+                PatientModel ItemPatientSource = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(resultPatientPublicId);
+                PatientSource.Add(ItemPatientSource);
+
+                ProfileModel oModelSend = new ProfileModel();
+                oModelSend = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+                AppointmentModel appModel = new AppointmentModel();
+
+                //Send Notification reporting a new patient
+                MarketPlace.Web.Controllers.BaseController.SendMessage(oModelSend, null, PatientSource, appModel, true);
             }
-            DateTime currDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date);            
-            string datePass = currDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));           
-            
+            DateTime currDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date);
+            string datePass = currDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+
             AppointmentViewModel oModel = new AppointmentViewModel()
             {
                 CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date),
@@ -107,9 +118,10 @@ namespace MarketPlace.Web.Controllers
                     PatientItem = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(item.PatientPublicId);
                     PatientSource.Add(PatientItem);
                 }
-                //TODO: send message new patient PatientNew
-                MarketPlace.Web.Controllers.BaseController.SendMessage(oModel, enumProfileInfoType.AsignedAppointment, PatientSource, appToCreate, true);
-                //TODO: send message removed patient
+
+                appToCreate.AppointmentPublicId = NewAppointmentPublicId;
+                MarketPlace.Web.Controllers.BaseController.SendMessage(oModel, enumProfileInfoType.AsignedAppointment, PatientSource, appToCreate, false);
+                MarketPlace.Web.Controllers.BaseController.SendMessage(oModel, enumProfileInfoType.ReminderAppointment, PatientSource, appToCreate, false);
             }
 
             OfficeModel office = new OfficeModel();
