@@ -103,7 +103,7 @@
                 <li class="BOVerMasAddPatientesAppointment">
                     <label>Agregar pacientes a esta cita:</label>
                     <input type="text" id="getPatient" />
-                    <a href="javascript:;">+</a>
+                    <a id="aCreatePatient" href="javascript:;">+</a>
                 </li>
                 <li>
                     <h4 class="BOHeadingColorStatus_@((int)oApmntStatus)">Paciente(s) asignados a la cita:</h4>
@@ -315,6 +315,68 @@
                 <input type="hidden" id="R_UpsertAction" name="UpsertAction" value="ConfirmAppointment" />
                 <input type="hidden" id="R_AppointmentPublicId" name="R_AppointmentPublicId" value="@(Model.CurrentAppointment == null ? string.Empty : Model.CurrentAppointment.AppointmentPublicId)" />
             </div>
+        </form>
+    </div>
+
+    <!--Dialog create patient-->
+    <div id="Dialog_CreatePatient" title="Crear Paciente">
+        <form action="/api/PatientApi?UpsertAction=true" method="post" id="frmCreatePatient" name="frmCreatePatient">
+            <ul>
+                <h3>Datos del Paciente</h3>
+                <li>
+                    <label>Nombre</label>
+                    <input id="Name" name="Name" class="required" type="text" />
+                    <span id="Name-Required">*</span>
+                </li>
+                <li>
+                    <label>Apellidos</label>
+                    <input id="LastName" name="LastName" type="text" />
+                </li>
+                <li>
+                    <label>Número Identificación</label>
+                    <input id="IdentificationNumber" name="IdentificationNumber" type="text" />
+                    <span id="Identification-Required">*</span>
+                </li>
+                <li>
+                    <label>Correo electrónico</label>
+                    <input id="Email" name="Email" type="text" />
+                </li>
+                <li>
+                    <label>Teléfono móvil</label>
+                    <input id="Mobile" name="Mobile" class="required" type="text" />
+                    <span id="Mobile-Required">*</span>
+                </li>
+                <li>
+                    @{
+                        if (Model.CurrentProfile.RelatedInsurance != null)
+                        {
+                            <label>Seguro</label>
+                            <select id="Insurance" name="Insurance">
+                                @{
+                            foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                            {
+
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                                }
+                            </select>
+                            if (Model.CurrentProfile.RelatedInsurance != null)
+                            {
+                                <input type="hidden" id="CatId_Insurance" name="CatId_Insurance" value="" />
+                            }
+                        }
+                    }
+                </li>
+                <li>
+                    <label>Plan médico</label>
+                    <input id="MedicalPlan" name="MedicalPlan" type="text" />
+                </li>
+                <li>
+                    <label class="UserMessage">El paciente creado desde este formulario recibirá mensajes vía email y sms por defecto. Para modificar estas opciones dirijase a la página de edición de paciente.</label>
+                    <br />
+                    <label class="Message-Required">Los campos con (*) son obligatorios.</label>
+                </li>
+            </ul>
         </form>
     </div>
 
