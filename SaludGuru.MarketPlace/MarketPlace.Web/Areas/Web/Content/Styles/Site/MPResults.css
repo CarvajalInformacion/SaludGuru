@@ -160,8 +160,9 @@ a.MPResultsPaidProfileDoctorFacebook{
 }
 a.MPResultsPaidProfileDoctorWebsite > img,
 a.MPResultsPaidProfileDoctorFacebook > img {
-    width: 26%;
+    width:19px;
     height: auto;
+    vertical-align:middle;
 }
 a.MPResultsPaidProfileDoctorWebsite > span,
 a.MPResultsPaidProfileDoctorFacebook > span{
