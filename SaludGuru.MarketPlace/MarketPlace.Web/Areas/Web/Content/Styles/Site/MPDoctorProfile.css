@@ -241,6 +241,11 @@
     hr.featurette-divider.__loop.ProfileBasicInfo {
         display: inline-block !important;
     }
+
+    .MPProfileInfo_Social a{
+        margin-bottom: 20px !important;
+        margin-left: 10px !important;
+    }
 }
 /*--------------------------------------*/
 
@@ -320,7 +325,7 @@ li.MPProfileInsuranceName {
         display: inline-block;
         width: 170px;
         min-width: 98px;
-        margin: 9px 0px 4px 10px;
+        margin: 20px 0px 0px 0px;
         text-decoration: none;
         color: #92B92A;
         letter-spacing: -0.6px;
