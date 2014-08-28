@@ -157,11 +157,17 @@
                 <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
             </div>
             <div class="BOButtonContainerLong">
-                <input class="BOButtons" type="submit" value="guardar" />
+                <input id="Add" class="BOButtons" type="submit" value="guardar" />
             </div>
         </form>
     </div>
 
+</div>
+
+<div id="dialog" title="Error">
+    <p>
+
+    </p>
 </div>
 
 @section inlinescripts
@@ -171,6 +177,18 @@
         $(document).ready(function () {
             //start office grid
             OfficeTreatmentAc('Treatment', vDataTreatment);
+
+            $("#Add").on("click", function () {
+                var val = $("#Treatment-id").prop('value');
+                if (val == null || val == "") {
+                    ValidatePopUp("Treatment-id", "El tratamiento que desea agregar no se encuentra en la base de tratamientos, " + " \n " + " para agregarlo por favor comunicarse con el área de soporte.", "Add")
+                    return false;
+                }
+            });
+
+            $("#Treatment").change(function () {
+                $("#Treatment-id").val("");
+            });
         });
     </script>
 }

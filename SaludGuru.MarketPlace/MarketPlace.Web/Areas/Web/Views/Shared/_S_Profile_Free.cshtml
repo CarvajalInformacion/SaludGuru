@@ -4,13 +4,6 @@
 {
     <div class="MPResultsPaidProfile">
         @{
-    //get is certified
-    var ovIsCertified = Model.ProfileInfo.
-            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
-            Select(x => Convert.ToBoolean(x.Value)).
-            DefaultIfEmpty(false).
-            FirstOrDefault();
-
     //get image profile
     var ovImageProfile = Model.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
@@ -48,11 +41,6 @@
 
         }
         <div class="MPResultsCertified">
-            @if (ovIsCertified)
-            {
-            <!--certified image-->
-            <img class="MPResultsCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-            }
         </div>
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
         <div class="MPResultsPaidProfileDoctorPicture">

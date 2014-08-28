@@ -57,6 +57,13 @@
             SpecialtyName = ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(ovDefaultSpecialty.Name) : string.Empty,
         }));
 
+    //get online meeting
+    var ovOnLineMeeting = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline &&
+                    !string.IsNullOrEmpty(x.Value)).
+                    Select(x => x.Value.Trim().ToLower() == "true" ? true : false).
+                    DefaultIfEmpty(false).
+                    FirstOrDefault();
         }
         <!--certified image-->
         <div class="MPResultsCertified">
@@ -143,8 +150,11 @@
             @{
     string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
             }
-            <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita con este doctor</a>
-            <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+            @if (ovOnLineMeeting)
+            {
+                <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tú cita con este doctor</a>
+                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+            }
             <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional</a>
         </div>
     </div>
