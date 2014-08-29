@@ -294,6 +294,8 @@ namespace MarketPlace.Web
                    Query = string.Empty,
 
                    IsQuery = true,
+                   IsNoFollow = true,
+                   IsNoIndex = true,
                }).DataTokens = rvdByArea;
 
             //doctores-{CityName}/{Query}
@@ -310,6 +312,8 @@ namespace MarketPlace.Web
                    InsuranceName = string.Empty,
 
                    IsQuery = true,
+                   IsNoFollow = true,
+                   IsNoIndex = true,
                }).DataTokens = rvdByArea;
 
             #endregion

@@ -45,7 +45,7 @@ function InitGlobalPagesControls(InitParams) {
     ScheduleAppointmentObject.Init({
         FBUrl: InitParams.FBUrl,
         GoogleUrl: InitParams.GoogleUrl,
-        OutlookUrl:InitParams.OutlookUrl,
+        OutlookUrl: InitParams.OutlookUrl,
         IsLogin: InitParams.IsLogin,
     });
 }
@@ -120,7 +120,7 @@ var SearchBoxObject = {
                 },
                 select: function (event, ui) {
                     if (ui.item != null && ui.item.CurrentAcItem != null) {
-                        $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.MatchQuery);
+                        $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.Node);
                         SearchBoxObject.SearchTerm();
                     }
                     return false;
@@ -133,11 +133,11 @@ var SearchBoxObject = {
 
                 var RenderItem = $('#' + SearchBoxObject.InputId + '_AcTemplate').html();
                 RenderItem = RenderItem.replace(/\${Type}/gi, item.Type);
-                RenderItem = RenderItem.replace(/\${MatchQuery}/gi, item.CurrentAcItem.MatchQuery);
+                RenderItem = RenderItem.replace(/\${Node}/gi, item.NodeSelected);
 
                 return $("<li></li>")
                     .data("ui-autocomplete-item", item)
-                    .append("<a><strong>" + RenderItem + "</strong></a>")
+                    .append("<a>" + RenderItem + "</a>")
                     .appendTo(ul);
             };
         }
@@ -145,20 +145,12 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
-        $.ajax({
-            url: '/Search/GetSearchUrl?IsGetUrl=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + $('#' + SearchBoxObject.InputId).val(),
-            dataType: "json",
-            type: "POST",
-        }).done(function (data, textStatus, jqXHR) {
-            if (data != null && data.Url != null && data.Url.length > 0) {
-                window.location = data.Url;
-            }
-        });
+        window.location = 'doctores-' + $('#CurrentCity').val() + '/' + $('#' + SearchBoxObject.InputId).val();
     }
 };
 
 /*show hide user menu*/
-function Header_ShowHideUserMenu(divId) {   
+function Header_ShowHideUserMenu(divId) {
     $('#' + divId).toggle('slow');
 }
 
@@ -169,7 +161,7 @@ function Header_ShowHideLoginMenu(ulLoginId) {
 
 /*Site tooltips*/
 function fnInitToolTip(vSelector) {
-    
+
     $(vSelector).tooltip({
         show: {
             effect: "slideDown",
