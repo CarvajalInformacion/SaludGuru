@@ -516,7 +516,7 @@ div#divOffice ul li {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     position: relative;
-    z-index: 10;
+    z-index:1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -549,6 +549,8 @@ div#divOffice ul li {
     border-radius: 3px !important;
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+    position: relative;
+    z-index:2;
 }
 
 .MPProfileOfficeContactSelector {
