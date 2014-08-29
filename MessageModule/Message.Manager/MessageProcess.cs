@@ -51,7 +51,7 @@ namespace Message.Manager
                                 Console.WriteLine(err.InnerException.Message);
                                 Console.WriteLine(err.InnerException.StackTrace);
                             }
-                            Console.ReadLine();
+                            //Console.ReadLine();
                         }
                     }
                 }
