@@ -153,7 +153,7 @@ namespace Profile.Test
         [TestMethod]
         public void MPProfileSearchAC()
         {
-            List<AutocompleteModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC(1, "á á");
+            List<AutocompleteModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC(1, "alfred goméz");
             Assert.AreEqual(oProfile.Count > 0, true);
         }
 

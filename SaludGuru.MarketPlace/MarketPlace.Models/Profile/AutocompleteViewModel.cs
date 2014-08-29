@@ -11,24 +11,7 @@ namespace MarketPlace.Models.Profile
     {
         public AutocompleteModel CurrentAcItem { get; private set; }
 
-        public string Type
-        {
-            get
-            {
-                if (CurrentAcItem.CategoryType != null)
-                {
-                    return ((int)CurrentAcItem.CategoryType).ToString();
-                }
-                else if (CurrentAcItem.ProfileType != null)
-                {
-                    return ((int)CurrentAcItem.ProfileType).ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
+        public string Type { get { return ((int)CurrentAcItem.TermType).ToString(); } }
 
         public AutocompleteViewModel(AutocompleteModel oAcItme)
         {
