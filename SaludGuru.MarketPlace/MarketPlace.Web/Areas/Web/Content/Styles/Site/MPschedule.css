@@ -114,6 +114,7 @@ div.SelOfficeGrid > div > span {
 #divAppointmentSchedule div.SelOfficeGrid > div.k-grid {
     width: 100% !important;
     border-top: 1px solid #666;
+    height:196px !important;
 }
 
 div.SelOfficeGrid > div.k-grid > div.k-grid-header {
