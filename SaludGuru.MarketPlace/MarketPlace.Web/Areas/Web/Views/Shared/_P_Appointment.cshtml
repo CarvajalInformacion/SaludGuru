@@ -3,7 +3,7 @@
 
 @if (!Model.RenderScripts)
 {
-    string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
+    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
 
 
     <div class="MPProfileCallendarWrapper">

@@ -148,11 +148,11 @@
         </div>
         <div class="MPResultsDoctorLinksWrapper">
             @{
-    string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
+    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
             }
             @if (ovOnLineMeeting)
             {
-                <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))')">Agenda tu cita con este doctor</a>
+                <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))');">Agenda tu cita con este doctor</a>
                 <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
             }
             <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional</a>
