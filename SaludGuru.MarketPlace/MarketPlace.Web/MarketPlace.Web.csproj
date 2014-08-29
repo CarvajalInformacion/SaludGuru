@@ -1115,6 +1115,7 @@
     <Content Include="Areas\Web\Views\Home\ConditionsAndRestrictions.cshtml" />
     <Content Include="Areas\Web\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Content_NoFound.cshtml" />
+    <Content Include="Areas\Web\Views\Home\FAQ.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />
