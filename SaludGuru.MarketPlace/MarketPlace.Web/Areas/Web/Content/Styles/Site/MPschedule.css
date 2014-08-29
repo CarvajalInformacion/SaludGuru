@@ -85,7 +85,7 @@ li.selected a {
 }
 
 div.SelOfficeGrid {
-    margin: 0px 0px 8px 0px;
+    margin: 0px 0px 1px 0px;
     width: calc(100%);
     max-width: 617px;
 }
@@ -113,7 +113,7 @@ div.SelOfficeGrid > div > span {
 /********* TABLA **********/
 #divAppointmentSchedule div.SelOfficeGrid > div.k-grid {
     width: 100% !important;
-    border: 1px solid #666;
+    border-top: 1px solid #666;
 }
 
 div.SelOfficeGrid > div.k-grid > div.k-grid-header {

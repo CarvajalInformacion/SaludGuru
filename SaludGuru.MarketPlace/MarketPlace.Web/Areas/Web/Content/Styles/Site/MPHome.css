@@ -57,7 +57,7 @@ h1 {
     height: auto;
     /*box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85); 
          background: linear-gradient(#fff, #ececec);*/
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 .HombeBlockTitle {
@@ -174,7 +174,7 @@ h1 {
 
 a.MPButtons {
     font-weight: bold;
-    margin: 2% 15px;
+    margin: 1% 15px;
     font-size: 17px;
     float: right;
     color: #99c21d;
@@ -335,12 +335,18 @@ label#FeedTitle {
 /*-----Info Derecha-----*/
 .FeaturedSP {
     margin: 0px 0px 0px 3px;
+    text-align: center;
 }
 
     .FeaturedSP label {
         font-size: 14px;
         text-align: center;
-        font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+        /* font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif; */
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
     }
 
     .FeaturedSP ul li {
@@ -350,17 +356,28 @@ label#FeedTitle {
     }
 
         .FeaturedSP ul li a {
-            color: #99c21d;
+            color: #333;
             font-size: 15px;
             font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
         }
 
 .Insurance {
     font-size: 14px;
     text-align: center;
     font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+    margin: 0px 0px 0px 0px;
 }
+
+    .Insurance label {
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
+    }
 
     .Insurance ul li {
         font-size: 13px;
@@ -369,10 +386,12 @@ label#FeedTitle {
     }
 
         .Insurance ul li a {
-            color: #99c21d;
+            color: #333;
             font-size: 15px;
             font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
         }
 
 /*-----Demo-------*/
@@ -393,14 +412,14 @@ hr.featurette-divider.__loop {
     width: 91%;
     border-top: 1px solid #99c21d;
     /*border: 1px solid green;*/
-    margin: 15px 0px 15px 6%;
+    margin: 10px 0px 15px 6%;
 }
 
     hr.featurette-divider.__loop.Left {
         display: inline-block;
         width: 62%;
         position: relative;
-        margin: 15px 0px 15px 6% !important;
+        margin: 0px 0px 15px 6% !important;
     }
 
     hr.featurette-divider.__loop.Right {
