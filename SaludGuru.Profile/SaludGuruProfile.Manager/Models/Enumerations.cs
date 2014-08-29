@@ -103,4 +103,11 @@
         ProfileLarge,
         ProfileGeneral
     }
+
+    public enum enumACTermType
+    { 
+        Profile = 1,
+        Category = 2,
+        RelatedCategory = 3,   
+    }
 }

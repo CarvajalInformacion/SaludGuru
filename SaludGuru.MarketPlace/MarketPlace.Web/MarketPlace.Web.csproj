@@ -1117,6 +1117,7 @@
     <Content Include="Areas\Web\Views\Shared\_S_Content_NoFound.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
+    <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Rsx-FeedManager.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -8,16 +8,11 @@ namespace SaludGuruProfile.Manager.Models.Profile
 {
     public class AutocompleteModel
     {
-        public string Id { get; set; }
+        public enumACTermType TermType { get; set; }
 
-        public enumProfileType? ProfileType { get; set; }
+        public string NodeId { get; set; }
 
-        public enumCategoryType? CategoryType { get; set; }
+        public string Node { get; set; }
 
-        public string MatchQuery { get; set; }
-
-        public string OriginalTerm { get; set; }
-
-        public bool IsQuery { get; set; }
     }
 }

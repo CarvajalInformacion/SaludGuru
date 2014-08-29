@@ -23,6 +23,8 @@
                     }
                 }
             </select>
+            <input id="CurrentCity" type="hidden" value="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.DefaultCityName)" />
+
             @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
             {
                 <!--Render user login options-->

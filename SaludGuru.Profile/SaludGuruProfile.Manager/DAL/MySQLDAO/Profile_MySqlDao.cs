@@ -1425,18 +1425,15 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                     (from ac in response.DataTableResult.AsEnumerable()
                      select new AutocompleteModel()
                      {
-                         Id = ac.Field<string>("Id"),
-                         IsQuery = ac.Field<int>("IsQuery") == 1 ? true : false,
-                         MatchQuery = ac.Field<string>("MatchQuery"),
-                         OriginalTerm = ac.Field<string>("OriginalTerm"),
-                         CategoryType = ac.Field<int>("IsQuery") == 1 ? null : (enumCategoryType?)((enumCategoryType)ac.Field<int>("Type")),
-                         ProfileType = ac.Field<int>("IsQuery") == 1 ? (enumProfileType?)((enumProfileType)ac.Field<int>("Type")) : null,
+                         TermType = (enumACTermType)ac.Field<int>("TermType"),
+                         NodeId = ac.Field<string>("NodeId"),
+                         Node = ac.Field<string>("Node")
                      }).ToList();
             }
             return oReturn;
         }
 
-        public List<ProfileModel> MPProfileSearchBasicInfo
+        public List<ProfileModel> MPProfileSearch
             (bool IsQuery,
             int CityId,
             string Query,
@@ -1462,276 +1459,182 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
             ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
             {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "MP_P_Profile_Search_BasicInfo",
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataSet,
+                CommandText = "MP_P_Profile_Search",
                 CommandType = System.Data.CommandType.StoredProcedure,
                 Parameters = lstParams
             });
 
             List<ProfileModel> oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
+            if (response.DataSetResult != null &&
+                response.DataSetResult.Tables.Count >= 4)
             {
-                TotalRows = (int)response.DataTableResult.Rows[0].Field<Int64>("TotalRows");
+                if (response.DataSetResult.Tables[0].Rows.Count > 0)
+                {
+                    TotalRows = (int)response.DataSetResult.Tables[0].Rows[0].Field<int>("TotalRows");
+                }
 
-                oReturn =
-                    (from p in response.DataTableResult.AsEnumerable()
-                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
-                     group p by
-                     new
-                     {
-                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
-                         Name = p.Field<string>("Name"),
-                         LastName = p.Field<string>("LastName"),
-                         ProfileType = (enumProfileType)p.Field<int>("ProfileType"),
-                         ProfileStatus = (enumProfileStatus)p.Field<int>("ProfileStatus"),
-                     } into pg
-                     select new ProfileModel()
-                     {
-                         ProfilePublicId = pg.Key.ProfilePublicId,
-                         Name = pg.Key.Name,
-                         LastName = pg.Key.LastName,
-                         ProfileType = pg.Key.ProfileType,
-                         ProfileStatus = pg.Key.ProfileStatus,
+                if (response.DataSetResult.Tables[1].Rows.Count > 0)
+                {
 
-                         ProfileInfo = (from pinf in response.DataTableResult.AsEnumerable()
-                                        where pinf.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                              !string.IsNullOrEmpty(pinf.Field<string>("ProfilePublicId")) &&
-                                              pinf.Field<int?>("ProfileInfoId") != null
-                                        group pinf by
-                                        new
-                                        {
-                                            ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
-                                            ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
-                                            Value = pinf.Field<string>("ProfileInfoValue"),
-                                            LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
-                                        } into pinfg
-                                        select new ProfileInfoModel()
-                                        {
-                                            ProfileInfoId = pinfg.Key.ProfileInfoId,
-                                            ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
-                                            Value = pinfg.Key.Value,
-                                            LargeValue = pinfg.Key.LargeValue,
-                                        }).ToList()
-                     }).ToList();
-            }
-            return oReturn;
-        }
+                    oReturn =
+                        (from p in response.DataSetResult.Tables[1].AsEnumerable()
+                         where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
+                         group p by
+                         new
+                         {
+                             ProfilePublicId = p.Field<string>("ProfilePublicId"),
+                             Name = p.Field<string>("Name"),
+                             LastName = p.Field<string>("LastName"),
+                             ProfileType = (enumProfileType)p.Field<int>("ProfileType"),
+                             ProfileStatus = (enumProfileStatus)p.Field<int>("ProfileStatus"),
+                         } into pg
+                         select new ProfileModel()
+                         {
+                             ProfilePublicId = pg.Key.ProfilePublicId,
+                             Name = pg.Key.Name,
+                             LastName = pg.Key.LastName,
+                             ProfileType = pg.Key.ProfileType,
+                             ProfileStatus = pg.Key.ProfileStatus,
 
-        public List<ProfileModel> MPProfileSearchCategory
-            (bool IsQuery,
-            int CityId,
-            string Query,
-            int? InsuranceId,
-            int? SpecialtyId,
-            int? TreatmentId,
-            int RowCount,
-            int PageNumber)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
-            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
-            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
-            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
+                             ProfileInfo = (from pinf in response.DataSetResult.Tables[1].AsEnumerable()
+                                            where pinf.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                  !string.IsNullOrEmpty(pinf.Field<string>("ProfilePublicId")) &&
+                                                  pinf.Field<int?>("ProfileInfoId") != null
+                                            group pinf by
+                                            new
+                                            {
+                                                ProfileInfoId = pinf.Field<int>("ProfileInfoId"),
+                                                ProfileInfoType = pinf.Field<int>("ProfileInfoType"),
+                                                Value = pinf.Field<string>("ProfileInfoValue"),
+                                                LargeValue = pinf.Field<string>("ProfileInfoLargeValue"),
+                                            } into pinfg
+                                            select new ProfileInfoModel()
+                                            {
+                                                ProfileInfoId = pinfg.Key.ProfileInfoId,
+                                                ProfileInfoType = (enumProfileInfoType)pinfg.Key.ProfileInfoType,
+                                                Value = pinfg.Key.Value,
+                                                LargeValue = pinfg.Key.LargeValue,
+                                            }).ToList(),
 
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "MP_P_Profile_Search_Category",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
+                             RelatedSpecialty = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                                                 where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                         sp.Field<int?>("CategoryType") != null &&
+                                                         sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
+                                                 group sp by
+                                                 new
+                                                 {
+                                                     CategoryId = sp.Field<int>("CategoryId"),
+                                                     Name = sp.Field<string>("CategoryName")
+                                                 } into spg
+                                                 select new SpecialtyModel()
+                                                 {
+                                                     CategoryId = spg.Key.CategoryId,
+                                                     Name = spg.Key.Name,
+                                                 }).ToList(),
 
-            List<ProfileModel> oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
-            {
-                oReturn =
-                    (from p in response.DataTableResult.AsEnumerable()
-                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
-                     group p by
-                     new
-                     {
-                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
+                             DefaultSpecialty = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                                                 where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                         sp.Field<int?>("CategoryType") != null &&
+                                                         sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
+                                                         sp.Field<UInt64>("CategoryIsDefault") == 1
+                                                 select new SpecialtyModel()
+                                                 {
+                                                     CategoryId = sp.Field<int>("CategoryId"),
+                                                     Name = sp.Field<string>("CategoryName"),
+                                                 }).FirstOrDefault(),
 
-                     } into pg
-                     select new ProfileModel()
-                     {
+                             RelatedInsurance = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                                                 where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                         sp.Field<int?>("CategoryType") != null &&
+                                                         sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
+                                                 group sp by
+                                                 new
+                                                 {
+                                                     CategoryId = sp.Field<int>("CategoryId"),
+                                                     Name = sp.Field<string>("CategoryName")
+                                                 } into spg
+                                                 select new InsuranceModel()
+                                                 {
+                                                     CategoryId = spg.Key.CategoryId,
+                                                     Name = spg.Key.Name,
+                                                 }).ToList(),
 
-                         ProfilePublicId = pg.Key.ProfilePublicId,
+                             RelatedTreatment = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                                                 where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                         sp.Field<int?>("CategoryType") != null &&
+                                                         sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
+                                                 group sp by
+                                                 new
+                                                 {
+                                                     CategoryId = sp.Field<int>("CategoryId"),
+                                                     Name = sp.Field<string>("CategoryName")
+                                                 } into spg
+                                                 select new TreatmentModel()
+                                                 {
+                                                     CategoryId = spg.Key.CategoryId,
+                                                     Name = spg.Key.Name,
+                                                 }).ToList(),
 
-
-                         RelatedSpecialty = (from sp in response.DataTableResult.AsEnumerable()
-                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                                     sp.Field<int?>("CategoryType") != null &&
-                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
-                                             group sp by
-                                             new
-                                             {
-                                                 CategoryId = sp.Field<int>("CategoryId"),
-                                                 Name = sp.Field<string>("CategoryName")
-                                             } into spg
-                                             select new SpecialtyModel()
-                                             {
-                                                 CategoryId = spg.Key.CategoryId,
-                                                 Name = spg.Key.Name,
-                                             }).ToList(),
-
-                         DefaultSpecialty = (from sp in response.DataTableResult.AsEnumerable()
-                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                                     sp.Field<int?>("CategoryType") != null &&
-                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
-                                                     sp.Field<UInt64>("CategoryIsDefault") == 1
-                                             select new SpecialtyModel()
-                                             {
-                                                 CategoryId = sp.Field<int>("CategoryId"),
-                                                 Name = sp.Field<string>("CategoryName"),
-                                             }).FirstOrDefault(),
-
-                         RelatedInsurance = (from sp in response.DataTableResult.AsEnumerable()
-                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                                     sp.Field<int?>("CategoryType") != null &&
-                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
-                                             group sp by
-                                             new
-                                             {
-                                                 CategoryId = sp.Field<int>("CategoryId"),
-                                                 Name = sp.Field<string>("CategoryName")
-                                             } into spg
-                                             select new InsuranceModel()
-                                             {
-                                                 CategoryId = spg.Key.CategoryId,
-                                                 Name = spg.Key.Name,
-                                             }).ToList(),
-
-                         RelatedTreatment = (from sp in response.DataTableResult.AsEnumerable()
-                                             where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                                     sp.Field<int?>("CategoryType") != null &&
-                                                     sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
-                                             group sp by
-                                             new
-                                             {
-                                                 CategoryId = sp.Field<int>("CategoryId"),
-                                                 Name = sp.Field<string>("CategoryName")
-                                             } into spg
-                                             select new TreatmentModel()
-                                             {
-                                                 CategoryId = spg.Key.CategoryId,
-                                                 Name = spg.Key.Name,
-                                             }).ToList()
-                     }).ToList();
-            }
-            return oReturn;
-        }
-
-        public List<ProfileModel> MPProfileSearchOfficeBasicInfo
-            (bool IsQuery,
-            int CityId,
-            string Query,
-            int? InsuranceId,
-            int? SpecialtyId,
-            int? TreatmentId,
-            int RowCount,
-            int PageNumber)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
-            lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
-            lstParams.Add(DataInstance.CreateTypedParameter("vCityId", CityId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vQuery", Query));
-            lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
-            lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
-                CommandText = "MP_P_Profile_Search_Office_BasicInfo",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            List<ProfileModel> oReturn = null;
-            if (response.DataTableResult != null &&
-                response.DataTableResult.Rows.Count > 0)
-            {
-                oReturn =
-                    (from p in response.DataTableResult.AsEnumerable()
-                     where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
-                     group p by
-                     new
-                     {
-                         ProfilePublicId = p.Field<string>("ProfilePublicId"),
-
-                     } into pg
-                     select new ProfileModel()
-                     {
-
-                         ProfilePublicId = pg.Key.ProfilePublicId,
-
-                         RelatedOffice =
-                             (from o in response.DataTableResult.AsEnumerable()
-                              where o.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                    !string.IsNullOrEmpty(o.Field<string>("OfficePublicId"))
-                              group o by
-                              new
-                              {
-                                  OfficePublicId = o.Field<string>("OfficePublicId"),
-                                  Name = o.Field<string>("Name"),
-                                  IsDefault = o.Field<UInt64>("IsDefault") == 1 ? true : false,
-                                  CityId = (int)o.Field<Int32>("CityId"),
-                                  CityName = o.Field<string>("CityName"),
-                                  StateId = (int)o.Field<Int32>("StateId"),
-                                  StateName = o.Field<string>("StateName"),
-                                  CountryId = (int)o.Field<Int32>("CountryId"),
-                                  CountryName = o.Field<string>("CountryName"),
-                              } into og
-                              select new OfficeModel()
-                              {
-                                  OfficePublicId = og.Key.OfficePublicId,
-                                  Name = og.Key.Name,
-                                  IsDefault = og.Key.IsDefault,
-
-                                  City = new CityModel()
+                             RelatedOffice =
+                                 (from o in response.DataSetResult.Tables[3].AsEnumerable()
+                                  where o.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                        !string.IsNullOrEmpty(o.Field<string>("OfficePublicId"))
+                                  group o by
+                                  new
                                   {
-                                      CityId = og.Key.CityId,
-                                      CityName = og.Key.CityName,
-                                      StateId = og.Key.StateId,
-                                      StateName = og.Key.StateName,
-                                      CountryId = og.Key.CountryId,
-                                      CountryName = og.Key.CountryName,
-                                  },
+                                      OfficePublicId = o.Field<string>("OfficePublicId"),
+                                      Name = o.Field<string>("Name"),
+                                      IsDefault = o.Field<UInt64>("IsDefault") == 1 ? true : false,
+                                      CityId = (int)o.Field<Int32>("CityId"),
+                                      CityName = o.Field<string>("CityName"),
+                                      StateId = (int)o.Field<Int32>("StateId"),
+                                      StateName = o.Field<string>("StateName"),
+                                      CountryId = (int)o.Field<Int32>("CountryId"),
+                                      CountryName = o.Field<string>("CountryName"),
+                                  } into og
+                                  select new OfficeModel()
+                                  {
+                                      OfficePublicId = og.Key.OfficePublicId,
+                                      Name = og.Key.Name,
+                                      IsDefault = og.Key.IsDefault,
 
-                                  OfficeInfo =
-                                     (from oi in response.DataTableResult.AsEnumerable()
-                                      where oi.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
-                                            oi.Field<int?>("OfficeInfoId") != null &&
-                                           oi.Field<string>("OfficePublicId") == og.Key.OfficePublicId
-                                      group oi by
-                                      new
+                                      City = new CityModel()
                                       {
-                                          OfficeInfoId = oi.Field<int>("OfficeInfoId"),
-                                          OfficeInfoType = oi.Field<int>("OfficeInfoType"),
-                                          Value = oi.Field<string>("OfficeInfoValue"),
-                                          LargeValue = oi.Field<string>("OfficeInfoLargeValue"),
-                                      } into oig
-                                      select new OfficeInfoModel()
-                                      {
-                                          OfficeInfoId = oig.Key.OfficeInfoId,
-                                          OfficeInfoType = (enumOfficeInfoType)oig.Key.OfficeInfoType,
-                                          Value = oig.Key.Value,
-                                          LargeValue = oig.Key.LargeValue
-                                      }).ToList(),
+                                          CityId = og.Key.CityId,
+                                          CityName = og.Key.CityName,
+                                          StateId = og.Key.StateId,
+                                          StateName = og.Key.StateName,
+                                          CountryId = og.Key.CountryId,
+                                          CountryName = og.Key.CountryName,
+                                      },
 
-                              }).ToList(),
-                     }).ToList();
+                                      OfficeInfo =
+                                         (from oi in response.DataSetResult.Tables[3].AsEnumerable()
+                                          where oi.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
+                                                oi.Field<int?>("OfficeInfoId") != null &&
+                                               oi.Field<string>("OfficePublicId") == og.Key.OfficePublicId
+                                          group oi by
+                                          new
+                                          {
+                                              OfficeInfoId = oi.Field<int>("OfficeInfoId"),
+                                              OfficeInfoType = oi.Field<int>("OfficeInfoType"),
+                                              Value = oi.Field<string>("OfficeInfoValue"),
+                                              LargeValue = oi.Field<string>("OfficeInfoLargeValue"),
+                                          } into oig
+                                          select new OfficeInfoModel()
+                                          {
+                                              OfficeInfoId = oig.Key.OfficeInfoId,
+                                              OfficeInfoType = (enumOfficeInfoType)oig.Key.OfficeInfoType,
+                                              Value = oig.Key.Value,
+                                              LargeValue = oig.Key.LargeValue
+                                          }).ToList(),
+
+                                  }).ToList(),
+
+                         }).ToList();
+                }
             }
-
             return oReturn;
         }
 

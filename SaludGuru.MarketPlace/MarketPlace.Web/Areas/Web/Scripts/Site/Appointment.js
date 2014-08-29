@@ -349,7 +349,7 @@ var AppointmentObject = {
             $('#divScheduleContainer_' + vOfficePublicId).fadeIn('slow');
 
             //select de current menu
-            $('.SelOfficeMenu').removeClass('selected');
+            $('.SelOfficeMenu').removeClass('MPProfileCallendarTabs');
             $('#li_' + vOfficePublicId).addClass('selected');
         }
     },

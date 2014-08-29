@@ -33,7 +33,7 @@ namespace MarketPlace.Web.ControllersApi
 
                 AcResult.All(x =>
                 {
-                    oReturn.Add(new AutocompleteViewModel(x));
+                    oReturn.Add(new AutocompleteViewModel(x, SearchParam));
                     return true;
                 });
 
