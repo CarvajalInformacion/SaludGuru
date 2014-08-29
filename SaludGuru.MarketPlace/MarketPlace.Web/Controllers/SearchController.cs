@@ -110,47 +110,6 @@ namespace MarketPlace.Web.Controllers
             }
         }
 
-        //public virtual JsonResult GetSearchUrl
-        //    (string IsGetUrl, string CityId, string SearchParam)
-        //{
-        //    string oReturn = string.Empty;
-        //    try
-        //    {
-        //        var oModelAux = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearchAC
-        //                (Convert.ToInt32(CityId.Trim()), SearchParam);
-
-        //        AutocompleteModel oModel = null;
-        //        if (oModelAux != null && oModelAux.Count > 0)
-        //        {
-        //            oModel = oModelAux.
-        //                Where(x => x.OriginalTerm.ToLower().Equals(SearchParam.ToLower(), StringComparison.InvariantCultureIgnoreCase)).
-        //                FirstOrDefault();
-        //        }
-
-        //        if (oModel == null)
-        //        {
-        //            oModel = new AutocompleteModel()
-        //            {
-        //                IsQuery = true,
-        //                MatchQuery = SearchParam
-        //            };
-        //        }
-
-        //        if (oModel.IsQuery)
-        //        {
-        //            oModel.MatchQuery = SearchParam;
-        //        }
-
-        //        oReturn = GetUrlFromAcModel(oModel, CityId);
-        //    }
-        //    catch
-        //    {
-        //        oReturn = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound));
-        //    }
-
-        //    return Json(new { Url = oReturn });
-        //}
-
         #region Private methods
 
         private void EvalRedirect
@@ -296,81 +255,6 @@ namespace MarketPlace.Web.Controllers
                         })), true);
             }
         }
-
-        //private string GetUrlFromAcModel(AutocompleteModel AcModel, string CityId)
-        //{
-        //    string oReturn = string.Empty;
-
-        //    if (AcModel == null || Convert.ToInt32(CityId) <= 0)
-        //    {
-        //        oReturn = Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound, null);
-        //    }
-        //    else if (AcModel.IsQuery)
-        //    {
-        //        oReturn = Url.RouteUrl(
-        //            MarketPlace.Models.General.Constants.C_Route_SearchQuery_Default,
-        //            new
-        //            {
-        //                Query = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.MatchQuery),
-        //                CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-        //                            MarketPlace.Web.Controllers.BaseController.
-        //                                EnabledCities[Convert.ToInt32(CityId.Trim())]),
-        //            });
-        //    }
-        //    else
-        //    {
-        //        switch (AcModel.CategoryType.Value)
-        //        {
-        //            case SaludGuruProfile.Manager.Models.enumCategoryType.Insurance:
-
-        //                oReturn = Url.RouteUrl(
-        //                    MarketPlace.Models.General.Constants.C_Route_SearchCategory_InsuranceCity,
-        //                    new
-        //                    {
-        //                        CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-        //                            MarketPlace.Web.Controllers.BaseController.
-        //                                EnabledCities[Convert.ToInt32(CityId.Trim())]),
-        //                        InsuranceName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-        //                    });
-
-        //                break;
-
-        //            case SaludGuruProfile.Manager.Models.enumCategoryType.Specialty:
-
-        //                oReturn = Url.RouteUrl(
-        //                    MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyCity,
-        //                    new
-        //                    {
-        //                        CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-        //                            MarketPlace.Web.Controllers.BaseController.
-        //                                EnabledCities[Convert.ToInt32(CityId.Trim())]),
-        //                        SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-        //                    });
-
-        //                break;
-
-        //            case SaludGuruProfile.Manager.Models.enumCategoryType.Treatment:
-
-        //                oReturn = Url.RouteUrl(
-        //                    MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentCity,
-        //                    new
-        //                    {
-        //                        CityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(
-        //                            MarketPlace.Web.Controllers.BaseController.
-        //                                EnabledCities[Convert.ToInt32(CityId.Trim())]),
-        //                        SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(AcModel.OriginalTerm)
-        //                    });
-
-        //                break;
-        //            default:
-        //                oReturn = Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound, null);
-        //                break;
-        //        }
-        //    }
-
-        //    return Server.UrlDecode(oReturn);
-
-        //}
 
         #endregion
     }
