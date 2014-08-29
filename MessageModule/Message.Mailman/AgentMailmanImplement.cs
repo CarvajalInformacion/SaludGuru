@@ -43,34 +43,36 @@ namespace Message.Mailman
                 MessageMailman mailMessage = new MessageMailman();
                 try
                 {
+                    modelToreturn.RelatedAddress = new List<AddressModel>();
+                    modelToreturn.RelatedAddress.Add(item);
+
                     mailMessage.From = new Address(MessageToSend.MessageConfig["From"]);
                     mailMessage.To = new Address(item.Address);
                     mailMessage.Subject = MessageToSend.MessageConfig["Subject"];
                     mailMessage.Body = MessageToSend.MessageConfig["Body"];
                     mailMessage.IsBodyHtml = true;
-                    mailMessage.RequestId = Guid.NewGuid().ToString().ToUpper();
-
-                    modelToreturn.RelatedAddress = new List<AddressModel>();
-                    modelToreturn.RelatedAddress.Add(item);
+                    mailMessage.RequestId = Guid.NewGuid().ToString().ToUpper();                    
 
                     //Envia a la cola de Mailman
                     messageQueue.Send(mailMessage, MessageQueueTransactionType.Single);
+
+                    modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
+                    modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
+                    modelToreturn.MessageType = MessageToSend.MessageConfig["Subject"];
+                    modelToreturn.TimeSent = DateTime.Now;
+                    modelToreturn.isSuccess = true;                    
                 }
                 catch (Exception err)
                 {
                     modelToreturn.isSuccess = false;
                     modelToreturn.MessageResult = err.Message + " ";
-                }
-            }
-            if (true)
-            {
 
+                    modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
+                    modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
+                    modelToreturn.MessageType = MessageToSend.MessageConfig["Subject"];
+                    modelToreturn.TimeSent = DateTime.Now;
+                }                
             }
-            modelToreturn.Agent = MessageToSend.AddressToSend.FirstOrDefault().Agent;
-            modelToreturn.BodyMessage = MessageToSend.MessageConfig["Body"];
-            modelToreturn.MessageType = MessageToSend.MessageConfig["Subject"];
-            modelToreturn.TimeSent = DateTime.Now;
-            modelToreturn.isSuccess = true;
             return modelToreturn;
         }
         #endregion
