@@ -348,6 +348,7 @@
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1503.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationType_1504.png" />
     <Content Include="Areas\Web\Content\Images\pacientesMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\perfilMenuIcon.png" />
     <Content Include="Areas\Web\Content\jquery\themes\base\images\animated-overlay.gif" />

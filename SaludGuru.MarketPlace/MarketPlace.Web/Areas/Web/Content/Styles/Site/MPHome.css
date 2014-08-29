@@ -22,7 +22,7 @@ h1 {
 .SearchBox {
     height: 400px !important;
     padding: 10% 0px 0px !important;
-    margin: 45px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
     .SearchBox .SearchBoxClass {
@@ -53,11 +53,11 @@ h1 {
 
 /*---Home blocks----*/
 .HomeBlocks {
-    /*border: 1px solid yellow;*/
+    /* border: 1px solid yellow; */
     height: auto;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
-    background: linear-gradient(#fff, #ececec);
-    margin: 10px 0px 10px 0px;
+    /*box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85); 
+         background: linear-gradient(#fff, #ececec);*/
+    margin: 10px 0px 0px 0px;
 }
 
 .HombeBlockTitle {
@@ -120,7 +120,7 @@ h1 {
     height: auto;
     float: left;
     width: 100%;
-    min-height: 288px;
+    min-height: 210px;
 }
 
     .Profile p {
@@ -133,7 +133,7 @@ h1 {
 }
 
 .Image {
-    width: calc(20%);
+    width: calc(17%);
     max-width: 160px;
     height: auto;
     border-radius: 3px;
@@ -166,7 +166,7 @@ h1 {
 
     .ProfileInfo p {
         width: calc(97%);
-        margin: 5px 0px 5px 5px;
+        margin: 5px 0px 5px 20px;
         text-align: justify;
         line-height: 21px;
         font-size: 17px;
@@ -174,7 +174,7 @@ h1 {
 
 a.MPButtons {
     font-weight: bold;
-    margin: 14% 15px 20px 0px;
+    margin: 1% 15px;
     font-size: 17px;
     float: right;
     color: #99c21d;
@@ -247,10 +247,12 @@ div#___plusone_0 {
     margin: 5px auto !important;
     overflow: hidden;
 }
+
 iframe.easyXDM_IN_Lib_li_gen_1409095708252_0_provider {
     width: 100% !important;
 }
-iframe#I0_1408669437247{
+
+iframe#I0_1408669437247 {
     width: 100% !important;
 }
 
@@ -333,12 +335,18 @@ label#FeedTitle {
 /*-----Info Derecha-----*/
 .FeaturedSP {
     margin: 0px 0px 0px 3px;
+    text-align: center;
 }
 
     .FeaturedSP label {
         font-size: 14px;
         text-align: center;
-        font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+        /* font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif; */
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
     }
 
     .FeaturedSP ul li {
@@ -348,17 +356,28 @@ label#FeedTitle {
     }
 
         .FeaturedSP ul li a {
-            color: #99c21d;
+            color: #333;
             font-size: 15px;
             font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
         }
 
 .Insurance {
     font-size: 14px;
     text-align: center;
     font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+    margin: 0px 0px 0px 0px;
 }
+
+    .Insurance label {
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
+    }
 
     .Insurance ul li {
         font-size: 13px;
@@ -367,10 +386,12 @@ label#FeedTitle {
     }
 
         .Insurance ul li a {
-            color: #99c21d;
+            color: #333;
             font-size: 15px;
             font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
         }
 
 /*-----Demo-------*/
@@ -391,5 +412,17 @@ hr.featurette-divider.__loop {
     width: 91%;
     border-top: 1px solid #99c21d;
     /*border: 1px solid green;*/
-    margin: 15px 0px 15px 6%;
+    margin: 10px 0px 15px 6%;
 }
+
+    hr.featurette-divider.__loop.Left {
+        display: inline-block;
+        width: 62%;
+        position: relative;
+        margin: 0px 0px 15px 6% !important;
+    }
+
+    hr.featurette-divider.__loop.Right {
+        width: 27%;
+        margin: -16px 0px 15px 70% !important;
+    }

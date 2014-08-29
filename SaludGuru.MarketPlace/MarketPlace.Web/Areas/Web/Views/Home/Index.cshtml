@@ -71,7 +71,7 @@
             <label class="HombeBlockTitle">Lo más buscado</label>
             <div class="HomeBlocks criteriaBox">
                 <div class="FeaturedSP">
-                    <label>Especialidades Destacadas</label>
+                    <label>Especialidades</label>
                     <ul>
                         <li>
                             <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
@@ -93,7 +93,7 @@
                                 Ginecología
                             </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
                                 Medicina Estética
                             </a>
@@ -107,11 +107,11 @@
                             <a href="/neumologia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Neumología">
                                 Neumología
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
                 <div class="Insurance">
-                    <label>Listado de Seguros</label>
+                    <label>Seguros</label>
                     <ul>
                         <li>
                             <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
@@ -128,7 +128,7 @@
                                 Colsanitas
                             </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
                                 Medplus
                             </a>
@@ -142,13 +142,14 @@
                             <a href="/todas+las+especialidades/susalud/bogota" title="Encuentra los mejores médicos de Susalud">
                                 Susalud
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <hr class="featurette-divider __loop">
+    <hr class="featurette-divider __loop Left">
+    <hr class="featurette-divider __loop Right">
     <div class="Feed">
         @{
             List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(1);

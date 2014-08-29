@@ -1,6 +1,8 @@
 ﻿using MarketPlace.Models.Appointment;
 using MedicalCalendar.Manager.Models;
+using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,18 @@ namespace MarketPlace.Web.ControllersApi
 
             //Insert the new patient
             string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId); //TODO: Ajustar el usuario no quemarlo
+
+            #region Create the notification 
+            ProfileModel oModelSend = new ProfileModel();
+            oModelSend = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+            List<PatientModel> PatientSource = new List<PatientModel>();
+            PatientModel ItemPatientSource = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(resultPatientPublicId);
+            PatientSource.Add(ItemPatientSource);
+            AppointmentModel appModel = new AppointmentModel();
+
+            //Send Notification reporting a new patient
+            MarketPlace.Web.Controllers.BaseController.SendMessage(oModelSend, null, PatientSource, appModel, true); 
+            #endregion
 
             //Compare if patientTemporal Exist
             bool isTemporal = MedicalCalendar.Manager.Controller.Patient.MPPatientTemporalUpsert(resultPatientPublicId, ProfilePublicId, enumPatientState.New, "0");

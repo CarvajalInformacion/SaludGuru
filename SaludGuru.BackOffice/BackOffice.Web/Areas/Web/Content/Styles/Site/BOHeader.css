@@ -569,12 +569,14 @@ span.ui-selectmenu-text:hover {
         }
 
         .ddNotifications ul li label {
-            vertical-align: text-top;
+            vertical-align: top;
             font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
             font-weight: normal;
             width: 210px;
             display: inline-block;
             font-size: 15px;
+            line-height: 1em;
+            margin-top: 4px;
         }
 
 
