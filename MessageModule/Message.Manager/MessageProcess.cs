@@ -97,7 +97,7 @@ namespace Message.Manager
             addresList = this.UpsertAddress(mess.FirstOrDefault().Value, oAgentConfig.MessageConfig["Agent"]);
 
             oAgentConfig.AddressToSend = new List<AddressModel>();
-            oAgentConfig.AddressToSend = addresList.Where(x => !string.IsNullOrEmpty(x.Address)).Select(x => x).ToList();
+            oAgentConfig.AddressToSend = addresList.Where(x => !string.IsNullOrWhiteSpace(x.Address)).Select(x => x).ToList();
 
             if (!string.IsNullOrEmpty(oAgentConfig.QueueItemToProcess.MessageParameters.Where(x => x.Key == "SendToProcessRelatedMsj").Select(x => x.Value).FirstOrDefault()))
             {
@@ -114,6 +114,7 @@ namespace Message.Manager
             else if (oAgentConfig.AddressToSend.Count() > 0)
             {
                 oMsjReturn = Agent.SendMessage(oAgentConfig);
+
                 foreach (var item in oMsjReturn.RelatedAddress)
                 {
                     this.sendProcessMessage(QueueItemToProcess.MessageQueueId,
