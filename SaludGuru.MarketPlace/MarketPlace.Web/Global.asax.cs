@@ -40,8 +40,7 @@ namespace MarketPlace.Web
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             bool InsecureUrl = UrlHttpExceptions.Any
-                (x => x.ToLower() == 
-                    MarketPlace.Web.Controllers.BaseController.RemoveAccent(Request.Url.AbsolutePath.ToLower().Replace("+"," ")));
+                (x => x.ToLower() == Request.Url.AbsolutePath.ToLower());
 
             if (Context.Request.IsSecureConnection && InsecureUrl)
             {
