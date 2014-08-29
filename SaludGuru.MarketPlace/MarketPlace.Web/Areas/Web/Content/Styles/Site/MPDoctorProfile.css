@@ -325,7 +325,7 @@ li.MPProfileInsuranceName {
         display: inline-block;
         width: 170px;
         min-width: 98px;
-        margin: 20px 0px 0px 0px;
+        margin: 20px 0px 6px 64px;
         text-decoration: none;
         color: #92B92A;
         letter-spacing: -0.6px;
@@ -627,6 +627,7 @@ span.OfficeContactTelephone {
 
 div.k-grid-content {
     width: 100% !important;
+    height:194px !important;
 }
 
     div.k-grid-content > table > colgroup > col {
