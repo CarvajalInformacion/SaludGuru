@@ -541,38 +541,9 @@ namespace SaludGuruProfile.Manager.Controller
             int PageNumber,
             out int TotalRows)
         {
-            List<ProfileModel> oReturn = DAL.Controller.ProfileDataController.Instance.MPProfileSearchBasicInfo
+
+            return DAL.Controller.ProfileDataController.Instance.MPProfileSearch
                 (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber, out TotalRows);
-
-            if (oReturn == null)
-                oReturn = new List<ProfileModel>();
-
-            List<ProfileModel> oAux = DAL.Controller.ProfileDataController.Instance.MPProfileSearchCategory
-                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
-
-            if (oAux == null)
-                oAux = new List<ProfileModel>();
-
-            List<ProfileModel> oAuxOf = DAL.Controller.ProfileDataController.Instance.MPProfileSearchOfficeBasicInfo
-                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
-
-            if (oAuxOf == null)
-                oAuxOf = new List<ProfileModel>();
-
-
-            oReturn.All(p =>
-            {
-                p.RelatedSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedSpecialty).FirstOrDefault();
-                p.DefaultSpecialty = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.DefaultSpecialty).FirstOrDefault();
-                p.RelatedInsurance = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedInsurance).FirstOrDefault();
-                p.RelatedTreatment = oAux.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedTreatment).FirstOrDefault();
-
-                p.RelatedOffice = oAuxOf.Where(x => x.ProfilePublicId == p.ProfilePublicId).Select(x => x.RelatedOffice).FirstOrDefault();
-
-                return true;
-            });
-
-            return oReturn;
         }
 
         #endregion

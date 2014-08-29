@@ -80,7 +80,7 @@ namespace ADO.MYSQL
 
                     oRetorno.DataSetResult = new DataSet();
                     MySql.Data.MySqlClient.MySqlDataAdapter dads = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand);
-                    oRetorno.NonQueryResult = dads.Fill(oRetorno.DataTableResult);
+                    oRetorno.NonQueryResult = dads.Fill(oRetorno.DataSetResult);
 
                     break;
                 default:

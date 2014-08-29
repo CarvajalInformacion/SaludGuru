@@ -217,19 +217,9 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPProfileSearchAC(CityId, Query);
         }
 
-        public List<ProfileModel> MPProfileSearchBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber, out int TotalRows)
+        public List<ProfileModel> MPProfileSearch(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber, out int TotalRows)
         {
-            return DataFactory.MPProfileSearchBasicInfo(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber, out TotalRows);
-        }
-
-        public List<ProfileModel> MPProfileSearchCategory(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber)
-        {
-            return DataFactory.MPProfileSearchCategory(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
-        }
-
-        public List<ProfileModel> MPProfileSearchOfficeBasicInfo(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber)
-        {
-            return DataFactory.MPProfileSearchOfficeBasicInfo(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber);
+            return DataFactory.MPProfileSearch(IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, RowCount, PageNumber, out TotalRows);
         }
 
         public ProfileModel GetFeaturedProfile(int Quantity)
