@@ -483,21 +483,12 @@ div#divOffice ul li {
 }
 
 .MPProfileCallendarWrapper {
-    border: medium none;
     display: block;
-    margin: 0px auto 0px auto;
+    margin: 10px auto 0px auto;
     height: auto;
-    min-height: 100px;
     vertical-align: top;
     text-align: left;
-    width: 98%;
-
-    BORDER: 1px solid #666;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px #666;
-    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
-
-
+    width:100%;
 }
 
     .MPProfileCallendarWrapper ul {
@@ -507,7 +498,6 @@ div#divOffice ul li {
         .MPProfileCallendarWrapper ul li {
             border: none;
             display: inline-block;
-            margin:;
         }
 
 .MPProfileCallendarTabs {
@@ -553,13 +543,12 @@ div#divOffice ul li {
     width: 100% !important;
     height: auto !important;
     text-align: left;
-    border: none !important;
-    border-top: 1px solid #666 !important;
     display: block !important;
     margin: 0px auto -5px !important;
     padding: 0px !important;
-    border-radius: initial !important;
-    box-shadow: none !important;
+    border-radius: 3px !important;
+    box-shadow: 2px 2px 2px #666;
+    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
 }
 
 .MPProfileOfficeContactSelector {
@@ -621,7 +610,6 @@ span.OfficeContactTelephone {
 
 .MPProfileCalendarWeekTop {
     margin: 0px 0px 0px;
-    border-top: 1px solid #666 !important;
     display: block;
 }
 
@@ -643,6 +631,9 @@ div.k-grid-content {
         box-sizing: content-box;
         width: 70px !important;
     }
+.k-alt, .k-separator {
+    background-color:#fff !important;
+}
 
 /************ MAPA ***********/
 #divOfficeMap {
