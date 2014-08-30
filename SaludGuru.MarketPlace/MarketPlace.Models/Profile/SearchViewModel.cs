@@ -29,8 +29,7 @@ namespace MarketPlace.Models.Profile
                 if (oCurrentInsurance == null && !string.IsNullOrEmpty(CurrentSearchInsurance))
                 {
                     oCurrentInsurance = CurrentCategory.
-                        Where(x => x.GetType() == typeof(InsuranceModel) &&
-                            x.Name.ToLower().Equals(CurrentSearchInsurance.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Where(x => x.GetType() == typeof(InsuranceModel)).
                         Select(x => (InsuranceModel)x).FirstOrDefault();
                 }
                 return oCurrentInsurance;
@@ -47,8 +46,7 @@ namespace MarketPlace.Models.Profile
                 if (oCurrentSpecialty == null && !string.IsNullOrEmpty(CurrentSearchSpecialty))
                 {
                     oCurrentSpecialty = CurrentCategory.
-                        Where(x => x.GetType() == typeof(SpecialtyModel) &&
-                            x.Name.ToLower().Equals(CurrentSearchSpecialty.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Where(x => x.GetType() == typeof(SpecialtyModel)).
                         Select(x => (SpecialtyModel)x).FirstOrDefault();
                 }
                 return oCurrentSpecialty;
@@ -65,8 +63,7 @@ namespace MarketPlace.Models.Profile
                 if (oCurrentTreatment == null && !string.IsNullOrEmpty(CurrentSearchTreatment))
                 {
                     oCurrentTreatment = CurrentCategory.
-                        Where(x => x.GetType() == typeof(TreatmentModel) &&
-                            x.Name.ToLower().Equals(CurrentSearchSpecialty.Replace("+", " ").ToLower(), StringComparison.InvariantCultureIgnoreCase)).
+                        Where(x => x.GetType() == typeof(TreatmentModel)).
                         Select(x => (TreatmentModel)x).FirstOrDefault();
                 }
                 return oCurrentTreatment;
