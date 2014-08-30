@@ -102,6 +102,9 @@ namespace MarketPlace.Web.Controllers
                     oModel.TotalRows = oTotalRowsAux;
                 }
 
+                ViewBag.NoIndex = oModel.IsNoIndex;
+                ViewBag.NoFollow = oModel.IsNoFollow;
+
                 return View(oModel);
             }
             catch
