@@ -55,16 +55,16 @@ namespace MarketPlace.Web.Controllers
                         string.IsNullOrEmpty(oModel.CurrentSearchTreatment) ? null : oModel.CurrentSearchTreatment.Replace("+", " "));
                 }
 
-                //eval redirect
-                EvalRedirect
-                    (oModel);
-
                 //get city
                 oModel.CurrentCityId = BaseController.EnabledCities.
                             Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(oModel.CurrentSearchCity.Replace("+", " "))).
                             Select(x => x.Key).
                             DefaultIfEmpty(BaseController.DefaultCityId).
                             FirstOrDefault();
+
+                //eval redirect
+                EvalRedirect
+                    (oModel);
 
                 //get page number
                 oModel.CurrentPage = Convert.ToInt32(Request["PageNumber"]);

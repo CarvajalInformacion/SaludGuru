@@ -223,6 +223,7 @@
     <Compile Include="ControllersApi\NotificationApiController.cs" />
     <Compile Include="ControllersApi\ProfileApiController.cs" />
     <Compile Include="Controllers\ExternalAppointmentController.cs" />
+    <Compile Include="Controllers\Filters\LogginActionFilter.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />

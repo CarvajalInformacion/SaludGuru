@@ -85,8 +85,15 @@ else
                             FirstOrDefault()).
                 ToList();
 
+        if (lstLat == null || lstLat.Count == 0)
+        {
+            lstLat.Add(0);
+        }
 
-
+        if (lstLon == null || lstLon.Count == 0)
+        {
+            lstLon.Add(0);
+        }
 
         <script type="text/javascript">
             $(document).ready(function () {

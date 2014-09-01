@@ -6,7 +6,7 @@
             <span class="MPHeadertopMenuLeftEnd"></span>
             <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" href="https://admin.saludguru.com.co">Soy doctor</a></div>
             <div class="MPHeadertopMenuCiudad">| Ciudad:</div>
-            <select>
+            <select id="selGlobalCity">
                 @{
                     var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
 
@@ -14,16 +14,15 @@
                     {
                         if (item.Key == oBaseController.CurrentCookie.CurrentCity)
                         {
-                            <option value="@item.Key" selected="selected">@item.Value</option>
+                            <option value="@item.Key" selected="selected" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
                         }
                         else
                         {
-                            <option value="@item.Key">@item.Value</option>
+                            <option value="@item.Key" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
                         }
                     }
-                }
+}
             </select>
-            <input id="CurrentCity" type="hidden" value="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.DefaultCityName)" />
 
             @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
             {

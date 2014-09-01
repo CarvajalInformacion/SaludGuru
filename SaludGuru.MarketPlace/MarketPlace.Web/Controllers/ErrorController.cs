@@ -10,6 +10,9 @@ namespace MarketPlace.Web.Controllers
     {
         public virtual ActionResult NotFound()
         {
+            ViewBag.NoIndex = true;
+            ViewBag.NoFollow = true;
+
             return View();
         }
     }

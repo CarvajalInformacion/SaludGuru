@@ -48,16 +48,25 @@ function InitGlobalPagesControls(InitParams) {
         OutlookUrl: InitParams.OutlookUrl,
         IsLogin: InitParams.IsLogin,
     });
+
+    //init change city action
+    if ($('#' + InitParams.selCityId).length > 0) {
+        $('#' + InitParams.selCityId).change(function () {
+            if (InitParams.CityId != $(this).val()) {
+                window.location = '/Home/ChangeCity?NewCityId=' + $(this).val();
+            }
+        });
+    }
 }
 
 /*schedule appointment*/
-var ScheduleAppointmentObject = {    
+var ScheduleAppointmentObject = {
     FBUrl: '',
     GoogleUrl: '',
     OutlookUrl: '',
     IsLogin: false,
 
-    Init: function (vInitObject) {        
+    Init: function (vInitObject) {
         this.FBUrl = vInitObject.FBUrl;
         this.GoogleUrl = vInitObject.GoogleUrl;
         this.IsLogin = vInitObject.IsLogin;
@@ -146,7 +155,7 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
-        window.location = '/doctores-' + $('#CurrentCity').val() + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi,''));
+        window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, ''));
     }
 };
 
