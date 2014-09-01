@@ -14,6 +14,7 @@ using System.Web.Mvc;
 
 namespace BackOffice.Web.Controllers
 {
+    [BackOffice.Web.Controllers.Filters.LogginActionFilter]
     public partial class BaseController : Controller
     {
         #region public static properties
@@ -544,8 +545,8 @@ namespace BackOffice.Web.Controllers
 
                         //Valid the key "To"
                         string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
-                        if (keyTO != null)                        
-                            result = Message.Client.Client.Instance.CreateMessage(oMessage);                        
+                        if (keyTO != null)
+                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
                         else
                             result.IsSuccess = false;
                     }
