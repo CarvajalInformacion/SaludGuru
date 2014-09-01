@@ -51,13 +51,13 @@ function InitGlobalPagesControls(InitParams) {
 }
 
 /*schedule appointment*/
-var ScheduleAppointmentObject = {
+var ScheduleAppointmentObject = {    
     FBUrl: '',
     GoogleUrl: '',
     OutlookUrl: '',
     IsLogin: false,
 
-    Init: function (vInitObject) {
+    Init: function (vInitObject) {        
         this.FBUrl = vInitObject.FBUrl;
         this.GoogleUrl = vInitObject.GoogleUrl;
         this.IsLogin = vInitObject.IsLogin;
@@ -66,6 +66,7 @@ var ScheduleAppointmentObject = {
 
     ScheduleAppointment: function (vLink) {
         if (ScheduleAppointmentObject.IsLogin) {
+            debugger;
             window.location = vLink;
         }
         else {

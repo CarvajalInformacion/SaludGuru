@@ -142,8 +142,7 @@ var InitFunctionsNewPatient = {
 }
 
 /*profile office appointment render method*/
-var AppointmentObject = {
-
+var AppointmentObject = {    
     /*profile info*/
     DivAppointmentId: '',
     selOfficeId: '',
@@ -153,6 +152,7 @@ var AppointmentObject = {
 
     ///*init meeting calendar variables*/
     Init: function (vInitObject) {
+        debugger;
         //init render info
         this.DivAppointmentId = vInitObject.DivAppointmentId;
         this.selOfficeId = vInitObject.selOfficeId;
