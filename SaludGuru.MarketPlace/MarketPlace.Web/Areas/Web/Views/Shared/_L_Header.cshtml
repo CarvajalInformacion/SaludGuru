@@ -51,7 +51,7 @@
                                 <a href="@Url.Action(MVC.UserProfile.ActionNames.Notification, MVC.UserProfile.Name)">Mis notificaciones</a>
                             </li>*@
                         <li>
-                            <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                            <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)" rel="nofollow">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -74,13 +74,13 @@
 
                 <!--Render autentications-->
                 <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>
-                <a class="MPGoogleLogIn" href="@GoogleUrl"></a>
-                <a class="MPFacebookLogIn" href="@FBUrl"></a>
+                <a class="MPGoogleLogIn" href="@GoogleUrl" rel="nofollow"></a>
+                <a class="MPFacebookLogIn" href="@FBUrl" rel="nofollow"></a>
                 <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
                 <ul id="ulLoginMoreOptions" style="display:none;">
-                    <li><a href="@GoogleUrl">Google</a></li>
-                    <li><a href="@FBUrl">Facebook</a></li>
-                    <li><a href="@OutlookUrl">Outlook</a></li>
+                    <li><a href="@GoogleUrl" rel="nofollow">Google</a></li>
+                    <li><a href="@FBUrl" rel="nofollow">Facebook</a></li>
+                    <li><a href="@OutlookUrl" rel="nofollow">Outlook</a></li>
                 </ul>
             }
         </div>

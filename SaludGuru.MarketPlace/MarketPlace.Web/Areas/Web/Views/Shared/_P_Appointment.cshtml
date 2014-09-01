@@ -3,7 +3,7 @@
 
 @if (!Model.RenderScripts)
 {
-    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
+    string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
 
 
     <div class="MPProfileCallendarWrapper">
@@ -36,9 +36,9 @@
                 <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
                     <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
                     <div class="MPProfileCalendarWeekTop" id="divGrid_Title_${OfficePublicId}">
-                        <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
+                        <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow">Anterior</a>
                         <span id="spanHeader_${OfficePublicId}"></span>
-                        <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
+                        <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow">Siguiente</a>
                     </div>
                     <div id="divGrid_${OfficePublicId}"></div>
                     <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
@@ -49,33 +49,32 @@
 
             <!--appointment grid event template-->
             <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
-                <a class="${Monday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Monday.RequestDate}")');">
+                <a class="${Monday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Monday.RequestDate}")');">
                     ${Monday.AvailableDateText}
                 </a>
             </div>
             <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
-                <a class="${Tuesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Tuesday.RequestDate}")');">
+                <a class="${Tuesday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Tuesday.RequestDate}")');">
                     ${Tuesday.AvailableDateText}
                 </a>
             </div>
             <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
-                <a class="${Wednesday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Wednesday.RequestDate}")');">
+                <a class="${Wednesday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Wednesday.RequestDate}")');">
                     ${Wednesday.AvailableDateText}
                 </a>
             </div>
             <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
-                @*<a class="${Thursday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Thursday.RequestDate}")');">*@
-                <a class="${Thursday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Thursday.RequestDate}")');">
+                <a class="${Thursday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Thursday.RequestDate}")');">
                     ${Thursday.AvailableDateText}
                 </a>
             </div>
             <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
-                <a class="${Friday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Friday.RequestDate}")');">
+                <a class="${Friday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Friday.RequestDate}")');">
                     ${Friday.AvailableDateText}
                 </a>
             </div>
             <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
-                <a class="${Saturday.CurrentStyle}" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Saturday.RequestDate}")');">
+                <a class="${Saturday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Saturday.RequestDate}")');">
                     ${Saturday.AvailableDateText}
                 </a>
             </div>
