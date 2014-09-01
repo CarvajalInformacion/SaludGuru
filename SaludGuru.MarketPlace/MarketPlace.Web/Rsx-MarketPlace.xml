@@ -40,7 +40,7 @@
     <!--Home Image-->
     <key name="HomeImage_Baseurl">https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_{{Count}}.jpg</key>
     <key name="HomeImage_CountMin">1</key>
-    <key name="HomeImage_CountMax">3</key>
+    <key name="HomeImage_CountMax">10</key>
     
     <!--Profile image default-->
     <key name="Profile_SmallImageDefault">https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png</key>
