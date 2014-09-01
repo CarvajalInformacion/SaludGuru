@@ -16,6 +16,31 @@ namespace MarketPlace.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult ChangeCity(int NewCityId)
+        {
+            //get return url
+            string oldCityName = MarketPlace.Web.Controllers.BaseController.EnabledCities[base.CurrentCookie.CurrentCity];
+
+            string ReturnUrl = Request.UrlReferrer.ToString();
+
+            if (MarketPlace.Web.Controllers.BaseController.EnabledCities.ContainsKey(NewCityId))
+            {
+                base.SetCookie(new MarketPlace.Models.General.CookieModel()
+                {
+                    CurrentCity = NewCityId,
+                });
+
+                ReturnUrl = ReturnUrl.Replace(oldCityName,
+                    MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[NewCityId]));
+
+                ReturnUrl = ReturnUrl.Replace(
+                    MarketPlace.Web.Controllers.BaseController.RemoveAccent(oldCityName),
+                    MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[NewCityId]));
+            }
+
+            return Redirect(ReturnUrl);
+        }
+
         public virtual ActionResult LegalTerms()
         {
             return View();
