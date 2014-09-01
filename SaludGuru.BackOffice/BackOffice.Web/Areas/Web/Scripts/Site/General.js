@@ -116,7 +116,7 @@ var NotificationObject = {
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
-                debugger;
+                
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
@@ -173,7 +173,7 @@ function InitSearchMagGlass(IsUserAdmin) {
 
 /*Error popup validation*/
 function ValidatePopUp(controlName, message, NameSubmit) {
-    //debugger;
+    //
     $("#dialogError").dialog({
         show: {
             effect: "clip",
@@ -189,3 +189,61 @@ function ValidatePopUp(controlName, message, NameSubmit) {
     $("#dialogError").text(message);
     $("#dialogError").dialog("open");
 }
+
+/*calendar render method*/
+var CalendarGeneralObject = {
+    /*calendar info*/
+    DivId: '',
+    CountryId:'',
+    CalendarName: '',
+    CurrentDate: '',
+    StartDate: '',
+    ProfilePublicId: '',
+
+    /*init meeting calendar variables*/
+    Init: function (vInitObject) {
+        
+        this.DivId = vInitObject.DivId;
+        this.CalendarName = vInitObject.CalendarName;
+        this.CurrentDate =  new Date(); 
+        this.StartDate = Date.now();
+        this.CountryId = vInitObject.CountryId;
+        this.ProfilePublicId = vInitObject.ProfilePublicId;
+    },
+
+    RenderAsync: function () {
+        //make ajax for special days
+        $.ajax({
+            type: "POST",
+            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,            
+        }).done(function (data) {
+            //left date picker
+            
+            CalendarGeneralObject.RenderCalendar(data, Date.now());
+
+        }).fail(function () {
+            alert("se ha generado un error en el calendario");
+        });
+    },
+
+    RenderCalendar: function (vlstSpecialDay) {
+        
+        //render calendar
+        $('#Birthday').datepicker({
+            dateFormat: 'yy-mm-dd',
+            locale: $.datepicker.regional['es'],            
+            numberOfMonths: [1]           
+        });
+
+        //delete selected style on calendar
+        $('#' + this.CalendarName + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
+        $('#' + this.CalendarName + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
+    },   
+
+    Refresh: function () {
+
+        $('#' + this.CalendarName).datepicker("refresh");
+
+    },
+
+};

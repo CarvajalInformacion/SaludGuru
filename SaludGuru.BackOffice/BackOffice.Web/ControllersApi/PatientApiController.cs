@@ -123,7 +123,7 @@ namespace BackOffice.Web.ControllersApi
             if (Model != null)
             {
                 //get request model
-                PatientToCreate = GetPatientInfoRequestModel();
+                PatientToCreate = GetPatientInfoRequestModel();                
 
                 //create patient 
                 string oPatientPublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(PatientToCreate, ProfilePublicId, null);
@@ -138,6 +138,14 @@ namespace BackOffice.Web.ControllersApi
 
         private PatientModel GetPatientInfoRequestModel()
         {
+            bool isEmail = false;
+            bool isSms = false;
+
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request["Telephone"].ToString()))
+                isSms = true;
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request["Email"].ToString()))
+                isEmail = true;
+
             PatientModel oReturn = new PatientModel()
             {
                 PatientPublicId = HttpContext.Current.Request["PatientPublicId"],
@@ -149,45 +157,51 @@ namespace BackOffice.Web.ControllersApi
                     { 
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_IdentificationNumber"])?0:int.Parse(HttpContext.Current.Request["CatId_IdentificationNumber"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.IdentificationNumber,
                             Value = HttpContext.Current.Request["IdentificationNumber"].ToString(),
                         },
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Email"])?0:int.Parse(HttpContext.Current.Request["CatId_Email"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.Email,
                             Value = HttpContext.Current.Request["Email"].ToString(),
                         },
                          new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Mobile"])?0:int.Parse(HttpContext.Current.Request["CatId_Mobile"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.Mobile,
                             Value = HttpContext.Current.Request["Mobile"].ToString(),
                         },  
+                         new PatientInfoModel()
+                        {
+                            PatientInfoId = 0,
+                            PatientInfoType = enumPatientInfoType.Telephone,
+                            Value = HttpContext.Current.Request["Telephone"].ToString(),
+                        },  
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_Insurance"])?0:int.Parse(HttpContext.Current.Request["CatId_Insurance"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.Insurance,
                             Value = HttpContext.Current.Request["Insurance"].ToString(),
                         },
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_MedicalPlan"])?0:int.Parse(HttpContext.Current.Request["CatId_MedicalPlan"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.MedicalPlan,
                             Value = HttpContext.Current.Request["MedicalPlan"].ToString(),
-                        },
+                        },                       
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_SendEmail"])?0:int.Parse(HttpContext.Current.Request["CatId_SendEmail"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.SendEmail,
-                            Value = "true",
+                            Value = isEmail.ToString(),
                         },
                         new PatientInfoModel()
                         {
-                            PatientInfoId = string.IsNullOrEmpty(HttpContext.Current.Request["CatId_SendSMS"])?0:int.Parse(HttpContext.Current.Request["CatId_SendSMS"].ToString().Trim()),
+                            PatientInfoId = 0,
                             PatientInfoType = enumPatientInfoType.SendSMS,
-                            Value = "true",
+                            Value = isSms.ToString(),
                         }
                     }
             };

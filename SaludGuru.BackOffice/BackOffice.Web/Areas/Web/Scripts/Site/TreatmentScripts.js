@@ -72,7 +72,7 @@ function OfficeTreatmentAc(acId, acData) {
 	};
 
     //Duration
-    //debugger;
+    //
     //$('#' + divId).autocomplete({
     //    surce: acData,
     //    minLength: 0,
@@ -83,7 +83,7 @@ function OfficeTreatmentAc(acId, acData) {
     //    //      .appendTo(ul);
     //    //}
     //}).data("autocomplete")._renderItem = function (ul, item) {
-    //    debugger;
+    //    
     //    return $("<li>").attr("data-value", item.value).append("<a>" + item.label + "</a>").appendTo(ul);
     //};
 }

@@ -45,8 +45,7 @@ function InitTimePicker(DivId, DialogDivId) {
 }
 
 /*calendar render method*/
-var CalendarObject = {
-
+var CalendarObject = {    
     /*calendar info*/
     DivId: '',
     CountryId: '',
@@ -58,6 +57,7 @@ var CalendarObject = {
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
+        
         this.DivId = vInitObject.DivId;
         this.CountryId = vInitObject.CountryId;
         this.ProfilePublicId = vInitObject.ProfilePublicId;
@@ -71,9 +71,9 @@ var CalendarObject = {
         $.ajax({
             type: "POST",
             url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,
-        }).done(function (data) {
-
+        }).done(function (data) {            
             //left date picker
+            
             CalendarObject.RenderCalendar(data, CalendarObject.FirstDate);
 
         }).fail(function () {
@@ -939,7 +939,7 @@ var UpsertAppointmentObject = {
     },
 
     ValidateCreatePatient: function (vPatientModel) {
-
+        
         var rules = {
             Name: {
                 required: true,
@@ -947,12 +947,7 @@ var UpsertAppointmentObject = {
             IdentificationNumber: {
                 required: true,
                 minlength: 6,
-            },
-            Mobile: {
-                required: true,
-                maxlength: 10,
-                minlength: 10
-            }
+            }           
         };
 
         $('#frmCreatePatient').validate({
@@ -1709,7 +1704,7 @@ var AppointmentDetailObject = {
                     url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
                     dataType: 'json',
                     success: function (data) {
-                        debugger;
+                        
                         response(data);
                     }
                 });
