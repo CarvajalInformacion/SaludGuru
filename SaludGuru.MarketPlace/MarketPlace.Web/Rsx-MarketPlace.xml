@@ -16,7 +16,7 @@
     <key name="GoogleMaps_Sensor">false</key>
 
     <!--Enabled Cities-->
-    <key name="City_Cities">1,Bogotá;</key>
+    <key name="City_Cities">1,Bogotá; 3,Ibagué;</key>
     <key name="City_Default">1</key>
 
     <!--SaludGuru Facebook-->
