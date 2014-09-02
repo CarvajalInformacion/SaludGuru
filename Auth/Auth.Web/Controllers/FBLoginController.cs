@@ -8,12 +8,17 @@ namespace Auth.Web.Controllers
 {
     public partial class FBLoginController : BaseController
     {
-        public virtual ActionResult Login(string UrlRetorno)
+        public virtual ActionResult StartLogin(string UrlRetorno)
         {
             //get return url
-            Uri oReturnUrl = base.GetReturnUrl(UrlRetorno);
+            base.ReturnUrl = base.GetReturnUrl(UrlRetorno);
+            return RedirectToAction(MVC.FBLogin.ActionNames.Login, MVC.FBLogin.Name);
+        }
+
+        public virtual ActionResult Login()
+        {
             //get current application name
-            string oAppName = base.GetAppNameByDomain(oReturnUrl);
+            string oAppName = base.GetAppNameByDomain(base.ReturnUrl);
             ViewBag.AppName = oAppName;
             //get fb client 
             DotNetOpenAuth.ApplicationBlock.FacebookClient FBClient = GetFBClient(oAppName);
@@ -23,9 +28,6 @@ namespace Auth.Web.Controllers
 
             if (authorization == null)
             {
-                //preserve return url before request
-                base.ReturnUrl = oReturnUrl;
-
                 //user is not login
                 FBClient.RequestUserAuthorization(scope: new[] { 
                             DotNetOpenAuth.ApplicationBlock.FacebookClient.Scopes.UserAboutMe,
@@ -60,7 +62,7 @@ namespace Auth.Web.Controllers
                 });
 
                 //return to site
-                Response.Redirect(oReturnUrl.ToString());
+                Response.Redirect(base.ReturnUrl.ToString());
             }
 
             return View();
