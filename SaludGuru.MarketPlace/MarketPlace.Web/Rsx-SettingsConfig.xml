@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SettingsConfig>
+  <Module name="MarketPlace">
+    <key name="location">\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\Rsx-MarketPlace.xml</key>
+  </Module>
+  <Module name="Profile">
+    <key name="location">\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\Rsx-Profile.xml</key>
+  </Module>
+  <Module name="FeedManager">
+    <key name="location">\\ProjectConfigFiles\ConfigFiles\SaludGuru\MarketPlace.Web\Rsx-FeedManager.xml</key>
+  </Module>
+</SettingsConfig>

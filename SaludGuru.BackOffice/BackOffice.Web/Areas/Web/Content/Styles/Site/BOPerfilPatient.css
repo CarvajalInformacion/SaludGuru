@@ -1,0 +1,95 @@
+div.patientAppointmentClass div table tbody tr td div {
+    min-width: 800px;
+}
+
+    div.patientAppointmentClass div table tbody tr td div a img {
+        width: auto;
+        height: 60px;
+        float: left;
+        margin-left: 7px;
+    }
+
+    div.patientAppointmentClass div table tbody tr td div a label {
+        float: left;
+        margin-top: 21px;
+        margin-left: 12px;
+        margin-right: 15px;
+    }
+
+label#Status {
+    float: right !important;
+}
+
+label#TreatmentName {
+    margin-top: 5px !important;
+    max-height: 46px !important;
+    overflow: hidden;
+    max-width: 180px !important;
+}
+
+.AppointmentStatus_1201, .AppointmentStatus_1202, .AppointmentStatus_1203,
+.AppointmentStatus_1204, .AppointmentStatus_1205, .AppointmentStatus_1206,
+.AppointmentStatus_1207 {
+    height: 60px;
+    border-style: solid;
+    border-width: 1px 1px 1px 6px;
+}
+
+/*New*/
+.AppointmentStatus_1201 {
+    border-color: #d6ab00 !important;
+}
+
+    .AppointmentStatus_1201:hover {
+        background-color: #ffeea5;
+    }
+
+/*Confirmed*/
+.AppointmentStatus_1202 {
+    border-color: #88aa00 !important;
+}
+
+    .AppointmentStatus_1202:hover {
+        background-color: #e4ff77;
+    }
+/*Canceled*/
+.AppointmentStatus_1203 {
+    border-color: #d40000 !important;
+}
+
+    .AppointmentStatus_1203:hover {
+        background-color: #ffabab;
+    }
+/*PendientAsistance*/
+.AppointmentStatus_1204 {
+    border-color: #800066 !important;
+}
+
+    .AppointmentStatus_1204:hover {
+        background-color: #f7e4f3;
+    }
+/*Attendance*/
+.AppointmentStatus_1205 {
+    border-color: #39a500 !important;
+}
+
+    .AppointmentStatus_1205:hover {
+        background-color: #afff85;
+    }
+/*NotAttendance*/
+.AppointmentStatus_1206 {
+    border-color: #414143 !important;
+}
+
+    .AppointmentStatus_1206:hover {
+        background-color: #c7c7c8;
+    }
+/*BlockCalendar*/
+.AppointmentStatus_1207 {
+    border-color: #800000;
+    background-color: #ffaaaa;
+}
+
+.Notes {
+    border: none;
+}

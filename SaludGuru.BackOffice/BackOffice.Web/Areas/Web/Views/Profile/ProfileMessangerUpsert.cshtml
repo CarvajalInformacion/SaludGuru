@@ -1,0 +1,86 @@
+﻿@model BackOffice.Models.Profile.ProfileUpSertModel
+@{
+    ViewBag.Title = "SaludGuru - configuracion recordatorios";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+<div class="BOProfileTableWrapper">
+    <h3 class="BOCreateOfficeLabel">Administrar Comunicaciones</h3>
+
+
+    @if (Model.Profile.ProfileInfo != null)
+    {
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileComunicationMenu, Model);
+    }
+    <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileMessangerUpsert, MVC.Profile.Name,
+                                new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+        <div id="divGridReminder"></div>
+    </form>
+    <!--template-->
+    <div id="templates" style="display:none;">
+
+        <div id="templateCheckMessageSMS">
+            <input type="checkbox" name="chb_${ComunicationType}_${SMS ? SMS.Value + '_' + SMS.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms)_'}" class="${SMS ? 'SelectedChecked' : ''}" />
+        </div>
+
+        <div id="templateCheckMessageEmail">
+            <input type="checkbox" name="chb_${ComunicationType}_${Email ? Email.Value + '_' + Email.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.Email)_'}" class="${Email ? 'SelectedChecked' : ''}" />
+        </div>
+
+        <div id="templateCheckMessageNotificationGuru">
+            <input type="checkbox" name="chb_${ComunicationType}_${NotificationGuru ? NotificationGuru.Value + '_' + NotificationGuru.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification)_'}" class="${NotificationGuru ? 'SelectedChecked' : ''}" />
+        </div>
+
+        @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ReadOnly)
+        {
+            <div id="template_Header">
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input class="BOAgregarButtons" type="submit" value="Guardar" />
+            </div>
+        }
+    </div>
+    @{
+        //get json office data
+        string oComunication = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+            Serialize(Model.RelatedComunication.
+                Select(x => new
+                {
+                    ComunicationType = x.ComunicationType,
+
+                    Name = Model.ProfileOptions.
+                        Where(y => y.ItemId == (int)x.ComunicationType).
+                        Select(y => y.ItemName).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault(),
+
+                    ProgramTime = x.ProgramTime,
+
+                    SMS = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Sms).ToString()).
+                        FirstOrDefault(),
+
+                    Email = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.Email).ToString()).
+                        FirstOrDefault(),
+
+                    NotificationGuru = x.MessageType.
+                        Where(y => y.Value == ((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification).ToString()).
+                        FirstOrDefault(),
+
+                }).ToList());
+    }
+</div>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataComunication = @Html.Raw(oComunication)
+        $(document).ready(function () {
+            //start office grid
+            ProfileComunicationListGrid('divGridReminder', vDataComunication);
+        });
+    </script>
+}

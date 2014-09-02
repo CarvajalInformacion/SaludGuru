@@ -1,0 +1,90 @@
+﻿@model MarketPlace.Models.Profile.SearchViewModel
+
+
+    <div class="MPResultsBreadCrumbsModel">
+    @{
+        var ovUrlCityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId]);
+        var ovCityName = MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId];
+    }
+    @if (Model.IsQuery)
+    {
+        if (string.IsNullOrEmpty(Model.CurrentSearchQuery))
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > doctores @ovCityName</span>
+        }
+        else
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > </span>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchQuery_CityAll, new { CityName = ovUrlCityName}))" title="doctores @ovCityName ">doctores @ovCityName</a>
+            <span> > @Html.Raw(Model.CurrentSearchQuery.Replace("+"," ")) </span>
+        }
+    }
+    else
+    {
+        if (Model.CurrentSpecialty != null && Model.CurrentInsurance != null && Model.CurrentTreatment == null)
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > </span>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyCity, new { CityName = ovUrlCityName, SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentSpecialty.Name) }))" title="@Model.CurrentSpecialty.Name">@Model.CurrentSpecialty.Name</a>
+            <span> > </span>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_InsuranceCity, new { CityName = ovUrlCityName, InsuranceName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentInsurance.Name) }))" title="@Model.CurrentInsurance.Name">@Model.CurrentInsurance.Name</a>
+            <span> > @ovCityName</span>
+        }
+        else if (Model.CurrentSpecialty != null && Model.CurrentInsurance == null && Model.CurrentTreatment == null)
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > @Model.CurrentSpecialty.Name @ovCityName</span>
+        }
+        else if (Model.CurrentSpecialty == null && Model.CurrentInsurance != null && Model.CurrentTreatment == null)
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > @Model.CurrentInsurance.Name @ovCityName</span>
+        }
+        else if (Model.CurrentSpecialty == null && Model.CurrentInsurance != null && Model.CurrentTreatment != null)
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > </span>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentCity, new { CityName = ovUrlCityName, TreatmentName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentTreatment.Name) }))" title="@Model.CurrentTreatment.Name">@Model.CurrentTreatment.Name</a>
+            <span> > </span>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_InsuranceCity, new { CityName = ovUrlCityName, InsuranceName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentInsurance.Name) }))" title="@Model.CurrentInsurance.Name">@Model.CurrentInsurance.Name</a>
+            <span> > @ovCityName</span>
+        }
+        else if (Model.CurrentSpecialty == null && Model.CurrentInsurance == null && Model.CurrentTreatment != null)
+        {
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Inicio">Home</a>
+            <span> > @Model.CurrentTreatment.Name @ovCityName</span>
+        }
+    }
+</div>
+
+<div class="MPResultsBreadCrumbsPages">
+    @{
+        var ovNextUrl = string.Empty;
+        var ovPreviewUrl = string.Empty;
+
+        Uri tmpUrl = new Uri(Request.Url.ToString().Replace("?PageNumber=" + Request.QueryString["PageNumber"], string.Empty).Replace("&PageNumber=" + Request.QueryString["PageNumber"], string.Empty));
+
+        if (Model.CurrentPage > 0)
+        {
+            ovPreviewUrl += tmpUrl;
+            ovPreviewUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage - 1);
+        }
+        if (Model.CurrentPage < Convert.ToInt32(Math.Floor((double)Model.TotalRows / (double)Model.CurrentRowCount)))
+        {
+            ovNextUrl += Request.Url.ToString().Replace("?PageNumber=" + Request.QueryString["PageNumber"], string.Empty).Replace("&PageNumber=" + Request.QueryString["PageNumber"], string.Empty);
+            ovNextUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage + 1);
+        }
+    }
+
+    @if (!string.IsNullOrEmpty(ovPreviewUrl))
+    {
+        <a href="@ovPreviewUrl">Anterior</a><span> | </span>
+    }
+
+    @if (!string.IsNullOrEmpty(ovNextUrl))
+    {
+        <a href="@ovNextUrl">Siguiente</a>
+    }
+</div>

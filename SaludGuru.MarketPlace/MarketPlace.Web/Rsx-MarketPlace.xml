@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <MarketPlace>
+
+    <!--Login Module-->
+    <key name="Web_Login_FBUrl">https://localhost:44302/FBLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Web_Login_WindowsLiveUrl">https://devadmin.saludguru.com.co:44302/WLLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>
+
+    <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
+    <key name="Mobile_Login_WindowsLiveUrl">https://devadmin.saludguru.com.co:44302/WLLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>    
+
+    <!--google maps-->
+    <key name="GoogleMaps_ApiKey">AIzaSyBxRBzCtUdaEaPSNRHnCAcDwyp-1dOlIpg</key>
+    <key name="GoogleMaps_Sensor">false</key>
+
+    <!--Enabled Cities-->
+    <key name="City_Cities">1,Bogotá;</key>
+    <key name="City_Default">1</key>
+
+    <!--SaludGuru Facebook-->
+    <key name="SaludGuru_FacebookProfile">https://www.facebook.com/pages/Salud-Gurú/249567868524045?fref=ts</key>
+
+    <!--Image Profile Certified-->
+    <key name="Profile_CertifiedImage">https://s3.amazonaws.com/devsaludguruimg/0MPImages/ProfileCertified.png</key>
+    <!--Website Icon-->
+    <key name="Profile_WebsiteIcon">https://s3.amazonaws.com/devsaludguruimg/0MPImages/WebsiteIcon.png</key>
+    <!--Facebook Icon-->
+    <key name="Profile_FacebookIcon">https://s3.amazonaws.com/devsaludguruimg/0MPImages/FacebookIcon.jpg</key>
+
+    <!--invalid url characters-->
+    <key name="Url_Invalid_Char">
+      <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
+    </key>
+    
+    <!--Search page-->
+    <key name="SearchPage_RowCount">20</key>
+  
+    <!--Home Image-->
+    <key name="HomeImage_Baseurl">https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_{{Count}}.jpg</key>
+    <key name="HomeImage_CountMin">1</key>
+    <key name="HomeImage_CountMax">10</key>
+    
+    <!--Profile image default-->
+    <key name="Profile_SmallImageDefault">https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png</key>
+
+    <!--Home Image Contact-->
+    <key name="HomeImage_Contact">https://s3.amazonaws.com/devsaludguruimg/0MPImages/HomeBannerSoyDoctor.jpg</key>
+
+    <key name="UrlBackOffice">https://admin.saludguru.com.co</key>
+
+    <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor</key>
+
+  </MarketPlace>
+</Settings>
+

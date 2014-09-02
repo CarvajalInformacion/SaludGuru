@@ -1,0 +1,93 @@
+﻿@model BackOffice.Models.Appointment.SchedulingModel
+
+@if (!Model.RenderScripts)
+{
+    <div id="divMeetingCalendar" class="@Model.defaultView container1 BOVerMasMeetingCalendarList">
+        <div id="CalendarContent"></div>
+    </div>
+    <div id="templatesMettingCalendar" style="display:none;">
+        <!--metting calendar-->
+        <div id="divMetting">
+            <div id="divOfficePublicId" style="width:100%;height:100%;" class="SelectorMettingCalendar"></div>
+        </div>
+        <!--metting header-->
+        <div id="divMettingHeader">
+            <ul>
+                <li>
+                    'MMMM d yyyy'
+                </li>
+                <li>
+                    {OfficeList}
+                </li>
+                <li>
+                    @if (Model.AppointmentType != BackOffice.Models.General.enumAppointmentType.Detail)
+                    {
+                        <a href="{OfficeScheduleConfigUrl}" title="Configurar oficina">Configurar consultorio</a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+
+}
+else
+{
+    //create office calendar object
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.Select(of =>
+                new
+                {
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                    OfficeScheduleConfigUrl = Url.Action(MVC.Profile.ActionNames.OfficeScheduleAvailableList,
+                                                MVC.Profile.Name,
+                                                new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, OfficePublicId = of.OfficePublicId }),
+                    SlotMinutes = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.SlotMinutes).Select(x => Convert.ToInt32(x.Value) > 0 ? Convert.ToInt32(x.Value) : 30).DefaultIfEmpty(30).FirstOrDefault(),
+                    IsSelected = string.IsNullOrEmpty(Model.SelectedOffice) ? of.IsDefault : (Model.SelectedOffice == of.OfficePublicId),
+                    TreatmentList = of.RelatedTreatment.Select(tr => new
+                    {
+                        TreatmentId = tr.CategoryId,
+                        TreatmentName = tr.Name,
+                        IsDefault = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                            Select(z => z.Value == "true" ? true : false).DefaultIfEmpty(false).FirstOrDefault(),
+                        Duration = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).
+                            Select(z => z.Value).DefaultIfEmpty("30").FirstOrDefault(),
+                        AfterCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                        BeforeCare = tr.TreatmentOfficeInfo.
+                            Where(y => y.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
+                            Select(z => z.LargeValue).DefaultIfEmpty("").FirstOrDefault(),
+                    }).OrderBy(tro => tro.IsDefault).OrderBy(tro => tro.TreatmentName).ToList(),
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
+    string PreviewLink = string.Empty;
+    string NextLink = string.Empty;
+    if (Model.AppointmentType == BackOffice.Models.General.enumAppointmentType.Month)
+    {
+        PreviewLink = Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(-1).ToString("yyyy-M-d") });
+        NextLink = Url.Action(MVC.Appointment.ActionNames.Month, MVC.Appointment.Name, new { Date = Model.CurrentStartDate.AddMonths(1).ToString("yyyy-M-d") });
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //render metting calendar
+            MettingCalendarObject.Init({
+                DivId: 'CalendarContent',
+                CurrentAgentType: '@Model.defaultView',
+                StartDateTime : new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
+                EndDateTime : new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)', '@(Model.CurrentEndDate.Hour)', '@(Model.CurrentEndDate.Minute)', '@(Model.CurrentEndDate.Second)'),
+                PreviewLink : '@Html.Raw(PreviewLink)',
+                NextLink :  '@Html.Raw(NextLink)',
+                OfficeInfo : @Html.Raw(oOfficeInfo),
+            });
+            MettingCalendarObject.RenderAsync();
+        });
+    </script>
+}
+

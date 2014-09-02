@@ -1,0 +1,100 @@
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
+
+@if (Model != null && !string.IsNullOrEmpty(Model.ProfilePublicId))
+{
+    <div class="MPResultsPaidProfile">
+        @{
+    //get image profile
+    var ovImageProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
+            Select(x => x.Value).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+    if (string.IsNullOrEmpty(ovImageProfile))
+    {
+        ovImageProfile = MarketPlace.Models.General.InternalSettings.Instance
+                 [MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value;
+    }
+
+    //get default specialty
+    var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
+            Model.DefaultSpecialty :
+            (Model.RelatedSpecialty != null ?
+            Model.RelatedSpecialty.FirstOrDefault() :
+            null);
+
+    //get profile text
+    var ovShortProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get profile url
+    var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+        new
+        {
+            DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.Name + " " + Model.LastName),
+            ProfilePublicId = Model.ProfilePublicId,
+            SpecialtyName = ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(ovDefaultSpecialty.Name) : string.Empty,
+        }));
+
+        }
+        <div class="MPResultsCertified">
+        </div>
+        @*PRIMERA COLUMNA FOTICO FACEBOOK*@
+        <div class="MPResultsPaidProfileDoctorPicture">
+            <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
+                <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
+            </a>
+        </div>
+
+        @*SEGUNDA COLUMNA DATICOS*@
+        <div class="MPResultsPaidProfileDoctorData">
+            <a class="MPResultsPaidProfileDoctorName" href="javascript:;">
+                <label>@(Model.Name + " " + Model.LastName)</label>
+            </a>
+
+            @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+            {
+                        <!--Principal specialty-->
+            <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
+            }
+        </div>
+        <div class="MPResultsDoctorDescriptionWrapper">
+            @if (!string.IsNullOrEmpty(ovShortProfile))
+            {
+            <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
+            }
+            @{
+            SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
+            if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
+            {
+                oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
+                if (oCurrentOffice == null)
+                {
+                    oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+                }
+            }
+            }
+            <div class="OfficeSelector">
+                <span class="OfficeTextSelector">Ver datos de contacto</span>
+                <div class="OfficeContactSelector" style="display:none;">
+                    @if (oCurrentOffice != null)
+                    {
+                    <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    }
+                    else
+                    {
+                    <span>El Doctor no tiene información de contacto</span>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="MPResultsDoctorLinksWrapper">
+            <a class="MPResultsBookAppFree" href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">Soy este profesional</a>
+        </div>
+    </div>
+}

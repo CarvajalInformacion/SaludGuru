@@ -1,0 +1,73 @@
+﻿@model BackOffice.Models.Patient.PatientUpSertModel
+
+@{
+    List<BackOffice.Models.General.MenuPatientModel> PatientMenu = BackOffice.Web.Controllers.BaseController.GetPatientMenu();
+
+
+    //get image profile
+    string ImgPatient = Model.Patient.PatientInfo.
+        Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.ProfileImage).
+        Select(x => x.Value).
+        DefaultIfEmpty(string.Empty).
+        FirstOrDefault();
+
+    if (string.IsNullOrEmpty(ImgPatient))
+    {
+        if (Model.Patient.PatientInfo.
+                Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.Gender).
+                Select(x => x.Value == "true" ? true : false).
+                DefaultIfEmpty(false).
+                FirstOrDefault())
+        {
+            ImgPatient = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_PatientImage_Man].Value;
+        }
+        else
+        {
+            ImgPatient = BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_PatientImage_Woman].Value;
+        }
+    }
+}
+<div class="BOMenuPrincipalPerfil">
+    <div>
+        <img class="BOFotoPerfil" src="@ImgPatient" alt="" title="" />
+        <h2>@(Model.Patient.Name + " " + Model.Patient.LastName)</h2>
+    </div>
+    <div>
+
+        <ul>
+            @foreach (BackOffice.Models.General.MenuPatientModel oMenu in PatientMenu)
+            {
+                string strAction = string.Empty;
+                string strStyle = string.Empty;
+                string strName = string.Empty;
+
+                switch (oMenu.Menu)
+                {
+                    case BackOffice.Models.General.enumMenuPatient.PatientInfo:
+                        strAction = Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Datos basicos";
+                        break;
+                    case BackOffice.Models.General.enumMenuPatient.Appointment:
+                        strAction = Url.Action(MVC.Patient.ActionNames.AppointmentList, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Citas";
+                        break;
+                    case BackOffice.Models.General.enumMenuPatient.PatientNotes:
+                        strAction = Url.Action(MVC.Patient.ActionNames.PatientNotes, MVC.Patient.Name, new { PatientPublicId = Model.Patient.PatientPublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Notas";
+                        break;
+                    default:
+                        break;
+                }
+
+                <li class="@strStyle">
+                    <a href="@strAction">@strName</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

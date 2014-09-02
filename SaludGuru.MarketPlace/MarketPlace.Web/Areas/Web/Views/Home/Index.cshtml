@@ -1,0 +1,226 @@
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
+@{
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="Content">
+    <div class="MPHeaderSearchWrapper SearchBox">
+        <!--search box-->
+        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
+            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
+        {
+            <div class="SearchBoxClass">
+                <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
+                <div>
+                    <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+                    <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+                </div>
+            </div>
+        }
+    </div>
+    <hr class="featurette-divider __loop">
+    <div class="HomeFirstBlock">
+        <div class="HomeFirstBlockLeft">
+            <div>
+                <label class="HombeBlockTitle">Profesional Destacado</label>
+                <div class="HomeBlocks Profile">
+                    @{
+                        var nameProfile = Model.Name.ToString() + " " + Model.LastName.ToString();
+                        var publicProfileId = Model.ProfilePublicId;
+                        var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
+                                                            Select(x => x.Value).
+                                                            DefaultIfEmpty(null).
+                                                            FirstOrDefault();
+                        if (imgProfile == null)
+                        {
+                            imgProfile = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value;
+                        }
+                        var defaultSpecialtyProfile = Model.DefaultSpecialty.Name.ToString();
+                        var shortTextProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+                                                                Select(x => x.Value).
+                                                                DefaultIfEmpty(null).
+                                                                FirstOrDefault();
+
+                        //get profile url
+                        var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+                            new
+                            {
+                                DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.Name + " " + Model.LastName),
+                                ProfilePublicId = Model.ProfilePublicId,
+                                SpecialtyName = !string.IsNullOrEmpty(defaultSpecialtyProfile) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(defaultSpecialtyProfile) : string.Empty,
+                            }));
+
+                    }
+                    <a href="@ovProfileUrl">
+                        <div class="Image">
+                            <img src="@imgProfile" />
+                        </div>
+                    </a>
+                    <div class="ProfileInfo">
+                        <a href="@ovProfileUrl">
+                            <label>@nameProfile</label>
+                        </a>
+                        <p>@defaultSpecialtyProfile</p>
+                        <p>@shortTextProfile...</p>
+                        <a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="HomeFirstBlockRigth">
+            <label class="HombeBlockTitle">Lo más buscado</label>
+            <div class="HomeBlocks criteriaBox">
+                <div class="FeaturedSP">
+                    <label>Especialidades</label>
+                    <ul>
+                        <li>
+                            <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
+                                Odontología
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
+                                Fisioterapia
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
+                                Cirugía Plástica
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
+                                Ginecología
+                            </a>
+                        </li>
+                        @*<li>
+                            <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                                Medicina Estética
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/homeopatia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Homeopatía">
+                                Homeopatía
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/neumologia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Neumología">
+                                Neumología
+                            </a>
+                        </li>*@
+                    </ul>
+                </div>
+                <div class="Insurance">
+                    <label>Seguros</label>
+                    <ul>
+                        <li>
+                            <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
+                                Sura
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
+                                Allianz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
+                                Colsanitas
+                            </a>
+                        </li>
+                        @*<li>
+                            <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                                Medplus
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/coomeva/bogota" title="Encuentra los mejores médicos de Coomeva">
+                                Coomeva
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/todas+las+especialidades/susalud/bogota" title="Encuentra los mejores médicos de Susalud">
+                                Susalud
+                            </a>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider __loop Left">
+    <hr class="featurette-divider __loop Right">
+    <div class="Feed">
+        @{
+            List<SaludGuru.FeedManager.Models.FeedReaderModel> Feeds = SaludGuru.FeedManager.FeedController.GetFeed(1);
+            SaludGuru.FeedManager.Models.FeedReaderModel mHealtyLive = Feeds[0];
+        }
+        <!-- Feed Left -->
+        <div class="HomeFirstBlockFeedLeft">
+            <label class="HombeBlockTitle">Noticias</label>
+            <div class="HomeBlocks FeedLeft">
+                <a target="_blank" href="@(mHealtyLive.Link)">
+                    <label id="FeedTitle">@(mHealtyLive.Title)</label>
+                </a>
+                <a target="_blank" href="@(mHealtyLive.Link)">
+                    <div class="divLeftImage">
+                        <img id="FeedImage" src="@(mHealtyLive.Image)" />
+                    </div>
+                </a>
+                <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
+                <a class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
+            </div>
+        </div>
+        <!-- Right Content-->
+        <div class="HomeFirstBlockFeedRigth">
+            <label class="HombeBlockTitle">Redes Sociales</label>
+            <div class="HomeBlocks SocialNetworks">
+                <div>
+                    <!--Facebook-->
+                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=250&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+                <ul>
+                    <li>
+                        <!--Google + -->
+                        <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+                    </li>
+                    <li>
+                        <!--LinkedIn-->
+                        @*<script src="//platform.linkedin.com/in.js" type="text/javascript">
+                        lang: es_ES
+                    </script>
+                    <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+                    </script>*@
+                        <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                            lang: es_ES
+                        </script>
+                        <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+                        </script>
+                    </li>
+                    <li>
+                        <!--Twitter-->
+                        <a href="https://twitter.com/SaludGuru" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false">Seguir a &#64;SaludGuru</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider __loop">
+    <div class="Demo">
+        <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
+            @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
+            <img src="/Areas/Web/Content/Images/try1.png" />
+        </a>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+
+        fnInitHome({
+            Baseurl: '@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Baseurl].Value',
+            CountMax: '@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_CountMax].Value'
+        });
+    </script>
+}

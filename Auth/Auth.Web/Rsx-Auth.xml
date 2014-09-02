@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Auth>
+    <!--General-->
+    <key name="AppConfig">
+      <![CDATA[
+          <applications>
+            <key name="marketplace">https://localhost:44302/,http://localhost:56847/,https://localhost:44303/</key>
+            <key name="backoffice">https://devadmin.saludguru.com.co:44302/,https://devadmin.saludguru.com.co:44304/,https://localhost:44302/,http://localhost:56847/,https://localhost:44304/,http://localhost:8326/,http://localhost:8864/,https://localhost:44303/</key>
+          </applications>
+      ]]>
+    </key>
+
+    <!--Internal Login-->
+
+    <!--Facebook-->
+    <key name="FB_marketplace_Enabled">true</key>
+    <key name="FB_marketplace_AppId">639144966168984</key>
+    <key name="FB_marketplace_AppSecret">02824fc9d1e0a420486dd28ccdd5de6f</key>
+
+    <key name="FB_backoffice_Enabled">true</key>
+    <key name="FB_backoffice_AppId">639144966168984</key>
+    <key name="FB_backoffice_AppSecret">02824fc9d1e0a420486dd28ccdd5de6f</key>
+
+    <!--Gmail-->
+    <key name="GM_marketplace_Enabled">true</key>
+    <key name="GM_marketplace_AppId">65284956123-78ptq4tubr8a2d1um9hkq7tmvnr6lrn2.apps.googleusercontent.com</key>
+    <key name="GM_marketplace_AppSecret">noc1gdOdcRsW26RPPU6KFPdl</key>
+
+    <key name="GM_backoffice_Enabled">true</key>
+    <key name="GM_backoffice_AppId">65284956123-78ptq4tubr8a2d1um9hkq7tmvnr6lrn2.apps.googleusercontent.com</key>
+    <key name="GM_backoffice_AppSecret">noc1gdOdcRsW26RPPU6KFPdl</key>
+
+    <!--Windows live-->
+    <key name="WL_marketplace_Enabled">true</key>
+    <key name="WL_marketplace_AppId">0000000040128E5E</key>
+    <key name="WL_marketplace_AppSecret">S5gk1bo12swpp5dPq7zL7zxPv9kHmA1S</key>
+
+    <key name="WL_backoffice_Enabled">true</key>
+    <key name="WL_backoffice_AppId">0000000040128E5E</key>
+    <key name="WL_backoffice_AppSecret">S5gk1bo12swpp5dPq7zL7zxPv9kHmA1S</key>
+
+    <!--Analitycs-->
+    <key name="backoffice_Analytics">
+      <![CDATA[
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-51169600-3', 'auto');
+          ga('require', 'displayfeatures');
+          ga('send', 'pageview');
+        </script>
+      ]]>
+    </key>
+    <key name="marketplace_Analytics">
+      <![CDATA[
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-51169600-2', 'auto');
+          ga('require', 'displayfeatures');
+          ga('send', 'pageview');
+        </script>        
+      ]]>
+    </key>
+  </Auth>
+</Settings>
+

@@ -1,0 +1,53 @@
+table.fc-border-separate thead{
+    box-shadow: 0px 1px 4px;
+    position:relative;
+}
+table.fc-border-separate th.fc-day-header{
+    border:1px solid blue;
+    height:20px;
+    border: none;
+    vertical-align: middle;
+}
+div.basicDay div.fc-event{
+    display: block;
+    margin: 1px 0px;
+    height: auto;
+    position: unset !important;
+}
+
+div.basicDay div.fc-event-container{margin-top: 24px;}
+
+div.basicDay div.fc-view {
+    height: 478px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+div.basicDay span.fc-event-time{
+    display: inline-block;
+border:none;
+    width: 11%;
+height: 21px;
+line-height: 18px;
+font-weight: normal;
+font-size: 18px;
+    text-indent: 3px;
+    vertical-align: middle;
+    color: #333;
+}
+div.basicDay span.fc-event-title {
+    display: inline-block;
+border:none;
+    vertical-align:middle;
+    margin-top: 3px;
+}
+div.basicDay span.fc-event-title > div > img {
+    width: auto;
+    margin: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    height:24px;
+}
+div.basicDay span.fc-event-title > div > label{
+    line-height:18px;
+    color:#333;
+}

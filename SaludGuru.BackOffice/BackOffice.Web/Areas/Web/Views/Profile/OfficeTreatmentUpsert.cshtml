@@ -1,0 +1,194 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "OfficeTreatmentUpsert";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+<div class="BOProfileFormWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model)
+
+    <div class="BOFormDataWrapper">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.OfficeTreatmentUpsert, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId,
+                    OfficePublicId = Model.CurrentOffice.OfficePublicId,
+                    TreatmentId = Model.CurrentTreatmentOffice == null ? string.Empty : Model.CurrentTreatmentOffice.CategoryId.ToString()
+                }))">
+            <ul>
+                <li>
+                    <label>Tratamiento</label>
+                    <input type="hidden" id="Treatment-id" name="Treatment-id" value="@(Model.CurrentTreatmentOffice==null?string.Empty:Model.CurrentTreatmentOffice.CategoryId.ToString())" />
+                    <input type="text" id="Treatment" name="Treatment" value="@(Model.CurrentTreatmentOffice == null?string.Empty:Model.CurrentTreatmentOffice.Name)" />
+                    @{
+                        //get json treatment
+                        string oTreatmentData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+                            Serialize(Model.TreatmentToSel.
+                                Select(x => new
+                                {
+                                    label = x.Name,
+                                    value = x.CategoryId,
+                                    duration = x.TreatmentInfo.
+                                        Where(y => y.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.DurationTime).
+                                        Select(y => y.Value).
+                                        FirstOrDefault(),
+                                }).ToList());
+                    }
+                </li>
+                <li>
+                    @{
+                        var TrInf_D = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.DurationTime).
+                               Select(x => new { id = x.CategoryInfoId, val = x.Value }).
+                                   DefaultIfEmpty(null).
+                                   FirstOrDefault();
+                        if (TrInf_D != null)
+                        {
+                            <input type="hidden" id="TrInf_DurationTime" name="TrInf_DurationTime" value="@TrInf_D.id" />
+                        }
+                    }
+                    <label>Duración</label>
+                    <input type="text" name="Treatment-duration" id="Treatment-duration" value="@(TrInf_D == null ? string.Empty : TrInf_D.val)" />
+                </li>
+                <li>
+                    @{
+                        var TrInf_DF = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.IsDefault).
+                                Select(x => new
+                                {
+                                    id = x.CategoryInfoId,
+                                    val = !string.IsNullOrEmpty(x.Value) && x.Value.ToLower() == "true" ? true : false
+                                }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                        if (TrInf_DF != null)
+                        {
+                            <input type="hidden" id="TrInf_IsDefault" name="TrInf_IsDefault" value="@TrInf_DF.id" />
+                        }
+                    }
+                    <label>Principal</label>
+                    @if (TrInf_DF != null && TrInf_DF.val)
+                    {
+                        <input type="checkbox" name="IsDefault" id="IsDefault" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="IsDefault" id="IsDefault" />
+                    }
+                </li>
+                <li>
+                    @{
+                        var TrInf_MPE = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.MarketPlaceEnabled).
+                                Select(x => new
+                                {
+                                    id = x.CategoryInfoId,
+                                    val = !string.IsNullOrEmpty(x.Value) && x.Value.ToLower() == "true" ? true : false
+                                }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                        if (TrInf_MPE != null)
+                        {
+                            <input type="hidden" id="TrInf_MarketPlaceEnabled" name="TrInf_MarketPlaceEnabled" value="@TrInf_MPE.id" />
+                        }
+                    }
+                    <label>Visible para el paciente</label>
+                    @if (TrInf_MPE != null && TrInf_MPE.val)
+                    {
+                        <input type="checkbox" name="MarketPlaceEnabled" id="MarketPlaceEnabled" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="MarketPlaceEnabled" id="MarketPlaceEnabled" />
+                    }
+                </li>
+                <li>
+                    @{
+                        var TrInf_AC = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.AfterCare).
+                                Select(x => new
+                                {
+                                    id = x.CategoryInfoId,
+                                    val = x.LargeValue
+                                }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                        if (TrInf_AC != null)
+                        {
+                            <input type="hidden" id="TrInf_AfterCare" name="TrInf_AfterCare" value="@TrInf_AC.id" />
+                        }
+                    }
+                    <label>Cuidados previos</label>
+                    <textarea name="AfterCare" id="AfterCare" rows="15" cols="15">
+                        @(TrInf_AC == null ? string.Empty : TrInf_AC.val)
+                    </textarea>
+                </li>
+                <li>
+                    @{
+                        var TrInf_BC = Model.CurrentTreatmentOffice == null ? null :
+                            Model.CurrentTreatmentOffice.TreatmentOfficeInfo.Where
+                                (x => x.OfficeCategoryInfoType == SaludGuruProfile.Manager.Models.enumOfficeCategoryInfoType.BeforeCare).
+                                Select(x => new
+                                {
+                                    id = x.CategoryInfoId,
+                                    val = x.LargeValue
+                                }).
+                                DefaultIfEmpty(null).
+                                FirstOrDefault();
+                        if (TrInf_BC != null)
+                        {
+                            <input type="hidden" id="TrInf_BeforeCare" name="TrInf_BeforeCare" value="@TrInf_BC.id" />
+                        }
+                    }
+                    <label>Cuidados posteriores</label>
+                    <textarea name="BeforeCare" id="BeforeCare" rows="15" cols="15">
+                        @(TrInf_BC == null ? string.Empty : TrInf_BC.val)
+                    </textarea>
+                </li>
+            </ul>
+            <div>
+                <!--hiden fields-->
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            </div>
+            <div class="BOButtonContainerLong">
+                <input id="Add" class="BOButtons" type="submit" value="guardar" />
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div id="dialog" title="Error">
+    <p>
+
+    </p>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataTreatment = @Html.Raw(oTreatmentData)
+        $(document).ready(function () {
+            //start office grid
+            OfficeTreatmentAc('Treatment', vDataTreatment);
+
+            $("#Add").on("click", function () {
+                var val = $("#Treatment-id").prop('value');
+                if (val == null || val == "") {
+                    ValidatePopUp("Treatment-id", "El tratamiento que desea agregar no se encuentra en la base de tratamientos, " + " \n " + " para agregarlo por favor comunicarse con el área de soporte.", "Add")
+                    return false;
+                }
+            });
+
+            $("#Treatment").change(function () {
+                $("#Treatment-id").val("");
+            });
+        });
+    </script>
+}

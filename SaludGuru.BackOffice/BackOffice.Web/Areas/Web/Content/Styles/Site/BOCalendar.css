@@ -1,0 +1,19 @@
+/*-------Calendario por mes--------*/
+
+.month {
+    /*border: 1px solid;
+    border-color: red;*/
+    min-width: 1020px !important;
+    max-height: calc(100%) !important;
+    font-size: 14px; 
+    left: 50%;
+    margin-left: -510px !important;
+    position: absolute;   
+}
+
+
+
+/*-------Calendario por semana--------*/
+
+
+/*-------Calendario por día--------*/

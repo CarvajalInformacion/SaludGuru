@@ -1,0 +1,47 @@
+﻿@model BackOffice.Models.Patient.PatientUpSertModel
+@{
+    ViewBag.Title = "SaludGuru - detalle citas";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    string oPatientPublicId = Model.Patient.PatientPublicId.ToString();
+}
+
+<div class="BOProfilesGeneralWrapper">
+    <div class="BOProfileMenuWrapper">
+        @if (Model != null && Model.Patient != null)
+        {
+            Html.RenderPartial(MVC.Web.Shared.Views._PA_PatientMenu, Model);
+        }
+    </div>
+    <div class="BOProfileFormWrapper">
+        <div id="divLstPatientAppointment" class="patientAppointmentClass">
+        </div>
+    </div>
+</div>
+
+<!--Templates-->
+<div style="display:none;">
+    <!--patient appointment template-->
+    <div id="divPatientAppointmentTemplate">
+        <div class="${className}">
+            <a href="@(Url.Action(MVC.Appointment.ActionNames.Detail, MVC.Appointment.Name) + "?AppointmentPublicId=${id}")">
+                <img src="${AppointmentImage}" />
+                <label>${AppointmentDateText}</label>
+                <label>${OfficeName}</label>
+                <label id="TreatmentName">${TreatmentName}</label>
+                <label id="Status">${StatusName}</label>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Render List Appointment
+            RenderPatientAppointment('divLstPatientAppointment', '@Html.Raw(oPatientPublicId)');
+        })
+    </script>
+}

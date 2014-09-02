@@ -1,0 +1,28 @@
+﻿@model BackOffice.Models.Appointment.SchedulingModel
+@{
+    ViewBag.Title = "SaludGuru - agenda lista";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
+}
+
+<div id="alvent" class="BOAgendaModuleGreatWrapper">
+    <div class="BOAgendaCalendarWrapper">
+        <!--Calendar by month-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+
+        <!--create edit appointment-->
+        @Html.Partial(MVC.Web.Shared.Views._AP_UpsertAppointment, Model)
+    </div>
+
+    <!--Meeting Calendar-->
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+</div>
+
+@{Model.RenderScripts = true;}
+@section inlinescripts
+{
+    @Html.Partial(MVC.Web.Shared.Views._AP_Calendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
+    @Html.Partial(MVC.Web.Shared.Views._AP_UpsertAppointment, Model)
+}

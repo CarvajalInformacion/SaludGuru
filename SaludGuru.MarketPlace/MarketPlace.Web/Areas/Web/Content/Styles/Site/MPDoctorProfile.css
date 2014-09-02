@@ -1,0 +1,685 @@
+.MPProfileGreatWrapper {
+    border: none;
+    display: block;
+    margin: 0px auto;
+    padding: 0px;
+    width: 100%;
+    min-width: 768px;
+}
+
+.MPProfileColumnsWrapper {
+    display: block;
+    margin: 0px auto;
+    padding: 0px;
+    width: 82%;
+    text-align: left;
+    line-height: 1em;
+}
+
+@media screen and (max-width:1280px) {
+    .MPProfileColumnsWrapper {
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width: 92%;
+        text-align: left;
+        line-height: 1em;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .MPProfileColumnsWrapper {
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width: 95%;
+        text-align: left;
+        line-height: 1em;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .MPProfileColumnsWrapper {
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width: 98%;
+        text-align: left;
+        line-height: 1em;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .MPProfileColumnsWrapper {
+        display: block;
+        margin: 0px auto;
+        padding: 0px;
+        width: 100%;
+        text-align: left;
+        line-height: 1em;
+    }
+}
+/********* COLUMNAS  *********/
+.MPProfileLeftWrapper,
+.MPProfileRigthWrapper {
+    border: none;
+    display: inline-block;
+    vertical-align: top;
+    height: auto;
+    text-align: left;
+}
+
+.MPProfileLeftWrapper {
+    width: 45%;
+    padding-top: 10px;
+}
+
+@media screen and (max-width:1024px) {
+    .MPProfileLeftWrapper {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .MPProfileLeftWrapper {
+        width: 34%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .MPProfileLeftWrapper {
+        width: 34%;
+    }
+}
+/*************************************/
+.MPProfileRigthWrapper {
+    margin: 0px 0px 0px 4px;
+    width: 54%;
+}
+
+@media screen and (max-width:1024px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width: 58.8%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width: 64.8%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .MPProfileRigthWrapper {
+        margin: 0px 0px 0px 4px;
+        width: 64.8%;
+    }
+}
+/*************************************/
+.MPProfileBottomWrapper {
+    border: none;
+    display: block;
+    width: 100%;
+}
+/******** BLOQUE INFORMACION DEL DOCTOR ********/
+.MPProfileInfo_BasicInfo,
+.MPProfileInfo_BasicInfoRight {
+    border: none;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+
+.MPProfileInfo_BasicInfo {
+    width: auto;
+    overflow: hidden;
+}
+
+.MPProfileInfo_BasicInfoRight {
+    /*box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85);
+    background: linear-gradient(#fff, #ececec);
+    padding: 10px 10px 10px 10px;
+    min-height: 210px !important;*/
+}
+
+/*------Media Styles-------*/
+
+/*
+    Rangos 
+     > 1280
+    1279 <=> 1200
+    1199 <=> 1024
+    1023 <=> 900
+    899 <=> 768
+    768 <
+    */
+/*----Media Profile Info-----*/
+@media (min-width: 1280px) {
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 53% !important;
+    }
+}
+
+@media (min-width: 1124px) and (max-width: 1279px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 47% !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1123px) {
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 43% !important;
+    }
+}
+
+
+@media (min-width: 980px) and (max-width: 1023px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 63% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 979px) {
+
+    .MPProfileInfo_BasicInfo {
+        width: 50%;
+    }
+
+    .MPProfileDoctorImage {
+        width: 63% !important;
+    }
+
+    .MPProfileCertified {
+        width: 28% !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 50px !important;
+    }
+}
+
+@media (max-width: 899px) {
+
+    .MPProfileInfo_BasicInfo {
+    }
+
+    .MPProfileDoctorImage {
+        width: 120px !important;
+    }
+
+    img.MPProfileCertified.SelCertifiedImage {
+        width: 60px !important;
+    }
+
+    .MPProfileInfo_BasicInfoRight {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+
+    hr.featurette-divider.__loop.ProfileBasicInfo {
+        display: inline-block !important;
+    }
+
+    .MPProfileInfo_Social a{
+        margin-bottom: 20px !important;
+        margin-left: 10px !important;
+    }
+}
+/*--------------------------------------*/
+
+div.MPProfileCertified,
+img.MPProfileCertified {
+    min-width: 46px;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
+    /*width: 62px !important;*/
+    width: 62px;
+}
+
+img.MPProfileDoctorImage {
+    border: 1px solid #666;
+    border-radius: 2px;
+    display: inline-block;
+    width: 142px;
+    height: auto;
+    vertical-align: top;
+}
+
+.MPProfileInfo_BasicInfoRight {
+    border: none;
+    letter-spacing: -0.6px;
+    width: 48.8%;
+}
+
+.MPProfileDoctorName {
+    line-height: 24px;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.MPProfileSpecialityName {
+    display: block;
+    height: auto;
+    margin: 4px 0px !important;
+    line-height: 1em;
+    font-size: 1.2em;
+    color: #666;
+}
+
+div.MPProfileInsuranceColumn,
+div.MPProfileSpecialtyColumn {
+    display: block;
+    vertical-align: top;
+    width: auto;
+}
+
+.MPProfileInsurance {
+    color: #666;
+    letter-spacing: 0px;
+    font-size: 0.8em;
+    line-height: 1em;
+    margin: 6px 0px;
+}
+
+li.MPProfileInsuranceName {
+    width: auto;
+    line-height: 1em;
+    border: medium none;
+    display: block;
+    font-size: 0.9em;
+    letter-spacing: 0px;
+    text-indent: 8px;
+}
+/******** SITIO WEB Y CONTROL FACEBOOK ********/
+.MPProfileInfo_Social {
+    border: none;
+    display: block;
+    width: 100%;
+}
+
+    .MPProfileInfo_Social a {
+        border: none;
+        display: inline-block;
+        width: 170px;
+        min-width: 98px;
+        margin: 20px 0px 6px 64px;
+        text-decoration: none;
+        color: #92B92A;
+        letter-spacing: -0.6px;
+        vertical-align: top;
+    }
+
+    .MPProfileInfo_Social img {
+        width: 22%;
+        height: auto;
+        vertical-align: middle;
+        max-width: 26px;
+    }
+
+    .MPProfileInfo_Social span {
+        font-size: 0.8em;
+        letter-spacing: 0px;
+        margin: 0px 0px 0px 1px;
+        width: 64%;
+        line-height: 29px;
+        color: #666;
+    }
+
+    .MPProfileInfo_Social iframe {
+        border: medium none;
+        overflow: hidden;
+        vertical-align: top;
+        width: 180px;
+        display: inline-block;
+        height: 85px;
+        margin: 2px 0px 2px 0px;
+    }
+
+/******** IMAGE SLIDER ********/
+#divProfileSlide {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 460px;
+    height: 250px;
+    background: #FFF;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+    #divProfileSlide .PrincipalSlide {
+        cursor: move;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 350px;
+        height: 250px;
+        overflow: hidden;
+    }
+/************* INFORMACION DE PERFIL PROFESIONAL ************/
+.MPProfileInfoDetail {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-size: 1em;
+}
+
+    .MPProfileInfoDetail div {
+        border: medium none;
+        display: block;
+        margin: 20px auto 20px auto;
+        height: auto;
+        min-height: 100px;
+        vertical-align: top;
+        text-align: left;
+        width: 100%;
+    }
+
+        .MPProfileInfoDetail div ul li {
+            border: none;
+            display: inline-block;
+        }
+
+            .MPProfileInfoDetail div ul li a {
+                font-size: 1.1em;
+                line-height: 20px;
+                letter-spacing: -1px;
+                color: #A4C02C;
+                background-color: #ececec;
+                font-weight: bold;
+                padding: 3px 10px 3px 10px;
+                margin: 0px 0px -1px 0px;
+                display: inline-block;
+                border-width: 1px 1px 0px 1px;
+                border-color: #666;
+                border-style: solid;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                position: relative;
+                z-index: 10;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 175px;
+            }
+
+                .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
+                    background-color: #fff;
+                    text-decoration: none;
+                }
+
+                .MPProfileInfoDetail div ul li a.selected {
+                    border-bottom: 1px solid #FBFBFB;
+                    margin-bottom: -1.5px;
+                    background-color: #fff;
+                }
+
+div#divProfileText,
+div#divEducation,
+div#divCertification,
+div#divOffice {
+    margin: -2px 0px 0px 0px;
+    padding: 5px 1.5% 0px;
+    width: 100%;
+    height: auto !important;
+    text-align: left;
+    box-shadow: 2px 2px 2px #666;
+    border: 1px solid #666;
+    position: relative;
+    min-height: 150px;
+    z-index: 2;
+}
+
+div#divProfileText p{
+    margin-bottom: 10px;
+}
+
+.MPProfileInfoDetail div#divProfileText p,
+.MPProfileInfoDetail div#divEducation p,
+.MPProfileInfoDetail div#divCertification p,
+.MPProfileInfoDetail div#divOffice ul {
+    font-size: 1em;
+    line-height: 21px;
+    color: #666;
+    height: auto;
+    overflow: initial;
+    font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+}
+
+div#divOffice ul li {
+    width: 90%;
+}
+
+/************* TABS CALENDARIO PROFESIONAL ************/
+.MPProfileScheduleCallendar {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-size: 1em;
+    margin:0px auto 0px auto;
+}
+
+.MPProfileCallendarWrapper {
+    display: block;
+    margin: 10px auto 0px auto;
+    height: auto;
+    vertical-align: top;
+    text-align: left;
+    width:100%;
+}
+
+    .MPProfileCallendarWrapper ul {
+        margin-bottom: -4px;
+    }
+
+        .MPProfileCallendarWrapper ul li {
+            border: none;
+            display: inline-block;
+        }
+
+.MPProfileCallendarTabs {
+    font-size: 0.9em !important;
+    line-height: 18px;
+    letter-spacing: -1px;
+    color: #A4C02C !important;
+    background-color: #ececec;
+    font-weight: bold;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 0px 0px 0px;
+    display: inline-block;
+    border-width: 1px 1px 0px 1px !important;
+    border-color: #666 !important;
+    border-style: solid !important;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+    z-index:1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 175px;
+}
+
+.MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail ul li a:active {
+    background-color: #fff !important;
+    text-decoration: none !important;
+}
+
+.MPProfileCallendarWrapper ul li.selected {
+    border-bottom: 1px solid #FBFBFB !important;
+    margin-bottom: -1.5px !important;
+    background: transparent !important;
+    position: relative;
+    z-index: 3 !important;
+    background-color: #fff !important;
+}
+
+.MPProfileCallendarCallendar {
+    margin: 0px 0px 0px;
+    padding: 5px 1.5% 0px;
+    width: 100% !important;
+    height: auto !important;
+    text-align: left;
+    display: block !important;
+    margin: 0px auto -5px !important;
+    padding: 0px !important;
+    border-radius: 3px !important;
+    box-shadow: 2px 2px 2px #666;
+    background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
+    position: relative;
+    z-index:2;
+}
+
+.MPProfileOfficeContactSelector {
+    display: block;
+    margin: 6px auto;
+    height: auto;
+    min-height: 100px;
+    vertical-align: top;
+    text-align: left;
+    width: 95%;
+}
+
+div.MPProfileOfficeContactSelector span {
+    cursor: pointer;
+    width: 100%;
+    color: #92B92A;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+    div.MPProfileOfficeContactSelector span:hover {
+        text-decoration: underline;
+    }
+
+div.MPProfileOfficeContactSelector {
+    display: block;
+    min-height: 39px;
+}
+
+    div.MPProfileOfficeContactSelector span, div.MPProfileOfficeContactSelector span:hover {
+        cursor: auto;
+        font-size: 0.9em;
+        display: block;
+        width: auto;
+        line-height: 1.4em;
+        text-decoration: none;
+        color: #666;
+        text-align: left;
+        text-indent: 20px;
+    }
+
+span.OfficeContactTelephone,
+span.OfficeContactAddress {
+    background-repeat: no-repeat;
+}
+
+span.OfficeContactAddress {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -6px -1px;
+    background-size: 27px auto;
+}
+
+span.OfficeContactTelephone {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 0px 2px;
+    background-size: 18px auto;
+}
+
+.MPProfileCalendarWeekTop {
+    margin: 0px 0px 0px;
+    display: block;
+}
+
+.k-grid td {
+    line-height: 1.3em !important;
+    padding: 0.2em 0.1em !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    text-overflow: ellipsis !important;
+    font-size: 0.9em !important;
+    letter-spacing: -0.3px !important;
+}
+
+div.k-grid-content {
+    width: 100% !important;
+    height:194px !important;
+}
+
+    div.k-grid-content > table > colgroup > col {
+        box-sizing: content-box;
+        width: 70px !important;
+    }
+.k-alt, .k-separator {
+    background-color:#fff !important;
+}
+
+/************ MAPA ***********/
+#divOfficeMap {
+    width: 100%;
+    height: 250px;
+    margin: 14px 0px 0px 0px;
+    border: 1px solid #666;
+    box-shadow: 2px 2px 2px #666;
+    border-radius: 2px;
+}
+
+    #divOfficeMap .OfficeMapToolTip {
+        width: 300px;
+        height: 60px;
+        margin: 5px 5px 5px 5px;
+    }
+
+        #divOfficeMap .OfficeMapToolTip img {
+            width: 50px;
+            height: auto;
+            float: left;
+        }
+
+        #divOfficeMap .OfficeMapToolTip .OfficeContactSelector {
+            margin: 0px 0px 0px 3px;
+            max-width: 245px;
+            height: auto;
+            float: left;
+        }
+
+span.MPProfileOfficeContactTelephone,
+span.MPProfileOfficeContactAddress {
+    background-repeat: no-repeat;
+}
+
+span.MPProfileOfficeContactAddress {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -1px -2px;
+    background-size: 21px auto;
+}
+
+span.MPProfileOfficeContactTelephone {
+    background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 1px -1px;
+    background-size: 16px auto;
+}

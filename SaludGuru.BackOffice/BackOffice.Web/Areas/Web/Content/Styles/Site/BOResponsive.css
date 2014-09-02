@@ -1,0 +1,158 @@
+﻿/*******ESTILOS PARA EL CONTENEDOR DEL CALENDARIO******/
+
+.container1 {
+}
+
+@media (min-width: 1px) {
+    .container1 {
+        /*overflow: scroll;*/
+        max-width: 400px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 850px) {
+    .container1 {
+        max-width: 400px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 900px) {
+    .container1 {
+        max-width: 490px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 950px) {
+    .container1 {
+        max-width: 540px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .container1 {
+        max-width: 590px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1050px) {
+    .container1 {
+        max-width: 640px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .container1 {
+        max-width: 695px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1150px) {
+    .container1 {
+        max-width: 740px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container1 {
+        max-width: 790px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1250px) {
+    .container1 {
+        max-width: 840px;
+        max-height: 510px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .container1 {
+        max-width: 890px;
+        max-height: 510px;
+    }
+}
+
+/********ESTILOS PARA EL CONTENEDOR DE EDICION DE CITA*********/
+
+.container2 {
+}
+
+
+@media (min-height: 390px) {
+    .container2 {
+        height: 90px;
+        max-height: 90px;
+    }
+}
+
+@media (min-height: 440px) {
+    .container2 {
+        height: 110px;
+        max-height: 110px;
+    }
+}
+
+@media (min-height: 490px) {
+    .container2 {
+        height: 130px;
+        max-height: 130px;
+    }
+}
+
+@media (min-height: 500px) {
+    .container2 {
+        height: 150px;
+        max-height: 150px;
+    }
+}
+
+@media (min-height: 520px) {
+    .container2 {
+        height: 170px;
+        max-height: 170px;
+    }
+}
+
+@media (min-height: 540px) {
+    .container2 {
+        height: 190px;
+        max-height: 190px;
+    }
+}
+
+@media (min-height: 560px) {
+    .container2 {
+        height: 210px;
+        max-height: 210px;
+    }
+}
+
+@media (min-height: 580px) {
+    .container2 {
+        height: 230px;
+        max-height: 230px;
+    }
+}
+
+@media (min-height: 600px) {
+    .container2 {
+        height: 250px;
+        max-height: 250px;
+    }
+}
+
+@media (min-height: 620px) {
+    .container2 {
+        height: 288px;
+        max-height: 288px;
+    }
+}

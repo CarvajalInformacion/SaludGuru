@@ -1,0 +1,52 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "ListOffice";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    //get json office data
+    string oOfficeData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.Profile.RelatedOffice.
+            Select(x => new
+            {
+                UrlToUpdate = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+                    new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = x.OfficePublicId }),
+                Name = x.Name,
+                CityName = x.City.CityName,
+                IsDefault = x.IsDefault ? "Si" : "No",
+                LastModify = x.LastModify.ToString("yyyy/MM/dd HH:mm"),
+                CreateDate = x.CreateDate.ToString("yyyy/MM/dd HH:mm")
+            }).ToList());
+
+    //get create url
+    string oCreateUrl = "";
+    if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ProfileOperator)
+    {
+        oCreateUrl = Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name,
+            new
+            {
+                ProfilePublicId = Model.Profile.ProfilePublicId
+            });
+    }
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+<div class="BOProfileTableWrapper">
+
+    <h3>Listado de Consultorios</h3>
+
+    <div id="divGridOffice"></div>
+</div>
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataOffice = @Html.Raw(oOfficeData)
+        $(document).ready(function () {
+            //start office grid
+            OfficeListGrid('divGridOffice', '@oCreateUrl', vDataOffice);
+        });
+    </script>
+}
+

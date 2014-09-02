@@ -1,0 +1,237 @@
+div#ui-datepicker-div {
+    width:210px !important;
+    border-radius: 1px;
+    margin:0px;
+}
+    div.ui-datepicker-header {
+        height: 24px;
+        background-color: #99c21d;
+        background-image:none;
+        border: 1px solid #666;
+        border-radius: 2px;
+    }
+    div.ui-datepicker-header a.ui-datepicker-prev, div.ui-datepicker-header a.ui-datepicker-next{
+        border: none;
+        border-radius:12px;
+        padding: 0px;
+        margin:3px 0px 0px 0px;
+        width:15px;
+        height:15px;
+        cursor: pointer;
+    }
+    div.ui-datepicker-header a.ui-datepicker-prev:hover, div.ui-datepicker-header a.ui-datepicker-next:hover {
+        background-image:none;
+        background-color:#fff;
+    }
+        div.ui-datepicker-header div.ui-datepicker-title{
+            line-height: 16px;
+            display: block;
+            margin: -3px 26px 0px 26px;
+            font-size:12px;
+        }
+    div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title span.ui-datepicker-year{
+        height: 20px;
+        margin: 0px;
+        line-height: 16px;
+    }
+        div.ui-datepicker-title span.ui-datepicker-month, div.ui-datepicker-title ui-datepicker-year {
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 16px;
+        }
+    select.ui-datepicker-month, select.ui-datepicker-year{
+        width: 49%;
+        font-size: 12px;
+        background-color: #ececec;
+        border: 1px solid #666;
+        height: 20px;
+    }
+
+/**********************DATOS DEL DIA FECHA ETC**************************/
+table.ui-datepicker-calendar > thead > tr {
+    background-color:#e6e6e6;
+}
+table.ui-datepicker-calendar > thead > tr > th{
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding: 8px 0px;
+    border: 1px solid #666;
+}
+table.ui-datepicker-calendar > thead > tr > th.ui-datepicker-week-end {
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding: 8px 0px;
+    border: 1px solid #666;  
+}
+/*weekends calendar*/
+.ui-datepicker-week-end a.ui-state-default {
+    background:#ffb380;
+}
+/*holiday*/
+.specialDay_1 a.ui-state-default {
+    background: #ff0000;
+}
+/*not available day*/
+.specialDay_2 a.ui-state-default {
+    background: #6f82b7;
+}
+table.ui-datepicker-calendar > tbody > tr > td {
+    font-size: 12px;
+    font-weight: normal;
+    width: auto;
+    margin: 0px;
+    padding:0px;
+    border:None;
+}
+    table.ui-datepicker-calendar > tbody > tr > td.selected a{
+        background-color:#e2ff6d;
+        background-image:none;
+    }
+
+a.ui-state-default, .ui-widget-content .ui-state-default {
+    border:1px solid #666 !important;
+    color: #333 !important;
+    background-image:none;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+
+    table.ui-datepicker-calendar > tbody > tr > td > a {
+        height: 20px;
+        margin: 0px auto;
+        width: auto;
+        border: 1px solid gray;
+        text-align: center;
+        vertical-align: baseline;
+        line-height: 12px;
+        color: #666;
+    }
+/*****************SELECCION DE DURACION DE LA CITA******************/
+
+div#ptTimeSelectCntr {
+    width:210px !important;
+    border-radius: 1px;
+    margin:0px;
+}
+    div#ptTimeSelectCntr div.ui-widget {
+        width:238px !important;
+        border-radius: 1px;
+        margin:0px;
+    }
+div.ui-widget-header {
+    height: 24px;
+    background-color: #99c21d;
+    background-image:none;
+    border: 1px solid #666;
+    border-radius: 2px;
+}
+div#ptTimeSelectCloseCntr {
+    width: 14px;
+    padding: 0px !important;
+    margin: 0px;
+    height: 14px;
+}
+div#ptTimeSelectCloseCntr a{
+    width: 14px;
+    height: 14px;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+div#ptTimeSelectCloseCntr a span{
+    background-position: -34px -194px;
+    border: none;
+    width: 14px;
+    height: 14px;
+    margin: -4px -4px;
+}
+
+div#ptTimeSelectCloseCntr a.ui-corner-all {}
+
+#ptTimeSelectCntr .ui-widget-content {
+    width:100% !important;
+    box-shadow:none!important;
+}
+#ptTimeSelectCntr .ptTimeSelectLeftPane.ui-widget-content {
+    width: 100% !important;
+    box-shadow:0px;
+}
+#ptTimeSelectCntr .ptTimeSelectRightPane.ui-widget-content {
+    width: 100% !important;
+    box-shadow:0px;
+}
+
+div#ptTimeSelectUserTime {
+        border:none;
+    line-height:8px;
+    margin:-2px 0px;
+}
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelHr{
+            border:none;
+        font-size: 14px;
+        line-height: 11px;
+    }
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelMin {
+            border:none;
+        font-size: 14px;
+        line-height: 11px;
+
+    }
+    div#ptTimeSelectUserTime span#ptTimeSelectUserSelAmPm {
+            border:none;
+        font-size: 14px;
+        line-height: 11px;
+    }
+div.ui-widget-content {
+    border: 1px solid #333;
+    border-radius: 0px;
+    margin: 0px auto;
+    height: auto;
+    box-shadow: 2px 1px 2px;
+    width: 380px !important;
+}
+    div.ptTimeSelectLeftPane, div.ptTimeSelectRightPane {
+        line-height: 12px;
+    }
+    div#ptTimeSelectSetButton {
+        line-height:14px;
+    }
+        div#ptTimeSelectSetButton a.ui-state-default {
+            line-height:14px;
+            border-color:#666;
+            color:#666;
+        }
+        a.ui-state-hover, .ui-widget-content .ui-state-hover {
+            background-color:#e2ff6d !important;
+            background-image:none !important;
+        }
+        div#ptTimeSelectSetButton a.ui-state-hover {
+            line-height:14px;
+            border-color:#666;
+            color:#666;
+            background-image:none !important;
+            background-color:#e6e6e6;
+            text-decoration:none;
+        }
+/*BLOQUE HORA Y MINUTOS*/
+
+#ptTimeSelectCntr .ptTimeSelectHrAmPmCntr a {
+    font-size: 14px;
+}
+#ptTimeSelectCntr .ptTimeSelectHrCntr a, 
+#ptTimeSelectCntr .ptTimeSelectMinCntr a {
+    font-size:12px; font-weight:normal;
+}
+#ptTimeSelectCntr .ptTimeSelectHrCntr a:hover,
+#ptTimeSelectCntr .ptTimeSelectMinCntr a:hover {
+    text-decoration:none;
+    background-color:#ccc;
+}
+#ptTimeSelectCntr .ptTimeSelectRightPane.ui-widget-content {
+    width:12px;
+}
+
+
+

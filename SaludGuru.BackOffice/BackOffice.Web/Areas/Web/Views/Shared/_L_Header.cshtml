@@ -1,0 +1,112 @@
+﻿<div class="headerMainWrapper">
+    <div class="headerTopWrapper">
+        <!--render autorized profiles-->
+        <div class="profilesListWrapper">
+            @{
+                string SelDrShowName = string.Empty, selDoctorImageUrl = string.Empty;
+                <select id="ddAutorizationProfiles">
+
+                    @foreach (SessionController.Models.Profile.Autorization.AutorizationModel ua in BackOffice.Models.General.SessionModel.UserAutorization)
+                    {
+                        //get doctor name
+                        string DrShowName = string.Empty;
+                        if (!string.IsNullOrEmpty(ua.ProfileName))
+                        {
+                            DrShowName = (ua.ProfileGender != null && !ua.ProfileGender.Value ? "Dra. " : "Dr. ") + ua.ProfileName + " " + ua.ProfileLastName;
+                        }
+                        if (!string.IsNullOrEmpty(DrShowName))
+                        {
+                            DrShowName += " - ";
+                        }
+                        DrShowName += ua.RoleName;
+
+                        //get doctor image url
+                        string ImgProfile = ua.ProfileImage;
+                        if (string.IsNullOrEmpty(ImgProfile))
+                        {
+                            if (ua.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Admin].Value;
+                            }
+                            else if (ua.ProfileGender != null && ua.ProfileGender.Value)
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value;
+                            }
+                            else
+                            {
+                                ImgProfile = BackOffice.Models.General.InternalSettings.Instance
+                                    [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Woman].Value;
+                            }
+                        }
+
+                        string strSelected = string.Empty;
+                        if (ua.Selected)
+                        {
+                            SelDrShowName = DrShowName;
+                            selDoctorImageUrl = ImgProfile;
+                            strSelected = "selected='selected'";
+                        }
+                        <option @strSelected value="@Url.Action(MVC.Home.ActionNames.ChangeAutorizationProfile, MVC.Home.Name, new { ProfilePublicId = ua.ProfilePublicId })" data-style="background-image: url(&apos;@(ImgProfile)&apos;);">
+                            @DrShowName
+                        </option>
+                    }
+                </select>
+                <div id="templateAutorization" style="display:none;">
+                    <div id="SelAutorization">
+                        <span class="selectedProfilePicture" style="background-image: url('@(selDoctorImageUrl)');"></span>
+                        <span class="selectedProfileName">@SelDrShowName</span>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <!--render search box-->
+        <div class="searchBox">
+            <input id="ipGlobalSearchBox" type="text" />
+            <input id="searchMagGlass" type="submit" value=""/>
+        </div>
+
+        <div class="userNotificationWrapper">
+            <!--render notifications-->
+            <div id="notificationsWrapper" class="notificationsWrapper">
+                <span id="aNotifyCount" class="notificationsWrapper2"></span>
+                <div class="ddNotifications">
+                    <ul id="ulNotificationList" style="display:none;"></ul>
+                </div>
+                <ul id="NotificationTemplate" style="display:none;">
+                    <li>
+                        <img src="{NotificationImage}" />
+                        <label>{NotificationText}</label>
+                    </li>
+                </ul>
+            </div>
+
+            <!--render user options-->
+            <div class="userOptionsWrapper">
+                <div onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                    <label>Hola @(BackOffice.Models.General.SessionModel.CurrentLoginUser.Name + " " + @BackOffice.Models.General.SessionModel.CurrentLoginUser.LastName)</label>
+                    <img src="@BackOffice.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x=>x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x=>x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+                </div>
+                <!--pop up user option menu-->
+                <div id="divUserMenu" style="display:none;">
+                    <ul>
+                        <li>
+                            <a href="@Url.Action(MVC.User.ActionNames.NotificationList,MVC.User.Name)">Mis notificaciones</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--menu-->
+    <div class="mainMenuWrapper">
+        @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu)
+    </div> 
+</div>

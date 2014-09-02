@@ -1,0 +1,47 @@
+﻿@model BackOffice.Models.Appointment.SchedulingModel
+
+@if (!Model.RenderScripts)
+{
+    <!--double calendar-->
+    <div class="BOAgendaSideMonthsWrapper">
+        <div id="divCalendar"></div>
+    </div>
+    <!--Appointment actions-->
+    if (Model.AppointmentType != BackOffice.Models.General.enumAppointmentType.Detail)
+    {
+        <div class="BOAgendaAppointmentActions">
+            <ul>
+                <li class="BOActionCreate">
+                    <a href="javascript:UpsertAppointmentObject.RenderForm(new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(DateTime.Now.Hour)', '@(DateTime.Now.Minute)'), MettingCalendarObject.CurrentPublicOfficeId, null);">Crear nueva cita</a>
+                </li>
+                <li class="BOActionCancel">
+                    <a href="javascript:MettingCalendarObject.ToggleCancelAppointment();">Citas canceladas</a>
+                </li>
+                <li class="BOActionBlock">
+                    <a href="javascript:UpsertAppointmentObject.RenderBlockForm();">Bloquear horario</a>
+                </li>
+            </ul>
+        </div>
+    }
+}
+else
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //render calendar by month
+            CalendarObject.Init({
+                DivId: 'divCalendar',
+                CountryId: '@(Model.CurrentProfile.RelatedOffice== null ? 1 : Model.CurrentProfile.RelatedOffice.Select(x=>x.City.CountryId).DefaultIfEmpty(1).FirstOrDefault())',
+                ProfilePublicId: '@Model.CurrentProfile.ProfilePublicId',
+                StartDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)'),
+                EndDate: new Date('@(Model.CurrentEndDate.Year.ToString())', '@((Model.CurrentEndDate.Month - 1).ToString())', '@(Model.CurrentEndDate.Day)'),
+                FirstDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '1'),
+            });
+            CalendarObject.RenderAsync();
+
+        });
+    </script>
+}
+
+
+

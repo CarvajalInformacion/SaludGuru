@@ -1,0 +1,282 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "CreateOffice";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+
+<div class="BOProfileFormWrapper">
+
+    @if (Model.CurrentOffice != null)
+    {
+        Html.RenderPartial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model);
+    }
+
+    <div class="BOFormDataWrapper">
+        <form id="OfficeInfoId" action="@Url.Action(MVC.Profile.ActionNames.OfficeUpsert, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice ==null?string.Empty:Model.CurrentOffice.OfficePublicId })" method="post">
+            <ul>
+
+                <h3 class="BOCreateOfficeLabel">Crear Nuevo Consultorio</h3>
+
+                <li>
+                    <label>Nombre</label>
+                    <input id="Name" name="Name" value="@(Model.CurrentOffice == null ? string.Empty : Model.CurrentOffice.Name)" type="text" />
+                </li>
+                <li>
+                    <label>Ciudad</label>
+                    <select id="City" class="required" name="City">
+                        @foreach (SaludGuruProfile.Manager.Models.General.CityModel tp in
+                        Model.CitiesToSel.
+                        OrderBy(x => x.CityName)
+                        .ToList())
+                        {
+                            if (Model.CurrentOffice != null && tp.CityId == (int)Model.CurrentOffice.City.CityId)
+                            {
+                                <option value="@tp.CityId" selected="selected">@tp.CityName</option>
+                            }
+                            else
+                            {
+                                <option value="@tp.CityId">@tp.CityName</option>
+                            }
+                        }
+                    </select>
+                </li>
+                <li>
+                    <label>Sucursal principal</label>
+                    @{
+                        if (Model.CurrentOffice != null && Model.CurrentOffice.IsDefault)
+                        {
+                            <input type="checkbox" id="IsDefault" name="IsDefault" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="IsDefault" name="IsDefault" />
+                        }
+                    }
+                </li>
+                <li>
+                    @{
+                        var CatInfo_MPE = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                            (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.MarketPlaceEnabled).
+                            Select(x => new
+                            {
+                                id = x.OfficeInfoId,
+                                val = !string.IsNullOrEmpty(x.Value) && x.Value.ToLower() == "true" ? true : false
+                            }).
+                            DefaultIfEmpty(null).
+                            FirstOrDefault();
+                        if (CatInfo_MPE != null)
+                        {
+                            <input type="hidden" id="CatId_MarketPlaceEnabled" name="CatId_MarketPlaceEnabled" value="@CatInfo_MPE.id" />
+                        }
+                    }
+                    <label>Visible para el paciente</label>
+                    @if (CatInfo_MPE != null && CatInfo_MPE.val)
+                    {
+                        <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="MarketPlaceEnabled" name="MarketPlaceEnabled" />
+                    }
+
+                </li>
+                <li>
+                    @{
+                        var CatInfo_AD = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).
+                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
+                                   DefaultIfEmpty(null).
+                                   FirstOrDefault();
+                        if (CatInfo_AD != null)
+                        {
+                            <input type="hidden" id="CatId_Address" name="CatId_Address" value="@CatInfo_AD.id" />
+                        }
+                    }
+                    <label>Dirección</label>
+                    <input id="Address" class="required" name="Address" value="@(CatInfo_AD == null ? string.Empty : CatInfo_AD.val)" type="text" />
+                </li>
+                <li>
+                    @{
+                        var CatInfo_TP = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).
+                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
+                                   DefaultIfEmpty(null).
+                                   FirstOrDefault();
+                        if (CatInfo_TP != null)
+                        {
+                            <input type="hidden" id="CatId_Telephone" name="CatId_Telephone" value="@CatInfo_TP.id" />
+                        }
+                    }
+                    <label>Teléfono</label>
+                    <input id="Telephone" class="required" name="Telephone" value="@(CatInfo_TP == null ? string.Empty : CatInfo_TP.val)" type="text" />
+                </li>
+                <li>
+                    @{
+                        var CatInfo_GL = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Geolocation).
+                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
+                                   DefaultIfEmpty(null).
+                                   FirstOrDefault();
+                        if (CatInfo_GL != null)
+                        {
+                            <input type="hidden" id="CatId_Geolocation" name="CatId_Geolocation" value="@CatInfo_GL.id" />
+                        }
+                    }
+                    <label>Geolocalización</label>
+                    <input id="Geolocation" name="Geolocation" value="@(CatInfo_GL == null ? string.Empty : CatInfo_GL.val)" type="text" />
+                    @{
+                        if (CatInfo_GL != null && CatInfo_GL.val != string.Empty)
+                        {
+                            string[] gl = CatInfo_GL.val.ToString().Split(',');
+
+                            double limx1 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LongitudeMin].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limx2 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LongitudeMax].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limy1 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LatitudeMin].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+                            double limy2 = Convert.ToDouble(BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Georef_LatitudeMax].Value.Trim(), System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+
+                            foreach (string s in gl)
+                            {
+                                double a = double.Parse(s, System.Globalization.CultureInfo.CreateSpecificCulture("EN-us"));
+
+                                if (a >= limx1 && a <= limx2 || a >= limy1 && a <= limy2)
+                                {
+
+                                }
+                                else
+                                {
+                                    <span class="error help-inline" style="display: block;">Los datos de geolocalización estan fuera del rango.</span>
+                                }
+                            }
+                        }
+                    }
+                </li>
+                <li>
+                    <label>Duración de la cita (minutos)</label>
+                    <select id="SlotMinutes" name="SlotMinutes">
+                        @{
+                            var CatInfo_SM = Model.CurrentOffice == null ? null :
+                            Model.CurrentOffice.OfficeInfo.Where
+                               (x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.SlotMinutes).
+                               Select(x => new { id = x.OfficeInfoId, val = x.Value }).
+                                   DefaultIfEmpty(null).
+                                   FirstOrDefault();
+
+                            if (CatInfo_SM != null)
+                            {
+                                if (CatInfo_SM.val == "5")
+                                {
+                                    <option value="5" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="5">5</option>
+                                }
+                                if (CatInfo_SM.val == "10")
+                                {
+                                    <option value="10" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="10">10</option>
+                                }
+                                if (CatInfo_SM.val == "15")
+                                {
+                                    <option value="15" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="15">15</option>
+                                }
+                                if (CatInfo_SM.val == "20")
+                                {
+                                    <option value="20" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="@CatInfo_SM.val">20</option>
+                                }
+                                if (CatInfo_SM.val == "30")
+                                {
+                                    <option value="30" selected="selected"> @CatInfo_SM.val </option>
+                                }
+                                else
+                                {
+                                    <option value="30">30</option>
+                                }
+
+                                <input type="hidden" id="CatId_SlotMinutes" name="CatId_SlotMinutes" value="@CatInfo_SM.id" />
+                            }
+                            else
+                            {
+                                <option value="5" selected="selected"> 5 </option>
+                                <option value="10" selected="selected"> 10 </option>
+                                <option value="15" selected="selected"> 15 </option>
+                                <option value="20" selected="selected"> 20 </option>
+                                <option value="30" selected="selected"> 30 </option>
+                            }
+                        }
+
+                    </select>
+
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="guardar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#OfficeInfoId').validate({
+                //debug: true,
+                errorClass: 'error help-inline',
+                validClass: 'success',
+                errorElement: 'span',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents("div.control-group").addClass(errorClass).removeClass(validClass);
+
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+                },
+                rules: {
+                    Name: {
+                        required: true,
+                    },
+                    Address: {
+                        required: true,
+                    },
+                    Telephone: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "Debe ingresar el nombre.",
+                    },
+                    Address: {
+                        required: "Debe ingresar la dirección.",
+                    },
+                    Telephone: {
+                        required: "Debe ingresar el teléfono.",
+                    }
+                }
+            });
+        });
+    </script>
+}

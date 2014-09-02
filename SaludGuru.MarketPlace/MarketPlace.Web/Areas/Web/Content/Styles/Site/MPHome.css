@@ -1,0 +1,425 @@
+/*------Estilos Home------*/
+
+.Content {
+    /*border: 2px solid red;*/
+    width: calc(100%);
+    min-width: 750px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    margin: 0px 0px 8px 0px !important;
+    font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    font-size: 30px !important;
+}
+
+.SearchBox, .HomeFirstBlock, .Feed, .Demo {
+    width: 100%;
+    height: auto;
+}
+/*-----Search Box------*/
+.SearchBox {
+    height: 400px !important;
+    padding: 10% 0px 0px !important;
+    margin: 0px 0px 0px 0px;
+}
+
+    .SearchBox .SearchBoxClass {
+        color: #AAD400;
+        font-size: 18px;
+        width: 54%;
+        min-width: 720px;
+        border: medium none;
+        height: 38px;
+        line-height: 16px;
+        margin: 0px auto;
+        position: relative;
+        top: 14px;
+    }
+
+        .SearchBox .SearchBoxClass div {
+            color: #AAD400;
+            font-size: 18px;
+            width: 54%;
+            min-width: 720px;
+            border: medium none;
+            height: 38px;
+            line-height: 16px;
+            margin: 0px auto;
+            position: relative;
+            top: 14px;
+        }
+
+/*---Home blocks----*/
+.HomeBlocks {
+    /* border: 1px solid yellow; */
+    height: auto;
+    /*box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.85); 
+         background: linear-gradient(#fff, #ececec);*/
+    margin: 10px 0px 0px 0px;
+}
+
+.HombeBlockTitle {
+    display: inline-block;
+    height: 10px;
+    width: auto;
+    font-weight: bold;
+    color: #99c21d;
+    font-size: 18px !important;
+}
+/*---Contenido Perfil destacado - Redes Sociales - Mas buscado----*/
+.HomeFirstBlock {
+    /*border: 1px solid pink;*/
+    display: inline-block;
+}
+
+.HomeFirstBlockLeft {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(62%);
+    float: left;
+    margin: 0px 0px 0px calc(6%);
+}
+
+.HomeFirstBlockRigth {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(27%);
+    display: inline-block;
+    margin: 0px 0px 0px calc(2%);
+}
+
+/*.ContentImportant .ProfileH1 {
+        display: inline-block;
+        width: calc(50%);
+        margin: 8px 0px 4px calc(4%) !important;
+        font-weight: bold;
+        color: #99c21d;
+        font-size: 25px !important;
+    }
+
+    .ContentImportant .SocialH1 {
+        display: inline-block;
+        width: calc(40%);
+        margin: 8px 0px 4px calc(3%) !important;
+        font-weight: bold;
+        color: #99c21d;
+        font-size: 25px !important;
+    }*/
+
+/*.HomeFirstBlock p {
+        line-height: 20px;
+        width: calc(80%);
+        margin: 10px 0px 30px 20px;
+        font-size: 30px;
+    }*/
+
+/*-----Perfil Destacado-----*/
+.Profile {
+    height: auto;
+    float: left;
+    width: 100%;
+    min-height: 210px;
+}
+
+    .Profile p {
+        margin: 10px 0px 30px 20px;
+        font-size: 30px;
+    }
+
+.Image, .ProfileInfo {
+    height: auto;
+}
+
+.Image {
+    width: calc(17%);
+    max-width: 160px;
+    height: auto;
+    border-radius: 3px;
+    margin: 10px 0px 10px 10px;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+}
+
+    .Image img {
+        width: 100%;
+        height: auto !important;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+.ProfileInfo {
+    display: inline-block;
+    width: calc(77%);
+    float: left;
+}
+
+    .ProfileInfo label {
+        line-height: 35px;
+        margin: 10px 0px 0px 10px;
+        font-size: 21px;
+        color: #99c21d;
+        cursor: auto;
+    }
+
+    .ProfileInfo p {
+        width: calc(97%);
+        margin: 5px 0px 5px 20px;
+        text-align: justify;
+        line-height: 21px;
+        font-size: 17px;
+    }
+
+a.MPButtons {
+    font-weight: bold;
+    margin: 1% 15px;
+    font-size: 17px;
+    float: right;
+    color: #99c21d;
+    text-decoration: initial;
+}
+
+
+/*------lo mas buscado--------*/
+
+.criteriaBox {
+    height: auto;
+    float: left;
+    min-height: 210px;
+    width: 100%;
+}
+
+    .criteriaBox div {
+        line-height: 24px;
+        width: 48%;
+        height: auto;
+        display: inline-block;
+        vertical-align: top;
+        float: left;
+    }
+
+    .criteriaBox li {
+        margin: 0px calc(8%);
+        line-height: 24px;
+        width: calc(100%);
+        color: #99c21d;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+/*-----Redes Sociales-----*/
+
+
+/*-----Facebook-------*/
+.SocialNetworks {
+    /*border: 1px solid blue;*/
+}
+
+    .SocialNetworks .fb {
+        width: 100%;
+        height: 178px;
+    }
+
+    .SocialNetworks ul li {
+        width: 100%;
+        height: 35px;
+        text-align: center;
+    }
+
+/*------Twitter-------*/
+/*iframe#twitter-widget-0 {
+    margin: 10px 0px 10px 0px !important;
+}*/
+
+/*---------Linked In----------*/
+/*span.IN-widget {
+    float: left !important;
+    margin: 0px 0px 0px calc(5%) !important;
+}*/
+
+/*-----Google +-------*/
+div#___plusone_0 {
+    width: 190px !important;
+    display: block !important;
+    height: auto !important;
+    margin: 5px auto !important;
+    overflow: hidden;
+}
+
+iframe.easyXDM_IN_Lib_li_gen_1409095708252_0_provider {
+    width: 100% !important;
+}
+
+iframe#I0_1408669437247 {
+    width: 100% !important;
+}
+
+/*-----Noticias------*/
+.Feed {
+    /*border: 1px solid red;*/
+    display: inline-block;
+}
+
+.HomeFirstBlockFeedLeft {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(62%);
+    float: left;
+    margin: 0px 0px 0px calc(6%);
+}
+
+.HomeFirstBlockFeedRigth {
+    /*border: 1px solid red;*/
+    height: auto;
+    width: calc(27%);
+    display: inline-block;
+    margin: 0px 0px 0px calc(2%);
+}
+
+.Feed p {
+    width: calc(90%);
+    margin: 10px 0px 15px 25px;
+    text-align: justify;
+    line-height: 21px;
+    font-size: 17px;
+}
+
+a.BlogButtom {
+    font-weight: bold;
+    margin: 10px 25px 20px 0px;
+    font-size: 17px;
+    float: right;
+    color: #99c21d;
+}
+
+img#FeedImage {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+label#FeedTitle {
+    margin: 10px calc(8%);
+    line-height: 24px;
+    width: calc(80%);
+    color: #99c21d;
+    font-size: 20px;
+    text-align: center;
+    cursor: auto;
+}
+
+/*-----Noticias Izquierda------*/
+.FeedLeft {
+    /*outline: 1px solid yellow;*/
+    display: inline-block;
+}
+
+    .FeedLeft p a {
+        font-weight: bold;
+    }
+
+.divLeftImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    margin: 10px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+/*-----Info Derecha-----*/
+.FeaturedSP {
+    margin: 0px 0px 0px 3px;
+    text-align: center;
+}
+
+    .FeaturedSP label {
+        font-size: 14px;
+        text-align: center;
+        /* font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif; */
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
+    }
+
+    .FeaturedSP ul li {
+        font-size: 13px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
+
+        .FeaturedSP ul li a {
+            color: #333;
+            font-size: 15px;
+            font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
+        }
+
+.Insurance {
+    font-size: 14px;
+    text-align: center;
+    font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+    margin: 0px 0px 0px 0px;
+}
+
+    .Insurance label {
+        line-height: 35px;
+        margin: 10px 0px 0px 0px;
+        font-size: 15px;
+        color: #99c21d;
+        cursor: auto;
+    }
+
+    .Insurance ul li {
+        font-size: 13px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
+
+        .Insurance ul li a {
+            color: #333;
+            font-size: 15px;
+            font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif;
+            font-weight: normal;
+            line-height: 0px;
+            font-size: 16px;
+        }
+
+/*-----Demo-------*/
+.Demo {
+    /*border: 1px solid blue;*/
+    display: inline-block;
+}
+    .Demo a img {
+        width: 80%;
+        margin: 0px auto;
+        display:block;
+    }
+/*---- Otros Estilos -----*/
+hr.featurette-divider.__loop {
+    width: 91%;
+    border-top: 1px solid #99c21d;
+    /*border: 1px solid green;*/
+    margin: 10px 0px 15px 6%;
+}
+
+    hr.featurette-divider.__loop.Left {
+        display: inline-block;
+        width: 62%;
+        position: relative;
+        margin: 0px 0px 15px 6% !important;
+    }
+
+    hr.featurette-divider.__loop.Right {
+        width: 27%;
+        margin: -16px 0px 15px 70% !important;
+    }

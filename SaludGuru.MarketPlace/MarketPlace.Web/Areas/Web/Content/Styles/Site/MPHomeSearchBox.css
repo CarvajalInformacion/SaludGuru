@@ -1,0 +1,40 @@
+
+/*------ Background Search Box----------*/
+.SearchBox {
+    background-size: cover !important;
+    background-position: center center !important;
+}
+
+    /*------ SearchBox Styles -----*/
+    .SearchBox .SearchBoxClass {
+        width: 760px !important;
+        height: 120px !important;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+        .SearchBox .SearchBoxClass span {
+            font-style: normal;
+            line-height: 1.2;
+            font-weight: bold;
+            font-size: 18px;
+            width: 760px !important;
+            opacity: 1 !important;
+            color: #535353;
+            position: relative;
+            top: 27px;
+            margin:0px auto 0px !important;
+        }
+        .SearchBox .SearchBoxClass div span {
+            position: relative;
+            top: 63px !important;
+            display: block;
+            width: auto !important;
+            font-size:13px;
+            color:darkred;
+        }
+        .SearchBox .SearchBoxClass div input {
+            font-size: 1.07143rem;
+            font-style: italic;
+            text-align: left;
+            opacity: 1 !important;
+        }

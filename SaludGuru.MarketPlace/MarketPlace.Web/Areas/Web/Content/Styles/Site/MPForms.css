@@ -1,0 +1,334 @@
+/*********** ESTILOS DE LOS FORMULARIOS DE AGENDAMIENTO **********/
+.MPFormDataWrapper {
+    display: block;
+    width: 100%;
+    min-width: 768px;
+    /* border-width: 0px 1px 0px 1px; */
+    /* border-style: solid; */
+    /* border-color: #999; */
+    /* margin: 0px auto; */
+    /* min-height: 400px; */
+}
+
+    .MPFormDataWrapper span {
+        font-size: 1.6em;
+        line-height: 22px;
+        /*color: #666;*/
+        display: inline-block;
+        /* margin-left: 18px; */
+        /* margin-top: 18px; */
+        width: 80%;
+        /*font-weight: bold;*/
+        /*color: #99c21d;*/
+        margin: 18px 0px 10px 18px;
+    }
+
+    .MPFormDataWrapper form {
+        display: inline-block;
+        width: 51%;
+        margin-left: 6%;
+        border: 1px solid #666;
+        box-shadow: 2px 2px 1.3px;
+        border-radius: 3px;
+        margin: 0px 2% 0px 3% !important;
+    }
+
+    .MPFormDataWrapper ul {
+        display: block;
+        height: auto;
+        border: none;
+        /* text-align: center; */
+        /* width: AUTO; */
+        margin: 0px 0px 0px 0px;
+    }
+
+        .MPFormDataWrapper ul li {
+            /*display: block;
+            padding: 4px 3%;
+            margin: 0px;
+            border: none;*/
+        }
+
+            .MPFormDataWrapper ul li h2 {
+                text-align: left;
+                margin-bottom: 4px;
+            }
+
+            .MPFormDataWrapper ul li label,
+            .MPFormDataWrapper ul li input,
+            .MPFormDataWrapper ul li select,
+            .MPFormDataWrapper ul li span {
+                font-size: 14px;
+                line-height: 14px;
+                width: auto;
+                display: inline-block;
+                /*border: 1px solid #999;*/
+                /*text-align: center;*/
+            }
+
+            .MPFormDataWrapper ul li label {
+                line-height: 18px;
+                font-weight: bold;
+                /*background-color: #e6e6e6;*/
+                /*padding: 4px 0px;*/
+            }
+
+.LegalTermsLi a {
+    display: inline-block;
+    float: left;
+    margin: 10px 0px 10px 0px;
+}
+
+#AppointmentForm ul {
+    margin: 5px 0px 0px 6%;
+}
+
+    #AppointmentForm ul li label {
+        width: 200px;
+    }
+
+.MPAgendaButtonWrapper label {
+    width: auto !important;
+    font-weight: normal !important;
+}
+
+li#officeSelectedId label {
+    width: 200px !important;
+}
+
+.MPAgendaButtonWrapper input {
+    margin: 10px 0px 10px 20px;
+}
+
+input#LegalTerms {
+    display: inline-block !important;
+    margin: 13px 0px 0px 15px;
+}
+
+li#officeSelectedId {
+    margin: 10px 0px 10px 0px;
+}
+
+li.InsuranceSelectedLi {
+    margin: 10px 0px 10px 0px;
+}
+
+label.AgendaLabel {
+    font-weight: bold !important;
+}
+
+li.TreatmentSelectedLi {
+    margin: 0px 0px 10px 0px;
+}
+
+div#ulPatientList label {
+    font-weight: normal;
+}
+
+.LegalTerms {
+    cursor: auto;
+    /* display: inline-block !important; */
+    /* margin: -18px 0px 0px -117px; */
+    color: #333;
+    width: auto !important;
+    /* position: absolute; */
+}
+
+.MPFormDataWrapper ul li input {
+    padding: 5px 0px;
+    text-align: left;
+    background-color: #fff;
+}
+
+.MPFormDataWrapper ul li select {
+    padding: 0px;
+    text-align: left;
+    background-color: #fff;
+    height: 28px;
+    vertical-align: top;
+    width: 245px;
+}
+
+.MPFormDataWrapper ul li textarea {
+    text-align: justify;
+    background-color: #fff;
+    height: 100px;
+    vertical-align: top;
+    line-height: 15px;
+    font-size: 14px;
+}
+
+.MPFormDataWrapper ul h3 {
+    display: block;
+    margin: 0px 0px 0px 16px;
+    width: auto;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.MPFormDataWrapper ul li span {
+    display: block;
+    height: 4px;
+    /*color: red;*/
+    line-height: 18px;
+    margin: 10px 0px 0px 0px;
+    /*font-style: italic;*/
+    text-align: right;
+}
+
+.MPFormDataWrapper ul li p {
+    display: inline-block;
+    width: auto;
+    margin: 0px 4px;
+}
+
+.MPFormDataWrapper ul li input[type="radio"] {
+    display: inline-block;
+    width: auto;
+    margin: 2px 0px 0px 30px !important;
+}
+
+.MPFormDataWrapper ul li input[type="checkMPx"] {
+    display: inline-block;
+    width: auto;
+    margin-left: 50px;
+}
+/************** QUIEN VA A VER AL DOCTOR **************/
+.MPAgendaPatientSelection {
+    text-align: left;
+    border: none;
+}
+
+#ulPatientList {
+    /*border: none;*/
+    /* margin: 3px auto 0px auto; */
+    /* padding: 0px; */
+    width: 100%;
+    /* height: auto; */
+}
+
+    #ulPatientList input {
+        border: none;
+        width: auto;
+        margin: 2px 0px 0px 30px !important;
+    }
+
+    #ulPatientList label {
+        border: medium none;
+        width: auto;
+        line-height: 8px;
+        height: 15px;
+        margin: 0px;
+        background-color: #fff;
+    }
+/********** CREAR NUEVO PACIENTE **********/
+div#NewPatientId {
+    /*border: 1px solid #999;
+    box-shadow: 1px 1px 1px #999;*/
+    border-radius: 4px;
+    width: 363px;
+}
+
+label.titleNewPatien {
+    width: 200px !important;
+    margin: 0px 0px 10px 0px !important;
+    font-weight: bold !important;
+}
+
+label.GenderLi {
+    margin: 2px -30px 5px 73px !important;
+}
+
+#NewPatient {
+    height: auto;
+    width: 320px;
+    z-index: 10;
+    position: relative;
+    background-color: #FFF;
+    margin: 0px 0px 0px 77px;
+    border: 1px solid #666;
+    box-shadow: 2px 2px 2px #666;
+    border-radius: 4px;
+}
+
+#CreatePatientForm {
+    margin: 0px;
+    display: block;
+    width: auto;
+}
+
+    #CreatePatientForm ul {
+        margin: 4px;
+    }
+
+        #CreatePatientForm ul li {
+            padding: 0px;
+            margin: 5px;
+        }
+
+            #CreatePatientForm ul li label {
+                width: 45%;
+                padding: 2px;
+                vertical-align: top;
+                margin: 0px 0px 0px 40px;
+                font-weight: normal;
+            }
+
+            #CreatePatientForm ul li input {
+                width: 38%;
+                height: 24px;
+                line-height: 31px;
+                padding: 0px;
+                vertical-align: top;
+            }
+
+.GridAP div span {
+    display: inline-block !important;
+    width: 60% !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    margin: 10px 0px 10px 0px !important;
+    height: auto !important;
+    border: none !important;
+    line-height: 0px !important;
+}
+
+.GridAP div a {
+    display: initial;
+    margin-left: 0 !important;
+}
+
+.GridAP div div.k-grid-content {
+    height: 341px !important;
+}
+
+/*------Validate Styles---------*/
+
+.required {
+    color: red;
+    border: none !important;
+    background: transparent !important;
+    width: auto !important;
+    margin: 4px 0px 4px -4px !important;
+    display: inline-block !important;
+}
+
+.message {
+    width: auto !important;
+    text-align: center !important;
+    color: red;
+    background: transparent !important;
+    /*margin: 7px 0px -10px 0px !important;*/
+    border: none !important;
+}
+
+span#Name-error, span#LastName-error, span#Identification-error, span#Birthday-error {
+    display: none !important;
+}
+
+#LegalTerms-error {
+    display: inline-block !important;
+    margin: 0px 0px 20px 10px;
+    color: red;
+    /*position: absolute;*/
+}

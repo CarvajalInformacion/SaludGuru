@@ -1,0 +1,83 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "AutorizationProfileList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+<div class="BOProfileFormWrapper">
+    <h3>Administración de Roles</h3>
+    <div id="divGridAutorization"></div>
+</div>
+
+<div id="templates" style="display:none;">
+    <div id="templateCreate">
+        <form id="AutorizationId"  method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationUpsert, MVC.Profile.Name,
+                                        new { ProfilePublicId = Model.Profile.ProfilePublicId }))">
+            <ul class="BOEditDaySetUp">
+                <li>
+                    <label>Rol</label>
+                    <select id="RoleId" name="RoleId">
+                        @foreach (SaludGuruProfile.Manager.Models.General.ItemModel it in
+                        Model.OfficeOptions.
+                        Where(x => x.CatalogId == (int)BackOffice.Models.General.enumCatalog.Role && x.ItemId != (int)BackOffice.Models.General.enumCatalog.Admin).
+                        OrderBy(x => x.ItemName)
+                        .ToList())
+                        {
+                            <option value="@it.ItemId">@it.ItemName</option>
+                        }
+                    </select>
+                </li>
+                <li>
+                    <label>Correo electrónico</label>
+                    <input type="text" class="required" name="UserEmail" id="UserEmail" value="" />
+                </li>
+                <li class="BOButtonContainerShort">
+                    <!--hiden fields-->
+                    <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                    <input class="BOButtons" type="submit" value="Agregar" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div id="templateDelete">
+        <form method="post" action="@(Url.Action(MVC.Profile.ActionNames.ProfileAutorizationDelete, MVC.Profile.Name,
+                new
+                {
+                    ProfilePublicId = Model.Profile.ProfilePublicId
+                }))">
+            <!--hiden fields-->
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            <input type="hidden" id="ProfileRoleId" name="ProfileRoleId" value="${ProfileRoleId}" />
+            <input class="BOButtonsErase" type="submit" value="Borrar" />
+        </form>
+    </div>
+</div>
+
+@{
+    //get json office data
+    string oAutorizationProfile = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentAutorization.
+            Select(x => new
+            {
+                ProfileRoleId = x.ProfileRoleId,
+                RoleName = x.RoleName,
+                UserEmail = x.UserEmail
+            }).ToList());
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        var vDataAutorizationProfile = @Html.Raw(oAutorizationProfile)
+        $(document).ready(function () {
+            //start office grid
+            ProfileAutorizationListGrid('divGridAutorization', vDataAutorizationProfile);
+            // Email Validation
+            ValidEmailAutorizationProfileList('AutorizationId');
+        });       
+    </script>
+}
+
+
