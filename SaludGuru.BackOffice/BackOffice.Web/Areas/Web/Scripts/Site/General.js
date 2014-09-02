@@ -190,59 +190,103 @@ function ValidatePopUp(controlName, message, NameSubmit) {
     $("#dialogError").dialog("open");
 }
 
+
 /*calendar render method*/
-var CalendarGeneralObject = {
+var GeneralCalendarObject = {
     /*calendar info*/
     DivId: '',
-    CountryId:'',
-    CalendarName: '',
-    CurrentDate: '',
-    StartDate: '',
+    CountryId: '',
     ProfilePublicId: '',
+    StartDate: new Date(),
+    EndDate: new Date(),
+    FirstDate: new Date(),
+    SecondDate: new Date(),
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
-        
+
         this.DivId = vInitObject.DivId;
-        this.CalendarName = vInitObject.CalendarName;
-        this.CurrentDate =  new Date(); 
-        this.StartDate = Date.now();
         this.CountryId = vInitObject.CountryId;
         this.ProfilePublicId = vInitObject.ProfilePublicId;
+        this.StartDate = vInitObject.StartDate;
+        this.EndDate = vInitObject.EndDate;
+        this.FirstDate = vInitObject.FirstDate;
     },
 
     RenderAsync: function () {
         //make ajax for special days
         $.ajax({
             type: "POST",
-            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,            
+            url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,
         }).done(function (data) {
             //left date picker
-            
-            CalendarGeneralObject.RenderCalendar(data, Date.now());
+
+            GeneralCalendarObject.RenderCalendar(data, GeneralCalendarObject.FirstDate);
 
         }).fail(function () {
             alert("se ha generado un error en el calendario");
         });
     },
 
-    RenderCalendar: function (vlstSpecialDay) {
-        
-        //render calendar
-        $('#Birthday').datepicker({
-            dateFormat: 'yy-mm-dd',
-            locale: $.datepicker.regional['es'],            
-            numberOfMonths: [1]           
-        });
+    RenderCalendar: function (vlstSpecialDay, vCurrentDate) {
 
+        //render calendar
+        $('#' + this.DivId).datepicker({
+            dateFormat: 'yy-mm-dd',
+            locale: $.datepicker.regional['es'],
+            defaultDate: vCurrentDate,
+            //numberOfMonths: [1,2],
+            beforeShowDay: function (date) {
+
+                var oReturn = [true, ''];
+
+                //eval selected date
+                if (GeneralCalendarObject.GetNumberDate(date) >= GeneralCalendarObject.GetNumberDate(GeneralCalendarObject.StartDate) && GeneralCalendarObject.GetNumberDate(date) < GeneralCalendarObject.GetNumberDate(GeneralCalendarObject.EndDate)) {
+                    oReturn = [true, ' selected'];
+                }
+
+                //eval special day
+                if (vlstSpecialDay != null) {
+                    $(vlstSpecialDay).each(function (index, value) {
+                        if (value.Year == date.getFullYear() && value.Month == (date.getMonth() + 1) && value.Day == date.getDate()) {
+                            oReturn = [true, 'specialDay_' + value.SpecialDayType];
+                        }
+                    });
+                }
+                return oReturn;
+            },           
+        });
         //delete selected style on calendar
-        $('#' + this.CalendarName + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
-        $('#' + this.CalendarName + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
-    },   
+        $('#' + this.DivId + ' .ui-datepicker-current-day').removeClass('ui-datepicker-days-cell-over ui-datepicker-current-day');
+        $('#' + this.DivId + ' .ui-state-active').removeClass('ui-state-active ui-state-hover');
+    },
+
+    GetNumberDate: function (vDateToEval) {
+
+        var oReturn = '';
+
+        oReturn = vDateToEval.getFullYear();
+
+        if (vDateToEval.getMonth() < 10) {
+            oReturn = oReturn + '0' + (vDateToEval.getMonth()).toString();
+        }
+        else {
+            oReturn = oReturn + (vDateToEval.getMonth()).toString();
+        }
+
+        if (vDateToEval.getDate() < 10) {
+            oReturn = oReturn + '0' + (vDateToEval.getDate()).toString();
+        }
+        else {
+            oReturn = oReturn + (vDateToEval.getDate()).toString();
+        }
+
+        return oReturn;
+    },
 
     Refresh: function () {
 
-        $('#' + this.CalendarName).datepicker("refresh");
+        $('#' + this.DivId).datepicker("refresh");
 
     },
 

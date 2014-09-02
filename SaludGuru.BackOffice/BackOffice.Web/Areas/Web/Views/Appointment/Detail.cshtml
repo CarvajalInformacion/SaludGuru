@@ -428,14 +428,14 @@
     @Html.Partial(MVC.Web.Shared.Views._AP_MeetingCalendar, Model)
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {            
             //render metting calendar
             AppointmentDetailObject.Init({
                 StartDateTime : new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '@(Model.CurrentStartDate.Day)', '@(Model.CurrentStartDate.Hour)', '@(Model.CurrentStartDate.Minute)', '@(Model.CurrentStartDate.Second)'),
                 CurrentAppointment: @Html.Raw(oAppointmentInfo),
                 OfficeInfo: @Html.Raw(oOfficeInfo),
             });
-            AppointmentDetailObject.RenderAsync();
+            AppointmentDetailObject.RenderAsync();          
         });
     </script>
 }

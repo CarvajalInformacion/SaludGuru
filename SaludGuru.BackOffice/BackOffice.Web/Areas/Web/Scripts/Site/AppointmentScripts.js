@@ -725,7 +725,7 @@ var UpsertAppointmentObject = {
     },
 
     RenderActions: function (vAppointmentInfo, vCurrentAppointmentStatus) {
-
+        debugger;
         //add style for specific appointment status
         $('#' + this.DivId).attr('class', '');
         $('#' + this.DivId).addClass('container2 AppointmentFormStatus_' + vCurrentAppointmentStatus);

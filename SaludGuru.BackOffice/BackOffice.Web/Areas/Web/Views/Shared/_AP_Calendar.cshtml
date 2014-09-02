@@ -38,6 +38,7 @@ else
                 FirstDate: new Date('@(Model.CurrentStartDate.Year.ToString())', '@((Model.CurrentStartDate.Month - 1).ToString())', '1'),
             });
             CalendarObject.RenderAsync();
+
         });
     </script>
 }

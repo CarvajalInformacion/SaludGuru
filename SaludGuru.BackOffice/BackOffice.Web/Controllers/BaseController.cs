@@ -541,6 +541,7 @@ namespace BackOffice.Web.Controllers
 
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfilePublicId", Value = Profile.ProfilePublicId });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId});
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
 
                         //Valid the key "To"
@@ -625,7 +626,7 @@ namespace BackOffice.Web.Controllers
 
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
-
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
                         //Valid the key "To"
                         string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
                         if (keyTO != null)
