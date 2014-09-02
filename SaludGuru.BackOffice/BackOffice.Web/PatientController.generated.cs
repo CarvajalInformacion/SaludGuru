@@ -77,6 +77,12 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult PatientDelete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientDelete);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult PatientNotes()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientNotes);
@@ -106,6 +112,7 @@ namespace BackOffice.Web.Controllers
             public readonly string Search = "Search";
             public readonly string PatientUpsert = "PatientUpsert";
             public readonly string AppointmentList = "AppointmentList";
+            public readonly string PatientDelete = "PatientDelete";
             public readonly string PatientNotes = "PatientNotes";
             public readonly string PatientNotesUpsert = "PatientNotesUpsert";
         }
@@ -116,6 +123,7 @@ namespace BackOffice.Web.Controllers
             public const string Search = "Search";
             public const string PatientUpsert = "PatientUpsert";
             public const string AppointmentList = "AppointmentList";
+            public const string PatientDelete = "PatientDelete";
             public const string PatientNotes = "PatientNotes";
             public const string PatientNotesUpsert = "PatientNotesUpsert";
         }
@@ -142,6 +150,14 @@ namespace BackOffice.Web.Controllers
         public ActionParamsClass_AppointmentList AppointmentListParams { get { return s_params_AppointmentList; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_AppointmentList
+        {
+            public readonly string PatientPublicId = "PatientPublicId";
+        }
+        static readonly ActionParamsClass_PatientDelete s_params_PatientDelete = new ActionParamsClass_PatientDelete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PatientDelete PatientDeleteParams { get { return s_params_PatientDelete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PatientDelete
         {
             public readonly string PatientPublicId = "PatientPublicId";
         }
@@ -215,6 +231,18 @@ namespace BackOffice.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AppointmentList);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
             AppointmentListOverride(callInfo, PatientPublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PatientDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string PatientPublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PatientDelete(string PatientPublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PatientDelete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PatientPublicId", PatientPublicId);
+            PatientDeleteOverride(callInfo, PatientPublicId);
             return callInfo;
         }
 

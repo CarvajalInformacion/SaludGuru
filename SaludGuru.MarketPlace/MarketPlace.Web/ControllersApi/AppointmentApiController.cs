@@ -2,6 +2,7 @@
 using MedicalCalendar.Manager.Models;
 using MedicalCalendar.Manager.Models.Appointment;
 using MedicalCalendar.Manager.Models.Patient;
+using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,19 @@ namespace MarketPlace.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public PatientModel PatientUpsert(string ProfilePublicId)
-        {
-            PatientModel patientToCreate = this.GetRequestForNewPatient();
+        {            
             PatientModel modelToValidate = new PatientModel();
+            ProfileModel oModelSend = new ProfileModel();
+            oModelSend = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+            string email = oModelSend.ProfileInfo.Where(x => x.ProfileInfoType == enumProfileInfoType.Email).Select(x => x.Value).FirstOrDefault();
+            string mobile = oModelSend.ProfileInfo.Where(x => x.ProfileInfoType == enumProfileInfoType.Mobile).Select(x => x.Value).FirstOrDefault();
 
+            PatientModel patientToCreate = this.GetRequestForNewPatient(email, mobile);
             //Insert the new patient
             string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId); //TODO: Ajustar el usuario no quemarlo
 
             #region Create the notification 
-            ProfileModel oModelSend = new ProfileModel();
-            oModelSend = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+            
             List<PatientModel> PatientSource = new List<PatientModel>();
             PatientModel ItemPatientSource = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(resultPatientPublicId);
             PatientSource.Add(ItemPatientSource);
@@ -43,7 +47,7 @@ namespace MarketPlace.Web.ControllersApi
         }
 
         #region  Funciones Privadas
-        private PatientModel GetRequestForNewPatient()
+        private PatientModel GetRequestForNewPatient(string email, string mobile)
         {
             PatientModel oReturn = new PatientModel();
             PatientInfoModel oRequestInfo = new PatientInfoModel();
@@ -70,7 +74,19 @@ namespace MarketPlace.Web.ControllersApi
                         PatientInfoId = 0,
                         PatientInfoType = enumPatientInfoType.Gender,
                         Value = HttpContext.Current.Request["GenderMale"] == "on" ? "true" : "false",
-                    },                
+                    },  
+                     new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Email,
+                        Value = email,
+                    }, 
+                     new  PatientInfoModel()
+                    {
+                        PatientInfoId = 0,
+                        PatientInfoType = enumPatientInfoType.Mobile,
+                        Value = mobile,
+                    }, 
                 };
             return oReturn;
         }

@@ -38,15 +38,14 @@ namespace MarketPlace.Web.Controllers
             DateTime currDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date);
             string datePass = currDate.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
 
-            AppointmentViewModel oModel = new AppointmentViewModel()
-            {
-                CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date),
-                CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
+            AppointmentViewModel oModel = new AppointmentViewModel();
 
-                PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId), //TODO: Ajustar el usuario no quemarlo
-                CurrentOffice = OfficePublicId,
-                StartDate = datePass
-            };
+            oModel.CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now: DateTime.Parse(Date);
+            oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
+            oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+            oModel.CurrentOffice = OfficePublicId;
+            if (!string.IsNullOrEmpty(Date))            
+                oModel.StartDate = datePass;
 
             if (oModel.PatientGroup == null)
             {

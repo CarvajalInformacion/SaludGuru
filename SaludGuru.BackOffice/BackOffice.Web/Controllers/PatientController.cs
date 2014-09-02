@@ -66,7 +66,12 @@ namespace BackOffice.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult PatientDelete(string PatientPublicId)
+        {
+            MedicalCalendar.Manager.Controller.Patient.PatientDelete(PatientPublicId);
 
+            return RedirectToAction(MVC.Patient.ActionNames.Search, MVC.Patient.Name);
+        }
         #region Patient Notes
         public virtual ActionResult PatientNotes(string PatientPublicId)
         {
@@ -103,7 +108,7 @@ namespace BackOffice.Web.Controllers
             }
             return RedirectToAction(MVC.Patient.ActionNames.PatientNotes, MVC.Patient.Name, new { PatientPublicId = PatientPublicId });
         }
-
+                
         #endregion
 
         #region Private methods

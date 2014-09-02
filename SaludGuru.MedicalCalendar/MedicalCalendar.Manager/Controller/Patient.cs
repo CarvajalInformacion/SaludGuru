@@ -99,6 +99,10 @@ namespace MedicalCalendar.Manager.Controller
             return MedicalCalendarDataController.Instance.PatientGetOptions();
         }
 
+        public static void PatientDelete(string PatientPublicId)
+        {
+            MedicalCalendarDataController.Instance.PatientDelete(PatientPublicId);
+        }
         #region Market Place
 
         public static List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)

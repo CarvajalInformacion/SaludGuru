@@ -49,6 +49,8 @@ function PatientListGrid(vidDiv) {
         }, {
             field: "Telephone",
             title: "Teléfono"
+        }, {
+            template: $("#templateDelete").html()
         }],
     });
 

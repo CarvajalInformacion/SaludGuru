@@ -17,8 +17,10 @@
     <div id="templateName">
         <a href="@(Url.Action(MVC.Patient.ActionNames.PatientUpsert, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">${Name}</a>
     </div>
+    <div id="templateDelete">
+        <a class="BOButtonsErase" href="@(Url.Action(MVC.Patient.ActionNames.PatientDelete, MVC.Patient.Name) + "?PatientPublicId=${PatientPublicId}")">BORRAR</a>
+    </div>
 </div>  
-
 @section inlinescripts
 {
     <script type="text/javascript">
