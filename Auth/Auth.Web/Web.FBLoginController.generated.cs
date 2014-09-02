@@ -110,8 +110,10 @@ namespace Auth.Web.Areas.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Login = "Login";
+                public readonly string StartLogin = "StartLogin";
             }
             public readonly string Login = "~/Areas/Web/Views/FBLogin/Login.cshtml";
+            public readonly string StartLogin = "~/Areas/Web/Views/FBLogin/StartLogin.cshtml";
         }
     }
 
