@@ -288,9 +288,8 @@ li.MPProfileInsuranceName {
     .MPProfileInfoDetail ul {
         border: medium none;
         display: block;
-        margin: 20px auto 20px auto;
+        margin: 20px auto 0px auto;
         height: auto;
-        min-height: 100px;
         vertical-align: top;
         text-align: left;
         width: 100%;
@@ -306,8 +305,8 @@ li.MPProfileInsuranceName {
                 color: #A4C02C;
                 background-color: #ECECEC;
                 font-weight: bold;
-                padding: 3px 10px;
-                margin: 0px 0px;
+                padding: 0px;
+                margin: 0px;
                 display: block;
                 /*font-size: 1.1em;
                 line-height: 20px;
@@ -345,21 +344,18 @@ div#divEducation,
 div#divCertification,
 div#divOffice {
     margin: -2px 0px 0px 0px;
-    padding: 5px 1.5% 0px;
+    padding: 5px 5.5% 0px;
     width: 100%;
     height: auto !important;
     text-align: left;
-    box-shadow: 2px 2px 2px #666;
-    border: 1px solid #666;
+    border: none;
     position: relative;
     min-height: 150px;
     z-index: 2;
 }
-
 div#divProfileText p{
     margin-bottom: 10px;
 }
-
 .MPProfileInfoDetail div#divProfileText p,
 .MPProfileInfoDetail div#divEducation p,
 .MPProfileInfoDetail div#divCertification p,
@@ -371,7 +367,6 @@ div#divProfileText p{
     overflow: initial;
     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
 }
-
 div#divOffice ul li {
     width: 90%;
 }
