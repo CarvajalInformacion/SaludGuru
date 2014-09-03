@@ -152,6 +152,10 @@
       <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
     </key>
 
+    <key name="File_TmpExcelDir">D:\Proyectos\Github\SaludGuru\SaludGuru.BackOffice\BackOffice.Web\TmpExcelDir\</key>
+
+    <key name="File_RemoteExcelDir">0BOImages\0XlsAppointment\</key>
+
   </BackOffice>
 </Settings>
 

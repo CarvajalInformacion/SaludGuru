@@ -42,7 +42,8 @@
     {
         OfficeInfo,
         Treatments,
-        ScheduleAvalilable
+        ScheduleAvalilable,
+        AppointmentUpload,
     }
 
     public enum enumMenuComunications

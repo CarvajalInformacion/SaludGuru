@@ -53,6 +53,10 @@
 
         public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
 
+        public const string C_Settings_File_TmpExcelDir = "File_TmpExcelDir";
+
+        public const string C_Settings_File_RemoteExcelDir = "File_RemoteExcelDir";
+
         #endregion
 
         #region Profile Images
@@ -80,6 +84,12 @@
         public const string C_Settings_Appointment_TitleTemplate_Month = "Appointment_TitleTemplate_Month";
         public const string C_Settings_Appointment_StatusName_New = "Appointment_StatusName_New";
         public const string C_Settings_Appointment_StatusName = "Appointment_StatusName_{{StatusId}}";
+
+        #endregion
+
+        #region GenericFileModule
+
+        public const string C_Settings_Image_FileModuleName = "S3_SaludGuru";
 
         #endregion
 
