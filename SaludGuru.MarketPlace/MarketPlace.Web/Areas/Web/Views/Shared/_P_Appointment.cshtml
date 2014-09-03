@@ -3,12 +3,12 @@
 
 @if (!Model.RenderScripts)
 {
-    string ovCurrentDomain = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "");
-
+    string ovCurrentDomain = Request.Url.ToString();
+    ovCurrentDomain = ovCurrentDomain.Replace(Request.Url.AbsolutePath, "");
+    ovCurrentDomain = Server.UrlDecode(ovCurrentDomain).Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
 
     <div class="MPProfileCallendarWrapper">
-        <ul id="divAppointmentSchedule_Menu">
-        </ul>
+        <ul id="divAppointmentSchedule_Menu"></ul>
         <div class="MPProfileCallendarCallendar" id="divAppointmentSchedule">
         </div>
     </div>
@@ -24,12 +24,12 @@
             </ul>
 
             <!--office info template-->
-                    <div id="divAppointmentSchedule_Template_OfficeInfo">
-                        <div class="MPProfileOfficeContactSelector">
-                            <span class="OfficeContactAddress">Dirección: ${Address}</span>
-                            <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
-                        </div>
-                    </div>
+            <div id="divAppointmentSchedule_Template_OfficeInfo">
+                <div class="MPProfileOfficeContactSelector">
+                    <span class="OfficeContactAddress">Dirección: ${Address}</span>
+                    <span class="OfficeContactTelephone">Telefono: ${Telephone}</span>
+                </div>
+            </div>
 
             <!--appointment grid template-->
             <div id="divAppointmentSchedule_Template_Grid">
