@@ -19,14 +19,20 @@
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
                     @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
+
+
+
                 <!--Profile Images-->
                 @*<div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
                 </div>*@
+
+
+
                 <!--Profile Description-->
-                @*<div class="MPProfileInfoDetail">
+                <div class="MPProfileInfoDetail">
                     @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
-                </div>*@
+                </div>
             </div>
             <div class="MPProfileRigthWrapper">
                 <!--Profile Schedule-->
@@ -45,14 +51,16 @@
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
                     @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
+
+
                 <!--Profile Images-->
-                <div class="MPProfileInfoImages">
+                @*<div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-                </div>
+                </div>*@
                 <!--Profile Description-->
-                <div class="MPProfileInfoDetail">
-                    @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
-                </div>
+
+
+                @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
             </div>
             <div class="MPProfileRigthWrapper">
                 <!--Profile Map-->

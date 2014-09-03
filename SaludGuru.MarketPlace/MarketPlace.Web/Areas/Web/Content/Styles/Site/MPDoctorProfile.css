@@ -48,7 +48,6 @@
     height: auto;
     text-align: left;
 }
-
 .MPProfileLeftWrapper {
     width: 52%;
     padding-top: 10px;
@@ -63,27 +62,19 @@
         width: 52%;
     }
 }
-/*************************************/
+/**************** CONTENEDOR DE LA DERECHA *********************/
 .MPProfileRigthWrapper {
-    margin: 0px 0px 0px 4px;
-    width: 54%;
+    margin: 0px;
+    width: 47.3%;
 }
-
 @media screen and (max-width:1024px) {
     .MPProfileRigthWrapper {
-
+        width: 45.2%;
     }
 }
-
 @media screen and (max-width:800px) {
     .MPProfileRigthWrapper {
-
-    }
-}
-
-@media screen and (max-width:768px) {
-    .MPProfileRigthWrapper {
-
+        width: 47.3%;
     }
 }
 /*************************************/
@@ -107,92 +98,54 @@
     height:auto;
 }
 /*----Media Profile Info-----*/
-@media (min-width: 1280px) {
-
+/*@media (min-width: 1280px) {
     .MPProfileInfo_BasicInfoRight {
-
     }
 }
 @media (min-width: 1124px) and (max-width: 1279px) {
-
     .MPProfileInfo_BasicInfo {
-
     }
-
     .MPProfileInfo_BasicInfoRight {
-
     }
 }
-
 @media (min-width: 1024px) and (max-width: 1123px) {
-
     img.MPProfileCertified.SelCertifiedImage {
-
     }
-
     .MPProfileInfo_BasicInfoRight {
-
     }
 }
-
 @media (min-width: 980px) and (max-width: 1023px) {
-
     .MPProfileInfo_BasicInfo {
-
     }
-
     .MPProfileDoctorImage {
-
     }
-
     img.MPProfileCertified.SelCertifiedImage {
-
     }
 }
-
 @media (min-width: 900px) and (max-width: 979px) {
-
     .MPProfileInfo_BasicInfo {
-
     }
-
     .MPProfileDoctorImage {
-
     }
     .MPProfileCertified {
-
     }
     img.MPProfileCertified.SelCertifiedImage {
-
     }
 }
-
 @media (max-width: 899px) {
-
     .MPProfileInfo_BasicInfo {
     }
-
     .MPProfileDoctorImage {
-
     }
-
     img.MPProfileCertified.SelCertifiedImage {
-
     }
-
     .MPProfileInfo_BasicInfoRight {
-
     }
-
     hr.featurette-divider.__loop.ProfileBasicInfo {
-
     }
-
     .MPProfileInfo_Social a{
-
-
     }
-}
+}*/
 /*--------------------------------------*/
 
 img.MPProfileCertified {
@@ -211,7 +164,7 @@ img.MPProfileDoctorImage {
 .MPProfileInfo_BasicInfoRight {
     border: none;
     letter-spacing: -0.6px;
-    width:62%;
+    width:61.5%;
 }
 
 .MPProfileDoctorName {
@@ -247,6 +200,7 @@ div.MPProfileSpecialtyColumn {
     font-size: 0.8em;
     line-height: 1em;
     margin: 6px 0px;
+    display:block;
 }
 
 li.MPProfileInsuranceName {
@@ -327,12 +281,11 @@ li.MPProfileInsuranceName {
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
 .MPProfileInfoDetail {
     display: block;
-    width: 100%;
+    width:90%;
     height: auto;
     font-size: 1em;
 }
-
-    .MPProfileInfoDetail div {
+    .MPProfileInfoDetail ul {
         border: medium none;
         display: block;
         margin: 20px auto 20px auto;
@@ -342,14 +295,21 @@ li.MPProfileInsuranceName {
         text-align: left;
         width: 100%;
     }
-
-        .MPProfileInfoDetail div ul li {
+        .MPProfileInfoDetail ul li {
             border: none;
             display: inline-block;
         }
-
-            .MPProfileInfoDetail div ul li a {
-                font-size: 1.1em;
+            .MPProfileInfoDetail ul li a {
+                font-size: 1.2em;
+                line-height: 27px;
+                letter-spacing: -1px;
+                color: #A4C02C;
+                background-color: #ECECEC;
+                font-weight: bold;
+                padding: 3px 10px;
+                margin: 0px 0px;
+                display: block;
+                /*font-size: 1.1em;
                 line-height: 20px;
                 letter-spacing: -1px;
                 color: #A4C02C;
@@ -368,15 +328,13 @@ li.MPProfileInsuranceName {
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                max-width: 175px;
+                max-width: 175px;*/
             }
-
-                .MPProfileInfoDetail div ul li a:hover, .MPProfileInfoDetail div ul li a:active {
+                .MPProfileInfoDetail ul li a:hover, .MPProfileInfoDetail div ul li a:active {
                     background-color: #fff;
                     text-decoration: none;
                 }
-
-                .MPProfileInfoDetail div ul li a.selected {
+                .MPProfileInfoDetail ul li a.selected {
                     border-bottom: 1px solid #FBFBFB;
                     margin-bottom: -1.5px;
                     background-color: #fff;

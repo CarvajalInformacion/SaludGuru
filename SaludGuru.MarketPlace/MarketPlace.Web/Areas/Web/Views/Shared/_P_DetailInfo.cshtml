@@ -26,6 +26,7 @@
 
 @if (!Model.RenderScripts)
 {
+    <div class="MPProfileInfoDetail">
         <ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
@@ -80,6 +81,7 @@
                 </ul>
             </div>
         }
+    </div>
 }
 else
 {

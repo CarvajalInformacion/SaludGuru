@@ -66,13 +66,6 @@
                     @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
                     {
                         <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
                     }
                 </ul>
             </div>
@@ -83,19 +76,12 @@
                     @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
                     {
                         <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
-                        <li class="MPProfileInsuranceName">@str</li>
                     }
                 </ul>
             </div>
             <!--Social Profile-->
             <div class="MPProfileInfo_Social">
+                <label class="MPProfileInsurance">Redes sociales y web:</label>
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
                     <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook))&amp;width&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
