@@ -1,0 +1,161 @@
+﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
+
+@if (Model != null && !string.IsNullOrEmpty(Model.ProfilePublicId))
+{
+    <div class="MPResultsPaidProfile">
+        @{
+    //get is certified
+    var ovIsCertified = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.IsCertified).
+            Select(x => Convert.ToBoolean(x.Value)).
+            DefaultIfEmpty(false).
+            FirstOrDefault();
+
+    //get image profile
+    var ovImageProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmall).
+            Select(x => x.Value).
+            DefaultIfEmpty
+                (MarketPlace.Models.General.InternalSettings.Instance
+                    [MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value).
+            FirstOrDefault();
+
+    //get default specialty
+    var ovDefaultSpecialty = Model.DefaultSpecialty != null ?
+            Model.DefaultSpecialty :
+            (Model.RelatedSpecialty != null ?
+            Model.RelatedSpecialty.FirstOrDefault() :
+            null);
+
+    //get profile text
+    var ovShortProfile = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
+            Select(x => x.LargeValue).
+            DefaultIfEmpty(string.Empty).
+            FirstOrDefault();
+
+    //get WebSite info
+    var ovWebSite = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website &&
+                        !string.IsNullOrEmpty(x.Value)).
+            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
+            FirstOrDefault();
+
+    //get facebook profile
+    var ovFacebook = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile &&
+                        !string.IsNullOrEmpty(x.Value)).
+            Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
+            FirstOrDefault();
+
+    //get profile url
+    var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+        new
+        {
+            DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.Name + " " + Model.LastName),
+            ProfilePublicId = Model.ProfilePublicId,
+            SpecialtyName = ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(ovDefaultSpecialty.Name) : string.Empty,
+        }));
+
+    //get online meeting
+    var ovOnLineMeeting = Model.ProfileInfo.
+            Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline &&
+                    !string.IsNullOrEmpty(x.Value)).
+                    Select(x => x.Value.Trim().ToLower() == "true" ? true : false).
+                    DefaultIfEmpty(false).
+                    FirstOrDefault();
+        }
+        <!--certified image-->
+        <div class="MPResultsCertified">
+            @if (ovIsCertified)
+            {
+
+                <img class="MPResultsCertified SelCertifiedImage" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
+
+            }
+        </div>
+        @*PRIMERA COLUMNA FOTICO FACEBOOK*@
+        <div class="MPResultsPaidProfileDoctorPicture">
+            <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
+                <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
+            </a>
+            <div class="MPResultsPaidProfileDoctorSocial">
+                @if (!string.IsNullOrEmpty(ovWebSite))
+                {
+                    <a class="MPResultsPaidProfileDoctorWebsite" href="@ovWebSite" target="_blank">
+                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
+                        <span>Página Web</span>
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(ovFacebook))
+                {
+                    <a class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
+                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
+                        <span>Facebook</span>
+                    </a>
+                }
+            </div>
+        </div>
+
+        @*SEGUNDA COLUMNA DATICOS*@
+        <div class="MPResultsPaidProfileDoctorData">
+            <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
+                @(Model.Name + " " + Model.LastName)
+            </a>
+
+            @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
+            {
+                    <!--Principal specialty-->
+                <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
+            }
+            <label class="MPResultsEnsurance">Seguros médicos:</label>
+            <ul>
+                @foreach (string str in Model.RelatedInsurance.Select(x => x.Name).ToList())
+                {
+                    <li class="MPResultsInsuranceName">@str</li>
+                }
+            </ul>
+        </div>
+
+
+
+        <div class="MPResultsDoctorDescriptionWrapper">
+            @if (!string.IsNullOrEmpty(ovShortProfile))
+            {
+                <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
+            }
+            @{
+            SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
+            if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
+            {
+                oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
+                if (oCurrentOffice == null)
+                {
+                    oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+                }
+            }
+            }
+            @if (oCurrentOffice != null)
+            {
+                <div class="OfficeSelector">
+                    <span class="OfficeTextSelector">Ver datos de contacto</span>
+                    <div class="OfficeContactSelector" style="display:none;">
+                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="MPResultsDoctorLinksWrapper">
+            @{
+    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
+            }
+            @if (ovOnLineMeeting)
+            {
+                <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))');" rel="nofollow">Agenda tu cita con este doctor</a>
+                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+            }
+            <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional</a>
+        </div>
+    </div>
+}
