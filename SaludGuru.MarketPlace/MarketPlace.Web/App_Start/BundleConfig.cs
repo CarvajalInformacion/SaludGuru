@@ -27,16 +27,6 @@ namespace MarketPlace.Web
                              "~/Areas/Web/Scripts/kendo/2014.1.318/kendo.web.min.js"));
                 #endregion
 
-                #region Jssor
-
-                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jssor").Include(
-                             "~/Areas/Web/Scripts/Jssor/jssor.core.js",
-                             "~/Areas/Web/Scripts/Jssor/jssor.utils.js",
-                             "~/Areas/Web/Scripts/Jssor/jssor.slider.js",
-                             "~/Areas/Web/Scripts/Jssor/jssor.player.ytiframe.js"));
-
-                #endregion
-
                 #region jquery-ui-map
 
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap").Include(
