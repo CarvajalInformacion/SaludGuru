@@ -245,46 +245,20 @@ li.MPProfileInsuranceName {
             display:block;
         }
             .MPProfileInfoDetail ul li a {
-                font-size: 1.2em;
+                font-size: 1.1em;
                 line-height: 27px;
                 letter-spacing: -1px;
                 color: #A4C02C;
-                background-color: #ECECEC;
                 font-weight: bold;
                 padding: 0px;
                 margin: 0px;
                 display: block;
-                /*font-size: 1.1em;
-                line-height: 20px;
-                letter-spacing: -1px;
-                color: #A4C02C;
-                background-color: #ececec;
-                font-weight: bold;
-                padding: 3px 10px 3px 10px;
-                margin: 0px 0px -1px 0px;
-                display: inline-block;
-                border-width: 1px 1px 0px 1px;
-                border-color: #666;
-                border-style: solid;
-                border-top-left-radius: 3px;
-                border-top-right-radius: 3px;
-                position: relative;
-                z-index: 10;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                max-width: 175px;*/
+                cursor: text;
             }
                 .MPProfileInfoDetail ul li a:hover, .MPProfileInfoDetail div ul li a:active {
                     background-color: #fff;
                     text-decoration: none;
                 }
-                .MPProfileInfoDetail ul li a.selected {
-                    border-bottom: 1px solid #FBFBFB;
-                    margin-bottom: -1.5px;
-                    background-color: #fff;
-                }
-
 div#divProfileText,
 div#divEducation,
 div#divCertification,

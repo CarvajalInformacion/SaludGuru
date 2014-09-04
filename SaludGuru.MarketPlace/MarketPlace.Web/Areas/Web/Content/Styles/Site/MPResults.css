@@ -286,7 +286,7 @@ a.MPResultsPaidProfileDoctorName{
             div.OfficeSelector span:hover{
                 text-decoration:underline;
             }
-            div.OfficeContactSelector {display:block; min-height:39px;}
+            div.OfficeContactSelector {display:block; min-height:50px;}
             div.OfficeContactSelector span, div.OfficeContactSelector span:hover{
                 cursor:auto;
                 font-size:0.9em;
