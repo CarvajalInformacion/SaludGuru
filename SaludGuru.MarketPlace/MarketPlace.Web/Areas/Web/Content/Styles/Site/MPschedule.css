@@ -123,12 +123,30 @@ div.k-grid-content {
 .k-grid table {
     border-spacing: 5px !important;
 }
+/********************* HEADER DEL CALENDARIO *********************/
 .k-grid-header {
     background-color:#b200ff !important;
     border-color:none !important;
     padding:0px !important;
     margin:0px !important;
+    line-height:1em;
+    font-size:0.9em;
+    width:auto !important;
 }
+    .k-grid-header-wrap {
+        width:auto !important;
+    }
+        .k-grid-header .k-header {
+            text-align: center !important;
+            padding: 0px !important;
+            color:#666;
+        }
+    .k-grid-header-wrap th{
+        width: auto !important;
+        display: inline-block;
+    }
+
+
     /*div.k-grid-content > table > tbody > tr:first-child {
         background-color:none;
     }

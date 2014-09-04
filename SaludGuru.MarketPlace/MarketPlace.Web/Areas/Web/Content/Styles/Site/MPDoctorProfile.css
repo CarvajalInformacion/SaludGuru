@@ -185,7 +185,7 @@ li.MPProfileInsuranceName {
     .MPProfileInfo_Social iframe {
         width: 115px !important;
         padding: 5px;
-        height: 30px;
+        height: 30px !important;
     }
     .MPProfileInfo_Social img {
         width: 22%;
@@ -489,4 +489,95 @@ span.MPProfileOfficeContactTelephone {
     background-image: url('/Areas/Web/Content/Images/MPResultsContactoSpritePhone.png');
     background-position: 1px -1px;
     background-size: 16px auto;
+}
+
+
+
+/*-------Styles Images Profile---------*/
+
+.ContentImages {
+    width: 100%;
+    height: auto;
+    margin: 10px auto 10px auto !important;
+}
+
+
+
+img.imgProfileSlide {
+    height: 45px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+    margin: 0px 4px 0px 4px !important;
+}
+
+li.liProfileSlider {
+    width: auto;
+    display: inline-block;
+}
+
+
+.MPProfileInfoImages {
+    border-top: 1px solid #99c21d;
+    border-bottom: 1px solid #99c21d;
+    width: 92%;
+    margin: 15px auto 0px auto !important;
+}
+
+.pp_social {
+    display: none !important;
+}
+
+div.light_square .pp_nav .pp_play {
+    background: url('../../Images/sprite.png') no-repeat scroll -1px -100px transparent !important;
+    height: 15px !important;
+    width: 14px !important;
+}
+
+div.light_square .pp_nav .pp_pause {
+    background: url(../../Images/sprite.png) -24px -100px no-repeat !important;
+    height: 15px !important;
+    width: 14px !important;
+}
+
+div.light_square .pp_arrow_previous {
+    background: url(../../Images/sprite.png) 0 -71px no-repeat !important;
+}
+
+div.light_square .pp_arrow_next {
+    background: url(../../Images/sprite.png) -22px -71px no-repeat !important;
+}
+
+div.light_square .pp_close {
+    width: 75px !important;
+    height: 22px !important;
+    background: url('../../Images/sprite.png') no-repeat scroll -1px -1px transparent !important;
+    cursor: pointer !important;
+}
+
+div.light_square .pp_expand {
+    background: url('../../Images/sprite.png') no-repeat scroll -31px -26px transparent !important;
+    cursor: pointer !important;
+}
+
+.pp_nav p {
+    float: left !important;
+    margin: 9px 4px !important;
+    white-space: nowrap !important;
+}
+
+a.pp_next {
+    background: url('../../Images/sprite.png') no-repeat scroll 10000px 10000px transparent !important;
+    display: block !important;
+    float: right !important;
+    height: 100% !important;
+    text-indent: -10000px !important;
+    width: 49% !important;
+}
+
+a.pp_previous {
+    background: url('../../Images/sprite.png') no-repeat scroll 10000px 10000px transparent !important;
+    display: block !important;
+    float: left !important;
+    height: 100% !important;
+    text-indent: -10000px !important;
+    width: 49% !important;
 }
