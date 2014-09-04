@@ -57,6 +57,12 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ChangeCity()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeCity);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Web.Home; } }
@@ -74,6 +80,7 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string ChangeCity = "ChangeCity";
             public readonly string LegalTerms = "LegalTerms";
             public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public readonly string FAQ = "FAQ";
@@ -85,6 +92,7 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string ChangeCity = "ChangeCity";
             public const string LegalTerms = "LegalTerms";
             public const string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public const string FAQ = "FAQ";
@@ -93,6 +101,14 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         }
 
 
+        static readonly ActionParamsClass_ChangeCity s_params_ChangeCity = new ActionParamsClass_ChangeCity();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeCity ChangeCityParams { get { return s_params_ChangeCity; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeCity
+        {
+            public readonly string NewCityId = "NewCityId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -105,11 +121,13 @@ namespace MarketPlace.Web.Areas.Web.Controllers
             {
                 public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
                 public readonly string Contact = "Contact";
+                public readonly string FAQ = "FAQ";
                 public readonly string Index = "Index";
                 public readonly string LegalTerms = "LegalTerms";
             }
             public readonly string ConditionsAndRestrictions = "~/Areas/Web/Views/Home/ConditionsAndRestrictions.cshtml";
             public readonly string Contact = "~/Areas/Web/Views/Home/Contact.cshtml";
+            public readonly string FAQ = "~/Areas/Web/Views/Home/FAQ.cshtml";
             public readonly string Index = "~/Areas/Web/Views/Home/Index.cshtml";
             public readonly string LegalTerms = "~/Areas/Web/Views/Home/LegalTerms.cshtml";
         }
@@ -128,6 +146,18 @@ namespace MarketPlace.Web.Areas.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeCityOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int NewCityId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangeCity(int NewCityId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeCity);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "NewCityId", NewCityId);
+            ChangeCityOverride(callInfo, NewCityId);
             return callInfo;
         }
 

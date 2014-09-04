@@ -1,0 +1,51 @@
+﻿@model MarketPlace.Models.Profile.SearchViewModel
+@{
+    Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
+}
+
+<div class="MPResultsGrandWrapper">
+
+    @if (Model.CurrentProfile != null && Model.CurrentProfile.Count > 0)
+    {
+        <div class="MPResultsBreadCrumbs">
+            <!--render breadcrumb, paging header-->
+            @Html.Partial(MVC.Mobile.Shared.Views._S_Breadcrumb, Model)
+        </div>
+        <div class="MPResultsDoctorProfile">
+            <!--Render profiles-->
+            @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
+            {
+                switch (oProfile.ProfileStatus)
+                {
+                    case SaludGuruProfile.Manager.Models.enumProfileStatus.Free:
+                        Html.RenderPartial(MVC.Mobile.Shared.Views._S_Profile_Free, oProfile);
+                        break;
+                    case SaludGuruProfile.Manager.Models.enumProfileStatus.Basic:
+                        Html.RenderPartial(MVC.Mobile.Shared.Views._S_Profile_Basic, oProfile);
+                        break;
+                    case SaludGuruProfile.Manager.Models.enumProfileStatus.Pay:
+                        Html.RenderPartial(MVC.Mobile.Shared.Views._S_Profile_Pay, oProfile);
+                        break;
+                }
+            }
+        </div>
+        <div class="MPResultsBreadCrumbs">
+            <!--render breadcrumb, paging footer-->
+            @Html.Partial(MVC.Mobile.Shared.Views._S_Breadcrumb, Model)
+        </div>
+    }
+    else
+    {
+        @Html.Partial(MVC.Mobile.Shared.Views._S_Content_NoFound)
+    }
+</div>
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fnInitContactOffice();
+            fnInitToolTip('.SelCertifiedImage');
+        });
+    </script>
+}
+
