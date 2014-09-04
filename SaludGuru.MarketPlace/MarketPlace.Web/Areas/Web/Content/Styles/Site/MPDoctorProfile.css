@@ -289,7 +289,7 @@ li.MPProfileInsuranceName {
     .MPProfileInfoDetail ul {
         border: medium none;
         display: block;
-        margin: 20px auto 0px auto;
+        margin: 5px auto 5px auto;
         height: auto;
         vertical-align: top;
         text-align: left;
@@ -351,7 +351,6 @@ div#divOffice {
     text-align: left;
     border: none;
     position: relative;
-    min-height: 150px;
     z-index: 2;
 }
 div#divProfileText p{
