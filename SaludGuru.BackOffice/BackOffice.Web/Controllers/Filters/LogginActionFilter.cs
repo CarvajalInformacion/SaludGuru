@@ -9,11 +9,18 @@ namespace BackOffice.Web.Controllers.Filters
     {
         public void OnActionExecuted(System.Web.Mvc.ActionExecutedContext filterContext)
         {
-            if (filterContext.RouteData.Values["controller"] != "Home" &&
-                filterContext.RouteData.Values["action"] != "Index" &&
-                !BackOffice.Models.General.SessionModel.UserIsLoggedIn)
+            if (!BackOffice.Models.General.SessionModel.UserIsLoggedIn)
             {
-                filterContext.HttpContext.Response.Redirect("/");
+                bool DoRedirect = false;
+
+                DoRedirect = !((filterContext.RouteData.Values["controller"].ToString() == "Home" &&
+                             filterContext.RouteData.Values["action"].ToString() == "Index") ||
+                             (filterContext.RouteData.Values["controller"].ToString() == "ExternalAppointment"));
+
+                if (DoRedirect)
+                {
+                    filterContext.HttpContext.Response.Redirect("/");
+                }
             }
         }
 
