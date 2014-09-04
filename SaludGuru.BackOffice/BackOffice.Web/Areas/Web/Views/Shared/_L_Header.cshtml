@@ -76,9 +76,9 @@
                     <ul id="ulNotificationList" style="display:none;"></ul>
                 </div>
                 <ul id="NotificationTemplate" style="display:none;">
-                    <li>
-                        <img src="{NotificationImage}" onmouseover="javascript: ReadNotification_OnMouseOver('{NotificationId}');" />                        
-                        <a  href="@Url.Action(MVC.User.ActionNames.NotificationList, MVC.User.Name) ">{NotificationText}</a>                        
+                    <li onmouseover="javascript: ReadNotification_OnMouseOver('{NotificationId}');">
+                        <img src="{NotificationImage}" />
+                        <a href="@Url.Action(MVC.User.ActionNames.NotificationList, MVC.User.Name) ">{NotificationText}</a>
                     </li>
                 </ul>
             </div>
