@@ -61,6 +61,7 @@
             </div>
             <div class="MPProfileSpecialtyColumn">
                 <!--Related Insurance-->
+
                 <label class="MPProfileInsurance">Especialidades:</label>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
@@ -96,19 +97,11 @@
                         <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
                         <span>Página Web</span>
                     </a>
-                    <a href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                        <span>Página Web</span>
-                    </a>
-                    <a href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                        <span>Página Web</span>
-                    </a>
                 }
             </div>
 
         </div>
-    <hr class="featurette-divider __loop ProfileBasicInfo" style="display:none;">    
+    <hr class="featurette-divider __loop ProfileBasicInfo">
 }
 else
 {

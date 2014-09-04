@@ -30,23 +30,54 @@
         <ul>
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
-               <li><a id="divProfileText_sel" class="selProfileDescriptionsa" href="javascript:;">Perfil profesional</a></li>
+                <li>
+                    <a id="divProfileText_sel" class="selProfileDescriptionsa" href="javascript:;">Perfil profesional</a>
+                    <div id="divProfileText" class="selProfileDescriptions" style="display:none;">
+                        <p>@ovProfileText.Trim()</p>
+                    </div>
+                </li>
+                
             }
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
-                <li><a id="divEducation_sel" class="selProfileDescriptionsa" href="javascript:;">Educación</a></li>
+                <li>
+                    <a id="divEducation_sel" class="selProfileDescriptionsa" href="javascript:;">Educación</a>
+                    <div id="divEducation" class="selProfileDescriptions" style="display:none;">
+                        <p>@ovProfileEducation.Trim()</p>
+                    </div>
+                </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
-                <li><a id="divCertification_sel" class="selProfileDescriptionsa" href="javascript:;">Acreditaciones</a></li>
+                <li>
+                    <a id="divCertification_sel" class="selProfileDescriptionsa" href="javascript:;">Acreditaciones</a>
+                    <div id="divCertification" class="selProfileDescriptions" style="display:none;">
+                        <p>@ovProfileCertification.Trim()</p>
+                    </div>
+                </li>
             }
             @if (Model.CurrentProfile.RelatedOffice != null &&
                 Model.CurrentProfile.RelatedOffice.Count > 0)
             {
-                <li><a id="divOffice_sel" class="selProfileDescriptionsa selected" href="javascript:;">Datos de contacto</a></li>
+                <li>
+                    <a id="divOffice_sel" class="selProfileDescriptionsa selected" href="javascript:;">Datos de contacto</a>
+                    <div id="divOffice" class="selProfileDescriptions" style="display:none;">
+                        <ul>
+                            @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+                            {
+                                <li>
+                                    <div class="OfficeContactSelector">
+                                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
             }
         </ul>
-        @if (!string.IsNullOrEmpty(ovProfileText))
+        @*@if (!string.IsNullOrEmpty(ovProfileText))
         {
             <div id="divProfileText" class="selProfileDescriptions" style="display:none;">
                 <p>@ovProfileText.Trim()</p>
@@ -80,7 +111,7 @@
                     }
                 </ul>
             </div>
-        }
+        }*@
     </div>
 }
 else
