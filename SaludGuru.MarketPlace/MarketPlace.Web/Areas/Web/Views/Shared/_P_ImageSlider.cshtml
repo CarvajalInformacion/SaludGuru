@@ -3,27 +3,33 @@
 @if (!Model.RenderScripts)
 {
     <div class="ContentImages">
-        @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel oImg in Model.CurrentProfile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral).ToList())
-        {
-            @*<a class="lightbox" href="#goofy+@oImg.ProfileInfoId">
-                    <img src="@oImg.Value" />
-                </a>
-                <div class="lightbox-target" id="goofy+@oImg.ProfileInfoId">
-                    <img src="@oImg.Value" />
-                    <a class="lightbox-close" href="#"></a>
-                </div>*@
-            <a href="@oImg.Value" rel="prettyPhoto[pp_gal]"><img src="@oImg.Value" height="60px" /></a>
-        }
+        <ul class="gallery clearfix">
+            @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel oImg in Model.CurrentProfile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral).ToList())
+            {
+                <li class="liProfileSlider">
+                    <a href="@oImg.Value" rel="prettyPhoto[galeria1]"><img class="imgProfileSlide" src="@oImg.Value" height="60px" /></a>
+                </li>
+            }
+        </ul>
     </div>
 }
 else
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            //ProfileSliderObject.Init({
-            //    DivId: 'divProfileSlide',
-            //});
-            //ProfileSliderObject.RenderAsync();
+            $("area[rel^='prettyPhoto']").prettyPhoto();
+
+            $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'normal', theme: 'light_square', slideshow: 10000, autoplay_slideshow: true });
+
+            $("#custom_content a[rel^='prettyPhoto']:first").prettyPhoto({
+                custom_markup: '<div id="map_canvas" style="width:260px; height:265px"></div>',
+                changepicturecallback: function () { initialize(); }
+            });
+
+            $("#custom_content a[rel^='prettyPhoto']:last").prettyPhoto({
+                custom_markup: '<div id="bsap_1259344" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div><div id="bsap_1237859" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6" style="height:260px"></div><div id="bsap_1251710" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div>',
+                changepicturecallback: function () { _bsap.exec(); }
+            });
         });
     </script>
 }

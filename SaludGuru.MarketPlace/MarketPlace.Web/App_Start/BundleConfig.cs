@@ -45,6 +45,11 @@ namespace MarketPlace.Web
                           "~/Areas/Web/Scripts/respond.js"));
                 #endregion
 
+                #region PrettyPhoto
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/prettyphoto").Include(
+                          "~/Areas/Web/Scripts/PrettyPhoto/jquery.prettyPhoto.js"));
+                #endregion
+
                 #region SiteScripts
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/sitescripts").IncludeDirectory(
                           "~/Areas/Web/Scripts/Site",
@@ -77,6 +82,13 @@ namespace MarketPlace.Web
                 bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/kendo/css").Include(
                           "~/Areas/Web/Content/kendo/2014.1.318/kendo.common.min.css",
                           "~/Areas/Web/Content/kendo/2014.1.318/kendo.default.min.css"));
+
+                #endregion
+
+                #region PrettyPhoto
+
+                bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/prettyphoto/css").Include(
+                          "~/Areas/Web/Content/PrettyPhoto/prettyPhoto.css"));
 
                 #endregion
 
