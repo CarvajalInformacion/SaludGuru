@@ -590,6 +590,14 @@ span.ui-selectmenu-text:hover {
         border: 1px solid #333;
     }
 
+ul#ulNotificationList li a {
+    display: inline-block;
+    vertical-align: top;
+    margin: 11px 0px 0px 0px;
+    line-height: 1em;
+    width: 214px;
+    height: auto;
+}
 /*-------botón lupa----------*/
 input#searchMagGlass {
     position: absolute;

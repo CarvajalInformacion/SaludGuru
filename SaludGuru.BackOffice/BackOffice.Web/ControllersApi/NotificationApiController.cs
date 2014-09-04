@@ -28,8 +28,14 @@ namespace BackOffice.Web.ControllersApi
         [HttpGet]
         public List<NotificationModel> ReadNotifications(string NotificationId)
         {
+            List<NotificationModel> notifyList = new List<NotificationModel>();
             SaludGuru.Notifications.Controller.Notification.UpdateStatus(enumNotificationStatus.Leida, Convert.ToInt32(NotificationId));
-            return this.GetNotificationsBySessionUser();
+            notifyList = this.GetNotificationsBySessionUser();
+            if (notifyList == null)
+            {
+                notifyList = new List<NotificationModel>();
+            }
+            return notifyList;
         }
 
     }
