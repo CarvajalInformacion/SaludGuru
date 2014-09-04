@@ -185,7 +185,7 @@ li.MPProfileInsuranceName {
     .MPProfileInfo_Social iframe {
         width: 115px !important;
         padding: 5px;
-        height: 30px;
+        height: 30px !important;
     }
     .MPProfileInfo_Social img {
         width: 22%;
@@ -227,7 +227,7 @@ li.MPProfileInsuranceName {
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
 .MPProfileInfoDetail {
     display: block;
-    width:90%;
+    width:98%;
     height: auto;
     font-size: 1em;
 }
@@ -285,6 +285,7 @@ div#divProfileText p{
     height: auto;
     overflow: initial;
     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
+    text-align: justify;
 }
 div#divOffice ul li {
     width: 90%;
