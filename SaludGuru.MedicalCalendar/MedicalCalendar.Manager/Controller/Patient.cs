@@ -103,6 +103,12 @@ namespace MedicalCalendar.Manager.Controller
         {
             MedicalCalendarDataController.Instance.PatientDelete(PatientPublicId);
         }
+
+        public static PatientModel PatientGetFromIdentificationNumber(string ProfilePublicId, string IdentificationNumber)
+        {
+            return DAL.Controller.MedicalCalendarDataController.Instance.PatientGetFromIdentificationNumber(ProfilePublicId, IdentificationNumber);
+        }
+
         #region Market Place
 
         public static List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)

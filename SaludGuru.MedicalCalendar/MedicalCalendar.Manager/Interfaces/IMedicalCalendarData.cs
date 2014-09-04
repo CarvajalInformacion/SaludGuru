@@ -30,6 +30,7 @@ namespace MedicalCalendar.Manager.Interfaces
         PatientModel PatientGetAllByPublicPatientId(string PatientPublicId);
         List<PatientModel> PatientSearch(string ProfilePublicId, string SearchCriteria, int PageNumber, int RowCount, out int TotalRows);
         List<ItemModel> PatientGetOptions();
+        PatientModel PatientGetFromIdentificationNumber(string ProfilePublicId, string IdentificationNumber);
 
         //appointment
         string AppointmentCreate(string OfficePublicId, enumAppointmentStatus Status, DateTime StartDate, DateTime EndDate);

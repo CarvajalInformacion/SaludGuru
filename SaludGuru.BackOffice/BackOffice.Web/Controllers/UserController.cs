@@ -25,6 +25,15 @@ namespace BackOffice.Web.Controllers
             return View(oModel);
         }
 
+        public virtual ActionResult UpsertNotyficationState(string NotificationId, string Status)
+        {
+            if ((enumNotificationStatus)Convert.ToInt32(Status) == enumNotificationStatus.No_Leida)
+	        {
+                SaludGuru.Notifications.Controller.Notification.UpdateStatus(enumNotificationStatus.Leida, Convert.ToInt32(NotificationId));
+	        }
+            return RedirectToAction(MVC.User.ActionNames.NotificationList, MVC.User.Name);
+        }
+
         #endregion
     }
 }

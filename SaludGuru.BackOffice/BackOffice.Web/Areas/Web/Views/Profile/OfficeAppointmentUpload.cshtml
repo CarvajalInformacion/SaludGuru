@@ -1,0 +1,44 @@
+﻿@model BackOffice.Models.Office.OfficeUpsertModel
+@{
+    ViewBag.Title = "OfficeScheduleAvailableList";
+    Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+}
+
+<div class="BOProfileMenuWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileMenu, Model.Profile)
+</div>
+
+<div class="BOProfileFormWrapper">
+    @Html.Partial(MVC.Web.Shared.Views._P_ProfileOfficeMenu, Model)
+
+    <form action="@Url.Action(MVC.Profile.ActionNames.OfficeAppointmentUpload, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId })" method="post" enctype="multipart/form-data">
+        <div class="BOFormDataWrapper">
+            <h3>Cargue masivo de citas</h3>
+            <ul>
+                <li><div>Officina: @Model.CurrentOffice.Name</div></li>
+                <li><a target="_blank" href="https://s3.amazonaws.com/saludguruimg/0BOImages/0XlsAppointment/PrimeraCargaCitas.xls">Descargar plantilla</a></li>
+                <li><div>Archivo a cargar:<input type="file" name="ExcelFile" id="ExcelFile" /></div></li>
+                <li><input class="BOButtons" type="submit" value="Iniciar carga del archivo" /></li>
+                @if (!string.IsNullOrEmpty(Request["ErrorFile"]))
+                {
+                    <li>
+                        <a target="_blank" href="@Request["ErrorFile"]">Ver log de proceso.</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </form>
+
+
+
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+}
+
+

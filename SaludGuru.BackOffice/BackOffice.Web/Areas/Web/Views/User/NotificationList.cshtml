@@ -10,43 +10,61 @@
     <h3>Notificaciones</h3>
     <div id="divGridNotifications" style="left: 130px;"></div>
 </div>
-<div id="templates" style="display:none;">
-    <div id="TemplateNotificationType">
-        <img src="/Areas/Web/Content/Images/NotificationType_${NotificationType}.png" width="45" height="45" />
-        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${CreateDate}</label>
-    </div>
-    <div id="TemplateUserFrom">
-        <img src="${UserFromImage}" width="45" height="45" />
-        <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
-    </div>
-</div>
-@{
-    //get json office data
-    string oNotificationData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.
-            Select(x => new
-            {
-                NotificationType = (int)x.NotificationType,
-                UserFromName = x.UserFrom == null ? string.Empty : x.UserFrom.Name + " " + x.UserFrom.LastName,
-                UserFromImage = x.UserFrom == null ? string.Empty : x.UserFrom.ExtraData.
-                        Where(y => y.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).
-                        Select(y => y.Value).
-                        DefaultIfEmpty(string.Empty).
-                        FirstOrDefault(),
-                CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy HH:mm"),
-                Body = x.Body,
-            }).ToList());
-}
+<form action="@(Url.Action(MVC.User.ActionNames.UpsertNotyficationState, MVC.User.Name))" method="post" id="NotificationForm" name="NotificationForm">
+    <div id="templates" style="display:none;">
 
-@section inlinescripts
+        <div id="TemplateNotificationType">
+            <img src="/Areas/Web/Content/Images/NotificationType_${NotificationType}.png" width="45" height="45" />
+            <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${CreateDate}</label>
+        </div>
+        <div id="TemplateUserFrom">
+            <img src="${UserFromImage}" width="45" height="45" />
+            <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
+        </div>
+        <div id="TemplateDeleteNotify">            
+            <a  href="@(Url.Action(MVC.User.ActionNames.UpsertNotyficationState, MVC.User.Name) + "?NotificationId=${NotificationId}&Status=${Status}")">
+                <img src="/Areas/Web/Content/Images/NotificationStatus_${Status}.png" width="45" height="45"> 
+            </a>            
+        </div>
+    </div>
+   
+    @*<input class="BOButtons" type="submit" value="guardar">*@
+    @{
+        //get json office data
+        string oNotificationData = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+            Serialize(Model.
+                Select(x => new
+                {
+                    NotificationType = (int)x.NotificationType,
+                    UserFromName = x.UserFrom == null ? string.Empty : x.UserFrom.Name + " " + x.UserFrom.LastName,
+                    UserFromImage = x.UserFrom == null ? string.Empty : x.UserFrom.ExtraData.
+                            Where(y => y.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).
+                            Select(y => y.Value).
+                            DefaultIfEmpty(string.Empty).
+                            FirstOrDefault(),
+                    CreateDate = x.CreateDate.ToString("dddd, d MMMM, yyyy HH:mm"),
+                    Body = x.Body,
+                    Status = x.Status,
+                    NotificationId = x.NotificationId
+                }).ToList());
+    }
+
+    @section inlinescripts
 {
-    <script type="text/javascript">
-        var vDataNotifications = @Html.Raw(oNotificationData)
-        $(document).ready(function () {
-            //start office grid
-            UserNotificationsListGrid('divGridNotifications', vDataNotifications);
-        });
-    </script>
-}
+        <script type="text/javascript">
+            var vDataNotifications = @Html.Raw(oNotificationData)
+            $(document).ready(function () {
+                //start office grid
+                UserNotificationsListGrid('divGridNotifications', vDataNotifications);
+
+                var idNotify = $('#IdNotify').val();
+
+                $('#chkIsReaded_' + idNotify).click(function () {
+                    debugger;
+                    @Url.Action()
+                });
+            });
+        </script>
+    }
 
 

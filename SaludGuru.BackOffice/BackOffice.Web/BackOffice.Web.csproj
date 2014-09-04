@@ -59,6 +59,12 @@
     <Reference Include="FileRepository.S3">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.S3.dll</HintPath>
     </Reference>
+    <Reference Include="LinqToExcel">
+      <HintPath>..\packages\LinqToExcel_x64.1.10.1\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>
@@ -104,6 +110,15 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion">
+      <HintPath>..\packages\LinqToExcel_x64.1.10.1\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\packages\LinqToExcel_x64.1.10.1\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\packages\LinqToExcel_x64.1.10.1\lib\Remotion.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="SaludGuru.Notifications">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\SaludGuru.Notifications\developer\SaludGuru.Notifications.dll</HintPath>
@@ -346,6 +361,8 @@
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
     <Content Include="Areas\Web\Content\Images\MPOutlookLogo.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationStatus_1301.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationStatus_1302.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1503.png" />
@@ -1226,6 +1243,7 @@
     <Content Include="Areas\Web\Views\ExternalAppointment\Confirm.cshtml" />
     <Content Include="Areas\Web\Views\ExternalAppointment\Index.cshtml" />
     <Content Include="Areas\Web\Views\ExternalAppointment\Cancel.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\OfficeAppointmentUpload.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

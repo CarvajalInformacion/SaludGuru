@@ -116,18 +116,36 @@ var NotificationObject = {
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
-                
+                debugger;
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
                 valSet = valSet.replace('{NotificationText}', item.Title);
-                //ulNotificationList
+                valSet = valSet.replace('{NotificationId}', item.NotificationId);
+                
                 $("#ulNotificationList").append(valSet);
 
             });
         }
     },
 };
+function ReadNotification_OnMouseOver(NotificationId) {
+    debugger;
+    $.ajax({        
+        url: '/api/NotificationApi?NotificationId=' + NotificationId,
+        Type: "POST",
+        dataType: "Json"
+    }).done(function (data) {
+        debugger;
+        if (data != null && NotificationObject.NotificationList.length != data.length) {
+            NotificationObject.NotificationList = data;
+            NotificationObject.RenderNotifications();
+        }
+
+        //var oReturn
+    }).error(function (jqXHR, textStatus, errorThrown) {
+    });    
+}
 
 /*change profile*/
 function Header_ChangeProfile(urlToChange) {
@@ -135,7 +153,7 @@ function Header_ChangeProfile(urlToChange) {
 }
 /*show hide user menu*/
 function Header_ShowHideUserMenu(divId) {
-
+    
     $('#' + divId).toggle('slow');
 }
 

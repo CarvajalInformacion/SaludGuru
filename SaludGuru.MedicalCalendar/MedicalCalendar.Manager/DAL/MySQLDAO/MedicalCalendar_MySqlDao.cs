@@ -348,6 +348,53 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public PatientModel PatientGetFromIdentificationNumber(string ProfilePublicId, string IdentificationNumber)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vIdentificationNumber", IdentificationNumber));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataTable,
+                CommandText = "PT_Patient_GetFromIdentificationNumber",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            PatientModel oReturn = null;
+            if (response.DataTableResult != null &&
+                 response.DataTableResult.Rows.Count > 0)
+            {
+                oReturn = new PatientModel()
+                {
+                    PatientPublicId = response.DataTableResult.Rows[0].Field<string>("PatientPublicId"),
+                    Name = response.DataTableResult.Rows[0].Field<string>("Name"),
+                    LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+
+                    PatientInfo = (from oi in response.DataTableResult.AsEnumerable()
+                                   where oi.Field<int?>("PatientInfoId") != null
+                                   group oi by
+                                   new
+                                   {
+                                       PatientInfoId = oi.Field<int>("PatientInfoId"),
+                                       PatientInfoType = (enumPatientInfoType)oi.Field<int>("PatientInfoType"),
+                                       Value = oi.Field<string>("Value"),
+                                       LargeValue = oi.Field<string>("LargeValue"),
+                                   } into oig
+                                   select new PatientInfoModel()
+                                   {
+                                       PatientInfoId = oig.Key.PatientInfoId,
+                                       PatientInfoType = oig.Key.PatientInfoType,
+                                       Value = oig.Key.Value,
+                                       LargeValue = oig.Key.LargeValue,
+                                   }).ToList(),
+                };
+            }
+            return oReturn;
+        }
+
         #region MarketPlace
 
         public List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
