@@ -47,6 +47,8 @@ namespace MarketPlace.Web
                 defaults: new
                 {
                     controller = "Home",
+
+                    IsRedirect = true
                 }
             ).DataTokens = rvdByArea;
 
