@@ -296,8 +296,6 @@ var AppointmentObject = {
                         title: ' ',
                         width: 100,
                         template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Saturday').html()
-                    }, {
-
                     }],
                     dataBound: function (e) {
                         //set header before render
