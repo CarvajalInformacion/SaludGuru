@@ -16,6 +16,7 @@
             <h3>Cargue masivo de citas</h3>
             <ul>
                 <li><div>Officina: @Model.CurrentOffice.Name</div></li>
+                <li><a target="_blank" href="https://s3.amazonaws.com/saludguruimg/0BOImages/0XlsAppointment/PrimeraCargaCitas.xls">Descargar plantilla</a></li>
                 <li><div>Archivo a cargar:<input type="file" name="ExcelFile" id="ExcelFile" /></div></li>
                 <li><input class="BOButtons" type="submit" value="Iniciar carga del archivo" /></li>
                 @if (!string.IsNullOrEmpty(Request["ErrorFile"]))
