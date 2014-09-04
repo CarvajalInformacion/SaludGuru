@@ -30,12 +30,23 @@
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Horarios de atención";
                         break;
+                    case BackOffice.Models.General.enumMenuOffice.AppointmentUpload:
+                        if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role == SessionController.Models.Profile.enumRole.SystemAdministrator)
+                        {
+                            strAction = Url.Action(MVC.Profile.ActionNames.OfficeAppointmentUpload, MVC.Profile.Name, new { ProfilePublicId = Model.Profile.ProfilePublicId, OfficePublicId = Model.CurrentOffice.OfficePublicId });
+                            strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                            strName = "Cargue masivo";
+                        }
+                        break;
                     default:
                         break;
                 }
-                <li class="@strStyle">
-                    <a href="@strAction">@strName</a>
-                </li>
+                if (!string.IsNullOrEmpty(strAction))
+                {
+                    <li class="@strStyle">
+                        <a href="@strAction">@strName</a>
+                    </li>
+                }
             }
         </ul>
     </div>

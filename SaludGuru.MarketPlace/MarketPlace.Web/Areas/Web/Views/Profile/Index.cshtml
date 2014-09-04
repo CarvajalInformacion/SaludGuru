@@ -18,12 +18,20 @@
 
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
-                <div class="MPProfileInfoInfo">
                     @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-                </div>
+
+
+
                 <!--Profile Images-->
-                <div class="MPProfileInfoImages">
+                @*<div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
+                </div>*@
+
+
+
+                <!--Profile Description-->
+                <div class="MPProfileInfoDetail">
+                    @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
                 </div>
             </div>
             <div class="MPProfileRigthWrapper">
@@ -36,29 +44,25 @@
                     @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)
                 </div>
             </div>
-                <!--Profile Description-->
-            <div class="MPProfileInfoDetail">
-                @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
-            </div>
         }
         else
         {
             @*Metting disabled*@
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
-                <div class="MPProfileInfoInfo">
                     @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-                </div>
+
+
                 <!--Profile Images-->
-                <div class="MPProfileInfoImages">
+                @*<div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-                </div>
+                </div>*@
+                <!--Profile Description-->
+
+
+                @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
             </div>
             <div class="MPProfileRigthWrapper">
-                <!--Profile Description-->
-                <div class="MPProfileInfoDetail">
-                    @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
-                </div>
                 <!--Profile Map-->
                 <div class="MPProfileMap">
                     @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)

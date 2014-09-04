@@ -34,6 +34,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\ADO\developer\ADO.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="FileRepository.Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="FileRepository.S3">
+      <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\FileRepository.S3\developer\FileRepository.S3.dll</HintPath>
+    </Reference>
     <Reference Include="MedicalCalendar.Manager">
       <HintPath>\\ProjectAssemblies\Assemblies\SaludGuru\MedicalCalendar.Manager\developer\MedicalCalendar.Manager.dll</HintPath>
     </Reference>
@@ -64,12 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment\ExcelAppointmentResultModel.cs" />
+    <Compile Include="Appointment\ExcelAppointmentModel.cs" />
     <Compile Include="Appointment\ExternalAppointmentViewModel.cs" />
     <Compile Include="Appointment\ScheduleEventMonthModel.cs" />
     <Compile Include="Appointment\ScheduleEventModel.cs" />
     <Compile Include="Appointment\SchedulingModel.cs" />
     <Compile Include="General\Constants.cs" />
     <Compile Include="General\Enumerations.cs" />
+    <Compile Include="General\GenericFileLoader.cs" />
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\MenuComunicationModel.cs" />
     <Compile Include="General\MenuOfficeModel.cs" />

@@ -96,6 +96,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.PatientGetOptions();
         }
 
+        public PatientModel PatientGetFromIdentificationNumber(string ProfilePublicId, string IdentificationNumber)
+        {
+            return DataFactory.PatientGetFromIdentificationNumber(ProfilePublicId, IdentificationNumber);
+        }
+
         public bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO)
         {
             return DataFactory.MPPatientTemporalUpsert(PublicPatientId, PublicProfileId, Status, PublicPatientIdBO);

@@ -374,6 +374,11 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuOffice.Treatments;
             }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+                MVC.Profile.ActionNames.OfficeAppointmentUpload == CurrentActionName)
+            {
+                oReturn = enumMenuOffice.AppointmentUpload;
+            }
             return oReturn;
         }
 
@@ -541,7 +546,7 @@ namespace BackOffice.Web.Controllers
 
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfilePublicId", Value = Profile.ProfilePublicId });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId});
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
                         oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
 
                         //Valid the key "To"

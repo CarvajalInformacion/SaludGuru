@@ -143,6 +143,12 @@ namespace BackOffice.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult OfficeAppointmentUpload()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeAppointmentUpload);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult SpecialtyProfileList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SpecialtyProfileList);
@@ -268,6 +274,7 @@ namespace BackOffice.Web.Controllers
             public readonly string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
             public readonly string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
             public readonly string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
+            public readonly string OfficeAppointmentUpload = "OfficeAppointmentUpload";
             public readonly string SpecialtyProfileList = "SpecialtyProfileList";
             public readonly string ProfileSpecialtyUpsert = "ProfileSpecialtyUpsert";
             public readonly string ProfileSpecialtyDelete = "ProfileSpecialtyDelete";
@@ -304,6 +311,7 @@ namespace BackOffice.Web.Controllers
             public const string OfficeScheduleAvailableList = "OfficeScheduleAvailableList";
             public const string OfficeScheduleAvailableCreate = "OfficeScheduleAvailableCreate";
             public const string OfficeScheduleAvailableDelete = "OfficeScheduleAvailableDelete";
+            public const string OfficeAppointmentUpload = "OfficeAppointmentUpload";
             public const string SpecialtyProfileList = "SpecialtyProfileList";
             public const string ProfileSpecialtyUpsert = "ProfileSpecialtyUpsert";
             public const string ProfileSpecialtyDelete = "ProfileSpecialtyDelete";
@@ -444,6 +452,16 @@ namespace BackOffice.Web.Controllers
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
             public readonly string OfficePublicId = "OfficePublicId";
+        }
+        static readonly ActionParamsClass_OfficeAppointmentUpload s_params_OfficeAppointmentUpload = new ActionParamsClass_OfficeAppointmentUpload();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_OfficeAppointmentUpload OfficeAppointmentUploadParams { get { return s_params_OfficeAppointmentUpload; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_OfficeAppointmentUpload
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string OfficePublicId = "OfficePublicId";
+            public readonly string ExcelFile = "ExcelFile";
         }
         static readonly ActionParamsClass_SpecialtyProfileList s_params_SpecialtyProfileList = new ActionParamsClass_SpecialtyProfileList();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -779,6 +797,33 @@ namespace BackOffice.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
             OfficeScheduleAvailableDeleteOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeAppointmentUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeAppointmentUpload(string ProfilePublicId, string OfficePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeAppointmentUpload);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            OfficeAppointmentUploadOverride(callInfo, ProfilePublicId, OfficePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OfficeAppointmentUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string OfficePublicId, System.Web.HttpPostedFileBase ExcelFile);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OfficeAppointmentUpload(string ProfilePublicId, string OfficePublicId, System.Web.HttpPostedFileBase ExcelFile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeAppointmentUpload);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ExcelFile", ExcelFile);
+            OfficeAppointmentUploadOverride(callInfo, ProfilePublicId, OfficePublicId, ExcelFile);
             return callInfo;
         }
 
