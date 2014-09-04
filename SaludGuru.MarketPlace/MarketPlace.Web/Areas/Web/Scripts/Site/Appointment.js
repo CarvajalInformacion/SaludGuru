@@ -209,7 +209,7 @@ var AppointmentObject = {
     },
 
     RenderOfficeSchedule: function (vOfficePublicId) {
-
+        debugger;
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
         if (CurrentOfficeDiv.length == 1) {
             if (CurrentOfficeDiv.children().length == 0) {
@@ -241,8 +241,23 @@ var AppointmentObject = {
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
-                                        ;
-                                        options.success(result);
+                                 var NewResult = new Array();
+                                        //set header titles
+                                        $.each(result, function (item, value) {
+                                            if (value.Monday.IsHeader == true) {
+                                                var HeaderHtml = $('#divAppointmentSchedule_Template_Grid_Event_Header').html();
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Monday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Monday.AvailableDateText));
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Tuesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Tuesday.AvailableDateText));
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Wednesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Wednesday.AvailableDateText));
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Thursday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Thursday.AvailableDateText));
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Friday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Friday.AvailableDateText));
+                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Saturday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Saturday.AvailableDateText));
+                                            }
+                                            else {
+                                                NewResult.push(value);
+                                            }
+                                        });
+                                        options.success(NewResult);
                                     },
                                     error: function (result) {
                                         options.error(result);
