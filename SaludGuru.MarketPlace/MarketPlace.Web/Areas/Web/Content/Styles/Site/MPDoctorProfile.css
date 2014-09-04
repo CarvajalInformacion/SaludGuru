@@ -1,5 +1,5 @@
 .MPProfileGreatWrapper {
-    border: 1px solid green;
+        border:none;
     display: block;
     margin: 0px auto;
     padding: 0px;
@@ -97,6 +97,9 @@
     overflow: hidden;
     height:auto;
 }
+    hr.featurette-divider.__loop.ProfileBasicInfo {
+    }
+
 /*----Media Profile Info-----*/
 /*@media (min-width: 1280px) {
     .MPProfileInfo_BasicInfoRight {
@@ -140,8 +143,6 @@
     img.MPProfileCertified.SelCertifiedImage {
     }
     .MPProfileInfo_BasicInfoRight {
-    }
-    hr.featurette-divider.__loop.ProfileBasicInfo {
     }
     .MPProfileInfo_Social a{
     }
@@ -296,7 +297,7 @@ li.MPProfileInsuranceName {
     }
         .MPProfileInfoDetail ul li {
             border: none;
-            display: inline-block;
+            display:block;
         }
             .MPProfileInfoDetail ul li a {
                 font-size: 1.2em;
@@ -344,7 +345,7 @@ div#divEducation,
 div#divCertification,
 div#divOffice {
     margin: -2px 0px 0px 0px;
-    padding: 5px 5.5% 0px;
+    padding: 2px 11px 0px;
     width: 100%;
     height: auto !important;
     text-align: left;
@@ -360,8 +361,8 @@ div#divProfileText p{
 .MPProfileInfoDetail div#divEducation p,
 .MPProfileInfoDetail div#divCertification p,
 .MPProfileInfoDetail div#divOffice ul {
-    font-size: 1em;
-    line-height: 21px;
+    font-size:0.9em;
+    line-height:21px;
     color: #666;
     height: auto;
     overflow: initial;
@@ -545,7 +546,6 @@ div.k-grid-content {
     box-shadow: 2px 2px 2px #666;
     border-radius: 2px;
 }
-
     #divOfficeMap .OfficeMapToolTip {
         width: 300px;
         height: 60px;

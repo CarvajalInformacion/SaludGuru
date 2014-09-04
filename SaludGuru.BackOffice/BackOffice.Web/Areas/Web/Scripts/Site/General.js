@@ -108,7 +108,7 @@ var NotificationObject = {
     },
 
     RenderNotifications: function () {
-        if (NotificationObject.NotificationList != null && NotificationObject.NotificationList.length > 0) {
+        if (NotificationObject.NotificationList != null ) {
 
             //set notification count background-image
             $('#aNotifyCount').html(NotificationObject.NotificationList.length);
@@ -137,11 +137,8 @@ function ReadNotification_OnMouseOver(NotificationId) {
         dataType: "Json"
     }).done(function (data) {
         debugger;
-        if (data != null && NotificationObject.NotificationList.length != data.length) {
-            NotificationObject.NotificationList = data;
-            NotificationObject.RenderNotifications();
-        }
-
+        NotificationObject.NotificationList = data;
+        NotificationObject.RenderNotifications();
         //var oReturn
     }).error(function (jqXHR, textStatus, errorThrown) {
     });    

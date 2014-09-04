@@ -191,7 +191,7 @@
 
     <!--Confirmation - Sms Params-->
     <key name="Message_Body_Sms_AsignedAppointment">
-      <![CDATA[Tu cita ha sido asignada exitosamente: Dr(a).{ProfileName} fecha: {AppointmentDate} Mas info. tel: {OfficePhone}.]]>
+      <![CDATA[Tu cita ha sido asignada exitosamente: Dr(a).{ProfileName} fecha: {AppointmentDate} {Hour} Tel {OfficePhone}.]]>
     </key>
 
     <!--Confirmation - GuruNotification Body-->
@@ -397,7 +397,7 @@
                                 Hola {PatientName}! 
                              </p>
                              <p>
-                                Te recordamos tu cita médica con el Dr(a).{ProfileName} el día 
+                                Te invitamos a confirmar tu cita médica con el Dr(a).{ProfileName} el día 
                                 {AppointmentDate} {Hour} en el consultorio situado en {OfficeAddress} télefono {OfficePhone}. <br>
                                 
                                 <a href="{ConfirmLink}">Puedes confirmar tu cita aquí</a>       <br>   
@@ -449,7 +449,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Recuerda tu cita con Dr(a).{ProfileName} {AppointmentDate} {Hour} Tel {OfficePhone} {ConfirmCancelLink}]]>
+      <![CDATA[Confirma tu cita con Dr(a).{ProfileName} Tel {OfficePhone} {AppointmentDate} {Hour} {ConfirmCancelLink}]]>
     </key>
 
 
