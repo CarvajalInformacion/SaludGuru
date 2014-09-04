@@ -62,7 +62,6 @@ h5, h6 {
 /*-------Styles Images Profile---------*/
 
 .ContentImages {
-    border: 1px solid red;
     width: 100%;
     height: auto;
     margin: 10px auto 10px auto !important;
@@ -70,118 +69,81 @@ h5, h6 {
 
 
 
-/*/*a.lightbox img {
-    height: 50px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    margin: 10px;
+img.imgProfileSlide {
+    height: 45px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+    margin: 0px 4px 0px 4px !important;
 }
 
-/* Styles the lightbox, removes it from sight and adds the fade-in transition */
-
-/*.lightbox-target {
-    position: fixed;
-    top: -100%;
-    background: rgba(0,0,0,.7);
-    width: 100%;
-    opacity: 0;
-    -webkit-transition: opacity .5s ease-in-out;
-    -moz-transition: opacity .5s ease-in-out;
-    -o-transition: opacity .5s ease-in-out;
-    transition: opacity .5s ease-in-out;
-    overflow: hidden;
-    z-index: 11 !important;
-    margin: 0px auto 0px -19.4% !important;
-    min-width: 768px !important;
-    float: left;
-    display: block;
-}*/
-
-    /* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
-
-    /*.lightbox-target img {
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-height: 0%;
-        max-width: 0%;
-        border: 3px solid white;
-        box-shadow: 0px 0px 8px rgba(0,0,0,.3);
-        box-sizing: border-box;
-        -webkit-transition: .5s ease-in-out;
-        -moz-transition: .5s ease-in-out;
-        -o-transition: .5s ease-in-out;
-        transition: .5s ease-in-out;
-    }*/
-
-/* Styles the close link, adds the slide down transition */
-
-/*a.lightbox-close {
-    display: block;
-    width: 50px;
-    height: 50px;
-    box-sizing: border-box;
-    background: white;
-    color: black;
-    text-decoration: none;
-    position: absolute;
-    top: -80px;
-    right: 0;
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
-}*/
-
-    /* Provides part of the "X" to eliminate an image from the close link */
-
-    /*a.lightbox-close:before {
-        content: "";
-        display: block;
-        height: 30px;
-        width: 1px;
-        background: black;
-        position: absolute;
-        left: 26px;
-        top: 10px;
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }*/
-
-    /* Provides part of the "X" to eliminate an image from the close link */
-
-    /*a.lightbox-close:after {
-        content: "";
-        display: block;
-        height: 30px;
-        width: 1px;
-        background: black;
-        position: absolute;
-        left: 26px;
-        top: 10px;
-        -webkit-transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }*/
-
-/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
-
-/*.lightbox-target:target {
-    opacity: 1;
-    top: 0;
-    bottom: 0;
+li.liProfileSlider {
+    width: auto;
+    display: inline-block;
 }
 
-    .lightbox-target:target img {
-        max-height: 100%;
-        max-width: 100%;
-    }
 
-    .lightbox-target:target a.lightbox-close {
-        top: 0px;
-    }*/
+.MPProfileInfoImages {
+    border-top: 1px solid #99c21d;
+    border-bottom: 1px solid #99c21d;
+    width: 92%;
+    margin: 15px auto 0px auto !important;
+}
+
+.pp_social {
+    display: none !important;
+}
+
+div.light_square .pp_nav .pp_play {
+    background: url('../../Images/sprite.png') no-repeat scroll -1px -100px transparent !important;
+    height: 15px !important;
+    width: 14px !important;
+}
+
+div.light_square .pp_nav .pp_pause {
+    background: url(../../Images/sprite.png) -24px -100px no-repeat !important;
+    height: 15px !important;
+    width: 14px !important;
+}
+
+div.light_square .pp_arrow_previous {
+    background: url(../../Images/sprite.png) 0 -71px no-repeat !important;
+}
+
+div.light_square .pp_arrow_next {
+    background: url(../../Images/sprite.png) -22px -71px no-repeat !important;
+}
+
+div.light_square .pp_close {
+    width: 75px !important;
+    height: 22px !important;
+    background: url('../../Images/sprite.png') no-repeat scroll -1px -1px transparent !important;
+    cursor: pointer !important;
+}
+
+div.light_square .pp_expand {
+    background: url('../../Images/sprite.png') no-repeat scroll -31px -26px transparent !important;
+    cursor: pointer !important;
+}
+
+.pp_nav p {
+    float: left !important;
+    margin: 9px 4px !important;
+    white-space: nowrap !important;
+}
+
+a.pp_next {
+    background: url('../../Images/sprite.png') no-repeat scroll 10000px 10000px transparent !important;
+    display: block !important;
+    float: right !important;
+    height: 100% !important;
+    text-indent: -10000px !important;
+    width: 49% !important;
+}
+
+a.pp_previous {
+    background: url('../../Images/sprite.png') no-repeat scroll 10000px 10000px transparent !important;
+    display: block !important;
+    float: left !important;
+    height: 100% !important;
+    text-indent: -10000px !important;
+    width: 49% !important;
+}

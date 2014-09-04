@@ -8,6 +8,7 @@
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/prettyphoto/css")
 
     @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
     {
@@ -45,6 +46,7 @@
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/kendo")
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap")
+    @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/prettyphoto")
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_ApiKey].Value)&sensor=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_Sensor].Value)"></script>
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/sitescripts")
 
@@ -73,7 +75,7 @@
             <span>Para agendar una cita debe ingresar a traves de:</span>
             <!--Render autentications-->
             <div>
-                <a class="MPGoogleLogIn" href="" rel="nofollow"v></a>
+                <a class="MPGoogleLogIn" href="" rel="nofollow" v></a>
                 <a class="MPFacebookLogIn" href="" rel="nofollow"></a>
                 <a class="MPOutlookLogIn" href="" rel="nofollow"></a>
             </div>
