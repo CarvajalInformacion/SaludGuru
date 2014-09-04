@@ -1,5 +1,6 @@
 ﻿//init Notifications grid
 function UserNotificationsListGrid(vidDiv, vNotificationData) {
+    debugger;
     $('#' + vidDiv).kendoGrid({
         dataSource: {
             type: "json",
@@ -16,6 +17,11 @@ function UserNotificationsListGrid(vidDiv, vNotificationData) {
         }, {
             field: "Body",
             title: "Notificación"
-        }],
+        }, {
+            title: "Estado",
+            field: "Status",
+            template: $('#TemplateDeleteNotify').html(),
+        }
+        ],
     });
 }

@@ -24,5 +24,13 @@ namespace BackOffice.Web.ControllersApi
             return result;
         }
 
+        [HttpPost]
+        [HttpGet]
+        public List<NotificationModel> ReadNotifications(string NotificationId)
+        {
+            SaludGuru.Notifications.Controller.Notification.UpdateStatus(enumNotificationStatus.Leida, Convert.ToInt32(NotificationId));
+            return this.GetNotificationsBySessionUser();
+        }
+
     }
 }

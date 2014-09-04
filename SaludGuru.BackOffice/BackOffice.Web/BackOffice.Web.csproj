@@ -346,6 +346,8 @@
     <Content Include="Areas\Web\Content\Images\magGlassSmall.png" />
     <Content Include="Areas\Web\Content\Images\mainMenuBackground1.png" />
     <Content Include="Areas\Web\Content\Images\MPOutlookLogo.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationStatus_1301.png" />
+    <Content Include="Areas\Web\Content\Images\NotificationStatus_1302.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1503.png" />
