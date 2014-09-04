@@ -40,7 +40,7 @@ namespace Message.Manager
                         try
                         {
                             this.ProcessMessage(item);
-                         }
+                        }
                         catch (Exception err)
                         {
                             Console.WriteLine(err.Message);
@@ -92,7 +92,7 @@ namespace Message.Manager
             Message.Interfaces.IAgent Agent = this.GetAgentInstance(oAgentConfig.AgentConfig["Assemblie"]);
 
             List<QueueParameterModel> mess = oAgentConfig.QueueItemToProcess.MessageParameters.Where(x => x.Key == "TO").ToList();
-            
+
             //Save the address and split the directions
             addresList = this.UpsertAddress(mess.FirstOrDefault().Value, oAgentConfig.MessageConfig["Agent"]);
 
@@ -101,15 +101,18 @@ namespace Message.Manager
 
             if (!string.IsNullOrEmpty(oAgentConfig.QueueItemToProcess.MessageParameters.Where(x => x.Key == "SendToProcessRelatedMsj").Select(x => x.Value).FirstOrDefault()))
             {
+                if (QueueItemToProcess.MessageType == "Email_CancelAppointment" || QueueItemToProcess.MessageType == "Sms_CancelAppointment")
+                    oMsjReturn = Agent.SendMessage(oAgentConfig);
+
                 List<MessageQueueModel> messageToInspect = new List<MessageQueueModel>();
                 messageToInspect = this._controller.GetQueueMessageToInspect();
 
                 foreach (MessageQueueModel item in messageToInspect)
-	            {
+                {
                     item.MessageParameters.Where(x => x.Key == "AppointmentPublicId" && x.Value == oAgentConfig.AgentConfig["AppointmentPublicId"]).Select(x => x);
                     if (item != null)
-                        this.SendToProcessWhitOutAgent(item, oAgentConfig.AddressToSend.FirstOrDefault().AddressId);                                        
-	            }                
+                        this.SendToProcessWhitOutAgent(item, oAgentConfig.AddressToSend.FirstOrDefault().AddressId);
+                }
             }
             else if (oAgentConfig.AddressToSend.Count() > 0)
             {
@@ -129,8 +132,8 @@ namespace Message.Manager
                     {
                         this.AddResend(QueueItemToProcess.MessageQueueId);
                     }
-                }       
-            }             
+                }
+            }
 
             /*trace log message*/
             return oMsjReturn;
@@ -308,7 +311,7 @@ namespace Message.Manager
                     break;
                 case "GuruNotification_NewPatient":
                     xDocMessBody = xDocMessBody.Replace("{PatientName}", infoMessage.MessageParameters.Where(x => x.Key == "PatientName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
-                    xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());                   
+                    xDocMessBody = xDocMessBody.Replace("{ProfileName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
             }
             MessageConfig.Add("Body", xDocMessBody);
@@ -400,7 +403,7 @@ namespace Message.Manager
         /// <returns>Si la operacion fue correcta o no</returns>
         private bool SendToProcessWhitOutAgent(MessageQueueModel MessageQueue, int AddresToSend)
         {
-            return this._controller.CreateQueueProcess(MessageQueue.MessageQueueId, true, "The send was cancelled", "CancelAppointment - Clean MsjAppointment", "NoAgent", MessageQueue.MessageType, AddresToSend);            
+            return this._controller.CreateQueueProcess(MessageQueue.MessageQueueId, true, "The send was cancelled", "CancelAppointment - Clean MsjAppointment", "NoAgent", MessageQueue.MessageType, AddresToSend);
         }
 
         #endregion

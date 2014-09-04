@@ -65,7 +65,7 @@
         <!--render search box-->
         <div class="searchBox">
             <input id="ipGlobalSearchBox" type="text" />
-            <input id="searchMagGlass" type="submit" value=""/>
+            <input id="searchMagGlass" type="submit" value="" />
         </div>
 
         <div class="userNotificationWrapper">
@@ -77,8 +77,8 @@
                 </div>
                 <ul id="NotificationTemplate" style="display:none;">
                     <li>
-                        <img src="{NotificationImage}" />
-                        <label>{NotificationText}</label>
+                        <img src="{NotificationImage}" onmouseover="javascript: ReadNotification_OnMouseOver('{NotificationId}');" />                        
+                        <a  href="@Url.Action(MVC.User.ActionNames.NotificationList, MVC.User.Name) ">{NotificationText}</a>                        
                     </li>
                 </ul>
             </div>
@@ -108,5 +108,5 @@
     <!--menu-->
     <div class="mainMenuWrapper">
         @Html.Partial(MVC.Web.Shared.Views._L_PrincipalMenu)
-    </div> 
+    </div>
 </div>
