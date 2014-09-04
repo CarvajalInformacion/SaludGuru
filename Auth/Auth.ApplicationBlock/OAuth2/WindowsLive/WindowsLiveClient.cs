@@ -23,8 +23,8 @@ namespace DotNetOpenAuth.ApplicationBlock
     {
         private static readonly AuthorizationServerDescription WindowsLiveDescription = new AuthorizationServerDescription
         {
-            TokenEndpoint = new Uri("https://oauth.live.com/token"),
-            AuthorizationEndpoint = new Uri("https://oauth.live.com/authorize"),
+            TokenEndpoint = new Uri("https://login.live.com/oauth20_token.srf"),
+            AuthorizationEndpoint = new Uri("https://login.live.com/oauth20_authorize.srf"),
             ProtocolVersion = ProtocolVersion.V20
         };
 
