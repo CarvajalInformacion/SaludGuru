@@ -191,7 +191,7 @@
 
     <!--Confirmation - Sms Params-->
     <key name="Message_Body_Sms_AsignedAppointment">
-      <![CDATA[Tu cita ha sido asignada exitosamente: Dr(a).{ProfileName} fecha: {AppointmentDate} {Hour} info tel {OfficePhone}.]]>
+      <![CDATA[Tu cita ha sido asignada exitosamente: Dr(a).{ProfileName} fecha: {AppointmentDate} {Hour} Tel {OfficePhone}.]]>
     </key>
 
     <!--Confirmation - GuruNotification Body-->
