@@ -17,11 +17,7 @@ function UserNotificationsListGrid(vidDiv, vNotificationData) {
         }, {
             field: "Body",
             title: "Notificación"
-        }, {
-            title: "Estado",
-            field: "Status",
-            template: $('#TemplateDeleteNotify').html(),
-        }
+        } 
         ],
     });
 }
