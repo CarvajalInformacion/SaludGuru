@@ -61,6 +61,7 @@
             </div>
             <div class="MPProfileSpecialtyColumn">
                 <!--Related Insurance-->
+
                 <label class="MPProfileInsurance">Especialidades:</label>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
@@ -84,18 +85,11 @@
                 <label class="MPProfileInsurance">Redes sociales y web:</label>
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
-                    <iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook))&amp;width&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe src="//www.facebook.com/plugins/like.php?href=@(Html.Encode(ovFacebook))&amp;width=200&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowtransparency="true"></iframe>
+                    @*<iframe src="//www.facebook.com/plugins/likebox.php?href=@(Html.Encode(ovFacebook))&amp;width&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>*@
                 }
                 @if (!string.IsNullOrEmpty(ovWebSite))
                 {
-                    <a href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                        <span>Página Web</span>
-                    </a>
-                    <a href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                        <span>Página Web</span>
-                    </a>
                     <a href="@ovWebSite" target="_blank">
                         <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
                         <span>Página Web</span>
@@ -108,7 +102,7 @@
             </div>
 
         </div>
-    <hr class="featurette-divider __loop ProfileBasicInfo" style="display:none;">    
+    <hr class="featurette-divider __loop ProfileBasicInfo">
 }
 else
 {

@@ -550,13 +550,11 @@
     <Content Include="Areas\Web\Content\Styles\Site\MPResults.css" />
     <Content Include="Areas\Web\Content\Styles\Site\MPschedule.css" />
     <Content Include="Areas\Web\Content\Styles\Site\MPSearchBox.css" />
+    <Content Include="Areas\Web\Content\Styles\Site\prettyPhoto.css" />
     <Content Include="Areas\Web\Scripts\jquery-ui-map\jquery.ui.map.full.min.js" />
-    <Content Include="Areas\Web\Scripts\Jssor\jssor.core.js" />
-    <Content Include="Areas\Web\Scripts\Jssor\jssor.player.ytiframe.js" />
-    <Content Include="Areas\Web\Scripts\Jssor\jssor.slider.js" />
-    <Content Include="Areas\Web\Scripts\Jssor\jssor.utils.js" />
     <Content Include="Areas\Web\Scripts\Site\Appointment.js" />
     <Content Include="Areas\Web\Scripts\Site\Home.js" />
+    <Content Include="Areas\Web\Scripts\Site\jquery.prettyPhoto.js" />
     <Content Include="Areas\Web\Scripts\Site\Search.js" />
     <Content Include="Areas\Web\Scripts\Site\Profile.js" />
     <Content Include="Areas\Web\Scripts\Site\General.js" />
