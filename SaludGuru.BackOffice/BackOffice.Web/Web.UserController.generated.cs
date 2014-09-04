@@ -57,6 +57,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpsertNotyficationState()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertNotyficationState);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public UserController Actions { get { return MVC.Web.User; } }
@@ -74,15 +80,26 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string NotificationList = "NotificationList";
+            public readonly string UpsertNotyficationState = "UpsertNotyficationState";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string NotificationList = "NotificationList";
+            public const string UpsertNotyficationState = "UpsertNotyficationState";
         }
 
 
+        static readonly ActionParamsClass_UpsertNotyficationState s_params_UpsertNotyficationState = new ActionParamsClass_UpsertNotyficationState();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpsertNotyficationState UpsertNotyficationStateParams { get { return s_params_UpsertNotyficationState; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpsertNotyficationState
+        {
+            public readonly string NotificationId = "NotificationId";
+            public readonly string Status = "Status";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -112,6 +129,19 @@ namespace BackOffice.Web.Areas.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NotificationList);
             NotificationListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpsertNotyficationStateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string NotificationId, string Status);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UpsertNotyficationState(string NotificationId, string Status)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpsertNotyficationState);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "NotificationId", NotificationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Status", Status);
+            UpsertNotyficationStateOverride(callInfo, NotificationId, Status);
             return callInfo;
         }
 

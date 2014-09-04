@@ -129,9 +129,7 @@ namespace BackOffice.Web.ControllersApi
                     SendRemindedFuture)
                 {
                     //get time to send reminded appointment
-                    RemindedDate = DateTime.ParseExact(HttpContext.Current.Request["RemindedDate"].Replace(" ", ""),
-                                    "dd/MM/yyyy",
-                                    System.Globalization.CultureInfo.InvariantCulture);
+                    RemindedDate = Convert.ToDateTime(HttpContext.Current.Request["RemindedDate"].ToString());
                 }
                 AppointmentModel AppointmentToUpsert = new AppointmentModel()
                 {
