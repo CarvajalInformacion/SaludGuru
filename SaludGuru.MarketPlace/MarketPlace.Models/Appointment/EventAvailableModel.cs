@@ -48,9 +48,9 @@ namespace MarketPlace.Models.Appointment
 
                 if (Monday.IsHeader)
                 {
-                    oReturn = Monday.AvailableDate.Value.ToString("d \\de MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+                    oReturn = Monday.AvailableDate.Value.ToString("d \\de MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
                     oReturn += " al ";
-                    oReturn += Saturday.AvailableDate.Value.ToString("d \\de MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+                    oReturn += Saturday.AvailableDate.Value.ToString("d \\de MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
                 }
 
                 return oReturn;

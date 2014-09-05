@@ -72,15 +72,19 @@ namespace ADO.MYSQL
                 case enumCommandExecutionType.DataTable:
 
                     oRetorno.DataTableResult = new DataTable();
-                    MySql.Data.MySqlClient.MySqlDataAdapter dat = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand);
-                    oRetorno.NonQueryResult = dat.Fill(oRetorno.DataTableResult);
+                    using (MySql.Data.MySqlClient.MySqlDataAdapter dat = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
+                    {
+                        oRetorno.NonQueryResult = dat.Fill(oRetorno.DataTableResult);
+                    }
 
                     break;
                 case enumCommandExecutionType.DataSet:
 
                     oRetorno.DataSetResult = new DataSet();
-                    MySql.Data.MySqlClient.MySqlDataAdapter dads = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand);
-                    oRetorno.NonQueryResult = dads.Fill(oRetorno.DataSetResult);
+                    using (MySql.Data.MySqlClient.MySqlDataAdapter dads = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
+                    {
+                        oRetorno.NonQueryResult = dads.Fill(oRetorno.DataSetResult);
+                    }
 
                     break;
                 default:

@@ -74,8 +74,13 @@ div#FreeScheduleId {
     background-color: #FFF;
     margin: 0px 0px 0px 0px;
     border: 1px solid #666;
-    box-shadow: 2px 2px 2px #666;
     border-radius: 4px;
+}
+
+#FreeScheduleId .MPProfileCallendarCallendarSchedule {
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
 }
 
 div.ProfileCalendar div {
@@ -97,7 +102,7 @@ div.ProfileCalendar > div > div, div.ProfileCalendar > div > div > div {
 
 div.ProfileCalendar {
     margin: 0px;
-    width: 650px !important;
+    width: 97% !important;
     max-width: 650px !important;
 }
 
