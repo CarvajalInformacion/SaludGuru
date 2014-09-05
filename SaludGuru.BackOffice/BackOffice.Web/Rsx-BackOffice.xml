@@ -146,7 +146,7 @@
 
     <!--market place profile url-->
     <key name="Profile_MarketPlaceUrl">https://localhost:44303/doctor/{ProfileName}-{ProfilePublicId}/{SpecialtyName}</key>
-    <key name="Profile_FBUrl">https://localhost:44303/Profile/FBProfile?ProfilePublicId={ProfilePublicId}</key>
+    <key name="Profile_FBUrl">https://localhost:44303/Profile/ProfilePreview?ProfilePublicId={ProfilePublicId}</key>
 
     <!--invalid url characters-->
     <key name="Url_Invalid_Char">
