@@ -62,7 +62,7 @@ namespace MarketPlace.Web.Controllers
             }
         }
 
-        public virtual ActionResult FBProfile(string ProfilePublicId)
+        public virtual ActionResult ProfilePreview(string ProfilePublicId)
         {
             try
             {
@@ -92,7 +92,55 @@ namespace MarketPlace.Web.Controllers
                                 }));
                 }
                 //render profile
-                return View(oModel);
+                return View(MVC.Profile.ActionNames.Index, oModel);
+            }
+            catch
+            {
+                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
+            }
+        }
+
+        public virtual ActionResult FBProfile(string ProfilePublicId)
+        {
+            try
+            {
+                if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
+                {
+
+                    //get model
+                    ProfileViewModel oModel = new ProfileViewModel()
+                    {
+                        CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
+                        IsNoFollow = true,
+                        IsNoIndex = true,
+                        IsRedirect = false,
+                        IsCanonical = true,
+                    };
+
+                    ViewBag.NoIndex = oModel.IsNoIndex;
+                    ViewBag.NoFollow = oModel.IsNoFollow;
+
+                    if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
+                    {
+                        ViewBag.Canonical = Request.Url.ToString().Replace(Request.Url.PathAndQuery, "") +
+                            Server.UrlDecode(Url.RouteUrl(
+                                    MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+                                    new
+                                    {
+                                        DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name + " " + oModel.CurrentProfile.LastName),
+                                        ProfilePublicId = oModel.CurrentProfile.ProfilePublicId,
+                                        SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name),
+                                    }));
+                    }
+                    //render profile
+                    return View(oModel);
+                }
+                else
+                {
+                    return Redirect(MarketPlace.Models.General.InternalSettings.Instance
+                         [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                         .Value.Replace("{{UrlRetorno}}", Request.Url.ToString()));
+                }
             }
             catch
             {
