@@ -10,9 +10,6 @@
         Identification: {
             required: true,
             minlength: 5,
-        },
-        Birthday: {
-            required: true
         }
     };
 
