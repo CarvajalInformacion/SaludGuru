@@ -7,6 +7,7 @@ using SaludGuruProfile.Manager.Controller;
 using BackOffice.Models.General;
 using MedicalCalendar.Manager.Models.Appointment;
 using BackOffice.Models.Appointment;
+using SaludGuruProfile.Manager.Models;
 
 namespace BackOffice.Web.Controllers
 {
@@ -46,6 +47,7 @@ namespace BackOffice.Web.Controllers
                 oModel.CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
 
                 //TODO send confirm message
+                BackOffice.Web.Controllers.BaseController.SendMessage(oModel.CurrentProfile, enumProfileInfoType.AsignedAppointment, oModel.CurrentAppointment.RelatedPatient, oModel.CurrentAppointment, true);                
             }
 
 
@@ -92,7 +94,7 @@ namespace BackOffice.Web.Controllers
 
                 oModel.CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.AppointmentGetById(AppointmentPublicId);
 
-                //TODO send confirm message
+                BackOffice.Web.Controllers.BaseController.SendMessage(oModel.CurrentProfile, enumProfileInfoType.CancelAppointment, oModel.CurrentAppointment.RelatedPatient, AppointmentToUpsert, true);                
             }
 
 
