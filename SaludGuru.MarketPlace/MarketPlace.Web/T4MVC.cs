@@ -45,6 +45,13 @@ namespace T4MVC
     public class MobileClass
     {
         public readonly string Name = "Mobile";
+        public MarketPlace.Web.Areas.Mobile.Controllers.AgendaController Agenda = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_AgendaController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.AppointmentController Appointment = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_AppointmentController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.ErrorController Error = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_ErrorController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.HomeController Home = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_HomeController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.ProfileController Profile = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_ProfileController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.SearchController Search = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_SearchController();
+        public MarketPlace.Web.Areas.Mobile.Controllers.UserProfileController UserProfile = new MarketPlace.Web.Areas.Mobile.Controllers.T4MVC_UserProfileController();
         public T4MVC.Mobile.SharedController Shared = new T4MVC.Mobile.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

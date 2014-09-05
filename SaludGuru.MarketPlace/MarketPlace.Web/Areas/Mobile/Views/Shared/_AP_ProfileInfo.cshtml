@@ -1,0 +1,60 @@
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
+
+@{ //get image profile
+    string ImgProfile = Model.CurrentProfile.ProfileInfo.
+        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
+        Select(x => x.Value).
+        DefaultIfEmpty(string.Empty).
+        FirstOrDefault();
+
+    //get profile url
+    var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+    new
+    {
+        DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName),
+        ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
+        SpecialtyName = (Model.CurrentProfile.DefaultSpecialty != null) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.DefaultSpecialty.Name) : string.Empty,
+    }));
+}
+<h2>Estas agendando una cita con</h2>
+<ul class="MPAgendaDoctorData">
+    <li><img src="@ImgProfile" alt="@Model.CurrentProfile.Name" /></li>
+
+    <li class="ProfileInfoName">
+        <a href="@ovProfileUrl">
+            <label>@Model.CurrentProfile.Name</label>
+            <label>@Model.CurrentProfile.LastName</label>
+        </a>
+    </li>
+    <li class="DefaultSpecialty">
+        @if (Model.CurrentProfile.DefaultSpecialty != null)
+        {
+            <label>@Model.CurrentProfile.DefaultSpecialty.Name</label>
+        }
+        else
+        {
+            <label></label>
+        }
+
+    </li>
+    <li class="RelatedOffice">
+        @if (Model.CurrentOffice != null)
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</label>
+        }
+        else
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Select(x => x.Name).FirstOrDefault()</label>
+        }
+    </li>
+    <li class="InfoOffice">
+        @if (Model.CurrentOffice != null)
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+        }
+        else
+        {
+            <label>@Model.CurrentProfile.RelatedOffice.Select(x => x.OfficeInfo.Where(y => y.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(y => y.Value).FirstOrDefault()).FirstOrDefault()</label>
+        }
+    </li>
+</ul>

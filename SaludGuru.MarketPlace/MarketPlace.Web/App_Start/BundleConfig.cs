@@ -8,9 +8,9 @@ namespace MarketPlace.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            if (MarketPlace.Web.Controllers.BaseController.AreaName == MarketPlace.Web.Controllers.BaseController.AreaName)
+            if (MarketPlace.Web.Controllers.BaseController.AreaName == MarketPlace.Models.General.Constants.C_WebAreaName)
             {
-                #region JQery
+                #region JQuery
 
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
                             "~/Areas/Web/Scripts/jquery-{version}.js",
@@ -96,6 +96,56 @@ namespace MarketPlace.Web
             }
             else if (MarketPlace.Web.Controllers.BaseController.AreaName == MarketPlace.Models.General.Constants.C_MobileAreaName)
             {
+                #region JQuery
+
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
+                            "~/Areas/Mobile/Scripts/jquery-{version}.js",
+                            "~/Areas/Mobile/Scripts/jquery-ui-{version}.js"));
+
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Models.General.Constants.C_WebAreaName + "/bundles/jqueryval").Include(
+                            "~/Areas/Mobile/Scripts/jquery.validate*"));
+
+                #endregion
+
+                #region Modernizr
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
+                            "~/Areas/Mobile/Scripts/modernizr-*"));
+                #endregion
+
+                #region Bootstrap
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap").Include(
+                          "~/Areas/Mobile/Scripts/bootstrap.js",
+                          "~/Areas/Mobile/Scripts/respond.js"));
+                #endregion
+
+                #region SiteScripts
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/sitescripts").IncludeDirectory(
+                          "~/Areas/Mobile/Scripts/Site",
+                          "*.js",
+                          true));
+                #endregion
+
+                #region Styles
+
+                #region /web/styles
+
+                bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css").IncludeDirectory(
+                          "~/Areas/Mobile/Content/Styles",
+                          "*.css",
+                          true));
+
+                #endregion
+
+                #region jquery
+
+                bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css").IncludeDirectory(
+                          "~/Areas/Mobile/Content/jquery",
+                          "*.css",
+                          true));
+
+                #endregion
+
+                #endregion
             }
 
             //allow bundles in debug mode

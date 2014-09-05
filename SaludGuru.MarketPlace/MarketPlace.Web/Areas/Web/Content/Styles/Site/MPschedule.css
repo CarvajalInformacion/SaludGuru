@@ -80,7 +80,6 @@ li.selected a {
     border: 1px solid #666;
     border-radius: 3px;
     box-shadow: 2px 2px 2px #666;
-    /*background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;*/
 }
 
 div.SelOfficeGrid {
@@ -94,7 +93,7 @@ div.SelOfficeGrid {
     border:none;
     width: 100.2%;
     height: auto;
-    text-align: center;
+    text-align: left;
 }
 
 div.SelOfficeGrid > div > a, div.SelOfficeGrid > div > span {
@@ -113,87 +112,58 @@ div.SelOfficeGrid > div > span {
 #divAppointmentSchedule div.SelOfficeGrid > div.k-grid {
     width: 100% !important;
     border-top: 1px solid #666;
-    height:196px !important;
+    height:auto !important;
 }
-
 div.k-grid-content {
     overflow-x: auto;
     overflow-y: auto;
 }
 .k-grid table {
-    border-spacing: 5px !important;
+    border-spacing: 4px !important;
 }
 /********************* HEADER DEL CALENDARIO *********************/
-.k-grid-header {
-    background-color:#b200ff !important;
-    border-color:none !important;
-    padding:0px !important;
-    margin:0px !important;
-    line-height:1em;
-    font-size:0.9em;
-    width:auto !important;
+ .k-grid-header {
+    background-image: none !important;
+    background-color: transparent !important;
 }
     .k-grid-header-wrap {
-        width:auto !important;
+        border:none !important;
     }
+
+        k-grid-header-wrap table {
+            display:block;
+        }
+        .k-grid-header-wrap colgroup col{
+            width: 70px !important;
+        }
         .k-grid-header .k-header {
-            text-align: center !important;
-            padding: 0px !important;
-            color:#666;
-        }
-    .k-grid-header-wrap th{
-        width: auto !important;
-        display: inline-block;
-    }
-
-
-    /*div.k-grid-content > table > tbody > tr:first-child {
-        background-color:none;
-    }
-        div.k-grid-content > table > tbody > tr:first-child > td {
-            border-style: solid;
-            border-color: #FFF;
-            border-width: 0px 1px 1px 0px;
-            font-weight: bold;
-            color: #666 !important;
+            padding: 0px 12.7px !important;
+            background-color:#fff !important;
+            border-width: 0px !important;
         }
 
-            div.k-grid-content > table > tbody > tr:first-child > td:hover {
-                background-color: initial;
-                cursor: initial;
-            }
-
-            div.k-grid-content > table > tbody > tr:first-child > td > a,
-            div.k-grid-content > table > tbody > tr > td > a {
-                color: #333;
-                width: 82px;
-                margin-left: -3px;
-                font-size:12px;
-                letter-spacing:normal;
-            }
-
-                div.k-grid-content > table > tbody > tr:first-child > td > a:hover,
-                div.k-grid-content > table > tbody > tr > td > a:hover {
-                    color:#fff;
-                    text-decoration: none;
-                }
-
-                div.k-grid-content > table > tbody > tr:first-child > td > a:hover {
-                    cursor: initial;
-                }*/
-
+    label.HeaderStyle {
+        font-size: 0.9em !important;
+        display: block;
+        width: 100%;
+    }    
     div.k-grid-content > table > tbody > tr > td {
         border-style: solid;
         border-color:#B6DE3F;
         border-width: 1px;
         border-radius: 3px;
+        text-align: center;
+        padding: 3px 0px !important;
     }
-
         div.k-grid-content > table > tbody > tr > td:hover {
             cursor: pointer;
             background-color: #B6DE3F;            
         }
-
+.RowStyle, .RowStyle:hover {
+    color: #333;
+    text-decoration:none;
+    font-size:0.9em !important;
+    }
 
 a#aBefore_192BD698 {
     margin-left: 60%;

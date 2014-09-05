@@ -1,0 +1,89 @@
+﻿@model MarketPlace.Models.Profile.ProfileViewModel
+@{
+    Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
+
+    Model.RenderScripts = false;
+
+    bool ScheduleEnabled = Model.CurrentProfile.ProfileInfo.
+        Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
+        Select(x => x.Value == "true" ? true : false).
+        DefaultIfEmpty(false).
+        FirstOrDefault();
+}
+<div class="MPProfileGreatWrapper">
+    <div class="MPProfileColumnsWrapper">
+        @if (ScheduleEnabled)
+        {
+            @*Metting enabled*@
+
+            <div class="MPProfileLeftWrapper">
+                <!--Profile Basic Info-->
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
+
+
+
+                <!--Profile Images-->
+                <div class="MPProfileInfoImages">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+                </div>
+
+
+
+                <!--Profile Description-->
+                <div class="MPProfileInfoDetail">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
+                </div>
+            </div>
+            <div class="MPProfileRigthWrapper">
+                <!--Profile Schedule-->
+                <div class="MPProfileScheduleCallendar">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+                </div>
+                <!--Profile Map-->
+                <div class="MPProfileMap">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+                </div>
+            </div>
+        }
+        else
+        {
+            @*Metting disabled*@
+            <div class="MPProfileLeftWrapper">
+                <!--Profile Basic Info-->
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
+
+
+                <!--Profile Images-->
+                @*<div class="MPProfileInfoImages">
+        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+    </div>*@
+                <!--Profile Description-->
+
+
+                @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
+            </div>
+            <div class="MPProfileRigthWrapper">
+                <!--Profile Map-->
+                <div class="MPProfileMap">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@{
+    Model.RenderScripts = true;
+}
+@section inlinescripts
+{
+    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
+    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
+    @if (ScheduleEnabled)
+    {
+        @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+    }
+    @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+
+}

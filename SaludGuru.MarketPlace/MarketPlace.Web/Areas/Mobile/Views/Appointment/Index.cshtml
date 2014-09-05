@@ -1,0 +1,239 @@
+﻿@model MarketPlace.Models.Appointment.AppointmentViewModel
+@{
+    Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
+    Model.RenderScripts = false;
+}
+<div class="MPFormDataWrapper">
+    <span>Agenda tu cita</span>
+
+    <form id="AppointmentForm" class="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true, Date = Model.StartDate }))">
+        <ul>
+            @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
+            {
+                <li id="officeSelectedId" class="OfficeSelectedLi" style="display:none">
+                    <label>Selecciona el consultorio</label>
+                    <select id="SelectedOffice" name="SelectedOffice">
+                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
+                        {
+                            var officeSelected = Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x).FirstOrDefault();
+                            <option value="@officeSelected.OfficePublicId" selected="selected">@officeSelected.Name</option>
+                        }
+                    </select>
+                </li>
+            }
+            else
+            {
+                <li id="officeSelectedId" class="OfficeSelectedLi">
+                    <label>Selecciona el consultorio</label>
+                    <select id="SelectedOffice" name="SelectedOffice">
+                        @foreach (var item in Model.CurrentProfile.RelatedOffice)
+                        {
+                            if (Model.CurrentProfile != null && item.IsDefault == true)
+                            {
+                                <option value="@item.OfficePublicId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.OfficePublicId">@item.Name</option>
+
+                            }
+                        }
+                    </select>
+                </li>
+            }
+            <li class="InsuranceSelectedLi">
+                <label>Escoge tu seguro</label>
+                <select id="SelectedInsurance" name="SelectedInsurance">
+                    @foreach (var item in Model.CurrentProfile.RelatedInsurance)
+                    {
+                        if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                        {
+                            <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CategoryId">@item.Name</option>
+                        }
+                    }
+                </select>
+            </li>
+            <li class="TreatmentSelectedLi">
+                <label>Escoge tu tratamiento</label>
+                <select id="SelectedTreatment" name="SelectedTreatment">
+                    @if (Model.CurrentOffice != null || Model.CurrentProfile.RelatedOffice != null)
+                    {
+                        foreach (var item in Model.CurrentProfile.RelatedOffice.FirstOrDefault().RelatedTreatment)
+                        {
+                            if (Model.CurrentProfile != null && item.CategoryId == (int)Model.CurrentProfile.ProfileType)
+                            {
+                                <option value="@item.CategoryId" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.CategoryId">@item.Name</option>
+                            }
+                        }
+                    }
+                </select>
+            </li>
+            <li class="MPAgendaPatientSelection">
+                <label>Quien va a ver al Doctor:</label>
+                @if (Model.PatientGroup.Count > 0)
+                {
+                    foreach (var item in Model.PatientGroup)
+                    {
+                        string currentPatient = item.PatientInfo.Where(x => x.PatientInfoType == MedicalCalendar.Manager.Models.enumPatientInfoType.IsMarketPlaceUser &&
+                                    x.Value == "true").
+                                    Select(x => x.Value).FirstOrDefault();
+
+                        <div id="ulPatientList">
+                            @if (currentPatient != null)
+                            {
+                                <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@item.PatientPublicId">
+                                <label>Yo</label>
+                            }
+                            else
+                            {
+                                <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="@item.PatientPublicId">
+                                <label>@item.Name @item.LastName</label>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div id="ulPatientList">
+                        <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
+                        <label>Yo</label>
+                    </div>
+                }
+            </li>
+            <li class="MPAgendaButtonWrapper">
+                <input id="isSomeBody" type="radio" name="SelectedPatientItem" />
+                <label>Alguien más</label>
+            </li>
+            <li class="NewPatientLi">
+                <div id="NewPatientId" style="display:none;"></div>
+            </li>
+            <li class="MPAgendaButtonWrapper">
+                <label class="AgendaLabel">Fecha y hora</label>
+                <!--Profile Schedule-->
+                @if (Model.StartDate != null)
+                {
+                    <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdNN" value="@Model.StartDate" />
+                }
+                else
+                {
+                    <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdN" value="Selecciona la hora de tu cita" />
+                }
+            </li>
+            <li class="ProfileAgendaLi">
+                @*ESTE PEDAZO PINTA EL CALENDARIO DE CITAS DEL DOCTOR*@
+                <div class="ProfileCalendar" id="FreeScheduleId" style="display:none">
+                    <div class="MPAgendaButtonWrapper">
+                        <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="x" title="Cerrar" />
+                    </div>
+                    @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
+                </div>
+            </li>
+            <li class="LegalTermsLi">
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))" target="_blank">
+                    <label class="LegalTerms">Aceptar términos y condiciones.</label>
+                </a>
+                <input type="checkbox" id="LegalTerms" name="LegalTerms" />
+            </li>
+            <li class="MPAgendaButtonWrapper">
+                @if (Model.StartDate != null)
+                {
+                    <input type="hidden" name="StartDate" id="StartDate" value="@Model.CurrentDate" />
+                }
+                else
+                {
+                    <input type="hidden" name="StartDate" id="StartDate" value="" />
+                }
+
+                <input class="MPAgendaButtonAcceptDate" type="submit" id="SaveAppointmentId" name="SaveAppointmentId" value="Agendar cita" />
+            </li>
+        </ul>
+    </form>
+
+    @*ESTE PEDAZO PINTA EL FORMULARIO DEL NUEVO PACIENTE*@
+    <div id="NewPatient" style="display:none;">
+        <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=@Model.CurrentProfile.ProfilePublicId">
+            <input type="button" value="x" id="itemClose" title="Cerrar" />
+            <ul>
+                <li>
+                    <label class="titleNewPatien">Datos del nuevo paciente</label>
+                    <label>Nombre</label>
+                    <input type="text" id="Name" name="Name" />
+                    <span class="required">*</span>
+                </li>
+                <li>
+                    <label>Apellido</label>
+                    <input type="text" id="LastName" name="LastName" />
+                    <span class="required">*</span>
+                </li>
+                <li>
+                    <label>Identificación</label>
+                    <input type="text" id="Identification" name="Identification" />
+                    <span class="required">*</span>
+                </li>
+                <li>
+                    <label>Fecha de nacimiento</label>
+                    <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
+                    <span class="required">*</span>
+                </li>
+                <li>
+                    <label>Sexo</label>
+                    <label class="GenderLi">Masculino</label>
+                    <input type="radio" id="GenderMale" name="GenderMale" checked="checked" />
+                    <label class="GenderLi">Femenino</label>
+                    <input type="radio" id="GenderFemale" name="GenderFemale" />
+                </li>
+                <li>
+                    <label class="message">Los campos con (*) son obligatorios</label>
+                </li>
+                <li>
+                    <a id="itemSave" href="javascript:ValidateCreatePatient();">Guardar</a>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="MPAgendaDoctorProfile">
+        @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
+    </div>
+</div>
+
+<!--templates-->
+<div style="display:none">
+    <!--patient template-->
+    <div id="ulPatientTemplate">
+        <div>
+            <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" value="{PatientPublicId}" checked='checked'>
+            <label>{PatientName}</label>
+        </div>
+    </div>
+</div>
+
+@{
+    Model.RenderScripts = true;
+}
+@section inlinescripts
+{
+    @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            InitFunctionsNewPatient.InitialLoad();
+            InitFunctionsNewPatient.ChangeCheck();
+            InitFunctionsNewPatient.ChangeCheckNewPatient();
+            $("#itemClose").click(function () {
+                CloseNewPatient();
+            });
+            $('#SelectedOffice').click(function () {
+                AppointmentObject.ChangeOffice();
+            });
+        });
+    </script>
+}

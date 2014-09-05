@@ -107,7 +107,9 @@ input#itemClose {
     }
 
 input#DateLessInfoId {
-    float: right;
-    width: auto !important;
+
+    position: absolute;
+    right: 0px;
     padding: 0px 4px 0px 4px !important;
+    margin: 6px 6px 6px 1px !important;
 }

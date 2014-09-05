@@ -53,8 +53,6 @@
                     ${AvailableDateText}
                 </label>
             </div>
-
-
             <!--appointment grid event template-->
             <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
                 <a class="${Monday.CurrentStyle}" rel="nofollow" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }) + "&OfficePublicId={OfficePublicId}&Date=${Monday.RequestDate}")');">
