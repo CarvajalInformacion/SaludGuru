@@ -82,13 +82,13 @@ namespace MarketPlace.Web.ControllersApi
                     {
                         PatientInfoId = 0,
                         PatientInfoType = enumPatientInfoType.Email,
-                        Value = !string.IsNullOrEmpty(email) ? email : "",
+                        Value = !string.IsNullOrEmpty(HttpContext.Current.Request["Email"]) ? HttpContext.Current.Request["Email"] : email,
                     }, 
                      new  PatientInfoModel()
                     {
                         PatientInfoId = 0,
                         PatientInfoType = enumPatientInfoType.Mobile,
-                        Value = !string.IsNullOrEmpty(mobile) ? mobile : "",
+                        Value = !string.IsNullOrEmpty(HttpContext.Current.Request["Mobile"]) ? HttpContext.Current.Request["Mobile"] : mobile,
                     }, 
                 };
             return oReturn;
