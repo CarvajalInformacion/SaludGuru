@@ -77,9 +77,8 @@ function AddPatientToList(vPatientModel) {
 var InitFunctionsNewPatient = {
 
     InitialLoad: function () {
-        this.CalendarNewPatient();
-        this.CopyDiv();
-        
+        //this.CalendarNewPatient();
+        this.CopyDiv();        
     },
 
     ChangeCheckNewPatient: function () {
@@ -118,17 +117,17 @@ var InitFunctionsNewPatient = {
         });
     },
 
-    CalendarNewPatient: function () {
-        $(function () {
-            var pickerOpts = {
-                showAnim: "drop",
-                duration: jQuery.support.boxModel ? 'normal' : 'slow',
-                changeMonth: true,
-                changeYear: true
-            };
-            $("#Birthday").datepicker(pickerOpts);
-        });
-    },
+    //CalendarNewPatient: function () {
+    //    $(function () {
+    //        var pickerOpts = {
+    //            showAnim: "drop",
+    //            duration: jQuery.support.boxModel ? 'normal' : 'slow',
+    //            changeMonth: true,
+    //            changeYear: true
+    //        };
+    //        $("#Birthday").datepicker(pickerOpts);
+    //    });
+    //},
 
     CopyDiv: function () {
         var htmlDivShow = $('#NewPatient').html();
