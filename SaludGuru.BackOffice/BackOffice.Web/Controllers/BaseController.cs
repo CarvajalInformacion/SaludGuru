@@ -6,6 +6,7 @@ using Message.Client.Models;
 using SaludGuruProfile.Manager.Models;
 using SaludGuruProfile.Manager.Models.Office;
 using SaludGuruProfile.Manager.Models.Profile;
+using SessionController.Models.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -470,183 +471,277 @@ namespace BackOffice.Web.Controllers
             //Load the office info
             CurrentOffice = SaludGuruProfile.Manager.Controller.Office.OfficeGetFullAdmin(AppointmentInfo.OfficePublicId);
 
-            //valid the type message with the enumeration             
-            foreach (enumMessageType mType in messageTypeList)
+            if (!isMp)
             {
-                foreach (PatientModel item in PatientList)
+                //valid the type message with the enumeration             
+                foreach (enumMessageType mType in messageTypeList)
                 {
-                    bool isPatientEmail = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendEmail).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
-                    bool isPatientSms = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendSMS).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
-                    if (mType == enumMessageType.Email && isPatientEmail)
+                    foreach (PatientModel item in PatientList)
                     {
-                        oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
-                        oMessage.NewMessage.UserAction = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserId.ToString();
-                        switch (MessageType)
+                        bool isPatientEmail = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendEmail).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
+                        bool isPatientSms = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.SendSMS).Select(x => Convert.ToBoolean(x.Value)).FirstOrDefault();
+                        if (mType == enumMessageType.Email && isPatientEmail)
                         {
-                            case enumProfileInfoType.AsignedAppointment:
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                break;
-                            case enumProfileInfoType.CancelAppointment:
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ReescheduleLink", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "SendToProcessRelatedMsj", Value = "true" });
-                                break;
-                            case enumProfileInfoType.ModifyAppointment:
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                break;
-                            case enumProfileInfoType.ReminderAppointment:
-                                int ProgrameTime = Profile.ProfileInfo.Where(x => x.ProfileInfoType == MessageType).Select(x => x.LargeValue != "0" ? Convert.ToInt32(x.LargeValue) : 0).FirstOrDefault();
-                                DateTime ApointmentDate = AppointmentInfo.StartDate.AddHours(ProgrameTime * -1);
+                            oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
+                            oMessage.NewMessage.UserAction = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserId.ToString();
+                            switch (MessageType)
+                            {
+                                #region Assigned
+                                case enumProfileInfoType.AsignedAppointment:
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    break;
+                                #endregion
+                                #region Cancel
+                                case enumProfileInfoType.CancelAppointment:
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ReescheduleLink", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "SendToProcessRelatedMsj", Value = "true" });
+                                    break;
+                                #endregion
+                                #region Modify
+                                case enumProfileInfoType.ModifyAppointment:
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    break;
+                                #endregion
+                                #region Reminder
+                                case enumProfileInfoType.ReminderAppointment:
+                                    int ProgrameTime = Profile.ProfileInfo.Where(x => x.ProfileInfoType == MessageType).Select(x => x.LargeValue != "0" ? Convert.ToInt32(x.LargeValue) : 0).FirstOrDefault();
+                                    DateTime ApointmentDate = AppointmentInfo.StartDate.AddHours(ProgrameTime * -1);
 
-                                oMessage.NewMessage.ProgramTime = ApointmentDate;
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentPublicId", Value = AppointmentInfo.AppointmentPublicId });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "isReminder", Value = "true" });
-                                break;
-                            case enumProfileInfoType.ReminderNextAppointment:
+                                    oMessage.NewMessage.ProgramTime = ApointmentDate;
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentPublicId", Value = AppointmentInfo.AppointmentPublicId });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "isReminder", Value = "true" });
+                                    break;
+                                #endregion
+                                #region Reminder Next App
+                                case enumProfileInfoType.ReminderNextAppointment:
 
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.ProgramTime = AppointmentInfo.StartDate;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "isReminder", Value = "true" });
-                                break;
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.ProgramTime = AppointmentInfo.StartDate;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "isReminder", Value = "true" });
+                                    break;
+                                #endregion
+                            }
+                            if (mType == enumMessageType.Email)
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Email).Select(x => x.Value).FirstOrDefault() });
+                            if (mType == enumMessageType.Sms)
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault() });
+
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfilePublicId", Value = Profile.ProfilePublicId });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
+
+                            //Valid the key "To"
+                            string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
+                            if (keyTO != null)
+                                result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                            else
+                                result.IsSuccess = false;
                         }
-                        if (mType == enumMessageType.Email)
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Email).Select(x => x.Value).FirstOrDefault() });
-                        if (mType == enumMessageType.Sms)
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault() });
-
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfilePublicId", Value = Profile.ProfilePublicId });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
-
-                        //Valid the key "To"
-                        string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
-                        if (keyTO != null)
-                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
-                        else
-                            result.IsSuccess = false;
-                    }
-                    //Valid the conditions
-                    if (mType == enumMessageType.Sms && isPatientSms)
-                    {
-                        oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
-                        oMessage.NewMessage.UserAction = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserId.ToString();
-                        switch (MessageType)
+                        //Valid the conditions
+                        if (mType == enumMessageType.Sms && isPatientSms)
                         {
-                            case enumProfileInfoType.AsignedAppointment:
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                break;
-                            case enumProfileInfoType.CancelAppointment:
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ReescheduleLink", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                break;
-                            case enumProfileInfoType.ModifyAppointment:
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.ProgramTime = DateTime.Now;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                break;
-                            case enumProfileInfoType.ReminderAppointment:
-                                int ProgrameTime = Profile.ProfileInfo.Where(x => x.ProfileInfoType == MessageType).Select(x => x.LargeValue != "0" ? Convert.ToInt32(x.LargeValue) : 0).FirstOrDefault();
-                                DateTime ApointmentDate = AppointmentInfo.StartDate.AddHours(ProgrameTime * -1);
+                            oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
+                            oMessage.NewMessage.UserAction = BackOffice.Models.General.SessionModel.CurrentLoginUser.UserId.ToString();
+                            switch (MessageType)
+                            {
+                                #region Assigned
+                                case enumProfileInfoType.AsignedAppointment:
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    break;
+                                #endregion
+                                #region Cancel
+                                case enumProfileInfoType.CancelAppointment:
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ReescheduleLink", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    break;
+                                #endregion
+                                #region Modify
+                                case enumProfileInfoType.ModifyAppointment:
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.ProgramTime = DateTime.Now;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    break;
+                                #endregion
+                                #region Reminder
+                                case enumProfileInfoType.ReminderAppointment:
+                                    int ProgrameTime = Profile.ProfileInfo.Where(x => x.ProfileInfoType == MessageType).Select(x => x.LargeValue != "0" ? Convert.ToInt32(x.LargeValue) : 0).FirstOrDefault();
+                                    DateTime ApointmentDate = AppointmentInfo.StartDate.AddHours(ProgrameTime * -1);
 
-                                oMessage.NewMessage.ProgramTime = ApointmentDate;
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ConfirmCancelLink", Value = AppointmentInfo.AppointmentPublicId });
-                                break;
+                                    oMessage.NewMessage.ProgramTime = ApointmentDate;
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ConfirmCancelLink", Value = AppointmentInfo.AppointmentPublicId });
+                                    break;
 
+                                #endregion
+                                #region Reminder Next App
+                                case enumProfileInfoType.ReminderNextAppointment:
 
-                            case enumProfileInfoType.ReminderNextAppointment:
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
+                                    oMessage.NewMessage.ProgramTime = AppointmentInfo.StartDate;
+                                    oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
+                                    break;
+                                #endregion
+                            }
+                            if (mType == enumMessageType.Email)
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Email).Select(x => x.Value).FirstOrDefault() });
+                            if (mType == enumMessageType.Sms)
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault() });
 
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
-                                oMessage.NewMessage.ProgramTime = AppointmentInfo.StartDate;
-                                oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
-                                break;
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
+                            //Valid the key "To"
+                            string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
+                            if (keyTO != null)
+                                result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                            else
+                                result.IsSuccess = false;
                         }
-                        if (mType == enumMessageType.Email)
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Email).Select(x => x.Value).FirstOrDefault() });
-                        if (mType == enumMessageType.Sms)
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = item.PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault() });
-
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
-                        //Valid the key "To"
-                        string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
-                        if (keyTO != null)
-                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
-                        else
-                            result.IsSuccess = false;
                     }
                 }
             }
+            else
+            {
+                if (MessageType == enumProfileInfoType.CancelAppointment)
+                {
+                    List<User> User = new List<SessionController.Models.Auth.User>();
+                    User = Auth.Client.Controller.Client.GetUserListByEmailList(PatientList.FirstOrDefault().PatientInfo.Where(y => y.PatientInfoType == enumPatientInfoType.Email).Select(y => y.Value).FirstOrDefault());
+                    if (User != null || User.Count() > 0)
+                    {
+                        oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
+                        oMessage.NewMessage.UserAction = User.FirstOrDefault().UserId.ToString();
+                        oMessage.NewMessage.ProgramTime = DateTime.Now;
+                        oMessage.NewMessage.MessageType = "GuruNotification_MPCancelAppointment";
+
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name + PatientList.FirstOrDefault().LastName });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = PatientList.FirstOrDefault().PatientPublicId });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+
+                        List<string> emailRelatedList = new List<string>();
+                        List<PatientModel> emailPatientList = new List<PatientModel>();
+
+                        List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
+                        ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
+
+                        //Find the autorized 
+                        emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
+                        string autorizedEmail = string.Join(",", emailRelatedList);
+                        //Find the userPublicId by Email
+                        emailPatientList = PatientList.Where(x => x.PatientInfo.Where(y => y.PatientInfoType == enumPatientInfoType.Email).Select(y => y.Value) != null).Select(x => x).ToList();
+
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = User.FirstOrDefault().UserPublicId });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
+                        result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                    }
+                }
+                if (MessageType == enumProfileInfoType.AsignedAppointment)
+                {
+                    List<User> User = new List<SessionController.Models.Auth.User>();
+                    User = Auth.Client.Controller.Client.GetUserListByEmailList(PatientList.FirstOrDefault().PatientInfo.Where(y => y.PatientInfoType == enumPatientInfoType.Email).Select(y => y.Value).FirstOrDefault());
+                    if (User != null || User.Count() > 0)
+                    {
+                        oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
+
+                        oMessage.NewMessage.UserAction = User.FirstOrDefault().UserId.ToString();
+                        oMessage.NewMessage.ProgramTime = DateTime.Now;
+                        oMessage.NewMessage.MessageType = "GuruNotification_MPConfirmedAppointment";
+
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name + PatientList.FirstOrDefault().LastName });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = PatientList.FirstOrDefault().PatientPublicId });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+
+                        List<string> emailRelatedList = new List<string>();
+                        List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
+                        ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
+
+                        //Find the autorized 
+                        emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
+                        string autorizedEmail = string.Join(",", emailRelatedList);
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = User.FirstOrDefault().UserPublicId.ToString() });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
+                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
+                        result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                    }                   
+                }
+            }
+
             return result.IsSuccess;
         }
 
