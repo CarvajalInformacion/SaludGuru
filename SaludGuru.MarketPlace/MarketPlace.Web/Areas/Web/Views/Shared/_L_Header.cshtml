@@ -86,7 +86,16 @@
     </div>
     <div class="MPHeaderSearchWrapper">
         <!--image guru-->
-        <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Profile.Name &&
+            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Profile.ActionNames.FBProfile)
+        {
+            <a class="MPSGlogo" target="_blank" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+        }
+        else
+        {
+            <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+        }
+
 
         <!--search box-->
         @if ((MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
