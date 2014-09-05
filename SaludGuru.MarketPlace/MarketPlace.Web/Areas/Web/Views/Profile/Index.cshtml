@@ -18,17 +18,11 @@
 
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
-                    @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-
-
-
+                @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
                 <!--Profile Images-->
                 <div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
                 </div>
-
-
-
                 <!--Profile Description-->
                 <div class="MPProfileInfoDetail">
                     @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
@@ -50,19 +44,39 @@
             @*Metting disabled*@
             <div class="MPProfileLeftWrapper">
                 <!--Profile Basic Info-->
-                    @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
-
-
+                @Html.Partial(MVC.Web.Shared.Views._P_BasicInfo, Model)
                 <!--Profile Images-->
-                @*<div class="MPProfileInfoImages">
+                <div class="MPProfileInfoImages">
                     @Html.Partial(MVC.Web.Shared.Views._P_ImageSlider, Model)
-                </div>*@
+                </div>
                 <!--Profile Description-->
-
-
                 @Html.Partial(MVC.Web.Shared.Views._P_DetailInfo, Model)
             </div>
             <div class="MPProfileRigthWrapper">
+                <!--Not Schedule Image-->
+                <div class="MPProfileInfoDetailProfile">
+                    <ul>
+                        <li class="MPProfileInfoDetailProfileNotSchedule">
+                            <label>Este doctor no tiene agenda disponible</label>
+                        </li>
+                        <li>
+                            <span>Quieres contactarte con el?</span>
+                        </li>
+                        <li>
+                            @if (Model.CurrentProfile.RelatedOffice != null && Model.CurrentProfile.RelatedOffice.Count > 0)
+                            {
+                                foreach (var oOffice in Model.CurrentProfile.RelatedOffice)
+                                {
+                                    <div class="MPProfileOfficeContactSelector">
+                                        <span class="OfficeContactAddress">Dirección: @oOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                        <span class="OfficeContactTelephone">Telefono: @oOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                    </div>
+                                }
+                            }
+                        </li>
+
+                    </ul>
+                </div>
                 <!--Profile Map-->
                 <div class="MPProfileMap">
                     @Html.Partial(MVC.Web.Shared.Views._P_Map, Model)

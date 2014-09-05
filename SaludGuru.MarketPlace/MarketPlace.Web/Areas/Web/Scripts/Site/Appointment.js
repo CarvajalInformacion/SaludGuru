@@ -152,7 +152,7 @@ var AppointmentObject = {
 
     ///*init meeting calendar variables*/
     Init: function (vInitObject) {
-        debugger;
+
         //init render info
         this.DivAppointmentId = vInitObject.DivAppointmentId;
         this.selOfficeId = vInitObject.selOfficeId;
@@ -209,7 +209,7 @@ var AppointmentObject = {
     },
 
     RenderOfficeSchedule: function (vOfficePublicId) {
-        debugger;
+
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
         if (CurrentOfficeDiv.length == 1) {
             if (CurrentOfficeDiv.children().length == 0) {
@@ -241,23 +241,77 @@ var AppointmentObject = {
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
-                                 var NewResult = new Array();
-                                        //set header titles
-                                        $.each(result, function (item, value) {
-                                            if (value.Monday.IsHeader == true) {
-                                                var HeaderHtml = $('#divAppointmentSchedule_Template_Grid_Event_Header').html();
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Monday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Monday.AvailableDateText));
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Tuesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Tuesday.AvailableDateText));
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Wednesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Wednesday.AvailableDateText));
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Thursday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Thursday.AvailableDateText));
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Friday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Friday.AvailableDateText));
-                                                $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Saturday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Saturday.AvailableDateText));
-                                            }
-                                            else {
-                                                NewResult.push(value);
-                                            }
-                                        });
+
+                                        var NewResult = new Array();
+
+                                        //hide header
+                                        $('#spanHeader_' + vOfficePublicId).hide();
+                                        $('#divGrid_NotSchedule_' + vOfficePublicId).hide();
+
+                                        if (result != null && result.length > 0) {
+
+                                            $.each(result, function (item, value) {
+                                                if (value.Monday.IsHeader == true) {
+                                                    
+                                                    //print header column names
+                                                    var HeaderHtml = $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Header').html();
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Monday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Monday.AvailableDateText));
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Tuesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Tuesday.AvailableDateText));
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Wednesday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Wednesday.AvailableDateText));
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Thursday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Thursday.AvailableDateText));
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Friday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Friday.AvailableDateText));
+                                                    $('#' + AppointmentObject.DivAppointmentId).find('[data-field=Saturday]').html(HeaderHtml.replace(/\${AvailableDateText}/, value.Saturday.AvailableDateText));
+
+                                                    //show header column
+                                                    $('#spanHeader_' + vOfficePublicId).html(value.HeaderTitle);
+
+                                                    if (value.AfterDate != null && value.AfterDate.length > 0) {
+                                                        $('#aAfter_' + vOfficePublicId).click(function () {
+                                                            AppointmentObject.PageMove(vOfficePublicId, value.AfterDate, 'false');
+                                                        });
+                                                        $('#aAfter_' + vOfficePublicId).show();
+                                                    }
+                                                    else {
+                                                        $('#aAfter_' + vOfficePublicId).hide();
+                                                    }
+
+                                                    if (value.BeforeDate != null && value.BeforeDate.length > 0) {
+                                                        $('#aBefore_' + vOfficePublicId).click(function () {
+                                                            AppointmentObject.PageMove(vOfficePublicId, value.BeforeDate, 'false');
+                                                        });
+                                                        $('#aBefore_' + vOfficePublicId).show();
+                                                    }
+                                                    else {
+                                                        $('#aBefore_' + vOfficePublicId).hide();
+                                                    }
+
+                                                    if (result.length == 1 && value.CurrentDate != null && value.CurrentDate.length > 0) {
+
+                                                        $('#divGrid_NotSchedule_' + vOfficePublicId).click(function () {
+                                                            AppointmentObject.PageMove(vOfficePublicId, value.CurrentDate, 'true');
+                                                        });
+
+                                                        $('#divGrid_NotSchedule_' + vOfficePublicId).show();
+                                                    }
+
+                                                    $('#spanHeader_' + vOfficePublicId).show();
+
+                                                }
+                                                else {
+                                                    NewResult.push(value);
+                                                }
+                                            });
+                                        }
+                                        else {
+
+                                            $('#divGrid_NotSchedule_' + vOfficePublicId).click(function () {
+                                                AppointmentObject.PageMove(vOfficePublicId, null, 'true');
+                                            });
+
+                                            $('#divGrid_NotSchedule_' + vOfficePublicId).show();
+                                        }
                                         options.success(NewResult);
+
                                     },
                                     error: function (result) {
                                         options.error(result);
@@ -297,63 +351,6 @@ var AppointmentObject = {
                         width: 100,
                         template: $('#' + AppointmentObject.DivAppointmentId + '_Template_Grid_Event_Saturday').html()
                     }],
-                    dataBound: function (e) {
-                        //set header before render
-                        var lstData = this.dataSource.view();
-
-                        $('#spanHeader_' + vOfficePublicId).hide();
-                        $('#divGrid_NotSchedule_' + vOfficePublicId).hide();
-
-                        if (lstData != null && lstData.length > 0) {
-
-                            $('#spanHeader_' + vOfficePublicId).html(lstData[0].HeaderTitle);
-
-                            if (lstData[0].AfterDate != null && lstData[0].AfterDate.length > 0) {
-                                $('#aAfter_' + vOfficePublicId).click(function () {
-                                    AppointmentObject.PageMove(vOfficePublicId, lstData[0].AfterDate, 'false');
-                                });
-                                $('#aAfter_' + vOfficePublicId).show();
-                            }
-                            else {
-                                $('#aAfter_' + vOfficePublicId).hide();
-                            }
-
-                            if (lstData[0].BeforeDate != null && lstData[0].BeforeDate.length > 0) {
-                                $('#aBefore_' + vOfficePublicId).click(function () {
-                                    AppointmentObject.PageMove(vOfficePublicId, lstData[0].BeforeDate, 'false');
-                                });
-                                $('#aBefore_' + vOfficePublicId).show();
-                            }
-                            else {
-                                $('#aBefore_' + vOfficePublicId).hide();
-                            }
-
-                            if (lstData.length == 1 && lstData[0].CurrentDate != null && lstData[0].CurrentDate.length > 0) {
-
-                                $('#divGrid_NotSchedule_' + vOfficePublicId).click(function () {
-                                    AppointmentObject.PageMove(vOfficePublicId, lstData[0].CurrentDate, 'true');
-                                });
-
-                                $('#divGrid_NotSchedule_' + vOfficePublicId).show();
-                            }
-
-                            $('#spanHeader_' + vOfficePublicId).show();
-                        }
-                        else {
-
-                            $('#divGrid_NotSchedule_' + vOfficePublicId).click(function () {
-                                AppointmentObject.PageMove(vOfficePublicId, null, 'true');
-                            });
-
-                            $('#divGrid_NotSchedule_' + vOfficePublicId).show();
-                        }
-                        $("#SelectedTreatment").change(function () {
-                            var selectedVal = $("#SelectedTreatment option:selected").val();
-                            AppointmentObject.PageMove(vOfficePublicId, lstData[0].CurrentDate, 'true',
-                                selectedVal);
-                        });
-                        e.preventDefault();
-                    }
                 });
             }
 

@@ -91,9 +91,9 @@ div.SelOfficeGrid {
 #divAppointmentSchedule div.SelOfficeGrid > div {
     display: block;
     border:none;
-    width: 100.2%;
+    width: 100%;
     height: auto;
-    text-align: left;
+    text-align: center;
 }
 
 div.SelOfficeGrid > div > a, div.SelOfficeGrid > div > span {
@@ -164,10 +164,6 @@ div.k-grid-content {
     text-decoration:none;
     font-size:0.9em !important;
     }
-
-a#aBefore_192BD698 {
-    margin-left: 60%;
-}
 
 .HeaderStyle:hover {
     color:#333 !important;

@@ -75,7 +75,6 @@ var ScheduleAppointmentObject = {
 
     ScheduleAppointment: function (vLink) {
         if (ScheduleAppointmentObject.IsLogin) {
-            debugger;
             window.location = vLink;
         }
         else {
