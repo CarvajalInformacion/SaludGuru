@@ -571,7 +571,7 @@
     <key name="Message_Body_GuruNotification_MPConfirmedAppointment">
       <![CDATA[  
           El paciente {PatientName} ha confirmado una cita con el Dr(a). {ProfileName}
-          el día {Date} hora {Hour}.
+          el día {AppointmentDate} hora {Hour}.
           ]]>
     </key>
 
@@ -593,7 +593,7 @@
     <key name="Message_Body_GuruNotification_MPCancelAppointment">
       <![CDATA[  
           El paciente {PatientName} ha cancelado una cita con el Dr(a). {ProfileName}
-          el día {Date} hora {Hour}.
+          el día {AppointmentDate} hora {Hour}.
           ]]>
     </key>
 

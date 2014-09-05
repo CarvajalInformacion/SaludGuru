@@ -21,7 +21,7 @@
                             <option value="@item.Key" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
                         }
                     }
-}
+                }
             </select>
 
             @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
@@ -89,8 +89,10 @@
         <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
 
         <!--search box-->
-        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
-            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index) { }
+        @if ((MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
+            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index) ||
+            (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Profile.Name &&
+            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Profile.ActionNames.FBProfile)) { }
         else
         {
             <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>

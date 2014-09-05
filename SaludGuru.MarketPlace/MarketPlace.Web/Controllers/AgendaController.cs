@@ -14,8 +14,7 @@ namespace MarketPlace.Web.Controllers
 
             if (!string.IsNullOrEmpty(NewAppointmentPublicId) && NewAppointmentPublicId.Trim().Length >= 8)
             {
-                return RedirectPermanent("https://localhost:44304/ExternalAppointment/Index?AppointmentPublicId=" + NewAppointmentPublicId);
-
+                return RedirectPermanent(MarketPlace.Models.General.Constants.C_Settings_UrlBackOffice + "/ExternalAppointment/Index?AppointmentPublicId=" + NewAppointmentPublicId);
             }
             else
             {

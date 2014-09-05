@@ -63,6 +63,12 @@ namespace MarketPlace.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult FBProfile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FBProfile);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProfileController Actions { get { return MVC.Profile; } }
@@ -80,12 +86,14 @@ namespace MarketPlace.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string FBProfile = "FBProfile";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string FBProfile = "FBProfile";
         }
 
 
@@ -98,6 +106,14 @@ namespace MarketPlace.Web.Controllers
             public readonly string DoctorName = "DoctorName";
             public readonly string ProfilePublicId = "ProfilePublicId";
             public readonly string SpecialtyName = "SpecialtyName";
+        }
+        static readonly ActionParamsClass_FBProfile s_params_FBProfile = new ActionParamsClass_FBProfile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FBProfile FBProfileParams { get { return s_params_FBProfile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FBProfile
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -129,6 +145,18 @@ namespace MarketPlace.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SpecialtyName", SpecialtyName);
             IndexOverride(callInfo, DoctorName, ProfilePublicId, SpecialtyName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FBProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FBProfile(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FBProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            FBProfileOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

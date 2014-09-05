@@ -145,7 +145,8 @@
     <key name="Georef_LongitudeMax">12.575882</key>
 
     <!--market place profile url-->
-    <key name="Profile_MarketPlaceUrl">http://www.saludguru.com/doctor/{ProfileName}-{ProfilePublicId}/{SpecialtyName}</key>    
+    <key name="Profile_MarketPlaceUrl">https://localhost:44303/doctor/{ProfileName}-{ProfilePublicId}/{SpecialtyName}</key>
+    <key name="Profile_FBUrl">https://localhost:44303/Profile/FBProfile?ProfilePublicId={ProfilePublicId}</key>
 
     <!--invalid url characters-->
     <key name="Url_Invalid_Char">

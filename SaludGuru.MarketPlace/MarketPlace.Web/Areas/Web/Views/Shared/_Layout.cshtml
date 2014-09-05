@@ -23,6 +23,11 @@
         <meta name="ROBOTS" content="NOFOLLOW">
     }
 
+    @if (ViewBag.Canonical != null && ViewBag.Canonical.ToString().Length > 0)
+    {
+        <link rel="canonical" href="@ViewBag.Canonical.ToString()" />
+    }
+
 </head>
 <body>
     <div>

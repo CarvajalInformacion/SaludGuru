@@ -1,5 +1,5 @@
 .MPProfileGreatWrapper {
-        border:none;
+    border: none;
     display: block;
     margin: 0px auto;
     padding: 0px;
@@ -48,15 +48,18 @@
     height: auto;
     text-align: left;
 }
+
 .MPProfileLeftWrapper {
     width: 52%;
     padding-top: 10px;
 }
+
 @media screen and (max-width:1024px) {
     .MPProfileLeftWrapper {
         width: 54%;
     }
 }
+
 @media screen and (max-width:800px) {
     .MPProfileLeftWrapper {
         width: 52%;
@@ -67,11 +70,13 @@
     margin: 0px;
     width: 47.3%;
 }
+
 @media screen and (max-width:1024px) {
     .MPProfileRigthWrapper {
         width: 45.2%;
     }
 }
+
 @media screen and (max-width:800px) {
     .MPProfileRigthWrapper {
         width: 47.3%;
@@ -90,21 +95,23 @@
     display: inline-block;
     text-align: left;
     vertical-align: top;
-
 }
+
 .MPProfileInfo_BasicInfo {
     width: auto;
     overflow: hidden;
-    height:auto;
+    height: auto;
 }
-    hr.featurette-divider.__loop.ProfileBasicInfo {
-    }
+
+hr.featurette-divider.__loop.ProfileBasicInfo {
+}
 /*--------------------------------------*/
 img.MPProfileCertified {
     width: 54px;
     height: auto;
     float: right;
 }
+
 img.MPProfileDoctorImage {
     border: 1px solid #666;
     border-radius: 2px;
@@ -113,10 +120,11 @@ img.MPProfileDoctorImage {
     height: auto;
     vertical-align: top;
 }
+
 .MPProfileInfo_BasicInfoRight {
     border: none;
     letter-spacing: -0.6px;
-    width:61.5%;
+    width: 61.5%;
 }
 
 .MPProfileDoctorName {
@@ -152,14 +160,14 @@ div.MPProfileSpecialtyColumn {
     font-size: 0.8em;
     line-height: 1em;
     margin: 6px 0px;
-    display:block;
+    display: block;
 }
 
 li.MPProfileInsuranceName {
     width: auto;
     line-height: 1em;
     border: medium none;
-    display:inline-block;
+    display: inline-block;
     font-size: 0.9em;
     letter-spacing: 0px;
     text-indent: 8px;
@@ -169,8 +177,9 @@ li.MPProfileInsuranceName {
     border: none;
     display: block;
     width: 100%;
-    height:auto;
+    height: auto;
 }
+
     .MPProfileInfo_Social a, .MPProfileInfo_Social iframe {
         border: medium none;
         display: inline-block;
@@ -180,13 +189,15 @@ li.MPProfileInsuranceName {
         color: #92B92A;
         letter-spacing: -0.6px;
         vertical-align: top;
-        height:24px;
+        height: 24px;
     }
+
     .MPProfileInfo_Social iframe {
         width: 115px !important;
         padding: 5px;
         height: 30px !important;
     }
+
     .MPProfileInfo_Social img {
         width: 22%;
         height: auto;
@@ -225,13 +236,14 @@ li.MPProfileInsuranceName {
         overflow: hidden;
     }
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
-.MPProfileInfoDetail {
+.MPProfileInfoDetailProfile {
     display: block;
-    width:98%;
+    width: 98%;
     height: auto;
     font-size: 1em;
 }
-    .MPProfileInfoDetail ul {
+
+    .MPProfileInfoDetailProfile ul {
         border: medium none;
         display: block;
         margin: 5px auto 5px auto;
@@ -240,11 +252,13 @@ li.MPProfileInsuranceName {
         text-align: left;
         width: 100%;
     }
-        .MPProfileInfoDetail ul li {
+
+        .MPProfileInfoDetailProfile ul li {
             border: none;
-            display:block;
+            display: block;
         }
-            .MPProfileInfoDetail ul li a {
+
+            .MPProfileInfoDetailProfile ul li label {
                 font-size: 1.1em;
                 line-height: 27px;
                 letter-spacing: -1px;
@@ -255,10 +269,13 @@ li.MPProfileInsuranceName {
                 display: block;
                 cursor: text;
             }
-                .MPProfileInfoDetail ul li a:hover, .MPProfileInfoDetail div ul li a:active {
-                    background-color: #fff;
-                    text-decoration: none;
-                }
+
+.MPProfileInfoDetailProfileNotSchedule {
+    border-bottom: 1px solid #99c21d !important;
+    font-size: 1.5em;
+    margin: 10px 0px 10px 0px;
+}
+
 div#divProfileText,
 div#divEducation,
 div#divCertification,
@@ -272,21 +289,24 @@ div#divOffice {
     position: relative;
     z-index: 2;
 }
-div#divProfileText p{
-    margin-bottom: 10px;
-}
-.MPProfileInfoDetail div#divProfileText p,
-.MPProfileInfoDetail div#divEducation p,
-.MPProfileInfoDetail div#divCertification p,
-.MPProfileInfoDetail div#divOffice ul {
-    font-size:0.9em;
-    line-height:21px;
+
+    div#divProfileText p {
+        margin-bottom: 10px;
+    }
+
+.MPProfileInfoDetailProfile div#divProfileText p,
+.MPProfileInfoDetailProfile div#divEducation p,
+.MPProfileInfoDetailProfile div#divCertification p,
+.MPProfileInfoDetailProfile div#divOffice ul {
+    font-size: 0.9em;
+    line-height: 21px;
     color: #666;
     height: auto;
     overflow: initial;
     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
     text-align: justify;
 }
+
 div#divOffice ul li {
     width: 90%;
 }
@@ -297,7 +317,7 @@ div#divOffice ul li {
     width: 100%;
     height: auto;
     font-size: 1em;
-    margin:0px auto 0px auto;
+    margin: 0px auto 0px auto;
 }
 
 .MPProfileCallendarWrapper {
@@ -306,7 +326,7 @@ div#divOffice ul li {
     height: auto;
     vertical-align: top;
     text-align: left;
-    width:100%;
+    width: 100%;
 }
 
     .MPProfileCallendarWrapper ul {
@@ -334,14 +354,14 @@ div#divOffice ul li {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     position: relative;
-    z-index:1;
+    z-index: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 175px;
 }
 
-.MPProfileCallendarWrapper ul li a:hover, .MPProfileInfoDetail ul li a:active {
+.MPProfileCallendarWrapper ul li a:hover {
     background-color: #fff !important;
     text-decoration: none !important;
 }
@@ -359,7 +379,7 @@ div#divOffice ul li {
     box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
     position: relative;
-    z-index:2;
+    z-index: 2;
 }
 
 .MPProfileOfficeContactSelector {
@@ -421,7 +441,6 @@ span.OfficeContactTelephone {
 
 .MPProfileCalendarWeekTop {
     margin: 0px 0px 0px;
-    display: none !important;
 }
 
 .k-grid td {
@@ -436,15 +455,16 @@ span.OfficeContactTelephone {
 
 div.k-grid-content {
     width: 100% !important;
-    height:194px !important;
+    height: 194px !important;
 }
 
     div.k-grid-content > table > colgroup > col {
         box-sizing: content-box;
         width: 70px !important;
     }
+
 .k-alt, .k-separator {
-    background-color:#fff !important;
+    background-color: #fff !important;
 }
 
 /************ MAPA ***********/
@@ -456,6 +476,7 @@ div.k-grid-content {
     box-shadow: 2px 2px 2px #666;
     border-radius: 2px;
 }
+
     #divOfficeMap .OfficeMapToolTip {
         width: 300px;
         height: 60px;

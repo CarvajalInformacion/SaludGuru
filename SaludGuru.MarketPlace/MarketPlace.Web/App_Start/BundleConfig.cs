@@ -107,6 +107,13 @@ namespace MarketPlace.Web
 
                 #endregion
 
+                #region JQuery Mobile
+
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile").Include(
+                           "~/Areas/Mobile/Scripts/jquery.mobile-{version}.js"));                           
+
+                #endregion
+
                 #region Modernizr
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/modernizr").Include(
                             "~/Areas/Mobile/Scripts/modernizr-*"));
