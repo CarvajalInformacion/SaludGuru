@@ -11,6 +11,14 @@ namespace MarketPlace.Web.Controllers
     {
         public virtual ActionResult Index()
         {
+            if (!ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]))
+            {
+                //redirect route 301
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home)));
+            }
+
             ProfileModel Model = SaludGuruProfile.Manager.Controller.Profile.GetFeaturedProfile(1);
 
             return View(Model);
@@ -43,21 +51,53 @@ namespace MarketPlace.Web.Controllers
 
         public virtual ActionResult LegalTerms()
         {
+            if (!ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]))
+            {
+                //redirect route 301
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms)));
+            }
+
             return View();
         }
 
         public virtual ActionResult ConditionsAndRestrictions()
         {
+            if (!ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]))
+            {
+                //redirect route 301
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions)));
+            }
+
             return View();
         }
 
         public virtual ActionResult FAQ()
         {
+            if (!ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]))
+            {
+                //redirect route 301
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ)));
+            }
+
             return View();
         }
 
         public virtual ActionResult Contact()
         {
+            if (!ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]))
+            {
+                //redirect route 301
+                Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact)));
+            }
+
             return View();
         }
 
