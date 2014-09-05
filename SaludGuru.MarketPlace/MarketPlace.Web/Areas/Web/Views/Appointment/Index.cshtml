@@ -233,6 +233,16 @@
             $('#SelectedOffice').click(function () {
                 AppointmentObject.ChangeOffice();
             });
+            $("#Birthday").datepicker({
+                dateFormat: 'yy-mm-dd',
+                locale: $.datepicker.regional['es'],
+                defaultDate: new Date('@DateTime.Now.AddYears(-18).Year', '@DateTime.Now.AddYears(-18).Month', '@DateTime.Now.AddYears(-18).Day'),
+                changeMonth: true,
+                changeYear: true,
+                showAnim: 'drop',
+                duration: jQuery.support.boxModel ? 'normal' : 'slow',
+                yearRange: '@DateTime.Now.AddYears(-90).Year:@DateTime.Now.Year'
+            });
         });
     </script>
 }
