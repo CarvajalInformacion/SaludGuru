@@ -251,6 +251,16 @@ namespace BackOffice.Web.Controllers
             return RedirectToAction(MVC.Profile.ActionNames.ProfileEditImage, MVC.Profile.Name, new { ProfilePublicId = ProfilePublicId });
         }
 
+        public virtual ActionResult ProfilePreview(string ProfilePublicId)
+        {
+            ProfileUpSertModel Model = new ProfileUpSertModel()
+            {
+                Profile = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId),
+            };
+
+            return View(Model);
+        }
+
         #endregion
 
         #region Office

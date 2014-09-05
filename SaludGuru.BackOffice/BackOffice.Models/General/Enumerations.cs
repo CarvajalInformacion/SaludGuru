@@ -35,7 +35,8 @@
         Insurance,
         Treatment,
         Comunicactions,
-        RelatedProfiles
+        RelatedProfiles,
+        ProfilePreview
     }
 
     public enum enumMenuOffice

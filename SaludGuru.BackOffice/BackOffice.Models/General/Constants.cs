@@ -35,7 +35,7 @@
 
         #endregion
 
-        #region Profile Genera
+        #region Profile General
 
         public const string C_Settings_RemindersType = "Profile_RemindersType";
 
@@ -50,6 +50,8 @@
         public const string C_Settings_Georef_LongitudeMax = "Georef_LongitudeMax";
 
         public const string C_Settings_Profile_MarketPlaceUrl = "Profile_MarketPlaceUrl";
+
+        public const string C_Settings_Profile_FBUrl = "Profile_FBUrl";
 
         public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
 
