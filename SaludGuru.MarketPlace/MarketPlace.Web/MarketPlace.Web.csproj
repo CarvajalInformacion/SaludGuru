@@ -1525,6 +1525,7 @@
     <Content Include="Areas\Mobile\Content\Images\icons-svg\alert-black.svg" />
     <Content Include="Areas\Mobile\Content\Images\icons-svg\action-white.svg" />
     <Content Include="Areas\Mobile\Content\Images\icons-svg\action-black.svg" />
+    <Content Include="Areas\Web\Views\Profile\FBProfile.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />
