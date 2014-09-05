@@ -131,7 +131,7 @@
             <li>
                 <label>Fecha de nacimiento</label>
                 <input id="Birthday" name="Birthday" value="@(CatInfo_BD == null ? string.Empty : CatInfo_BD.val)" type="text" />
-                <div id="divCalendar"></div>
+
             </li>
 
             <li>
@@ -298,17 +298,20 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-  
+
     $(document).ready(function () {
         //render calendar by month
-        GeneralCalendarObject.Init({
-            DivId: 'Birthday',
-            CountryId: '1',
-            ProfilePublicId: '',
-            StartDate: new Date(),
-            EndDate: new Date(),
-            FirstDate: new Date(),
+        $(function () {
+            $("#Birthday").datepicker({
+                dateFormat: 'yy-mm-dd',
+                locale: $.datepicker.regional['es'],
+                defaultDate: new Date('@DateTime.Now.AddYears(-18).Year', '@DateTime.Now.AddYears(-18).Month', '@DateTime.Now.AddYears(-18).Day'),
+                changeMonth: true,
+                changeYear: true,
+                showAnim: 'drop',
+                duration: jQuery.support.boxModel ? 'normal' : 'slow',
+                yearRange: '@DateTime.Now.AddYears(-90).Year:@DateTime.Now.Year'
+            });
         });
-        GeneralCalendarObject.RenderAsync();
     });
 </script>
