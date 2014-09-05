@@ -4,8 +4,8 @@
 @if (!Model.RenderScripts)
 {
     string ovCurrentDomain = Request.Url.ToString();
-    ovCurrentDomain = ovCurrentDomain.Replace(Request.Url.AbsolutePath, "");
-    ovCurrentDomain = Server.UrlDecode(ovCurrentDomain).Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
+    ovCurrentDomain = ovCurrentDomain.Replace(Request.Url.PathAndQuery, "");
+    ovCurrentDomain = Server.UrlDecode(ovCurrentDomain).Replace(Server.UrlDecode(Request.Url.PathAndQuery), "");
 
     <div class="MPProfileCallendarWrapper">
         <ul id="divAppointmentSchedule_Menu"></ul>

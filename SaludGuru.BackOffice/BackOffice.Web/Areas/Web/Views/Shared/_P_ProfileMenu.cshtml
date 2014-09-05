@@ -91,6 +91,11 @@
                         strStyle = oMenu.IsSelected ? "selected" : string.Empty;
                         strName = "Perfiles relacionados";
                         break;
+                    case BackOffice.Models.General.enumMenuProfile.ProfilePreview:
+                        strAction = Url.Action(MVC.Profile.ActionNames.ProfilePreview, MVC.Profile.Name, new { ProfilePublicId = Model.ProfilePublicId });
+                        strStyle = oMenu.IsSelected ? "selected" : string.Empty;
+                        strName = "Perfil preliminar";
+                        break;
                     default:
                         break;
                 }

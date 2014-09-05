@@ -148,7 +148,9 @@
         </div>
         <div class="MPResultsDoctorLinksWrapper">
             @{
-    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
+            string ovCurrentDomain = Request.Url.ToString();
+            ovCurrentDomain = ovCurrentDomain.Replace(Request.Url.PathAndQuery, "");
+            ovCurrentDomain = Server.UrlDecode(ovCurrentDomain).Replace(Server.UrlDecode(Request.Url.PathAndQuery), "");
             }
             @if (ovOnLineMeeting)
             {

@@ -351,6 +351,12 @@ namespace BackOffice.Web.Controllers
             {
                 oReturn = enumMenuProfile.Comunicactions;
             }
+            else if (MVC.Profile.Name == CurrentControllerName &&
+              MVC.Profile.ActionNames.ProfilePreview == CurrentActionName)
+            {
+                oReturn = enumMenuProfile.ProfilePreview;
+            }
+
             return oReturn;
         }
 

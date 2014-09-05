@@ -101,6 +101,12 @@ namespace BackOffice.Web.Areas.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ProfilePreview()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfilePreview);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult OfficeList()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OfficeList);
@@ -267,6 +273,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfileUpsertLarge = "ProfileUpsertLarge";
             public readonly string ProfileUpsertGeneral = "ProfileUpsertGeneral";
             public readonly string ProfileDeleteGeneral = "ProfileDeleteGeneral";
+            public readonly string ProfilePreview = "ProfilePreview";
             public readonly string OfficeList = "OfficeList";
             public readonly string OfficeUpsert = "OfficeUpsert";
             public readonly string OfficeTreatmentList = "OfficeTreatmentList";
@@ -304,6 +311,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public const string ProfileUpsertLarge = "ProfileUpsertLarge";
             public const string ProfileUpsertGeneral = "ProfileUpsertGeneral";
             public const string ProfileDeleteGeneral = "ProfileDeleteGeneral";
+            public const string ProfilePreview = "ProfilePreview";
             public const string OfficeList = "OfficeList";
             public const string OfficeUpsert = "OfficeUpsert";
             public const string OfficeTreatmentList = "OfficeTreatmentList";
@@ -387,6 +395,14 @@ namespace BackOffice.Web.Areas.Web.Controllers
         public ActionParamsClass_ProfileDeleteGeneral ProfileDeleteGeneralParams { get { return s_params_ProfileDeleteGeneral; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ProfileDeleteGeneral
+        {
+            public readonly string ProfilePublicId = "ProfilePublicId";
+        }
+        static readonly ActionParamsClass_ProfilePreview s_params_ProfilePreview = new ActionParamsClass_ProfilePreview();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ProfilePreview ProfilePreviewParams { get { return s_params_ProfilePreview; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ProfilePreview
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
         }
@@ -615,6 +631,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
                 public readonly string ProfileEdit = "ProfileEdit";
                 public readonly string ProfileEditImage = "ProfileEditImage";
                 public readonly string ProfileMessangerUpsert = "ProfileMessangerUpsert";
+                public readonly string ProfilePreview = "ProfilePreview";
                 public readonly string ProfileReminderUpsert = "ProfileReminderUpsert";
                 public readonly string ProfileSearch = "ProfileSearch";
                 public readonly string RelatedProfileSearch = "RelatedProfileSearch";
@@ -634,6 +651,7 @@ namespace BackOffice.Web.Areas.Web.Controllers
             public readonly string ProfileEdit = "~/Areas/Web/Views/Profile/ProfileEdit.cshtml";
             public readonly string ProfileEditImage = "~/Areas/Web/Views/Profile/ProfileEditImage.cshtml";
             public readonly string ProfileMessangerUpsert = "~/Areas/Web/Views/Profile/ProfileMessangerUpsert.cshtml";
+            public readonly string ProfilePreview = "~/Areas/Web/Views/Profile/ProfilePreview.cshtml";
             public readonly string ProfileReminderUpsert = "~/Areas/Web/Views/Profile/ProfileReminderUpsert.cshtml";
             public readonly string ProfileSearch = "~/Areas/Web/Views/Profile/ProfileSearch.cshtml";
             public readonly string RelatedProfileSearch = "~/Areas/Web/Views/Profile/RelatedProfileSearch.cshtml";
@@ -742,6 +760,18 @@ namespace BackOffice.Web.Areas.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfileDeleteGeneral);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
             ProfileDeleteGeneralOverride(callInfo, ProfilePublicId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfilePreviewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProfilePreview(string ProfilePublicId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProfilePreview);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
+            ProfilePreviewOverride(callInfo, ProfilePublicId);
             return callInfo;
         }
 

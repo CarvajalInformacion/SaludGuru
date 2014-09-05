@@ -1244,6 +1244,7 @@
     <Content Include="Areas\Web\Views\ExternalAppointment\Index.cshtml" />
     <Content Include="Areas\Web\Views\ExternalAppointment\Cancel.cshtml" />
     <Content Include="Areas\Web\Views\Profile\OfficeAppointmentUpload.cshtml" />
+    <Content Include="Areas\Web\Views\Profile\ProfilePreview.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <Content Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
