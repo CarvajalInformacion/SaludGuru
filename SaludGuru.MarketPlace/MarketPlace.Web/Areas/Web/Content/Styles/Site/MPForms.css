@@ -332,3 +332,10 @@ span#Name-error, span#LastName-error, span#Identification-error, span#Birthday-e
     color: red;
     /*position: absolute;*/
 }
+
+span#isSomeBodyValidate {
+    display: none;
+    display: inline-block;
+    margin: 0px 0px 20px 10px;
+    color: red;
+}

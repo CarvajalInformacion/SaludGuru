@@ -111,6 +111,7 @@
             <li class="MPAgendaButtonWrapper">
                 <input id="isSomeBody" type="radio" name="SelectedPatientItem" />
                 <label>Alguien más</label>
+                <span id="isSomeBodyValidate" style="display: none;">Debes seleccionar el paciente.</span>
             </li>
             <li class="NewPatientLi">
                 <div id="NewPatientId" style="display:none;"></div>
@@ -176,12 +177,10 @@
                 <li>
                     <label>Identificación</label>
                     <input type="text" id="Identification" name="Identification" />
-                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
                     <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
-                    <span class="required">*</span>
                 </li>
                 <li>
                     <label>Sexo</label>

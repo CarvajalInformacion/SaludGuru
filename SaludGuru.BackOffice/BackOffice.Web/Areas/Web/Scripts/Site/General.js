@@ -116,7 +116,6 @@ var NotificationObject = {
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
-                debugger;
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
@@ -130,13 +129,11 @@ var NotificationObject = {
     },
 };
 function ReadNotification_OnMouseOver(NotificationId) {
-    debugger;
     $.ajax({        
         url: '/api/NotificationApi?NotificationId=' + NotificationId,
         Type: "POST",
         dataType: "Json"
     }).done(function (data) {
-        debugger;
         NotificationObject.NotificationList = data;
         NotificationObject.RenderNotifications();
         //var oReturn

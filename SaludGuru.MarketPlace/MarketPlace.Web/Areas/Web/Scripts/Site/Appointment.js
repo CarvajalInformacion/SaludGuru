@@ -6,10 +6,6 @@
         },
         LastName: {
             required: true,
-        },
-        Identification: {
-            required: true,
-            minlength: 5,
         }
     };
 
@@ -23,9 +19,9 @@
     if ($('#CreatePatientForm').valid()) {
         CreatePatient();
     }
-    else
-    {
+    else {
         $('#NewPatientId').show();
+        $("input#Name").focus();
     }
 }
 
@@ -52,13 +48,14 @@ function CreatePatient() {
         e.unbind(); //unbind. to stop multiple form submit.
     });
 
-    CloseNewPatient();
+    $("#NewPatientId").hide(800);
     $("#CreatePatientForm").submit(); //Submit  the FORM
     $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday").val('');
 }
 
 function CloseNewPatient() {
-    $("#NewPatientId").hide(800);    
+    $("#NewPatientId").hide(800);
+    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday").val('');
 }
 
 function AddPatientToList(vPatientModel) {
@@ -79,12 +76,13 @@ function AddPatientToList(vPatientModel) {
 
 var InitFunctionsNewPatient = {
 
-    InitialLoad: function(){
+    InitialLoad: function () {
         this.CalendarNewPatient();
         this.CopyDiv();
+        
     },
 
-    ChangeCheckNewPatient: function(){
+    ChangeCheckNewPatient: function () {
         $('input#SelectedPatientItem').click(function () {
             var $this = $(this);
             if ($this.is(':checked')) {
@@ -93,7 +91,7 @@ var InitFunctionsNewPatient = {
             else { }
         });
     },
-    
+
     ChangeCheck: function () {
         $('input#GenderMale').click(function () {
             var $this = $(this);
@@ -139,7 +137,7 @@ var InitFunctionsNewPatient = {
 }
 
 /*profile office appointment render method*/
-var AppointmentObject = {    
+var AppointmentObject = {
     /*profile info*/
     DivAppointmentId: '',
     selOfficeId: '',
@@ -238,7 +236,7 @@ var AppointmentObject = {
                                     dataType: "json",
                                     type: "POST",
                                     success: function (result) {
-                                 var NewResult = new Array();
+                                        var NewResult = new Array();
                                         //set header titles
                                         $.each(result, function (item, value) {
                                             if (value.Monday.IsHeader == true) {
@@ -407,6 +405,14 @@ $('#SaveAppointmentId').click(function () {
     if (treatmentSelected == null) {
         return false;
     }
+    if ($('input#isSomeBody').is(':checked'))
+    {
+        $('#isSomeBodyValidate').show();
+        return false;
+    }
+    else {
+        $('#isSomeBodyValidate').hide();
+    }
     //Validate legal terms
     $('#AppointmentForm').validate({ // initialize the plugin
         errorClass: 'error help-inline',
@@ -426,6 +432,7 @@ $('#SaveAppointmentId').click(function () {
 });
 $("#isSomeBody").click(function () {
     $('#NewPatientId').show(800);
+    $("input#Name").focus();
 });
 $("#GenderFemale").click(function () {
     $("#GenderMale").attr('checked', false);
