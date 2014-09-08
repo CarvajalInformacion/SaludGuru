@@ -1414,6 +1414,20 @@ namespace BackOffice.Web.Controllers
                         Success = true,
                         Error = "Se ha creado la cita '" + CurrentAppointment.AppointmentPublicId + "'",
                     });
+
+                    #region Messenger
+
+                    ProfileModel oSource = new ProfileModel();
+                    oSource = SaludGuruProfile.Manager.Controller.Profile.ProfileGetFullAdmin(ProfilePublicId);
+
+                    List<PatientModel> oTargetList = new List<PatientModel>();
+                    oTargetList.Add(CurrentPatient);
+                    //Send de Signed App
+                    BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, oTargetList, CurrentAppointment, false);
+                    //Send de Reminder App
+                    BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, oTargetList, CurrentAppointment, false);
+
+                    #endregion
                 }
                 catch (Exception err)
                 {
