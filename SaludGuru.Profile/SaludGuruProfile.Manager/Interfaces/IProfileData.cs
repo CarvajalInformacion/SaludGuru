@@ -73,6 +73,7 @@ namespace SaludGuruProfile.Manager.Interfaces
         ProfileModel ProfileGetByAppointmentIdBasicInfo(string AppointmentPublicId);
         ProfileModel ProfileGetByAppointmentIdCategory(string AppointmentPublicId);
 
+        List<SiteMapsModel> GetSiteMaps();
 
         #endregion
 

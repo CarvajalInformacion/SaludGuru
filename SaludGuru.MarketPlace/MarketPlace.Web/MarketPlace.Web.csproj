@@ -1528,6 +1528,8 @@
     <Content Include="Areas\Mobile\Content\Images\icons-svg\action-white.svg" />
     <Content Include="Areas\Mobile\Content\Images\icons-svg\action-black.svg" />
     <Content Include="Areas\Web\Views\Profile\FBProfile.cshtml" />
+    <Content Include="Areas\Web\Views\Home\SiteMap.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_LayoutXml.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />

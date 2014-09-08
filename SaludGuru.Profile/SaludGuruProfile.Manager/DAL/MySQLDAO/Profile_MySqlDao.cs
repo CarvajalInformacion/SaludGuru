@@ -1822,6 +1822,122 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public List<SiteMapsModel> GetSiteMaps()
+        {
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.DataSet,
+                CommandText = "MP_P_GetSiteMaps",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = null
+            });
+
+            List<SiteMapsModel> oReturn = new List<SiteMapsModel>();
+            if (response.DataSetResult != null &&
+                response.DataSetResult.Tables.Count > 0)
+            {
+                if (response.DataSetResult.Tables.Count > 0 &&
+                   response.DataSetResult.Tables[0].Rows.Count > 0)
+                {
+                    oReturn.AddRange(
+                        (from p in response.DataSetResult.Tables[0].AsEnumerable()
+                         select new SiteMapsModel()
+                         {
+                             RelatedProfile = new ProfileModel()
+                             {
+                                 ProfilePublicId = p.Field<string>("ProfilePublicId"),
+                                 Name = p.Field<string>("ProfileName"),
+                                 LastName = p.Field<string>("ProfileLastName"),
+                                 DefaultSpecialty = new SpecialtyModel()
+                                 {
+                                     Name = p.Field<string>("SpecialtyName"),
+                                 },
+                                 LastModify = p.Field<DateTime>("LastModify"),
+                             }
+                         }).ToList());
+                }
+
+                if (response.DataSetResult.Tables.Count > 1 &&
+                   response.DataSetResult.Tables[1].Rows.Count > 0)
+                {
+                    oReturn.AddRange(
+                        (from p in response.DataSetResult.Tables[1].AsEnumerable()
+                         select new SiteMapsModel()
+                         {
+                             RelatedCity = new CityModel()
+                             {
+                                 CityId = p.Field<int>("CityId"),
+                                 CityName = p.Field<string>("CityName"),
+                             },
+
+                             RelatedInsurance = p.Field<int>("CategoryType") == (int)enumCategoryType.Insurance ?
+                                 new InsuranceModel()
+                                 {
+                                     CategoryId = p.Field<int>("CategoryId"),
+                                     Name = p.Field<string>("CategoryName"),
+                                     LastModify = p.Field<DateTime>("LastModify"),
+                                 } : null,
+
+                             RelatedSpecialty = p.Field<int>("CategoryType") == (int)enumCategoryType.Specialty ?
+                                 new SpecialtyModel()
+                                 {
+                                     CategoryId = p.Field<int>("CategoryId"),
+                                     Name = p.Field<string>("CategoryName"),
+                                     LastModify = p.Field<DateTime>("LastModify"),
+                                 } : null,
+
+                             RelatedTreatment = p.Field<int>("CategoryType") == (int)enumCategoryType.Treatment ?
+                                 new TreatmentModel()
+                                 {
+                                     CategoryId = p.Field<int>("CategoryId"),
+                                     Name = p.Field<string>("CategoryName"),
+                                     LastModify = p.Field<DateTime>("LastModify"),
+                                 } : null,
+
+                         }).ToList());
+                }
+
+                if (response.DataSetResult.Tables.Count > 2 &&
+                    response.DataSetResult.Tables[2].Rows.Count > 0)
+                {
+                    oReturn.AddRange(
+                        (from p in response.DataSetResult.Tables[2].AsEnumerable()
+                         select new SiteMapsModel()
+                         {
+                             RelatedCity = new CityModel()
+                             {
+                                 CityId = p.Field<int>("CityId"),
+                                 CityName = p.Field<string>("CityName"),
+                             },
+
+                             RelatedInsurance = new InsuranceModel()
+                                 {
+                                     CategoryId = p.Field<int>("InsuranceId"),
+                                     Name = p.Field<string>("InsuranceName"),
+                                     LastModify = p.Field<DateTime>("InsuranceLastModify"),
+                                 },
+
+                             RelatedSpecialty = p.Field<int>("CategoryType") == (int)enumCategoryType.Specialty ?
+                                 new SpecialtyModel()
+                                 {
+                                     CategoryId = p.Field<int>("CategoryId"),
+                                     Name = p.Field<string>("CategoryName"),
+                                     LastModify = p.Field<DateTime>("CategoryLastModify"),
+                                 } : null,
+
+                             RelatedTreatment = p.Field<int>("CategoryType") == (int)enumCategoryType.Treatment ?
+                                 new TreatmentModel()
+                                 {
+                                     CategoryId = p.Field<int>("CategoryId"),
+                                     Name = p.Field<string>("CategoryName"),
+                                     LastModify = p.Field<DateTime>("CategoryLastModify"),
+                                 } : null,
+
+                         }).ToList());
+                }
+            }
+            return oReturn;
+        }
 
         #endregion
 

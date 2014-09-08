@@ -168,6 +168,16 @@ namespace Profile.Test
             Assert.AreEqual(oProfile.Count > 0, true);
         }
 
+        [TestMethod]
+        public void GetSiteMaps()
+        {
+            List<SaludGuruProfile.Manager.Models.General.SiteMapsModel> lstSiteMap =
+                SaludGuruProfile.Manager.Controller.Profile.GetSiteMaps();
+
+            Assert.AreEqual(lstSiteMap.Count > 0, true);
+        }
+
+
         #endregion
 
         #region Profile Search
@@ -236,7 +246,7 @@ namespace Profile.Test
 
             Assert.AreEqual(oCategory.Count > 0, true);
         }
-        
+
         #endregion
     }
 }
