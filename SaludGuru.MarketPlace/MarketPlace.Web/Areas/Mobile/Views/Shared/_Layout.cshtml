@@ -3,23 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
+    <div data-role="page" id="Home" data-theme="a">
 
-    @*Render bondles styles*@
-    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
-    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
-
-    @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
-    {
-        <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-    }
-    else if (ViewBag.NoIndex != null && ViewBag.NoIndex)
-    {
-        <meta name="ROBOTS" content="NOINDEX,">
-    }
-    else if (ViewBag.NoFollow != null && ViewBag.NoFollow)
-    {
-        <meta name="ROBOTS" content="NOFOLLOW">
-    }
+        @*Render bondles styles*@
+        @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
+        @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
+        <link href="~/Areas/Mobile/Content/jquery.mobile-1.4.2.css" rel="stylesheet" />
+        @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
+        {
+            <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+        }
+        else if (ViewBag.NoIndex != null && ViewBag.NoIndex)
+        {
+            <meta name="ROBOTS" content="NOINDEX,">
+        }
+        else if (ViewBag.NoFollow != null && ViewBag.NoFollow)
+        {
+            <meta name="ROBOTS" content="NOFOLLOW">
+        }
 
 </head>
 <body>

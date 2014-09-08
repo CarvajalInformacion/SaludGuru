@@ -329,6 +329,7 @@
     <Content Include="Areas\Mobile\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Mobile\Content\Images\sprite.png" />
     <Content Include="Areas\Mobile\Content\Images\try1.png" />
+    <Content Include="Areas\Mobile\Content\jquery.mobile-1.4.2.min.css" />
     <Content Include="Areas\Mobile\Content\jquery\themes\base\images\animated-overlay.gif" />
     <Content Include="Areas\Mobile\Content\jquery\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Areas\Mobile\Content\jquery\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -414,6 +415,7 @@
     <Content Include="Areas\Mobile\Scripts\respond.min.js" />
     <None Include="Areas\Mobile\Scripts\_references.js" />
     <Content Include="Areas\Mobile\Scripts\Site\General.js" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPHeader.css" />
     <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\agendaMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
@@ -1563,7 +1565,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Mobile\Content\Styles\Site\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
