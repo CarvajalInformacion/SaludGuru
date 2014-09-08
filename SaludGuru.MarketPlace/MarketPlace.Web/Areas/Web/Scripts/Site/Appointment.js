@@ -50,12 +50,12 @@ function CreatePatient() {
 
     $("#NewPatientId").hide(800);
     $("#CreatePatientForm").submit(); //Submit  the FORM
-    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday").val('');
+    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday, input#Mobile, input#Email").val('');
 }
 
 function CloseNewPatient() {
     $("#NewPatientId").hide(800);    
-    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday").val('');
+    $("#CreatePatientForm input#Name, input#LastName, input#Identification, input#Birthday, input#Mobile, input#Email").val('');
 }
 
 function AddPatientToList(vPatientModel) {

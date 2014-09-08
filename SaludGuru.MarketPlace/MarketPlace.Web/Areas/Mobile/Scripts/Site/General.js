@@ -1,6 +1,7 @@
 ﻿function InitGlobalPagesControlsMobile(InitParams) {
     debugger;
     $('#' + InitParams.MenuButton).click(function () {
+        debugger;
         $('#' + InitParams.DivEmergentMenu).show();
 
     });
