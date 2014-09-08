@@ -114,6 +114,7 @@ namespace MarketPlace.Web.Controllers
         public class ActionParamsClass_FBProfile
         {
             public readonly string ProfilePublicId = "ProfilePublicId";
+            public readonly string LoginRequired = "LoginRequired";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -149,14 +150,15 @@ namespace MarketPlace.Web.Controllers
         }
 
         [NonAction]
-        partial void FBProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId);
+        partial void FBProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string ProfilePublicId, string LoginRequired);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult FBProfile(string ProfilePublicId)
+        public override System.Web.Mvc.ActionResult FBProfile(string ProfilePublicId, string LoginRequired)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FBProfile);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ProfilePublicId", ProfilePublicId);
-            FBProfileOverride(callInfo, ProfilePublicId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "LoginRequired", LoginRequired);
+            FBProfileOverride(callInfo, ProfilePublicId, LoginRequired);
             return callInfo;
         }
 
