@@ -88,7 +88,16 @@ namespace MarketPlace.Web.Controllers
             }
         }
 
-        public string CurrentDomainUrl { get { return Request.Url.ToString().Replace(Request.Url.PathAndQuery, "").TrimEnd('/'); } }
+        public string CurrentDomainUrl
+        {
+            get
+            {
+                if (Request.Url.PathAndQuery == "/")
+                    return Request.Url.ToString().TrimEnd('/');
+                else
+                    return Request.Url.ToString().Replace(Request.Url.PathAndQuery, "").TrimEnd('/');
+            }
+        }
 
         #endregion
 

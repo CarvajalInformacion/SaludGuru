@@ -62,13 +62,20 @@ namespace MarketPlace.Web.Controllers
             }
         }
 
-        public virtual ActionResult FBProfile(string ProfilePublicId)
+        public virtual ActionResult FBProfile(string ProfilePublicId, string LoginRequired)
         {
             try
             {
-                if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
-                {
+                bool oLoginRequired = !string.IsNullOrEmpty(LoginRequired) && LoginRequired == "true" ? true : false;
 
+                if (oLoginRequired && !MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
+                {
+                    return Redirect(MarketPlace.Models.General.InternalSettings.Instance
+                             [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                             .Value.Replace("{{UrlRetorno}}", Request.Url.ToString()));
+                }
+                else
+                {
                     //get model
                     ProfileViewModel oModel = new ProfileViewModel()
                     {
@@ -96,12 +103,6 @@ namespace MarketPlace.Web.Controllers
                     }
                     //render profile
                     return View(oModel);
-                }
-                else
-                {
-                    return Redirect(MarketPlace.Models.General.InternalSettings.Instance
-                         [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                         .Value.Replace("{{UrlRetorno}}", Request.Url.ToString()));
                 }
             }
             catch

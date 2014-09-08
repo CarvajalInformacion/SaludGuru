@@ -10,6 +10,11 @@
 
     string ProfileFBUrl = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_FBUrl].Value;
     ProfileFBUrl = ProfileFBUrl.Replace("{ProfilePublicId}", Model.Profile.ProfilePublicId);
+    ProfileFBUrl = ProfileFBUrl.Replace("{LoginRequired}", "true");
+
+    string ProfilePreviewUrl = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_FBUrl].Value;
+    ProfilePreviewUrl = ProfilePreviewUrl.Replace("{ProfilePublicId}", Model.Profile.ProfilePublicId);
+    ProfilePreviewUrl = ProfilePreviewUrl.Replace("{LoginRequired}", "false");
 }
 
 <div class="BOProfilesGeneralWrapper">
@@ -29,7 +34,7 @@
                     <input type="text" value="@ProfileFBUrl" />
                 </li>
                 <li>
-                    <iframe src="@ProfileFBUrl" width="785px" height="800px" frameborder="0"></iframe>
+                    <iframe src="@ProfilePreviewUrl" width="785px" height="800px" frameborder="0"></iframe>
                 </li>
             </ul>
         </div>
