@@ -48,7 +48,7 @@
                 else
                 {
                     //get login urls
-                    string RetUrl = Request.Url.ToString();
+                    string RetUrl = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
                     string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
                         [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
                         .Value.Replace("{{UrlRetorno}}", RetUrl);

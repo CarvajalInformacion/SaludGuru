@@ -1,0 +1,16 @@
+﻿@model List<MarketPlace.Models.General.SiteMapModel>
+@{
+    Layout = "~/Areas/Web/Views/Shared/_LayoutXml.cshtml";
+    Response.ContentType = "text/xml";    
+}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    @foreach (var sm in Model)
+    {
+        <url>
+            <loc>@sm.loc</loc>
+            <lastmod>@sm.lastmod</lastmod>
+            <priority>@sm.priority</priority>
+            <changefreq>@sm.changefreq</changefreq>
+        </url>
+    }
+</urlset>

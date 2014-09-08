@@ -41,6 +41,7 @@ namespace T4MVC.Web
                 public readonly string _L_Footer = "_L_Footer";
                 public readonly string _L_Header = "_L_Header";
                 public readonly string _Layout = "_Layout";
+                public readonly string _LayoutXml = "_LayoutXml";
                 public readonly string _P_Appointment = "_P_Appointment";
                 public readonly string _P_BasicInfo = "_P_BasicInfo";
                 public readonly string _P_DetailInfo = "_P_DetailInfo";
@@ -57,6 +58,7 @@ namespace T4MVC.Web
             public readonly string _L_Footer = "~/Areas/Web/Views/Shared/_L_Footer.cshtml";
             public readonly string _L_Header = "~/Areas/Web/Views/Shared/_L_Header.cshtml";
             public readonly string _Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+            public readonly string _LayoutXml = "~/Areas/Web/Views/Shared/_LayoutXml.cshtml";
             public readonly string _P_Appointment = "~/Areas/Web/Views/Shared/_P_Appointment.cshtml";
             public readonly string _P_BasicInfo = "~/Areas/Web/Views/Shared/_P_BasicInfo.cshtml";
             public readonly string _P_DetailInfo = "~/Areas/Web/Views/Shared/_P_DetailInfo.cshtml";

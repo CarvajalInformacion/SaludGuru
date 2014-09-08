@@ -86,6 +86,7 @@ namespace MarketPlace.Web.Controllers
             public readonly string FAQ = "FAQ";
             public readonly string Contact = "Contact";
             public readonly string LogOutUser = "LogOutUser";
+            public readonly string SiteMap = "SiteMap";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,6 +99,7 @@ namespace MarketPlace.Web.Controllers
             public const string FAQ = "FAQ";
             public const string Contact = "Contact";
             public const string LogOutUser = "LogOutUser";
+            public const string SiteMap = "SiteMap";
         }
 
 
@@ -203,6 +205,17 @@ namespace MarketPlace.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOutUser);
             LogOutUserOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SiteMapOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SiteMap()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SiteMap);
+            SiteMapOverride(callInfo);
             return callInfo;
         }
 

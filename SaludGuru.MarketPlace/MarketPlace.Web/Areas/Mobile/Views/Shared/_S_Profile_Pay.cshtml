@@ -148,7 +148,7 @@
         </div>
         <div class="MPResultsDoctorLinksWrapper">
             @{
-    string ovCurrentDomain = Request.Url.ToString().Replace(Server.UrlDecode(Request.Url.AbsolutePath), "");
+    string ovCurrentDomain = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
             }
             @if (ovOnLineMeeting)
             {

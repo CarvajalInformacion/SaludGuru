@@ -150,7 +150,7 @@
 
     <!--invalid url characters-->
     <key name="Url_Invalid_Char">
-      <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-,\0;+,\0;%,\0;#,\0;?,\0;_,\0]]>
+      <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-, ;+, ;%, ;#, ;?, ;_, ]]>
     </key>
 
     <key name="File_TmpExcelDir">D:\Proyectos\Github\SaludGuru\SaludGuru.BackOffice\BackOffice.Web\TmpExcelDir\</key>

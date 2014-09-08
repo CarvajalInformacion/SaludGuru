@@ -42,57 +42,19 @@ namespace MarketPlace.Web.Controllers
 
                 if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
                 {
-                    ViewBag.Canonical = Request.Url.ToString().Replace(Request.Url.AbsolutePath, "") +
+                    ViewBag.Canonical = base.CurrentDomainUrl +
                         Server.UrlDecode(Url.RouteUrl(
                                 MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                                 new
                                 {
-                                    DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name + " " + oModel.CurrentProfile.LastName),
+                                    DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name.Trim() + " " + oModel.CurrentProfile.LastName.Trim()),
                                     ProfilePublicId = oModel.CurrentProfile.ProfilePublicId,
-                                    SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name),
+                                    SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
                                 }));
                 }
 
                 //render profile
                 return View(oModel);
-            }
-            catch
-            {
-                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-            }
-        }
-
-        public virtual ActionResult ProfilePreview(string ProfilePublicId)
-        {
-            try
-            {
-                //get model
-                ProfileViewModel oModel = new ProfileViewModel()
-                {
-                    CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
-                    IsNoFollow = true,
-                    IsNoIndex = true,
-                    IsRedirect = false,
-                    IsCanonical = true,
-                };
-
-                ViewBag.NoIndex = oModel.IsNoIndex;
-                ViewBag.NoFollow = oModel.IsNoFollow;
-
-                if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
-                {
-                    ViewBag.Canonical = Request.Url.ToString().Replace(Request.Url.PathAndQuery, "") +
-                        Server.UrlDecode(Url.RouteUrl(
-                                MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                                new
-                                {
-                                    DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name + " " + oModel.CurrentProfile.LastName),
-                                    ProfilePublicId = oModel.CurrentProfile.ProfilePublicId,
-                                    SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name),
-                                }));
-                }
-                //render profile
-                return View(MVC.Profile.ActionNames.Index, oModel);
             }
             catch
             {
@@ -122,14 +84,14 @@ namespace MarketPlace.Web.Controllers
 
                     if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
                     {
-                        ViewBag.Canonical = Request.Url.ToString().Replace(Request.Url.PathAndQuery, "") +
+                        ViewBag.Canonical = base.CurrentDomainUrl +
                             Server.UrlDecode(Url.RouteUrl(
                                     MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                                     new
                                     {
-                                        DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name + " " + oModel.CurrentProfile.LastName),
+                                        DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name.Trim() + " " + oModel.CurrentProfile.LastName.Trim()),
                                         ProfilePublicId = oModel.CurrentProfile.ProfilePublicId,
-                                        SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name),
+                                        SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
                                     }));
                     }
                     //render profile
@@ -164,28 +126,28 @@ namespace MarketPlace.Web.Controllers
                             MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                             new
                             {
-                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
+                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name.Trim() + " " + ViewModel.CurrentProfile.LastName.Trim()),
                                 ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
+                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
                             })));
                 }
 
                 //compare doctor names
-                if (DoctorName != BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName))
+                if (DoctorName != BaseController.RemoveAccent(ViewModel.CurrentProfile.Name.Trim() + " " + ViewModel.CurrentProfile.LastName.Trim()))
                 {
                     Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(
                             MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                             new
                             {
-                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName),
+                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name.Trim() + " " + ViewModel.CurrentProfile.LastName.Trim()),
                                 ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name),
+                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
                             })));
                 }
 
                 //validate specialty for canonical
                 if (ViewModel.CurrentProfile.DefaultSpecialty == null ||
-                    SpecialtyName != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name))
+                    SpecialtyName.Trim() != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim()))
                 {
                     ViewModel.IsNoFollow = true;
                     ViewModel.IsNoIndex = true;
@@ -200,7 +162,8 @@ namespace MarketPlace.Web.Controllers
             else
             {
                 //eval redirect from old Profesional 
-                SaludGuruProfile.Manager.Models.Profile.ProfileModel NewProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId(ProfilePublicId);
+                SaludGuruProfile.Manager.Models.Profile.ProfileModel NewProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetProfilePublicIdFromOldId
+                    (ProfilePublicId);
 
                 if (NewProfile != null && !string.IsNullOrEmpty(NewProfile.ProfilePublicId))
                 {
@@ -208,9 +171,9 @@ namespace MarketPlace.Web.Controllers
                             MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                             new
                             {
-                                DoctorName = BaseController.RemoveAccent(NewProfile.Name + " " + NewProfile.LastName),
+                                DoctorName = BaseController.RemoveAccent(NewProfile.Name.Trim() + " " + NewProfile.LastName.Trim()),
                                 ProfilePublicId = NewProfile.ProfilePublicId,
-                                SpecialtyName = BaseController.RemoveAccent(NewProfile.DefaultSpecialty.Name),
+                                SpecialtyName = BaseController.RemoveAccent(NewProfile.DefaultSpecialty.Name.Trim()),
                             })));
                 }
                 else

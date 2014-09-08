@@ -458,6 +458,11 @@ namespace SaludGuruProfile.Manager.Controller
             return oReturn;
         }
 
+        public static List<SiteMapsModel> GetSiteMaps()
+        {
+            return DAL.Controller.ProfileDataController.Instance.GetSiteMaps();
+        }
+
         #region MarketPlace
 
         public static ProfileModel MPProfileGetFull(string ProfilePublicId)

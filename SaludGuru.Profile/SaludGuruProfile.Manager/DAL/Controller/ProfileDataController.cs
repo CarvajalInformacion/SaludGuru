@@ -88,6 +88,11 @@ namespace SaludGuruProfile.Manager.DAL.Controller
             return DataFactory.MPCategoryGetAvailableCategory(InsuranceName, SpecialtyName, TreatmentName);
         }
 
+        public List<SiteMapsModel> GetSiteMaps()
+        {
+            return DataFactory.GetSiteMaps();
+        }
+
         #endregion
 
         #region Profile

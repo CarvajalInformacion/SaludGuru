@@ -59,6 +59,7 @@
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\InternalSettings.cs" />
     <Compile Include="General\SessionModel.cs" />
+    <Compile Include="General\SiteMapModel.cs" />
     <Compile Include="Profile\AutocompleteViewModel.cs" />
     <Compile Include="Profile\ProfileViewModel.cs" />
     <Compile Include="Profile\SearchViewModel.cs" />
