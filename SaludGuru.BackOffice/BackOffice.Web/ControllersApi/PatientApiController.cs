@@ -141,7 +141,7 @@ namespace BackOffice.Web.ControllersApi
             bool isEmail = false;
             bool isSms = false;
 
-            if (!string.IsNullOrEmpty(HttpContext.Current.Request["Telephone"].ToString()))
+            if (!string.IsNullOrEmpty(HttpContext.Current.Request["Mobile"].ToString()))
                 isSms = true;
             if (!string.IsNullOrEmpty(HttpContext.Current.Request["Email"].ToString()))
                 isEmail = true;

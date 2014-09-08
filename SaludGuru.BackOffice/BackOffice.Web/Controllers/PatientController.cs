@@ -72,6 +72,7 @@ namespace BackOffice.Web.Controllers
 
             return RedirectToAction(MVC.Patient.ActionNames.Search, MVC.Patient.Name);
         }
+
         #region Patient Notes
         public virtual ActionResult PatientNotes(string PatientPublicId)
         {
