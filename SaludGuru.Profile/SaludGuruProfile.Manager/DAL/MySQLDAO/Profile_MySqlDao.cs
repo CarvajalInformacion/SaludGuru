@@ -335,6 +335,27 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                      {
                          CategoryId = ig.Key.CategoryId,
                          Name = ig.Key.Name,
+
+                         SpecialtyInfo =
+                            (from inf in response.DataTableResult.AsEnumerable()
+                             where inf.Field<int?>("CategoryId") != null &&
+                                   inf.Field<int>("CategoryId") == ig.Key.CategoryId
+                             group inf by
+                             new
+                             {
+                                 CategoryInfoId = inf.Field<int>("CategoryInfoId"),
+                                 CategoryInfoType = (enumCategoryInfoType)inf.Field<int>("CategoryInfoType"),
+                                 Value = inf.Field<string>("Value"),
+                                 LargeValue = inf.Field<string>("LargeValue")
+                             } into infg
+                             select new CategoryInfoModel()
+                             {
+                                 CategoryInfoId = infg.Key.CategoryInfoId,
+                                 CategoryInfoType = infg.Key.CategoryInfoType,
+                                 Value = infg.Key.Value,
+                                 LargeValue = infg.Key.LargeValue
+                             }).ToList(),
+
                      }).ToList<ICategoryModel>());
 
                 oRetorno.AddRange(
@@ -352,6 +373,26 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                      {
                          CategoryId = ig.Key.CategoryId,
                          Name = ig.Key.Name,
+
+                         TreatmentInfo =
+                            (from inf in response.DataTableResult.AsEnumerable()
+                             where inf.Field<int?>("CategoryId") != null &&
+                                   inf.Field<int>("CategoryId") == ig.Key.CategoryId
+                             group inf by
+                             new
+                             {
+                                 CategoryInfoId = inf.Field<int>("CategoryInfoId"),
+                                 CategoryInfoType = (enumCategoryInfoType)inf.Field<int>("CategoryInfoType"),
+                                 Value = inf.Field<string>("Value"),
+                                 LargeValue = inf.Field<string>("LargeValue")
+                             } into infg
+                             select new CategoryInfoModel()
+                             {
+                                 CategoryInfoId = infg.Key.CategoryInfoId,
+                                 CategoryInfoType = infg.Key.CategoryInfoType,
+                                 Value = infg.Key.Value,
+                                 LargeValue = infg.Key.LargeValue
+                             }).ToList(),
                      }).ToList<ICategoryModel>());
             }
             return oRetorno;
