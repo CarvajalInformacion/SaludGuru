@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
 
-
     @*Render bondles styles*@
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
@@ -22,24 +21,29 @@
     {
         <meta name="ROBOTS" content="NOFOLLOW">
     }
+    @if (ViewBag.Canonical != null && ViewBag.Canonical.ToString().Length > 0)
+    {
+        <link rel="canonical" href="@ViewBag.Canonical.ToString()" />
+    }
 
 </head>
 
 
-<body>
-    <div data-role="page" id="Home" data-theme="a">       
-        <div>
-            <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)">
-                <img src="~/Areas/Mobile/Content/Images/logoSaludGuruSmall.png" />
-            </a>
+<body data-role="content">
+    <div data-role="page" id="Home" data-theme="a">
+      
+        <div data-role="header">      
+            <div id="header" data-role="header" data-theme="b">
+                <a id="bars-button" data-icon="bars" class="ui-btn-left" style="margin-top:10px;" href="#navpanel"></a>
+            </div>      
             @Html.Partial(MVC.Mobile.Shared.Views._L_Header)
         </div>
         <!--Start internal content-->
-        <div>
+        <div data-role="content">
             @RenderBody()
         </div>
         <!--Start footer content-->
-        <div>
+        <div data-role="footer">
             @Html.Partial(MVC.Mobile.Shared.Views._L_Footer)
         </div>
 
@@ -83,6 +87,52 @@
                     <a class="MPOutlookLogIn" href="" rel="nofollow"></a>
                 </div>
             </div>
+        </div>
+
+        <div data-role="panel" id="navpanel" data-theme="a" data-display="overlay" data-position="left">
+            <div data-role="controlgroup" data-corners="true">
+                @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
+                {
+                <!--Render user login options-->
+                    <div class="MPHeaderTopMenuUserName" onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
+                        <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
+                        <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
+                    </div>
+                    <ul>
+                        <li><a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)" rel="nofollow">Cerrar sesión</a></li>
+                    </ul>
+                }
+                else
+                {
+                    //get login urls
+                    string RetUrl1 = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
+                    string FBUrl1 = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                        .Value.Replace("{{UrlRetorno}}", RetUrl1);
+
+                    string GoogleUrl1 = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                        .Value.Replace("{{UrlRetorno}}", RetUrl1);
+
+                    string OutlookUrl1 = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+                        .Value.Replace("{{UrlRetorno}}", RetUrl1);
+
+                <!--Render autentications-->
+                    <span class="MPHeaderTopMenuIngresar">Ingresar con:</span>
+
+                    <a class="MPGoogleLogIn" href="@GoogleUrl1" rel="nofollow"></a>
+                    <a class="MPFacebookLogIn" href="@FBUrl1" rel="nofollow"></a>
+                    <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
+                    <ul id="ulLoginMoreOptions" style="display:none;">
+                        <li><a href="@GoogleUrl1" rel="nofollow">Google</a></li>
+                        <li><a href="@FBUrl1" rel="nofollow">Facebook</a></li>
+                        <li><a href="@OutlookUrl1" rel="nofollow">Outlook</a></li>
+
+                    </ul>
+                }
+            </div>
+
         </div>
 
         @{
