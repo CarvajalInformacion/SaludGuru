@@ -1,4 +1,5 @@
-﻿using MarketPlace.Models.Profile;
+﻿using MarketPlace.Models.General;
+using MarketPlace.Models.Profile;
 using SaludGuruProfile.Manager.Interfaces;
 using SaludGuruProfile.Manager.Models.Profile;
 using System;
@@ -20,6 +21,22 @@ namespace MarketPlace.Web.Controllers
         {
             try
             {
+                //start seo model
+                SEOModel oSeoModel = new SEOModel()
+                {
+                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
+                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value,
+                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value,
+
+                    IsNoFollow = !ControllerContext.RouteData.Values.
+                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
+                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
+                    IsNoIndex = !ControllerContext.RouteData.Values.
+                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
+                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
+                };
+
+
                 //get basic model
                 SearchViewModel oModel = new SearchViewModel()
                 {
@@ -29,18 +46,9 @@ namespace MarketPlace.Web.Controllers
                     CurrentSearchQuery = Query,
                     CurrentSearchCity = CityName,
 
-                    IsNoFollow = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
-                    IsNoIndex = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
                     IsRedirect = !ControllerContext.RouteData.Values.
                         Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
                             Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
-                    IsCanonical = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical]),
                     IsQuery = !ControllerContext.RouteData.Values.
                         Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsQuery) ? false :
                             Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsQuery]),
@@ -102,8 +110,9 @@ namespace MarketPlace.Web.Controllers
                     oModel.TotalRows = oTotalRowsAux;
                 }
 
-                ViewBag.NoIndex = oModel.IsNoIndex;
-                ViewBag.NoFollow = oModel.IsNoFollow;
+                //Seo model
+                ReplaceSeoModel(oModel, oSeoModel);
+                ViewBag.SeoModel = oSeoModel;
 
                 return View(oModel);
             }
@@ -258,6 +267,70 @@ namespace MarketPlace.Web.Controllers
                         })), true);
             }
         }
+
+        private void ReplaceSeoModel
+            (SearchViewModel ViewModel, SEOModel CurrentSeoModel)
+        {
+            if (ViewModel.IsQuery)
+            {
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{SpecialtyName}", string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{TreatmentName}", string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{InsuranceName}", string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{SpecialtyName}", string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{TreatmentName}", string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{InsuranceName}", string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{SpecialtyName}", string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+            }
+            else
+            {
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{SpecialtyName}", ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{TreatmentName}", ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
+                CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{SpecialtyName}", ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{TreatmentName}", ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
+                CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{SpecialtyName}", ViewModel.CurrentSpecialty != null ? ViewModel.CurrentSpecialty.Name : string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',');
+
+                if (ViewModel.CurrentSpecialty != null)
+                {
+                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords +
+                        ViewModel.CurrentSpecialty.
+                            SpecialtyInfo.
+                            Where(x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
+                            Select(x => x.LargeValue).
+                            DefaultIfEmpty(string.Empty).
+                            FirstOrDefault();
+                }
+
+                if (ViewModel.CurrentTreatment != null)
+                {
+                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords +
+                        ViewModel.CurrentTreatment.
+                            TreatmentInfo.
+                            Where(x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
+                            Select(x => x.LargeValue).
+                            DefaultIfEmpty(string.Empty).
+                            FirstOrDefault();
+                }
+            }
+        }
+
 
         #endregion
     }

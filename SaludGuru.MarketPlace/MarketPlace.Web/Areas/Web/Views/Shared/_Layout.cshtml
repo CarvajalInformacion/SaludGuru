@@ -1,8 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @{
+        MarketPlace.Models.General.SEOModel oSeoModel = (MarketPlace.Models.General.SEOModel)ViewBag.SeoModel;
+        if (oSeoModel == null)
+        {
+            oSeoModel = new MarketPlace.Models.General.SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+        }
+    }
+
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
+    <title>@oSeoModel.Title</title>
 
     @*Render bondles styles*@
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
@@ -10,22 +23,32 @@
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/kendo/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/prettyphoto/css")
 
-    @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
+    @if (!string.IsNullOrEmpty(oSeoModel.Description))
+    {
+        <meta name="description" content="@oSeoModel.Description">
+    }
+
+    @if (!string.IsNullOrEmpty(oSeoModel.Keywords))
+    {
+        <meta name="keywords" content="@oSeoModel.Keywords">
+    }
+
+    @if (oSeoModel.IsNoIndex && oSeoModel.IsNoFollow)
     {
         <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
     }
-    else if (ViewBag.NoIndex != null && ViewBag.NoIndex)
+    else if (oSeoModel.IsNoIndex)
     {
         <meta name="ROBOTS" content="NOINDEX,">
     }
-    else if (ViewBag.NoFollow != null && ViewBag.NoFollow)
+    else if (oSeoModel.IsNoFollow)
     {
         <meta name="ROBOTS" content="NOFOLLOW">
     }
 
-    @if (ViewBag.Canonical != null && ViewBag.Canonical.ToString().Length > 0)
+    @if (!string.IsNullOrEmpty(oSeoModel.CanonicalUrl))
     {
-        <link rel="canonical" href="@ViewBag.Canonical.ToString()" />
+        <link rel="canonical" href="@oSeoModel.CanonicalUrl" />
     }
 
 </head>
