@@ -32,7 +32,7 @@
                 Model.CurrentProfile.RelatedOffice.Count > 0)
             {
                 <li>
-                    <a id="divOffice_sel" class="selProfileDescriptionsa selected" href="javascript:;">Datos de contacto</a>
+                    <label>Datos de contacto</label>
                     <div id="divOffice" class="selProfileDescriptions" >
                         <ul>
                             @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
@@ -46,31 +46,33 @@
                             }
                         </ul>
                     </div>
+                    <hr class="featurette-divider __loop">   
                 </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
                 <li>
-                    <a id="divProfileText_sel" class="selProfileDescriptionsa" href="javascript:;">Perfil profesional</a>
+                    <label>Perfil profesional</label>
                     <div id="divProfileText" class="selProfileDescriptions">
                         <p>@ovProfileText.Trim()</p>
                     </div>
-                </li>
-                
+                    <hr class="featurette-divider __loop">   
+                </li>             
             }
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
                 <li>
-                    <a id="divEducation_sel" class="selProfileDescriptionsa" href="javascript:;">Educación</a>
+                    <label>Educación</label>
                     <div id="divEducation" class="selProfileDescriptions">
                         <p>@ovProfileEducation.Trim()</p>
                     </div>
+                    <hr class="featurette-divider __loop">   
                 </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
                 <li>
-                    <a id="divCertification_sel" class="selProfileDescriptionsa" href="javascript:;">Acreditaciones</a>
+                    <label>Acreditaciones</label>
                     <div id="divCertification" class="selProfileDescriptions">
                         <p>@ovProfileCertification.Trim()</p>
                     </div>

@@ -52,6 +52,7 @@
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap")
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/modernizr")
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_ApiKey].Value)&sensor=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_Sensor].Value)"></script>

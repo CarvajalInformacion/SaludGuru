@@ -416,6 +416,7 @@
     <None Include="Areas\Mobile\Scripts\_references.js" />
     <Content Include="Areas\Mobile\Scripts\Site\General.js" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPHeader.css" />
+    <Content Include="Areas\Mobile\Scripts\Site\Profile.js" />
     <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\agendaMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\BOAppointmentActionsSprite.png" />
