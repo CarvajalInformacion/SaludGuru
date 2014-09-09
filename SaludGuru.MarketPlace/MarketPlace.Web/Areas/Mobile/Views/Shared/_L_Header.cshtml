@@ -1,53 +1,43 @@
 ﻿<link href="~/Areas/Mobile/Content/jquery.mobile-1.4.2.css" rel="stylesheet" />
 
 
-<div data-role="panel" id="navpanel" data-theme="a" data-display="overlay" data-position="left">
-    <div data-role="controlgroup" data-corners="false">
-        @if (MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
-        {
-                <!--Render user login options-->
-            <div class="MPHeaderTopMenuUserName" onclick="javascript: Header_ShowHideUserMenu('divUserMenu');">
-                <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
-                <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
-            </div>
-            <ul>
-                <li><a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)" rel="nofollow">Cerrar sesión</a></li>
-            </ul>
+
+<div data-role="content">
+    
+
+    <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)">
+        <img src="~/Areas/Mobile/Content/Images/logoSaludGuruSmall.png" />
+    </a>
+
+    <span>Encuentra un doctor y agenda tu cita completamente gratis</span>
+    <select id="selGlobalCity">
+        @{
+            var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+            foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
+            {
+                if (item.Key == oBaseController.CurrentCookie.CurrentCity)
+                {
+                    <option value="@item.Key" selected="selected" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
+                }
+                else
+                {
+                    <option value="@item.Key" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
+                }
+            }
         }
-        else
-        {
-            //get login urls
-            string RetUrl = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
-            string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
-                [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                .Value.Replace("{{UrlRetorno}}", RetUrl);
+    </select>
 
-            string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
-                [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                .Value.Replace("{{UrlRetorno}}", RetUrl);
-
-            string OutlookUrl = MarketPlace.Models.General.InternalSettings.Instance
-                [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
-                .Value.Replace("{{UrlRetorno}}", RetUrl);
-
-                <!--Render autentications-->
-            <span class="MPHeaderTopMenuIngresar">Ingresar con:</span>
-
-            <a class="MPGoogleLogIn" href="@GoogleUrl" rel="nofollow"></a>
-            <a class="MPFacebookLogIn" href="@FBUrl" rel="nofollow"></a>
-            <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
-            <ul id="ulLoginMoreOptions" style="display:none;">
-                <li><a href="@GoogleUrl" rel="nofollow">Google</a></li>
-                <li><a href="@FBUrl" rel="nofollow">Facebook</a></li>
-                <li><a href="@OutlookUrl" rel="nofollow">Outlook</a></li>
-
-            </ul>
-        }
+    <div data-role="content">
+        <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
+        <a href="javascript:SearchBoxObject.SearchTerm();"></a>
     </div>
+
+  
 </div>
-<div id="header" data-role="header" data-theme="b">
-    <a id="bars-button" data-icon="bars" class="ui-btn-left" style="margin-top:10px;" href="#navpanel"></a>
-</div>
+
+
+
 
 
 
