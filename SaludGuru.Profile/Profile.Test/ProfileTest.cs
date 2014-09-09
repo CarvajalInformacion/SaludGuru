@@ -135,7 +135,7 @@ namespace Profile.Test
         [TestMethod]
         public void MPProfileGetFull()
         {
-            string PublicProfileId = "2C1D2510";
+            string PublicProfileId = "B8C3B7F4";
 
             ProfileModel oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(PublicProfileId);
             Assert.AreEqual(oProfile.ProfilePublicId, PublicProfileId);

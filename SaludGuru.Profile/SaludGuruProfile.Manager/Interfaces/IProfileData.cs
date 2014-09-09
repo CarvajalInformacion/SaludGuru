@@ -55,14 +55,9 @@ namespace SaludGuruProfile.Manager.Interfaces
         ProfileModel ProfileGetFullAdminOffice(string ProfilePublicId);
         ProfileModel ProfileGetFullAdminRelatedProfile(string ProfilePublicId);
 
-        ProfileModel MPProfileGetFullBasicInfo(string ProfilePublicId);
-        ProfileModel MPProfileGetFullCategory(string ProfilePublicId);
-        ProfileModel MPProfileGetFullOfficeBasicInfo(string ProfilePublicId);
-        ProfileModel MPProfileGetFullOfficeCategory(string ProfilePublicId);
-        ProfileModel MPProfileGetFullOfficeScheduleAvailable(string ProfilePublicId);
-        ProfileModel MPProfileGetFullRelatedProfile(string ProfilePublicId);
-        ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId);
+        ProfileModel MPProfileGetFull(string ProfilePublicId);
 
+        ProfileModel MPProfileGetProfilePublicIdFromOldId(string OldProfileId);
 
         List<AutocompleteModel> MPProfileSearchAC(int CityId, string Query);
 
