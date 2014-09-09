@@ -9,8 +9,26 @@
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
         {
-            <div class="SearchBoxClass">
-                <span>Encuentra un doctor y agenda tu cita completamente gratis</span>
+            <div >
+                <span>Encuentra un doctor y agenda tu cita completamente gratis</span>                
+                <select id="selGlobalCity">
+                    @{
+                        var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+                        foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
+                        {
+                            if (item.Key == oBaseController.CurrentCookie.CurrentCity)
+                            {
+                                <option value="@item.Key" selected="selected" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Key" itemname="@MarketPlace.Web.Controllers.BaseController.RemoveAccent(item.Value)">@item.Value</option>
+                            }
+                        }
+                    }
+                </select>
+
                 <div>
                     <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
                     <a href="javascript:SearchBoxObject.SearchTerm();"></a>
@@ -66,8 +84,8 @@
                     </div>
                 </div>
             </div>
-        </div>      
-    </div>    
+        </div>
+    </div>
     <div class="Demo">
         <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
             @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
