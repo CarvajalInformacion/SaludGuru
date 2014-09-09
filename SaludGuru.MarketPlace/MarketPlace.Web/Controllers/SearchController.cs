@@ -305,11 +305,9 @@ namespace MarketPlace.Web.Controllers
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
 
-                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',');
-
                 if (ViewModel.CurrentSpecialty != null)
                 {
-                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords +
+                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',') + "," +
                         ViewModel.CurrentSpecialty.
                             SpecialtyInfo.
                             Where(x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
@@ -320,7 +318,7 @@ namespace MarketPlace.Web.Controllers
 
                 if (ViewModel.CurrentTreatment != null)
                 {
-                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords +
+                    CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',') + "," +
                         ViewModel.CurrentTreatment.
                             TreatmentInfo.
                             Where(x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).

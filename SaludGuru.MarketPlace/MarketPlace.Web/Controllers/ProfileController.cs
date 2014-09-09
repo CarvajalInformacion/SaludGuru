@@ -1,4 +1,5 @@
-﻿using MarketPlace.Models.Profile;
+﻿using MarketPlace.Models.General;
+using MarketPlace.Models.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,38 +21,41 @@ namespace MarketPlace.Web.Controllers
                 ProfileViewModel oModel = new ProfileViewModel()
                 {
                     CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
-                    IsNoFollow = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
-                    IsNoIndex = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
+
                     IsRedirect = !ControllerContext.RouteData.Values.
                         Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
                             Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
-                    IsCanonical = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical]),
                 };
 
-                //eval redirect
-                EvalRedirect(oModel, DoctorName, ProfilePublicId, SpecialtyName);
+                if (oModel.CurrentProfile.RelatedOffice == null)
+                    oModel.CurrentProfile.RelatedOffice = new List<SaludGuruProfile.Manager.Models.Office.OfficeModel>();
 
-                ViewBag.NoIndex = oModel.IsNoIndex;
-                ViewBag.NoFollow = oModel.IsNoFollow;
-
-                if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
+                //Seo model
+                SEOModel oSeoModel = new SEOModel()
                 {
-                    ViewBag.Canonical = base.CurrentDomainUrl +
-                        Server.UrlDecode(Url.RouteUrl(
-                                MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                                new
-                                {
-                                    DoctorName = BaseController.RemoveAccent(oModel.CurrentProfile.Name.Trim() + " " + oModel.CurrentProfile.LastName.Trim()),
-                                    ProfilePublicId = oModel.CurrentProfile.ProfilePublicId,
-                                    SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
-                                }));
-                }
+                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Title].Value,
+                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Description].Value,
+                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Keywords].Value,
+
+                    IsNoFollow = !ControllerContext.RouteData.Values.
+                                            Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
+                                                Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
+                    IsNoIndex = !ControllerContext.RouteData.Values.
+                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
+                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
+                };
+
+                //get is canonical
+                bool IsCanonical = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical]);
+
+                //eval redirect
+                EvalRedirect(oModel, DoctorName, ProfilePublicId, SpecialtyName, oSeoModel, IsCanonical);
+
+
+                ReplaceSeoModel(oModel, oSeoModel);
+                ViewBag.SeoModel = oSeoModel;
 
                 //render profile
                 return View(oModel);
@@ -80,18 +84,25 @@ namespace MarketPlace.Web.Controllers
                     ProfileViewModel oModel = new ProfileViewModel()
                     {
                         CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
-                        IsNoFollow = true,
-                        IsNoIndex = true,
                         IsRedirect = false,
-                        IsCanonical = true,
                     };
 
-                    ViewBag.NoIndex = oModel.IsNoIndex;
-                    ViewBag.NoFollow = oModel.IsNoFollow;
+                    //Seo model
+                    string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
 
-                    if (oModel.IsCanonical && oModel.CurrentProfile.DefaultSpecialty != null)
+                    SEOModel oSeoModel = new SEOModel()
                     {
-                        ViewBag.Canonical = base.CurrentDomainUrl +
+                        Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                        Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                        Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                        IsNoIndex = false,
+                        IsNoFollow = false,
+                    };
+
+                    if (oModel.CurrentProfile.DefaultSpecialty != null)
+                    {
+                        oSeoModel.CanonicalUrl = base.CurrentDomainUrl +
                             Server.UrlDecode(Url.RouteUrl(
                                     MarketPlace.Models.General.Constants.C_Route_Profile_Default,
                                     new
@@ -101,6 +112,9 @@ namespace MarketPlace.Web.Controllers
                                         SpecialtyName = BaseController.RemoveAccent(oModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
                                     }));
                     }
+
+                    ViewBag.SeoModel = oSeoModel;
+
                     //render profile
                     return View(oModel);
                 }
@@ -111,11 +125,15 @@ namespace MarketPlace.Web.Controllers
             }
         }
 
+        #region Private methods
+
         private void EvalRedirect
             (ProfileViewModel ViewModel,
             string DoctorName,
             string ProfilePublicId,
-            string SpecialtyName)
+            string SpecialtyName,
+            SEOModel CurrentSeoModel,
+            bool IsCanonical)
         {
             //validate profile
             if (ViewModel.CurrentProfile != null && ViewModel.CurrentProfile.ProfilePublicId == ProfilePublicId)
@@ -147,12 +165,19 @@ namespace MarketPlace.Web.Controllers
                 }
 
                 //validate specialty for canonical
-                if (ViewModel.CurrentProfile.DefaultSpecialty == null ||
-                    SpecialtyName.Trim() != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim()))
+                if (ViewModel.CurrentProfile.DefaultSpecialty != null &&
+                    (string.IsNullOrEmpty(SpecialtyName) ||
+                    IsCanonical ||
+                    SpecialtyName.Trim() != BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim())))
                 {
-                    ViewModel.IsNoFollow = true;
-                    ViewModel.IsNoIndex = true;
-                    ViewModel.IsCanonical = true;
+                    CurrentSeoModel.CanonicalUrl = Server.UrlDecode(Url.RouteUrl(
+                            MarketPlace.Models.General.Constants.C_Route_Profile_Default,
+                            new
+                            {
+                                DoctorName = BaseController.RemoveAccent(ViewModel.CurrentProfile.Name.Trim() + " " + ViewModel.CurrentProfile.LastName.Trim()),
+                                ProfilePublicId = ViewModel.CurrentProfile.ProfilePublicId,
+                                SpecialtyName = BaseController.RemoveAccent(ViewModel.CurrentProfile.DefaultSpecialty.Name.Trim()),
+                            }));
                 }
             }
             else if (string.IsNullOrEmpty(ProfilePublicId))
@@ -183,5 +208,49 @@ namespace MarketPlace.Web.Controllers
                 }
             }
         }
+
+        private void ReplaceSeoModel
+           (ProfileViewModel ViewModel, SEOModel CurrentSeoModel)
+        {
+            string oCityName = EnabledCities[
+                    ViewModel.CurrentProfile.RelatedOffice.
+                    Where(x => x.IsDefault).
+                    Select(x => x.City.CityId).
+                    DefaultIfEmpty(DefaultCityId).
+                    FirstOrDefault()];
+
+            string oSpecialtyName = ViewModel.CurrentProfile.DefaultSpecialty == null ?
+                    string.Empty :
+                    ViewModel.CurrentProfile.DefaultSpecialty.Name;
+
+
+            CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{CityName}", oCityName);
+
+            CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{CityName}", oCityName);
+
+            CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", oCityName);
+
+            CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',') + "," +
+                ViewModel.CurrentProfile.ProfileInfo.
+                Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.KeyWords).
+                Select(x => x.LargeValue).
+                DefaultIfEmpty(string.Empty).
+                FirstOrDefault();
+
+            if (ViewModel.CurrentProfile.DefaultSpecialty != null)
+            {
+                CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',') + "," +
+                    ViewModel.CurrentProfile.DefaultSpecialty.SpecialtyInfo.
+                    Where(x => x.CategoryInfoType == SaludGuruProfile.Manager.Models.enumCategoryInfoType.Keyword).
+                    Select(x => x.LargeValue).
+                    DefaultIfEmpty(string.Empty).
+                    FirstOrDefault();
+            }
+        }
+
+        #endregion
     }
 }
