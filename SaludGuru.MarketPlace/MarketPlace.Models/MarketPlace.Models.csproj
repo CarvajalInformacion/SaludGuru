@@ -58,6 +58,7 @@
     <Compile Include="General\CookieModel.cs" />
     <Compile Include="General\Enumerations.cs" />
     <Compile Include="General\InternalSettings.cs" />
+    <Compile Include="General\SEOModel.cs" />
     <Compile Include="General\SessionModel.cs" />
     <Compile Include="General\SiteMapModel.cs" />
     <Compile Include="Profile\AutocompleteViewModel.cs" />

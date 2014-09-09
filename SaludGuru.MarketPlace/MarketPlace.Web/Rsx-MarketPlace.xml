@@ -9,14 +9,14 @@
 
     <key name="Mobile_Login_FBUrl">https://localhost:44302/FBLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>
     <key name="Mobile_Login_GoogleUrl">https://localhost:44302/GoogleLogin/Login?UrlRetorno={{UrlRetorno}}</key>
-    <key name="Mobile_Login_WindowsLiveUrl">https://devadmin.saludguru.com.co:44302/WLLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>    
+    <key name="Mobile_Login_WindowsLiveUrl">https://devadmin.saludguru.com.co:44302/WLLogin/StartLogin?UrlRetorno={{UrlRetorno}}</key>
 
     <!--google maps-->
     <key name="GoogleMaps_ApiKey">AIzaSyBxRBzCtUdaEaPSNRHnCAcDwyp-1dOlIpg</key>
     <key name="GoogleMaps_Sensor">false</key>
 
     <!--Enabled Cities-->
-    <key name="City_Cities">1,Bogotá;</key>
+    <key name="City_Cities">1,Bogotá;2,Medellín;3,Ibagué;</key>
     <key name="City_Default">1</key>
 
     <!--SaludGuru Facebook-->
@@ -33,15 +33,15 @@
     <key name="Url_Invalid_Char">
       <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-, ;+, ;%, ;#, ;?, ;_, ]]>
     </key>
-    
+
     <!--Search page-->
     <key name="SearchPage_RowCount">20</key>
-  
+
     <!--Home Image-->
     <key name="HomeImage_Baseurl">https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_{{Count}}.jpg</key>
     <key name="HomeImage_CountMin">1</key>
     <key name="HomeImage_CountMax">10</key>
-    
+
     <!--Profile image default-->
     <key name="Profile_SmallImageDefault">https://s3.amazonaws.com/devsaludguruimg/0MPImages/MP_ProfileMan.png</key>
 
@@ -51,6 +51,23 @@
     <key name="UrlBackOffice">https://admin.saludguru.com.co</key>
 
     <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor</key>
+
+
+    <!--SEO-->
+    <!--variables {CityName}-->
+    <key name="SEO_Home_Title">Salud gurú - Guía médica | Citas médicas en línea de {CityName}</key>
+    <key name="SEO_Home_Description">Consulta la información de los mejores profesionales de la salud de Colombia. Agenda gratis tus citas médicas online a través de Salud gurú.</key>
+    <key name="SEO_Home_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
+
+    <!--variables {SpecialtyName} {TreatmentName} {InsuranceName} {CityName}-->
+    <key name="SEO_Search_Title">Salud gurú - Citas médicas en línea {SpecialtyName} {TreatmentName} {InsuranceName} de {CityName}</key>
+    <key name="SEO_Search_Description">Consulta la información de los mejores profesionales de la salud de Colombia. Agenda gratis tus citas médicas online a través de Salud gurú.</key>
+    <key name="SEO_Search_Keywords">Profesionales, Profesionales de la Salud, {SpecialtyName}, {TreatmentName}, {InsuranceName},{CityName}, Colombia</key>
+
+    <!--variables {SpecialtyName} {TreatmentName} {InsuranceName} {CityName}-->
+    <key name="SEO_Profile_Title">Salud gurú - Citas médicas en línea {SpecialtyName} {TreatmentName} {InsuranceName} de {CityName}</key>
+    <key name="SEO_Profile_Description">Consulta la información de los mejores profesionales de la salud de Colombia. Agenda gratis tus citas médicas online a través de Salud gurú.</key>
+    <key name="SEO_Profile_Keywords">Profesionales, Profesionales de la Salud, {SpecialtyName}, {TreatmentName}, {InsuranceName},{CityName}, Colombia</key>
 
   </MarketPlace>
 </Settings>
