@@ -55,8 +55,8 @@
 
     <!--SEO-->
     <!--variables {CityName}-->
-    <key name="SEO_Home_Title">Salud gurú - Guía médica | Citas médicas en línea de {CityName}</key>
-    <key name="SEO_Home_Description">Consulta la información de los mejores profesionales de la salud de Colombia. Agenda gratis tus citas médicas online a través de Salud gurú.</key>
+    <key name="SEO_Home_Title">Salud gurú - Profesionales de salud | Citas médicas en línea de {ciudad}</key>
+    <key name="SEO_Home_Description">Encuentra a los mejores profesionales de la salud en {ciudad} y agenda tu cita en línea gratis y rápidamente.</key>
     <key name="SEO_Home_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
 
     <!--variables {SpecialtyName} {TreatmentName} {InsuranceName} {CityName}-->

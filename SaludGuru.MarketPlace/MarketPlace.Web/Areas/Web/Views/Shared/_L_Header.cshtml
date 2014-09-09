@@ -4,7 +4,7 @@
         <div></div>
         <div class="MPRightTopMenu">
             <span class="MPHeadertopMenuLeftEnd"></span>
-            <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" href="https://admin.saludguru.com.co">Soy doctor</a></div>
+            <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" title="Ingreso para doctores" href="https://admin.saludguru.com.co">Soy doctor</a></div>
             <div class="MPHeadertopMenuCiudad">| Ciudad:</div>
             <select id="selGlobalCity">
                 @{
@@ -73,13 +73,13 @@
 
                 <!--Render autentications-->
                 <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>
-                <a class="MPGoogleLogIn" href="@GoogleUrl" rel="nofollow"></a>
-                <a class="MPFacebookLogIn" href="@FBUrl" rel="nofollow"></a>
+                <a class="MPGoogleLogIn" title="Ingresa con tu cuenta de Google +" href="@GoogleUrl" rel="nofollow"></a>
+                <a class="MPFacebookLogIn" title="Ingresa con tu cuenta de Facebook" href="@FBUrl" rel="nofollow"></a>
                 <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
                 <ul id="ulLoginMoreOptions" style="display:none;">
-                    <li><a href="@GoogleUrl" rel="nofollow">Google</a></li>
-                    <li><a href="@FBUrl" rel="nofollow">Facebook</a></li>
-                    <li><a href="@OutlookUrl" rel="nofollow">Outlook</a></li>
+                    <li><a href="@GoogleUrl" title="Ingresa con tu cuenta de Google +" rel="nofollow">Google</a></li>
+                    <li><a href="@FBUrl" title="Ingresa con tu cuenta de Facebook" rel="nofollow">Facebook</a></li>
+                    <li><a href="@OutlookUrl" title="Ingresa con tu cuenta de Hotmail" rel="nofollow">Outlook</a></li>
                 </ul>
             }
         </div>
@@ -89,11 +89,11 @@
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Profile.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Profile.ActionNames.FBProfile)
         {
-            <a class="MPSGlogo" target="_blank" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+            <a class="MPSGlogo" title="agenda tus citas médicas online a través de Salud Gurú" target="_blank" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
         }
         else
         {
-            <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+            <a class="MPSGlogo" title="agenda tus citas médicas online a través de Salud Gurú" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
         }
 
 
@@ -107,7 +107,7 @@
             <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
             <div>
                 <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+                <a title="Encuentra un profesional de la salud por nombre, especialidad o seguro completamente gratis" href="javascript:SearchBoxObject.SearchTerm();"></a>
             </div>
         }
     </div>
