@@ -10,14 +10,9 @@
                 <label>Que bueno verte! @(MarketPlace.Models.General.SessionModel.CurrentLoginUser.Name)</label>
                 <img src="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()" />
             </div>
-                <!--pop up user option menu-->
-            <div id="divUserMenu" style="display:none;">
-                <ul>
-                    <li>
-                        <a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)" rel="nofollow">Cerrar sesión</a>
-                    </li>
-                </ul>
-            </div>
+            <ul>
+                <li><a href="@Url.Action(MVC.Home.ActionNames.LogOutUser, MVC.Home.Name)" rel="nofollow">Cerrar sesión</a></li>
+            </ul>
         }
         else
         {
@@ -45,13 +40,9 @@
                 <li><a href="@GoogleUrl" rel="nofollow">Google</a></li>
                 <li><a href="@FBUrl" rel="nofollow">Facebook</a></li>
                 <li><a href="@OutlookUrl" rel="nofollow">Outlook</a></li>
+
             </ul>
         }
-
-        @*<a href="#" data-role="button">Business</a>
-            <a href="#" data-role="button">Numbers</a>
-            <a href="#" data-role="button">Money</a>
-            <a href="#" data-role="button">People</a>*@
     </div>
 </div>
 <div id="header" data-role="header" data-theme="b">

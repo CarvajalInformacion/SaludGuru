@@ -712,33 +712,36 @@ namespace BackOffice.Web.Controllers
                 {
                     List<User> User = new List<SessionController.Models.Auth.User>();
                     User = Auth.Client.Controller.Client.GetUserListByEmailList(PatientList.FirstOrDefault().PatientInfo.Where(y => y.PatientInfoType == enumPatientInfoType.Email).Select(y => y.Value).FirstOrDefault());
-                    if (User != null || User.Count() > 0)
+                    if (User != null)
                     {
-                        oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
+                        if (User.Count() > 0)
+                        {
+                            oMessage.NewMessage.RelatedParameter = new List<ClientMessageParameter>();
 
-                        oMessage.NewMessage.UserAction = User.FirstOrDefault().UserId.ToString();
-                        oMessage.NewMessage.ProgramTime = DateTime.Now;
-                        oMessage.NewMessage.MessageType = "GuruNotification_MPConfirmedAppointment";
+                            oMessage.NewMessage.UserAction = User.FirstOrDefault().UserId.ToString();
+                            oMessage.NewMessage.ProgramTime = DateTime.Now;
+                            oMessage.NewMessage.MessageType = "GuruNotification_MPConfirmedAppointment";
 
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name + PatientList.FirstOrDefault().LastName });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = PatientList.FirstOrDefault().PatientPublicId });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = PatientList.FirstOrDefault().Name + PatientList.FirstOrDefault().LastName });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.LastName });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = PatientList.FirstOrDefault().PatientPublicId });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
 
-                        List<string> emailRelatedList = new List<string>();
-                        List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
-                        ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
+                            List<string> emailRelatedList = new List<string>();
+                            List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
+                            ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
 
-                        //Find the autorized 
-                        emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
-                        string autorizedEmail = string.Join(",", emailRelatedList);
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = User.FirstOrDefault().UserPublicId.ToString() });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
-                        oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
-                        result = Message.Client.Client.Instance.CreateMessage(oMessage);
-                    }                   
+                            //Find the autorized 
+                            emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
+                            string autorizedEmail = string.Join(",", emailRelatedList);
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = User.FirstOrDefault().UserPublicId.ToString() });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
+                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                        }
+                    }
                 }
             }
 
