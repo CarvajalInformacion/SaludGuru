@@ -22,6 +22,20 @@ namespace MarketPlace.Web.Controllers
 
             ProfileModel Model = SaludGuruProfile.Manager.Controller.Profile.GetFeaturedProfile(1);
 
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
             return View(Model);
         }
 
@@ -60,6 +74,21 @@ namespace MarketPlace.Web.Controllers
                 Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms)));
             }
 
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
+
             return View();
         }
 
@@ -72,6 +101,21 @@ namespace MarketPlace.Web.Controllers
                 //redirect route 301
                 Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions)));
             }
+
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
 
             return View();
         }
@@ -86,6 +130,21 @@ namespace MarketPlace.Web.Controllers
                 Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ)));
             }
 
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
+
             return View();
         }
 
@@ -98,6 +157,21 @@ namespace MarketPlace.Web.Controllers
                 //redirect route 301
                 Response.RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact)));
             }
+
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                IsNoIndex = false,
+                IsNoFollow = false,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
 
             return View();
         }
