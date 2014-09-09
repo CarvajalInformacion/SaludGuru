@@ -16,56 +16,55 @@
         {
             @*Metting enabled*@
 
-            <div class="MPProfileLeftWrapper">
+            <div class="MPProfileWrapper">
                 <!--Profile Basic Info-->
+                <div class="MPProfileInfo">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
-
-
-
-                <!--Profile Images-->
-                <div class="MPProfileInfoImages">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
                 </div>
 
+                <!--Profile Images-->
+                @*<div class="MPProfileInfoImages">
+                        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+                    </div>*@
 
+                <!--Profile Schedule-->
+                <div class="MPProfileScheduleCallendar">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+                </div>
+
+                <!--Profile Map-->
+                <div class="MPProfileMap">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+                </div>
 
                 <!--Profile Description-->
                 <div class="MPProfileInfoDetail">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
                 </div>
             </div>
-            <div class="MPProfileRigthWrapper">
-                <!--Profile Schedule-->
-                <div class="MPProfileScheduleCallendar">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
-                </div>
-                <!--Profile Map-->
-                <div class="MPProfileMap">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
-                </div>
-            </div>
         }
         else
         {
             @*Metting disabled*@
-            <div class="MPProfileLeftWrapper">
+            <div class="MPProfileWrapper">
                 <!--Profile Basic Info-->
+                <div class="MPProfileInfo">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
-
+                </div>
 
                 <!--Profile Images-->
                 @*<div class="MPProfileInfoImages">
-        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
-    </div>*@
-                <!--Profile Description-->
+                        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+                    </div>*@
 
-
-                @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
-            </div>
-            <div class="MPProfileRigthWrapper">
                 <!--Profile Map-->
                 <div class="MPProfileMap">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+                </div>
+
+                <!--Profile Description-->
+                <div class="MPProfileInfoDetail">
+                    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
                 </div>
             </div>
         }
