@@ -60,9 +60,9 @@
     <key name="SEO_Home_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
 
     <!--variables {SpecialtyName} {TreatmentName} {InsuranceName} {CityName}-->
-    <key name="SEO_Search_Title">Salud gurú - Citas médicas en línea {SpecialtyName} {TreatmentName} {InsuranceName} de {CityName}</key>
-    <key name="SEO_Search_Description">Consulta la información de los mejores profesionales de la salud de Colombia. Agenda gratis tus citas médicas online a través de Salud gurú.</key>
-    <key name="SEO_Search_Keywords">Profesionales, Profesionales de la Salud, {SpecialtyName}, {TreatmentName}, {InsuranceName},{CityName}, Colombia</key>
+    <key name="SEO_Search_Title">Salud gurú - Agenda tu Cita médica en línea con especialistas de {SpecialtyName}{TreatmentName} {InsuranceName} en {CityName}</key>
+    <key name="SEO_Search_Description">Encuentra a los mejores profesionales de la salud de {SpecialtyName}{TreatmentName} {InsuranceName} y agenda tu cita en línea gratis y rápidamente en {CityName}.</key>
+    <key name="SEO_Search_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}{TreatmentName} {InsuranceName}, profesionales de la salud de {InsuranceName}, doctores de {InsuranceName}, {CityName}, Colombia</key>
 
     <!--variables {SpecialtyName} {CityName}-->
     <key name="SEO_Profile_Title">Salud gurú - Citas médicas en línea {SpecialtyName} de {CityName}</key>
