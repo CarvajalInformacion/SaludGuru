@@ -414,6 +414,7 @@
     <Content Include="Areas\Mobile\Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Areas\Mobile\Scripts\respond.min.js" />
     <None Include="Areas\Mobile\Scripts\_references.js" />
+    <Content Include="Areas\Mobile\Scripts\Site\Appointment.js" />
     <Content Include="Areas\Mobile\Scripts\Site\General.js" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPHeader.css" />
     <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />

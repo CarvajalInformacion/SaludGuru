@@ -120,6 +120,7 @@
                 <!--Profile Schedule-->
                 @if (Model.StartDate != null)
                 {
+                    
                     <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdNN" value="@Model.StartDate" />
                 }
                 else
@@ -180,8 +181,8 @@
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
-                    <input type="text" id="Birthday" name="Birthday" readonly="readonly" />
-                    <span class="required">*</span>
+                    <input type="text" id="Birthday" name="Birthday"/>                    
+                                   
                 </li>
                 <li>
                     <label>Sexo</label>
@@ -194,7 +195,7 @@
                     <label class="message">Los campos con (*) son obligatorios</label>
                 </li>
                 <li>
-                    <a id="itemSave" href="javascript:ValidateCreatePatient();">Guardar</a>
+                    <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
                 </li>
             </ul>
         </form>
