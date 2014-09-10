@@ -76,21 +76,21 @@
         </div>
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
         <div class="MPResultsPaidProfileDoctorPicture">
-            <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
-                <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
+            <a title="@(Model.Name + " " + Model.LastName) especialista en @ovDefaultSpecialty.Name" class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
+                <img alt="@(Model.Name + " " + Model.LastName) especialista en @ovDefaultSpecialty.Name" class="MPResultsDoctorPicture" src="@ovImageProfile" />
             </a>
             <div class="MPResultsPaidProfileDoctorSocial">
                 @if (!string.IsNullOrEmpty(ovWebSite))
                 {
-                    <a class="MPResultsPaidProfileDoctorWebsite" href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
+                    <a title="Sitio web @(Model.Name + " " + Model.LastName)" class="MPResultsPaidProfileDoctorWebsite" href="@ovWebSite" target="_blank">
+                        <img alt="Sitio web @(Model.Name + " " + Model.LastName)" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
                         <span>Página Web</span>
                     </a>
                 }
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
-                    <a class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
+                    <a title="Perfil de Facebook @(Model.Name + " " + Model.LastName)" class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
+                        <img alt="Perfil de Facebook @(Model.Name + " " + Model.LastName)" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
                         <span>Facebook</span>
                     </a>
                 }
@@ -100,19 +100,21 @@
         @*SEGUNDA COLUMNA DATICOS*@
         <div class="MPResultsPaidProfileDoctorData">
             <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
-                @(Model.Name + " " + Model.LastName)
+                <h2>@(Model.Name + " " + Model.LastName)</h2>
             </a>
 
             @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
             {
                     <!--Principal specialty-->
-                <span class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</span>
+                <h2 class="MPResultsSpecialityName">@ovDefaultSpecialty.Name</h2>
             }
-            <label class="MPResultsEnsurance">Seguros médicos:</label>
+            <h3 class="MPResultsEnsurance">Seguros médicos:</h3>
             <ul>
                 @foreach (string str in Model.RelatedInsurance.Select(x => x.Name).ToList())
                 {
-                    <li class="MPResultsInsuranceName">@str</li>
+                    <li class="MPResultsInsuranceName">
+                        <h4>@str</h4>
+                    </li>
                 }
             </ul>
         </div>
