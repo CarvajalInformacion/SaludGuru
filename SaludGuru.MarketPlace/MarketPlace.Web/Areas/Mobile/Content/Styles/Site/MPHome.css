@@ -1,0 +1,29 @@
+/************HOME BLOCKS**************/
+.Image {
+    width: 31%;
+    height: auto;
+    display: inline-block;
+    max-width: 150px;
+    min-width: 100px;
+    margin: 0px;
+}
+
+    .Image img {
+        width: 100%;
+        height: auto;
+    }
+
+.ProfileInfo {
+    display: inline-block;
+}
+
+.Demo {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+    .Demo a img {
+        width: 100%;
+        height: auto;
+    }

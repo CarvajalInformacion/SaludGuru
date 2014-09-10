@@ -6,9 +6,9 @@
     <title>@ViewBag.Title</title>
 
     @*Render bondles styles*@
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquerymobile/css")
     @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
-    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css")
-    <link href="~/Areas/Mobile/Content/jquery.mobile-1.4.2.css" rel="stylesheet" />
+
     @if (ViewBag.NoIndex != null && ViewBag.NoIndex && ViewBag.NoFollow != null && ViewBag.NoFollow)
     {
         <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
