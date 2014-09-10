@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
+    @{var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;}
+
     @{
         MarketPlace.Models.General.SEOModel oSeoModel = (MarketPlace.Models.General.SEOModel)ViewBag.SeoModel;
         if (oSeoModel == null)
@@ -10,6 +13,9 @@
                 Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
                 IsNoIndex = false,
                 IsNoFollow = false,
+                CityName = MarketPlace.Web.Controllers.BaseController.EnabledCities
+                    [oBaseController.CurrentCookie != null ?
+                    oBaseController.CurrentCookie.CurrentCity : MarketPlace.Web.Controllers.BaseController.DefaultCityId],
             };
         }
     }
@@ -84,8 +90,6 @@
     <!--Scripts Social Networks-->
     <!--Twitter-->
     <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
-
-    @{var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;}
 
     <!--Layout templates-->
     <div style="display:none">

@@ -116,6 +116,8 @@ namespace MarketPlace.Web.Controllers
                     Request.Cookies.Remove(strCookieKey);
                 }
                 this.ControllerContext.HttpContext.Response.Cookies.Add(new HttpCookie(strCookieKey, strCookieValue));
+
+                oCurrentCookie = CookieToUpdate;
             }
             catch { }
         }

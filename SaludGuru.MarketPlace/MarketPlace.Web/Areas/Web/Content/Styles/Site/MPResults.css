@@ -206,8 +206,12 @@ a.MPResultsPaidProfileDoctorName h2{
     font-size:1.2em;
     line-height:24px;
     cursor: pointer;
-    text-decoration:none;
+    text-decoration:none;    
 }
+a.freeProfile h2{
+    color:#333;
+}
+
 .MPResultsEnsurance {
     font-size:0.8em;
     line-height:1em;

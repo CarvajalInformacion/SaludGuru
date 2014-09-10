@@ -233,6 +233,8 @@ namespace MarketPlace.Web.Controllers
             CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{SpecialtyName}", oSpecialtyName);
             CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", oCityName);
 
+            CurrentSeoModel.CityName = oCityName;
+
             CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.TrimEnd(',') + "," +
                 ViewModel.CurrentProfile.ProfileInfo.
                 Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.KeyWords).

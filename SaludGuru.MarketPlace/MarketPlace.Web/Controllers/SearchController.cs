@@ -70,6 +70,16 @@ namespace MarketPlace.Web.Controllers
                             DefaultIfEmpty(BaseController.DefaultCityId).
                             FirstOrDefault();
 
+                if (base.CurrentCookie != null &&
+                    oModel.CurrentCityId != base.CurrentCookie.CurrentCity)
+                {
+                    base.SetCookie(new MarketPlace.Models.General.CookieModel()
+                    {
+                        CurrentCity = oModel.CurrentCityId,
+                    });
+                }
+
+
                 //eval redirect
                 EvalRedirect
                     (oModel);
@@ -287,6 +297,8 @@ namespace MarketPlace.Web.Controllers
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.CityName = EnabledCities[ViewModel.CurrentCityId];
             }
             else
             {
@@ -304,6 +316,8 @@ namespace MarketPlace.Web.Controllers
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.CityName = EnabledCities[ViewModel.CurrentCityId];
 
                 if (ViewModel.CurrentSpecialty != null)
                 {

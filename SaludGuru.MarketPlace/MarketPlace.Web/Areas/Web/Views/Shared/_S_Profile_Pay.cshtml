@@ -99,7 +99,7 @@
 
         @*SEGUNDA COLUMNA DATICOS*@
         <div class="MPResultsPaidProfileDoctorData">
-            <a class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
+            <a title="@(Model.Name + " " + Model.LastName) especialista en @ovDefaultSpecialty.Name" class="MPResultsPaidProfileDoctorName" href="@ovProfileUrl">
                 <h2>@(Model.Name + " " + Model.LastName)</h2>
             </a>
 
