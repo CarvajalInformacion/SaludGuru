@@ -309,6 +309,7 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 /****************LOGO Y MENSAJE HEADER********************/
 div#header {
     display: inline-block;
+    border: 0px;
 }
 
 .ui-header.ui-bar-inherit .ui-content {
@@ -326,6 +327,7 @@ div#header {
     .ui-header.ui-bar-inherit .ui-content img {
         width: 70px;
         height: auto;
+        margin-top: 13px;
     }
 
     .ui-header.ui-bar-inherit .ui-content span {
@@ -335,4 +337,23 @@ div#header {
 
 div#selGlobalCity-button {
     width: 250px;
+}
+
+.ui-content .ui-content {
+    padding: 0px;
+    overflow: hidden;
+}
+
+.ui-btn-icon-left {
+    padding-left: 1.6em;
+    padding-top: 1.5em;
+}
+
+a#bars-button {
+    margin-top: 0px !important;
+}
+
+a#bars-button:hover {
+    background-color: #99c21d;
+    border-color: #99c21d;
 }
