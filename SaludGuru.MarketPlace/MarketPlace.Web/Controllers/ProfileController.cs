@@ -225,12 +225,15 @@ namespace MarketPlace.Web.Controllers
 
 
             CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{DoctorName}", ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName);
             CurrentSeoModel.Title = CurrentSeoModel.Title.Replace("{CityName}", oCityName);
 
             CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{DoctorName}", ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName);
             CurrentSeoModel.Description = CurrentSeoModel.Description.Replace("{CityName}", oCityName);
 
             CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{SpecialtyName}", oSpecialtyName);
+            CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{DoctorName}", ViewModel.CurrentProfile.Name + " " + ViewModel.CurrentProfile.LastName);
             CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", oCityName);
 
             CurrentSeoModel.CityName = oCityName;
