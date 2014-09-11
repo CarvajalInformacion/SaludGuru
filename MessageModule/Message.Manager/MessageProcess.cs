@@ -198,6 +198,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     string profileUrl = infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault();
+                    profileUrl.Replace(" ", "+");
                     xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", ShortURL(profileUrl));
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
