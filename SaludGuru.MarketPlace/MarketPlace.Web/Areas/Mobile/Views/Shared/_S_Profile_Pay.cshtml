@@ -69,9 +69,7 @@
         @*<div class="MPResultsCertified">
             @if (ovIsCertified)
             {
-
                 <img class="MPResultsCertified SelCertifiedImage" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-
             }
         </div>*@
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
@@ -79,7 +77,7 @@
             <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
                 <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
             </a>
-            <div class="MPResultsPaidProfileDoctorSocial">
+            @*<div class="MPResultsPaidProfileDoctorSocial">
                 @if (!string.IsNullOrEmpty(ovWebSite))
                 {
                     <a class="MPResultsPaidProfileDoctorWebsite" href="@ovWebSite" target="_blank">
@@ -94,7 +92,7 @@
                         <span>Facebook</span>
                     </a>
                 }
-            </div>
+            </div>*@
         </div>
 
         @*SEGUNDA COLUMNA DATICOS*@

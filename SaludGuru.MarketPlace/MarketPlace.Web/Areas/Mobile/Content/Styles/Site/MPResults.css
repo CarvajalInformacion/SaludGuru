@@ -187,9 +187,9 @@ a.MPResultsPaidProfileDoctorFacebook {
 div.MPResultsPaidProfileDoctorData {
     border: none;
     display: inline-block;
-    width: 218px;
+    width: 57%;
     height: auto;
-    /* margin: 0px 0px 0px 0px; */
+    margin: 0px 0px 0px -20px;
 }
 
 h2.MPResultsSpecialityName,

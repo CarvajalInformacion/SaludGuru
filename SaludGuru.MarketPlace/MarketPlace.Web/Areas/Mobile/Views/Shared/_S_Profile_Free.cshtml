@@ -62,10 +62,10 @@
             }
         </div>
         <div class="MPResultsDoctorDescriptionWrapper">
-            @if (!string.IsNullOrEmpty(ovShortProfile))
+            @*@if (!string.IsNullOrEmpty(ovShortProfile))
             {
             <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
-            }
+            }*@
             @{
             SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
             if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)

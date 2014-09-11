@@ -33,8 +33,30 @@
             {
                 <li>
                     <label>Datos de contacto</label>
-                    <div id="divOffice" class="selProfileDescriptions" >
-                        <ul>
+
+
+                    <div role="main" class="ui-content">
+                        <div data-role="tabs">
+                            <div data-role="navbar">
+                                <ul>
+                                    @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+                                    {
+                                        <li><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+                            {
+                                <div id="fragment-@oCurrentOffice.OfficePublicId">
+                                    <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                    <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="selProfileDescriptions">
+                        <ul id="divOffice">
                             @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
                             {
                                 <li>
@@ -46,7 +68,7 @@
                             }
                         </ul>
                     </div>
-                    <hr class="featurette-divider __loop">   
+                    <hr class="featurette-divider __loop">
                 </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileText))
@@ -56,8 +78,8 @@
                     <div id="divProfileText" class="selProfileDescriptions">
                         <p>@ovProfileText.Trim()</p>
                     </div>
-                    <hr class="featurette-divider __loop">   
-                </li>             
+                    <hr class="featurette-divider __loop">
+                </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
@@ -66,7 +88,7 @@
                     <div id="divEducation" class="selProfileDescriptions">
                         <p>@ovProfileEducation.Trim()</p>
                     </div>
-                    <hr class="featurette-divider __loop">   
+                    <hr class="featurette-divider __loop">
                 </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileCertification))
@@ -78,8 +100,8 @@
                     </div>
                 </li>
             }
-            
+
         </ul>
-        
+
     </div>
 }
