@@ -346,7 +346,13 @@ div#header {
     }
 
 div#selGlobalCity-button {
-    width: 250px;
+    width: 97%;
+}
+.MPMobileSearchFieldWrapper {
+    border:none;
+    width: 97%;
+    margin: 0px auto;
+    padding: 0px !important;
 }
 
 .ui-content .ui-content {
@@ -382,12 +388,11 @@ a.SelCertifiedImage.ui-link {
 }
 
 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
-    width: 83%;
-    display: inline-block;
+    width: 84%;    
     float: left;
     margin: 0px 0px 0px 0px;
     min-width: 209px;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 input#inSearchBoxProfile {

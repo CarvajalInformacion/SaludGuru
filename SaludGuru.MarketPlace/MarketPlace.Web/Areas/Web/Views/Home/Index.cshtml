@@ -174,18 +174,21 @@
         }
         <!-- Feed Left -->
         <div class="HomeFirstBlockFeedLeft">
-            <h2 class="HombeBlockTitle">Noticias de la salud</h2>
-            <div class="HomeBlocks FeedLeft">
-                <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">
-                    <label id="FeedTitle">@(mHealtyLive.Title)</label>
-                </a>
-                <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">
-                    <div class="divLeftImage">
-                        <img alt="@(mHealtyLive.Title)" id="FeedImage" src="@(mHealtyLive.Image)" />
+
+            <div>
+                <label class="HombeBlockTitle">Noticias de la salud</label>
+                <div class="HomeBlocks Profile">
+                    <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">
+                        <div class="Image">
+                            <img alt="@(mHealtyLive.Title)" id="FeedImage" src="@(mHealtyLive.Image)" />
+                        </div>
+                    </a>
+                    <div class="ProfileInfo">
+                        <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)"><label id="FeedTitle">@(mHealtyLive.Title)</label></a>
+                        <p>@(Html.Raw(mHealtyLive.Description.Replace("[…]", "...").Replace("[&#8230;]", "...").Trim()))</p>
+                        <a class="MPButtons" title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">Ver más</a>
                     </div>
-                </a>
-                <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
-                <a title="@(mHealtyLive.Title)" class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
+                </div>
             </div>
         </div>
         <!-- Right Content-->
@@ -194,7 +197,7 @@
             <div class="HomeBlocks SocialNetworks">
                 <div>
                     <!--Facebook-->
-                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=250&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe class="fb" src="//www.facebook.com/plugins/likebox.php?href=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SaludGuru_FacebookProfile].Value);width=300&amp;height=200&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=false&amp;appId=508552919266572" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                 </div>
                 <ul>
                     <li>
