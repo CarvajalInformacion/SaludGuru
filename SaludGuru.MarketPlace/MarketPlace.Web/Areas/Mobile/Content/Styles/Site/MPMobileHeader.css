@@ -346,11 +346,16 @@ div#header {
     }
 
 div#selGlobalCity-button {
-    width: 97%;
+    width: 100%;
+}
+div#selGlobalCity-button span{
+    font-size: 1.1em;
+    color: #888;
+    text-transform: uppercase;
 }
 .MPMobileSearchFieldWrapper {
     border:none;
-    width: 97%;
+    width: 100%;
     margin: 0px auto;
     padding: 0px !important;
 }
@@ -390,7 +395,6 @@ a.SelCertifiedImage.ui-link {
     width: 100%;
     margin: 0px;
     min-width: 209px;
-    max-width: 600px;    
     border-radius: 3px;
 }
 

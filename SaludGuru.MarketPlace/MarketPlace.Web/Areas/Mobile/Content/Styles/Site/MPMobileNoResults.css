@@ -47,9 +47,9 @@ div.noResultsWrapper {
         background-repeat: no-repeat;
         border: medium none;
         vertical-align: top;
-        width: 72%;
+        width: 180px;
         height: 182px;
         display: block;
-        margin: 4px 0px 4px auto;
+        margin: 4px auto;
         background-size: 182px auto;
     }
