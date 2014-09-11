@@ -58,13 +58,13 @@ hr.featurette-divider.__loop {
     margin: 0px auto 0px auto;
     padding: 0;
     display: block;
-    width: 220px;   
+    width: 180px;
 }
 
     .social_bookmarks li {
         margin: 0px 5px 0px 5px;
-        height: 45px;
-        width: 45px;
+        height: 35px;
+        width: 35px;
         border-radius: 45px;
         list-style: none;
         float: left;
@@ -92,25 +92,66 @@ hr.featurette-divider.__loop {
 
     .social_bookmarks .iconfacebook, .icongplus, .iconlinkedin, .icontwitter {
         background: url('/Areas/Mobile/Content/Images/social-network-logos.png');
-        background-size: 350px;
+        background-size: 270px;
     }
 
     .social_bookmarks .icontwitter {
-        background-position-x: -34px;
-        background-position-y: -13px;
+        background-position-x: -26px;
+background-position-y: -10px;
     }
 
     .social_bookmarks .iconfacebook {
-        background-position-x: -152px;
-        background-position-y: -13px;
+        background-position-x: -117px;
+        background-position-y: -10px;
     }
 
     .social_bookmarks .icongplus {
-        background-position-x: -270px;
-        background-position-y: -13px;
+        background-position-x: -207px;
+        background-position-y: -10px;
     }
 
     .social_bookmarks .iconlinkedin {
-        background-position-x: -34px;
-        background-position-y: -92px;
+        background-position-x: -26px;
+background-position-y: -70px;
     }
+
+.ContentBlogDesktop {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 9px;
+}
+
+.BlogSG {
+    display: inline-block;
+    width: 48%;
+    height: auto;
+}
+
+    .BlogSG a label {
+        font-size: 0.8em;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 10px;
+    }
+
+.Desktop {
+    display: inline-block;
+    width: 48%;
+    height: auto;
+}
+
+    .Desktop a label {
+        font-size: 0.8em;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 10px;
+    }
+
+.Separator {
+    width: 1px;
+    height: 46px;
+    display: inline-block;
+    background-color: #99c21d;
+    margin: 0;
+}
