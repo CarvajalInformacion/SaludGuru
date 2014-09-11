@@ -66,14 +66,14 @@
                     FirstOrDefault();
         }
         <!--certified image-->
-        <div class="MPResultsCertified">
+        @*<div class="MPResultsCertified">
             @if (ovIsCertified)
             {
 
                 <img class="MPResultsCertified SelCertifiedImage" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
 
             }
-        </div>
+        </div>*@
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
         <div class="MPResultsPaidProfileDoctorPicture">
             <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
@@ -120,10 +120,10 @@
 
 
         <div class="MPResultsDoctorDescriptionWrapper">
-            @if (!string.IsNullOrEmpty(ovShortProfile))
+            @*@if (!string.IsNullOrEmpty(ovShortProfile))
             {
                 <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
-            }
+            }*@
             @{
             SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
             if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)

@@ -1,7 +1,7 @@
 ﻿@model MarketPlace.Models.Profile.SearchViewModel
 
 
-    <div class="MPResultsBreadCrumbsModel">
+    @*<div class="MPResultsBreadCrumbsModel">
     @{
         var ovUrlCityName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId]);
         var ovCityName = MarketPlace.Web.Controllers.BaseController.EnabledCities[Model.CurrentCityId];
@@ -57,7 +57,7 @@
             <span> > @Model.CurrentTreatment.Name @ovCityName</span>
         }
     }
-</div>
+</div>*@
 
 <div class="MPResultsBreadCrumbsPages">
     @{

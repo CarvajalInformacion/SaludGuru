@@ -1,0 +1,374 @@
+/********** ESTILOS DE LA PAGINA DE RESULTADOS DE DOCTORES ********/
+.MPResultsGrandWrapper span,
+.MPResultsGrandWrapper label {
+    color: #666;
+    letter-spacing: -0.1px;
+}
+
+.MPResultsGrandWrapper span {
+    display: block;
+}
+
+.MPResultsGrandWrapper a {
+    color: #92B92A;
+    letter-spacing: -0.6px;
+}
+
+    .MPResultsGrandWrapper a:hover {
+        color: #92B92A;
+    }
+
+.MPResultsGrandWrapper {
+    display: block;
+    margin: 0px auto;
+    padding: 0px;
+    border: none;
+    width: 100%;
+    min-width: 232px;
+}
+
+    .MPResultsGrandWrapper div {
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+    }
+
+div.MPResultsBreadCrumbs {
+    background-color: #92B92A;
+    color: #FFF;
+    height: 28px;
+    width: 80%;
+    margin: 0px auto;
+}
+
+@media screen and (max-width:800px) {
+    div.MPResultsBreadCrumbs {
+        background-color: #92B92A;
+        color: #FFF;
+        height: 28px;
+        width: 94%;
+        margin: 0px auto;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    div.MPResultsBreadCrumbs {
+        background-color: #92B92A;
+        color: #FFF;
+        height: 28px;
+        width: 91%;
+        margin: 0px auto;
+    }
+}
+
+div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
+    color: #FFF;
+    line-height: 1.3em;
+    font-size: 1em;
+    letter-spacing: -0.5px;
+}
+
+    div.MPResultsBreadCrumbsModel a:hover {
+        color: #FFF;
+    }
+
+.MPResultsBreadCrumbs div.MPResultsBreadCrumbsModel,
+.MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages {
+    display: inline-block;
+    width: 48.2%;
+    border: none;
+    vertical-align: top;
+    margin: 3px 0px 3px 8px;
+}
+
+div.MPResultsBreadCrumbsPages {
+    text-align: right;
+}
+
+.MPResultsBreadCrumbsPages a {
+    color: #FFF;
+    line-height: 1.3em;
+    font-size: 1em;
+    letter-spacing: -0.5px;
+}
+
+    .MPResultsBreadCrumbsPages a:hover {
+        color: #FFF;
+    }
+
+.MPResultsBreadCrumbsPages span {
+    color: #FFF;
+    text-decoration: none;
+}
+/********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
+/**** pago, basico, gratis ****/
+div.MPResultsPaidProfile {
+    display: block;
+    margin: 12px auto;
+    padding: 12px;
+    /* background: linear-gradient(#fff, #ececec); */
+    /* box-shadow: 0px 1px 7px 0px #666; */
+    border-radius: 2px;
+    width: 91%;
+    border: 1px solid;
+}
+
+
+    div.MPResultsPaidProfile label,
+    div.MPResultsPaidProfile img,
+    div.MPResultsPaidProfile a,
+    div.MPResultsPaidProfile div {
+        vertical-align: top;
+    }
+
+div.MPResultsCertified,
+img.MPResultsCertified {
+    min-width: 46px;
+    width: 6.9%;
+    height: auto;
+    display: inline-block;
+}
+
+img.MPResultsCertified {
+    width: 100%;
+}
+
+.MPResultsPaidProfileDoctorPicture {
+    border: none;
+    display: inline-block;
+    width: 108px;
+}
+
+a.MPResultsDoctorPictureWrapper {
+    width: auto;
+    height: auto;
+    border: 1px solid #666;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+img.MPResultsDoctorPicture {
+    width: 100%;
+    height: auto;
+    max-width: 80px;
+}
+/************* FACEBOOK Y SITIO WEB **************/
+.MPResultsPaidProfileDoctorSocial {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+a.MPResultsPaidProfileDoctorWebsite,
+a.MPResultsPaidProfileDoctorFacebook {
+    display: block;
+    width: 100%;
+    margin: 0px 4px;
+    text-decoration: none;
+    height: 24px;
+}
+
+    a.MPResultsPaidProfileDoctorWebsite > img,
+    a.MPResultsPaidProfileDoctorFacebook > img {
+        width: 19px;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    a.MPResultsPaidProfileDoctorWebsite > span,
+    a.MPResultsPaidProfileDoctorFacebook > span {
+        font-size: 0.7em;
+        letter-spacing: 0px;
+        margin: 0px 0px 0px 1px;
+        width: 64%;
+        line-height: 29px;
+    }
+/***** MUESTRA LA SEGUNDA COLUMNA DE DATOS *****/
+div.MPResultsPaidProfileDoctorData {
+    border: none;
+    display: inline-block;
+    width: 218px;
+    height: auto;
+    /* margin: 0px 0px 0px 0px; */
+}
+
+h2.MPResultsSpecialityName,
+span.MPResultsInsuranceName {
+    display: block;
+    height: auto;
+    margin: 4px 0px !important;
+    line-height: 1em;
+}
+
+h2.MPResultsSpecialityName {
+    font-size: 1.2em;
+}
+
+li.MPResultsInsuranceName,
+li.MPResultsInsuranceName h4 {
+    width: 84px;
+    line-height: 1em;
+    border: none;
+    display: inline-block;
+    font-size: 0.9em;
+    letter-spacing: -0.4px;
+}
+
+a.MPResultsPaidProfileDoctorName,
+a.MPResultsPaidProfileDoctorName:hover,
+a.MPResultsPaidProfileDoctorName h2 {
+    font-size: 1.2em;
+    line-height: 24px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.freeProfile h2 {
+    color: #333;
+}
+
+.MPResultsEnsurance {
+    font-size: 0.8em;
+    line-height: 1em;
+    margin: 6px 0px 6px 0px;
+}
+/** DESCRIPCION CORTA DEL DOCTOR **/
+div.MPResultsDoctorDescriptionWrapper {
+    border: none;
+    display: inline-block;
+    width: 54%;
+    vertical-align: top;
+    margin: 0px 0px 0px 12px;
+}
+
+span.MPResultsDoctorShortDescription {
+    height: auto;
+    max-height: 116px;
+    line-height: 1em;
+    font-size: 14px;
+    letter-spacing: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width:1280px) {
+    div.MPResultsDoctorDescriptionWrapper {
+        border: none;
+        display: inline-block;
+        width: 45%;
+        vertical-align: top;
+        margin: 0px 0px 0px 12px;
+    }
+
+    span.MPResultsDoctorShortDescription {
+        height: auto;
+        max-height: 116px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    div.MPResultsDoctorDescriptionWrapper {
+        border: none;
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
+        margin: 0px 0px 0px 12px;
+    }
+
+    span.MPResultsDoctorShortDescription {
+        height: auto;
+        max-height: 116px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    div.MPResultsDoctorDescriptionWrapper {
+        border: none;
+        display: inline-block;
+        width: 38%;
+        vertical-align: top;
+        margin: 0px 0px 0px 12px;
+    }
+
+    span.MPResultsDoctorShortDescription {
+        height: auto;
+        max-height: 116px;
+    }
+}
+/**********  DATOS CONTACTO **********/
+div.OfficeSelector {
+    border: none;
+    display: block;
+    width: auto;
+    height: auto;
+    min-width: 220px;
+    vertical-align: top;
+    margin: 12px 0px 4px 0px;
+}
+
+    div.OfficeSelector span {
+        cursor: pointer;
+        width: 100%;
+        color: #92B92A;
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+        div.OfficeSelector span:hover {
+            text-decoration: underline;
+        }
+
+div.OfficeContactSelector {
+    display: block;
+    min-height: 50px;
+}
+
+    div.OfficeContactSelector span, div.OfficeContactSelector span:hover {
+        cursor: auto;
+        font-size: 0.9em;
+        display: block;
+        width: auto;
+        line-height: 1.6em;
+        text-decoration: none;
+        color: #666;
+        text-align: left;
+        text-indent: 20px;
+    }
+
+span.OfficeContactTelephone,
+span.OfficeContactAddress {
+    background-repeat: no-repeat;
+}
+
+span.OfficeContactAddress {
+    background-image: url('/Areas/Mobile/Content/Images/MPResultsContactoSpriteAddress.png');
+    background-position: -5px 1px;
+    background-size: 24px auto;
+}
+
+span.OfficeContactTelephone {
+    background-image: url('/Areas/Mobile/Content/Images/MPResultsContactoSpritePhone.png');
+    background-position: 0px 2px;
+    background-size: 17px auto;
+}
+/***** ENLACES DE VER PERFIL Y AGENDAR CITA *************/
+.MPResultsDoctorLinksWrapper {
+    width: 100%;
+    text-align: right;
+}
+    /********* enlace agenda gratis ********/
+    .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
+        display: inline-block !important;
+        padding: 0px;
+        margin: 0px;
+        width: auto;
+        text-align: left;
+        font-size: 1.1em !important;
+        color: #92B92A !important;
+        line-height: 1.2em;
+    }
+
+        .MPResultsBookAppFree:hover {
+            text-decoration: underline;
+        }
