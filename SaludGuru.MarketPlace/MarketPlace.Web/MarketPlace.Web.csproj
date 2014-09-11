@@ -338,6 +338,13 @@
     <Content Include="Areas\Mobile\Content\Styles\Site\MPFooter.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPHome.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPResults.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileFooter.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileGeneralStyles.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileHeader.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileHome.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileNoResults.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobilePatientProfile.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileReset.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\SaludGuruMobile.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\SaludGuruMobile.min.css" />
     <Content Include="Areas\Mobile\Scripts\bootstrap.js" />
@@ -360,7 +367,6 @@
     <None Include="Areas\Mobile\Scripts\_references.js" />
     <Content Include="Areas\Mobile\Scripts\Site\Appointment.js" />
     <Content Include="Areas\Mobile\Scripts\Site\General.js" />
-    <Content Include="Areas\Mobile\Content\Styles\Site\MPHeader.css" />
     <Content Include="Areas\Mobile\Scripts\Site\Profile.js" />
     <Content Include="Areas\Web\Content\Images\administratorMenuIcon.png" />
     <Content Include="Areas\Web\Content\Images\agendaMenuIcon.png" />

@@ -1,0 +1,55 @@
+/***************  ESTILOS DE PAGINA DE NO RESULTADOS  ****************/
+.ui-content {
+    padding: 0.5em !important;
+}
+div.noResultsWrapper {
+    border: 1px solid #CACACA;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0px auto;
+    }
+        div.noResultsWrapper div#leftColumn {
+            display: block;
+            vertical-align: top;
+            margin: 10px auto 0px;
+            border: none;
+            width: 85%;
+        }
+
+            div#leftColumn > label.lineOne {
+                font-family: MyriadProBoldCond,"Trebuchet MS",Helvetica,sans-serif;
+                font-weight: 700;
+                margin: 0px !important;
+                font-size: 35px !important;
+                letter-spacing: -1px;
+                line-height: 32px;
+            }
+
+            div#leftColumn > label.lineTwo {
+                font-family: MyriadProCond,"Trebuchet MS",Helvetica,sans-serif;
+                font-size: 24px;
+                letter-spacing: -1px;
+                line-height: 26px;
+                color: #666;
+                margin: 8px 0px 0px 0px;
+                font-weight: 400;
+            }
+
+            div#leftColumn .horizontalLine {
+                border-bottom: 1px solid #8A0;
+                width: 100%;
+                margin: 8px auto 0px auto;
+            }
+
+    div.noResultsWrapper div.rightColumn {
+        background-image: url('https://s3.amazonaws.com/saludguruimg/0MPImages/ContentNoFound.png');
+        background-repeat: no-repeat;
+        border: medium none;
+        vertical-align: top;
+        width: 72%;
+        height: 182px;
+        display: block;
+        margin: 4px 0px 4px auto;
+        background-size: 182px auto;
+    }

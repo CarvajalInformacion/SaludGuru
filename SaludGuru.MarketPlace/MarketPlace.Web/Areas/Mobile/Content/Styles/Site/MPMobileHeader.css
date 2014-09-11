@@ -254,6 +254,12 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
         height: 56px;
         display: inline-block;
     }
+    .MPMobileMainTitle {
+        color: #759418;
+        line-height: 21px;
+        font-size: 1.3em;
+        letter-spacing: -1px;
+    }
 
     .MPHeaderSearchWrapper span {
         display: block;
@@ -308,9 +314,12 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 
 /****************LOGO Y MENSAJE HEADER********************/
 div#header {
-    display: inline-block;
-    border: 0px;
-}
+    display: block;
+    margin: 0px !important;
+    width: 44px;
+    height: auto;
+    border: none;
+    }
 
 .ui-header.ui-bar-inherit .ui-content {
     text-align: center;
@@ -318,14 +327,15 @@ div#header {
 }
 
     .ui-header.ui-bar-inherit .ui-content a {
-        width: 100px;
+        width: 100%;
         height: auto;
         display: block;
-        margin: -15px auto 15px auto;
+        margin:-15px auto 8px;
+        text-align: center;
     }
 
     .ui-header.ui-bar-inherit .ui-content img {
-        width: 70px;
+        width: 74px;
         height: auto;
         margin-top: 13px;
     }
