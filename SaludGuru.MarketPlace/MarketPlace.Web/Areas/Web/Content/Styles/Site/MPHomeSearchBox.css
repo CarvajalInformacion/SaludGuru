@@ -12,20 +12,20 @@
         background-color: rgba(255, 255, 255, 0.8);
     }
 
-        .SearchBox .SearchBoxClass span {
+        .SearchBox .SearchBoxClass h1 {
             font-style: normal;
-            line-height: 1.2;
             font-weight: bold;
-            font-size: 18px;
-            width: 760px !important;
-            opacity: 1 !important;
+            font-size: 16.5px !important;
+            width: auto !important;
             color: #535353;
-            position: relative;
-            top: 27px;
-            margin:0px auto 0px !important;
+            margin: 0px auto !important;
+            display: block;
+            border:none;
+            line-height: 1.2;
+            text-align: center;
+            padding-top: 24px;
         }
         .SearchBox .SearchBoxClass div span {
-            position: relative;
             top: 63px !important;
             display: block;
             width: auto !important;

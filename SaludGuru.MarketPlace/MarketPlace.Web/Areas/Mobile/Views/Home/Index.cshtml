@@ -3,16 +3,15 @@
     Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
 }
 
-<div class="Content" >
+<div class="Content">
     <div class="MPHeaderSearchWrapper SearchBox">
         <!--search box-->
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
         {
-           
+
         }
     </div>
-    <hr class="featurette-divider __loop">
     <div class="HomeFirstBlock">
         <div class="HomeFirstBlockLeft">
             <div>
@@ -45,29 +44,54 @@
                             }));
 
                     }
-                    <a href="@ovProfileUrl">
-                        <div class="Image">
+                    <div class="Image">
+                        <a href="@ovProfileUrl">
                             <img src="@imgProfile" />
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     <div class="ProfileInfo">
                         <a href="@ovProfileUrl">
                             <label>@nameProfile</label>
                         </a>
                         <p>@defaultSpecialtyProfile</p>
-                        <p>@shortTextProfile...</p>
+                        @*<p>@shortTextProfile...</p>*@
                         @*<a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="Demo">
-        <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
-            @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
-            <img src="/Areas/Web/Content/Images/try1.png" />
-        </a>
+</div>
+<hr class="featurette-divider __loop">
+<div class="Demo">
+    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
+        @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
+        <img src="/Areas/Web/Content/Images/try1.png" />
+    </a>
+</div>
+<hr class="featurette-divider __loop">
+<div class="SocialNetworks">
+
+    <div class='social_bookmarks_container'>
+        <ul class='social_bookmarks'>
+            <li class='icontwitter'>
+                <a href='https://twitter.com/intent/follow?original_referer=https%3A%2F%2Flocalhost%3A44303%2F&region=follow_link&screen_name=SaludGuru&tw_p=followbutton&variant=2.0'>
+                    Twitter
+                </a>
+            </li>
+            <li class='iconfacebook'>
+                <a href=''>
+                    Facebook
+                </a>
+            </li>
+            <li class='icongplus'>
+                <a href=''>
+                    Google Plus
+                </a>
+            </li>
+        </ul>
     </div>
+
 </div>
 
 @section inlinescripts

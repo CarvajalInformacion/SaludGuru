@@ -181,17 +181,18 @@ div.MPResultsPaidProfileDoctorData {
     height:auto;
     margin: 0px 0px 0px 8px;
 }
-span.MPResultsSpecialityName,
+h2.MPResultsSpecialityName,
 span.MPResultsInsuranceName{
     display:block;  
     height:auto;
     margin:4px 0px !important;
     line-height:1em;
 }
-span.MPResultsSpecialityName {
+h2.MPResultsSpecialityName {
     font-size:1.2em;
 }
-li.MPResultsInsuranceName {
+li.MPResultsInsuranceName,
+li.MPResultsInsuranceName h4{
         width:84px;
     line-height: 1em;
         border:none;
@@ -199,11 +200,18 @@ li.MPResultsInsuranceName {
     font-size:0.9em;
     letter-spacing: -0.4px;
 }
-a.MPResultsPaidProfileDoctorName{
-    font-size:1.5em;
+a.MPResultsPaidProfileDoctorName,
+a.MPResultsPaidProfileDoctorName:hover,
+a.MPResultsPaidProfileDoctorName h2{
+    font-size:1.2em;
     line-height:24px;
     cursor: pointer;
+    text-decoration:none;    
 }
+a.freeProfile h2{
+    color:#333;
+}
+
 .MPResultsEnsurance {
     font-size:0.8em;
     line-height:1em;

@@ -1,6 +1,23 @@
 ﻿@model SaludGuruProfile.Manager.Models.Profile.ProfileModel
 @{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
+
+    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+
+    MarketPlace.Models.General.SEOModel oSeoModel = (MarketPlace.Models.General.SEOModel)ViewBag.SeoModel;
+    if (oSeoModel == null)
+    {
+        oSeoModel = new MarketPlace.Models.General.SEOModel()
+        {
+            Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
+            IsNoIndex = false,
+            IsNoFollow = false,
+            CityName = MarketPlace.Web.Controllers.BaseController.EnabledCities
+                [oBaseController.CurrentCookie != null ?
+                oBaseController.CurrentCookie.CurrentCity : MarketPlace.Web.Controllers.BaseController.DefaultCityId],
+        };
+    }
 }
 
 <div class="Content">
@@ -10,10 +27,10 @@
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
         {
             <div class="SearchBoxClass">
-                <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
-                <div>
+                <h1>Encuentra los mejores profesionales de la salud de @oSeoModel.CityName por nombre, especialidad o seguro</h1>
+                <div class="searchBoxWrapper">
                     <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-                    <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+                    <a class="SelCertifiedImage" title="Encuentra un profesional de la salud por nombre, especialidad o seguro completamente gratis" href="javascript:SearchBoxObject.SearchTerm();"></a>
                 </div>
             </div>
         }
@@ -22,7 +39,7 @@
     <div class="HomeFirstBlock">
         <div class="HomeFirstBlockLeft">
             <div>
-                <label class="HombeBlockTitle">Profesional Destacado</label>
+                <h2 class="HombeBlockTitle">Agenda una cita en línea con nuestro profesional de la salud destacado</h2>
                 <div class="HomeBlocks Profile">
                     @{
                         var nameProfile = Model.Name.ToString() + " " + Model.LastName.ToString();
@@ -51,16 +68,16 @@
                             }));
 
                     }
-                    <a href="@ovProfileUrl">
+                    <a title="@nameProfile" href="@ovProfileUrl">
                         <div class="Image">
-                            <img src="@imgProfile" />
+                            <img alt="@nameProfile" src="@imgProfile" />
                         </div>
                     </a>
                     <div class="ProfileInfo">
-                        <a href="@ovProfileUrl">
-                            <label>@nameProfile</label>
+                        <a title="@nameProfile" href="@ovProfileUrl">
+                            <h3>@nameProfile</h3>
                         </a>
-                        <p>@defaultSpecialtyProfile</p>
+                        <h4>@defaultSpecialtyProfile</h4>
                         <p>@shortTextProfile...</p>
                         <a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>
                     </div>
@@ -68,81 +85,81 @@
             </div>
         </div>
         <div class="HomeFirstBlockRigth">
-            <label class="HombeBlockTitle">Lo más buscado</label>
+            <h2 class="HombeBlockTitle">Lo mas buscado</h2>
             <div class="HomeBlocks criteriaBox">
                 <div class="FeaturedSP">
-                    <label>Especialidades</label>
+                    <h3>Especialidades</h3>
                     <ul>
                         <li>
                             <a href="/odontologia+general/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Odontología">
-                                Odontología
+                                <h4>Odontología</h4>
                             </a>
                         </li>
                         <li>
                             <a href="/fisioterapia+y+terapia+fisica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Fisioterapia">
-                                Fisioterapia
+                                <h4>Fisioterapia</h4>
                             </a>
                         </li>
                         <li>
                             <a href="/cirugia+plastica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Cirugía Plástica">
-                                Cirugía Plástica
+                                <h4>Cirugía Plástica</h4>
                             </a>
                         </li>
                         <li>
                             <a href="/ginecologia+y+obstetricia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Ginecología">
-                                Ginecología
+                                <h4>Ginecología</h4>
                             </a>
                         </li>
                         @*<li>
-                            <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
-                                Medicina Estética
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/homeopatia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Homeopatía">
-                                Homeopatía
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/neumologia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Neumología">
-                                Neumología
-                            </a>
-                        </li>*@
+                                <a href="/medicina+estetica/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Medicina Estética">
+                                    Medicina Estética
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/homeopatia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Homeopatía">
+                                    Homeopatía
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/neumologia/seguros+medicos-bogota" title="Encuentra los mejores especialistas en Neumología">
+                                    Neumología
+                                </a>
+                            </li>*@
                     </ul>
                 </div>
                 <div class="Insurance">
-                    <label>Seguros</label>
+                    <h3>Seguros</h3>
                     <ul>
                         <li>
                             <a href="/todas+las+especialidades/sura/bogota" title="Encuentra los mejores médicos de Sura">
-                                Sura
+                                <h4>Sura</h4>
                             </a>
                         </li>
                         <li>
                             <a href="/todas+las+especialidades/allianz/bogota" title="Encuentra los mejores médicos de Allianz">
-                                Allianz
+                                <h4>Allianz</h4>
                             </a>
                         </li>
                         <li>
                             <a href="/todas+las+especialidades/colsanitas/bogota" title="Encuentra los mejores médicos de Colsanitas">
-                                Colsanitas
+                                <h4>Colsanitas</h4>
                             </a>
                         </li>
                         @*<li>
-                            <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
-                                Medplus
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/todas+las+especialidades/coomeva/bogota" title="Encuentra los mejores médicos de Coomeva">
-                                Coomeva
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/todas+las+especialidades/susalud/bogota" title="Encuentra los mejores médicos de Susalud">
-                                Susalud
-                            </a>
-                        </li>*@
+                                <a href="/todas+las+especialidades/medplus/bogota" title="Encuentra los mejores médicos de Medplus">
+                                    Medplus
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/todas+las+especialidades/coomeva/bogota" title="Encuentra los mejores médicos de Coomeva">
+                                    Coomeva
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/todas+las+especialidades/susalud/bogota" title="Encuentra los mejores médicos de Susalud">
+                                    Susalud
+                                </a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
@@ -157,18 +174,18 @@
         }
         <!-- Feed Left -->
         <div class="HomeFirstBlockFeedLeft">
-            <label class="HombeBlockTitle">Noticias</label>
+            <h2 class="HombeBlockTitle">Noticias de la salud</h2>
             <div class="HomeBlocks FeedLeft">
-                <a target="_blank" href="@(mHealtyLive.Link)">
+                <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">
                     <label id="FeedTitle">@(mHealtyLive.Title)</label>
                 </a>
-                <a target="_blank" href="@(mHealtyLive.Link)">
+                <a title="@(mHealtyLive.Title)" target="_blank" href="@(mHealtyLive.Link)">
                     <div class="divLeftImage">
-                        <img id="FeedImage" src="@(mHealtyLive.Image)" />
+                        <img alt="@(mHealtyLive.Title)" id="FeedImage" src="@(mHealtyLive.Image)" />
                     </div>
                 </a>
                 <p id="FeedDescription">@(Html.Raw(mHealtyLive.Description))</p>
-                <a class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
+                <a title="@(mHealtyLive.Title)" class="BlogButtom" target="_blank" href="http://blog.saludguru.com/">Ver más</a>
             </div>
         </div>
         <!-- Right Content-->
@@ -187,10 +204,10 @@
                     <li>
                         <!--LinkedIn-->
                         @*<script src="//platform.linkedin.com/in.js" type="text/javascript">
-                        lang: es_ES
-                    </script>
-                    <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
-                    </script>*@
+                                lang: es_ES
+                            </script>
+                            <script type="IN/FollowCompany" data-id="3519568" data-counter="right">
+                            </script>*@
                         <script src="//platform.linkedin.com/in.js" type="text/javascript">
                             lang: es_ES
                         </script>
@@ -207,9 +224,9 @@
     </div>
     <hr class="featurette-divider __loop">
     <div class="Demo">
-        <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
+        <a title="Salud Gurú es la solución de agenda en línea de publicar para los profesionales de la salud" href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
             @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
-            <img src="/Areas/Web/Content/Images/try1.png" />
+            <img alt="Salud Gurú es la solución de agenda en línea de publicar para los profesionales de la salud" src="/Areas/Web/Content/Images/try1.png" />
         </a>
     </div>
 </div>

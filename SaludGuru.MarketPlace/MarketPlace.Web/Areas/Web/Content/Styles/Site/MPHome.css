@@ -24,7 +24,6 @@ h1 {
     padding: 10% 0px 0px !important;
     margin: 0px 0px 0px 0px;
 }
-
     .SearchBox .SearchBoxClass {
         color: #AAD400;
         font-size: 18px;
@@ -37,20 +36,16 @@ h1 {
         position: relative;
         top: 14px;
     }
-
-        .SearchBox .SearchBoxClass div {
-            color: #AAD400;
+        div.searchBoxWrapper {
             font-size: 18px;
             width: 54%;
             min-width: 720px;
             border: medium none;
             height: 38px;
             line-height: 16px;
-            margin: 0px auto;
-            position: relative;
-            top: 14px;
+            margin: 26px auto 0px auto;
+            display: block;
         }
-
 /*---Home blocks----*/
 .HomeBlocks {
     /* border: 1px solid yellow; */
@@ -59,7 +54,6 @@ h1 {
          background: linear-gradient(#fff, #ececec);*/
     margin: 10px 0px 0px 0px;
 }
-
 .HombeBlockTitle {
     display: inline-block;
     height: 10px;
@@ -155,16 +149,19 @@ h1 {
     width: calc(77%);
     float: left;
 }
+    .ProfileInfo a{
+        text-decoration:none;
+        cursor:pointer;
+    }
 
-    .ProfileInfo label {
+    .ProfileInfo h3 {
         line-height: 35px;
         margin: 10px 0px 0px 10px;
         font-size: 21px;
         color: #99c21d;
-        cursor: auto;
     }
 
-    .ProfileInfo p {
+    .ProfileInfo h4, .ProfileInfo p {
         width: calc(97%);
         margin: 5px 0px 5px 20px;
         text-align: justify;
@@ -308,7 +305,7 @@ label#FeedTitle {
     color: #99c21d;
     font-size: 20px;
     text-align: center;
-    cursor: auto;
+    cursor: pointer;
 }
 
 /*-----Noticias Izquierda------*/
@@ -317,7 +314,7 @@ label#FeedTitle {
     display: inline-block;
 }
 
-    .FeedLeft p a {
+    .FeedLeft p a{
         font-weight: bold;
     }
 
@@ -338,7 +335,7 @@ label#FeedTitle {
     text-align: center;
 }
 
-    .FeaturedSP label {
+    .FeaturedSP h3 {
         font-size: 14px;
         text-align: center;
         /* font-family: "MyriadPro","Trebuchet MS", Helvetica, sans-serif; */
@@ -371,7 +368,7 @@ label#FeedTitle {
     margin: 0px 0px 0px 0px;
 }
 
-    .Insurance label {
+    .Insurance h3 {
         line-height: 35px;
         margin: 10px 0px 0px 0px;
         font-size: 15px;

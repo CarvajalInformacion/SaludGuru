@@ -229,13 +229,13 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas{
         height: 56px;
         display: inline-block;
     }
-    .MPHeaderSearchWrapper span {
+    .MPHeaderSearchWrapper h1 {
         display: block;
-        margin:30px auto 0px auto;
-        color:#82A327;
-        font-size:18px;
-        width:54%;
-        min-width:720px;
+        margin: 30px auto 0px !important;
+        color: #82A327;
+        font-size:16.5px !important;
+        width: 54%;
+        min-width: 720px;
         height: 20px;
         line-height: 16px;
         text-align: center;

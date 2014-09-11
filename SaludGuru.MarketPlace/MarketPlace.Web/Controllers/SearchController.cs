@@ -24,9 +24,9 @@ namespace MarketPlace.Web.Controllers
                 //start seo model
                 SEOModel oSeoModel = new SEOModel()
                 {
-                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
-                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value,
-                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value,
+                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Title].Value,
+                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Description].Value,
+                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Keywords].Value,
 
                     IsNoFollow = !ControllerContext.RouteData.Values.
                         Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
@@ -69,6 +69,16 @@ namespace MarketPlace.Web.Controllers
                             Select(x => x.Key).
                             DefaultIfEmpty(BaseController.DefaultCityId).
                             FirstOrDefault();
+
+                if (base.CurrentCookie != null &&
+                    oModel.CurrentCityId != base.CurrentCookie.CurrentCity)
+                {
+                    base.SetCookie(new MarketPlace.Models.General.CookieModel()
+                    {
+                        CurrentCity = oModel.CurrentCityId,
+                    });
+                }
+
 
                 //eval redirect
                 EvalRedirect
@@ -287,6 +297,8 @@ namespace MarketPlace.Web.Controllers
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.CityName = EnabledCities[ViewModel.CurrentCityId];
             }
             else
             {
@@ -304,6 +316,8 @@ namespace MarketPlace.Web.Controllers
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{TreatmentName}", ViewModel.CurrentTreatment != null ? ViewModel.CurrentTreatment.Name : string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{InsuranceName}", ViewModel.CurrentInsurance != null ? ViewModel.CurrentInsurance.Name : string.Empty);
                 CurrentSeoModel.Keywords = CurrentSeoModel.Keywords.Replace("{CityName}", EnabledCities[ViewModel.CurrentCityId]);
+
+                CurrentSeoModel.CityName = EnabledCities[ViewModel.CurrentCityId];
 
                 if (ViewModel.CurrentSpecialty != null)
                 {

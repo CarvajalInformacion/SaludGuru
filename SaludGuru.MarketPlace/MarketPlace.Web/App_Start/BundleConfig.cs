@@ -143,14 +143,15 @@ namespace MarketPlace.Web
 
                 #endregion
 
-                #region jquery
+                #region jquery mobile
 
-                bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquery/css").IncludeDirectory(
-                          "~/Areas/Mobile/Content/jquery",
+                bundles.Add(new StyleBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquerymobile/css").IncludeDirectory(
+                          "~/Areas/Mobile/Content/jquerymobile",
                           "*.css",
                           true));
 
                 #endregion
+
 
                 #endregion
             }

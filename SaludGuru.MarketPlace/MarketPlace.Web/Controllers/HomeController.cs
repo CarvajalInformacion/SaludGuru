@@ -31,6 +31,8 @@ namespace MarketPlace.Web.Controllers
                 Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
                 Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
 
+                CityName = oCityName,
+
                 IsNoIndex = false,
                 IsNoFollow = false,
             };
@@ -83,6 +85,8 @@ namespace MarketPlace.Web.Controllers
                 Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
                 Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
 
+                CityName = oCityName,
+
                 IsNoIndex = false,
                 IsNoFollow = false,
             };
@@ -110,6 +114,8 @@ namespace MarketPlace.Web.Controllers
                 Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
                 Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
                 Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                CityName = oCityName,
 
                 IsNoIndex = false,
                 IsNoFollow = false,
@@ -139,6 +145,8 @@ namespace MarketPlace.Web.Controllers
                 Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
                 Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
 
+                CityName = oCityName,
+
                 IsNoIndex = false,
                 IsNoFollow = false,
             };
@@ -166,6 +174,8 @@ namespace MarketPlace.Web.Controllers
                 Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
                 Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
                 Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+
+                CityName = oCityName,
 
                 IsNoIndex = false,
                 IsNoFollow = false,

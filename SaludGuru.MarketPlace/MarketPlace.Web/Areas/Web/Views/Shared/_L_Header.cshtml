@@ -1,15 +1,31 @@
-﻿<div class="MPHeaderMainWrapper">
+﻿@{var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;}
+
+@{
+    MarketPlace.Models.General.SEOModel oSeoModel = (MarketPlace.Models.General.SEOModel)ViewBag.SeoModel;
+    if (oSeoModel == null)
+    {
+        oSeoModel = new MarketPlace.Models.General.SEOModel()
+        {
+            Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
+            IsNoIndex = false,
+            IsNoFollow = false,
+            CityName = MarketPlace.Web.Controllers.BaseController.EnabledCities
+                [oBaseController.CurrentCookie != null ?
+                oBaseController.CurrentCookie.CurrentCity : MarketPlace.Web.Controllers.BaseController.DefaultCityId],
+        };
+    }
+}
+
+<div class="MPHeaderMainWrapper">
 
     <div class="MPHeaderTopWrapper">
         <div></div>
         <div class="MPRightTopMenu">
             <span class="MPHeadertopMenuLeftEnd"></span>
-            <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" href="https://admin.saludguru.com.co">Soy doctor</a></div>
+            <div class="MPHeaderTopMenuSoyDoc"><a class="MPHeaderTopMenuSoyDocLink" title="Ingreso para doctores" href="https://admin.saludguru.com.co">Soy doctor</a></div>
             <div class="MPHeadertopMenuCiudad">| Ciudad:</div>
             <select id="selGlobalCity">
                 @{
-                    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
-
                     foreach (KeyValuePair<int, string> item in MarketPlace.Web.Controllers.BaseController.EnabledCities)
                     {
                         if (item.Key == oBaseController.CurrentCookie.CurrentCity)
@@ -73,13 +89,13 @@
 
                 <!--Render autentications-->
                 <span class="MPHeaderTopMenuIngresar"> | Ingresar con:</span>
-                <a class="MPGoogleLogIn" href="@GoogleUrl" rel="nofollow"></a>
-                <a class="MPFacebookLogIn" href="@FBUrl" rel="nofollow"></a>
+                <a class="MPGoogleLogIn" title="Ingresa con tu cuenta de Google +" href="@GoogleUrl" rel="nofollow"></a>
+                <a class="MPFacebookLogIn" title="Ingresa con tu cuenta de Facebook" href="@FBUrl" rel="nofollow"></a>
                 <a class="MPHeaderTopMas" href="javascript:Header_ShowHideLoginMenu('ulLoginMoreOptions');"></a>
                 <ul id="ulLoginMoreOptions" style="display:none;">
-                    <li><a href="@GoogleUrl" rel="nofollow">Google</a></li>
-                    <li><a href="@FBUrl" rel="nofollow">Facebook</a></li>
-                    <li><a href="@OutlookUrl" rel="nofollow">Outlook</a></li>
+                    <li><a href="@GoogleUrl" title="Ingresa con tu cuenta de Google +" rel="nofollow">Google</a></li>
+                    <li><a href="@FBUrl" title="Ingresa con tu cuenta de Facebook" rel="nofollow">Facebook</a></li>
+                    <li><a href="@OutlookUrl" title="Ingresa con tu cuenta de Hotmail" rel="nofollow">Outlook</a></li>
                 </ul>
             }
         </div>
@@ -89,11 +105,11 @@
         @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Profile.Name &&
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Profile.ActionNames.FBProfile)
         {
-            <a class="MPSGlogo" target="_blank" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+            <a class="MPSGlogo" title="agenda tus citas médicas online a través de Salud Gurú" target="_blank" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
         }
         else
         {
-            <a class="MPSGlogo" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
+            <a class="MPSGlogo" title="agenda tus citas médicas online a través de Salud Gurú" href="@Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null)"></a>
         }
 
 
@@ -104,10 +120,10 @@
             MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Profile.ActionNames.FBProfile)) { }
         else
         {
-            <span>Busca un especialista por nombre, especialidad o seguro completamente gratis</span>
+            <h1>Encuentra los mejores profesionales de la salud de @oSeoModel.CityName por nombre, especialidad o seguro</h1>
             <div>
                 <input type="text" id="inSearchBoxProfile" placeholder="Buscar por nombre, especialidad o seguro" />
-                <a href="javascript:SearchBoxObject.SearchTerm();"></a>
+                <a title="Encuentra un profesional de la salud por nombre, especialidad o seguro completamente gratis" href="javascript:SearchBoxObject.SearchTerm();"></a>
             </div>
         }
     </div>

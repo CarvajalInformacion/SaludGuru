@@ -21,5 +21,7 @@ namespace MarketPlace.Models.General
         public string Keywords { get; set; }
 
         public string SearchParam { get; set; }
+
+        public string CityName { get; set; }
     }
 }
