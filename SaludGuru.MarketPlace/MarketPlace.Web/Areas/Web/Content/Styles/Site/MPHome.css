@@ -301,10 +301,11 @@ img#FeedImage {
 label#FeedTitle {
     margin: 10px calc(8%);
     line-height: 24px;
-    width: calc(80%);
+    width: calc(90%);
+    margin: 10px 0px 0px 25px;
     color: #99c21d;
     font-size: 20px;
-    text-align: center;
+    text-align: justify;
     cursor: pointer;
 }
 
