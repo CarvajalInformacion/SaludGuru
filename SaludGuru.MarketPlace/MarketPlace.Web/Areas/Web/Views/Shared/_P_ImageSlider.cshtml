@@ -7,7 +7,7 @@
             @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileInfoModel oImg in Model.CurrentProfile.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageGeneral).ToList())
             {
                 <li class="liProfileSlider">
-                    <a href="@oImg.Value" rel="prettyPhoto[galeria1]"><img class="imgProfileSlide" src="@oImg.Value" height="60px" /></a>
+                    <a href="@oImg.Value" rel="prettyPhoto[galeria1]" title="Galería del consultorio de @(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)"><img alt="Galería del consultorio de @(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)" class="imgProfileSlide" src="@oImg.Value" height="60" /></a>
                 </li>
             }
         </ul>

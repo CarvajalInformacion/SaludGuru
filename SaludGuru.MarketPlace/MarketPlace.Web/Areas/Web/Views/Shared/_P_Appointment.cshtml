@@ -17,7 +17,7 @@
             <!--appointment menu template-->
             <ul id="divAppointmentSchedule_Template_Menu">
                 <li class="SelOfficeMenu" id="li_${OfficePublicId}" onclick="javascript:ProfileAppointmentObject.RenderOfficeSchedule('${OfficePublicId}');">
-                    <a class="MPProfileCallendarTabs" href="javascript:;">${OfficeName}</a>
+                    <a title="Datos de contacto de @(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)" class="MPProfileCallendarTabs" href="javascript:;">${OfficeName}</a>
                 </li>
             </ul>
 
@@ -34,9 +34,9 @@
                 <div class="SelOfficeGrid" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
                     <div id="divGrid_OfficeInfo_${OfficePublicId}"></div>
                     <div class="MPProfileCalendarWeekTop" id="divGrid_Title_${OfficePublicId}">
-                        <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow">Anterior</a>
+                        <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow" title="Ver horarios de la semana anterior">Anterior</a>
                         <span id="spanHeader_${OfficePublicId}"></span>
-                        <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow">Siguiente</a>
+                        <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;" rel="nofollow" title="Ver horarios de la siguiente semana">Siguiente</a>
                     </div>
                     <div id="divGrid_${OfficePublicId}"></div>
                     <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
