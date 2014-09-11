@@ -375,24 +375,23 @@ a#bars-button {
     }
 
 a.SelCertifiedImage.ui-link {
-    display: inline-block !important;
-    /* border: 1px solid red; */
-    width: 36px !important;
+    display: block !important;
+    width: 100% !important;
     height: 32px !important;
     background-image: url('/Areas/Mobile/Content/Images/magGlassSmall.png');
     background-repeat: no-repeat;
-    background-position: 1px 4px;
+    background-position: 228px 2px;
     background-size: 33px auto;
     float: left;
-    margin: 2px 0px 0px 5px !important;
+    margin: 8px 0px 0px 0px !important;
 }
 
 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
-    width: 84%;    
-    float: left;
-    margin: 0px 0px 0px 0px;
+    width: 100%;
+    margin: 0px;
     min-width: 209px;
-    max-width: 600px;
+    max-width: 600px;    
+    border-radius: 3px;
 }
 
 input#inSearchBoxProfile {

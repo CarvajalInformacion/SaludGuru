@@ -327,6 +327,8 @@
     <Content Include="Areas\Mobile\Content\Images\MPResultsContactoSpritePhone.png" />
     <Content Include="Areas\Mobile\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Mobile\Content\Images\NotificationType_1502.png" />
+    <Content Include="Areas\Mobile\Content\Images\SGMPBlogSmall.png" />
+    <Content Include="Areas\Mobile\Content\Images\SGMPDeskTopSmall.png" />
     <Content Include="Areas\Mobile\Content\Images\social-network-logos.png" />
     <Content Include="Areas\Mobile\Content\Images\sprite.png" />
     <Content Include="Areas\Mobile\Content\Images\try1.png" />
