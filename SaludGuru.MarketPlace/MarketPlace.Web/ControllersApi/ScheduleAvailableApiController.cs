@@ -334,14 +334,14 @@ namespace MarketPlace.Web.ControllersApi
 
         [HttpPost]
         [HttpGet]
-        public List<EventAvailableDayModel> GetEventAvailableWeek
+        public List<EventAvailableModel> GetEventAvailableWeek
             (string ProfilePublicId,
             string OfficePublicId,
             string TreatmentId,
             string NextAvailableDate,
             string StartDateTime, string Mobile)
         {
-            List<EventAvailableDayModel> oReturn = new List<EventAvailableDayModel>();
+            List<EventAvailableModel> oReturn = new List<EventAvailableModel>();
 
             //get profile configuration
             ProfileModel CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
@@ -380,10 +380,25 @@ namespace MarketPlace.Web.ControllersApi
             //get dates
             bool oNextAvailableDate = !string.IsNullOrEmpty(NextAvailableDate) && NextAvailableDate.Replace(" ", "").ToLower() == "true" ? true : false;
             DateTime oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime oEndDateTime = DateTime.Now;
+            DateTime oEndDateTime = oStartDateTime.AddDays(1).Date;
 
-            oStartDateTime = oStartDateTime.AddDays(((int)DayOfWeek.Sunday - (int)oStartDateTime.DayOfWeek) + 1).Date;
-            oEndDateTime = oStartDateTime.AddDays(6).Date;
+            List<DayOfWeek> lstAvailableDay = CurrentOffice.ScheduleAvailable.
+                    GroupBy(sa => sa.Day).
+                    Select(sa => sa.Key).
+                    OrderBy(sa => sa).
+                    ToList();
+
+            if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+            {
+                int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
+
+                if (DaysToAdd < 0)
+                    //DaysToAdd = 6 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
+
+                oStartDateTime = oStartDateTime.AddDays(DaysToAdd);
+            }
+
+
 
             //get minutes interval
             int oMinutesInterval = string.IsNullOrEmpty(TreatmentId) ?
@@ -411,22 +426,6 @@ namespace MarketPlace.Web.ControllersApi
                 oMinutesInterval = oMinIntervalMinutes;
             }
 
-            //get start time for each day
-            TimeSpan MinTime = CurrentOffice.ScheduleAvailable.
-                    Select(sa => sa.StartTime).
-                    OrderBy(sa => sa).
-                    DefaultIfEmpty(new TimeSpan(8, 0, 0)).
-                    FirstOrDefault();
-
-            //get end time for each day
-            TimeSpan MaxTime = CurrentOffice.ScheduleAvailable.
-                    Select(sa => sa.EndTime).
-                    OrderByDescending(sa => sa).
-                    DefaultIfEmpty(new TimeSpan(17, 0, 0)).
-                    FirstOrDefault();
-
-
-
             //get first week available appointments
             if (oNextAvailableDate)
             {
@@ -442,39 +441,72 @@ namespace MarketPlace.Web.ControllersApi
                 if (lstBusyTime != null && lstBusyTime.Count > 0)
                 {
                     bool oExit = false;
-                    List<DayOfWeek> lstAvailableDay = CurrentOffice.ScheduleAvailable.
-                            GroupBy(sa => sa.Day).
-                            Select(sa => sa.Key).
-                            ToList();
                     do
                     {
-                        lstAvailableDay.All(ad =>
+                        if (lstBusyTime.Any(x => x.EvalDate.Date == oStartDateTime.Date))
                         {
-                            //get date to eval
-                            DateTime DateToEval = oStartDateTime.AddDays((int)ad - 1);
-                            //eval if date is busy
-                            if (lstBusyTime.Any(bt => bt.EvalDate.Date == DateToEval.Date))
-                            {
-                                if (lstBusyTime.Any(bt => bt.EvalDate.Date == DateToEval.Date && bt.MaxFreeTime.Minutes >= oMinIntervalMinutes))
-                                {
-                                    oExit = true;
-                                }
-                            }
-                            else
-                            {
-                                oExit = true;
-                            }
-                            return true;
-                        });
+                            int DaysToAdd = lstAvailableDay.
+                                Where(x => x > oStartDateTime.DayOfWeek).
+                                Select(x => (int)x).
+                                DefaultIfEmpty((6 - (int)oStartDateTime.DayOfWeek) + (int)lstAvailableDay.Min()).
+                                FirstOrDefault();
 
-                        if (!oExit)
-                        {
-                            //eval next week
-                            oStartDateTime = oStartDateTime.AddDays(7);
-                            oEndDateTime = oStartDateTime.AddDays(6).Date;
+                            if (DaysToAdd < 0)
+                                DaysToAdd = (6 - (int)oStartDateTime.DayOfWeek) + (int)lstAvailableDay.Min();
+
+                            oStartDateTime = oStartDateTime.AddDays(1);
+                            oEndDateTime = oStartDateTime.AddDays(1).Date;
                         }
-                    }
-                    while (!oExit);
+                        else
+                        {
+                            oExit = true;
+                        }
+                    } while (!oExit);
+
+
+
+
+
+
+
+
+
+
+                    //bool oExit = false;
+                    //List<DayOfWeek> lstAvailableDay = CurrentOffice.ScheduleAvailable.
+                    //        GroupBy(sa => sa.Day).
+                    //        Select(sa => sa.Key).
+                    //        ToList();
+
+                    ////TODO: OBTENNER EL SIGUIENTE DÍA CON AL MENOS UN ESPACIO DISPONIBLE DENTRO DE LOS DIAS QUE TIENEN AGENDA
+                    //do
+                    //{
+                    //    //get date to eval
+                    //    lstAvailableDay.All(ad =>
+                    //    {
+                    //        //eval if date is busy
+                    //        if (lstBusyTime.Any(bt => oStartDateTime.Date >= bt.EvalDate.Date))
+                    //        {
+                    //            if (lstBusyTime.Any(bt => bt.MaxFreeTime.Minutes >= oMinIntervalMinutes))
+                    //            {
+                    //                oExit = true;
+                    //            }                                
+                    //        }
+                    //        else
+                    //        {
+                    //            oExit = true;
+                    //        }
+                    //        return true;
+                    //    });
+
+                    //    if (!oExit)
+                    //    {
+                    //        //eval next week
+                    //        oStartDateTime = oStartDateTime.AddDays(1);
+                    //        //oEndDateTime = oStartDateTime.AddDays(6).Date;
+                    //    }
+                    //}
+                    //while (!oExit);
                 }
             }
 
@@ -490,241 +522,162 @@ namespace MarketPlace.Web.ControllersApi
             //get event model
 
             //create header
-
-            switch (DateTime.Now.DayOfWeek)
+            oReturn.Add(new EventAvailableModel()
             {
-                case DayOfWeek.Friday:
-                    EventAvailableModel oToAddFr = new EventAvailableModel();
-                    oToAddFr.Friday = new EventAvailableDayModel();
-
-                    oToAddFr.Friday.IsHeader = true;
-                    oToAddFr.Friday.AvailableDate = oStartDateTime;
-
-                    oReturn.Add(oToAddFr.Friday);
-                    break;
-                case DayOfWeek.Monday:
-                    EventAvailableModel oToAddMo = new EventAvailableModel();
-                    oToAddMo.Monday = new EventAvailableDayModel();
-                    oToAddMo.Monday.IsHeader = true;
-                    oToAddMo.Monday.AvailableDate = oStartDateTime;
-                    oReturn.Add(oToAddMo.Monday);
-                    break;
-                case DayOfWeek.Saturday:
-                    EventAvailableModel oToAddSat = new EventAvailableModel();
-                    oToAddSat.Saturday = new EventAvailableDayModel();
-                    oToAddSat.Saturday.IsHeader = true;
-                    oToAddSat.Saturday.AvailableDate = oStartDateTime;
-                    oReturn.Add(oToAddSat.Saturday);
-                    break;
-                case DayOfWeek.Thursday:
-                    EventAvailableModel oToAddThu = new EventAvailableModel();
-                    oToAddThu.Thursday = new EventAvailableDayModel();
-                    oToAddThu.Thursday.IsHeader = true;
-                    oToAddThu.Thursday.AvailableDate = oStartDateTime;
-                    oReturn.Add(oToAddThu.Thursday);
-                    break;
-                case DayOfWeek.Tuesday:
-                    EventAvailableModel oToAddTue = new EventAvailableModel();
-                    oToAddTue.Tuesday = new EventAvailableDayModel();
-                    oToAddTue.Tuesday.IsHeader = true;
-                    oToAddTue.Tuesday.AvailableDate = oStartDateTime;
-                    oReturn.Add(oToAddTue.Tuesday);
-                    break;
-                case DayOfWeek.Wednesday:
-                   EventAvailableModel oToAddWed = new EventAvailableModel();
-                   oToAddWed.Wednesday = new EventAvailableDayModel();
-                   oToAddWed.Wednesday.IsHeader = true;
-                   oToAddWed.Wednesday.AvailableDate = oStartDateTime;
-                   oReturn.Add(oToAddWed.Wednesday);
-                    break;
-            }
-            //oReturn.Add(new EventAvailableModel()
-            //{
-            //    Monday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime,
-            //    },
-            //    Tuesday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime.AddDays(1),
-            //    },
-            //    Wednesday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime.AddDays(2),
-            //    },
-            //    Thursday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime.AddDays(3),
-            //    },
-            //    Friday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime.AddDays(4),
-            //    },
-            //    Saturday = new EventAvailableDayModel()
-            //    {
-            //        IsHeader = true,
-            //        AvailableDate = oStartDateTime.AddDays(5),
-            //    },
-            //});
+                Monday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime,
+                },
+                Tuesday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime.AddDays(1),
+                },
+                Wednesday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime.AddDays(2),
+                },
+                Thursday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime.AddDays(3),
+                },
+                Friday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime.AddDays(4),
+                },
+                Saturday = new EventAvailableDayModel()
+                {
+                    IsHeader = true,
+                    AvailableDate = oStartDateTime.AddDays(5),
+                },
+            });
 
             //create slots
-            for (TimeSpan TimeIntervalStart = MinTime; TimeIntervalStart <= MaxTime; TimeIntervalStart = TimeIntervalStart.Add(new TimeSpan(0, oMinutesInterval, 0)))
-            {
-                TimeSpan TimeIntervalEnd = TimeIntervalStart.Add(new TimeSpan(0, oMinutesInterval, 0));
+            //for (TimeSpan TimeIntervalStart = MinTime; TimeIntervalStart <= MaxTime; TimeIntervalStart = TimeIntervalStart.Add(new TimeSpan(0, oMinutesInterval, 0)))
+            //{
+            //    TimeSpan TimeIntervalEnd = TimeIntervalStart.Add(new TimeSpan(0, oMinutesInterval, 0));
 
-                EventAvailableModel oCurrentEventModel = new EventAvailableModel()
-                {
-                    Monday = new EventAvailableDayModel(),
-                    Tuesday = new EventAvailableDayModel(),
-                    Wednesday = new EventAvailableDayModel(),
-                    Thursday = new EventAvailableDayModel(),
-                    Friday = new EventAvailableDayModel(),
-                    Saturday = new EventAvailableDayModel(),
-                };
+            //    EventAvailableModel oCurrentEventModel = new EventAvailableModel()
+            //    {
+            //        Monday = new EventAvailableDayModel(),
+            //        Tuesday = new EventAvailableDayModel(),
+            //        Wednesday = new EventAvailableDayModel(),
+            //        Thursday = new EventAvailableDayModel(),
+            //        Friday = new EventAvailableDayModel(),
+            //        Saturday = new EventAvailableDayModel(),
+            //    };
 
-                CurrentOffice.ScheduleAvailable.
-                    Where(sa => sa.StartTime <= TimeIntervalStart && sa.EndTime >= TimeIntervalEnd).
-                    GroupBy(sa => new { sa.Day }).
-                    OrderBy(sa => sa.Key.Day).
-                    All(sa =>
-                    {
-                        bool AddSlot = true;
-                        EventAvailableDayModel CurrentAvailableDate = new EventAvailableDayModel()
-                        {
-                            IsHeader = false,
-                            AvailableDate = oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Add(TimeIntervalStart),
-                        };
+            //    CurrentOffice.ScheduleAvailable.
+            //        Where(sa => sa.StartTime <= TimeIntervalStart && sa.EndTime >= TimeIntervalEnd).
+            //        GroupBy(sa => new { sa.Day }).
+            //        OrderBy(sa => sa.Key.Day).
+            //        All(sa =>
+            //        {
+            //            bool AddSlot = true;
+            //            EventAvailableDayModel CurrentAvailableDate = new EventAvailableDayModel()
+            //            {
+            //                IsHeader = false,
+            //                AvailableDate = oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Add(TimeIntervalStart),
+            //            };
 
-                        //get appointments on interval
-                        List<AppointmentModel> appmt = CurrentAppointment.
-                            Where(ap => ap.StartDate.Date == oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Date &&
+            //            //get appointments on interval
+            //            List<AppointmentModel> appmt = CurrentAppointment.
+            //                Where(ap => ap.StartDate.Date == oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Date &&
 
-                                        ((ap.StartDate.TimeOfDay >= TimeIntervalStart &&
-                                        ap.StartDate.TimeOfDay <= TimeIntervalEnd) ||
+            //                            ((ap.StartDate.TimeOfDay >= TimeIntervalStart &&
+            //                            ap.StartDate.TimeOfDay <= TimeIntervalEnd) ||
 
-                                        (ap.EndDate.TimeOfDay >= TimeIntervalStart &&
-                                        ap.EndDate.TimeOfDay <= TimeIntervalEnd) ||
+            //                            (ap.EndDate.TimeOfDay >= TimeIntervalStart &&
+            //                            ap.EndDate.TimeOfDay <= TimeIntervalEnd) ||
 
-                                        (TimeIntervalStart >= ap.StartDate.TimeOfDay &&
-                                        TimeIntervalStart <= ap.EndDate.TimeOfDay) ||
+            //                            (TimeIntervalStart >= ap.StartDate.TimeOfDay &&
+            //                            TimeIntervalStart <= ap.EndDate.TimeOfDay) ||
 
-                                        (TimeIntervalEnd >= ap.StartDate.TimeOfDay &&
-                                        TimeIntervalEnd <= ap.EndDate.TimeOfDay))).
-                            ToList();
+            //                            (TimeIntervalEnd >= ap.StartDate.TimeOfDay &&
+            //                            TimeIntervalEnd <= ap.EndDate.TimeOfDay))).
+            //                ToList();
 
-                        //eval if slot is empty
-                        if (string.IsNullOrEmpty(TreatmentId))
-                        {
-                            if (appmt != null && appmt.Count > 0)
-                            {
-                                appmt.All(ap =>
-                                {
-                                    if (ap.StartDate.TimeOfDay <= TimeIntervalStart &&
-                                        ap.EndDate.TimeOfDay >= TimeIntervalEnd)
-                                    {
-                                        AddSlot = false;
-                                    }
-                                    else if (ap.StartDate.TimeOfDay >= TimeIntervalStart &&
-                                            ap.EndDate.TimeOfDay <= TimeIntervalEnd &&
-                                            ap.StartDate.TimeOfDay.Subtract(TimeIntervalStart).Minutes < oMinIntervalMinutes &&
-                                            TimeIntervalEnd.Subtract(ap.EndDate.TimeOfDay).Minutes < oMinIntervalMinutes)
-                                    {
-                                        AddSlot = false;
-                                    }
-                                    else if (ap.StartDate.TimeOfDay > TimeIntervalStart &&
-                                            ap.EndDate.TimeOfDay > TimeIntervalEnd &&
-                                            ap.StartDate.TimeOfDay.Subtract(TimeIntervalStart).Minutes < oMinIntervalMinutes)
-                                    {
-                                        AddSlot = false;
-                                    }
-                                    else if (ap.StartDate.TimeOfDay < TimeIntervalStart &&
-                                            ap.EndDate.TimeOfDay < TimeIntervalEnd &&
-                                            TimeIntervalEnd.Subtract(ap.EndDate.TimeOfDay).Minutes < oMinIntervalMinutes)
-                                    {
-                                        AddSlot = false;
-                                    }
-                                    return true;
-                                });
-                            }
-                        }
-                        else
-                        {
-                            if (appmt != null && appmt.Count > 0)
-                            {
-                                //full for appointment exists between slot duration for specific treatment
-                                AddSlot = false;
-                            }
-                        }
+            //            //eval if slot is empty
+            //            if (string.IsNullOrEmpty(TreatmentId))
+            //            {
+            //                if (appmt != null && appmt.Count > 0)
+            //                {
+            //                    appmt.All(ap =>
+            //                    {
+            //                        if (ap.StartDate.TimeOfDay <= TimeIntervalStart &&
+            //                            ap.EndDate.TimeOfDay >= TimeIntervalEnd)
+            //                        {
+            //                            AddSlot = false;
+            //                        }
+            //                        else if (ap.StartDate.TimeOfDay >= TimeIntervalStart &&
+            //                                ap.EndDate.TimeOfDay <= TimeIntervalEnd &&
+            //                                ap.StartDate.TimeOfDay.Subtract(TimeIntervalStart).Minutes < oMinIntervalMinutes &&
+            //                                TimeIntervalEnd.Subtract(ap.EndDate.TimeOfDay).Minutes < oMinIntervalMinutes)
+            //                        {
+            //                            AddSlot = false;
+            //                        }
+            //                        else if (ap.StartDate.TimeOfDay > TimeIntervalStart &&
+            //                                ap.EndDate.TimeOfDay > TimeIntervalEnd &&
+            //                                ap.StartDate.TimeOfDay.Subtract(TimeIntervalStart).Minutes < oMinIntervalMinutes)
+            //                        {
+            //                            AddSlot = false;
+            //                        }
+            //                        else if (ap.StartDate.TimeOfDay < TimeIntervalStart &&
+            //                                ap.EndDate.TimeOfDay < TimeIntervalEnd &&
+            //                                TimeIntervalEnd.Subtract(ap.EndDate.TimeOfDay).Minutes < oMinIntervalMinutes)
+            //                        {
+            //                            AddSlot = false;
+            //                        }
+            //                        return true;
+            //                    });
+            //                }
+            //            }
+            //            else
+            //            {
+            //                if (appmt != null && appmt.Count > 0)
+            //                {
+            //                    //full for appointment exists between slot duration for specific treatment
+            //                    AddSlot = false;
+            //                }
+            //            }
 
-                        if (AddSlot)
-                        {
-                            switch (sa.Key.Day)
-                            {
-                                case DayOfWeek.Monday:
-                                    oCurrentEventModel.Monday = CurrentAvailableDate;
-                                     if (!oCurrentEventModel.SlotIsEmpty)
-                                         oReturn.Add(oCurrentEventModel.Monday);
-                                    break;
-                                case DayOfWeek.Tuesday:
-                                    oCurrentEventModel.Tuesday = CurrentAvailableDate;
-                                    if (!oCurrentEventModel.SlotIsEmpty)
-                                        oReturn.Add(oCurrentEventModel.Tuesday);
-                                    break;
-                                case DayOfWeek.Wednesday:
-                                    oCurrentEventModel.Wednesday = CurrentAvailableDate;
-                                    if (!oCurrentEventModel.SlotIsEmpty)
-                                        oReturn.Add(oCurrentEventModel.Wednesday);
-                                    break;
-                                case DayOfWeek.Thursday:
-                                    oCurrentEventModel.Thursday = CurrentAvailableDate;
-                                    if (!oCurrentEventModel.SlotIsEmpty)
-                                        oReturn.Add(oCurrentEventModel.Thursday);
-                                    break;
-                                case DayOfWeek.Friday:
-                                    oCurrentEventModel.Friday = CurrentAvailableDate;
-                                    if (!oCurrentEventModel.SlotIsEmpty)
-                                        oReturn.Add(oCurrentEventModel.Friday);
-                                    break;
-                                case DayOfWeek.Saturday:
-                                    oCurrentEventModel.Saturday = CurrentAvailableDate;
-                                    if (!oCurrentEventModel.SlotIsEmpty)                                    
-                                        oReturn.Add(oCurrentEventModel.Saturday);
-                                   
-                                    break;
-                            }
-                        }
-                        return true;
-                    });
+            //            if (AddSlot)
+            //            {
+            //                switch (sa.Key.Day)
+            //                {
+            //                    case DayOfWeek.Monday:
+            //                        oCurrentEventModel.Monday = CurrentAvailableDate;
+            //                        break;
+            //                    case DayOfWeek.Tuesday:
+            //                        oCurrentEventModel.Tuesday = CurrentAvailableDate;
+            //                        break;
+            //                    case DayOfWeek.Wednesday:
+            //                        oCurrentEventModel.Wednesday = CurrentAvailableDate;
+            //                        break;
+            //                    case DayOfWeek.Thursday:
+            //                        oCurrentEventModel.Thursday = CurrentAvailableDate;
+            //                        break;
+            //                    case DayOfWeek.Friday:
+            //                        oCurrentEventModel.Friday = CurrentAvailableDate;
+            //                        break;
+            //                    case DayOfWeek.Saturday:
+            //                        oCurrentEventModel.Saturday = CurrentAvailableDate;
+            //                        break;
+            //                }
+            //            }
+            //            return true;
+            //        });
 
-                //add event model
-                
-            }
-            switch (DateTime.Now.DayOfWeek)
-            {
-                case DayOfWeek.Friday:
-                    //oReturn = oReturn.Where(x => x.Friday != null).Select(x => x).ToList();
-                    break;
-                case DayOfWeek.Monday:
-                    break;
-                case DayOfWeek.Saturday:
-                    break;
-                case DayOfWeek.Sunday:
-                    break;
-                case DayOfWeek.Thursday:
-                    break;
-                case DayOfWeek.Tuesday:
-                    break;
-                case DayOfWeek.Wednesday:
-                    oReturn = oReturn.Where(x => x.AvailableDate.Value.DayOfWeek == DayOfWeek.Wednesday).Select(x => x).ToList();
-                    break;
-                default:
-                    break;
-            }
+            //    //add event model
+            //    if (!oCurrentEventModel.SlotIsEmpty)
+            //    {
+            //        oReturn.Add(oCurrentEventModel);
+            //    }
+            //}
             return oReturn;
 
         }

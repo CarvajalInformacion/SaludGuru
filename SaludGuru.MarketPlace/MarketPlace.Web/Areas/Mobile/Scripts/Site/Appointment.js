@@ -190,7 +190,7 @@ var AppointmentObject = {
                         dataType: "json",
                         type: "POST",
                         success: function (data, textStatus, jqXHR) {
-                            debugger;
+                                debugger;
                             ;
                             //AddPatientToList(data);
                         },
