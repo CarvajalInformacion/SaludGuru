@@ -23,7 +23,7 @@
     height: 32px;
     float: right;
     width: auto;
-    background-image: url('/Areas/Web/Content/Images/BOTopBar4.png');
+    background-image: url('/Areas/Mobile/Content/Images/BOTopBar4.png');
     background-repeat: repeat-x;
     background-position: 0px -2px;
 }
@@ -33,7 +33,7 @@ span.MPHeadertopMenuLeftEnd {
     display: inline-block;
     width: 26px;
     height: 33px;
-    background-image: url('/Areas/Web/Content/Images/BOTopBar3.png');
+    background-image: url('/Areas/Mobile/Content/Images/BOTopBar3.png');
     background-repeat: no-repeat;
     background-position: -5px -1px;
     background-size: auto 33px;
@@ -54,7 +54,7 @@ a.MPHeaderTopMenuSoyDocLink,
 div.MPHeaderTopMenuSoyDoc {
     display: inline-block;
     padding: 0px 0px 0px 0px;
-    background-image: url('/Areas/Web/Content/Images/MPHeaderSoyDoc.png');
+    background-image: url('/Areas/Mobile/Content/Images/MPHeaderSoyDoc.png');
     background-position: 0px 1px;
     background-size: 24px auto;
     background-repeat: no-repeat;
@@ -123,17 +123,17 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
     }
 
         #ulLoginMoreOptions li:first-child {
-            background-image: url('/Areas/Web/Content/Images/googleIconSmall.png');
+            background-image: url('/Areas/Mobile/Content/Images/googleIconSmall.png');
             background-size: 26px auto;
         }
 
         #ulLoginMoreOptions li:nth-child(2) {
-            background-image: url('/Areas/Web/Content/Images/facebookIconSmall.png');
+            background-image: url('/Areas/Mobile/Content/Images/facebookIconSmall.png');
             background-size: 26px auto;
         }
 
         #ulLoginMoreOptions li:nth-child(3) {
-            background-image: url('/Areas/Web/Content/Images/MPOutlookLogo.png');
+            background-image: url('/Areas/Mobile/Content/Images/MPOutlookLogo.png');
             background-size: 28px auto;
         }
 
@@ -144,7 +144,7 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 /************** NOT LOGGED IN ***************/
 .MPGoogleLogIn {
     border: none;
-    background-image: url('/Areas/Web/Content/Images/googleIconSmall.png');
+    background-image: url('/Areas/Mobile/Content/Images/googleIconSmall.png');
     background-repeat: no-repeat;
     background-position: 0px 3px;
     background-size: 26px auto;
@@ -156,7 +156,7 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 
 .MPFacebookLogIn {
     border: none;
-    background-image: url('/Areas/Web/Content/Images/facebookIconSmall.png');
+    background-image: url('/Areas/Mobile/Content/Images/facebookIconSmall.png');
     background-repeat: no-repeat;
     background-position: 0px 3px;
     background-size: 26px auto;
@@ -169,7 +169,7 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 
 .MPOutlookLogIn {
     border: none;
-    background-image: url('/Areas/Web/Content/Images/MPOutlookLogo.png');
+    background-image: url('/Areas/Mobile/Content/Images/MPOutlookLogo.png');
     background-repeat: no-repeat;
     background-position: 0px 3px;
     background-size: 26px auto;
@@ -246,13 +246,19 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
         position: absolute;
         left: 2%;
         top: 1%;
-        background-image: url('/Areas/Web/Content/Images/logoSaludGuruSmall.png');
+        background-image: url('/Areas/Mobile/Content/Images/logoSaludGuruSmall.png');
         background-repeat: no-repeat;
         background-position: 1px 1px;
         background-size: 89px auto;
         width: 90px;
         height: 56px;
         display: inline-block;
+    }
+    .MPMobileMainTitle {
+        color: #759418;
+        line-height: 21px;
+        font-size: 1.3em;
+        letter-spacing: -1px;
     }
 
     .MPHeaderSearchWrapper span {
@@ -293,7 +299,7 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
             border: none;
             width: 38px;
             height: 38px;
-            background-image: url('/Areas/Web/Content/Images/magGlassSmall.png');
+            background-image: url('/Areas/Mobile/Content/Images/magGlassSmall.png');
             background-repeat: no-repeat;
             background-position: 1px 4px;
             background-size: 34px auto;
@@ -308,9 +314,12 @@ div.MPHeadertopMenuCiudad, .MPHeaderTopMenuIngresar, .MPHeaderTopMas {
 
 /****************LOGO Y MENSAJE HEADER********************/
 div#header {
-    display: inline-block;
-    border: 0px;
-}
+    display: block;
+    margin: 0px !important;
+    width: 44px;
+    height: auto;
+    border: none;
+    }
 
 .ui-header.ui-bar-inherit .ui-content {
     text-align: center;
@@ -318,14 +327,15 @@ div#header {
 }
 
     .ui-header.ui-bar-inherit .ui-content a {
-        width: 100px;
+        width: 100%;
         height: auto;
         display: block;
-        margin: -15px auto 15px auto;
+        margin:-15px auto 8px;
+        text-align: center;
     }
 
     .ui-header.ui-bar-inherit .ui-content img {
-        width: 70px;
+        width: 74px;
         height: auto;
         margin-top: 13px;
     }
@@ -353,7 +363,35 @@ a#bars-button {
     margin-top: 0px !important;
 }
 
-a#bars-button:hover {
-    background-color: #99c21d;
-    border-color: #99c21d;
+    a#bars-button:hover {
+        background-color: #99c21d;
+        border-color: #99c21d;
+    }
+
+a.SelCertifiedImage.ui-link {
+    display: inline-block !important;
+    /* border: 1px solid red; */
+    width: 36px !important;
+    height: 32px !important;
+    background-image: url('/Areas/Mobile/Content/Images/magGlassSmall.png');
+    background-repeat: no-repeat;
+    background-position: 1px 4px;
+    background-size: 33px auto;
+    float: left;
+    margin: 2px 0px 0px 5px !important;
+}
+
+.ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
+    width: 83%;
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 0px 0px;
+    min-width: 209px;
+    max-width: 500px;
+}
+
+input#inSearchBoxProfile {
+    font-size: 11px;
+    height: 32px !important;
+    text-align: center;
 }

@@ -327,6 +327,7 @@
     <Content Include="Areas\Mobile\Content\Images\MPResultsContactoSpritePhone.png" />
     <Content Include="Areas\Mobile\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Mobile\Content\Images\NotificationType_1502.png" />
+    <Content Include="Areas\Mobile\Content\Images\social-network-logos.png" />
     <Content Include="Areas\Mobile\Content\Images\sprite.png" />
     <Content Include="Areas\Mobile\Content\Images\try1.png" />
     <Content Include="Areas\Mobile\Content\jquerymobile\jquery.mobile-1.4.2.min.css" />
@@ -334,6 +335,9 @@
     <Content Include="Areas\Mobile\Content\Styles\bootstrap-theme.min.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPFooter.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPHome.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPResults.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileFooter.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileGeneralStyles.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileHeader.css" />
