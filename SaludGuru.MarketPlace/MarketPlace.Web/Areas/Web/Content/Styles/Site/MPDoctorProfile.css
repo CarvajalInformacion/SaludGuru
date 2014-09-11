@@ -258,7 +258,7 @@ li.MPProfileInsuranceName {
             display: block;
         }
 
-            .MPProfileInfoDetailProfile ul li label {
+            .MPProfileInfoDetailProfile ul li h5 {
                 font-size: 1.1em;
                 line-height: 27px;
                 letter-spacing: -1px;

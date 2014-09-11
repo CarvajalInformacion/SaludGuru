@@ -41,7 +41,7 @@
 
 @if (!Model.RenderScripts)
 {
-        <img class="MPProfileDoctorImage" src="@ovImageProfile" />                             
+    <img class="MPProfileDoctorImage" src="@ovImageProfile" alt="@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName) especialista en @ovDefaultSpecialty.Name" title="@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName) especialista en @ovDefaultSpecialty.Name" />
         <div class="MPProfileInfo_BasicInfoRight">
             
             <div class="MPProfileInfo_BasicInfo">
@@ -51,38 +51,38 @@
                     <img class="MPProfileCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." />
                 }
                 <!--Professional name-->
-                <label class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
+                <h1 class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</h1>
 
                 @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
                 {
                 <!--Principal specialty-->
-                    <span class="MPProfileSpecialityName">@ovDefaultSpecialty.Name</span>
+                    <h2 class="MPProfileSpecialityName">@ovDefaultSpecialty.Name</h2>
                 }
             </div>
             <div class="MPProfileSpecialtyColumn">
                 <!--Related Insurance-->
 
-                <label class="MPProfileInsurance">Especialidades:</label>
+                <h3 class="MPProfileInsurance">Especialidades:</h3>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
                     {
-                        <li class="MPProfileInsuranceName">@str</li>
+                        <li class="MPProfileInsuranceName"><h4>@str</h4></li>
                     }
                 </ul>
             </div>
             <div class="MPProfileInsuranceColumn">
                 <!--Related Insurance-->
-                <label class="MPProfileInsurance">Seguros médicos:</label>
+                <h3 class="MPProfileInsurance">Seguros médicos:</h3>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
                     {
-                        <li class="MPProfileInsuranceName">@str</li>
+                        <li class="MPProfileInsuranceName"><h4>@str</h4></li>
                     }
                 </ul>
             </div>
             <!--Social Profile-->
             <div class="MPProfileInfo_Social">
-                <label class="MPProfileInsurance">Redes sociales y web:</label>
+                <h3 class="MPProfileInsurance">Redes sociales y web:</h3>
                 @if (!string.IsNullOrEmpty(ovFacebook))
                 {
                     <iframe src="//www.facebook.com/plugins/like.php?href=@(Html.Encode(ovFacebook))&amp;width=200&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowtransparency="true"></iframe>
