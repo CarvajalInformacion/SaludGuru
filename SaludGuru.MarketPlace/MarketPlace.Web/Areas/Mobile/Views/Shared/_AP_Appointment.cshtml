@@ -16,63 +16,20 @@
 
         <!--appointment grid template-->
         <div id="divAppointmentSchedule_Template_Grid">
-            <ul id="ul_GridFreeSchedule">
-               
-            </ul>
 
+            <div class="SelOfficeGrid GridAP" id="divScheduleContainer_${OfficePublicId}">
 
-            <div class="SelOfficeGrid GridAP" id="divScheduleContainer_${OfficePublicId}" style="display:none;">
-                <div id="divGrid_Title_${OfficePublicId}">
-                    <a id="aAfter_${OfficePublicId}" href="javascript:;" style="display:none;">Anterior</a>
-                    <span id="spanHeader_${OfficePublicId}"></span>
-                    <a id="aBefore_${OfficePublicId}" href="javascript:;" style="display:none;">Siguiente</a>
-                </div>
-                <div id="divGrid_${OfficePublicId}"></div>
-                <div id="divGrid_NotSchedule_${OfficePublicId}" style="display:none;">
-                    <a href="javascript:;">Buscar siguiente horario disponible</a>
+                <div id="divGrid_Title">
+                    <a id="Before_FreeSch" href=" javascript:;">Anterior</a>                    
+                    
                 </div>
             </div>
+            <ul id="ul_GridFreeSchedule"></ul>
+            <div id="divGrid_NotSchedule_${OfficePublicId}">
+                <a href="javascript:;">Buscar siguiente horario disponible</a>
+            </div>
         </div>
-
-        @*<!--appointment   event template-->
-        <div id="divAppointmentSchedule_Template_Grid_Event_Monday">
-            <a class="${Monday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Monday.AvailableDateTemplateText}', '${Monday.AvailableDate}');" href="javascript:">
-                ${Monday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Tuesday">
-            <a class="${Tuesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Tuesday.AvailableDateTemplateText}', '${Tuesday.AvailableDate}');" href="javascript:">
-                ${Tuesday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Wednesday">
-            <a class="${Wednesday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Wednesday.AvailableDateTemplateText}', '${Wednesday.AvailableDate}');" href="javascript:">
-                ${Wednesday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Thursday">
-            <a class="${Thursday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Thursday.AvailableDateTemplateText}', '${Thursday.AvailableDate}');" href="javascript:">
-                ${Thursday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Friday">
-            <a class="${Friday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Friday.AvailableDateTemplateText}', '${Friday.AvailableDate}');" href="javascript:">
-                ${Friday.AvailableDateText}
-            </a>
-        </div>
-        <div id="divAppointmentSchedule_Template_Grid_Event_Saturday">
-            <a class="${Saturday.CurrentStyle}" onclick="AppointmentObject.SetHour('${Saturday.AvailableDateTemplateText}', '${Saturday.AvailableDate}');" href="javascript:">
-                ${Saturday.AvailableDateText}
-            </a>
-        </div>
-        <!--appointment header event template-->
-        <div id="divAppointmentSchedule_Template_Grid_Event_Header">
-            <label class="HeaderStyle">
-                ${AvailableDateText}
-            </label>
-        </div>*@
     </div>
-    
 }
 else
 {
@@ -96,14 +53,20 @@ else
                 OrderBy(x => x.OfficeName).ToList());
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            AppointmentObject.Init({                
-                DivAppointmentId: 'divAppointmentSchedule',
-                selOfficeId: 'SelectedOffice',
-                selTreatmentId: 'SelectedTreatment',
-                OfficeInfo : @Html.Raw(oOfficeInfo),
-            });
-            AppointmentObject.RenderAsync();
+    $(document).ready(function () {
+        AppointmentObject.Init({
+            DivAppointmentId: 'divAppointmentSchedule',
+            selOfficeId: 'SelectedOffice',
+            selTreatmentId: 'SelectedTreatment',
+            OfficeInfo : @Html.Raw(oOfficeInfo) ,
+            NextAvailableDate : 'false',
         });
+        AppointmentObject.RenderAsync();
+ 
+        $('#NextFreeSch').click(function () {
+            debugger;
+            AppointmentObject.RenderOfficeSchedule('SelectedOffice',  '@Model.CurrentProfile.ProfilePublicId','true', 'SelectedTreatment');
+        });
+    });
     </script>
 }

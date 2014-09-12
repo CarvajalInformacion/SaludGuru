@@ -424,12 +424,18 @@ namespace MarketPlace.Web.ControllersApi
             {
                 oMinutesInterval = oMinIntervalMinutes;
             }
+            TimeSpan startHour = new TimeSpan(8, 0, 0);
+            oStartDateTime = oStartDateTime.Date + startHour;
+
+            //get Appointments on interval
+            List<AppointmentModel> CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.MPAppointmentGetByOfficeId
+                (CurrentOffice.OfficePublicId,
+                oStartDateTime,
+                oEndDateTime);
 
             //get first week available appointments
             if (oNextAvailableDate)
-            {
-                TimeSpan startHour = new TimeSpan(8, 0, 0);
-                oStartDateTime = oStartDateTime.Date + startHour;
+            {               
                 //get busy schedule
                 List<ScheduleBusyModel> lstBusyTime = MedicalCalendar.Manager.Controller.Appointment.GetScheduleBusy
                     (CurrentProfile.ProfilePublicId,
@@ -447,7 +453,7 @@ namespace MarketPlace.Web.ControllersApi
                         if (lstBusyTime.Any(x => x.EvalDate.Date == oStartDateTime.Date))
                         {
                             int DaysToAdd = lstAvailableDay.
-                                Where(x => x > oStartDateTime.DayOfWeek).
+                                Where(x => x >= oStartDateTime.DayOfWeek).
                                 Select(x => (int)x).
                                 DefaultIfEmpty((6 - (int)oStartDateTime.DayOfWeek) + (int)lstAvailableDay.Min()).
                                 FirstOrDefault();
@@ -464,13 +470,7 @@ namespace MarketPlace.Web.ControllersApi
                         }
                     } while (!oExit);
                 }
-            }
-
-            //get Appointments on interval
-            List<AppointmentModel> CurrentAppointment = MedicalCalendar.Manager.Controller.Appointment.MPAppointmentGetByOfficeId
-                (CurrentOffice.OfficePublicId,
-                oStartDateTime,
-                oEndDateTime);
+            }           
 
             if (CurrentAppointment == null)
                 CurrentAppointment = new List<AppointmentModel>();
@@ -484,32 +484,37 @@ namespace MarketPlace.Web.ControllersApi
                     EventAvailableDayModel Friday = new EventAvailableDayModel();
                     Friday.IsHeader = true;
                     Friday.AvailableDate = oStartDateTime.AddDays(4);
+                    oReturn.Add(Friday);
                     break;
                 case DayOfWeek.Monday:
                     EventAvailableDayModel Monday = new EventAvailableDayModel();
                     Monday.IsHeader = true;
                     Monday.AvailableDate = oStartDateTime;
+                    oReturn.Add(Monday);
                     break;
                 case DayOfWeek.Saturday:
                     EventAvailableDayModel Saturday = new EventAvailableDayModel();
                     Saturday.IsHeader = true;
                     Saturday.AvailableDate = oStartDateTime.AddDays(5);
+                    oReturn.Add(Saturday);
                     break;
                 case DayOfWeek.Thursday:
                     EventAvailableDayModel Thursday = new EventAvailableDayModel();
                     Thursday.IsHeader = true;
                     Thursday.AvailableDate = oStartDateTime.AddDays(3);
+                    oReturn.Add(Thursday);
                     break;
                 case DayOfWeek.Tuesday:
                     EventAvailableDayModel Tuesday = new EventAvailableDayModel();
                     Tuesday.IsHeader = true;
                     Tuesday.AvailableDate = oStartDateTime.AddDays(1);
+                    oReturn.Add(Tuesday);
                     break;
                 case DayOfWeek.Wednesday:
                     EventAvailableDayModel Wednesday = new EventAvailableDayModel();
                     Wednesday.IsHeader = true;
                     Wednesday.AvailableDate = oStartDateTime.AddDays(2);
-
+                    oReturn.Add(Wednesday);
                     break;
                 default:
                     break;                    
