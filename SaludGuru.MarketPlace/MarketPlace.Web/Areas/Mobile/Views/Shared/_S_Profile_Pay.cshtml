@@ -145,14 +145,6 @@
             }
         </div>
         <div class="MPResultsDoctorLinksWrapper">
-            @{
-    string ovCurrentDomain = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
-            }
-            @if (ovOnLineMeeting)
-            {
-                <a class="MPResultsBookAppFree" href="javascript:ScheduleAppointmentObject.ScheduleAppointment('@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.ProfilePublicId }))');" rel="nofollow">Agenda tu cita con este doctor</a>
-                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-            }
             <a class="MPResultsBookAppFree" href="@ovProfileUrl">Ver perfil del profesional</a>
         </div>
     </div>
