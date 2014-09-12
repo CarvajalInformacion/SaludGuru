@@ -4,8 +4,10 @@
     Model.RenderScripts = false;
 }
 <div class="MPFormDataWrapper">
+    <div class="MPAgendaDoctorProfile">
+        @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
+    </div>
     <span>Agenda tu cita</span>
-
     <form id="AppointmentForm" class="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true, Date = Model.StartDate }))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
@@ -203,10 +205,7 @@
                 </li>
             </ul>
         </form>
-    </div>
-    <div class="MPAgendaDoctorProfile">
-        @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
-    </div>
+    </div>    
 </div>
 
 <!--templates-->

@@ -26,55 +26,49 @@
 
 @if (!Model.RenderScripts)
 {
-    <div class="MPProfileInfoDetail">
+    <div class="MPProfileInfoDetailProfile">
         <ul>
             @if (Model.CurrentProfile.RelatedOffice != null &&
                 Model.CurrentProfile.RelatedOffice.Count > 0)
             {
                 <li>
-                    <label>Datos de contacto</label>
+                    <h6>Datos de contacto</h6>
+                    <div role="main" class="MPMobileOfficeList">
 
-
-                    <div role="main" class="ui-content">
-                        <div data-role="tabs">
-                            <div data-role="navbar">
-                                <ul>
-                                    @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
-                                    {
-                                        <li><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></li>
-                                    }
-                                </ul>
-                            </div>
+                        <div data-role="collapsible-set">
                             @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
                             {
-                                <div id="fragment-@oCurrentOffice.OfficePublicId">
-                                    <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                                    <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                                </div>
-                            }
-                        </div>
-                    </div>
-
-                    <div class="selProfileDescriptions">
-                        <ul id="divOffice">
-                            @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
-                            {
-                                <li>
-                                    <div class="OfficeContactSelector">
+                            <div data-role="collapsible" data-collapsed="true">                                    
+                                <h3 class="MPMobileOfficeName">@*<a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>*@</h3>
+                                <p>
+                                    <div id="fragment-@oCurrentOffice.OfficePublicId">
                                         <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                         <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                     </div>
-                                </li>
-                            }
-                        </ul>
+
+
+                                    <div class="selProfileDescriptions">
+                                        <ul id="divOffice">
+                                            <li>
+                                                <div class="OfficeContactSelector">
+                                                    <span class="OfficeContactAddress">Aqui va la agenda super bonita y util</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </p>
+                            </div>
+                            } 
+                        </div>
                     </div>
+                    
                     <hr class="featurette-divider __loop">
                 </li>
             }
             @if (!string.IsNullOrEmpty(ovProfileText))
             {
                 <li>
-                    <label>Perfil profesional</label>
+                    <h6>Perfil profesional</h6>
                     <div id="divProfileText" class="selProfileDescriptions">
                         <p>@ovProfileText.Trim()</p>
                     </div>
@@ -84,7 +78,7 @@
             @if (!string.IsNullOrEmpty(ovProfileEducation))
             {
                 <li>
-                    <label>Educación</label>
+                    <h6>Educación</h6>
                     <div id="divEducation" class="selProfileDescriptions">
                         <p>@ovProfileEducation.Trim()</p>
                     </div>
@@ -94,7 +88,7 @@
             @if (!string.IsNullOrEmpty(ovProfileCertification))
             {
                 <li>
-                    <label>Acreditaciones</label>
+                    <h6>Acreditaciones</h6>
                     <div id="divCertification" class="selProfileDescriptions">
                         <p>@ovProfileCertification.Trim()</p>
                     </div>

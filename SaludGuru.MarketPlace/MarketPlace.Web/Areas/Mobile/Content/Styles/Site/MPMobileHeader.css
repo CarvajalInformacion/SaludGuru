@@ -351,12 +351,12 @@ div#selGlobalCity-button {
 div#selGlobalCity-button span{
     font-size: 1.1em;
     color: #888;
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 .MPMobileSearchFieldWrapper {
     border:none;
     width: 100%;
-    margin: 0px auto;
+    margin: 0px auto 52px auto;
     padding: 0px !important;
 }
 
@@ -385,8 +385,8 @@ a.SelCertifiedImage.ui-link {
     height: 32px !important;
     background-image: url('/Areas/Mobile/Content/Images/magGlassSmall.png');
     background-repeat: no-repeat;
-    background-position: 228px 2px;
-    background-size: 33px auto;
+background-position: 99% 2px;
+background-size: 32px auto;
     float: left;
     margin: 8px 0px 0px 0px !important;
 }
@@ -399,7 +399,6 @@ a.SelCertifiedImage.ui-link {
 }
 
 input#inSearchBoxProfile {
-    font-size: 11px;
-    height: 32px !important;
     text-align: center;
+    font-size: 0.9em;
 }

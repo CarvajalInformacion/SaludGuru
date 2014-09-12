@@ -4,39 +4,18 @@
     margin: 0px auto;
     padding: 0px;
     width: 100%;
-    min-width: 768px;
 }
 
 .MPProfileColumnsWrapper {
     display: block;
     margin: 0px auto;
     padding: 0px;
-    width: 82%;
+    width:100%;
     text-align: left;
     line-height: 1em;
 }
-
-@media screen and (max-width:1280px) {
-    .MPProfileColumnsWrapper {
-        width: 82%;
-    }
-}
-
-@media screen and (max-width:1024px) {
-    .MPProfileColumnsWrapper {
-        width: 90%;
-    }
-}
-
-@media screen and (max-width:800px) {
-    .MPProfileColumnsWrapper {
-        width: 98%;
-    }
-}
-
 @media screen and (max-width:768px) {
     .MPProfileColumnsWrapper {
-        width: 98%;
     }
 }
 /********* COLUMNAS  *********/
@@ -107,7 +86,7 @@ hr.featurette-divider.__loop.ProfileBasicInfo {
 }
 /*--------------------------------------*/
 img.MPProfileCertified {
-    width: 54px;
+    width:40px;
     height: auto;
     float: right;
 }
@@ -116,7 +95,7 @@ img.MPProfileDoctorImage {
     border: 1px solid #666;
     border-radius: 2px;
     display: inline-block;
-    width: 142px;
+    width:72px;
     height: auto;
     vertical-align: top;
 }
@@ -124,16 +103,17 @@ img.MPProfileDoctorImage {
 .MPProfileInfo_BasicInfoRight {
     border: none;
     letter-spacing: -0.6px;
-    width: 61.5%;
+    width: 71%;
 }
 
 .MPProfileDoctorName {
-    line-height: 24px;
-    font-size: 1.3em;
-    color: #333;
+    line-height: 22px;
+    font-size: 1.3em !important;
+    color: #759418;
     float: left;
-    display: block;
+    display: block !important;
     width: 72%;
+    margin: 4px 0px 6px 0px !important;
 }
 
 .MPProfileSpecialityName {
@@ -159,13 +139,17 @@ div.MPProfileSpecialtyColumn {
     letter-spacing: 0px;
     font-size: 0.8em;
     line-height: 1em;
-    margin: 6px 0px;
+    margin: 0px 0px 3px !important;
     display: block;
 }
 
-li.MPProfileInsuranceName {
+div.MPProfileSpecialtyColumn ul {
+    margin: 6px 0px;
+}
+
+li.MPProfileInsuranceName h5{
     width: auto;
-    line-height: 1em;
+    line-height: 1.1em;
     border: medium none;
     display: inline-block;
     font-size: 0.9em;
@@ -236,7 +220,7 @@ li.MPProfileInsuranceName {
         overflow: hidden;
     }
 /************* INFORMACION DE PERFIL PROFESIONAL ************/
-.MPProfileInfoDetailProfile {
+.MPProfileInfoDetailProfile{
     display: block;
     width: 98%;
     height: auto;
@@ -258,24 +242,40 @@ li.MPProfileInsuranceName {
             display: block;
         }
 
-            .MPProfileInfoDetailProfile ul li h5 {
-                font-size: 1.1em;
-                line-height: 27px;
-                letter-spacing: -1px;
-                color: #A4C02C;
-                font-weight: bold;
-                padding: 0px;
-                margin: 0px;
-                display: block;
-                cursor: text;
+            .MPProfileInfoDetailProfile ul li h6 {
+            font-size: 1.3em;
+            line-height: 27px;
+            letter-spacing: 0px;
+            color: #759418;
+            padding: 0px;
+            margin: 0px;
+            display: block;
+            cursor: text;
             }
-
+                .MPMobileOfficeList {
+                    padding:0px !important;
+                }
+                .MPMobileOfficeName {
+                    padding: 0px;
+                    margin: 0px;                    
+                    width:100%;
+                }
+                    .MPMobileOfficeName  a{
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        color: #888;
+                        font-size: 1em;
+                        line-height:14px;
+                        letter-spacing: 0px;
+                        display:block;
+                        margin:0px 0px 0px 15px;
+                    }
 .MPProfileInfoDetailProfileNotSchedule {
     border-bottom: 1px solid #99c21d !important;
     font-size: 1.5em;
     margin: 10px 0px 10px 0px;
 }
-
 div#divProfileText,
 div#divEducation,
 div#divCertification,
@@ -299,13 +299,15 @@ div#divOffice {
 .MPProfileInfoDetailProfile div#divCertification p,
 .MPProfileInfoDetailProfile div#divOffice ul {
     font-size: 0.9em;
-    line-height: 21px;
+    line-height: 19px;
     color: #666;
     height: auto;
     overflow: initial;
     font-family: "MuseoSans100","Trebuchet MS", Helvetica, sans-serif;
     text-align: justify;
 }
+
+
 
 div#divOffice ul li {
     width: 90%;
@@ -468,12 +470,16 @@ div.k-grid-content {
 }
 
 /************ MAPA ***********/
+.MPProfileMap {
+    padding-bottom:7px;
+    border-bottom:1px solid #99c21d;
+}
 #divOfficeMap {
     width: 100%;
-    height: 250px;
-    margin: 14px 0px 0px 0px;
+    height: 200px;
+    margin: 14px 0px 10px;
     border: 1px solid #666;
-    box-shadow: 2px 2px 2px #666;
+    box-shadow: 1px 1px 3px #777;
     border-radius: 2px;
 }
 
