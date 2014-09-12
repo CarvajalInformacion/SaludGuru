@@ -209,7 +209,7 @@ li.MPResultsInsuranceName h4 {
     width: 84px;
     line-height: 1em;
     border: none;
-    display: inline-block;
+    display: initial;
     font-size: 0.9em;
     letter-spacing: -0.4px;
 }
@@ -236,9 +236,9 @@ a.freeProfile h2 {
 div.MPResultsDoctorDescriptionWrapper {
     border: none;
     display: inline-block;
-    width: 54%;
+    width: 100%;
     vertical-align: top;
-    margin: 0px 0px 0px 12px;
+    margin: 0px 0px 0px 0px;
 }
 
 span.MPResultsDoctorShortDescription {
@@ -251,51 +251,11 @@ span.MPResultsDoctorShortDescription {
     text-overflow: ellipsis;
 }
 
-@media screen and (max-width:1280px) {
-    div.MPResultsDoctorDescriptionWrapper {
-        border: none;
-        display: inline-block;
-        width: 45%;
-        vertical-align: top;
-        margin: 0px 0px 0px 12px;
-    }
-
-    span.MPResultsDoctorShortDescription {
-        height: auto;
-        max-height: 116px;
-    }
-}
-
-@media screen and (max-width:1024px) {
-    div.MPResultsDoctorDescriptionWrapper {
-        border: none;
-        display: inline-block;
-        width: 40%;
-        vertical-align: top;
-        margin: 0px 0px 0px 12px;
-    }
-
-    span.MPResultsDoctorShortDescription {
-        height: auto;
-        max-height: 116px;
-    }
-}
-
-@media screen and (max-width:800px) {
-    div.MPResultsDoctorDescriptionWrapper {
-        border: none;
-        display: inline-block;
-        width: 38%;
-        vertical-align: top;
-        margin: 0px 0px 0px 12px;
-    }
-
-    span.MPResultsDoctorShortDescription {
-        height: auto;
-        max-height: 116px;
-    }
-}
 /**********  DATOS CONTACTO **********/
+label.OfficeTextSelector {
+    color: #99c21d;
+}
+
 div.OfficeSelector {
     border: none;
     display: block;
@@ -322,6 +282,7 @@ div.OfficeSelector {
 div.OfficeContactSelector {
     display: block;
     min-height: 50px;
+    margin-left: 10px;
 }
 
     div.OfficeContactSelector span, div.OfficeContactSelector span:hover {

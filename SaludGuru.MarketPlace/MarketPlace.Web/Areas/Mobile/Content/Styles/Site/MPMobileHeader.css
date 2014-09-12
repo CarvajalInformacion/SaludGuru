@@ -399,7 +399,6 @@ a.SelCertifiedImage.ui-link {
 }
 
 input#inSearchBoxProfile {
-    font-size: 11px;
-    height: 32px !important;
     text-align: center;
+    font-size: 0.9em;
 }

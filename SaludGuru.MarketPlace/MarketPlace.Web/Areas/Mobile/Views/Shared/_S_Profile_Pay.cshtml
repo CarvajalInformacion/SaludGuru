@@ -136,8 +136,8 @@
             @if (oCurrentOffice != null)
             {
                 <div class="OfficeSelector">
-                    <span class="OfficeTextSelector">Ver datos de contacto</span>
-                    <div class="OfficeContactSelector" style="display:none;">
+                    <label class="OfficeTextSelector">Datos de contacto</label>
+                    <div class="OfficeContactSelector">
                         <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                         <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                     </div>
