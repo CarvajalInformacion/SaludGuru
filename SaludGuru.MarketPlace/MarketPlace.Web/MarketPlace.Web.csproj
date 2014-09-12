@@ -338,7 +338,7 @@
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileDoctorProfile.css" />
-    <Content Include="Areas\Mobile\Content\Styles\Site\MPResults.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileResults.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileFooter.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileGeneralStyles.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileHeader.css" />
