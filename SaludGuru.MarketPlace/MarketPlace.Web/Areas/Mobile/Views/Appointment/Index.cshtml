@@ -134,9 +134,13 @@
                     <div class="MPAgendaButtonWrapper">
                         <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="x" title="Cerrar" />
                     </div>
+
                     @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
                 </div>
             </li>
+
+
+
             <li class="LegalTermsLi">
                 <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))" target="_blank">
                     <label class="LegalTerms">Aceptar términos y condiciones.</label>
