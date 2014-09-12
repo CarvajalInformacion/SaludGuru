@@ -214,10 +214,10 @@ var AppointmentObject = {
         $.each(Hours, function (i, item) {
             //get html notification template                 
             var valSet = $('#ul_GridFreeSchedule').html();
-            valset =  '<li>'+ item.AvailableDateText + '</li>'
+            //valset =  
             //valSet = valSet.replace(/{EmptySchedule}/gi, );
 
-            $("#ul_GridFreeSchedule").append(valSet);
+            $("#ul_GridFreeSchedule").append('<li>' + item.AvailableDateText + '</li>');
         });
     }
 },
