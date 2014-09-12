@@ -6,7 +6,7 @@
 }
 
 .MPResultsGrandWrapper span {
-    display: inline-block;
+    display: block;
 }
 
 .MPResultsGrandWrapper a {
@@ -104,7 +104,7 @@ div.MPResultsPaidProfile {
     margin: 12px auto;
     padding: 12px;
     border-radius: 2px;
-    width: 91%;
+    width: 100%;
     border: 1px solid;
 }
 
@@ -193,7 +193,7 @@ div.MPResultsPaidProfileDoctorData {
 
 @media screen and (max-width:380px) {
     .MPResultsPaidProfileDoctorData {
-        width: 60%;
+        width: 63%;
     }
 }
 
@@ -341,7 +341,7 @@ span.OfficeContactTelephone {
 .MPResultsDoctorLinksWrapper {
     width: 100%;
     text-align: center;
-    margin: 5px 0px -5px 0px;
+    margin: 5px 0px -5px 0px !important;
 }
     /********* enlace agenda gratis ********/
     .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
