@@ -6,7 +6,7 @@
 }
 
 .MPResultsGrandWrapper span {
-    display: block;
+    display: inline-block;
 }
 
 .MPResultsGrandWrapper a {

@@ -12,6 +12,9 @@
 }
 
 <div class="MPAgendaConfirmationMessageGW">
+    <div class="MPAgendaDoctorProfile">
+        @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
+    </div>
     <div class="MPAgendaConfirmationMessage">
         <div class="ImgConfirmation">
             <img src="~/Areas/Web/Content/Images/MPConfirm.png" />
@@ -26,8 +29,5 @@
                 Previamente a la cita te enviaremos un recordatorio por correo electrónico y/o mensaje de texto.<br>
             </span>
         </div>
-</div>
-    <div class="MPAgendaDoctorProfile">
-        @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
     </div>
 </div>
