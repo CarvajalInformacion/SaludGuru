@@ -86,7 +86,7 @@ hr.featurette-divider.__loop.ProfileBasicInfo {
 }
 /*--------------------------------------*/
 img.MPProfileCertified {
-    width: 54px;
+    width:40px;
     height: auto;
     float: right;
 }
@@ -95,7 +95,7 @@ img.MPProfileDoctorImage {
     border: 1px solid #666;
     border-radius: 2px;
     display: inline-block;
-    width: 142px;
+    width:72px;
     height: auto;
     vertical-align: top;
 }
@@ -103,16 +103,17 @@ img.MPProfileDoctorImage {
 .MPProfileInfo_BasicInfoRight {
     border: none;
     letter-spacing: -0.6px;
-    width: 61.5%;
+    width: 71%;
 }
 
 .MPProfileDoctorName {
-    line-height: 24px;
-    font-size: 1.3em;
-    color: #333;
+    line-height: 22px;
+    font-size: 1.3em !important;
+    color: #759418;
     float: left;
-    display: block;
+    display: block !important;
     width: 72%;
+    margin: 4px 0px 9px 0px !important;
 }
 
 .MPProfileSpecialityName {
@@ -138,13 +139,17 @@ div.MPProfileSpecialtyColumn {
     letter-spacing: 0px;
     font-size: 0.8em;
     line-height: 1em;
-    margin: 6px 0px;
+    margin: 0px 0px 3px !important;
     display: block;
 }
 
-li.MPProfileInsuranceName {
+div.MPProfileSpecialtyColumn ul {
+    margin: 6px 0px;
+}
+
+li.MPProfileInsuranceName h5{
     width: auto;
-    line-height: 1em;
+    line-height: 1.1em;
     border: medium none;
     display: inline-block;
     font-size: 0.9em;

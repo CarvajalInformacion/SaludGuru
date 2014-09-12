@@ -50,32 +50,32 @@
                     <img class="MPProfileCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." />
                 }
                 <!--Professional name-->
-                <label class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</label>
+                <h2 class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</h2>
 
                 @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
                 {
                 <!--Principal specialty-->
-                    <span class="MPProfileSpecialityName">@ovDefaultSpecialty.Name</span>
+                    <h3 class="MPProfileSpecialityName">@ovDefaultSpecialty.Name</h3>
                 }
             </div>
             <div class="MPProfileSpecialtyColumn">
                 <!--Related Insurance-->
 
-                <label class="MPProfileInsurance">Especialidades:</label>
+                <h4 class="MPProfileInsurance">Especialidades:</h4>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedSpecialty.Select(x => x.Name).ToList())
                     {
-                        <li class="MPProfileInsuranceName">@str</li>
+                        <li class="MPProfileInsuranceName"><h5>@str</h5></li>
                     }
                 </ul>
             </div>
             <div class="MPProfileInsuranceColumn">
                 <!--Related Insurance-->
-                <label class="MPProfileInsurance">Seguros médicos:</label>
+                <h4 class="MPProfileInsurance">Seguros médicos:</h4>
                 <ul>
                     @foreach (string str in Model.CurrentProfile.RelatedInsurance.Select(x => x.Name).ToList())
                     {
-                        <li class="MPProfileInsuranceName">@str</li>
+                        <li class="MPProfileInsuranceName"><h5>@str</h5></li>
                     }
                 </ul>
             </div>
