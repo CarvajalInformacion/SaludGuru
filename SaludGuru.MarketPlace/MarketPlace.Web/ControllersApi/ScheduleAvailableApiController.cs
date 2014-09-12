@@ -509,9 +509,10 @@ namespace MarketPlace.Web.ControllersApi
                     EventAvailableDayModel Wednesday = new EventAvailableDayModel();
                     Wednesday.IsHeader = true;
                     Wednesday.AvailableDate = oStartDateTime.AddDays(2);
+
                     break;
                 default:
-                    break;
+                    break;                    
             }
             TimeSpan minTime = new TimeSpan(8, 0, 0);
 
