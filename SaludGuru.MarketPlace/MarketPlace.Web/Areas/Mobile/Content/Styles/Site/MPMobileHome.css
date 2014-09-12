@@ -96,62 +96,17 @@ hr.featurette-divider.__loop {
     }
 
     .social_bookmarks .icontwitter {
-        background-position-x: -26px;
-background-position-y: -10px;
+        background-position: -26px -10px;
     }
 
     .social_bookmarks .iconfacebook {
-        background-position-x: -117px;
-        background-position-y: -10px;
+        background-position: -117px -10px;
     }
 
     .social_bookmarks .icongplus {
-        background-position-x: -207px;
-        background-position-y: -10px;
+        background-position: -207px -10px;
     }
 
     .social_bookmarks .iconlinkedin {
-        background-position-x: -26px;
-background-position-y: -70px;
+        background-position: -26px -70px;
     }
-
-.ContentBlogDesktop {
-    width: 100%;
-    height: auto;
-    text-align: center;
-    margin-top: 9px;
-}
-
-.BlogSG {
-    display: inline-block;
-    width: 48%;
-    height: auto;
-}
-
-    .BlogSG a label {
-        font-size: 0.8em;
-        text-decoration: none;
-        cursor: pointer;
-        line-height: 10px;
-    }
-
-.Desktop {
-    display: inline-block;
-    width: 48%;
-    height: auto;
-}
-
-    .Desktop a label {
-        font-size: 0.8em;
-        text-decoration: none;
-        cursor: pointer;
-        line-height: 10px;
-    }
-
-.Separator {
-    width: 1px;
-    height: 46px;
-    display: inline-block;
-    background-color: #99c21d;
-    margin: 0;
-}
