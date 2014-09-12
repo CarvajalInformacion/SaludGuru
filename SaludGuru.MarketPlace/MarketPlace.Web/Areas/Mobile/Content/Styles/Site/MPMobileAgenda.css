@@ -1,0 +1,38 @@
+/******* ESTOS SON LOS ESTILOS DEL PROCESO DE AGENDAMIENTO *******/
+
+/************Estilos bloque perfil****************/
+.MPAgendaDoctorProfile {
+    display: block;
+    /*border: 1px solid red;*/
+    text-align: center;
+}
+
+ul.MPAgendaDoctorData {
+    /* border: 1px solid green; */
+    width: 100%;
+    height: auto;
+    padding: 6px;
+}
+
+li.ProfileImage {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+
+    li.ProfileImage img {
+        width: 100%;
+        height: auto;
+    }
+
+li.ProfileInformation {
+    display: inline-block;
+    width: 66%;
+    text-align: left;
+    vertical-align: top;
+}
+
+li.ProfileInformation {
+    cursor: pointer;
+}
