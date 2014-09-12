@@ -3,97 +3,47 @@
     Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
 }
 
-<div class="Content">
-    <div class="MPHeaderSearchWrapper SearchBox">
-        <!--search box-->
-        @if (MarketPlace.Web.Controllers.BaseController.CurrentControllerName == MVC.Home.Name &&
-            MarketPlace.Web.Controllers.BaseController.CurrentActionName == MVC.Home.ActionNames.Index)
-        {
-
-        }
-    </div>
-    <div class="HomeFirstBlock">
-        <div class="HomeFirstBlockLeft">
-            <div>
-                <label class="HombeBlockTitle">Profesional Destacado</label>
-                <div class="HomeBlocks Profile">
-                    @{
-                        var nameProfile = Model.Name.ToString() + " " + Model.LastName.ToString();
-                        var publicProfileId = Model.ProfilePublicId;
-                        var imgProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileSmallOriginal).
-                                                            Select(x => x.Value).
-                                                            DefaultIfEmpty(null).
-                                                            FirstOrDefault();
-                        if (imgProfile == null)
-                        {
-                            imgProfile = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_SmallImageDefault].Value;
-                        }
-                        var defaultSpecialtyProfile = Model.DefaultSpecialty.Name.ToString();
-                        var shortTextProfile = Model.ProfileInfo.Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ShortProfile).
-                                                                Select(x => x.Value).
-                                                                DefaultIfEmpty(null).
-                                                                FirstOrDefault();
-
-                        //get profile url
-                        var ovProfileUrl = Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Profile_Default,
-                            new
-                            {
-                                DoctorName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.Name + " " + Model.LastName),
-                                ProfilePublicId = Model.ProfilePublicId,
-                                SpecialtyName = !string.IsNullOrEmpty(defaultSpecialtyProfile) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(defaultSpecialtyProfile) : string.Empty,
-                            }));
-
-                    }
-                    <div class="Image">
-                        <a href="@ovProfileUrl">
-                            <img src="@imgProfile" />
-                        </a>
-                    </div>
-                    <div class="ProfileInfo">
-                        <a href="@ovProfileUrl">
-                            <label>@nameProfile</label>
-                        </a>
-                        <p>@defaultSpecialtyProfile</p>
-                        @*<p>@shortTextProfile...</p>*@
-                        @*<a class="MPButtons" title="@Model.Name" href="@ovProfileUrl">Ver perfil</a>*@
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<hr class="featurette-divider __loop">
-<div class="Demo">
-    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">
-        @*<img src="@MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_HomeImage_Contact].Value" />*@
-        <img src="/Areas/Web/Content/Images/try1.png" />
-    </a>
-</div>
-<hr class="featurette-divider __loop">
 <div class="SocialNetworks">
-
     <div class='social_bookmarks_container'>
         <ul class='social_bookmarks'>
             <li class='icontwitter'>
-                <a href='https://twitter.com/intent/follow?original_referer=https%3A%2F%2Flocalhost%3A44303%2F&region=follow_link&screen_name=SaludGuru&tw_p=followbutton&variant=2.0'>
+                <a href='https://twitter.com/SaludGuru'>
                     Twitter
                 </a>
             </li>
             <li class='iconfacebook'>
-                <a href=''>
+                <a href='https://www.facebook.com/pages/Salud-Gur%C3%BA/249567868524045?ref=ts&fref=ts'>
                     Facebook
                 </a>
             </li>
             <li class='icongplus'>
-                <a href=''>
+                <a href='https://plus.google.com/u/0/112797242838392317228/posts'>
                     Google Plus
+                </a>
+            </li>
+            <li class="iconlinkedin">
+                <a href='https://www.linkedin.com/company/3519568?trkInfo=tas%3Asalud+gur%2Cidx%3A1-1-1&trk=tyah'>
+                    LinkedIn
                 </a>
             </li>
         </ul>
     </div>
-
 </div>
-
+<div class="ContentBlogDesktop">
+    <div class="BlogSG">
+        <a href="http://blog.saludguru.com/">
+            <img src="~/Areas/Mobile/Content/Images/SGMPBlogSmall.png" />
+            <label>Blog Salud Gurú</label>
+        </a>
+    </div>
+    <hr class="Separator"/>
+    <div class="Desktop">
+        <a href="">
+            <img src="~/Areas/Mobile/Content/Images/SGMPDeskTopSmall.png" />
+            <label>Versión de Escritorio</label>
+        </a>
+    </div>
+</div>
 @section inlinescripts
 {
     <script type="text/javascript">

@@ -51,7 +51,7 @@
                     <img class="MPProfileCertified SelCertifiedImage" src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." />
                 }
                 <!--Professional name-->
-                <h1 class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</h1>
+                <h2 class="MPProfileDoctorName">@(Model.CurrentProfile.Name + " " + Model.CurrentProfile.LastName)</h2>
 
                 @if (ovDefaultSpecialty != null && !string.IsNullOrEmpty(ovDefaultSpecialty.Name))
                 {

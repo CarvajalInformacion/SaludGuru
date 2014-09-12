@@ -6,70 +6,13 @@
 @{
     ViewBag.Title = "contenido no encontrado";
 }
-
-<style type="text/css">
-    div.noResultsWrapper {
-        border: 1px solid #cacaca;
-        display: block;
-        width: 880px;
-        height: 362px;
-        margin: 0px auto;
-    }
-
-        div.noResultsWrapper div#leftColumn {
-            display: inline-block;
-            width: 476px;
-            border: none;
-            vertical-align: top;
-            margin: 18px 0px 0px 20px;
-        }
-
-    div#leftColumn > h1.lineOne {
-        font-family: MyriadProBoldCond,"Trebuchet MS",Helvetica,sans-serif;
-        font-weight: 700;
-        margin: 77px 0px 0px 32px !important;
-        width: 500px;
-        font-size: 65px !important;
-        letter-spacing: -3px;
-        line-height: 54px;
-    }
-
-    div#leftColumn > h2.lineTwo {
-        font-family: MyriadProCond,"Trebuchet MS",Helvetica,sans-serif;
-        font-size: 32px;
-        letter-spacing: -1px;
-        line-height: 32px;
-        width: 500px;
-        color: #666;
-        margin: 18px 0px 0px 32px;
-        font-weight: 400;
-    }
-
-    div#leftColumn .horizontalLine {
-        border-bottom: 2px solid #88aa00;
-        width: 430px;
-        margin: 8px 0px 0px 30px;
-    }
-
-    div.noResultsWrapper div.rightColumn {
-        display: inline-block;
-        background-image: url('https://s3.amazonaws.com/saludguruimg/0MPImages/ContentNoFound.png');
-        background-repeat: no-repeat;
-        width: 306px;
-        height: 314px;
-        border: none;
-        vertical-align: top;
-        margin: 22px 0px 0px 0px;
-    }
-</style>
-
 <div class="noResultsWrapper">
     <div id="leftColumn">
-        <h1 class="lineOne">TU BÚSQUEDA NO<br />ARROJÓ RESULTADOS.</h1>
-        <h2 class="lineTwo">
-            PUEDES CAMBIAR LOS CRITERIOS DE BÚSQUEDA<br />
+        <label class="lineOne">TU BÚSQUEDA NO<br />ARROJÓ RESULTADOS.</label>
+        <label class="lineTwo">
+            PUEDES CAMBIAR LOS CRITERIOS DE BÚSQUEDA
             O BUSCAR EL NOMBRE O APELLIDO DEL DOCTOR
-        </h2>
+        </label>
         <div class="horizontalLine"></div>
     </div>
     <div class="rightColumn">

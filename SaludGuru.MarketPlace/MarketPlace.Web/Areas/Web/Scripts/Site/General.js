@@ -154,7 +154,7 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
-        window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, ''));
+        window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, '').trim());
     }
 };
 

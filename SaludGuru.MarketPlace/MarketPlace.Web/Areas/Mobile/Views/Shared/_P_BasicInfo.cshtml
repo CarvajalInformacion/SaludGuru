@@ -7,7 +7,7 @@
             Select(x => Convert.ToBoolean(x.Value)).
             DefaultIfEmpty(false).
             FirstOrDefault();
-
+            
     //get image profile
     var ovImageProfile = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.ImageProfileLarge).
@@ -22,7 +22,7 @@
             (Model.CurrentProfile.RelatedSpecialty != null ?
             Model.CurrentProfile.RelatedSpecialty.FirstOrDefault() :
             null);
-
+            
     //get WebSite info
     var ovWebSite = Model.CurrentProfile.ProfileInfo.
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.Website &&
@@ -35,15 +35,14 @@
             Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.FacebookProfile &&
                 !string.IsNullOrEmpty(x.Value)).
             Select(x => (x.Value.StartsWith("http") ? string.Empty : "http://") + x.Value).
-            FirstOrDefault();
-
+            FirstOrDefault();            
 }
 
 @if (!Model.RenderScripts)
 {
         <img class="MPProfileDoctorImage" src="@ovImageProfile" />                             
         <div class="MPProfileInfo_BasicInfoRight">
-            
+                                    
             <div class="MPProfileInfo_BasicInfo">
                 @if (ovIsCertified)
                 {
