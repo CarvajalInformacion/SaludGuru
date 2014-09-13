@@ -328,13 +328,13 @@ span.OfficeContactAddress {
 
 span.OfficeContactAddress {
     background-image: url('/Areas/Mobile/Content/Images/MPResultsContactoSpriteAddress.png');
-    background-position: -5px 1px;
+    background-position: 0px 1px;
     background-size: 24px auto;
 }
 
 span.OfficeContactTelephone {
     background-image: url('/Areas/Mobile/Content/Images/MPResultsContactoSpritePhone.png');
-    background-position: 0px 2px;
+    background-position: 4px 3px;
     background-size: 17px auto;
 }
 /***** ENLACES DE VER PERFIL Y AGENDAR CITA *************/
