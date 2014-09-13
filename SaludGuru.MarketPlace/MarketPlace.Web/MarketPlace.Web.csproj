@@ -337,6 +337,7 @@
     <Content Include="Areas\Mobile\Content\Styles\bootstrap-theme.min.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.min.css" />
+    <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileForms.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileAgenda.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileDoctorProfile.css" />
     <Content Include="Areas\Mobile\Content\Styles\Site\MPMobileResults.css" />

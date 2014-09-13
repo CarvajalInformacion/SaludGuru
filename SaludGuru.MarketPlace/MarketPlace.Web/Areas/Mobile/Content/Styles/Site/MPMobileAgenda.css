@@ -36,3 +36,20 @@ li.ProfileInformation {
 li.ProfileInformation {
     cursor: pointer;
 }
+
+
+/****************AGENDA*********************/
+.MPFreeSchedule {
+    display: inline-block;
+}
+
+.MPFreeSchedule {
+    display: inline-block;
+    width: 31%;
+    border: 1px solid #99c21d;
+    margin: 5px 3px;
+    border-radius: 3px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

@@ -7,7 +7,6 @@
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
     </div>
-    <span>Agenda tu cita</span>
     <form id="AppointmentForm" class="AppointmentForm" method="post" action="@(Url.Action(MVC.Web.Appointment.Views.ViewNames.ConfirmationAppointment, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId, UpsertAction = true, Date = Model.StartDate }))">
         <ul>
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
@@ -79,7 +78,7 @@
                 </select>
             </li>
             <li class="MPAgendaPatientSelection">
-                <label>Quien va a ver al Doctor:</label>
+                <label>Quien va a ver al Doctor</label>
                 @if (Model.PatientGroup.Count > 0)
                 {
                     foreach (var item in Model.PatientGroup)
@@ -172,25 +171,25 @@
                 <li>
                     <label class="titleNewPatien">Datos del nuevo paciente</label>
                     <label>Nombre</label>
-                    <input type="text" id="Name" name="Name" />
+                    <input type="text" id="Name" name="Name" placeholder="NOMBRE"/>
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Apellido</label>
-                    <input type="text" id="LastName" name="LastName" />
+                    <input type="text" id="LastName" name="LastName" placeholder="APELLIDO"/>
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Identificación</label>
-                    <input type="text" id="Identification" name="Identification" />
+                    <input type="text" id="Identification" name="Identification" placeholder="IDENTIFICACION"/>
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
-                    <input type="text" id="Birthday" name="Birthday"/>                    
+                    <input type="text" id="Birthday" name="Birthday" placeholder="FECHA DE NACIMIENTO"/>                    
                                    
                 </li>
-                <li>
+                <li class="liGender">
                     <label>Sexo</label>
                     <label class="GenderLi">Masculino</label>
                     <input type="radio" id="GenderMale" name="GenderMale" checked="checked" />
@@ -200,8 +199,8 @@
                 <li>
                     <label class="message">Los campos con (*) son obligatorios</label>
                 </li>
-                <li>
-                    <a id="itemSave" href="javascript:CreatePatient();">Guardar</a>
+                <li class="liSaveNewPatient">
+                    <a id="itemSave" href="javascript:CreatePatient();">Guardar nuevo paciente</a>
                 </li>
             </ul>
         </form>

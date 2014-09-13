@@ -16,7 +16,7 @@
         SpecialtyName = (Model.CurrentProfile.DefaultSpecialty != null) ? MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentProfile.DefaultSpecialty.Name) : string.Empty,
     }));
 }
-<h2>Estas agendando una cita con:</h2>
+<label>Estas agendando una cita con:</label>
 <ul class="MPAgendaDoctorData">
     <li class="ProfileImage">
         <img src="@ImgProfile" alt="@Model.CurrentProfile.Name" />
