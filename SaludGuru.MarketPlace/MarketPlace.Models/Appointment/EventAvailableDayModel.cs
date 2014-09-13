@@ -75,5 +75,8 @@ namespace MarketPlace.Models.Appointment
 
             }
         }
+        public string NextDate { get; set; }
+
+        public string PublicProfileId { get; set; }
     }
 }

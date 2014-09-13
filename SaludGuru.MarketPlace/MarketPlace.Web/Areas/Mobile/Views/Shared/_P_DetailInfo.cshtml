@@ -36,28 +36,48 @@
                     <div role="main" class="MPMobileOfficeList">
 
                         <div data-role="collapsible-set">
+                            
                             @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
-                            {
-                            <div data-role="collapsible" data-collapsed="true">                                    
-                                <h3 class="MPMobileOfficeName">@*<a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>*@</h3>
-                                <p>
-                                    <div id="fragment-@oCurrentOffice.OfficePublicId">
-                                        <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                            {                                
+                                if (Model.CurrentProfile.RelatedOffice.IndexOf(oCurrentOffice) == 0)
+                                {
+                                    <div data-role="collapsible" data-collapsed="false">
+                                        <h3 class="MPMobileOfficeName"><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></h3>
+                                        <p>
+                                            <div id="fragment-@oCurrentOffice.OfficePublicId">
+                                                <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                                <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                            </div>
+
+                                            <div class="MPMobileCalendarOffice">
+                                                <h6>Agenda en Linea</h6>
+                                                <div class="MPMobileCalendarOfficeMonth"></div>
+                                                <div class="MPMobileCalendarOfficeHours"></div>
+                                                <a href="">Buscar proximo horario disponible</a>
+                                            </div>
+                                        </p>
                                     </div>
+                                }
+                                else
+                                {
+                                    <div data-role="collapsible" data-collapsed="true">
+                                        <h3 class="MPMobileOfficeName"><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></h3>
+                                        <p>
+                                            <div id="fragment-@oCurrentOffice.OfficePublicId">
+                                                <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                                <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                            </div>
 
 
-                                    <div class="selProfileDescriptions">
-                                        <ul id="divOffice">
-                                            <li>
-                                                <div class="OfficeContactSelector">
-                                                    <span class="OfficeContactAddress">Aqui va la agenda super bonita y util</span>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                            <div class="MPMobileCalendarOffice">
+                                                <h6>Agenda en Linea</h6>
+                                                <div class="MPMobileCalendarOfficeMonth"></div>
+                                                <div class="MPMobileCalendarOfficeHours"></div>
+                                                <a href="">Buscar proximo horario disponible</a>
+                                            </div>
+                                        </p>
                                     </div>
-                                </p>
-                            </div>
+                                }
                             } 
                         </div>
                     </div>

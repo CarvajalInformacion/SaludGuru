@@ -379,7 +379,7 @@ namespace MarketPlace.Web.ControllersApi
 
             //get dates
             bool oNextAvailableDate = !string.IsNullOrEmpty(NextAvailableDate) && NextAvailableDate.Replace(" ", "").ToLower() == "true" ? true : false;
-            DateTime oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.ParseExact(StartDateTime.Replace(" ", ""), "yyyy-M-dTH:m", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.Parse(StartDateTime);
             DateTime oEndDateTime = oStartDateTime.AddDays(1).Date;
 
             List<DayOfWeek> lstAvailableDay = CurrentOffice.ScheduleAvailable.
@@ -484,36 +484,48 @@ namespace MarketPlace.Web.ControllersApi
                     EventAvailableDayModel Friday = new EventAvailableDayModel();
                     Friday.IsHeader = true;
                     Friday.AvailableDate = oStartDateTime.AddDays(4);
+                    Friday.NextDate = oStartDateTime.Date.ToShortDateString();
+                    Friday.PublicProfileId = ProfilePublicId; 
                     oReturn.Add(Friday);
                     break;
                 case DayOfWeek.Monday:
                     EventAvailableDayModel Monday = new EventAvailableDayModel();
                     Monday.IsHeader = true;
                     Monday.AvailableDate = oStartDateTime;
+                    Monday.NextDate = oStartDateTime.Date.ToShortDateString();
+                    Monday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Monday);
                     break;
                 case DayOfWeek.Saturday:
                     EventAvailableDayModel Saturday = new EventAvailableDayModel();
                     Saturday.IsHeader = true;
                     Saturday.AvailableDate = oStartDateTime.AddDays(5);
+                    Saturday.NextDate = oStartDateTime.Date.ToShortDateString();
+                    Saturday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Saturday);
                     break;
                 case DayOfWeek.Thursday:
                     EventAvailableDayModel Thursday = new EventAvailableDayModel();
                     Thursday.IsHeader = true;
                     Thursday.AvailableDate = oStartDateTime.AddDays(3);
+                    Thursday.NextDate = oStartDateTime.Date.ToShortDateString();
+                    Thursday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Thursday);
                     break;
                 case DayOfWeek.Tuesday:
                     EventAvailableDayModel Tuesday = new EventAvailableDayModel();
                     Tuesday.IsHeader = true;
                     Tuesday.AvailableDate = oStartDateTime.AddDays(1);
+                    Tuesday.NextDate = oStartDateTime.Date.ToShortDateString();
+                    Tuesday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Tuesday);
                     break;
                 case DayOfWeek.Wednesday:
                     EventAvailableDayModel Wednesday = new EventAvailableDayModel();
                     Wednesday.IsHeader = true;
+                    Wednesday.NextDate = oStartDateTime.Date.ToShortDateString();
                     Wednesday.AvailableDate = oStartDateTime.AddDays(2);
+                    Wednesday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Wednesday);
                     break;
                 default:
@@ -627,26 +639,33 @@ namespace MarketPlace.Web.ControllersApi
                             switch (sa.Key.Day)
                             {
                                 case DayOfWeek.Monday:
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Monday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Monday);
                                     break;
                                 case DayOfWeek.Tuesday:
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Tuesday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Tuesday);
                                     break;
                                 case DayOfWeek.Wednesday:
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Wednesday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Wednesday);
                                     break;
                                 case DayOfWeek.Thursday:
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Thursday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Thursday);
                                     break;
                                 case DayOfWeek.Friday:
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Friday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Friday);
                                     break;
                                 case DayOfWeek.Saturday:
+
+                                    CurrentAvailableDate.NextDate = oStartDateTime.Date.ToShortDateString();
                                     oCurrentEventModel.Saturday = CurrentAvailableDate;
                                     oReturn.Add(oCurrentEventModel.Saturday);
                                     break;
