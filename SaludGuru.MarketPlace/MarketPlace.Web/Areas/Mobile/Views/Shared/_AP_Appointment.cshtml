@@ -20,8 +20,7 @@
             <div class="SelOfficeGrid GridAP" id="divScheduleContainer_${OfficePublicId}">
 
                 <div id="divGrid_Title">
-                    <a id="Before_FreeSch" href=" javascript:;">Anterior</a>                    
-                    
+
                 </div>
             </div>
             <ul id="ul_GridFreeSchedule"></ul>
@@ -53,20 +52,31 @@ else
                 OrderBy(x => x.OfficeName).ToList());
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        AppointmentObject.Init({
-            DivAppointmentId: 'divAppointmentSchedule',
-            selOfficeId: 'SelectedOffice',
-            selTreatmentId: 'SelectedTreatment',
-            OfficeInfo : @Html.Raw(oOfficeInfo) ,
-            NextAvailableDate : 'false',
+        $(document).ready(function () {
+            AppointmentObject.Init({
+                DivAppointmentId: 'divAppointmentSchedule',
+                selOfficeId: 'SelectedOffice',
+                selTreatmentId: 'SelectedTreatment',
+                OfficeInfo : @Html.Raw(oOfficeInfo) ,
+                NextAvailableDate : 'false',
+            });
+            AppointmentObject.RenderAsync();         
+            $('#btnNextDay').click(function () {
+                debugger;
+
+                var nextDate = $('#lblNextDay').val();
+
+                //Leo el hidden o lo q sxe a
+                //envio los parametros que ya tengo a la funcion NextDay
+                //Logica de la funcion
+
+                AppointmentObject.NextDay('SelectedOffice', '@Model.CurrentProfile.ProfilePublicId', 'true', 'SelectedTreatment');
+            });
+            
+
+           
         });
-        AppointmentObject.RenderAsync();
- 
-        $('#NextFreeSch').click(function () {
-            debugger;
-            AppointmentObject.RenderOfficeSchedule('SelectedOffice',  '@Model.CurrentProfile.ProfilePublicId','true', 'SelectedTreatment');
-        });
-    });
+
+       
     </script>
 }
