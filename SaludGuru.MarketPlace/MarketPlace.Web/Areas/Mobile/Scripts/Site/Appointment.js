@@ -208,7 +208,7 @@ var AppointmentObject = {
             $.ajax(
           {
               url: '/api/ScheduleAvailableApi/GetEventAvailableWeek?ProfilePublicId=' + AppointmentObject.lstOffice[vOfficePublicId].ProfilePublicId + '&OfficePublicId=' + vOfficePublicId + '&TreatmentId=' + Treatment + '&NextAvailableDate=' + 'false' + '&StartDateTime=' + vNewDate + '&Mobile=' + 'false',
-              dataType: "json",
+              dataType: "json", 
               type: "POST",
               success: function (data, textStatus, jqXHR) {
                   debugger;
@@ -225,8 +225,8 @@ var AppointmentObject = {
 
 
         //show grid
-        $('.SelOfficeGrid').hide();
-        $('#divScheduleContainer_' + vOfficePublicId).fadeIn('slow');
+        //$('.SelOfficeGrid').hide();
+        //$('#divScheduleContainer_' + vOfficePublicId).fadeIn('slow');
 
         //select de current menu
         $('.SelOfficeMenu').removeClass('MPProfileCallendarTabs');
@@ -247,7 +247,9 @@ var AppointmentObject = {
                     $('#divGrid_Title').html('');
                     var valDiv = $('#divGrid_Title').html();                    
 
-                    $('#divGrid_Title').append('<a id="aNextDay" onclick="AppointmentObject.NextDay('+ "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" '+ " href=" + ' "javascript:"' + ">Siguiente</a>");
+                    $('#divGrid_Title').append('<a id="aPrevDay" onclick="AppointmentObject.PrevAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
+                    $('#divGrid_Title').append('<a id="aNextDay" onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
+                    
                     $('#divGrid_Title').append('<label id="lblNextDay" style="display:none">'+ item.NextDate +'</label>');
                 }
                 else {
@@ -257,9 +259,13 @@ var AppointmentObject = {
         }
     },
 
-    NextDay: function (vPublicProfileId, NextDay) {
-        debugger;
+    NextAndPrevDay: function (vPublicProfileId, NextDay) {        
         var actualDate = $('#lblNextDay').val();        
+        AppointmentObject.RenderOfficeSchedule('SelectedOffice', NextDay, vPublicProfileId, 'true', 'SelectedTreatment')
+    },
+
+    PrevAvalableDay: function (vPublicProfileId, NextDay) {
+        var actualDate = $('#lblNextDay').val();
         AppointmentObject.RenderOfficeSchedule('SelectedOffice', NextDay, vPublicProfileId, 'true', 'SelectedTreatment')
     },
 
