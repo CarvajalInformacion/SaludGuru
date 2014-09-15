@@ -378,27 +378,55 @@ namespace MarketPlace.Web.ControllersApi
                 CurrentTreatment = CurrentOffice.RelatedTreatment.Where(tr => tr.CategoryId == oTreatmentId).FirstOrDefault();
             }
 
-            //get dates
             bool oNextAvailableDate = !string.IsNullOrEmpty(NextAvailableDate) && NextAvailableDate.Replace(" ", "").ToLower() == "true" ? true : false;
-            DateTime oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.Parse(StartDateTime).AddDays(1);
-            DateTime oEndDateTime = oStartDateTime.AddDays(1).Date;
+            DateTime oStartDateTime = new DateTime();
+            DateTime oEndDateTime = new DateTime();
+            //get dates
+            if (IsPrevDay == "true")
+            {
+                oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.Parse(StartDateTime).AddDays(-1);
+                oEndDateTime = oStartDateTime.AddDays(1).Date;
+                oNextAvailableDate = false;
+            }
+            else
+            {
+                oStartDateTime = string.IsNullOrEmpty(StartDateTime) ? DateTime.Now : DateTime.Parse(StartDateTime).AddDays(1);
+                oEndDateTime = oStartDateTime.AddDays(1).Date;
+            }
+
 
             List<DayOfWeek> lstAvailableDay = CurrentOffice.ScheduleAvailable.
                     GroupBy(sa => sa.Day).
                     Select(sa => sa.Key).
                     OrderBy(sa => sa).
                     ToList();
-
-            if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+            if (IsPrevDay != "true")
             {
-                int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
+                if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+                {
+                    int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
 
-                if (DaysToAdd < 0)
-                    DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
+                    if (DaysToAdd < 0)
+                        DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
 
-                oStartDateTime = oStartDateTime.AddDays(DaysToAdd);
-                oEndDateTime = oStartDateTime.AddDays(1);
+                    oStartDateTime = oStartDateTime.AddDays(DaysToAdd);
+                    oEndDateTime = oStartDateTime.AddDays(1);
+                }
             }
+            else
+            {
+                if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+                {
+                    int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
+
+                    if (DaysToAdd < 0)
+                        DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
+
+                    oStartDateTime = oStartDateTime.AddDays(- DaysToAdd);
+                    oEndDateTime = oStartDateTime.AddDays(1);
+                }
+            }
+
 
             //get minutes interval
             int oMinutesInterval = string.IsNullOrEmpty(TreatmentId) ?
@@ -436,7 +464,7 @@ namespace MarketPlace.Web.ControllersApi
 
             //get first week available appointments
             if (oNextAvailableDate)
-            {               
+            {
                 //get busy schedule
                 List<ScheduleBusyModel> lstBusyTime = MedicalCalendar.Manager.Controller.Appointment.GetScheduleBusy
                     (CurrentProfile.ProfilePublicId,
@@ -464,14 +492,14 @@ namespace MarketPlace.Web.ControllersApi
 
                             oStartDateTime = oStartDateTime.AddDays(1);
                             oEndDateTime = oStartDateTime.AddDays(1).Date;
-                        }                       
+                        }
                         else
-                        {                           
+                        {
                             oExit = true;
                         }
                     } while (!oExit);
-                }               
-            }           
+                }
+            }
 
             if (CurrentAppointment == null)
                 CurrentAppointment = new List<AppointmentModel>();
@@ -486,7 +514,7 @@ namespace MarketPlace.Web.ControllersApi
                     Friday.IsHeader = true;
                     Friday.AvailableDate = oStartDateTime;
                     Friday.NextDate = oStartDateTime.Date.ToShortDateString();
-                    Friday.PublicProfileId = ProfilePublicId; 
+                    Friday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Friday);
                     break;
                 case DayOfWeek.Monday:
@@ -523,14 +551,14 @@ namespace MarketPlace.Web.ControllersApi
                     break;
                 case DayOfWeek.Wednesday:
                     EventAvailableDayModel Wednesday = new EventAvailableDayModel();
-                    Wednesday.IsHeader = true;                    
+                    Wednesday.IsHeader = true;
                     Wednesday.AvailableDate = oStartDateTime;
                     Wednesday.NextDate = oStartDateTime.Date.ToShortDateString();
                     Wednesday.PublicProfileId = ProfilePublicId;
                     oReturn.Add(Wednesday);
                     break;
                 default:
-                    break;                    
+                    break;
             }
             TimeSpan minTime = new TimeSpan(8, 0, 0);
 
@@ -547,7 +575,7 @@ namespace MarketPlace.Web.ControllersApi
                         EventAvailableDayModel Monday = new EventAvailableDayModel();
                         break;
                     case DayOfWeek.Saturday:
-                        EventAvailableDayModel Saturday = new EventAvailableDayModel(); 
+                        EventAvailableDayModel Saturday = new EventAvailableDayModel();
                         break;
                     case DayOfWeek.Thursday:
                         EventAvailableDayModel Thursday = new EventAvailableDayModel();

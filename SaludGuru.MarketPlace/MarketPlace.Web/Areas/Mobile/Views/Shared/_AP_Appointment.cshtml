@@ -20,12 +20,13 @@
             <div class="SelOfficeGrid GridAP" id="divScheduleContainer_${OfficePublicId}">
 
                 <div id="divGrid_Title">
-
+                    
                 </div>
             </div>
             <ul id="ul_GridFreeSchedule"></ul>
-            <div id="divGrid_NotSchedule_${OfficePublicId}">
-                <a href="javascript:;">Buscar siguiente horario disponible</a>
+            <div id="divGrid_NotSchedule">
+                 @*onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");*@
+                <a  href="javascript:;">Buscar siguiente horario disponible</a>
             </div>
         </div>
     </div>
