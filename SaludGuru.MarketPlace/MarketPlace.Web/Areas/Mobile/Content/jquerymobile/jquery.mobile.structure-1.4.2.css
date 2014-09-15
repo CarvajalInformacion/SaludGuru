@@ -2120,7 +2120,7 @@ fieldset.ui-controlgroup {
 	clip: rect(1px,1px,1px,1px);
 }
 .ui-select {
-	margin-top: .5em;
+	margin-top: .2em;
 	margin-bottom: .5em; /* no shorthand for margin because it would override margin-right for inline selects */
 	position: relative;
 }
