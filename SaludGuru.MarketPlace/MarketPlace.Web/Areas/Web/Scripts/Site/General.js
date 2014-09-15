@@ -154,6 +154,11 @@ var SearchBoxObject = {
 
     SearchTerm: function () {
         //find url to redirect
+        fnEventTrack({
+            category: 'MP.Header',
+            action: 'MPHeader.Search.Click',
+            label: $('#' + SearchBoxObject.InputId).val(),
+        });
         window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, '').trim());
     }
 };
@@ -178,3 +183,13 @@ function fnInitToolTip(vSelector) {
         },
     });
 }
+
+/*Google Event Tracking*/
+function fnEventTrack(vEventInfo) {
+    try {
+        debugger;
+        _gaq.push(['_trackEvent', vEventInfo.category, vEventInfo.action, vEventInfo.label]);
+    }
+    catch (err) { }
+}
+
