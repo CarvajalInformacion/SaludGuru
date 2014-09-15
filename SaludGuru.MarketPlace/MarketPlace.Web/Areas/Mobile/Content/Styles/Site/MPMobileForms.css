@@ -1,0 +1,200 @@
+/*********** ESTILOS DE LOS FORMULARIOS DE AGENDAMIENTO **********/
+.MPFormDataWrapper {
+    display: block;
+    width: 100%;
+}
+
+    .MPFormDataWrapper ul {
+        display: block;
+        height: auto;
+        border: none;
+        margin: 0px 0px 0px 0px;
+    }
+
+        .MPFormDataWrapper ul li label {
+            font-weight: bold;
+        }
+
+form#AppointmentForm {
+    text-align: center;
+}
+
+.LegalTermsLi a {
+    display: inline-block;
+    float: left;
+}
+
+.MPAgendaButtonWrapper {
+    margin: 10px 0px 10px 0px;
+}
+
+    .MPAgendaButtonWrapper label {
+        text-align: left;
+        margin-left: 70px;
+    }
+
+li#officeSelectedId label {
+    width: 200px !important;
+}
+
+.MPAgendaButtonWrapper input {
+    margin: 10px 0px 10px 20px;
+}
+
+input#LegalTerms {
+    display: inline-block !important;
+    margin: 3px 0px 0px 32px;
+}
+
+label.AgendaLabel {
+    font-weight: bold !important;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.LegalTerms {
+    cursor: auto;
+    margin-left: 65px !important;
+    margin-top: 4px !important;
+    text-align: left;
+}
+
+.MPFormDataWrapper ul li select {
+    padding: 0px;
+    text-align: left;
+    background-color: #fff;
+    height: 28px;
+    vertical-align: top;
+    width: 245px;
+}
+
+.MPFormDataWrapper ul li textarea {
+    text-align: justify;
+    background-color: #fff;
+    height: 100px;
+    vertical-align: top;
+}
+
+.MPFormDataWrapper ul h3 {
+    display: block;
+    margin: 0px 0px 0px 16px;
+    width: auto;
+}
+
+.MPFormDataWrapper ul li p {
+    display: inline-block;
+    width: auto;
+    margin: 0px 4px;
+}
+
+.MPFormDataWrapper ul li input[type="radio"] {
+    display: inline-block;
+    margin: 2px 0px 0px 30px;
+}
+
+.MPFormDataWrapper ul li input[type="checkMPx"] {
+    display: inline-block;
+    width: auto;
+    margin-left: 50px;
+}
+/************** QUIEN VA A VER AL DOCTOR **************/
+#ulPatientList {
+    width: 100%;
+}
+
+    #ulPatientList label {
+        font-weight: normal;
+        text-align: left;
+        margin-left: 70px;
+    }
+
+/********PACIENTE NUEVO*************/
+div#NewPatientId {
+    text-align: left;
+    height: auto;
+    background-color: #FFF;
+    border: 1px solid #666;
+    border-radius: 4px;
+}
+
+label.titleNewPatien {
+    text-align: center;
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+}
+
+label.GenderLi {
+    margin: 0px 0px 0px 50px !important;
+    display: inline-block;
+}
+
+#CreatePatientForm {
+    margin: 0px;
+    display: block;
+    width: auto;
+}
+
+    #CreatePatientForm ul {
+        margin: 4px;
+    }
+
+        #CreatePatientForm ul li {
+            padding: 0px;
+            margin: 10px 0px 10px 0px;
+        }
+
+            #CreatePatientForm ul li input {
+                line-height: 31px;
+                padding: 0px;
+                vertical-align: top;
+            }
+
+            #CreatePatientForm ul li div {
+                width: 96%;
+                display: inline-block;
+            }
+
+.GridAP div span {
+    display: inline-block !important;
+    width: 60% !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    margin: 10px 0px 10px 0px !important;
+    height: auto !important;
+    border: none !important;
+    line-height: 0px !important;
+}
+
+.GridAP div a {
+    display: initial;
+    margin-left: 0 !important;
+}
+
+.GridAP div div.k-grid-content {
+    height: 341px !important;
+}
+
+.liGender div {
+    width: auto !important;
+    display: inline-block !important;
+    margin: 0px 0px 15px 0px !important;
+}
+
+    .liGender div input {
+        margin: 0px !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+label.message {
+    text-align: center;
+}
+
+li.liSaveNewPatient {
+    text-align: center;
+}
+
+a#itemSave {
+    font-size: 1.5em;
+}
