@@ -35,13 +35,15 @@
             <input type="checkbox" name="chb_${ComunicationType}_${NotificationGuru ? NotificationGuru.Value + '_' + NotificationGuru.ProfileInfoId : '@((int)SaludGuruProfile.Manager.Models.enumMessageType.GuruNotification)_'}" class="${NotificationGuru ? 'SelectedChecked' : ''}" />
         </div>
 
-        @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ReadOnly)
-        {
-            <div id="template_Header">
-                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+
+        <div id="template_Header">
+            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+            @if (BackOffice.Models.General.SessionModel.CurrentUserAutorization.Role != SessionController.Models.Profile.enumRole.ReadOnly)
+            {
                 <input class="BOAgregarButtons" type="submit" value="Guardar" />
-            </div>
-        }
+            }
+        </div>
+
     </div>
     @{
         //get json office data
@@ -79,6 +81,7 @@
     <script type="text/javascript">
         var vDataComunication = @Html.Raw(oComunication)
         $(document).ready(function () {
+            debugger;
             //start office grid
             ProfileComunicationListGrid('divGridReminder', vDataComunication);
         });
