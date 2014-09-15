@@ -27,7 +27,7 @@ li.MPAgendaPatientSelection h4,
 li.MPAgendaButtonWrapper h4,
 h4.titleNewPatient{
     height: auto;
-    margin:0px !important;
+    margin:0px;
     line-height: 1em;
     font-size: 1.2em;
     color: #666;
@@ -70,23 +70,15 @@ li#officeSelectedId label {
     }
 input#LegalTerms {
     display: inline-block !important;
-    margin: 3px 0px 0px 32px;
+    margin: 3px 0px 0px 0px;
 }
-
-label.AgendaLabel {
-    font-weight: bold !important;
-    margin: 0px;
-    width: 100%;
-    text-align: center;
-}
-
 .LegalTerms {
-    cursor: auto;
-    margin-left: 65px !important;
-    margin-top: 4px !important;
-    text-align: left;
+    margin:3px 0px 0px 31px !important;
+    display:inline-block !important;
 }
-
+h4.AgendaLabel {
+    margin:14px 0px 0px 0px !important;
+}
 .MPFormDataWrapper ul li select {
     padding: 0px;
     text-align: left;
@@ -146,21 +138,29 @@ label.AgendaLabel {
     }
 
 /************** fecha hora **************/
-#DateMoreInfoIdN {
+#DateMoreInfoIdN, #SearchNexAvailableDayId {
     background-color: #FFF;
     border: medium none;
     color: #759418;
-    font-size: 1.3em;
+    font-size: 1.2em;
     display: block;
     width: auto;
     height: auto;
     margin: 9px auto;
+    letter-spacing: -0.6px;
+    font-weight: normal;
 }
-    #DateMoreInfoIdN:hover{
+    #DateMoreInfoIdN:hover, #SearchNexAvailableDayId:hover{
         text-decoration:underline;
     }
+#SearchNexAvailableDayId {
+        background-color: #ECECEC;
+        margin: 11px 0px 11px 7px;
+        font-size: 1.1em;
+}
+
 /********PACIENTE NUEVO*************/
-div#NewPatientId {
+div#NewPatientId, #FreeScheduleId{
     text-align: left;
     height: auto;
     background-color: #ececec;
@@ -170,15 +170,16 @@ div#NewPatientId {
 }
 .MPMobileCloseWindow {
     display: block;
-    float: right;
-    margin: -5px 5px 0px 0px;
-    border-radius: 13px;
-    border: 2px solid #333;
-    background-color:#99C21D;
-    color: #333;
+    border-radius: 10px;
+    border:1px solid #666;
+    background-color: #99C21D;
+    color: #666;
     font-size: 1.1em;
-    height: 25px;
+    height:25px;
     font-weight: bold;
+    vertical-align: top;
+    width:24px;
+    margin: 5px 5px 0px 88%;
 }
 
 label.titleNewPatient {
@@ -188,12 +189,13 @@ label.titleNewPatient {
 }
 
 label.GenderLi {
-    margin: 0px 0px 0px 50px !important;
-    display: inline-block;
+        margin: 0px 0px 0px 28px !important;
+        display: inline-block;
+        vertical-align: top;
 }
 
 #CreatePatientForm {
-    margin: 0px;
+    margin:6px 0px 0px 0px !important;
     display: block;
     width: auto;
 }
@@ -204,10 +206,10 @@ label.GenderLi {
 
         #CreatePatientForm ul li {
             padding: 0px;
-            margin: 10px 0px 10px 0px;
+            margin:0px;
         }
             #CreatePatientForm ul li label {
-                margin: 8px 0px 0px;
+                margin: 8px 0px 4px 0px;
                 line-height: 1em;
             }
             #CreatePatientForm ul li input {
@@ -217,7 +219,7 @@ label.GenderLi {
             }
 
             #CreatePatientForm ul li div {
-                width: 96%;
+                width: 94%;
                 display: inline-block;
             }
 .required {
@@ -237,7 +239,6 @@ label.GenderLi {
 
 .GridAP div a {
     display: initial;
-    margin-left: 0 !important;
 }
 
 .GridAP div div.k-grid-content {
@@ -266,4 +267,5 @@ li.liSaveNewPatient {
 
 a#itemSave {
     font-size: 1.5em;
+    letter-spacing: -0.9px;
 }

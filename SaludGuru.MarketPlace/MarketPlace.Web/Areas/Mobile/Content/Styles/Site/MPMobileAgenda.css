@@ -55,17 +55,44 @@ li.ProfileInformation h2{
 
 
 /****************AGENDA*********************/
-.MPFreeSchedule {
-    display: inline-block;
-}
 
+#ul_GridFreeSchedule {
+    margin:-30px auto 0px !important;
+    width: 97%;
+    text-align: left;
+    display: block;
+}
+    #ul_GridFreeSchedule li:first-child {
+        height: auto;
+        margin: 35px auto 5px auto;
+        line-height: 1em;
+        font-size: 1.2em;
+        color: #666;
+        display: block;
+        width: 50%;
+        text-align: center;
+    }
 .MPFreeSchedule {
     display: inline-block;
-    width: 31%;
-    border: 1px solid #99c21d;
+    width: 28%;
+    border: 1px solid #666;
     margin: 5px 3px;
     border-radius: 3px;
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 2px;
+}
+    .MPFreeSchedule:hover {
+        background-color:#99C21D;
+    }
+.MPFreeSchedule a{
+    color: #444 !important;
+    font-size: 0.8em;
+}
+#aPrevDay {
+    float:left;
+    margin: 0px 0px 0px 9px;
+}
+#aNextDay {
+    float:right;
+    margin: 0px 9px 0px 0px;
 }
