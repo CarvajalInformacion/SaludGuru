@@ -105,13 +105,13 @@
                 {
                     <div id="ulPatientList">
                         <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
-                        <h5>Yo</h5>
+                        <label>Yo</label>
                     </div>
                 }
             </li>
             <li class="MPAgendaButtonWrapper">
                 <input id="isSomeBody" type="radio" name="SelectedPatientItem" />
-                <h5>Alguien más</h5>
+                <label>Alguien más</label>
             </li>
             <li class="NewPatientLi">
                 <div id="NewPatientId" style="display:none;"></div>
@@ -164,10 +164,10 @@
     @*ESTE PEDAZO PINTA EL FORMULARIO DEL NUEVO PACIENTE*@
     <div id="NewPatient" style="display:none;">
         <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=@Model.CurrentProfile.ProfilePublicId">
-            <input type="button" value="x" id="itemClose" title="Cerrar" />
+            <input class="MPMobileCloseWindow" type="button" value="x" id="itemClose" title="Cerrar" />
             <ul>
                 <li>
-                    <label class="titleNewPatien">Datos del nuevo paciente</label>
+                    <h4 class="titleNewPatient">Datos del nuevo paciente</h4>
                     <label>Nombre</label>
                     <input type="text" id="Name" name="Name" placeholder="NOMBRE"/>
                     <span class="required">*</span>
@@ -195,7 +195,7 @@
                     <input type="radio" id="GenderFemale" name="GenderFemale" />
                 </li>
                 <li>
-                    <label class="message">Los campos con (*) son obligatorios</label>
+                    <label class="message">Los campos con (<span class="required">*</span>) son obligatorios</label>
                 </li>
                 <li class="liSaveNewPatient">
                     <a id="itemSave" href="javascript:CreatePatient();">Guardar nuevo paciente</a>

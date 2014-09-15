@@ -12,7 +12,8 @@
     }
 
         .MPFormDataWrapper ul li label {
-            font-weight: bold;
+            color: #759418;
+            font-size: 1em;
         }
 
 form#AppointmentForm {
@@ -23,7 +24,8 @@ li.OfficeSelectedLi h4,
 li.InsuranceSelectedLi h4, 
 li.TreatmentSelectedLi h4, 
 li.MPAgendaPatientSelection h4,
-li.MPAgendaButtonWrapper h4{
+li.MPAgendaButtonWrapper h4,
+h4.titleNewPatient{
     height: auto;
     margin:0px !important;
     line-height: 1em;
@@ -31,6 +33,7 @@ li.MPAgendaButtonWrapper h4{
     color: #666;
     display: block;
 }
+
 #SelectedOffice-button span {
     height: 14px;
     line-height: 14px;
@@ -38,10 +41,6 @@ li.MPAgendaButtonWrapper h4{
 .LegalTermsLi a {
     display: inline-block;
     float: left;
-}
-
-.MPAgendaButtonWrapper {
-    margin: 10px 0px 10px 0px;
 }
 
     .MPAgendaButtonWrapper label {
@@ -53,10 +52,22 @@ li#officeSelectedId label {
     width: 200px !important;
 }
 
-.MPAgendaButtonWrapper input {
-    margin: 10px 0px 10px 20px;
+.MPAgendaButtonAcceptDate {
+    display: block !important;
+    height: 38px !important;
+    width: 96% !important;
+    margin: 46px auto 0px !important;
+    background-color: #99C21D;
+    border-radius: 2px;
+    border: 1px solid #666;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
 }
-
+    .MPAgendaButtonAcceptDate:hover {
+        color: #666;
+        background-color:#fff;
+    }
 input#LegalTerms {
     display: inline-block !important;
     margin: 3px 0px 0px 32px;
@@ -104,9 +115,18 @@ label.AgendaLabel {
     margin: 0px 4px;
 }
 
+.ui-radio {
+    position: relative;
+    margin: 0px;
+    height: auto;
+    width: auto;
+}
+
 .MPFormDataWrapper ul li input[type="radio"] {
     display: inline-block;
-    margin: 2px 0px 0px 30px;
+    margin: 4px 0px 0px 4px;
+    width: auto;
+    height: auto;
 }
 
 .MPFormDataWrapper ul li input[type="checkMPx"] {
@@ -115,26 +135,53 @@ label.AgendaLabel {
     margin-left: 50px;
 }
 /************** QUIEN VA A VER AL DOCTOR **************/
-#ulPatientList {
+#ulPatientList, .MPAgendaButtonWrapper {
     width: 100%;
+    display: block;
+    width: auto;
+    height: auto;
 }
-
-    #ulPatientList label {
-        font-weight: normal;
-        text-align: left;
-        margin-left: 70px;
+    #ulPatientList label, .MPAgendaButtonWrapper label{
+        margin: 8px 0px 2px 35px;
     }
 
+/************** fecha hora **************/
+#DateMoreInfoIdN {
+    background-color: #FFF;
+    border: medium none;
+    color: #759418;
+    font-size: 1.3em;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 9px auto;
+}
+    #DateMoreInfoIdN:hover{
+        text-decoration:underline;
+    }
 /********PACIENTE NUEVO*************/
 div#NewPatientId {
     text-align: left;
     height: auto;
-    background-color: #FFF;
-    border: 1px solid #666;
-    border-radius: 4px;
+    background-color: #ececec;
+    border: 1px solid #99c21d;
+    border-radius: 3px;
+    margin: 8px 0px 8px 0px;
+}
+.MPMobileCloseWindow {
+    display: block;
+    float: right;
+    margin: -5px 5px 0px 0px;
+    border-radius: 13px;
+    border: 2px solid #333;
+    background-color:#99C21D;
+    color: #333;
+    font-size: 1.1em;
+    height: 25px;
+    font-weight: bold;
 }
 
-label.titleNewPatien {
+label.titleNewPatient {
     text-align: center;
     font-weight: bold;
     margin: 0px 0px 10px 0px;
@@ -159,7 +206,10 @@ label.GenderLi {
             padding: 0px;
             margin: 10px 0px 10px 0px;
         }
-
+            #CreatePatientForm ul li label {
+                margin: 8px 0px 0px;
+                line-height: 1em;
+            }
             #CreatePatientForm ul li input {
                 line-height: 31px;
                 padding: 0px;
@@ -170,7 +220,10 @@ label.GenderLi {
                 width: 96%;
                 display: inline-block;
             }
-
+.required {
+    color:red;
+    vertical-align:top;
+}
 .GridAP div span {
     display: inline-block !important;
     width: 60% !important;
