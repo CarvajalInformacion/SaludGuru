@@ -174,7 +174,7 @@ namespace BackOffice.Models.Appointment
 
         public int AppointmentStatus { get { return (int)CurrentAppointment.Status; } }
 
-        public List<PatientSearchModel> CurrentPatientInfo { get { return CurrentAppointment.RelatedPatient.Select(x => new PatientSearchModel(x)).ToList(); } }
+        public List<PatientSearchModel> CurrentPatientInfo { get { return CurrentAppointment.RelatedPatient != null ? CurrentAppointment.RelatedPatient.Select(x => new PatientSearchModel(x)).ToList() : new List<PatientSearchModel>(); } }
 
         public string AfterCare { get { return CurrentAppointment.AppointmentInfo.Where(x => x.AppointmentInfoType == MedicalCalendar.Manager.Models.enumAppointmentInfoType.AfterCare).Select(x => x.LargeValue).DefaultIfEmpty(string.Empty).FirstOrDefault(); } }
 
