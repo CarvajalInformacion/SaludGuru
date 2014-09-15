@@ -358,6 +358,7 @@
     <Content Include="Areas\Mobile\Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Areas\Mobile\Scripts\jquery-ui-1.10.4.min.js" />
     <None Include="Areas\Mobile\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Areas\Mobile\Scripts\jquery-ui-map\jquery.ui.map.full.min.js" />
     <Content Include="Areas\Mobile\Scripts\jquery.validate.js" />
     <Content Include="Areas\Mobile\Scripts\jquery.validate.min.js" />
     <Content Include="Areas\Mobile\Scripts\jquery.validate.unobtrusive.js" />

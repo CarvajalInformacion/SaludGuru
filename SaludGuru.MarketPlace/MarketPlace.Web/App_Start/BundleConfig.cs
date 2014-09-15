@@ -96,6 +96,13 @@ namespace MarketPlace.Web
             }
             else if (MarketPlace.Web.Controllers.BaseController.AreaName == MarketPlace.Models.General.Constants.C_MobileAreaName)
             {
+                #region jquery-ui-map
+
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap").Include(
+                             "~/Areas/Mobile/Scripts/jquery-ui-map/jquery.ui.map.full.min.js"));
+
+                #endregion
+
                 #region JQuery
 
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery").Include(
@@ -110,7 +117,7 @@ namespace MarketPlace.Web
                 #region JQuery Mobile
 
                 bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile").Include(
-                           "~/Areas/Mobile/Scripts/jquery.mobile-{version}.js"));                           
+                           "~/Areas/Mobile/Scripts/jquery.mobile-{version}.js"));
 
                 #endregion
 

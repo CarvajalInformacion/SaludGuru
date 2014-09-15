@@ -313,17 +313,20 @@ namespace MarketPlace.Web.Controllers
                             List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
                             ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
 
-                            //Find the autorized 
-                            emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
-                            string autorizedEmail = string.Join(",", emailRelatedList);
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
+                            if (ProfileAutorizationModelList != null)
+                            {
+                                //Find the autorized 
+                                emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
+                                string autorizedEmail = string.Join(",", emailRelatedList);
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
 
-                            //crear el to separad por coma con los usuarios autorizados por ese perfil
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId.ToString() });
+                                //crear el to separad por coma con los usuarios autorizados por ese perfil
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId.ToString() });
 
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
-                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
-                            result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
+                                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
+                                result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                            }                            
                         }
                     }
                 }
@@ -342,14 +345,17 @@ namespace MarketPlace.Web.Controllers
                 List<ProfileAutorizationModel> ProfileAutorizationModelList = new List<ProfileAutorizationModel>();
                 ProfileAutorizationModelList = SaludGuruProfile.Manager.Controller.Profile.GetProfileAutorization(Profile.ProfilePublicId);
 
-                //Find the autorized 
-                emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
-                string autorizedEmail = string.Join(",", emailRelatedList);
-                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
-                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId.ToString() });
-                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
-                oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
-                result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                if (ProfileAutorizationModelList != null)
+                {
+                    //Find the autorized 
+                    emailRelatedList = ProfileAutorizationModelList.Where(x => x.UserEmail != null).Select(x => x.UserEmail).ToList();
+                    string autorizedEmail = string.Join(",", emailRelatedList);
+                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "TO", Value = string.Join(",", Auth.Client.Controller.Client.GetUserListByEmailList(autorizedEmail).Where(x => x.UserPublicId != null).Select(x => x.UserPublicId)) });
+                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "From", Value = MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId.ToString() });
+                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = PatientList.FirstOrDefault().Name });
+                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = PatientList.FirstOrDefault().LastName });
+                    result = Message.Client.Client.Instance.CreateMessage(oMessage);
+                }
             }
             return result.IsSuccess;
         }

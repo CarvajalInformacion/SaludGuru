@@ -246,6 +246,7 @@ a.MPResultsPaidProfileDoctorName h2 {
     line-height: 24px;
     cursor: pointer;
     text-decoration: none;
+    display: block;
 }
 
 a.freeProfile h2 {
