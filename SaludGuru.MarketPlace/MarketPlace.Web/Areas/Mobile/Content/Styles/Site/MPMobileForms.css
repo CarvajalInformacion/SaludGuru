@@ -8,7 +8,7 @@
         display: block;
         height: auto;
         border: none;
-        margin: 0px 0px 0px 0px;
+        margin: 12px 0px 0px 0px;
     }
 
         .MPFormDataWrapper ul li label {
@@ -16,9 +16,25 @@
         }
 
 form#AppointmentForm {
-    text-align: center;
+    text-align: left;
 }
 
+li.OfficeSelectedLi h4, 
+li.InsuranceSelectedLi h4, 
+li.TreatmentSelectedLi h4, 
+li.MPAgendaPatientSelection h4,
+li.MPAgendaButtonWrapper h4{
+    height: auto;
+    margin:0px !important;
+    line-height: 1em;
+    font-size: 1.2em;
+    color: #666;
+    display: block;
+}
+#SelectedOffice-button span {
+    height: 14px;
+    line-height: 14px;
+}
 .LegalTermsLi a {
     display: inline-block;
     float: left;

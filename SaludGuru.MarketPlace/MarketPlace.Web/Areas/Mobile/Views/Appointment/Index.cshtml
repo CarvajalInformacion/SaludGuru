@@ -12,7 +12,7 @@
             @if (Model.CurrentProfile != null && Model.CurrentOffice != null)
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi" style="display:none">
-                    <label>Selecciona el consultorio</label>
+                    <h4>Selecciona el consultorio</h4>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
                         {
@@ -25,7 +25,7 @@
             else
             {
                 <li id="officeSelectedId" class="OfficeSelectedLi">
-                    <label>Selecciona el consultorio</label>
+                    <h4>Selecciona el consultorio</h4>
                     <select id="SelectedOffice" name="SelectedOffice">
                         @foreach (var item in Model.CurrentProfile.RelatedOffice)
                         {
@@ -43,7 +43,7 @@
                 </li>
             }
             <li class="InsuranceSelectedLi">
-                <label>Escoge tu seguro</label>
+                <h4>Escoge tu seguro</h4>
                 <select id="SelectedInsurance" name="SelectedInsurance">
                     @foreach (var item in Model.CurrentProfile.RelatedInsurance)
                     {
@@ -59,7 +59,7 @@
                 </select>
             </li>
             <li class="TreatmentSelectedLi">
-                <label>Escoge tu tratamiento</label>
+                <h4>Escoge tu tratamiento</h4>
                 <select id="SelectedTreatment" name="SelectedTreatment">
                     @if (Model.CurrentOffice != null || Model.CurrentProfile.RelatedOffice != null)
                     {
@@ -78,7 +78,7 @@
                 </select>
             </li>
             <li class="MPAgendaPatientSelection">
-                <label>Quien va a ver al Doctor</label>
+                <h4>Quien va a ver al Doctor</h4>
                 @if (Model.PatientGroup.Count > 0)
                 {
                     foreach (var item in Model.PatientGroup)
@@ -105,23 +105,22 @@
                 {
                     <div id="ulPatientList">
                         <input type="radio" id="SelectedPatientItem" name="SelectedPatientItem" checked="checked" value="@MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId">
-                        <label>Yo</label>
+                        <h5>Yo</h5>
                     </div>
                 }
             </li>
             <li class="MPAgendaButtonWrapper">
                 <input id="isSomeBody" type="radio" name="SelectedPatientItem" />
-                <label>Alguien más</label>
+                <h5>Alguien más</h5>
             </li>
             <li class="NewPatientLi">
                 <div id="NewPatientId" style="display:none;"></div>
             </li>
             <li class="MPAgendaButtonWrapper">
-                <label class="AgendaLabel">Fecha y hora</label>
+                <h4 class="AgendaLabel">Fecha y hora</h4>
                 <!--Profile Schedule-->
                 @if (Model.StartDate != null)
-                {
-                    
+                {                    
                     <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdNN" value="@Model.StartDate" />
                 }
                 else
@@ -135,7 +134,6 @@
                     <div class="MPAgendaButtonWrapper">
                         <input class="MPAgendaButtonAcceptDate" type="button" id="DateLessInfoId" value="x" title="Cerrar" />
                     </div>
-
                     @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
                 </div>
             </li>
