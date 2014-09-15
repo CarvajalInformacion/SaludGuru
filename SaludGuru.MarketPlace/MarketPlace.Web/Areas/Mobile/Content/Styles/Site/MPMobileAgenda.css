@@ -4,38 +4,54 @@
 .MPAgendaDoctorProfile {
     display: block;
     /*border: 1px solid red;*/
-    text-align: center;
+    text-align: left;
 }
-
+.MPAgendaDoctorProfile h6{
+    font-size: 1.3em;
+    line-height: 27px;
+    letter-spacing: 0px;
+    color: #759418;
+    padding: 0px;
+    margin: 0px;
+    display: block;
+    cursor: text;
+}
 ul.MPAgendaDoctorData {
-    /* border: 1px solid green; */
     width: 100%;
     height: auto;
     padding: 6px;
+    margin-top:0px !important;
 }
-
 li.ProfileImage {
     display: inline-block;
-    width: 60px;
-    height: 60px;
-    overflow: hidden;
+    width: auto;
+    height: auto;
 }
-
     li.ProfileImage img {
-        width: 100%;
-        height: auto;
+        width:72px;
+        height:82px;
+        border:1px solid red;
+        display:inline-block;
     }
-
 li.ProfileInformation {
     display: inline-block;
     width: 66%;
     text-align: left;
     vertical-align: top;
 }
-
-li.ProfileInformation {
-    cursor: pointer;
+li.ProfileInformation h2{
+    line-height: 18px;
+    font-size: 1.3em !important;
+    color: #759418;    
+    display: block !important;
+    margin: 0px 0px 0px !important;
 }
+    li.ProfileInformation h3 {
+        line-height: 18px;
+        font-size: 1.3em !important;
+        display: block !important;
+        margin: 0px 0px 0px !important;
+    }
 
 
 /****************AGENDA*********************/
