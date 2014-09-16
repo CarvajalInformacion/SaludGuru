@@ -186,8 +186,7 @@ function fnInitToolTip(vSelector) {
 
 /*Google Event Tracking*/
 function fnEventTrack(vEventInfo) {
-    try {
-        debugger;
+    try {        
         _gaq.push(['_trackEvent', vEventInfo.category, vEventInfo.action, vEventInfo.label]);
     }
     catch (err) { }
