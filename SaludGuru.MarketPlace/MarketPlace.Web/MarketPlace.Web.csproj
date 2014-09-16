@@ -824,7 +824,7 @@
     <Content Include="Areas\Mobile\Content\Fonts\MyriadPro-Regular.woff" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap-theme.css.map" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap.css.map" />
-    <Content Include="Areas\Mobile\Scripts\jquery-2.1.1.min.map" />
+    <None Include="Areas\Mobile\Scripts\jquery-2.1.1.min.map" />
     <Content Include="Areas\Mobile\Views\Appointment\ConfirmationAppointment.cshtml" />
     <Content Include="Areas\Mobile\Views\Appointment\Index.cshtml" />
     <Content Include="Areas\Mobile\Views\Error\NotFound.cshtml" />

@@ -230,7 +230,6 @@ var ProfileMapObject = {
         });
 
         for (var item in this.lstOffice) {
-            debugger;
             //get tool tip for office
             var oToolTip = $('#OfficeToolTip_' + ProfileMapObject.DivId).html();
             oToolTip = oToolTip.replace(/<img src=""/gi, '<img src="' + ProfileMapObject.lstOffice[item].ProfileImage + '"');
