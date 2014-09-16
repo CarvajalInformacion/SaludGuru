@@ -58,7 +58,7 @@ li.ProfileInformation h2{
 #ul_GridFreeSchedule {
     margin:-30px auto 0px !important;
     width: 97%;
-    text-align: left;
+    text-align: center;
     display: block;
 }
     #ul_GridFreeSchedule li:first-child {
@@ -79,6 +79,7 @@ li.ProfileInformation h2{
     border-radius: 3px;
     text-align: center;
     padding: 2px;
+    background-color:#fff;
 }
     .MPFreeSchedule:hover {
         background-color:#99C21D;
