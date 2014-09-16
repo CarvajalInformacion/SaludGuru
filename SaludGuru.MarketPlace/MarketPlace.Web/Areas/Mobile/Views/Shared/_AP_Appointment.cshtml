@@ -25,7 +25,6 @@
             </div>
             <ul id="ul_GridFreeSchedule"></ul>
             <div id="divGrid_NotSchedule">
-                 @*onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");*@
                 <a  href="javascript:;">Buscar siguiente horario disponible</a>
             </div>
         </div>
@@ -63,21 +62,10 @@ else
             });
             AppointmentObject.RenderAsync();         
             $('#btnNextDay').click(function () {
-                debugger;
-
                 var nextDate = $('#lblNextDay').val();
-
-                //Leo el hidden o lo q sxe a
-                //envio los parametros que ya tengo a la funcion NextDay
-                //Logica de la funcion
-
+                
                 AppointmentObject.NextDay('SelectedOffice', '@Model.CurrentProfile.ProfilePublicId', 'true', 'SelectedTreatment');
             });
-            
-
-           
-        });
-
-       
+        });       
     </script>
 }
