@@ -7,14 +7,14 @@
     text-align: left;
 }
 .MPAgendaDoctorProfile h6{
-    font-size: 1.3em;
-    line-height: 27px;
-    letter-spacing: 0px;
     color: #759418;
-    padding: 0px;
-    margin: 0px;
-    display: block;
     cursor: text;
+    display: block;
+    font-size: 1.2em;
+    letter-spacing: -0.5px;
+    line-height: 27px;
+    margin: 0;
+    padding: 0;
 }
 ul.MPAgendaDoctorData {
     width: 100%;
