@@ -1,0 +1,36 @@
+/***************  ESTILOS DE PAGINA DE CONFIRMACION ****************/
+
+.MPAgendaConfirmationMessageGW, 
+.ImgConfirmation,
+.MPAgendaConfirmationMessage{
+    display:block;
+    width:100%;
+    }
+    .ImgConfirmation {
+        display:block;
+        width:112px;
+        height:auto;
+        margin:0px auto;
+    }
+        .MPAgendaConfirmationMessageGW h1 {
+            font-size:1.2em;
+            color:#759418;
+            letter-spacing:-0.8px;
+            line-height:1em;
+            display:block;
+            margin:6px 0px;
+        }
+.MPAgendaConfirmationMessage {
+    margin:0px;
+}
+    .MPAgendaConfirmationMessage h2,
+    .MPAgendaConfirmationMessage h3,
+    .MPAgendaConfirmationMessage h4,
+    .MPAgendaConfirmationMessage h5,
+    .MPAgendaConfirmationMessage h6 {
+        color: #333;
+        display: block;
+        font-size: 1.1em;    
+        line-height: 1em;
+        margin: 14px 0;
+    }

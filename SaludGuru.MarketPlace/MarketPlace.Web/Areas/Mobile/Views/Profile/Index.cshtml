@@ -22,11 +22,6 @@
                     @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
                 </div>
 
-                <!--Profile Images-->
-                @*<div class="MPProfileInfoImages">
-                        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
-                    </div>*@
-
                 <!--Profile Map-->
                 <div class="MPProfileMap">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
@@ -47,11 +42,6 @@
                     @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
                 </div>
 
-                <!--Profile Images-->
-                @*<div class="MPProfileInfoImages">
-                        @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
-                    </div>*@
-
                 <!--Profile Map-->
                 <div class="MPProfileMap">
                     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
@@ -66,18 +56,35 @@
     </div>
 </div>
 
-@{
+@{    
+    MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
+    
+    foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
+    {
+        oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
+
+        oModel.CurrentDate = DateTime.Now;
+        oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
+        oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+        oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
+        oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
+        oModel.RenderScripts = true;
+
+        if (oModel.PatientGroup == null)
+        {
+            oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
+        }
+    }
+
+
     Model.RenderScripts = true;
 }
 @section inlinescripts
 {
-    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
-    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
     @if (ScheduleEnabled)
     {
-        @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+        @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
     }
-    @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
-
 }

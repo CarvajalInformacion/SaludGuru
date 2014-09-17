@@ -109,7 +109,7 @@ namespace MarketPlace.Web
                             "~/Areas/Mobile/Scripts/jquery-{version}.js",
                             "~/Areas/Mobile/Scripts/jquery-ui-{version}.js"));
 
-                bundles.Add(new ScriptBundle("~/" + MarketPlace.Models.General.Constants.C_WebAreaName + "/bundles/jqueryval").Include(
+                bundles.Add(new ScriptBundle("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval").Include(
                             "~/Areas/Mobile/Scripts/jquery.validate*"));
 
                 #endregion

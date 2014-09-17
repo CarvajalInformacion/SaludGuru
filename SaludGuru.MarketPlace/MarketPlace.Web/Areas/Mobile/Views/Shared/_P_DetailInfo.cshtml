@@ -22,6 +22,8 @@
             DefaultIfEmpty(string.Empty).
             FirstOrDefault();
 
+    string ovCurrentDomain = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
+
 }
 
 @if (!Model.RenderScripts)
@@ -36,22 +38,42 @@
                     <div role="main" class="MPMobileOfficeList">
 
                         <div data-role="collapsible-set">
-                            
+
                             @foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
-                            {                                
+                            {
                                 if (Model.CurrentProfile.RelatedOffice.IndexOf(oCurrentOffice) == 0)
                                 {
                                     <div data-role="collapsible" data-collapsed="false">
                                         <h3 class="MPMobileOfficeName"><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></h3>
+                                        <input type="hidden" id="officeSelectedId" value="@oCurrentOffice.OfficePublicId" />
+                                        <input type="hidden" id="RelatedTreatment" value="@Model.CurrentProfile.RelatedTreatment.Select(x => x.CategoryId).FirstOrDefault()" />
+                                        <input type="hidden" id="StartDate" value="" />
+                                        <input type="hidden" id="UrlRedirect" value="@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }))" />
                                         <p>
                                             <div id="fragment-@oCurrentOffice.OfficePublicId">
                                                 <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                                 <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                             </div>
 
+                                            @{
+                                                MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
+
+                                                oModel.CurrentDate = DateTime.Now;
+                                                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
+                                                oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+                                                oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
+                                                oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
+
+                                                if (oModel.PatientGroup == null)
+                                                {
+                                                    oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
+                                                }
+                                            }
                                             <div class="MPMobileCalendarOffice">
                                                 <h6>Agenda en Linea</h6>
-                                                @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+                                                <div class="ProfileCalendar" id="FreeScheduleId">
+                                                    @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
+                                                </div>
                                             </div>
                                         </p>
                                     </div>
@@ -60,24 +82,42 @@
                                 {
                                     <div data-role="collapsible" data-collapsed="true">
                                         <h3 class="MPMobileOfficeName"><a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a></h3>
+                                        <input type="hidden" id="officeSelectedId" value="@oCurrentOffice.OfficePublicId" />
+                                        <input type="hidden" id="RelatedTreatment" value="@Model.CurrentProfile.RelatedTreatment.Select(x => x.CategoryId).FirstOrDefault()" />
+                                        <input type="hidden" id="StartDate" value="" />
+                                        <input type="hidden" id="UrlRedirect" value="@(ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }))" />
                                         <p>
                                             <div id="fragment-@oCurrentOffice.OfficePublicId">
                                                 <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                                 <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                             </div>
+                                            @{
+                                                MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
 
+                                                oModel.CurrentDate = DateTime.Now;
+                                                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
+                                                oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+                                                oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
+                                                oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
 
+                                                if (oModel.PatientGroup == null)
+                                                {
+                                                    oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
+                                                }
+                                            }
                                             <div class="MPMobileCalendarOffice">
                                                 <h6>Agenda en Linea</h6>
-                                                @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
+                                                <div class="ProfileCalendar" id="FreeScheduleId">
+                                                    @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
+                                                </div>
                                             </div>
                                         </p>
                                     </div>
                                 }
-                            } 
+                            }
                         </div>
                     </div>
-                    
+
                     <hr class="featurette-divider __loop">
                 </li>
             }
@@ -110,8 +150,15 @@
                     </div>
                 </li>
             }
-
         </ul>
-
     </div>
+}
+else
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var selectedOfficeVal = $("#officeSelectedId").val();
+            AppointmentObject.RenderOfficeScheduleProfile(selectedOfficeVal);
+        });
+    </script>
 }

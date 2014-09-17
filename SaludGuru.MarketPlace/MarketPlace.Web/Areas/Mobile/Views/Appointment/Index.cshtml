@@ -132,7 +132,7 @@
                 @*ESTE PEDAZO PINTA EL CALENDARIO DE CITAS DEL DOCTOR*@
                 <div class="ProfileCalendar" id="FreeScheduleId" style="display:none">
                     <div class="MPAgendaButtonWrapper">
-                        <input class="MPMobileCloseWindow" type="button" id="DateLessInfoId" value="x" title="Cerrar" />
+                        <input class="MPMobileCloseWindow" type="button" id="DateLessInfoId" value="" title="Cerrar" />
                     </div>
                     @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
                 </div>
@@ -162,7 +162,7 @@
     @*ESTE PEDAZO PINTA EL FORMULARIO DEL NUEVO PACIENTE*@
     <div id="NewPatient" style="display:none;">
         <form id="CreatePatientForm" method="post" name="CreatePatientForm" action="/api/AppointmentApi?ProfilePublicId=@Model.CurrentProfile.ProfilePublicId">
-            <input class="MPMobileCloseWindow" type="button" value="x" id="itemClose" title="Cerrar" />
+            <input class="MPMobileCloseWindow" type="button" value="" id="itemClose" title="Cerrar" />
             <ul>
                 <li>
                     <h4 class="titleNewPatient">Datos del nuevo paciente</h4>
