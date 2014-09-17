@@ -87,7 +87,7 @@ namespace MarketPlace.Models.Profile
                         oCurrentRowCount = 20;
                 }
                 return (int)oCurrentRowCount;
-            }
+            }            
         }
 
         public int CurrentCityId { get; set; }
