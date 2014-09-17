@@ -73,11 +73,9 @@
 {
     @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
     @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
-    @if (ScheduleEnabled)
+    @*@if (ScheduleEnabled)
     {
-        @Html.Partial(MVC.Mobile.Shared.Views._P_Appointment, Model)
-    }
-    @Html.Partial(MVC.Mobile.Shared.Views._P_ImageSlider, Model)
+        @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, Model)
+    }*@
     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
-
 }

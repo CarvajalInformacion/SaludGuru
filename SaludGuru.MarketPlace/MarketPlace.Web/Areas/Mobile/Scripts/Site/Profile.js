@@ -17,30 +17,30 @@ var ProfileAppointmentObject = {
         });
     },
 
-    RenderAsync: function () {
-        var oFirstRender = false;
+    //RenderAsync: function () {
+    //    var oFirstRender = false;
 
-        for (var item in this.lstOffice) {
+    //    for (var item in this.lstOffice) {
 
-            //get office public id
-            this.lstOffice[item].OfficeDivId = this.DivId + '_' + this.lstOffice[item].OfficePublicId;
-            //crete calendar menu item
-            $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/\${OfficeName}/gi, this.lstOffice[item].OfficeName));
+    //        //get office public id
+    //        this.lstOffice[item].OfficeDivId = this.DivId + '_' + this.lstOffice[item].OfficePublicId;
+    //        //crete calendar menu item
+    //        $('#' + this.DivId + '_Menu').append($('#' + this.DivId + '_Template_Menu').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId).replace(/\${OfficeName}/gi, this.lstOffice[item].OfficeName));
 
-            //create div to put a calendar
-            $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
-            //show office basic info
-            var vOfficeInfo = $('#' + this.DivId + '_Template_OfficeInfo').html();
-            vOfficeInfo = vOfficeInfo.replace(/\${Address}/gi, this.lstOffice[item].OfficeAddress);
-            vOfficeInfo = vOfficeInfo.replace(/\${Telephone}/gi, this.lstOffice[item].OfficeTelephone);
-            $('#divGrid_OfficeInfo_' + this.lstOffice[item].OfficePublicId).html(vOfficeInfo);
+    //        //create div to put a calendar
+    //        $('#' + this.DivId).append($('#' + this.DivId + '_Template_Grid').html().replace(/\${OfficePublicId}/gi, this.lstOffice[item].OfficePublicId));
+    //        //show office basic info
+    //        var vOfficeInfo = $('#' + this.DivId + '_Template_OfficeInfo').html();
+    //        vOfficeInfo = vOfficeInfo.replace(/\${Address}/gi, this.lstOffice[item].OfficeAddress);
+    //        vOfficeInfo = vOfficeInfo.replace(/\${Telephone}/gi, this.lstOffice[item].OfficeTelephone);
+    //        $('#divGrid_OfficeInfo_' + this.lstOffice[item].OfficePublicId).html(vOfficeInfo);
 
-            if (oFirstRender == false) {
-                this.RenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
-                oFirstRender = true;
-            }
-        }
-    },
+    //        if (oFirstRender == false) {
+    //            this.RenderOfficeSchedule(this.lstOffice[item].OfficePublicId);
+    //            oFirstRender = true;
+    //        }
+    //    }
+    //},
 
     RenderOfficeSchedule: function (vOfficePublicId) {
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);

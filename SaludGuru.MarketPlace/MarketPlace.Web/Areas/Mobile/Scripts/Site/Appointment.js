@@ -1,6 +1,5 @@
 ﻿
 function CreatePatient() {
-    debugger;
     //create ajax form object
     $("#CreatePatientForm").submit(function (e) {
         var postData = $(this).serializeArray();
@@ -156,7 +155,6 @@ var AppointmentObject = {
     },
  
     RenderOfficeSchedule: function (vOfficePublicId, actualDate, vProPublicId, vNextSchedule, vTreatment, vIsPrevDay) {
-        debugger;
         var CurrentOfficeDiv = $('#divGrid_' + vOfficePublicId);
         var vOPublicId = $('#' + vOfficePublicId).val();
         var Treatment = $('#' + this.selTreatmentId).val();
@@ -168,21 +166,18 @@ var AppointmentObject = {
             var vNewDate = actualDate;
         }
         if (vIsPrevDay == 'true') {
-            debugger;
             $.ajax(
                {
                    url: '/api/ScheduleAvailableApi/GetEventAvailableWeek?ProfilePublicId=' + vProPublicId + '&OfficePublicId=' + vOPublicId + '&TreatmentId=' + oTreatment + '&NextAvailableDate=' + 'true' + '&StartDateTime=' + vNewDate + '&Mobile=' + 'true' + '&IsPrevDay=' + 'true',
                    dataType: "json",
                    type: "POST",
                    success: function (data, textStatus, jqXHR) {
-                       debugger;
                        AppointmentObject.RenderHour(data);
 
                        //AddPatientToList(data);
                    },
                    error: function (jqXHR, textStatus, errorThrown) {
                        //if fails    
-                       debugger;
                    }
                });
         }
@@ -194,14 +189,12 @@ var AppointmentObject = {
               dataType: "json",
               type: "POST",
               success: function (data, textStatus, jqXHR) {
-                  debugger;
                   AppointmentObject.RenderHour(data);
 
                   //AddPatientToList(data);
               },
               error: function (jqXHR, textStatus, errorThrown) {
-                  //if fails    
-                  debugger;
+                  //if fails   
               }
           });
         }
@@ -212,14 +205,12 @@ var AppointmentObject = {
               dataType: "json",
               type: "POST",
               success: function (data, textStatus, jqXHR) {
-                  debugger;
                   AppointmentObject.RenderHour(data);
 
                   //AddPatientToList(data);
               },
               error: function (jqXHR, textStatus, errorThrown) {
                   //if fails    
-                  debugger;
               }
           });
         }
@@ -242,7 +233,6 @@ var AppointmentObject = {
 
                 if (item.IsHeader) {
                     $("#ul_GridFreeSchedule").append('<li>' + item.AvailableDateTemplateText + '</li>');
-                    debugger;
                     $('#divGrid_Title').html('');
                     var valDiv = $('#divGrid_Title').html();
 
@@ -269,7 +259,6 @@ var AppointmentObject = {
     },
 
     PrevAvalableDay: function (vPublicProfileId, NextDay) {
-        debugger;
         var actualDate = $('#lblNextDay').val();
         AppointmentObject.RenderOfficeSchedule('SelectedOffice', NextDay, vPublicProfileId, 'false', 'SelectedTreatment', 'true')
     },
@@ -285,7 +274,6 @@ var AppointmentObject = {
 
 
     SetHour: function (vCurrentHour, vCurrentHourUnFormated) {
-        debugger;
         $('#StartDate').val(vCurrentHourUnFormated);
         $('#DateMoreInfoIdN').val(vCurrentHour);
         $('#DateMoreInfoIdNN').val(vCurrentHour);
@@ -296,7 +284,6 @@ var AppointmentObject = {
 };
 
 $('#DateMoreInfoIdN').click(function () {
-    debugger;
     var selectedOfficeVal = $("#officeSelectedId option:selected").val();
 
     AppointmentObject.RenderOfficeSchedule(selectedOfficeVal);
