@@ -159,7 +159,9 @@
         </ul>
     </div>
 }
-@{
+else 
+{ 
+    
     //create office calendar object
     var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
 
@@ -186,11 +188,11 @@
             var selectedOfficeVal = $("#officeSelectedId").val();
             AppointmentObject.RenderOfficeScheduleProfile(selectedOfficeVal);
 
-            ProfileAppointmentObject.Init({
+            @*ProfileAppointmentObject.Init({
                 DivId: 'divAppointmentSchedule',
                 OfficeInfo : @Html.Raw(oOfficeInfo),
             });
-            ProfileAppointmentObject.RenderAsync();
+            ProfileAppointmentObject.RenderAsync();*@
         });
     </script>
 }
