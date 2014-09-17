@@ -4,11 +4,6 @@
     color: #666;
     letter-spacing: -0.1px;
 }
-
-.MPResultsGrandWrapper span {
-    display: block;
-}
-
 .MPResultsGrandWrapper a {
     color: #92B92A;
     letter-spacing: -0.6px;
@@ -37,28 +32,8 @@ div.MPResultsBreadCrumbs {
     /*background-color: #92B92A;*/
     color: #FFF;
     height: 28px;
-    width: 80%;
+    width:auto;
     margin: 0px auto;
-}
-
-@media screen and (max-width:800px) {
-    div.MPResultsBreadCrumbs {
-        /*background-color: #92B92A;*/
-        color: #FFF;
-        height: 28px;
-        width: 94%;
-        margin: 0px auto;
-    }
-}
-
-@media screen and (max-width:1024px) {
-    div.MPResultsBreadCrumbs {
-        /*background-color: #92B92A;*/
-        color: #FFF;
-        height: 28px;
-        width: 91%;
-        margin: 0px auto;
-    }
 }
 
 div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
@@ -76,18 +51,16 @@ div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages {
     text-align: center;
 }
-
 div.MPResultsBreadCrumbsPages {
-    text-align: right;
+    text-align: center;
+    width:100%;
 }
-
 .MPResultsBreadCrumbsPages a {
     color: #FFF;
     line-height: 1.3em;
     font-size: 1em;
     letter-spacing: -0.5px;
 }
-
     .MPResultsBreadCrumbsPages a:hover {
         color: #FFF;
     }
@@ -96,6 +69,22 @@ div.MPResultsBreadCrumbsPages {
     color: #99c21d;
     text-decoration: none;
     margin: 3px 0px 0px 5px;
+}
+.MPMobilePrevious, .MPMobileNext,
+.MPMobilePrevious:hover, .MPMobileNext:hover{
+    display: inline-block;
+    width:auto;
+    color:#666;
+}
+    .MPMobilePrevious:hover, .MPMobileNext:hover {
+        color:#666;
+        text-decoration:underline;
+    }
+.MPMobilePrevious {
+    margin:0px 22% 0px 0px;
+}
+.MPMobileNext {
+    margin:0px 0px 0px 22%;
 }
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
