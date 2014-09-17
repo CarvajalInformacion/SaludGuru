@@ -29,6 +29,34 @@
     }
 }
 
+/*schedule appointment*/
+var ScheduleAppointmentObject = {
+    FBUrl: '',
+    GoogleUrl: '',
+    OutlookUrl: '',
+    IsLogin: false,
+
+    Init: function (vInitObject) {
+        this.FBUrl = vInitObject.FBUrl;
+        this.GoogleUrl = vInitObject.GoogleUrl;
+        this.IsLogin = vInitObject.IsLogin;
+        this.OutlookUrl = vInitObject.OutlookUrl;
+    },
+
+    ScheduleAppointment: function (vLink) {
+        if (ScheduleAppointmentObject.IsLogin) {
+            window.location = vLink;
+        }
+        else {
+
+            $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
+            $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
+            $('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
+
+            $('#dialog_ScheduleAppointmentNotLogin').dialog();
+        }
+    }
+};
 
 /*Searchbox objext*/
 var SearchBoxObject = {

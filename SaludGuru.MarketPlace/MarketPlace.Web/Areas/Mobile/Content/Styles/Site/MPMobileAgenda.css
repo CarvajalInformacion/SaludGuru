@@ -72,9 +72,9 @@ li.ProfileInformation h2{
         text-align: center;
     }
 .MPFreeSchedule {
-    display: inline-block;
+    display: inline-block !important;
     width: 28%;
-    border: 1px solid #666;
+    border: 1px solid #666 !important;
     margin: 5px 3px;
     border-radius: 3px;
     text-align: center;
