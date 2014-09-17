@@ -56,9 +56,9 @@
     </div>
 </div>
 
-@{    
+@{
     MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
-    
+
     foreach (var oCurrentOffice in Model.CurrentProfile.RelatedOffice)
     {
         oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
@@ -81,10 +81,7 @@
 }
 @section inlinescripts
 {
-    @if (ScheduleEnabled)
-    {
-        @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
-    }
+    @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
     @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
     @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
 }
