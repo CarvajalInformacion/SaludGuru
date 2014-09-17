@@ -56,18 +56,21 @@
                                             </div>
 
                                             @{
-                                                MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
+                                    MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
 
-                                                oModel.CurrentDate = DateTime.Now;
-                                                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
-                                                oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
-                                                oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
-                                                oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
+                                    oModel.CurrentDate = DateTime.Now;
+                                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
+                                    if (MarketPlace.Models.General.SessionModel.CurrentLoginUser != null)
+                                    {
+                                        oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+                                    }
+                                    oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
+                                    oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
 
-                                                if (oModel.PatientGroup == null)
-                                                {
-                                                    oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
-                                                }
+                                    if (oModel.PatientGroup == null)
+                                    {
+                                        oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
+                                    }
                                             }
                                             <div class="MPMobileCalendarOffice">
                                                 <h6>Agenda en Linea</h6>
@@ -92,18 +95,21 @@
                                                 <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
                                             </div>
                                             @{
-                                                MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
+                                    MarketPlace.Models.Appointment.AppointmentViewModel oModel = new MarketPlace.Models.Appointment.AppointmentViewModel();
 
-                                                oModel.CurrentDate = DateTime.Now;
-                                                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
-                                                oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
-                                                oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
-                                                oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
+                                    oModel.CurrentDate = DateTime.Now;
+                                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
+                                    if (MarketPlace.Models.General.SessionModel.CurrentLoginUser != null)
+                                    {
+                                        oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+                                    }
+                                    oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
+                                    oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")); ;
 
-                                                if (oModel.PatientGroup == null)
-                                                {
-                                                    oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
-                                                }
+                                    if (oModel.PatientGroup == null)
+                                    {
+                                        oModel.PatientGroup = new List<MedicalCalendar.Manager.Models.Patient.PatientModel>();
+                                    }
                                             }
                                             <div class="MPMobileCalendarOffice">
                                                 <h6>Agenda en Linea</h6>
@@ -153,12 +159,38 @@
         </ul>
     </div>
 }
-else
-{
+@{
+    //create office calendar object
+    var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+    string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
+        Serialize(Model.CurrentProfile.RelatedOffice.
+            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+            Select(of =>
+                new
+                {
+                    ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
+                    OfficePublicId = of.OfficePublicId,
+                    OfficeName = of.Name,
+                    OfficeDivId = string.Empty,
+                    IsDefault = of.IsDefault,
+                    City = of.City,
+                    OfficeAddress = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                    OfficeTelephone = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+                }).OrderBy(x => x.IsDefault).
+                OrderBy(x => x.OfficeName).ToList());
+
     <script type="text/javascript">
         $(document).ready(function () {
+
             var selectedOfficeVal = $("#officeSelectedId").val();
             AppointmentObject.RenderOfficeScheduleProfile(selectedOfficeVal);
+
+            ProfileAppointmentObject.Init({
+                DivId: 'divAppointmentSchedule',
+                OfficeInfo : @Html.Raw(oOfficeInfo),
+            });
+            ProfileAppointmentObject.RenderAsync();
         });
     </script>
 }

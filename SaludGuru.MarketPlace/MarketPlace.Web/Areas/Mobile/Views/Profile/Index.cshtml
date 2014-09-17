@@ -65,7 +65,10 @@
 
         oModel.CurrentDate = DateTime.Now;
         oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(Model.CurrentProfile.ProfilePublicId);
-        oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+        if (MarketPlace.Models.General.SessionModel.CurrentLoginUser != null)
+        {
+            oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+        }
         oModel.CurrentOffice = oCurrentOffice.OfficePublicId;
         oModel.StartDate = DateTime.Now.ToString("dddd dd MMMM hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"));
         oModel.RenderScripts = true;
