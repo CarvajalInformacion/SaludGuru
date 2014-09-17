@@ -351,7 +351,9 @@ namespace MarketPlace.Web.ControllersApi
             OfficeModel CurrentOffice = CurrentProfile.RelatedOffice.
                 Where(of => of.OfficePublicId == OfficePublicId).
                 FirstOrDefault();
-
+            if (CurrentOffice.ScheduleAvailable.Count() == 0)            
+                return oReturn;
+            
             //get treatment
             TreatmentOfficeModel CurrentTreatment = CurrentProfile.RelatedOffice.
                         Select(of => of.RelatedTreatment.

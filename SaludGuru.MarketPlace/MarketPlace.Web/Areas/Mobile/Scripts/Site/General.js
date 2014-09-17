@@ -80,45 +80,7 @@ var SearchBoxObject = {
                     SearchBoxObject.SearchTerm();
                 }
             });
-
-            //init autocomplete
-            //$('#' + SearchBoxObject.InputId).autocomplete({
-            //    source: function (request, response) {
-            //        $.ajax({
-            //            url: '/api/SearchApi?IsAc=true&CityId=' + SearchBoxObject.CityId + '&SearchParam=' + request.term,
-            //            dataType: 'json',
-            //            type: "POST",
-            //            success: function (data) {
-            //                response(data);
-            //            }
-            //        });
-            //    },
-            //    minLength: 2,
-            //    focus: function (event, ui) {
-            //        return false;
-            //    },
-            //    select: function (event, ui) {
-            //        if (ui.item != null && ui.item.CurrentAcItem != null) {
-            //            $('#' + SearchBoxObject.InputId).val(ui.item.CurrentAcItem.Node);
-            //            SearchBoxObject.SearchTerm();
-            //        }
-            //        return false;
-            //    },
-            //    messages: {
-            //        noResults: '',
-            //        results: '',
-            //    }
-            //}).data("ui-autocomplete")._renderItem = function (ul, item) {
-
-            //    var RenderItem = $('#' + SearchBoxObject.InputId + '_AcTemplate').html();
-            //    RenderItem = RenderItem.replace(/\${Type}/gi, item.Type);
-            //    RenderItem = RenderItem.replace(/\${Node}/gi, item.NodeSelected);
-
-            //    return $("<li></li>")
-            //        .data("ui-autocomplete-item", item)
-            //        .append("<a>" + RenderItem + "</a>")
-            //        .appendTo(ul);
-            //};
+           
         }
     },
 
