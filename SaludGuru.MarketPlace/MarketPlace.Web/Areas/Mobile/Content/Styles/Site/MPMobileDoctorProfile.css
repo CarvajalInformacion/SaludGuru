@@ -465,10 +465,10 @@ span.OfficeContactTelephone {
 }
 
 .MPMobileCalendarOffice {
-    display:block;
-    border:1px solid green;
-    width:100%;
-    height:auto;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 99%;
 }
 .MPMobileCalendarOffice h6{
     width:100%;
