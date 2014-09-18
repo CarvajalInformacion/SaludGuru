@@ -81,8 +81,7 @@ var SearchBoxObject = {
                 if (e.keyCode == 13) {
                     SearchBoxObject.SearchTerm();
                 }
-            });
-           
+            });           
         }
     },
 
