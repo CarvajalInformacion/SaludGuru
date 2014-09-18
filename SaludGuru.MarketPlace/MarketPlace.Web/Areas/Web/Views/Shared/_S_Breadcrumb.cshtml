@@ -71,7 +71,7 @@
             ovPreviewUrl += tmpUrl;
             ovPreviewUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage - 1);
         }
-        if (Model.CurrentPage < Convert.ToInt32(Math.Floor((double)Model.TotalRows / (double)Model.CurrentRowCount)))
+        if (Model.CurrentPage < Convert.ToInt32(Math.Floor((double)Model.TotalRows / (double)Model.CurrentRowCount(MarketPlace.Web.Controllers.BaseController.AreaName))))
         {
             ovNextUrl += Request.Url.ToString().Replace("?PageNumber=" + Request.QueryString["PageNumber"], string.Empty).Replace("&PageNumber=" + Request.QueryString["PageNumber"], string.Empty);
             ovNextUrl += (string.IsNullOrEmpty(tmpUrl.Query) ? "?" : "&") + "PageNumber=" + (Model.CurrentPage + 1);

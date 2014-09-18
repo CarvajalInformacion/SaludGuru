@@ -79,7 +79,6 @@ namespace MarketPlace.Web.Controllers
                     });
                 }
 
-
                 //eval redirect
                 EvalRedirect
                     (oModel);
@@ -102,7 +101,7 @@ namespace MarketPlace.Web.Controllers
                         null,
                         null,
                         null,
-                        oModel.CurrentRowCount,
+                        oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
                         out oTotalRowsAux);
                     oModel.TotalRows = oTotalRowsAux;
@@ -118,7 +117,7 @@ namespace MarketPlace.Web.Controllers
                         !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
                         null,
                         null,
-                        oModel.CurrentRowCount,
+                        oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
                         out oTotalRowsAux);
                     oModel.TotalRows = oTotalRowsAux;

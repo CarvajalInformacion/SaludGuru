@@ -35,7 +35,8 @@
     </key>
 
     <!--Search page-->
-    <key name="SearchPage_RowCount">20</key>
+    <key name="SearchPage_RowCount_Web">20</key>
+    <key name="SearchPage_RowCount_Mobile">5</key>
 
     <!--Home Image-->
     <key name="HomeImage_Baseurl">https://s3.amazonaws.com/devsaludguruimg/0MPImages/0HomeImage/Home_{{Count}}.jpg</key>
