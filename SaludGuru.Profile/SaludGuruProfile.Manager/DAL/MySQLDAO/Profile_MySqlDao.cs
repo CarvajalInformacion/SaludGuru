@@ -1396,8 +1396,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
             lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
             lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vScheduleEnabled", null));
-            lstParams.Add(DataInstance.CreateTypedParameter("vIsCertified", null));
+            //lstParams.Add(DataInstance.CreateTypedParameter("vScheduleEnabled", null));
+            //lstParams.Add(DataInstance.CreateTypedParameter("vIsCertified", null));
             lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
             lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
 
