@@ -239,7 +239,7 @@ var oProfileMapObject = {
             oToolTip = oToolTip.replace(/\${OfficeName}/gi, oProfileMapObject.lstOffice[item].OfficeName);
             oToolTip = oToolTip.replace(/\${Address}/gi, oProfileMapObject.lstOffice[item].Address);
             oToolTip = oToolTip.replace(/\${Telephone}/gi, oProfileMapObject.lstOffice[item].Telephone);
-
+            debugger;
             $('#' + oProfileMapObject.DivId).gmap('addMarker', {
                 'position': oProfileMapObject.lstOffice[item].Geolocation,
                 //'height': '10px'

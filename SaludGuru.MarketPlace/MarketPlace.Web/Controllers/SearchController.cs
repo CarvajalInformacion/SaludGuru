@@ -88,6 +88,13 @@ namespace MarketPlace.Web.Controllers
                 if (oModel.CurrentPage < 0)
                     oModel.CurrentPage = 0;
 
+                //get filters
+                if (!string.IsNullOrEmpty(Request["Filter"]))
+                {
+                    oModel.CurrentRequestFilter = Request["Filter"];
+                }
+
+
                 int oTotalRowsAux;
                 List<FilterModel> CurrentFilters;
                 //get profiles to show
@@ -97,11 +104,11 @@ namespace MarketPlace.Web.Controllers
                         (true,
                         oModel.CurrentCityId,
                         oModel.CurrentSearchQuery.Replace("+", " "),
+                        oModel.FilterInsurance,
+                        oModel.FilterSpecialty,
                         null,
-                        null,
-                        null,
-                        null,
-                        null,
+                        oModel.FilterScheduleAvailable ? "true" : null,
+                        oModel.FilterIsCertified ? "true" : null,
                         oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
                         out oTotalRowsAux,
@@ -115,11 +122,11 @@ namespace MarketPlace.Web.Controllers
                         (false,
                         oModel.CurrentCityId,
                         null,
-                        !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
-                        !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : oModel.FilterInsurance,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : oModel.FilterSpecialty,
                         !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
-                        null,
-                        null,
+                        oModel.FilterScheduleAvailable ? "true" : null,
+                        oModel.FilterIsCertified ? "true" : null,
                         oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
                         out oTotalRowsAux,

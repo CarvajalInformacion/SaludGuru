@@ -55,7 +55,6 @@
     {
         <link rel="canonical" href="@oSeoModel.CanonicalUrl" />
     }
-
 </head>
 
 
@@ -88,13 +87,15 @@
         </div>
 
         <!--Layout dialog-->
-        <div id="dialog_ScheduleAppointmentNotLogin" data-rel="popup" data-transition="pop" title="Ingreso requerido" style="display:none;">
-            <span>Para agendar una cita debe ingresar a traves de:</span>
-            <!--Render autentications-->
-            <div>
-                <a class="MPGoogleLogIn" href="" rel="nofollow"></a>
-                <a class="MPFacebookLogIn" href="" rel="nofollow"></a>
-                @*<a class="MPOutlookLogIn" href="" rel="nofollow"></a>*@
+        <div style="display:none">
+            <div id="dialog_ScheduleAppointmentNotLogin" title="Ingreso requerido">
+                <span>Para agendar una cita debe ingresar a traves de:</span>
+                <!--Render autentications-->
+                <div>
+                    <a class="MPGoogleLogIn" href="" rel="nofollow"></a>
+                    <a class="MPFacebookLogIn" href="" rel="nofollow"></a>
+                    @*<a class="MPOutlookLogIn" href="" rel="nofollow"></a>*@
+                </div>
             </div>
         </div>
 
@@ -162,7 +163,6 @@
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_ApiKey].Value)&sensor=@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_GoogleMaps_Sensor].Value)"></script>
         @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/sitescripts")
-
         @*Render inline site scripts*@
         @RenderSection("inlinescripts", required: false)
 
@@ -172,8 +172,6 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-
-
                 InitGlobalPagesControlsMobile({
                     MenuButton:'BtnEmergentMenu',
                     DivEmergentMenu:'EmeregentMenu',

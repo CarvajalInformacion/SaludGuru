@@ -654,3 +654,12 @@ a.pp_previous {
     text-indent: -10000px !important;
     width: 49% !important;
 }
+
+div.ui-widget-content {
+    border: 1px solid #333;
+    border-radius: 0px;
+    margin: 0px auto;
+    height: auto;
+    box-shadow: 2px 1px 2px;
+    width: 380px !important;
+}

@@ -12,48 +12,24 @@
 }
 <div class="MPProfileGreatWrapper">
     <div class="MPProfileColumnsWrapper">
-        @if (ScheduleEnabled)
-        {
-            @*Metting enabled*@
-
-            <div class="MPProfileWrapper">
-                <!--Profile Basic Info-->
-                <div class="MPProfileInfo">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
-                </div>
-
-                <!--Profile Map-->
-                <div class="MPProfileMap">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
-                </div>
-
-                <!--Profile Description-->
-                <div class="MPProfileInfoDetail">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
-                </div>
+        @*Metting enabled*@
+        <div class="MPProfileWrapper">
+            <!--Profile Basic Info-->
+            <div class="MPProfileInfo">
+                @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
             </div>
-        }
-        else
-        {
-            @*Metting disabled*@
-            <div class="MPProfileWrapper">
-                <!--Profile Basic Info-->
-                <div class="MPProfileInfo">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_BasicInfo, Model)
-                </div>
 
-                <!--Profile Map-->
-                <div class="MPProfileMap">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
-                </div>
-
-                <!--Profile Description-->
-                <div class="MPProfileInfoDetail">
-                    @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
-                </div>
+            <!--Profile Map-->
+            <div class="MPProfileMap">
+                @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
             </div>
-        }
-    </div>
+
+            <!--Profile Description-->
+            <div class="MPProfileInfoDetail">
+                @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
+            </div>
+        </div>
+   </div>
 </div>
 
 @{
@@ -86,5 +62,5 @@
 {
     @*@Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)*@
     @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
-    @Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)
+    @*@Html.Partial(MVC.Mobile.Shared.Views._P_Map, Model)*@
 }
