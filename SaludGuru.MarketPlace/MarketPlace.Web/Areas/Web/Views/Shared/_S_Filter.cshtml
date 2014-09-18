@@ -11,7 +11,14 @@
 
     if (BaseUrl.IndexOf("Filter") >= 0)
     {
-        BaseUrl = Request.Url.ToString().Replace(Model.CurrentRequestFilter, Model.CurrentRequestFilter + ";{NewFilter};");
+        if (!string.IsNullOrEmpty(Model.CurrentRequestFilter))
+        {
+            BaseUrl = BaseUrl.Replace(Model.CurrentRequestFilter, Model.CurrentRequestFilter + ";{NewFilter};");
+        }
+        else
+        {
+            BaseUrl = BaseUrl.Replace("Filter=", "Filter={NewFilter}");
+        }
     }
     else if (BaseUrl.IndexOf("?") >= 0)
     {
@@ -28,14 +35,40 @@
         <li>
             <label>Filtrar busqueda por:</label>
         </li>
-        @if (lstInsurance != null && lstInsurance.Count > 0 && Model.FilterInsurance == null)
+        @if (Model.CurrentInsurance != null) { }
+        else if (Model.FilterInsurance != null && lstInsurance.Count > 0)
+        {
+            var oInsurance = lstInsurance.
+                Where(x => !string.IsNullOrEmpty(x.ItemId) &&
+                         x.ItemId.Trim() == Model.FilterInsurance.Value.ToString()).
+                 FirstOrDefault();
+
+            string vFilterUrl = BaseUrl.Replace(";{NewFilter};", "");
+            if (oInsurance != null)
+            {
+                vFilterUrl = vFilterUrl.Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.Insurance).ToString() + "," + oInsurance.ItemId, "");
+            }
+
+            <li>
+                <label>Seguro</label>
+                <ul>
+                    <li>
+                        <span>@oInsurance.ItemName</span>
+                        <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                    </li>
+                </ul>
+            </li>
+        }
+        else if (lstInsurance != null && lstInsurance.Count > 0)
         {
             <li>
                 <label>Seguro</label>
                 <ul>
                     @foreach (var oInsurance in lstInsurance)
                     {
-                        string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.Insurance).ToString() + "," + oInsurance.ItemId);
+                        string vFilterUrl = BaseUrl.
+                            Replace("{NewFilter}",
+                                ((int)SaludGuruProfile.Manager.Models.enumFilterType.Insurance).ToString() + "," + oInsurance.ItemId);
 
                         if (lstInsurance.IndexOf(oInsurance) <= ItemsToShow)
                         {
@@ -57,14 +90,40 @@
                 <a id="SelectorInsurance_a" href="javascript:fnViewMoreLessFilter('SelectorInsurance');" rel="nofollow">Ver más</a>
             </li>
         }
-        @if (lstSpecialty != null && lstSpecialty.Count > 0 && Model.FilterSpecialty == null)
+        @if (Model.CurrentSpecialty != null) { }
+        else if (Model.FilterSpecialty != null && lstSpecialty.Count > 0)
+        {
+            var oSpecialty = lstSpecialty.
+                Where(x => !string.IsNullOrEmpty(x.ItemId) &&
+                         x.ItemId.Trim() == Model.FilterSpecialty.Value.ToString()).
+                 FirstOrDefault();
+
+            string vFilterUrl = BaseUrl.Replace(";{NewFilter};", "");
+
+            if (oSpecialty != null)
+            {
+                vFilterUrl = vFilterUrl.Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.Specialty).ToString() + "," + oSpecialty.ItemId, "");
+            }
+            <li>
+                <label>Seguro</label>
+                <ul>
+                    <li>
+                        <span>@oSpecialty.ItemName</span>
+                        <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                    </li>
+                </ul>
+            </li>
+        }
+        else if (lstSpecialty != null && lstSpecialty.Count > 0 && Model.FilterSpecialty == null)
         {
             <li>
                 <label>Especialidad</label>
                 <ul>
                     @foreach (var oSpecialty in lstSpecialty)
                     {
-                        string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.Specialty).ToString() + "," + oSpecialty.ItemId);
+                        string vFilterUrl = BaseUrl.
+                            Replace("{NewFilter}",
+                                    ((int)SaludGuruProfile.Manager.Models.enumFilterType.Specialty).ToString() + "," + oSpecialty.ItemId);
 
                         if (lstSpecialty.IndexOf(oSpecialty) <= ItemsToShow)
                         {
@@ -86,7 +145,18 @@
                 <a id="SelectorSpecialty_a" href="javascript:fnViewMoreLessFilter('SelectorSpecialty');" rel="nofollow">Ver más</a>
             </li>
         }
-        @if (ScheduleAvailable != null && ScheduleAvailable.ItemCount > 0 && !Model.FilterScheduleAvailable)
+        @if (Model.FilterScheduleAvailable)
+        {
+            string vFilterUrl = BaseUrl.
+                Replace("{NewFilter}", "").
+                Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true", "");
+
+            <li>
+                <label>Agenda en línea</label>
+                <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+            </li>
+        }
+        else if (ScheduleAvailable != null && ScheduleAvailable.ItemCount > 0)
         {
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true");
 
@@ -95,7 +165,19 @@
                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
         }
-        @if (IsCertified != null && IsCertified.ItemCount > 0 && !Model.FilterIsCertified)
+
+        @if (Model.FilterIsCertified)
+        {
+            string vFilterUrl = BaseUrl.
+                Replace("{NewFilter}", "").
+                Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true", "");
+
+            <li>
+                <label>Profesional certificado</label>
+                <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+            </li>
+        }
+        else if (IsCertified != null && IsCertified.ItemCount > 0)
         {
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true");
 
