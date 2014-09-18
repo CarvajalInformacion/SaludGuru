@@ -1,5 +1,5 @@
 ﻿@model MarketPlace.Models.Profile.ProfileViewModel
-
+ 
 @if (!Model.RenderScripts)
 {
     <div>
@@ -96,13 +96,14 @@ else
 
         <script type="text/javascript">
             $(document).ready(function () {
-                ProfileMapObject.Init({
+                oProfileMapObject.Init({
                     DivId: 'divOfficeMap',
                     OfficeInfo : @Html.Raw(oOfficeInfo),
                     CenterMap: '@(((lstLat.Min() + lstLat.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")) + "," + ((lstLon.Min() + lstLon.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")))',
                 });
-                ProfileMapObject.RenderAsync();
+                oProfileMapObject.RenderAsync();
             });
         </script>
     }
 }
+

@@ -204,12 +204,11 @@ var ProfileAppointmentObject = {
 
 
 /*profile office appointment render method*/
-var ProfileMapObject = {
+var oProfileMapObject = {    
     /*profile info*/
     DivId: '',
     CenterMap: '0,0',
     lstOffice: new Array(),
-
     /*init variables*/
     Init: function (vInitObject) {
         debugger;
@@ -220,32 +219,32 @@ var ProfileMapObject = {
         //init office info object array
         $.each(vInitObject.OfficeInfo, function (index, value) {
             //set key value pair for an office
-            ProfileMapObject.lstOffice[value.OfficePublicId] = value;
+            oProfileMapObject.lstOffice[value.OfficePublicId] = value;
         });
     },
 
     RenderAsync: function () {
         debugger;
         //start map
-        $('#' + ProfileMapObject.DivId).gmap({
-            'center': ProfileMapObject.CenterMap,
+        $('#' + oProfileMapObject.DivId).gmap({
+            'center': oProfileMapObject.CenterMap,
             'zoom': 12,
             'disableDefaultUI': true,
         });
 
         for (var item in this.lstOffice) {
             //get tool tip for office
-            var oToolTip = $('#OfficeToolTip_' + ProfileMapObject.DivId).html();
-            oToolTip = oToolTip.replace(/<img src=""/gi, '<img src="' + ProfileMapObject.lstOffice[item].ProfileImage + '"');
-            oToolTip = oToolTip.replace(/\${OfficeName}/gi, ProfileMapObject.lstOffice[item].OfficeName);
-            oToolTip = oToolTip.replace(/\${Address}/gi, ProfileMapObject.lstOffice[item].Address);
-            oToolTip = oToolTip.replace(/\${Telephone}/gi, ProfileMapObject.lstOffice[item].Telephone);
+            var oToolTip = $('#OfficeToolTip_' + oProfileMapObject.DivId).html();
+            oToolTip = oToolTip.replace(/<img src=""/gi, '<img src="' + oProfileMapObject.lstOffice[item].ProfileImage + '"');
+            oToolTip = oToolTip.replace(/\${OfficeName}/gi, oProfileMapObject.lstOffice[item].OfficeName);
+            oToolTip = oToolTip.replace(/\${Address}/gi, oProfileMapObject.lstOffice[item].Address);
+            oToolTip = oToolTip.replace(/\${Telephone}/gi, oProfileMapObject.lstOffice[item].Telephone);
 
-            $('#' + ProfileMapObject.DivId).gmap('addMarker', {
-                'position': ProfileMapObject.lstOffice[item].Geolocation,
+            $('#' + oProfileMapObject.DivId).gmap('addMarker', {
+                'position': oProfileMapObject.lstOffice[item].Geolocation,
                 //'height': '10px'
             }).click(function () {
-                $('#' + ProfileMapObject.DivId).gmap('openInfoWindow',
+                $('#' + oProfileMapObject.DivId).gmap('openInfoWindow',
                     {
                         'content': oToolTip
                     }, this);

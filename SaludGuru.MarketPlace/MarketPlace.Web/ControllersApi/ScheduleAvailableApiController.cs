@@ -601,7 +601,7 @@ namespace MarketPlace.Web.ControllersApi
                         EventAvailableDayModel CurrentAvailableDate = new EventAvailableDayModel()
                         {
                             IsHeader = false,
-                            AvailableDate = oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Add(TimeIntervalStart),
+                            AvailableDate = oStartDateTime.Date.Add(TimeIntervalStart),
                         };
 
                         //get appointments on interval

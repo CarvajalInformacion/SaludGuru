@@ -84,7 +84,7 @@
 }
 @section inlinescripts
 {
-    if(ScheduleEnabled){
+    @if(ScheduleEnabled){
         @Html.Partial(MVC.Mobile.Shared.Views._AP_Appointment, oModel)
     }
     @Html.Partial(MVC.Mobile.Shared.Views._P_DetailInfo, Model)
