@@ -109,15 +109,18 @@ namespace MarketPlace.Models.Profile
                 {
                     oCurrentRequestSplit = new Dictionary<SaludGuruProfile.Manager.Models.enumFilterType, string>();
 
-                    CurrentRequestFilter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).All(x =>
+                    if (!string.IsNullOrEmpty(CurrentRequestFilter))
                     {
-                        var SplitAux = x.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        if (SplitAux.Length >= 2)
+                        CurrentRequestFilter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).All(x =>
                         {
-                            oCurrentRequestSplit[(SaludGuruProfile.Manager.Models.enumFilterType)Convert.ToInt32(SplitAux[0].Trim())] = SplitAux[1];
-                        }
-                        return true;
-                    });
+                            var SplitAux = x.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                            if (SplitAux.Length >= 2)
+                            {
+                                oCurrentRequestSplit[(SaludGuruProfile.Manager.Models.enumFilterType)Convert.ToInt32(SplitAux[0].Trim())] = SplitAux[1];
+                            }
+                            return true;
+                        });
+                    }
                 }
 
                 return oCurrentRequestSplit;

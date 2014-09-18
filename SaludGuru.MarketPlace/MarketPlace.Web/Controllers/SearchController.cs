@@ -91,7 +91,7 @@ namespace MarketPlace.Web.Controllers
                 //get filters
                 if (!string.IsNullOrEmpty(Request["Filter"]))
                 {
-                    oModel.CurrentRequestFilter = Request["Filter"];
+                    oModel.CurrentRequestFilter = Request["Filter"].Replace(" ", "");
                 }
 
 
@@ -142,9 +142,10 @@ namespace MarketPlace.Web.Controllers
 
                 return View(oModel);
             }
-            catch
+            catch (Exception err)
             {
-                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
+                //return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
+                throw err;
             }
         }
 
