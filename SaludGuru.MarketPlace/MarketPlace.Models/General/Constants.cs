@@ -79,7 +79,7 @@
 
         public const string C_Settings_Profile_FacebookIcon = "Profile_FacebookIcon";
 
-        public const string C_Settings_SearchPage_RowCount = "SearchPage_RowCount";
+        public const string C_Settings_SearchPage_RowCount = "SearchPage_RowCount_{AreaName}";
 
         public const string C_Settings_Profile_SmallImageDefault = "Profile_SmallImageDefault";
 
