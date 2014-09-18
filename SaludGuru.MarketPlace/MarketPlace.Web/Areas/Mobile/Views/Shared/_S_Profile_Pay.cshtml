@@ -65,34 +65,11 @@
                     DefaultIfEmpty(false).
                     FirstOrDefault();
         }
-        <!--certified image-->
-        @*<div class="MPResultsCertified">
-            @if (ovIsCertified)
-            {
-                <img class="MPResultsCertified SelCertifiedImage" title="Profesional Certificado La Información del perfil fue validada por Salud Gurú." src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_CertifiedImage].Value)" />
-            }
-        </div>*@
         @*PRIMERA COLUMNA FOTICO FACEBOOK*@
         <div class="MPResultsPaidProfileDoctorPicture">
             <a class="MPResultsDoctorPictureWrapper" href="@ovProfileUrl">
                 <img class="MPResultsDoctorPicture" src="@ovImageProfile" />
             </a>
-            @*<div class="MPResultsPaidProfileDoctorSocial">
-                @if (!string.IsNullOrEmpty(ovWebSite))
-                {
-                    <a class="MPResultsPaidProfileDoctorWebsite" href="@ovWebSite" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_WebsiteIcon].Value)" />
-                        <span>Página Web</span>
-                    </a>
-                }
-                @if (!string.IsNullOrEmpty(ovFacebook))
-                {
-                    <a class="MPResultsPaidProfileDoctorFacebook" href="@ovFacebook" target="_blank">
-                        <img src="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Profile_FacebookIcon].Value)" />
-                        <span>Facebook</span>
-                    </a>
-                }
-            </div>*@
         </div>
 
         @*SEGUNDA COLUMNA DATICOS*@
@@ -118,10 +95,6 @@
 
 
         <div class="MPResultsDoctorDescriptionWrapper">
-            @*@if (!string.IsNullOrEmpty(ovShortProfile))
-            {
-                <span class="MPResultsDoctorShortDescription">@ovShortProfile</span>
-            }*@
             @{
             SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
             if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)

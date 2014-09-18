@@ -98,7 +98,7 @@ else
             $(document).ready(function () {
                 oProfileMapObject.Init({
                     DivId: 'divOfficeMap',
-                    OfficeInfo : @Html.Raw(oOfficeInfo),
+                    OfficeInfo : '@Html.Raw(oOfficeInfo)',
                     CenterMap: '@(((lstLat.Min() + lstLat.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")) + "," + ((lstLon.Min() + lstLon.Max()) / 2).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("EN-us")))',
                 });
                 oProfileMapObject.RenderAsync();

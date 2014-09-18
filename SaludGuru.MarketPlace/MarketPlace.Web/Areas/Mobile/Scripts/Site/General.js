@@ -55,7 +55,7 @@ var ScheduleAppointmentObject = {
             $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
             //$('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
 
-            $('#dialog_ScheduleAppointmentNotLogin').popup('open');
+            $('.dialog_ScheduleAppointmentNotLogin').show();
         }
     }
 };
