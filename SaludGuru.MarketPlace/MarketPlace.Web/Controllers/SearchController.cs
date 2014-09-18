@@ -89,74 +89,40 @@ namespace MarketPlace.Web.Controllers
                 if (oModel.CurrentPage < 0)
                     oModel.CurrentPage = 0;
 
-                if (MarketPlace.Web.Controllers.BaseController.AreaName == MarketPlace.Models.General.Constants.C_MobileAreaName)
+                int oTotalRowsAux;
+                //get profiles to show
+                if (oModel.IsQuery)
                 {
-                    int oTotalRowsAux;
-                    //get profiles to show
-                    if (oModel.IsQuery)
-                    {
-                        oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                            (true,
-                            oModel.CurrentCityId,
-                            oModel.CurrentSearchQuery.Replace("+", " "),
-                            null,
-                            null,
-                            null,
-                            5,
-                            oModel.CurrentPage,
-                            out oTotalRowsAux);
-                        oModel.TotalRows = oTotalRowsAux;
-                    }
-                    else
-                    {
-                        oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                            (false,
-                            oModel.CurrentCityId,
-                            null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
-                            oModel.CurrentRowCount,
-                            oModel.CurrentPage,
-                            out oTotalRowsAux);
-                        oModel.TotalRows = oTotalRowsAux;
-                    }
+                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
+                        (true,
+                        oModel.CurrentCityId,
+                        oModel.CurrentSearchQuery.Replace("+", " "),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        oModel.CurrentRowCount,
+                        oModel.CurrentPage,
+                        out oTotalRowsAux);
+                    oModel.TotalRows = oTotalRowsAux;
                 }
                 else
                 {
-                    int oTotalRowsAux;
-                    //get profiles to show
-                    if (oModel.IsQuery)
-                    {
-                        oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                            (true,
-                            oModel.CurrentCityId,
-                            oModel.CurrentSearchQuery.Replace("+", " "),
-                            null,
-                            null,
-                            null,
-                            oModel.CurrentRowCount,
-                            oModel.CurrentPage,
-                            out oTotalRowsAux);
-                        oModel.TotalRows = oTotalRowsAux;
-                    }
-                    else
-                    {
-                        oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                            (false,
-                            oModel.CurrentCityId,
-                            null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
-                            !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
-                            oModel.CurrentRowCount,
-                            oModel.CurrentPage,
-                            out oTotalRowsAux);
-                        oModel.TotalRows = oTotalRowsAux;
-                    }
+                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
+                        (false,
+                        oModel.CurrentCityId,
+                        null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : null,
+                        !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
+                        null,
+                        null,
+                        oModel.CurrentRowCount,
+                        oModel.CurrentPage,
+                        out oTotalRowsAux);
+                    oModel.TotalRows = oTotalRowsAux;
                 }
-
-                
 
                 //Seo model
                 ReplaceSeoModel(oModel, oSeoModel);

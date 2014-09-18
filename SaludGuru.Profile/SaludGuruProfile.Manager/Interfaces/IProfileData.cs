@@ -61,7 +61,7 @@ namespace SaludGuruProfile.Manager.Interfaces
 
         List<AutocompleteModel> MPProfileSearchAC(int CityId, string Query);
 
-        List<ProfileModel> MPProfileSearch(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, int RowCount, int PageNumber, out int TotalRows);
+        List<ProfileModel> MPProfileSearch(bool IsQuery, int CityId, string Query, int? InsuranceId, int? SpecialtyId, int? TreatmentId, string ScheduleEnabled, string IsCertified, int RowCount, int PageNumber, out int TotalRows);
 
         ProfileModel GetFeaturedProfile(int Quantity);
 

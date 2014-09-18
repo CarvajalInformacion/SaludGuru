@@ -1383,6 +1383,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             int? InsuranceId,
             int? SpecialtyId,
             int? TreatmentId,
+            string ScheduleEnabled,
+            string IsCertified,
             int RowCount,
             int PageNumber,
             out int TotalRows)
@@ -1396,8 +1398,8 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             lstParams.Add(DataInstance.CreateTypedParameter("vInsuranceId", InsuranceId));
             lstParams.Add(DataInstance.CreateTypedParameter("vSpecialtyId", SpecialtyId));
             lstParams.Add(DataInstance.CreateTypedParameter("vTreatmentId", TreatmentId));
-            //lstParams.Add(DataInstance.CreateTypedParameter("vScheduleEnabled", null));
-            //lstParams.Add(DataInstance.CreateTypedParameter("vIsCertified", null));
+            lstParams.Add(DataInstance.CreateTypedParameter("vScheduleEnabled", ScheduleEnabled));
+            lstParams.Add(DataInstance.CreateTypedParameter("vIsCertified", IsCertified));
             lstParams.Add(DataInstance.CreateTypedParameter("vRowCount", RowCount));
             lstParams.Add(DataInstance.CreateTypedParameter("vPageNumber", PageNumber));
 
