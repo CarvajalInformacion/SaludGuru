@@ -89,6 +89,7 @@ namespace MarketPlace.Web.Controllers
                     oModel.CurrentPage = 0;
 
                 int oTotalRowsAux;
+                List<FilterModel> CurrentFilters;
                 //get profiles to show
                 if (oModel.IsQuery)
                 {
@@ -103,8 +104,10 @@ namespace MarketPlace.Web.Controllers
                         null,
                         oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
-                        out oTotalRowsAux);
+                        out oTotalRowsAux,
+                        out CurrentFilters);
                     oModel.TotalRows = oTotalRowsAux;
+                    oModel.CurrentFilters = CurrentFilters;
                 }
                 else
                 {
@@ -119,8 +122,11 @@ namespace MarketPlace.Web.Controllers
                         null,
                         oModel.CurrentRowCount(BaseController.AreaName),
                         oModel.CurrentPage,
-                        out oTotalRowsAux);
+                        out oTotalRowsAux,
+                        out CurrentFilters);
+
                     oModel.TotalRows = oTotalRowsAux;
+                    oModel.CurrentFilters = CurrentFilters;
                 }
 
                 //Seo model

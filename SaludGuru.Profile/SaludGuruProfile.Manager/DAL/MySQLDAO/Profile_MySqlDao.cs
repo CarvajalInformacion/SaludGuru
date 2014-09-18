@@ -1387,9 +1387,11 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
             string IsCertified,
             int RowCount,
             int PageNumber,
-            out int TotalRows)
+            out int TotalRows,
+            out List<FilterModel> RelatedFilter)
         {
             TotalRows = 0;
+            RelatedFilter = new List<FilterModel>();
 
             List<System.Data.IDbDataParameter> lstParams = new List<IDbDataParameter>();
             lstParams.Add(DataInstance.CreateTypedParameter("vIsQuery", IsQuery));
@@ -1414,18 +1416,31 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
 
             List<ProfileModel> oReturn = null;
             if (response.DataSetResult != null &&
-                response.DataSetResult.Tables.Count >= 4)
+                response.DataSetResult.Tables.Count >= 5)
             {
                 if (response.DataSetResult.Tables[0].Rows.Count > 0)
                 {
-                    TotalRows = (int)response.DataSetResult.Tables[0].Rows[0].Field<int>("TotalRows");
+                    TotalRows = (int)response.DataSetResult.Tables[0].Rows[0].Field<Int64>("TotalRows");
                 }
 
                 if (response.DataSetResult.Tables[1].Rows.Count > 0)
                 {
+                    RelatedFilter =
+                        (from fr in response.DataSetResult.Tables[1].AsEnumerable()
+                         select new FilterModel()
+                         {
+                             FilterType = (enumFilterType)fr.Field<int>("ItemType"),
+                             ItemId = fr.Field<string>("ItemId"),
+                             ItemName = fr.Field<string>("ItemName"),
+                             ItemCount = (int)fr.Field<Int64>("ItemCount"),
+                         }).ToList();
+                }
+
+                if (response.DataSetResult.Tables[2].Rows.Count > 0)
+                {
 
                     oReturn =
-                        (from p in response.DataSetResult.Tables[1].AsEnumerable()
+                        (from p in response.DataSetResult.Tables[2].AsEnumerable()
                          where !string.IsNullOrEmpty(p.Field<string>("ProfilePublicId"))
                          group p by
                          new
@@ -1444,7 +1459,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                              ProfileType = pg.Key.ProfileType,
                              ProfileStatus = pg.Key.ProfileStatus,
 
-                             ProfileInfo = (from pinf in response.DataSetResult.Tables[1].AsEnumerable()
+                             ProfileInfo = (from pinf in response.DataSetResult.Tables[2].AsEnumerable()
                                             where pinf.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                   !string.IsNullOrEmpty(pinf.Field<string>("ProfilePublicId")) &&
                                                   pinf.Field<int?>("ProfileInfoId") != null
@@ -1464,7 +1479,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                 LargeValue = pinfg.Key.LargeValue,
                                             }).ToList(),
 
-                             RelatedSpecialty = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                             RelatedSpecialty = (from sp in response.DataSetResult.Tables[3].AsEnumerable()
                                                  where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                          sp.Field<int?>("CategoryType") != null &&
                                                          sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty
@@ -1480,7 +1495,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                      Name = spg.Key.Name,
                                                  }).ToList(),
 
-                             DefaultSpecialty = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                             DefaultSpecialty = (from sp in response.DataSetResult.Tables[3].AsEnumerable()
                                                  where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                          sp.Field<int?>("CategoryType") != null &&
                                                          sp.Field<int>("CategoryType") == (int)enumCategoryType.Specialty &&
@@ -1491,7 +1506,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                      Name = sp.Field<string>("CategoryName"),
                                                  }).FirstOrDefault(),
 
-                             RelatedInsurance = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                             RelatedInsurance = (from sp in response.DataSetResult.Tables[3].AsEnumerable()
                                                  where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                          sp.Field<int?>("CategoryType") != null &&
                                                          sp.Field<int>("CategoryType") == (int)enumCategoryType.Insurance
@@ -1507,7 +1522,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                      Name = spg.Key.Name,
                                                  }).ToList(),
 
-                             RelatedTreatment = (from sp in response.DataSetResult.Tables[2].AsEnumerable()
+                             RelatedTreatment = (from sp in response.DataSetResult.Tables[3].AsEnumerable()
                                                  where sp.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                          sp.Field<int?>("CategoryType") != null &&
                                                          sp.Field<int>("CategoryType") == (int)enumCategoryType.Treatment
@@ -1524,7 +1539,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                                  }).ToList(),
 
                              RelatedOffice =
-                                 (from o in response.DataSetResult.Tables[3].AsEnumerable()
+                                 (from o in response.DataSetResult.Tables[4].AsEnumerable()
                                   where o.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                         !string.IsNullOrEmpty(o.Field<string>("OfficePublicId"))
                                   group o by
@@ -1557,7 +1572,7 @@ namespace SaludGuruProfile.Manager.DAL.MySQLDAO
                                       },
 
                                       OfficeInfo =
-                                         (from oi in response.DataSetResult.Tables[3].AsEnumerable()
+                                         (from oi in response.DataSetResult.Tables[4].AsEnumerable()
                                           where oi.Field<string>("ProfilePublicId") == pg.Key.ProfilePublicId &&
                                                 oi.Field<int?>("OfficeInfoId") != null &&
                                                oi.Field<string>("OfficePublicId") == og.Key.OfficePublicId

@@ -95,5 +95,7 @@ namespace MarketPlace.Models.Profile
         public bool IsRedirect { get; set; }
 
         public bool IsQuery { get; set; }
+
+        public List<FilterModel> CurrentFilters { get; set; }
     }
 }

@@ -105,9 +105,17 @@
     }
 
     public enum enumACTermType
-    { 
+    {
         Profile = 1,
         Category = 2,
-        RelatedCategory = 3,   
+        RelatedCategory = 3,
+    }
+
+    public enum enumFilterType
+    {
+        Insurance = 1,
+        Specialty = 2,
+        IsCertified = 3,
+        ScheduleAvailable = 4,
     }
 }

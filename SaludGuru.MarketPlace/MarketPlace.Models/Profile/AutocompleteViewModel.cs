@@ -15,9 +15,9 @@ namespace MarketPlace.Models.Profile
 
         public string NodeSelected { get; set; }
 
-        public AutocompleteViewModel(AutocompleteModel oAcItme, string SearchParam)
+        public AutocompleteViewModel(AutocompleteModel oAcItem, string SearchParam)
         {
-            CurrentAcItem = oAcItme;
+            CurrentAcItem = oAcItem;
 
             NodeSelected = CurrentAcItem.Node;
 

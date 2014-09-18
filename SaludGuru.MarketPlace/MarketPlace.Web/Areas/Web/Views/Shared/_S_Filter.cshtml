@@ -1,0 +1,63 @@
+﻿@model MarketPlace.Models.Profile.SearchViewModel
+
+@{
+    var lstInsurance = Model.CurrentFilters.Where(x => x.FilterType == SaludGuruProfile.Manager.Models.enumFilterType.Insurance).ToList();
+    var lstSpecialty = Model.CurrentFilters.Where(x => x.FilterType == SaludGuruProfile.Manager.Models.enumFilterType.Specialty).ToList();
+    var ScheduleAvailable = Model.CurrentFilters.Where(x => x.FilterType == SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).FirstOrDefault();
+    var IsCertified = Model.CurrentFilters.Where(x => x.FilterType == SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).FirstOrDefault();
+}
+
+<div>
+    <ul>
+        <li>
+            <label>Filtrar busqueda por:</label>
+        </li>
+        @if (lstInsurance != null && lstInsurance.Count > 1)
+        {
+            <li>
+                <label>Seguro</label>
+                <ul>
+                    @foreach (var oInsurance in lstInsurance)
+                    {
+                        <li>
+                            <span>@(oInsurance.ItemName + " (" + oInsurance.ItemCount + ")")</span>
+                            <input type="checkbox" />
+                        </li>
+                    }
+                </ul>
+                <a href="javascrip:;">Ver más</a>
+            </li>
+        }
+        @if (lstSpecialty != null && lstSpecialty.Count > 1)
+        {
+            <li>
+                <label>Especialidad</label>
+                <ul>
+                    @foreach (var oSpecialty in lstSpecialty)
+                    {
+                        <li>
+                            <span>@(oSpecialty.ItemName + " (" + oSpecialty.ItemCount + ")")</span>
+                            <input type="checkbox" />
+                        </li>
+                    }
+                </ul>
+                <a href="javascrip:;">Ver más</a>
+            </li>
+        }
+        @if (ScheduleAvailable != null && ScheduleAvailable.ItemCount > 1)
+        {
+            <li>
+                <label>Agenda en línea @("(" + ScheduleAvailable.ItemCount + ")")</label>
+                <input type="checkbox" />
+            </li>
+        }
+        @if (IsCertified != null && IsCertified.ItemCount > 1)
+        {
+            <li>
+                <label>Profesional certificado @("(" + IsCertified.ItemCount + ")")</label>
+                <input type="checkbox" />
+            </li>
+        }
+    </ul>
+
+</div>

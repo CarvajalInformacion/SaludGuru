@@ -161,10 +161,11 @@ namespace Profile.Test
         public void MPProfileSearch()
         {
             int TotalRows;
-            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(true, 1, "alfred goméz", null, null, null, null, null, 2, 2, out TotalRows);
+            List<FilterModel> RelatedFilter;
+            List<ProfileModel> oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(true, 1, "alfred goméz", null, null, null, null, null, 2, 2, out TotalRows, out RelatedFilter);
             Assert.AreEqual(oProfile.Count > 0, true);
 
-            oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(false, 1, null, 3, null, null, null, null, 20, 0, out TotalRows);
+            oProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch(false, 1, null, 3, null, null, null, null, 20, 0, out TotalRows, out RelatedFilter);
             Assert.AreEqual(oProfile.Count > 0, true);
         }
 

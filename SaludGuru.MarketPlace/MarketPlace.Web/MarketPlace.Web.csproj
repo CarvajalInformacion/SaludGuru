@@ -1487,6 +1487,7 @@
     <Content Include="Areas\Web\Views\Profile\FBProfile.cshtml" />
     <Content Include="Areas\Web\Views\Home\SiteMap.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_LayoutXml.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_S_Filter.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />

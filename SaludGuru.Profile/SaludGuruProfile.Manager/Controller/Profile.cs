@@ -491,11 +491,12 @@ namespace SaludGuruProfile.Manager.Controller
             string IsCertified,
             int RowCount,
             int PageNumber,
-            out int TotalRows)
+            out int TotalRows,
+            out List<FilterModel> RelatedFilter)
         {
 
             return DAL.Controller.ProfileDataController.Instance.MPProfileSearch
-                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, ScheduleEnabled, IsCertified, RowCount, PageNumber, out TotalRows);
+                (IsQuery, CityId, Query, InsuranceId, SpecialtyId, TreatmentId, ScheduleEnabled, IsCertified, RowCount, PageNumber, out TotalRows, out RelatedFilter);
         }
 
         #endregion
