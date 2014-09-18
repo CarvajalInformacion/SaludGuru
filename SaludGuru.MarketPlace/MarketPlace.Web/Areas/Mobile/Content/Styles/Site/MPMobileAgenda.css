@@ -72,27 +72,29 @@ li.ProfileInformation h2{
         text-align: center;
     }
 .MPFreeSchedule {
-    display: inline-block !important;
-    width: 28%;
+    background-color: #fff;
     border: 1px solid #666 !important;
-    margin: 5px 3px;
     border-radius: 3px;
+    display: inline-block !important;
+    height: 24px;
+    margin: 5px 3px;
+    padding: 0;
     text-align: center;
-    padding: 2px;
-    background-color:#fff;
+    width: 28%;
 }
     .MPFreeSchedule:hover {
         background-color:#99C21D;
     }
 .MPFreeSchedule a{
+    border: medium none;
     color: #444 !important;
     display: block;
     font-size: 0.8em;
-    height: auto;
+    height: 22px;
+    line-height: 24px;
     margin: 0;
     padding: 0;
     width: auto;
-    border:none;
 }
 #aPrevDay {
     float:left;
