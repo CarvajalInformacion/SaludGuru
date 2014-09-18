@@ -269,12 +269,12 @@ var AppointmentObject = {
 
                 if (item.IsHeader) {
                     $(CurrentOfficeUl).append('<li>' + item.AvailableDateTemplateText + '</li>');
-                    $('#divGrid_Title').html('');
-                    var valDiv = $('#divGrid_Title').html();
+                    $('#divGrid_Title_' + vOfficePublicId).html('');
+                    var valDiv = $('#divGrid_Title_' + vOfficePublicId).html();
                     debugger;
-                    $('#divGrid_Title').append('<a id="aPrevDay_'+ vOfficePublicId + ' " onclick="AppointmentObject.PrevAvalableDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
-                    $('#divGrid_Title').append('<a id="aNextDay_'+ vOfficePublicId + ' " onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
-                    $('#divGrid_Title').append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
+                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aPrevDay_' + vOfficePublicId + ' " onclick="AppointmentObject.PrevAvalableDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
+                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aNextDay_'+ vOfficePublicId + ' " onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
+                    $('#divGrid_Title_' + vOfficePublicId).append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
 
                     var gridSearchSh = $('#divGrid_NotSchedule').html('');
                     gridSearchSh.append('<a id="SearchNexAvailableDayId" onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Buscar siguiente horario disponible </a>");
