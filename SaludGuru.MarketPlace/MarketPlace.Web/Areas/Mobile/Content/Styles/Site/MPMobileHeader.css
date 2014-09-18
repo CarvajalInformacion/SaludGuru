@@ -387,9 +387,13 @@ a.SelCertifiedImage.ui-link {
     background-repeat: no-repeat;
 background-position: 99% 2px;
 background-size: 32px auto;
+background-color: #99c21d;
+color: #fff;
     float: left;
     margin: 8px 0px 0px 0px !important;
 }
+
+
 
 .ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
     width: 100%;

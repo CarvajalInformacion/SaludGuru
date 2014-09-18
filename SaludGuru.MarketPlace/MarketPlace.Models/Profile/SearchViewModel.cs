@@ -97,5 +97,68 @@ namespace MarketPlace.Models.Profile
         public bool IsQuery { get; set; }
 
         public List<FilterModel> CurrentFilters { get; set; }
+
+        public string CurrentRequestFilter { get; set; }
+
+        private Dictionary<SaludGuruProfile.Manager.Models.enumFilterType, string> oCurrentRequestSplit;
+        public Dictionary<SaludGuruProfile.Manager.Models.enumFilterType, string> CurrentRequestSplit
+        {
+            get
+            {
+                if (oCurrentRequestSplit == null)
+                {
+                    oCurrentRequestSplit = new Dictionary<SaludGuruProfile.Manager.Models.enumFilterType, string>();
+
+                    CurrentRequestFilter.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).All(x =>
+                    {
+                        var SplitAux = x.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (SplitAux.Length >= 2)
+                        {
+                            oCurrentRequestSplit[(SaludGuruProfile.Manager.Models.enumFilterType)Convert.ToInt32(SplitAux[0].Trim())] = SplitAux[1];
+                        }
+                        return true;
+                    });
+                }
+
+                return oCurrentRequestSplit;
+            }
+        }
+
+        public int? FilterInsurance
+        {
+            get
+            {
+                return CurrentRequestSplit.Any(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.Insurance) ?
+                    (int?)Convert.ToInt32(CurrentRequestSplit.Where(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.Insurance).FirstOrDefault().Value) :
+                    null;
+            }
+        }
+
+        public int? FilterSpecialty
+        {
+            get
+            {
+                return CurrentRequestSplit.Any(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.Specialty) ?
+                    (int?)Convert.ToInt32(CurrentRequestSplit.Where(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.Specialty).FirstOrDefault().Value) :
+                    null;
+            }
+        }
+
+        public bool FilterScheduleAvailable
+        {
+            get
+            {
+                return CurrentRequestSplit.Any(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable) ? true : false;
+            }
+        }
+
+        public bool FilterIsCertified
+        {
+            get
+            {
+                return CurrentRequestSplit.Any(x => x.Key == SaludGuruProfile.Manager.Models.enumFilterType.IsCertified) ? true : false;
+            }
+        }
+
     }
 }
