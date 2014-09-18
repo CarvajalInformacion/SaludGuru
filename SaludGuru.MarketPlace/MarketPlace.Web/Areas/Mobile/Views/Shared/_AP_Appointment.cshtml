@@ -5,6 +5,15 @@
 
 @if (!Model.RenderScripts)
 {
+    if (Model.StartDate != null)
+    {
+        <input type="hidden" name="StartDate" id="StartDate" value="@Model.CurrentDate" />
+    }
+    else
+    {
+        <input type="hidden" name="StartDate" id="StartDate" value="" />
+    }
+
     <div>
         <ul id="divAppointmentSchedule_Menu"></ul>
         <div id="divAppointmentSchedule">
