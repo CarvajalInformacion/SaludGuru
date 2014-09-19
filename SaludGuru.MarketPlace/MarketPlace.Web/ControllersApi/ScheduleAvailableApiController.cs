@@ -351,9 +351,9 @@ namespace MarketPlace.Web.ControllersApi
             OfficeModel CurrentOffice = CurrentProfile.RelatedOffice.
                 Where(of => of.OfficePublicId == OfficePublicId).
                 FirstOrDefault();
-            if (CurrentOffice.ScheduleAvailable.Count() == 0)            
+            if (CurrentOffice.ScheduleAvailable.Count() == 0)
                 return oReturn;
-            
+
             //get treatment
             TreatmentOfficeModel CurrentTreatment = CurrentProfile.RelatedOffice.
                         Select(of => of.RelatedTreatment.
@@ -404,15 +404,20 @@ namespace MarketPlace.Web.ControllersApi
                     ToList();
             if (IsPrevDay != "true")
             {
-                if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+                for (int i = 0; i < 6; i++)
                 {
-                    int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
+                    if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
+                    {
+                        //int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
 
-                    if (DaysToAdd < 0)
-                        DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
+                        //if (DaysToAdd < 0)
+                        //    DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
 
-                    oStartDateTime = oStartDateTime.AddDays(DaysToAdd);
-                    oEndDateTime = oStartDateTime.AddDays(1);
+                        oStartDateTime = oStartDateTime.AddDays(1);
+                        oEndDateTime = oStartDateTime.AddDays(1);
+                    }
+                    else                    
+                        break;                    
                 }
             }
             else
@@ -424,7 +429,7 @@ namespace MarketPlace.Web.ControllersApi
                     if (DaysToQuit < 0)
                         DaysToQuit = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min() - 1;
 
-                    oStartDateTime = oStartDateTime.AddDays(- DaysToQuit);
+                    oStartDateTime = oStartDateTime.AddDays(-DaysToQuit);
                     oEndDateTime = oStartDateTime.AddDays(1);
                 }
             }
@@ -605,7 +610,7 @@ namespace MarketPlace.Web.ControllersApi
 
                         //get appointments on interval
                         List<AppointmentModel> appmt = CurrentAppointment.
-                            Where(ap => ap.StartDate.Date == oStartDateTime.Date.AddDays((int)sa.Key.Day - 1).Date &&
+                            Where(ap => ap.StartDate.Date == oStartDateTime.Date &&
 
                                         ((ap.StartDate.TimeOfDay >= TimeIntervalStart &&
                                         ap.StartDate.TimeOfDay <= TimeIntervalEnd) ||
