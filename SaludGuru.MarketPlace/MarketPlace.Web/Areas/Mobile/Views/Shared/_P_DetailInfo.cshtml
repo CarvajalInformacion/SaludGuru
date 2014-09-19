@@ -82,7 +82,7 @@
                                                     </div>
                                                 </div>
 
-                                                <a class="renders" onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="javascript:"></a>
+                                                <a id="renders" onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="javascript:"></a>
 
                                             </p>
                                         </div>
@@ -119,12 +119,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                @*<a id="render" onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile','@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="javascript:">AGENDA TU CITA</a>*@
                                             </p>
                                         </div>
                                     }
-                                    <script>
-                                        self.location = $('.renders').attr('onclick');
-                                    </script>
+                                    ScheduleEnabled = true;
+                                }
+                                else
+                                {
+                                    //ScheduleEnabled = false;
+                                    //MARIO COLOCA LA IMAGEN O LO Q SEA DENTRO DE UN DIV CUANDO NO TIENE AGENDA EN LINEA
                                 }
                             }
                         </div>
@@ -187,4 +192,18 @@ else
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
 
+
+    if (ScheduleEnabled)
+    {
+       <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                window.onload = function () {
+                    document.getElementById('renders').onclick();
+                }
+                //debugger;
+                //$('.renders').attr('onclick');
+            });
+        </script> 
+    }       
 }
