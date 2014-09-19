@@ -57,7 +57,7 @@
                                         <div data-role="collapsible" data-collapsed="false">
 
                                             <h3 class="MPMobileOfficeName">
-                                                <a onfocus="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>
+                                                <a onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>
                                                 @*<a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>*@
                                             </h3>
                                             <p>
@@ -207,7 +207,7 @@ else
         <script type="text/javascript">
             $(document).ready(function () {
                 debugger;
-                window.location = $('.renders').attr('onclick');
+                //window.location = $('.renders').attr('onclick');
             });
         </script>
     }
