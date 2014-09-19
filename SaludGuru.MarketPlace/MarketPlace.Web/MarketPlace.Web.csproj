@@ -852,8 +852,8 @@
     <Content Include="Areas\Mobile\Views\Shared\_S_Profile_Basic.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_S_Profile_Free.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_S_Profile_Pay.cshtml" />
-    <Content Include="Areas\Mobile\Views\Home\LoginDialog.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_LayoutDialog.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\LoginDialog.cshtml" />
     <None Include="Areas\Web\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
