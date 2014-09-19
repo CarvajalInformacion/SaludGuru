@@ -73,19 +73,13 @@ div.MPResultsBreadCrumbsPages {
     display: inline-block;
     text-decoration: underline;
     width:49%;
+    text-align: center;
+    margin:0px;
 }
     .MPMobilePrevious:hover, .MPMobileNext:hover {
         color:#666;
         text-decoration:underline;
     }
-.MPMobilePrevious {
-    margin: 0;
-    text-align: left;
-}
-.MPMobileNext {
-    margin: 0;
-    text-align: right;
-}
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
 div.MPResultsPaidProfile {
