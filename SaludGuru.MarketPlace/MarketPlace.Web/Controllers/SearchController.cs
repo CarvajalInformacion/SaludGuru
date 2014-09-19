@@ -144,8 +144,7 @@ namespace MarketPlace.Web.Controllers
             }
             catch (Exception err)
             {
-                //return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-                throw err;
+                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
             }
         }
 
