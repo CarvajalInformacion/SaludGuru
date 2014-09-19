@@ -155,8 +155,9 @@ h4.AgendaLabel {
     }
 #SearchNexAvailableDayId {
         background-color: #ECECEC;
-        margin: 11px 0px 11px 7px;
-        font-size: 1.1em;
+        margin: 8px auto 8px auto;
+        font-size: 1.3em;
+        text-align:center;
 }
 
 /********PACIENTE NUEVO*************/
@@ -167,6 +168,54 @@ div#NewPatientId, #FreeScheduleId{
     border: 1px solid #99c21d;
     border-radius: 3px;
     margin: 8px 0px 8px 0px;
+}
+
+#FreeScheduleIdForProfile {
+    text-align: center;
+    width:98%;
+    height: auto;
+    background-color: #ececec;
+    border: 1px solid #99c21d;
+    border-radius: 3px;
+    margin: 8px auto 8px auto;
+}
+.SelOfficeGrid > div > a:first-child,
+.SelOfficeGrid > div > a:nth-child(2){
+    font-size: 1.1em;
+}
+.SelOfficeGrid > div > a:first-child {
+    float:left;
+    margin-left:32px;
+}
+.SelOfficeGrid > div > a:nth-child(2) {
+    float:right;
+    margin-right:32px;
+}
+#divAppointmentSchedule_Template_Grid ul li:first-child{
+    text-align:center;
+    margin: 12px 0px 8px 0px;
+}
+#divAppointmentSchedule_Template_Grid ul{
+    display: block;
+    width: 92%;
+    text-align: center;
+    color: #666;
+    font-size: 1.2em;
+}
+#DateMoreInfoIdNN {
+    border:initial;
+    background:initial;
+    font-size:1.3em;
+    color:#759418;
+    display:block;
+    margin:8px 0px 8px 12px;
+    text-decoration:underline;
+}
+#DateMoreInfoIdNN:hover {
+    text-decoration:underline;
+}
+.MPMobileOfficeInfo {
+    padding: 12px 0px 12px 8px;
 }
 .MPMobileCloseWindow {
     background-color: #99c21d;
