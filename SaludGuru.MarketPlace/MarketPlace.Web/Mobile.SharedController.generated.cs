@@ -41,6 +41,7 @@ namespace T4MVC.Mobile
                 public readonly string _L_Footer = "_L_Footer";
                 public readonly string _L_Header = "_L_Header";
                 public readonly string _Layout = "_Layout";
+                public readonly string _LayoutDialog = "_LayoutDialog";
                 public readonly string _P_Appointment = "_P_Appointment";
                 public readonly string _P_BasicInfo = "_P_BasicInfo";
                 public readonly string _P_DetailInfo = "_P_DetailInfo";
@@ -57,6 +58,7 @@ namespace T4MVC.Mobile
             public readonly string _L_Footer = "~/Areas/Mobile/Views/Shared/_L_Footer.cshtml";
             public readonly string _L_Header = "~/Areas/Mobile/Views/Shared/_L_Header.cshtml";
             public readonly string _Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
+            public readonly string _LayoutDialog = "~/Areas/Mobile/Views/Shared/_LayoutDialog.cshtml";
             public readonly string _P_Appointment = "~/Areas/Mobile/Views/Shared/_P_Appointment.cshtml";
             public readonly string _P_BasicInfo = "~/Areas/Mobile/Views/Shared/_P_BasicInfo.cshtml";
             public readonly string _P_DetailInfo = "~/Areas/Mobile/Views/Shared/_P_DetailInfo.cshtml";

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title></title>
+
+    @*Render bondles styles*@
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquerymobile/css")
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
+
+
+</head>
+
+
+<body data-role="content">
+    <div data-role="page" id="Home" data-theme="a">
+
+        <!--Start internal content-->
+        <div data-role="content">
+            @RenderBody()
+        </div>        
+
+        @*Render boundles scripts*@
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/modernizr")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/bootstrap")
+        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/sitescripts")
+        @*Render inline site scripts*@
+    </div>
+</body>
+</html>

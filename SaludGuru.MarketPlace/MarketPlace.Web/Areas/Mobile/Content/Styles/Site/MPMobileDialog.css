@@ -1,0 +1,14 @@
+.ui-content.ui-body-a {
+    display: block;
+    height: 150px;
+    overflow: hidden;
+}
+
+    .ui-content.ui-body-a div {
+        display: block;
+    }
+
+div#dialog_NotLogin {
+    display: block;
+    height: 300px;
+}

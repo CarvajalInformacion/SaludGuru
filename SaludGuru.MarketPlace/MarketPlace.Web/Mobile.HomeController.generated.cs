@@ -80,6 +80,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string LoginDialog = "LoginDialog";
             public readonly string ChangeCity = "ChangeCity";
             public readonly string LegalTerms = "LegalTerms";
             public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
@@ -93,6 +94,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string LoginDialog = "LoginDialog";
             public const string ChangeCity = "ChangeCity";
             public const string LegalTerms = "LegalTerms";
             public const string ConditionsAndRestrictions = "ConditionsAndRestrictions";
@@ -126,12 +128,14 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
                 public readonly string FAQ = "FAQ";
                 public readonly string Index = "Index";
                 public readonly string LegalTerms = "LegalTerms";
+                public readonly string LoginDialog = "LoginDialog";
             }
             public readonly string ConditionsAndRestrictions = "~/Areas/Mobile/Views/Home/ConditionsAndRestrictions.cshtml";
             public readonly string Contact = "~/Areas/Mobile/Views/Home/Contact.cshtml";
             public readonly string FAQ = "~/Areas/Mobile/Views/Home/FAQ.cshtml";
             public readonly string Index = "~/Areas/Mobile/Views/Home/Index.cshtml";
             public readonly string LegalTerms = "~/Areas/Mobile/Views/Home/LegalTerms.cshtml";
+            public readonly string LoginDialog = "~/Areas/Mobile/Views/Home/LoginDialog.cshtml";
         }
     }
 
@@ -148,6 +152,17 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoginDialogOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoginDialog()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginDialog);
+            LoginDialogOverride(callInfo);
             return callInfo;
         }
 

@@ -41,6 +41,13 @@ namespace MarketPlace.Web.Controllers
             return View(Model);
         }
 
+        public virtual ActionResult LoginDialog()
+        {
+            Object urlReturn = Request["UrlReturn"].ToString();
+
+            return View(urlReturn);
+        }
+
         public virtual ActionResult ChangeCity(int NewCityId)
         {
             //get return url
