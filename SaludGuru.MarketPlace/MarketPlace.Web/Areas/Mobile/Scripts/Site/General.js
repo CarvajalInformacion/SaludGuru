@@ -69,6 +69,7 @@ var SearchBoxObject = {
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
+        debugger;
         this.InputId = vInitObject.InputId;
         this.CityId = vInitObject.CityId;
     },
@@ -86,6 +87,7 @@ var SearchBoxObject = {
     },
 
     SearchTerm: function () {
+        debugger;
         //find url to redirect
         window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, ''));
     }

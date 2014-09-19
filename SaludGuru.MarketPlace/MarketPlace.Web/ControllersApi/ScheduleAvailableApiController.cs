@@ -419,16 +419,15 @@ namespace MarketPlace.Web.ControllersApi
             {
                 if (!lstAvailableDay.Any(x => x == oStartDateTime.DayOfWeek))
                 {
-                    int DaysToAdd = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
+                    int DaysToQuit = (int)lstAvailableDay.Max() - (int)oStartDateTime.DayOfWeek;
 
-                    if (DaysToAdd < 0)
-                        DaysToAdd = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min();
+                    if (DaysToQuit < 0)
+                        DaysToQuit = 7 - (int)oStartDateTime.DayOfWeek + (int)lstAvailableDay.Min() - 1;
 
-                    oStartDateTime = oStartDateTime.AddDays(- DaysToAdd);
+                    oStartDateTime = oStartDateTime.AddDays(- DaysToQuit);
                     oEndDateTime = oStartDateTime.AddDays(1);
                 }
             }
-
 
             //get minutes interval
             int oMinutesInterval = string.IsNullOrEmpty(TreatmentId) ?
