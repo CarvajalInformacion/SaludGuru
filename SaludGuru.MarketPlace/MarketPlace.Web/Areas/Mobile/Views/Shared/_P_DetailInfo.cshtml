@@ -24,8 +24,7 @@
 
     string ovCurrentDomain = (ViewContext.Controller as MarketPlace.Web.Controllers.BaseController).CurrentDomainUrl;
 
-    bool ScheduleEnabled = true;
-
+    bool ScheduleEnabled = false;
 }
 
 @if (!Model.RenderScripts)
@@ -120,16 +119,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                @*<a id="render" onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile','@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="javascript:">AGENDA TU CITA</a>*@
                                             </p>
                                         </div>
                                     }
-                                }
-                                else
-                                {
-                                    ScheduleEnabled = false;
-                                    //MARIO COLOCA LA IMAGEN O LO Q SEA DENTRO DE UN DIV CUANDO NO TIENE AGENDA EN LINEA
+                                    <script>
+                                        self.location = $('.renders').attr('onclick');
+                                    </script>
                                 }
                             }
                         </div>
@@ -172,7 +167,6 @@
 }
 else
 {
-
     //create office calendar object
     var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
 
@@ -193,13 +187,4 @@ else
                 }).OrderBy(x => x.IsDefault).
                 OrderBy(x => x.OfficeName).ToList());
 
-
-    if (ScheduleEnabled)
-    {
-        <script type="text/javascript">
-            $(document).ready(function () {
-                window.location = $('.renders').attr('onclick');
-            });
-        </script>
-    }
 }
