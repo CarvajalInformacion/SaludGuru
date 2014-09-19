@@ -10,7 +10,6 @@
     });
     SearchBoxObject.RenderAsync();
 
-
     //init schedule appointment object
     ScheduleAppointmentObject.Init({
         FBUrl: InitParams.FBUrl,
@@ -27,6 +26,15 @@
             }
         });
     }
+}
+
+function InitDialogControlMobile(InitParams) {
+    debugger;
+    ScheduleAppointmentObject.Init({
+        FBUrl: InitParams.FBUrl,
+        GoogleUrl: InitParams.GoogleUrl,
+        OutlookUrl: InitParams.OutlookUrl,
+    });
 }
 
 /*schedule appointment*/
@@ -50,13 +58,15 @@ var ScheduleAppointmentObject = {
             window.location = vLink;
         }
         else {
-
-            $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
-            $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
-            //$('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
-
-            $('.dialog_ScheduleAppointmentNotLogin').show();
+            $.mobile.changePage('https://localhost:44303/Home/LoginDialog?UrlReturn=' + vLink + '', { transition: "pop", role: "dialog" });
         }
+    },
+
+    UrlReturn: function (vLink) {
+        debugger;
+        $('#dialog_NotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
+        $('#dialog_NotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
+        //$('#dialog_NotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
     }
 };
 
@@ -82,7 +92,7 @@ var SearchBoxObject = {
                 if (e.keyCode == 13) {
                     SearchBoxObject.SearchTerm();
                 }
-            });           
+            });
         }
     },
 
