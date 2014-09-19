@@ -31,8 +31,8 @@
 }
 
 <div>
-    <ul>
-        <li>
+    <ul class="SFilterList">
+        <li class="SFilterTitle">
             <label>Filtrar busqueda por:</label>
         </li>
         @if (Model.CurrentInsurance != null) { }
@@ -49,7 +49,7 @@
                 vFilterUrl = vFilterUrl.Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.Insurance).ToString() + "," + oInsurance.ItemId, "");
             }
 
-            <li>
+            <li class="SFilterInsurance">
                 <label>Seguro</label>
                 <ul>
                     <li>
@@ -61,7 +61,7 @@
         }
         else if (lstInsurance != null && lstInsurance.Count > 0)
         {
-            <li>
+            <li class="SFilterInsurance">
                 <label>Seguro</label>
                 <ul>
                     @foreach (var oInsurance in lstInsurance)
@@ -86,7 +86,6 @@
                         }
                     }
                 </ul>
-                <br />
                 <a id="SelectorInsurance_a" href="javascript:fnViewMoreLessFilter('SelectorInsurance');" rel="nofollow">Ver más</a>
             </li>
         }
@@ -104,7 +103,7 @@
             {
                 vFilterUrl = vFilterUrl.Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.Specialty).ToString() + "," + oSpecialty.ItemId, "");
             }
-            <li>
+            <li class="SFilterInsurance">
                 <label>Seguro</label>
                 <ul>
                     <li>
@@ -116,7 +115,7 @@
         }
         else if (lstSpecialty != null && lstSpecialty.Count > 0 && Model.FilterSpecialty == null)
         {
-            <li>
+            <li class="SFilterSpecialty">
                 <label>Especialidad</label>
                 <ul>
                     @foreach (var oSpecialty in lstSpecialty)
@@ -141,7 +140,6 @@
                         }
                     }
                 </ul>
-                <br />
                 <a id="SelectorSpecialty_a" href="javascript:fnViewMoreLessFilter('SelectorSpecialty');" rel="nofollow">Ver más</a>
             </li>
         }
@@ -151,7 +149,7 @@
                 Replace("{NewFilter}", "").
                 Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true", "");
 
-            <li>
+            <li class="SFilterAgendaOnline">
                 <label>Agenda en línea</label>
                 <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
@@ -160,7 +158,7 @@
         {
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true");
 
-            <li>
+            <li class="SFilterAgendaOnline">
                 <label>Agenda en línea @("(" + ScheduleAvailable.ItemCount + ")")</label>
                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
@@ -172,7 +170,7 @@
                 Replace("{NewFilter}", "").
                 Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true", "");
 
-            <li>
+            <li class="SFilterIsCertified">
                 <label>Profesional certificado</label>
                 <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
@@ -181,7 +179,7 @@
         {
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true");
 
-            <li>
+            <li class="SFilterIsCertified">
                 <label>Profesional certificado @("(" + IsCertified.ItemCount + ")")</label>
                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>

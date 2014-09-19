@@ -12,10 +12,10 @@
             @Html.Partial(MVC.Web.Shared.Views._S_Breadcrumb, Model)
         </div>
         <div class="MPResultsDoctorProfile">
-            <div>
+            <div class="MPResultsFilter">
                 @Html.Partial(MVC.Web.Shared.Views._S_Filter, Model)
             </div>
-            <div>
+            <div class="MPResultsProfile">
                 <!--Render profiles-->
                 @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
                 {
