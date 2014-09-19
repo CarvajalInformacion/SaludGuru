@@ -54,6 +54,9 @@ div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
 div.MPResultsBreadCrumbsPages {
     text-align: center;
     width:100%;
+         border: none;
+         height: 25px;
+         background-color:#fff;
 }
 .MPResultsBreadCrumbsPages a {
     color: #FFF;
@@ -72,19 +75,23 @@ div.MPResultsBreadCrumbsPages {
 }
 .MPMobilePrevious, .MPMobileNext,
 .MPMobilePrevious:hover, .MPMobileNext:hover{
+    border: none;
+    color: #666;
     display: inline-block;
-    width:auto;
-    color:#666;
+    width: auto;
+    text-decoration:underline;
 }
     .MPMobilePrevious:hover, .MPMobileNext:hover {
         color:#666;
         text-decoration:underline;
     }
 .MPMobilePrevious {
-    margin:0px 22% 0px 0px;
+    margin:0px;
+    float:left;
 }
 .MPMobileNext {
-    margin:0px 0px 0px 22%;
+    margin:0px;
+    float:right;
 }
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
