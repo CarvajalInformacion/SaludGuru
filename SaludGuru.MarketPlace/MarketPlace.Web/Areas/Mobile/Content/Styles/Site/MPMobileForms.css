@@ -185,11 +185,11 @@ div#NewPatientId, #FreeScheduleId{
 }
 .SelOfficeGrid > div > a:first-child {
     float:left;
-    margin-left:32px;
+    margin-left:20px;
 }
 .SelOfficeGrid > div > a:nth-child(2) {
     float:right;
-    margin-right:32px;
+    margin-right:20px;
 }
 #divAppointmentSchedule_Template_Grid ul li:first-child{
     text-align:center;
