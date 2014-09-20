@@ -19,8 +19,8 @@ namespace MarketPlace.Web.Controllers
             string CityName,
             string Query)
         {
-            try
-            {
+            //try
+            //{
                 //start seo model
                 SEOModel oSeoModel = new SEOModel()
                 {
@@ -141,11 +141,11 @@ namespace MarketPlace.Web.Controllers
                 ViewBag.SeoModel = oSeoModel;
 
                 return View(oModel);
-            }
-            catch (Exception err)
-            {
-                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-            }
+            //}
+            //catch (Exception err)
+            //{
+            //    //return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
+            //}
         }
 
         #region Private methods
