@@ -71,6 +71,9 @@ li.ProfileInformation h2{
         width: 50%;
         text-align: center;
     }
+    #ul_GridFreeSchedule > li > a {
+        font-size: 0.8em;
+    }
 .MPFreeSchedule {
     background-color: #fff;
     border: 1px solid #666 !important;

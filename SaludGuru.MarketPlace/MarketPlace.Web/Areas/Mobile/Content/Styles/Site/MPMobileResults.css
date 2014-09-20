@@ -29,9 +29,9 @@
     }
 
 div.MPResultsBreadCrumbs {
-    /*background-color: #92B92A;*/
+    background-color: #fff;
     color: #FFF;
-    height: 28px;
+    height: 20px;
     width:auto;
     margin: 0px auto;
 }
@@ -52,11 +52,11 @@ div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
     text-align: center;
 }
 div.MPResultsBreadCrumbsPages {
-    text-align: center;
-    width:100%;
-         border: none;
-         height: 25px;
-         background-color:#fff;
+    background-color: #fff;
+    border: medium none;
+    display: block;
+    height: 25px;
+    width: 100%;
 }
 .MPResultsBreadCrumbsPages a {
     color: #FFF;
@@ -67,32 +67,19 @@ div.MPResultsBreadCrumbsPages {
     .MPResultsBreadCrumbsPages a:hover {
         color: #FFF;
     }
-
-.MPResultsBreadCrumbsPages span {
-    color: #99c21d;
-    text-decoration: none;
-    margin: 3px 0px 0px 5px;
-}
 .MPMobilePrevious, .MPMobileNext,
 .MPMobilePrevious:hover, .MPMobileNext:hover{
-    border: none;
-    color: #666;
+    border: 1px solid;    
     display: inline-block;
-    width: auto;
-    text-decoration:underline;
+    text-decoration: underline;
+    width:49%;
+    text-align: center;
+    margin:0px;
 }
     .MPMobilePrevious:hover, .MPMobileNext:hover {
         color:#666;
         text-decoration:underline;
     }
-.MPMobilePrevious {
-    margin:0px;
-    float:left;
-}
-.MPMobileNext {
-    margin:0px;
-    float:right;
-}
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
 div.MPResultsPaidProfile {
