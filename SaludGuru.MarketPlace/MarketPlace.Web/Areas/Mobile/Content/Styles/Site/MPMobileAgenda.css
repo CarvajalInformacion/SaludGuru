@@ -31,6 +31,7 @@ li.ProfileImage {
         width:72px;
         height:auto;
         display:inline-block;
+        border:1px solid #666;
     }
 li.ProfileInformation {
     display: inline-block;
@@ -43,15 +44,14 @@ li.ProfileInformation h2{
     font-size: 1.3em !important;
     color: #759418;    
     display: block !important;
-    margin: 0px 0px 0px !important;
+    margin: 0px 0px 8px 8px!important;
 }
     li.ProfileInformation h3 {
         line-height: 18px;
         font-size: 1.2em !important;
         display: block !important;
-        margin: 0px 0px 0px !important;
+        margin: 0px 0px 8px 8px !important;
     }
-
 
 /****************AGENDA*********************/
 
