@@ -396,7 +396,7 @@ var AppointmentObject = {
 
                 }
                 else {
-                    $("#ul_GridFreeSchedule").append('<li class="MPFreeSchedule">' + '<a href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "'" + ');"> ' + item.AvailableDateText + ' </a></li>');
+                    $("#ul_GridFreeSchedule").append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "'" + ');"> ' + item.AvailableDateText + ' </a></li>');
                 }
             });
         }
