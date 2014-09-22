@@ -33,6 +33,11 @@
     <key name="Url_Invalid_Char">
       <![CDATA[ñ,n;á,a;é,e;í,i;ó,o;ú,u;&,y;-, ;+, ;%, ;#, ;?, ;_, ]]>
     </key>
+    
+    <key name="Url_MP_Desktop">https://localhost:44303</key>
+    <key name="Url_MP_Mobile">https://localhost:44303</key>
+    <key name="UrlBackOffice">https://stgadmin.saludguru.com.co</key>
+    <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor</key>
 
     <!--Search page-->
     <key name="SearchPage_RowCount_Web">20</key>
@@ -49,11 +54,6 @@
     <!--Home Image Contact-->
     <key name="HomeImage_Contact">https://s3.amazonaws.com/devsaludguruimg/0MPImages/HomeBannerSoyDoctor.jpg</key>
 
-    <key name="UrlBackOffice">https://admin.saludguru.com.co</key>
-
-    <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor</key>
-
-
     <!--SEO-->
     <!--variables {CityName}-->
     <key name="SEO_Home_Title">Salud gurú - Profesionales de salud | Citas médicas en línea de {CityName}</key>
@@ -69,6 +69,11 @@
     <key name="SEO_Profile_Title">Salud gurú - {DoctorName} especialista en {SpecialtyName} en {CityName}</key>
     <key name="SEO_Profile_Description">Agenda tu cita médica en línea con {DoctorName} especialista en {SpecialtyName} en {CityName}.</key>
     <key name="SEO_Profile_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}, {DoctorName}, {CityName}, Colombia</key>
+
+    <!--mobile devices-->
+    <key name="Mobile_Devices">
+      <![CDATA[midp,j2me,avant,docomo,novarra,palmos,palmsource,240x320,opwv,chtml,pda,windowsce,mmp/,blackberry,mib/,symbian,wireless,nokia,hand,mobi,phone,cdm,up.b,audio,SIE-,SEC-,samsung,HTC,mot-,mitsu,sagem,sony,alcatel,lg,eric,vx,NEC,philips,mmm,xx,panasonic,sharp,wap,sch,rover,pocket,benq,java,pt,pg,vox,amoi,bird,compal,kg,voda,sany,kdd,dbt,sendo,sgh,gradi,jb,dddi,moto,iphone,]]>
+    </key>
 
   </MarketPlace>
 </Settings>

@@ -27,9 +27,9 @@ form#AppointmentForm {
     text-align: left;
 }
 
-li.OfficeSelectedLi h4,
-li.InsuranceSelectedLi h4,
-li.TreatmentSelectedLi h4,
+li.OfficeSelectedLi h4, 
+li.InsuranceSelectedLi h4, 
+li.TreatmentSelectedLi h4, 
 li.MPAgendaPatientSelection h4,
 li.MPAgendaButtonWrapper h4,
 h4.titleNewPatient {
@@ -55,10 +55,10 @@ li.LegalTermsLi {
     float: left;
 }
 
-.MPAgendaButtonWrapper label {
-    text-align: left;
-    margin-left: 70px;
-}
+    .MPAgendaButtonWrapper label {
+        text-align: left;
+        margin-left: 70px;
+    }
 
 li#officeSelectedId label {
     width: 200px !important;
@@ -175,28 +175,31 @@ h4.AgendaLabel {
 
 /************** fecha hora **************/
 #DateMoreInfoIdN, #SearchNexAvailableDayId {
-    background-color: #FFF;
     border: medium none;
     color: #759418;
-    font-size: 1.2em;
     display: block;
     width: auto;
     height: auto;
-    margin: 9px auto;
     letter-spacing: -0.6px;
     font-weight: normal;
+    text-align:center;
 }
 
     #DateMoreInfoIdN:hover, #SearchNexAvailableDayId:hover {
         text-decoration: underline;
     }
-
+#DateMoreInfoIdN{
+    background-color: #FFF;
+    margin: 9px auto;
+    font-size: 1.2em;
+    line-height: 0.9em;
+}
 #SearchNexAvailableDayId {
-    background-color: #ECECEC;
-    margin: 8px auto 8px auto;
-    font-size: 1.3em;
-    text-align: center;
-    line-height: 1.1em;
+        background-color: #ECECEC;
+    margin: 8px auto;
+        font-size: 1.3em;
+        text-align:center;
+        line-height: 1.1em;
 }
 
 /********PACIENTE NUEVO*************/
@@ -257,9 +260,9 @@ div#NewPatientId, #FreeScheduleId {
     text-decoration: underline;
 }
 
-    #DateMoreInfoIdNN:hover {
+#DateMoreInfoIdNN:hover {
         text-decoration: underline;
-    }
+}
 
 .MPMobileOfficeInfo {
     padding: 12px 0px 12px 8px;
@@ -287,9 +290,9 @@ label.titleNewPatient {
 }
 
 label.GenderLi {
-    margin: 0px 0px 0px 28px !important;
-    display: inline-block;
-    vertical-align: top;
+        margin: 0px 0px 0px 28px !important;
+        display: inline-block;
+        vertical-align: top;
 }
 
 #CreatePatientForm {

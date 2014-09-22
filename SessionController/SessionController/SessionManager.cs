@@ -55,5 +55,21 @@ namespace SessionController
         }
 
         #endregion
+
+        #region Mobile
+
+        public static SessionController.Models.Mobile.MobileModel MobileInfo
+        {
+            get
+            {
+                return (SessionController.Models.Mobile.MobileModel)System.Web.HttpContext.Current.Session[SessionController.Models.Constants.C_Session_Mobile_MobileInfo];
+            }
+            set
+            {
+                System.Web.HttpContext.Current.Session[SessionController.Models.Constants.C_Session_Mobile_MobileInfo] = value;
+            }
+        }
+
+        #endregion
     }
 }
