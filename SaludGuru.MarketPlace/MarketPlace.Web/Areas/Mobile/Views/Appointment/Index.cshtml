@@ -3,7 +3,7 @@
     Layout = "~/Areas/Mobile/Views/Shared/_Layout.cshtml";
     Model.RenderScripts = false;
 }
-<div class="MPFormDataWrapper">
+<div class="MPFormDataWrapper" data-role="content">
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
     </div>
@@ -77,7 +77,7 @@
                     }
                 </select>
             </li>
-            <li class="MPAgendaPatientSelection">
+            <li class="MPAgendaPatientSelection" data-role="content">
                 <h4>Quien va a ver al Doctor</h4>
                 @if (Model.PatientGroup.Count > 0)
                 {
