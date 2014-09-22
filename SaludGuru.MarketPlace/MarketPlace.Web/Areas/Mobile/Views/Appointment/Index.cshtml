@@ -120,7 +120,7 @@
                 <h4 class="AgendaLabel">Fecha y hora</h4>
                 <!--Profile Schedule-->
                 @if (Model.StartDate != null)
-                {                    
+                {
                     <input class="MPAgendaButtons" type="button" id="DateMoreInfoIdNN" value="@Model.StartDate" />
                 }
                 else
@@ -139,10 +139,13 @@
             </li>
 
             <li class="LegalTermsLi">
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))" target="_blank">
-                    <label class="LegalTerms">Aceptar términos y condiciones.</label>
-                </a>
+                <label class="LegalTerms">Aceptar términos y condiciones.</label>
                 <input type="checkbox" id="LegalTerms" name="LegalTerms" />
+            </li>
+            <li class="RedirectLegalTerms">
+                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))" target="_blank">
+                    <label>Ver términos y condiciones.</label>
+                </a>
             </li>
             <li class="MPAgendaButtonWrapper">
                 @if (Model.StartDate != null)
@@ -167,23 +170,23 @@
                 <li>
                     <h4 class="titleNewPatient">Datos del nuevo paciente</h4>
                     <label>Nombre</label>
-                    <input type="text" id="Name" name="Name" placeholder="NOMBRE"/>
+                    <input type="text" id="Name" name="Name" placeholder="NOMBRE" />
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Apellido</label>
-                    <input type="text" id="LastName" name="LastName" placeholder="APELLIDO"/>
+                    <input type="text" id="LastName" name="LastName" placeholder="APELLIDO" />
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Identificación</label>
-                    <input type="text" id="Identification" name="Identification" placeholder="IDENTIFICACION"/>
+                    <input type="text" id="Identification" name="Identification" placeholder="IDENTIFICACION" />
                     <span class="required">*</span>
                 </li>
                 <li>
                     <label>Fecha de nacimiento</label>
-                    <input type="date" id="Birthday" name="Birthday" placeholder="FECHA DE NACIMIENTO" />                    
-                                   
+                    <input type="date" id="Birthday" name="Birthday" placeholder="FECHA DE NACIMIENTO" />
+
                 </li>
                 <li class="liGender">
                     <label>Sexo</label>
@@ -200,7 +203,7 @@
                 </li>
             </ul>
         </form>
-    </div>    
+    </div>
 </div>
 
 <!--templates-->
@@ -232,7 +235,7 @@
             });
             $('#SelectedOffice').click(function () {
                 AppointmentObject.ChangeOffice();
-            });          
+            });
         });
     </script>
 }

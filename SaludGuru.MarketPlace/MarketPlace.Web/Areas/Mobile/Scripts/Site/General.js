@@ -52,14 +52,14 @@ var ScheduleAppointmentObject = {
         this.OutlookUrl = vInitObject.OutlookUrl;
     },
 
-    ScheduleAppointment: function (vLink) {
+    ScheduleAppointment: function (vLink, officePublicId, Date ) {
         debugger;
         if (ScheduleAppointmentObject.IsLogin) {
-            var CurrentSite = $('#CurrentSite').val();
+            var CurrentSite = vLink;
             window.location = CurrentSite;
         }
         else {
-            $.mobile.changePage(vLink + '', { transition: "pop", role: "dialog", id: "LoginDialog" });
+            $.mobile.changePage(vLink + '&OfficePublicId='+ officePublicId + '&Date=' + Date, { transition: "pop", role: "dialog", id: "LoginDialog" });
         }
     },
 

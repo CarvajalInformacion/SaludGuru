@@ -9,7 +9,7 @@ namespace MarketPlace.Web.Controllers.Filters
     {
         public void OnActionExecuted(System.Web.Mvc.ActionExecutedContext filterContext)
         {
-            if (filterContext.RouteData.Values["controller"] == "AppointmentController" &&
+            if (filterContext.RouteData.Values["controller"] == "Appointment" &&
                 filterContext.RouteData.Values["action"] == "Index" &&
                 !MarketPlace.Models.General.SessionModel.UserIsLoggedIn)
             {

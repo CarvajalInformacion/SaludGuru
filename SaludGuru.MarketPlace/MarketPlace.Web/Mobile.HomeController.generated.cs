@@ -59,6 +59,12 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult LoginDialog()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginDialog);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ChangeCity()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeCity);
@@ -82,6 +88,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             public readonly string Index = "Index";
             public readonly string LoginDialog = "LoginDialog";
             public readonly string ChangeCity = "ChangeCity";
+            public readonly string ChangeMobileVersion = "ChangeMobileVersion";
             public readonly string LegalTerms = "LegalTerms";
             public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public readonly string FAQ = "FAQ";
@@ -96,6 +103,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             public const string Index = "Index";
             public const string LoginDialog = "LoginDialog";
             public const string ChangeCity = "ChangeCity";
+            public const string ChangeMobileVersion = "ChangeMobileVersion";
             public const string LegalTerms = "LegalTerms";
             public const string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public const string FAQ = "FAQ";
@@ -105,6 +113,15 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
         }
 
 
+        static readonly ActionParamsClass_LoginDialog s_params_LoginDialog = new ActionParamsClass_LoginDialog();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoginDialog LoginDialogParams { get { return s_params_LoginDialog; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoginDialog
+        {
+            public readonly string Date = "Date";
+            public readonly string OfficePublicId = "OfficePublicId";
+        }
         static readonly ActionParamsClass_ChangeCity s_params_ChangeCity = new ActionParamsClass_ChangeCity();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ChangeCity ChangeCityParams { get { return s_params_ChangeCity; } }
@@ -156,13 +173,15 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
         }
 
         [NonAction]
-        partial void LoginDialogOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void LoginDialogOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Date, string OfficePublicId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult LoginDialog()
+        public override System.Web.Mvc.ActionResult LoginDialog(string Date, string OfficePublicId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoginDialog);
-            LoginDialogOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "OfficePublicId", OfficePublicId);
+            LoginDialogOverride(callInfo, Date, OfficePublicId);
             return callInfo;
         }
 
@@ -175,6 +194,17 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeCity);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "NewCityId", NewCityId);
             ChangeCityOverride(callInfo, NewCityId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeMobileVersionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangeMobileVersion()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeMobileVersion);
+            ChangeMobileVersionOverride(callInfo);
             return callInfo;
         }
 

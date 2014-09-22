@@ -41,10 +41,11 @@ namespace MarketPlace.Web.Controllers
             return View(Model);
         }
 
-        public virtual ActionResult LoginDialog()
+        public virtual ActionResult LoginDialog(string Date, string OfficePublicId)
         {
             Object urlReturn = Request["UrlReturn"].ToString();
 
+            urlReturn = urlReturn + "&OfficePublicId=" + OfficePublicId + "&Date=" + Date;
             return View(urlReturn);
         }
 
@@ -69,6 +70,28 @@ namespace MarketPlace.Web.Controllers
                     MarketPlace.Web.Controllers.BaseController.RemoveAccent(oldCityName),
                     MarketPlace.Web.Controllers.BaseController.RemoveAccent(MarketPlace.Web.Controllers.BaseController.EnabledCities[NewCityId]));
             }
+
+            return Redirect(ReturnUrl);
+        }
+
+        public virtual ActionResult ChangeMobileVersion()
+        {
+            if (MarketPlace.Models.General.SessionModel.MobileSessionInfo != null)
+            {
+                MarketPlace.Models.General.SessionModel.MobileSessionInfo.ViewFullVersion = true;
+            }
+            else
+            {
+                MarketPlace.Models.General.SessionModel.MobileSessionInfo = new SessionController.Models.Mobile.MobileModel()
+                {
+                    IsMobileDevice = true,
+                    ViewFullVersion = true,
+                };
+            }
+
+            string ReturnUrl = Request.UrlReferrer.ToString().ToLower().Replace
+                (MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Url_MP_Mobile].Value,
+                MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Url_MP_Desktop].Value);
 
             return Redirect(ReturnUrl);
         }

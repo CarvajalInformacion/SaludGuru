@@ -24,5 +24,12 @@ namespace MarketPlace.Models.General
                     FirstOrDefault();
             }
         }
+
+        public static SessionController.Models.Mobile.MobileModel MobileSessionInfo
+        {
+            get { return SessionController.SessionManager.MobileInfo; }
+
+            set { SessionController.SessionManager.MobileInfo = value; }
+        }
     }
 }

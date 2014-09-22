@@ -2,36 +2,36 @@
     <div class="ContentBlogDesktop">
         <div class="BlogSG">
             <a href="http://blog.saludguru.com/" target="_blank">
-                <img src="~/Areas/Mobile/Content/Images/SGMPBlogSmall.png" />
+                <img src="@Url.Content("/Areas/Mobile/Content/Images/SGMPBlogSmall.png")" />
                 <label>Blog Salud Gurú</label>
             </a>
         </div>
         <hr class="Separator" />
         <div class="Desktop">
-            <a href="">
-                <img src="~/Areas/Mobile/Content/Images/SGMPDeskTopSmall.png" />
-                <label>Versión de Escritorio</label>
+            <a href="@Url.Action(MVC.Home.ActionNames.ChangeMobileVersion, MVC.Home.Name)">
+            <img src="@Url.Content("/Areas/Mobile/Content/Images/SGMPDeskTopSmall.png")"  />
+            <label>Versión de Escritorio</label>
             </a>
         </div>
     </div>
     <div class="MPTextWrapper">
         @*<ul>
-            <li>
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">Quiero que me contacten |</a>
-            </li>
-            <li>
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))">Términos legales |</a>
-            </li>
-            <li>
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions))">Condiciones y restricciones |</a>
-            </li>
-            <li>
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ))">Preguntas frecuentes |</a>
-            </li>
-            <li>
-                <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms) + "/#usoInformacion")">Habeas Data</a>
-            </li>
-        </ul>*@
+                <li>
+                    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Contact))">Quiero que me contacten |</a>
+                </li>
+                <li>
+                    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))">Términos legales |</a>
+                </li>
+                <li>
+                    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions))">Condiciones y restricciones |</a>
+                </li>
+                <li>
+                    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_FAQ))">Preguntas frecuentes |</a>
+                </li>
+                <li>
+                    <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms) + "/#usoInformacion")">Habeas Data</a>
+                </li>
+            </ul>*@
         <p>
             EL portal de negocios de SaludGurú de Publicar Publicidad Multimedia S.A.S contiene la información de profesionales de la salud en Colombia.<br />
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))">AVISO LEGAL © Copyright 2014 SaludGurú.com</a><br />
