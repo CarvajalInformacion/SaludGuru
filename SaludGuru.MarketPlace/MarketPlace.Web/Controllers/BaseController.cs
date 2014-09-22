@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace MarketPlace.Web.Controllers
 {
+    [MarketPlace.Web.Controllers.Filters.MobileActionFilter]
     public partial class BaseController : Controller
     {
         #region public static properties
@@ -326,7 +327,7 @@ namespace MarketPlace.Web.Controllers
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                                 oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
                                 result = Message.Client.Client.Instance.CreateMessage(oMessage);
-                            }                            
+                            }
                         }
                     }
                 }

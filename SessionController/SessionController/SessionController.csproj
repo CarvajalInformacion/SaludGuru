@@ -70,6 +70,7 @@
     <Compile Include="Models\Auth\UserInfo.cs" />
     <Compile Include="Models\Auth\UserProvider.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Mobile\MobileModel.cs" />
     <Compile Include="Models\Profile\Autorization\AutorizationModel.cs" />
     <Compile Include="Models\Profile\Enumerations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
