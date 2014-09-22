@@ -2,50 +2,58 @@
 
 /************Estilos bloque perfil****************/
 .MPAgendaDoctorProfile {
-    display: block;
-    /*border: 1px solid red;*/
+    display: inline-block;
+    /* border: 1px solid red; */
     text-align: left;
+    width: 70%;
 }
-.MPAgendaDoctorProfile h6{
-    color: #759418;
-    cursor: text;
-    display: block;
-    font-size: 1.2em;
-    letter-spacing: -0.5px;
-    line-height: 27px;
-    margin: 0;
-    padding: 0;
-}
+
+    .MPAgendaDoctorProfile h6 {
+        color: #759418;
+        cursor: text;
+        display: block;
+        font-size: 1.2em;
+        letter-spacing: -0.5px;
+        line-height: 27px;
+        margin: 0;
+        padding: 0;
+    }
+
 ul.MPAgendaDoctorData {
     width: 100%;
     height: auto;
     padding: 6px;
-    margin-top:0px !important;
+    margin-top: 0px !important;
 }
+
 li.ProfileImage {
     display: inline-block;
     width: auto;
     height: auto;
 }
+
     li.ProfileImage img {
-        width:72px;
-        height:auto;
-        display:inline-block;
-        border:1px solid #666;
+        width: 72px;
+        height: auto;
+        display: inline-block;
+        border: 1px solid #666;
     }
+
 li.ProfileInformation {
     display: inline-block;
     width: 66%;
     text-align: left;
     vertical-align: top;
 }
-li.ProfileInformation h2{
-    line-height: 18px;
-    font-size: 1.3em !important;
-    color: #759418;    
-    display: block !important;
-    margin: 0px 0px 8px 8px!important;
-}
+
+    li.ProfileInformation h2 {
+        line-height: 18px;
+        font-size: 1.3em !important;
+        color: #759418;
+        display: block !important;
+        margin: 0px 0px 8px 8px !important;
+    }
+
     li.ProfileInformation h3 {
         line-height: 18px;
         font-size: 1.2em !important;
@@ -56,11 +64,12 @@ li.ProfileInformation h2{
 /****************AGENDA*********************/
 
 #ul_GridFreeSchedule {
-    margin:-30px auto 0px !important;
+    margin: -30px auto 0px !important;
     width: 97%;
     text-align: center;
     display: block;
 }
+
     #ul_GridFreeSchedule li:first-child {
         height: auto;
         margin: 35px auto 5px auto;
@@ -71,9 +80,11 @@ li.ProfileInformation h2{
         width: 50%;
         text-align: center;
     }
+
     #ul_GridFreeSchedule > li > a {
         font-size: 0.8em;
     }
+
 .MPFreeSchedule {
     background-color: #fff;
     border: 1px solid #666 !important;
@@ -85,25 +96,29 @@ li.ProfileInformation h2{
     text-align: center;
     width: 28%;
 }
+
     .MPFreeSchedule:hover {
-        background-color:#99C21D;
+        background-color: #99C21D;
     }
-.MPFreeSchedule a{
-    border: medium none;
-    color: #444 !important;
-    display: block;
-    font-size: 0.6em;
-    height: 22px;
-    line-height: 24px;
-    margin: 0;
-    padding: 0;
-    width: auto;
-}
+
+    .MPFreeSchedule a {
+        border: medium none;
+        color: #444 !important;
+        display: block;
+        font-size: 0.6em;
+        height: 22px;
+        line-height: 24px;
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
+
 #aPrevDay {
-    float:left;
+    float: left;
     margin: 0px 0px 0px 20px;
 }
+
 #aNextDay {
-    float:right;
+    float: right;
     margin: 0px 20px 0px 0px;
 }

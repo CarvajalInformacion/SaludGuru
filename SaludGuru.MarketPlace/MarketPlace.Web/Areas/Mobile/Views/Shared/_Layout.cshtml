@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-
+    
 <head>
     <meta name="viewport" content="width=device-width" />
     @{var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;}
@@ -58,12 +58,12 @@
 </head>
 
 
-<body >
+<body>
     <div data-role="page" id="Home" data-theme="a">
 
         <div data-role="header">
-            <div id="header" data-role="header" data-theme="b">
-                <a id="bars-button" data-icon="bars" class="ui-btn-left" style="margin-top:10px;" href="#navpanel"></a>
+            <div id="header">
+                <a id="bars-button" data-icon="bars" class="ui-btn-left" style="margin-top:10px;" href="#navpanel" data-role="button" role="button"></a>
             </div>
             @Html.Partial(MVC.Mobile.Shared.Views._L_Header)
         </div>
@@ -140,6 +140,9 @@
         </div>
 
         @{
+            <script>
+                $.mobile.pushStateEnabled = false;
+            </script>
             //get login urls
             string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
                 [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
@@ -201,6 +204,8 @@
             ga('create', 'UA-51169600-2', 'auto');
             ga('require', 'displayfeatures');
             ga('send', 'pageview');
+
+          
         </script>
     </div>
 </body>

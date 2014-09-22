@@ -53,8 +53,8 @@
                 <label>Seguro</label>
                 <ul>
                     <li>
-                        <span>@oInsurance.ItemName</span>
                         <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                        <span>@oInsurance.ItemName</span>
                     </li>
                 </ul>
             </li>
@@ -73,15 +73,15 @@
                         if (lstInsurance.IndexOf(oInsurance) <= ItemsToShow)
                         {
                             <li>
-                                <span>@(oInsurance.ItemName + " (" + oInsurance.ItemCount + ")")</span>
                                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                                <span>@(oInsurance.ItemName + " (" + oInsurance.ItemCount + ")")</span>
                             </li>
                         }
                         else
                         {
                             <li class="SelectorInsurance" style="display:none;">
-                                <span>@(oInsurance.ItemName + " (" + oInsurance.ItemCount + ")")</span>
                                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                                <span>@(oInsurance.ItemName + " (" + oInsurance.ItemCount + ")")</span>
                             </li>
                         }
                     }
@@ -107,8 +107,8 @@
                 <label>Seguro</label>
                 <ul>
                     <li>
-                        <span>@oSpecialty.ItemName</span>
                         <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                        <span>@oSpecialty.ItemName</span>
                     </li>
                 </ul>
             </li>
@@ -127,15 +127,15 @@
                         if (lstSpecialty.IndexOf(oSpecialty) <= ItemsToShow)
                         {
                             <li>
-                                <span>@(oSpecialty.ItemName + " (" + oSpecialty.ItemCount + ")")</span>
                                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                                <span>@(oSpecialty.ItemName + " (" + oSpecialty.ItemCount + ")")</span>
                             </li>
                         }
                         else
                         {
                             <li class="SelectorSpecialty" style="display:none;">
-                                <span>@(oSpecialty.ItemName + " (" + oSpecialty.ItemCount + ")")</span>
                                 <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                                <span>@(oSpecialty.ItemName + " (" + oSpecialty.ItemCount + ")")</span>
                             </li>
                         }
                     }
@@ -150,8 +150,10 @@
                 Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true", "");
 
             <li class="SFilterAgendaOnline">
+                <div class="CheckAgendaOnline">
+                    <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                </div>
                 <label>Agenda en línea</label>
-                <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
         }
         else if (ScheduleAvailable != null && ScheduleAvailable.ItemCount > 0)
@@ -159,8 +161,10 @@
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.ScheduleAvailable).ToString() + ",true");
 
             <li class="SFilterAgendaOnline">
+                <div class="CheckAgendaOnline">
+                    <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                </div>
                 <label>Agenda en línea @("(" + ScheduleAvailable.ItemCount + ")")</label>
-                <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
         }
 
@@ -171,8 +175,10 @@
                 Replace(((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true", "");
 
             <li class="SFilterIsCertified">
+                <div class="CheckIsCertified">
+                    <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
+                </div>
                 <label>Profesional certificado</label>
-                <input type="checkbox" checked="checked" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
         }
         else if (IsCertified != null && IsCertified.ItemCount > 0)
@@ -180,8 +186,10 @@
             string vFilterUrl = BaseUrl.Replace("{NewFilter}", ((int)SaludGuruProfile.Manager.Models.enumFilterType.IsCertified).ToString() + ",true");
 
             <li class="SFilterIsCertified">
+                <div class="CheckIsCertified">
+                    <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
+                </div>
                 <label>Profesional certificado @("(" + IsCertified.ItemCount + ")")</label>
-                <input type="checkbox" onchange="javascript: fnFilter('@vFilterUrl');" />
             </li>
         }
     </ul>
