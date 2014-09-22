@@ -88,6 +88,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             public readonly string Index = "Index";
             public readonly string LoginDialog = "LoginDialog";
             public readonly string ChangeCity = "ChangeCity";
+            public readonly string ChangeMobileVersion = "ChangeMobileVersion";
             public readonly string LegalTerms = "LegalTerms";
             public readonly string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public readonly string FAQ = "FAQ";
@@ -102,6 +103,7 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             public const string Index = "Index";
             public const string LoginDialog = "LoginDialog";
             public const string ChangeCity = "ChangeCity";
+            public const string ChangeMobileVersion = "ChangeMobileVersion";
             public const string LegalTerms = "LegalTerms";
             public const string ConditionsAndRestrictions = "ConditionsAndRestrictions";
             public const string FAQ = "FAQ";
@@ -192,6 +194,17 @@ namespace MarketPlace.Web.Areas.Mobile.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeCity);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "NewCityId", NewCityId);
             ChangeCityOverride(callInfo, NewCityId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeMobileVersionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ChangeMobileVersion()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeMobileVersion);
+            ChangeMobileVersionOverride(callInfo);
             return callInfo;
         }
 

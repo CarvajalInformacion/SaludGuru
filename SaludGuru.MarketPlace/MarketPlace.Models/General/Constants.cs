@@ -91,9 +91,13 @@
 
         public const string C_Settings_Url_Invalid_Char = "Url_Invalid_Char";
 
+        public const string C_Settings_UrlHttpExceptions = "UrlHttpExceptions";
+
         public const string C_Settings_UrlBackOffice = "UrlBackOffice";
 
-        public const string C_Settings_UrlHttpExceptions = "UrlHttpExceptions";
+        public const string C_Settings_Url_MP_Desktop = "Url_MP_Desktop";
+
+        public const string C_Settings_Url_MP_Mobile = "Url_MP_Mobile";
 
         #endregion
 
@@ -127,6 +131,12 @@
 
         public const string C_Settings_SEO_Profile_Keywords = "SEO_Profile_Keywords";
 
+
+        #endregion
+
+        #region Mobile
+
+        public const string C_Settings_Mobile_Devices = "Mobile_Devices";
 
         #endregion
 

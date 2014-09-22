@@ -23,18 +23,16 @@
 
     <meta charset="utf-8" />
     <title>@oSeoModel.Title</title>
+    
+    @*Render bondles styles*@
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquerymobile/css")
+    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
 
     @*Render Jquery Scripts*@
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile")
     @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymap")
-
-
-
-    @*Render bondles styles*@
-    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/jquerymobile/css")
-    @Styles.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/content/css")
 
     @if (!string.IsNullOrEmpty(oSeoModel.Description))
     {

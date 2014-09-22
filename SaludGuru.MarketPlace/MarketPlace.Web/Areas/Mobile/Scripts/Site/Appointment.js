@@ -462,7 +462,9 @@ $('#SaveAppointmentId').click(function () {
     var startDate = $("#StartDate").val();
     var treatmentSelected = $("#SelectedTreatment").val();
     if (startDate == "") {
-        $('#DateMoreInfoIdN').val("Aun no has seleccionado una hora para tu cita");
+        $('#DateMoreInfoIdN').val('Aun no has seleccionado' + '\n' + 'una hora para tu cita');
+        $('#DateMoreInfoIdN').val().replace(/\n\r?/g, '<br />');
+
         return false;
     }
     if (treatmentSelected == null) {
