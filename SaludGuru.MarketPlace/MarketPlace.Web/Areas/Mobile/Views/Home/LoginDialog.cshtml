@@ -1,7 +1,7 @@
 ﻿@model String
 @{
-    ViewBag.Title = "LoginDialog";
-    Layout = null;
+    //ViewBag.Title = "LoginDialog";
+    //Layout = null;
 }
 @{
     //get login urls
@@ -22,8 +22,9 @@
     OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}", Model.ToString());
 }
 
-    <div data-role="dialog" data-url="" data-external-page="true" role="dialog">
-        <div id="dialog_NotLogin" title="Ingreso requerido" data-role="content" role="main">
+<div data-role="page">
+    <div data-role="content">
+        <div id="dialog_NotLogin" title="Ingreso requerido">
             <input type="hidden" value="@Model" id="UrlRedirect" />
             <span>Para agendar una cita debe ingresar a traves de:</span>
             <!--Render autentications-->

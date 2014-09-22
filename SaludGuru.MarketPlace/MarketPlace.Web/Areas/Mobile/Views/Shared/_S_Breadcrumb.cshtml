@@ -21,9 +21,9 @@
 
     @if (!string.IsNullOrEmpty(ovPreviewUrl))
     {
-        <a class="MPMobilePrevious" href="@ovPreviewUrl">Anterior</a>
+        <a class="MPMobilePrevious" data-add-back-btn="true" href="@ovPreviewUrl">Anterior</a>
     }
-
+     
     @if (!string.IsNullOrEmpty(ovNextUrl))
     {
         <a class="MPMobileNext" href="@ovNextUrl">Siguiente</a>

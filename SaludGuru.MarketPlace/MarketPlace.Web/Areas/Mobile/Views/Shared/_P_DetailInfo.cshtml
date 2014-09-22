@@ -52,6 +52,11 @@
 
                                     if (ScheduleEnabled)
                                     {
+                                        string Domain = ovCurrentDomain + Url.Action(MVC.Home.ActionNames.LoginDialog, MVC.Home.Name) + "?UrlReturn=" + ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name) + "?ProfilePublicId=" + Model.CurrentProfile.ProfilePublicId;
+                                        string CurrentSite = ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name) + "?ProfilePublicId=" + Model.CurrentProfile.ProfilePublicId;
+                                        <input type="hidden" name="Url" id="UrlReturn" value="@Domain" />
+                                        <input type="hidden" name="CurrentSite" id="CurrentSite" value="@CurrentSite" />
+
                                         var urlProfile = (ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }));
                                         if (Model.CurrentProfile.RelatedOffice.IndexOf(oCurrentOffice) == 0)
                                         {
@@ -59,7 +64,7 @@
                                             <div data-role="collapsible" data-collapsed="false">
 
                                                 <h3 class="MPMobileOfficeName">
-                                                    <a onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>
+                                                    <a onclick="javascript:AppointmentObject.RenderOfficeScheduleProfile('@Domain','@urlProfile', '@oCurrentOffice.OfficePublicId', '', '@Model.CurrentProfile.ProfilePublicId', 'false', '@oCurrentOffice.RelatedTreatment.Where(x => x.IsDefault == true).Select(x => x.CategoryId).FirstOrDefault()', 'false');" href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>
                                                     @*<a href="#fragment-@oCurrentOffice.OfficePublicId">@oCurrentOffice.Name.ToString()</a>*@
                                                 </h3>
                                                 <p>
@@ -175,36 +180,61 @@
             }
         </ul>
     </div>
+
+    <div data-role="page" id="dialogo2">
+        <div data-role="header" data-theme="b"><h1>dialogo con colores configurados</h1></div>
+        <div data-role="content" data-theme="a">
+            @*@Este es un cuadro de dialogo configurado que esta dentro del mismo HTML del enlace*@
+            <a href="#" data-role="button" data-theme="e" data-rel="back">Aceptar</a>
+        </div>
+    </div>
+            //get login urls
+            string FBUrl = MarketPlace.Models.General.InternalSettings.Instance
+            [MarketPlace.Models.General.Constants.C_Settings_Login_FBUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
+
+            string GoogleUrl = MarketPlace.Models.General.InternalSettings.Instance
+            [MarketPlace.Models.General.Constants.C_Settings_Login_GoogleUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
+
+            string OutlookUrl = MarketPlace.Models.General.InternalSettings.Instance
+            [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
+            .Value;
+
+            FBUrl = FBUrl.Replace("{{UrlRetorno}}", Model.ToString());
+            GoogleUrl = GoogleUrl.Replace("{{UrlRetorno}}", Model.ToString());
+            OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}", Model.ToString());
+
 }
 else
 {
     ScheduleEnabled = Model.CurrentProfile.ProfileInfo.
-                               Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
-                               Select(x => x.Value == "true" ? true : false).
-                               DefaultIfEmpty(false).
-                               FirstOrDefault();
+    Where(x => x.ProfileInfoType == SaludGuruProfile.Manager.Models.enumProfileInfoType.AgendaOnline).
+    Select(x => x.Value == "true" ? true : false).
+    DefaultIfEmpty(false).
+    FirstOrDefault();
     //create office calendar object
     var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
 
     string oOfficeInfo = (new System.Web.Script.Serialization.JavaScriptSerializer()).
-        Serialize(Model.CurrentProfile.RelatedOffice.
-            Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
-            Select(of =>
-                new
-                {
-                    ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
-                    OfficePublicId = of.OfficePublicId,
-                    OfficeName = of.Name,
-                    OfficeDivId = string.Empty,
-                    IsDefault = of.IsDefault,
-                    City = of.City,
-                    OfficeAddress = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
-                    OfficeTelephone = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
-                }).OrderBy(x => x.IsDefault).
-                OrderBy(x => x.OfficeName).ToList());
+    Serialize(Model.CurrentProfile.RelatedOffice.
+    Where(of => of.City.CityId == oBaseController.CurrentCookie.CurrentCity).
+    Select(of =>
+    new
+    {
+        ProfilePublicId = Model.CurrentProfile.ProfilePublicId,
+        OfficePublicId = of.OfficePublicId,
+        OfficeName = of.Name,
+        OfficeDivId = string.Empty,
+        IsDefault = of.IsDefault,
+        City = of.City,
+        OfficeAddress = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+        OfficeTelephone = of.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault(),
+    }).OrderBy(x => x.IsDefault).
+    OrderBy(x => x.OfficeName).ToList());
 
 
-    
+
     if (ScheduleEnabled)
     {
         <script type="text/javascript">
