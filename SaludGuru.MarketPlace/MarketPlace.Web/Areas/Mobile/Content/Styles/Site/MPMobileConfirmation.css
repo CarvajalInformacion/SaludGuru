@@ -1,36 +1,47 @@
 /***************  ESTILOS DE PAGINA DE CONFIRMACION ****************/
 
-.MPAgendaConfirmationMessageGW, 
+.MPAgendaConfirmationMessageGW,
 .ImgConfirmation,
-.MPAgendaConfirmationMessage{
-    display:block;
-    width:100%;
-    }
-    .ImgConfirmation {
-        display:block;
-        width:112px;
-        height:auto;
-        margin:0px auto;
-    }
-        .MPAgendaConfirmationMessageGW h1 {
-            font-size:1.2em;
-            color:#759418;
-            letter-spacing:-0.8px;
-            line-height:1em;
-            display:block;
-            margin:6px 0px;
-        }
 .MPAgendaConfirmationMessage {
-    margin:0px;
+    display: block;
+    width: 100%;
 }
-    .MPAgendaConfirmationMessage h2,
+
+.ImgConfirmation {
+    display: inline-block;
+    width: 100px;
+    height: auto;
+    margin: 15px auto;
+    vertical-align: top;
+}
+
+.MPAgendaConfirmationMessageGW h1 {
+    font-size: 1.2em;
+    color: #759418;
+    letter-spacing: -0.8px;
+    line-height: 1em;
+    display: block;
+    margin: 6px 0px;
+}
+
+.MPAgendaConfirmationMessage {
+    margin: 0px;
+}
+
+    /*.MPAgendaConfirmationMessage h2,
     .MPAgendaConfirmationMessage h3,
     .MPAgendaConfirmationMessage h4,
     .MPAgendaConfirmationMessage h5,
     .MPAgendaConfirmationMessage h6 {
-        color: #333;
         display: block;
-        font-size: 1.1em;    
+        font-size: 1.1em;
         line-height: 1em;
         margin: 14px 0;
+    }*/
+
+    .MPAgendaConfirmationMessage h3 {
+        font-size: 1.2em;
+        line-height: 24px;
+        margin: 14px 0;
+        text-align: justify;
     }

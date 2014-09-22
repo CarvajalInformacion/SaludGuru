@@ -12,22 +12,21 @@
 }
 
 <div class="MPAgendaConfirmationMessageGW" data-role="content" id="confirmationId">
-    <img class="ImgConfirmation" src="~/Areas/Web/Content/Images/MPConfirm.png" />
+
     <div class="MPAgendaDoctorProfile">
         @Html.Partial(MVC.Mobile.Shared.Views._AP_ProfileInfo, Model)
     </div>
-
-
+    <img class="ImgConfirmation" src="~/Areas/Web/Content/Images/MPConfirm.png" />
     <div class="MPAgendaConfirmationMessage">
-            <h2>Cita agendada correctamente con el <strong>Dr/a. @Model.CurrentProfile.Name @Model.CurrentProfile.LastName</strong></h2>
-            <h3> el día <strong>@Model.StartDate</strong></h3>
-            <h4>en la <strong>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</strong></h4>
-            <h5>
-                Enviaremos la confirmación de la cita a tu correo electrónico.<br>
-                Si no la has recibido, por favor revisar en la bandeja de correos no deseados.
-            </h5>
-            <h6>Previamente a la cita te enviaremos un recordatorio por correo electrónico y/o mensaje de texto.</h6>
+        <h3>
+            Cita agendada correctamente con el <strong>Dr/a. @Model.CurrentProfile.Name @Model.CurrentProfile.LastName</strong>
+            el día <strong>@Model.StartDate</strong>
+            en la <strong>@Model.CurrentProfile.RelatedOffice.Where(x => x.OfficePublicId == Model.CurrentOffice).Select(x => x.Name).FirstOrDefault()</strong>
+        </h3>
+        <h3>
+            Enviaremos la confirmación de la cita a tu correo electrónico.
+            Si no la has recibido, por favor revisar en la bandeja de correos no deseados.
+            Previamente a la cita te enviaremos un recordatorio por correo electrónico y/o mensaje de texto.
+        </h3>
     </div>
-
-
 </div>
