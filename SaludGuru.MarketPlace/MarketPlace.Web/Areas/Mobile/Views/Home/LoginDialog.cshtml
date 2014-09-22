@@ -22,9 +22,8 @@
     OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}", Model.ToString());
 }
 
-<div data-role="page">
-    <div data-role="content">
-        <div id="dialog_NotLogin" title="Ingreso requerido">
+    <div data-role="dialog" data-url="" data-external-page="true" role="dialog">
+        <div id="dialog_NotLogin" title="Ingreso requerido" data-role="content" role="main">
             <input type="hidden" value="@Model" id="UrlRedirect" />
             <span>Para agendar una cita debe ingresar a traves de:</span>
             <!--Render autentications-->
@@ -35,4 +34,4 @@
             </div>
         </div>
     </div>
-</div>
+
