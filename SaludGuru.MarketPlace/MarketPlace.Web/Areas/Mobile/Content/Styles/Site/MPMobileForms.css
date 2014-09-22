@@ -138,27 +138,30 @@ h4.AgendaLabel {
     }
 
 /************** fecha hora **************/
-#DateMoreInfoIdN, #SearchNexAvailableDayId {
-    background-color: #FFF;
+#DateMoreInfoIdN, #SearchNexAvailableDayId {    
     border: medium none;
-    color: #759418;
-    font-size: 1.2em;
+    color: #759418;    
     display: block;
     width: auto;
-    height: auto;
-    margin: 9px auto;
+    height: auto;    
     letter-spacing: -0.6px;
-    font-weight: normal;
+    font-weight: normal;    
+    text-align:center;
 }
     #DateMoreInfoIdN:hover, #SearchNexAvailableDayId:hover{
         text-decoration:underline;
     }
+#DateMoreInfoIdN{
+    background-color: #FFF;
+    margin: 9px auto;
+    font-size: 1.2em;
+    line-height: 0.9em;
+}
 #SearchNexAvailableDayId {
-        background-color: #ECECEC;
-        margin: 8px auto 8px auto;
-        font-size: 1.3em;
-        text-align:center;
-        line-height: 1.1em;
+    background-color: #ECECEC;
+    margin: 8px auto;
+    font-size: 1.3em;        
+    line-height: 1.1em;
 }
 
 /********PACIENTE NUEVO*************/

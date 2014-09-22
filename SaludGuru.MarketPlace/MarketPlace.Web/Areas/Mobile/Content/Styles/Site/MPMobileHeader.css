@@ -352,7 +352,7 @@ div#selGlobalCity-button span{
     font-size: 1.1em;
     color: #888;
     text-transform:uppercase;
-    margin-left: 20px;
+    margin:0px auto 0px auto;
 }
 .MPMobileSearchFieldWrapper {
     border:none;
