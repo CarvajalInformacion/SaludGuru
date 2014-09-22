@@ -13,10 +13,9 @@
         </div>
         <div class="MPResultsDoctorProfile">
 
-
             <!--Render profiles-->
             @foreach (SaludGuruProfile.Manager.Models.Profile.ProfileModel oProfile in Model.CurrentProfile)
-            {  
+            {
                 switch (oProfile.ProfileStatus)
                 {
                     case SaludGuruProfile.Manager.Models.enumProfileStatus.Free:

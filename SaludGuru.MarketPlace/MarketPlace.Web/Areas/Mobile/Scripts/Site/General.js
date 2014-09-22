@@ -55,10 +55,11 @@ var ScheduleAppointmentObject = {
     ScheduleAppointment: function (vLink) {
         debugger;
         if (ScheduleAppointmentObject.IsLogin) {
-            window.location = vLink;
+            var CurrentSite = $('#CurrentSite').val();
+            window.location = CurrentSite;
         }
         else {
-            $.mobile.changePage('https://localhost:44303/Home/LoginDialog?UrlReturn=' + vLink + '', { transition: "pop", role: "dialog" });
+            $.mobile.changePage(vLink + '', { transition: "pop", role: "dialog", id: "LoginDialog" });
         }
     },
 

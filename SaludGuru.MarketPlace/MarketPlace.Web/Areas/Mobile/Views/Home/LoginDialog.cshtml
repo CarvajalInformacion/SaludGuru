@@ -1,7 +1,7 @@
 ﻿@model String
 @{
-    ViewBag.Title = "LoginDialog";
-    Layout = null;
+    //ViewBag.Title = "LoginDialog";
+    //Layout = null;
 }
 @{
     //get login urls
@@ -22,7 +22,7 @@
     OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}", Model.ToString());
 }
 
-<div data-role="page">
+<div data-role="page" >
     <div data-role="content">
         <div id="dialog_NotLogin" title="Ingreso requerido">
             <input type="hidden" value="@Model" id="UrlRedirect" />
