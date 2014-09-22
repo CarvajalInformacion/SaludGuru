@@ -1,6 +1,6 @@
 .ui-content.ui-body-a {
     display: block;
-    height: 150px;
+    height: auto;
     overflow: hidden;
 }
 
@@ -10,5 +10,53 @@
 
 div#dialog_NotLogin {
     display: block;
-    height: 300px;
+    height: auto;
+    padding: 12px;
 }
+    div#dialog_NotLogin span{
+        color: #759418;
+        font-size: 1.8em;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1em;
+    }
+        div#dialog_NotLogin div{
+            display:block;
+            width:100%;
+            height:auto;
+            text-align:center;
+            margin:6px 0px 0px 0px;
+        }
+         div#dialog_NotLogin div > a{
+            display:inline-block;
+            width:80px;
+            height:80px;
+            border:none;
+        }
+            .MPMobileDialogGoogleLogIn {
+                background-image: url("/Areas/Mobile/Content/Images/googleIconSmall.png");
+                background-position: 2px 2px;
+                background-repeat: no-repeat;
+                background-size: 75px auto;
+                border: medium none;
+                display: inline-block;
+                height: 30px;
+                vertical-align: top;
+                width: 27px;
+            }
+            .MPMobileDialogFacebookLogIn {
+                background-image: url("/Areas/Mobile/Content/Images/facebookIconSmall.png");
+                background-position: 1px 2px;
+                background-repeat: no-repeat;
+                background-size: 75px auto;
+                border: medium none;
+                display: inline-block;
+                height: 30px;
+                margin: 0 0 0 4px;
+                vertical-align: top;
+                width: 28px;
+            }
+
+    .ui-dialog{
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
