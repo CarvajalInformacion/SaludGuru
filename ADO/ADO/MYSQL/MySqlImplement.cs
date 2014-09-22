@@ -11,84 +11,100 @@ namespace ADO.MYSQL
 {
     public class MySqlImplement : IADO
     {
-        public IDbConnection CurrentConnection { get; private set; }
+
+        public string CurrentConnectionString { get; private set; }
+        //public IDbConnection CurrentConnection { get; private set; }
 
         public MySqlImplement()
         {
-            CurrentConnection = new MySql.Data.MySqlClient.MySqlConnection();
+            //CurrentConnection = new MySql.Data.MySqlClient.MySqlConnection();
         }
 
         public MySqlImplement(string ConnectionName)
         {
-            CurrentConnection = new MySql.Data.MySqlClient.MySqlConnection
-                (System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString);
+            CurrentConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionName].ConnectionString;
         }
 
         public void SetConnection(string ConnectionString)
         {
-            CurrentConnection = new MySql.Data.MySqlClient.MySqlConnection(ConnectionString);
+            CurrentConnectionString = ConnectionString;
         }
 
         public ADOModelResponse ExecuteQuery(ADOModelRequest QueryParams)
         {
             ADOModelResponse oRetorno = new ADOModelResponse();
 
-            //create mysql command
-            MySql.Data.MySqlClient.MySqlCommand CurrentCommand = new MySql.Data.MySqlClient.MySqlCommand();
+            //get connection context
+            MySql.Data.MySqlClient.MySqlConnection Conn = new MySql.Data.MySqlClient.MySqlConnection(CurrentConnectionString);
 
-            CurrentCommand.Connection = (MySql.Data.MySqlClient.MySqlConnection)CurrentConnection;
-            CurrentCommand.CommandText = QueryParams.CommandText;
-
-            if (QueryParams.Parameters != null && QueryParams.Parameters.Count > 0)
+            try
             {
-                QueryParams.Parameters.All(param =>
+                //create mysql command
+                MySql.Data.MySqlClient.MySqlCommand CurrentCommand = new MySql.Data.MySqlClient.MySqlCommand();
+
+                CurrentCommand.Connection = Conn;
+                CurrentCommand.CommandText = QueryParams.CommandText;
+
+                if (QueryParams.Parameters != null && QueryParams.Parameters.Count > 0)
                 {
-                    CurrentCommand.Parameters.Add((MySql.Data.MySqlClient.MySqlParameter)param);
-                    return true;
-                });
+                    QueryParams.Parameters.All(param =>
+                    {
+                        CurrentCommand.Parameters.Add((MySql.Data.MySqlClient.MySqlParameter)param);
+                        return true;
+                    });
+                }
+
+                CurrentCommand.CommandType = QueryParams.CommandType;
+
+                //validate method to execute
+                switch (QueryParams.CommandExecutionType)
+                {
+                    case enumCommandExecutionType.NonQuery:
+                        using (CurrentCommand.Connection)
+                        {
+                            CurrentCommand.Connection.Open();
+                            oRetorno.NonQueryResult = CurrentCommand.ExecuteNonQuery();
+                            CurrentCommand.Connection.Close();
+                        }
+                        break;
+                    case enumCommandExecutionType.Scalar:
+                        using (CurrentCommand.Connection)
+                        {
+                            CurrentCommand.Connection.Open();
+                            oRetorno.ScalarResult = CurrentCommand.ExecuteScalar();
+                            CurrentCommand.Connection.Close();
+                        }
+                        break;
+                    case enumCommandExecutionType.DataTable:
+
+                        oRetorno.DataTableResult = new DataTable();
+                        using (MySql.Data.MySqlClient.MySqlDataAdapter dat = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
+                        {
+                            oRetorno.NonQueryResult = dat.Fill(oRetorno.DataTableResult);
+                        }
+
+                        break;
+                    case enumCommandExecutionType.DataSet:
+
+                        oRetorno.DataSetResult = new DataSet();
+                        using (MySql.Data.MySqlClient.MySqlDataAdapter dads = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
+                        {
+                            oRetorno.NonQueryResult = dads.Fill(oRetorno.DataSetResult);
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            CurrentCommand.CommandType = QueryParams.CommandType;
-
-            //validate method to execute
-            switch (QueryParams.CommandExecutionType)
+            catch (Exception err)
             {
-                case enumCommandExecutionType.NonQuery:
-                    using (CurrentCommand.Connection)
-                    {
-                        CurrentCommand.Connection.Open();
-                        oRetorno.NonQueryResult = CurrentCommand.ExecuteNonQuery();
-                        CurrentCommand.Connection.Close();
-                    }
-                    break;
-                case enumCommandExecutionType.Scalar:
-                    using (CurrentCommand.Connection)
-                    {
-                        CurrentCommand.Connection.Open();
-                        oRetorno.ScalarResult = CurrentCommand.ExecuteScalar();
-                        CurrentCommand.Connection.Close();
-                    }
-                    break;
-                case enumCommandExecutionType.DataTable:
-
-                    oRetorno.DataTableResult = new DataTable();
-                    using (MySql.Data.MySqlClient.MySqlDataAdapter dat = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
-                    {
-                        oRetorno.NonQueryResult = dat.Fill(oRetorno.DataTableResult);
-                    }
-
-                    break;
-                case enumCommandExecutionType.DataSet:
-
-                    oRetorno.DataSetResult = new DataSet();
-                    using (MySql.Data.MySqlClient.MySqlDataAdapter dads = new MySql.Data.MySqlClient.MySqlDataAdapter(CurrentCommand))
-                    {
-                        oRetorno.NonQueryResult = dads.Fill(oRetorno.DataSetResult);
-                    }
-
-                    break;
-                default:
-                    break;
+                throw err;
+            }
+            finally
+            {
+                if (Conn.State == ConnectionState.Open)
+                    Conn.Close();
             }
 
             return oRetorno;
