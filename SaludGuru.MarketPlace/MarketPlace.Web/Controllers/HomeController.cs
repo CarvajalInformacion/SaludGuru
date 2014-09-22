@@ -41,10 +41,11 @@ namespace MarketPlace.Web.Controllers
             return View(Model);
         }
 
-        public virtual ActionResult LoginDialog()
+        public virtual ActionResult LoginDialog(string Date, string OfficePublicId)
         {
             Object urlReturn = Request["UrlReturn"].ToString();
 
+            urlReturn = urlReturn + "&OfficePublicId=" + OfficePublicId + "&Date=" + Date;
             return View(urlReturn);
         }
 
