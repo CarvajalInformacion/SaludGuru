@@ -13,21 +13,28 @@
 
         .MPFormDataWrapper ul li label {
             color: #759418;
-            font-size: 1em;
+            font-size: 1em !important;
         }
+
+.ui-checkbox {
+    display: inline-block;
+    vertical-align: top;
+    /* margin-left: -8px; */
+    top: -1px;
+}
 
 form#AppointmentForm {
     text-align: left;
 }
 
-li.OfficeSelectedLi h4, 
-li.InsuranceSelectedLi h4, 
-li.TreatmentSelectedLi h4, 
+li.OfficeSelectedLi h4,
+li.InsuranceSelectedLi h4,
+li.TreatmentSelectedLi h4,
 li.MPAgendaPatientSelection h4,
 li.MPAgendaButtonWrapper h4,
-h4.titleNewPatient{
+h4.titleNewPatient {
     height: auto;
-    margin:0px;
+    margin: 0px;
     line-height: 1em;
     font-size: 1.2em;
     color: #666;
@@ -38,15 +45,20 @@ h4.titleNewPatient{
     height: 14px;
     line-height: 14px;
 }
+
+li.LegalTermsLi {
+    text-align: center;
+}
+
 .LegalTermsLi a {
     display: inline-block;
     float: left;
 }
 
-    .MPAgendaButtonWrapper label {
-        text-align: left;
-        margin-left: 70px;
-    }
+.MPAgendaButtonWrapper label {
+    text-align: left;
+    margin-left: 70px;
+}
 
 li#officeSelectedId label {
     width: 200px !important;
@@ -56,7 +68,7 @@ li#officeSelectedId label {
     display: block !important;
     height: 38px !important;
     width: 96% !important;
-    margin: 46px auto 0px !important;
+    margin: 15px auto 0px !important;
     background-color: #99C21D;
     border-radius: 2px;
     border: 1px solid #666;
@@ -64,21 +76,44 @@ li#officeSelectedId label {
     font-size: 1.4em;
     font-weight: bold;
 }
+
     .MPAgendaButtonAcceptDate:hover {
         color: #666;
-        background-color:#fff;
+        background-color: #fff;
     }
+
 input#LegalTerms {
     display: inline-block !important;
-    margin: 3px 0px 0px 0px;
+    margin-top: -1px;
+    width: 18px;
 }
+
 .LegalTerms {
-    margin:3px 0px 0px 31px !important;
-    display:inline-block !important;
+    margin-top: 3px !important;
+    display: inline-block !important;
+    font-size: 1.2em !important;
 }
+
+li.RedirectLegalTerms {
+    margin-top: 8px;
+    text-align: center;
+}
+
+    li.RedirectLegalTerms a label {
+        font-size: 1em;
+    }
+
+span#LegalTerms-error {
+    margin-left: 34px !important;
+    margin-top: 13px;
+    color: red;
+    width: 217px;
+}
+
 h4.AgendaLabel {
-    margin:14px 0px 0px 0px !important;
+    margin: 14px 0px 0px 0px !important;
 }
+
 .MPFormDataWrapper ul li select {
     padding: 0px;
     text-align: left;
@@ -133,7 +168,8 @@ h4.AgendaLabel {
     width: auto;
     height: auto;
 }
-    #ulPatientList label, .MPAgendaButtonWrapper label{
+
+    #ulPatientList label, .MPAgendaButtonWrapper label {
         margin: 8px 0px 2px 35px;
     }
 
@@ -150,19 +186,21 @@ h4.AgendaLabel {
     letter-spacing: -0.6px;
     font-weight: normal;
 }
-    #DateMoreInfoIdN:hover, #SearchNexAvailableDayId:hover{
-        text-decoration:underline;
+
+    #DateMoreInfoIdN:hover, #SearchNexAvailableDayId:hover {
+        text-decoration: underline;
     }
+
 #SearchNexAvailableDayId {
-        background-color: #ECECEC;
-        margin: 8px auto 8px auto;
-        font-size: 1.3em;
-        text-align:center;
-        line-height: 1.1em;
+    background-color: #ECECEC;
+    margin: 8px auto 8px auto;
+    font-size: 1.3em;
+    text-align: center;
+    line-height: 1.1em;
 }
 
 /********PACIENTE NUEVO*************/
-div#NewPatientId, #FreeScheduleId{
+div#NewPatientId, #FreeScheduleId {
     text-align: left;
     height: auto;
     background-color: #ececec;
@@ -173,51 +211,60 @@ div#NewPatientId, #FreeScheduleId{
 
 #FreeScheduleIdForProfile {
     text-align: center;
-    width:98%;
+    width: 98%;
     height: auto;
     background-color: #ececec;
     border: 1px solid #99c21d;
     border-radius: 3px;
     margin: 8px auto 8px auto;
 }
+
 .SelOfficeGrid > div > a:first-child,
-.SelOfficeGrid > div > a:nth-child(2){
+.SelOfficeGrid > div > a:nth-child(2) {
     font-size: 1.1em;
 }
+
 .SelOfficeGrid > div > a:first-child {
-    float:left;
-    margin-left:6px;
+    float: left;
+    margin-left: 6px;
 }
+
 .SelOfficeGrid > div > a:nth-child(2) {
-    float:right;
-    margin-right:6px;
+    float: right;
+    margin-right: 6px;
 }
-#divAppointmentSchedule_Template_Grid ul li:first-child{
-    text-align:center;
+
+#divAppointmentSchedule_Template_Grid ul li:first-child {
+    text-align: center;
     margin: 12px 0px 8px 0px;
 }
-#divAppointmentSchedule_Template_Grid ul{
+
+#divAppointmentSchedule_Template_Grid ul {
     display: block;
     width: 92%;
     text-align: center;
     color: #666;
     font-size: 1.2em;
 }
+
 #DateMoreInfoIdNN {
-    border:initial;
-    background:initial;
-    font-size:1.3em;
-    color:#759418;
-    display:block;
-    margin:8px 0px 8px 12px;
-    text-decoration:underline;
+    border: initial;
+    background: initial;
+    font-size: 1.3em;
+    color: #759418;
+    display: block;
+    margin: 8px 0px 8px 12px;
+    text-decoration: underline;
 }
-#DateMoreInfoIdNN:hover {
-    text-decoration:underline;
-}
+
+    #DateMoreInfoIdNN:hover {
+        text-decoration: underline;
+    }
+
 .MPMobileOfficeInfo {
     padding: 12px 0px 12px 8px;
 }
+
 .MPMobileCloseWindow {
     background-color: #99c21d;
     background-image: url("/Areas/Mobile/Content/Images/cerrar.png");
@@ -240,13 +287,13 @@ label.titleNewPatient {
 }
 
 label.GenderLi {
-        margin: 0px 0px 0px 28px !important;
-        display: inline-block;
-        vertical-align: top;
+    margin: 0px 0px 0px 28px !important;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #CreatePatientForm {
-    margin:6px 0px 0px 0px !important;
+    margin: 6px 0px 0px 0px !important;
     display: block;
     width: auto;
 }
@@ -257,12 +304,14 @@ label.GenderLi {
 
         #CreatePatientForm ul li {
             padding: 0px;
-            margin:0px;
+            margin: 0px;
         }
+
             #CreatePatientForm ul li label {
                 margin: 8px 0px 4px 0px;
                 line-height: 1em;
             }
+
             #CreatePatientForm ul li input {
                 line-height: 31px;
                 padding: 0px;
@@ -273,10 +322,12 @@ label.GenderLi {
                 width: 94%;
                 display: inline-block;
             }
+
 .required {
-    color:red;
-    vertical-align:top;
+    color: red;
+    vertical-align: top;
 }
+
 .GridAP div span {
     display: inline-block !important;
     width: 60% !important;
