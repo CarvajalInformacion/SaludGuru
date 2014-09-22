@@ -1,28 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
     <title></title>
-
-
 </head>
-
-
+    @*Render boundles scripts*@
+    @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
+    @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
+    @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile")
 <body>
     <div data-role="page" id="Home" data-theme="a">
-
         <!--Start internal content-->
         <div>
             @RenderBody()
-        </div>        
-
-        @*Render boundles scripts*@
-        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquery")
-        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jqueryval")
-        @Scripts.Render("~/" + MarketPlace.Web.Controllers.BaseController.AreaName + "/bundles/jquerymobile")
-        @*Render inline site scripts*@
+        </div>
     </div>
 </body>
 </html>
