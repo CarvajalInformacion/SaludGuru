@@ -247,10 +247,7 @@ var AppointmentObject = {
                     $('#divGrid_Title').append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
 
                     var gridSearchSh = $('#divGrid_NotSchedule').html('');
-
-
                     gridSearchSh.append('<a id="SearchNexAvailableDayId" onclick="AppointmentObject.NextAndPrevDay(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Buscar siguiente horario disponible </a>");
-
                 }
                 else {
                     $("#ul_GridFreeSchedule").append('<li class="MPFreeSchedule">' + '<a onclick="AppointmentObject.SetHour(' + "'" + item.AvailableDateTemplateText + "'" + "," + "'" + item.RequestDate + "'" + ' );"   href="javascript:;"> ' + item.AvailableDateText + ' </a></li>');
@@ -260,9 +257,10 @@ var AppointmentObject = {
         }
     },
 
-    RenderHourProfileView: function (Hours, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment) {
+    RenderHourProfileView: function (ActualUrl, Hours, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment) {
         debugger;
         var UrlProfile = $('#UrlReturn').val();
+        
         if (Hours != null) {
             $(CurrentOfficeUl).html('')
             $.each(Hours, function (i, item) {
@@ -274,8 +272,8 @@ var AppointmentObject = {
                     $('#divGrid_Title_' + vOfficePublicId).html('');
                     var valDiv = $('#divGrid_Title_' + vOfficePublicId).html();
                     debugger;
-                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aPrevDay_' + vOfficePublicId + ' " onclick="AppointmentObject.PrevAvalableDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "','" + vTreatment + "','" + vOfficePublicId + "','" + UrlProfile + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
-                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aNextDay_' + vOfficePublicId + ' " onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "','" + vTreatment + "','" + vOfficePublicId + "','" + UrlProfile + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
+                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aPrevDay_' + vOfficePublicId + ' " onclick="AppointmentObject.PrevAvalableDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "','" + vTreatment + "','" + vOfficePublicId + "','" + ActualUrl + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
+                    $('#divGrid_Title_' + vOfficePublicId).append('<a id="aNextDay_' + vOfficePublicId + ' " onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "','" + vTreatment + "','" + vOfficePublicId + "','" + ActualUrl + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
                     $('#divGrid_Title_' + vOfficePublicId).append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
 
                     var gridSearchSh = $('#divGrid_NotSchedule').html('');
@@ -284,10 +282,10 @@ var AppointmentObject = {
                 else {
                     debugger;
                     if (ScheduleAppointmentObject.IsLogin) {
-                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.RequestDate + "'" + ');"> ' + item.AvailableDateText + ' </a></li>');                        
+                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + ActualUrl + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.RequestDate + "'" + ');"> ' + item.AvailableDateText + ' </a></li>');
                     }
                     else {
-                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
+                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "','" + vOfficePublicId + "','" + Date + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
                     }
                 }
             });
@@ -312,6 +310,8 @@ var AppointmentObject = {
         var vOPublicId = $('#officeSelectedId').val();
         var Treatment = $('#RelatedTreatment').val();
         var oTreatment = $('#RelatedTreatment').val();
+        var UrlProfileA = UrlProfile;
+
         if (actualDate == null) {
             var vNewDate = '';
         }
@@ -329,7 +329,7 @@ var AppointmentObject = {
                        type: "POST",
                        success: function (data, textStatus, jqXHR) {
                            debugger;
-                           AppointmentObject.RenderHourProfileView(data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
+                           AppointmentObject.RenderHourProfileView(UrlProfileA, data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
 
                            //AddPatientToList(data);
                        },
@@ -346,7 +346,7 @@ var AppointmentObject = {
                   type: "POST",
                   success: function (data, textStatus, jqXHR) {
                       debugger;
-                      AppointmentObject.RenderHourProfileView(data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
+                      AppointmentObject.RenderHourProfileView(UrlProfileA, data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
 
                       //AddPatientToList(data);
                   },
@@ -365,7 +365,7 @@ var AppointmentObject = {
                 type: "POST",
                 success: function (data, textStatus, jqXHR) {
                     debugger;
-                    AppointmentObject.RenderHourProfileView(data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
+                    AppointmentObject.RenderHourProfileView(UrlProfileA, data, CurrentOfficeUl, UrlProfile, vOfficePublicId, vTreatment);
 
                     //AddPatientToList(data);
                 },
@@ -379,33 +379,33 @@ var AppointmentObject = {
         $('#li_' + vOfficePublicId).addClass('selected');
     },
 
-    RenderHourProfile: function (Hours, vOfficePublicId) {
-        debugger;
-        var UrlProfile = $('#UrlReturn').val();
-        if (Hours != null) {
-            $("#ul_GridFreeSchedule").html('')
-            $.each(Hours, function (i, item) {
-                //get html notification template                 
-                var valSet = $('#ul_GridFreeSchedule').html();
+    //RenderHourProfile: function (Hours, vOfficePublicId) {
+    //    debugger;
+    //    var UrlProfile = $('#UrlReturn').val();
+    //    if (Hours != null) {
+    //        $("#ul_GridFreeSchedule").html('')
+    //        $.each(Hours, function (i, item) {
+    //            //get html notification template                 
+    //            var valSet = $('#ul_GridFreeSchedule').html();
 
-                if (item.IsHeader) {
-                    $("#ul_GridFreeSchedule").append('<li>' + item.AvailableDateTemplateText + '</li>');
-                    $('#divGrid_Title').html('');
-                    var valDiv = $('#divGrid_Title').html();
+    //            if (item.IsHeader) {
+    //                $("#ul_GridFreeSchedule").append('<li>' + item.AvailableDateTemplateText + '</li>');
+    //                $('#divGrid_Title').html('');
+    //                var valDiv = $('#divGrid_Title').html();
 
-                    $('#divGrid_Title').append('<a id="aPrevDay" onclick="AppointmentObject.PrevAvalableDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
-                    $('#divGrid_Title').append('<a id="aNextDay" onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
-                    $('#divGrid_Title').append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
+    //                $('#divGrid_Title').append('<a id="aPrevDay" onclick="AppointmentObject.PrevAvalableDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Anterior             </a>");
+    //                $('#divGrid_Title').append('<a id="aNextDay" onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Siguiente </a>");
+    //                $('#divGrid_Title').append('<label id="lblNextDay" style="display:none">' + item.NextDate + '</label>');
 
-                    var gridSearchSh = $('#divGrid_NotSchedule').html('');
-                    gridSearchSh.append('<a id="SearchNexAvailableDayId" onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Buscar siguiente horario disponible </a>");
-                }
-                else {
-                    $("#ul_GridFreeSchedule").append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
-                }
-            });
-        }
-    },
+    //                var gridSearchSh = $('#divGrid_NotSchedule').html('');
+    //                gridSearchSh.append('<a id="SearchNexAvailableDayId" onclick="AppointmentObject.NextAndPrevDayProfile(' + "'" + item.PublicProfileId + "','" + item.NextDate + "'" + ' );" ' + " href=" + ' "javascript:"' + ">Buscar siguiente horario disponible </a>");
+    //            }
+    //            else {
+    //                $("#ul_GridFreeSchedule").append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
+    //            }
+    //        });
+    //    }
+    //},
 
     NextAndPrevDayProfile: function (vPublicProfileId, NextDay, vTreatment, vOfficePublicId, UrlProfile) {
         debugger;
