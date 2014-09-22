@@ -12,7 +12,7 @@
         color: #759418;
         cursor: text;
         display: block;
-        font-size: 1.2em;
+        font-size: 1.1em;
         letter-spacing: -0.5px;
         line-height: 27px;
         margin: 0;
@@ -41,7 +41,7 @@ li.ProfileImage {
 
 li.ProfileInformation {
     display: inline-block;
-    width: 66%;
+    width: 56%;
     text-align: left;
     vertical-align: top;
 }

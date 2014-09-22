@@ -9,9 +9,9 @@
 
 .ImgConfirmation {
     display: inline-block;
-    width: 100px;
+    width: 60px;
     height: auto;
-    margin: 15px auto;
+    margin: 30px 0px 0px 14px;
     vertical-align: top;
 }
 
@@ -27,17 +27,6 @@
 .MPAgendaConfirmationMessage {
     margin: 0px;
 }
-
-    /*.MPAgendaConfirmationMessage h2,
-    .MPAgendaConfirmationMessage h3,
-    .MPAgendaConfirmationMessage h4,
-    .MPAgendaConfirmationMessage h5,
-    .MPAgendaConfirmationMessage h6 {
-        display: block;
-        font-size: 1.1em;
-        line-height: 1em;
-        margin: 14px 0;
-    }*/
 
     .MPAgendaConfirmationMessage h3 {
         font-size: 1.2em;
