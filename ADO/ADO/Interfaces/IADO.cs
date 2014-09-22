@@ -9,7 +9,8 @@ namespace ADO.Interfaces
 {
     public interface IADO
     {
-        System.Data.IDbConnection CurrentConnection { get; }
+        //System.Data.IDbConnection CurrentConnection { get; }
+        string CurrentConnectionString { get; }
 
         void SetConnection(string ConnectionString);
 
