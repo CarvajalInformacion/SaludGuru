@@ -7,7 +7,6 @@ var ProfileAppointmentObject = {
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
-        debugger;
         //init render info
         this.DivId = vInitObject.DivId;
 
@@ -19,7 +18,6 @@ var ProfileAppointmentObject = {
     },
 
     RenderAsync: function () {
-        debugger;
         var oFirstRender = false;
 
         for (var item in this.lstOffice) {
@@ -211,7 +209,6 @@ var oProfileMapObject = {
     lstOffice: new Array(),
     /*init variables*/
     Init: function (vInitObject) {
-        debugger;
         //init render info
         this.DivId = vInitObject.DivId;
         this.CenterMap = vInitObject.CenterMap;
@@ -224,7 +221,6 @@ var oProfileMapObject = {
     },
 
     RenderAsync: function () {
-        debugger;
         //start map
         $('#' + oProfileMapObject.DivId).gmap({
             'center': oProfileMapObject.CenterMap,
@@ -239,7 +235,6 @@ var oProfileMapObject = {
             oToolTip = oToolTip.replace(/\${OfficeName}/gi, oProfileMapObject.lstOffice[item].OfficeName);
             oToolTip = oToolTip.replace(/\${Address}/gi, oProfileMapObject.lstOffice[item].Address);
             oToolTip = oToolTip.replace(/\${Telephone}/gi, oProfileMapObject.lstOffice[item].Telephone);
-            debugger;
             $('#' + oProfileMapObject.DivId).gmap('addMarker', {
                 'position': oProfileMapObject.lstOffice[item].Geolocation,
                 //'height': '10px'
