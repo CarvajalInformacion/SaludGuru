@@ -47,14 +47,45 @@ h4.titleNewPatient {
 }
 
 li.LegalTermsLi {
+    display:block;
     text-align: center;
+    width:100%;
+    height:auto;
 }
-
-.LegalTermsLi a {
-    display: inline-block;
-    float: left;
-}
-
+    .LegalTerms{
+        display:inline-block !important;
+        width:auto;
+    }
+        #LegalTerms{
+            display: inline-block;
+            height: auto;
+            margin:-4px 0 0;
+            vertical-align: top;
+            width: auto;
+        }
+            .RedirectLegalTerms, .RedirectLegalTerms a{
+                display:block;
+                width:100%;
+                line-height:0.8em;
+                font-size:0.9em;
+                color:red !important;
+            }
+                .RedirectLegalTerms a {
+                    margin:17px auto 0 auto;
+                }
+            #LegalTerms-error {
+                color: red !important;
+                font-size: 0.8em;
+                left: -299px;
+                line-height: 0.8em;
+                position: absolute;
+                top: 18px;
+                width: 367px;
+                font-style:italic;
+            }
+                .error help-inline {
+                    display:initial !important;
+                }
     .MPAgendaButtonWrapper label {
         text-align: left;
         margin-left: 70px;
@@ -81,19 +112,6 @@ li#officeSelectedId label {
         color: #666;
         background-color: #fff;
     }
-
-input#LegalTerms {
-    display: inline-block !important;
-    margin-top: -1px;
-    width: 18px;
-}
-
-.LegalTerms {
-    margin-top: 3px !important;
-    display: inline-block !important;
-    font-size: 1.2em !important;
-}
-
 li.RedirectLegalTerms {
     margin-top: 8px;
     text-align: center;
@@ -102,13 +120,6 @@ li.RedirectLegalTerms {
     li.RedirectLegalTerms a label {
         font-size: 1em;
     }
-
-span#LegalTerms-error {
-    margin-left: 34px !important;
-    margin-top: 13px;
-    color: red;
-    width: 217px;
-}
 
 h4.AgendaLabel {
     margin: 14px 0px 0px 0px !important;
@@ -191,7 +202,7 @@ h4.AgendaLabel {
 #DateMoreInfoIdN{
     background-color: #FFF;
     margin: 9px auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 0.9em;
 }
 #SearchNexAvailableDayId {
@@ -253,10 +264,11 @@ div#NewPatientId, #FreeScheduleId {
 #DateMoreInfoIdNN {
     border: initial;
     background: initial;
-    font-size: 1.3em;
+    font-size: 1em;
+    line-height:1em;
     color: #759418;
     display: block;
-    margin: 8px 0px 8px 12px;
+    margin: 8px auto 8px auto;
     text-decoration: underline;
 }
 
