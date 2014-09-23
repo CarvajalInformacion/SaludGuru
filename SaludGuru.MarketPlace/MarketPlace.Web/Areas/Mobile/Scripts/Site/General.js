@@ -50,13 +50,13 @@ var ScheduleAppointmentObject = {
         this.OutlookUrl = vInitObject.OutlookUrl;
     },
 
-    ScheduleAppointment: function (vLink, officePublicId, Date ) {
+    ScheduleAppointment: function (vLink, officePublicId, Date) {
         if (ScheduleAppointmentObject.IsLogin) {
             var CurrentSite = vLink;
             window.location = CurrentSite;
         }
         else {
-            $.mobile.changePage(vLink + '&OfficePublicId='+ officePublicId + '&Date=' + Date, { transition: "pop", role: "dialog", id: "LoginDialog" });
+            $.mobile.changePage(vLink, { transition: "pop", role: "dialog", id: "LoginDialog" });
         }
     },
 
