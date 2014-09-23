@@ -29,7 +29,6 @@
 }
 
 function InitDialogControlMobile(InitParams) {
-    debugger;
     ScheduleAppointmentObject.Init({
         FBUrl: InitParams.FBUrl,
         GoogleUrl: InitParams.GoogleUrl,
@@ -45,7 +44,6 @@ var ScheduleAppointmentObject = {
     IsLogin: false,
 
     Init: function (vInitObject) {
-        debugger;
         this.FBUrl = vInitObject.FBUrl;
         this.GoogleUrl = vInitObject.GoogleUrl;
         this.IsLogin = vInitObject.IsLogin;
@@ -53,7 +51,6 @@ var ScheduleAppointmentObject = {
     },
 
     ScheduleAppointment: function (vLink, officePublicId, Date ) {
-        debugger;
         if (ScheduleAppointmentObject.IsLogin) {
             var CurrentSite = vLink;
             window.location = CurrentSite;
@@ -64,7 +61,6 @@ var ScheduleAppointmentObject = {
     },
 
     UrlReturn: function (vLink) {
-        debugger;
         $('#dialog_NotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
         $('#dialog_NotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
         //$('#dialog_NotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
@@ -80,7 +76,6 @@ var SearchBoxObject = {
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
-        debugger;
         this.InputId = vInitObject.InputId;
         this.CityId = vInitObject.CityId;
     },
@@ -98,7 +93,6 @@ var SearchBoxObject = {
     },
 
     SearchTerm: function () {
-        debugger;
         //find url to redirect
         window.location = '/doctores-' + $("#selGlobalCity option:selected").attr('itemname') + '/' + encodeURIComponent($('#' + SearchBoxObject.InputId).val().replace(/\./gi, '').trim());
     }

@@ -17,9 +17,9 @@
         [MarketPlace.Models.General.Constants.C_Settings_Login_WindowsLiveUrl.Replace("{{AreaName}}", MarketPlace.Web.Controllers.BaseController.AreaName)]
         .Value;
 
-    FBUrl = FBUrl.Replace("{{UrlRetorno}}", Model.ToString());
-    GoogleUrl = GoogleUrl.Replace("{{UrlRetorno}}", Model.ToString());
-    OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}", Model.ToString());
+    FBUrl = FBUrl.Replace("{{UrlRetorno}}",Server.UrlEncode(Model.ToString()));
+    GoogleUrl = GoogleUrl.Replace("{{UrlRetorno}}", Server.UrlEncode(Model.ToString()));
+    OutlookUrl = OutlookUrl.Replace("{{UrlRetorno}}",Server.UrlEncode(Model.ToString()));
 }
 
 <div data-role="page">
@@ -29,8 +29,8 @@
             <span>Para agendar una cita debe ingresar a traves de:</span>
             <!--Render autentications-->
             <div>
-                <a class="MPMobileDialogGoogleLogIn" href="@GoogleUrl" rel="nofollow"></a>
-                <a class="MPMobileDialogFacebookLogIn" href="@FBUrl" rel="nofollow"></a>
+                <a class="MPMobileDialogGoogleLogIn" href="@GoogleUrl" rel="external"></a>
+                <a class="MPMobileDialogFacebookLogIn" href="@FBUrl" rel="external"></a>
                 @*<a class="MPOutlookLogIn" href="@OutlookUrl" rel="nofollow"></a>*@
             </div>
         </div>
