@@ -285,7 +285,7 @@ var AppointmentObject = {
                         $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + ActualUrl + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.RequestDate + "'" + ');"> ' + item.AvailableDateText + ' </a></li>');
                     }
                     else {
-                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.AvailableDateText + "','" + vOfficePublicId + "','" + Date + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
+                        $(CurrentOfficeUl).append('<li class="MPFreeSchedule">' + '<a data-rel="dialog" href="javascript:ScheduleAppointmentObject.ScheduleAppointment(' + "'" + UrlProfile + '&OfficePublicId=' + vOfficePublicId + '&Date=' + item.RequestDate + "','" + vOfficePublicId + "','" + Date + "'" + ' );"> ' + item.AvailableDateText + ' </a></li>');
                     }
                 }
             });

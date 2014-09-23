@@ -56,7 +56,7 @@
                                         string CurrentSite = ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name) + "?ProfilePublicId=" + Model.CurrentProfile.ProfilePublicId;
                                         <input type="hidden" name="Url" id="UrlReturn" value="@Domain" />
                                         <input type="hidden" name="CurrentSite" id="CurrentSite" value="@CurrentSite" />
-                                 
+                                                                        
                                         var urlProfile = (ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }));
 
 
@@ -141,8 +141,10 @@
                                     }
                                     else
                                     {
-                                        //ScheduleEnabled = false;
-                                        //MARIO COLOCA LA IMAGEN O LO Q SEA DENTRO DE UN DIV CUANDO NO TIENE AGENDA EN LINEA
+                                        <div class="MPMobileOfficeInfo" id="fragment-@oCurrentOffice.OfficePublicId">
+                                            <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                            <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                        </div>
                                     }
                                 }
                             </div>
