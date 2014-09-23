@@ -45,7 +45,8 @@ namespace MarketPlace.Web.Controllers
         {
             Object urlReturn = Request["UrlReturn"].ToString();
 
-            urlReturn = urlReturn + "&OfficePublicId=" + OfficePublicId + "&Date=" + Date;
+            urlReturn = urlReturn + Server.UrlEncode("&OfficePublicId=" + OfficePublicId + "&Date=" + Date);
+            urlReturn = Server.UrlDecode(urlReturn.ToString());
             return View(urlReturn);
         }
 
