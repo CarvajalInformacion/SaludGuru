@@ -22,5 +22,9 @@
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms))">AVISO LEGAL © Copyright 2013 SaludGurú.com</a> es el portal de salud más completo de Colombia. Encuentre la información profesional, médica y especializada relacionadas con su búsqueda. La política de tratamiento de datos personales de Publicar Publicidad Multimedia S.A.S puede ser <a href="@(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_LegalTerms)) + "/#usoInformacion")">consultada quí.</a>
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_ConditionsAndRestrictions))">CONDICIONES Y RESTRICCIONES</a>
         </p>
+        @if (Request.ServerVariables["HTTP_USER_AGENT"] != null)
+        {
+            Html.Raw(Request.ServerVariables["HTTP_USER_AGENT"]);
+        }
     </div>
 </div>

@@ -1492,6 +1492,7 @@
     <Content Include="Areas\Web\Views\Home\SiteMap.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_LayoutXml.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Filter.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\ChangeMobileVersion.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />
