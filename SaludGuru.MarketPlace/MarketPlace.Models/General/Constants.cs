@@ -71,6 +71,8 @@
 
         public const string C_Settings_City_Default = "City_Default";
 
+        public const string C_Settings_City_Indicative = "City_Indicative";
+
         public const string C_Settings_SaludGuru_FacebookProfile = "SaludGuru_FacebookProfile";
 
         public const string C_Settings_Profile_CertifiedImage = "Profile_CertifiedImage";

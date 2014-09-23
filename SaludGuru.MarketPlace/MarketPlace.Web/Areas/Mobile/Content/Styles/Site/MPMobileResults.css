@@ -206,8 +206,8 @@ div.MPResultsPaidProfileDoctorData {
     }
 }
 
-
 h2.MPResultsSpecialityName,
+h3.MPResultsSpecialityName,
 span.MPResultsInsuranceName {
     display: block;
     height: auto;
@@ -215,8 +215,10 @@ span.MPResultsInsuranceName {
     line-height: 1em;
 }
 
-h2.MPResultsSpecialityName {
-    font-size: 1.2em;
+h2.MPResultsSpecialityName,
+h3.MPResultsSpecialityName{
+    color:#666;
+    font-size: 1em;
 }
 
 li.MPResultsInsuranceName,
@@ -241,7 +243,8 @@ a.MPResultsPaidProfileDoctorName h2 {
 }
 
 a.freeProfile h2 {
-    color: #333;
+    color: #666;
+    font-size:1em;
 }
 
 .MPResultsEnsurance {
@@ -270,6 +273,10 @@ span.MPResultsDoctorShortDescription {
 /**********  DATOS CONTACTO **********/
 label.OfficeTextSelector {
     font-weight: bold !important;
+}
+
+span.OfficeContactTelephone a {
+    margin-right: 12px;
 }
 
 div.OfficeSelector {

@@ -18,6 +18,7 @@
     <!--Enabled Cities-->
     <key name="City_Cities">1,Bogotá;2,Medellín;3,Ibagué;</key>
     <key name="City_Default">1</key>
+    <key name="City_Indicative">1,1;2,4;3,8;</key>
 
     <!--SaludGuru Facebook-->
     <key name="SaludGuru_FacebookProfile">https://www.facebook.com/pages/Salud-Gurú/249567868524045?fref=ts</key>

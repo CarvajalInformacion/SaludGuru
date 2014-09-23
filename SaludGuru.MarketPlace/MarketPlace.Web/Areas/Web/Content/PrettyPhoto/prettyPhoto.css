@@ -191,7 +191,7 @@
 	div.light_square .pp_contract:hover { background: url(../images/prettyPhoto/light_square/sprite.png) 0 -47px no-repeat; cursor: pointer; } /* Contract button hover */
 	div.light_square .pp_close { width: 75px; height: 22px; background: url(../images/prettyPhoto/light_square/sprite.png) -1px -1px no-repeat; cursor: pointer; } /* Close button */
 	div.light_square .pp_details { position: relative; }
-	div.light_square .pp_description { margin-right: 85px; }
+	div.light_square .pp_description { margin-right: 85px; font-size: 0.6em; line-height: 12px; }
 	div.light_square #pp_full_res .pp_inline { color: #000; }
 	div.light_square .pp_gallery a.pp_arrow_previous,
 	div.light_square .pp_gallery a.pp_arrow_next { margin-top: 12px !important; }
@@ -519,7 +519,8 @@
 		div.ppt {
 			color: #fff;
 			display: none;
-			font-size: 17px;
 			margin: 0 0 5px 15px;
 			z-index: 9999;
+            font-size: 0.8em;
+            line-height: 0.9em;
 		}
