@@ -402,7 +402,7 @@ namespace MarketPlace.Web.ControllersApi
                     Select(sa => sa.Key).
                     OrderBy(sa => sa).
                     ToList();
-            if (IsPrevDay != "true")
+            if (IsPrevDay != "true" && NextAvailableDate == "false")
             {
                 for (int i = 0; i < 6; i++)
                 {
@@ -496,8 +496,8 @@ namespace MarketPlace.Web.ControllersApi
                             if (DaysToAdd < 0)
                                 DaysToAdd = (6 - (int)oStartDateTime.DayOfWeek) + (int)lstAvailableDay.Min();
 
-                            oStartDateTime = oStartDateTime.AddDays(1);
-                            oEndDateTime = oStartDateTime.AddDays(1).Date;
+                            oStartDateTime = oStartDateTime.AddDays(DaysToAdd);
+                            oEndDateTime = oStartDateTime.AddDays(DaysToAdd).Date;
                         }
                         else
                         {
