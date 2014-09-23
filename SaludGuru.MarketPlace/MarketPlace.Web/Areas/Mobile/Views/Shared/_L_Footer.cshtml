@@ -8,7 +8,7 @@
         </div>
         <hr class="Separator" />
         <div class="Desktop">
-            <a href="@Url.Action(MVC.Home.ActionNames.ChangeMobileVersion, MVC.Home.Name)" rel="external">
+            <a href="@(MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Url_MP_Desktop].Value.TrimEnd('/') +  Url.Action(MVC.Home.ActionNames.ChangeMobileVersion, MVC.Home.Name))" rel="external">
                 <img src="@Url.Content("/Areas/Mobile/Content/Images/SGMPDeskTopSmall.png")" />
                 <label>Versión de Escritorio</label>
             </a>
