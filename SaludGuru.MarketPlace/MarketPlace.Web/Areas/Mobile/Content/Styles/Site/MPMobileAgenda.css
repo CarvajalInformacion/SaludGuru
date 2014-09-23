@@ -3,20 +3,20 @@
 /************Estilos bloque perfil****************/
 .MPAgendaDoctorProfile {
     display: inline-block;
-    /* border: 1px solid red; */
     text-align: left;
     width: 100%;
 }
 
-    .MPAgendaDoctorProfile h6 {
-        color: #759418;
+    .MPAgendaDoctorProfile label {
+        color: #666;
         cursor: text;
-        display: block;
-        font-size: 1.1em;
+        display: inline-block;
+        font-size: 1.4em !important;
         letter-spacing: -0.5px;
-        line-height: 27px;
-        margin: 0;
+        line-height: 0.9em;
+        margin: 6px 0 0;
         padding: 0;
+        width: 70%;
     }
 
 ul.MPAgendaDoctorData {
