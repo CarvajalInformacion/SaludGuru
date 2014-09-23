@@ -19,133 +19,126 @@ namespace MarketPlace.Web.Controllers
             string CityName,
             string Query)
         {
-            //try
-            //{
-                //start seo model
-                SEOModel oSeoModel = new SEOModel()
+            //start seo model
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+
+                IsNoFollow = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
+                IsNoIndex = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
+            };
+
+
+            //get basic model
+            SearchViewModel oModel = new SearchViewModel()
+            {
+                CurrentSearchSpecialty = SpecialtyName,
+                CurrentSearchTreatment = TreatmentName,
+                CurrentSearchInsurance = InsuranceName,
+                CurrentSearchQuery = Query,
+                CurrentSearchCity = CityName,
+
+                IsRedirect = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
+                IsQuery = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsQuery) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsQuery]),
+            };
+
+            //get current category info
+            if (!oModel.IsQuery)
+            {
+                oModel.CurrentCategory = SaludGuruProfile.Manager.Controller.Profile.MPCategoryGetAvailableCategory
+                    (string.IsNullOrEmpty(oModel.CurrentSearchInsurance) ? null : oModel.CurrentSearchInsurance.Replace("+", " "),
+                    string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) ? null : oModel.CurrentSearchSpecialty.Replace("+", " "),
+                    string.IsNullOrEmpty(oModel.CurrentSearchTreatment) ? null : oModel.CurrentSearchTreatment.Replace("+", " "));
+            }
+
+            //get city
+            oModel.CurrentCityId = BaseController.EnabledCities.
+                        Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(oModel.CurrentSearchCity.Replace("+", " "))).
+                        Select(x => x.Key).
+                        DefaultIfEmpty(BaseController.DefaultCityId).
+                        FirstOrDefault();
+
+            if (base.CurrentCookie != null &&
+                oModel.CurrentCityId != base.CurrentCookie.CurrentCity)
+            {
+                base.SetCookie(new MarketPlace.Models.General.CookieModel()
                 {
-                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Title].Value,
-                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Description].Value,
-                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Search_Keywords].Value,
+                    CurrentCity = oModel.CurrentCityId,
+                });
+            }
 
-                    IsNoFollow = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
-                    IsNoIndex = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
-                };
+            //eval redirect
+            EvalRedirect
+                (oModel);
 
+            //get page number
+            oModel.CurrentPage = Convert.ToInt32(Request["PageNumber"]);
+            if (oModel.CurrentPage < 0)
+                oModel.CurrentPage = 0;
 
-                //get basic model
-                SearchViewModel oModel = new SearchViewModel()
-                {
-                    CurrentSearchSpecialty = SpecialtyName,
-                    CurrentSearchTreatment = TreatmentName,
-                    CurrentSearchInsurance = InsuranceName,
-                    CurrentSearchQuery = Query,
-                    CurrentSearchCity = CityName,
-
-                    IsRedirect = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
-                    IsQuery = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsQuery) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsQuery]),
-                };
-
-                //get current category info
-                if (!oModel.IsQuery)
-                {
-                    oModel.CurrentCategory = SaludGuruProfile.Manager.Controller.Profile.MPCategoryGetAvailableCategory
-                        (string.IsNullOrEmpty(oModel.CurrentSearchInsurance) ? null : oModel.CurrentSearchInsurance.Replace("+", " "),
-                        string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) ? null : oModel.CurrentSearchSpecialty.Replace("+", " "),
-                        string.IsNullOrEmpty(oModel.CurrentSearchTreatment) ? null : oModel.CurrentSearchTreatment.Replace("+", " "));
-                }
-
-                //get city
-                oModel.CurrentCityId = BaseController.EnabledCities.
-                            Where(x => BaseController.RemoveAccent(x.Value) == BaseController.RemoveAccent(oModel.CurrentSearchCity.Replace("+", " "))).
-                            Select(x => x.Key).
-                            DefaultIfEmpty(BaseController.DefaultCityId).
-                            FirstOrDefault();
-
-                if (base.CurrentCookie != null &&
-                    oModel.CurrentCityId != base.CurrentCookie.CurrentCity)
-                {
-                    base.SetCookie(new MarketPlace.Models.General.CookieModel()
-                    {
-                        CurrentCity = oModel.CurrentCityId,
-                    });
-                }
-
-                //eval redirect
-                EvalRedirect
-                    (oModel);
-
-                //get page number
-                oModel.CurrentPage = Convert.ToInt32(Request["PageNumber"]);
-                if (oModel.CurrentPage < 0)
-                    oModel.CurrentPage = 0;
-
-                //get filters
-                if (!string.IsNullOrEmpty(Request["Filter"]))
-                {
-                    oModel.CurrentRequestFilter = Request["Filter"].Replace(" ", "");
-                }
+            //get filters
+            if (!string.IsNullOrEmpty(Request["Filter"]))
+            {
+                oModel.CurrentRequestFilter = Request["Filter"].Replace(" ", "");
+            }
 
 
-                int oTotalRowsAux;
-                List<FilterModel> CurrentFilters;
-                //get profiles to show
-                if (oModel.IsQuery)
-                {
-                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                        (true,
-                        oModel.CurrentCityId,
-                        oModel.CurrentSearchQuery.Replace("+", " "),
-                        oModel.FilterInsurance,
-                        oModel.FilterSpecialty,
-                        null,
-                        oModel.FilterScheduleAvailable ? "true" : null,
-                        oModel.FilterIsCertified ? "true" : null,
-                        oModel.CurrentRowCount(BaseController.AreaName),
-                        oModel.CurrentPage,
-                        out oTotalRowsAux,
-                        out CurrentFilters);
-                    oModel.TotalRows = oTotalRowsAux;
-                    oModel.CurrentFilters = CurrentFilters;
-                }
-                else
-                {
-                    oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
-                        (false,
-                        oModel.CurrentCityId,
-                        null,
-                        !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : oModel.FilterInsurance,
-                        !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : oModel.FilterSpecialty,
-                        !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
-                        oModel.FilterScheduleAvailable ? "true" : null,
-                        oModel.FilterIsCertified ? "true" : null,
-                        oModel.CurrentRowCount(BaseController.AreaName),
-                        oModel.CurrentPage,
-                        out oTotalRowsAux,
-                        out CurrentFilters);
+            int oTotalRowsAux;
+            List<FilterModel> CurrentFilters;
+            //get profiles to show
+            if (oModel.IsQuery)
+            {
+                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
+                    (true,
+                    oModel.CurrentCityId,
+                    oModel.CurrentSearchQuery.Replace("+", " "),
+                    oModel.FilterInsurance,
+                    oModel.FilterSpecialty,
+                    null,
+                    oModel.FilterScheduleAvailable ? "true" : null,
+                    oModel.FilterIsCertified ? "true" : null,
+                    oModel.CurrentRowCount(BaseController.AreaName),
+                    oModel.CurrentPage,
+                    out oTotalRowsAux,
+                    out CurrentFilters);
+                oModel.TotalRows = oTotalRowsAux;
+                oModel.CurrentFilters = CurrentFilters;
+            }
+            else
+            {
+                oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileSearch
+                    (false,
+                    oModel.CurrentCityId,
+                    null,
+                    !string.IsNullOrEmpty(oModel.CurrentSearchInsurance) && oModel.CurrentInsurance != null ? (int?)oModel.CurrentInsurance.CategoryId : oModel.FilterInsurance,
+                    !string.IsNullOrEmpty(oModel.CurrentSearchSpecialty) && oModel.CurrentSpecialty != null ? (int?)oModel.CurrentSpecialty.CategoryId : oModel.FilterSpecialty,
+                    !string.IsNullOrEmpty(oModel.CurrentSearchTreatment) && oModel.CurrentTreatment != null ? (int?)oModel.CurrentTreatment.CategoryId : null,
+                    oModel.FilterScheduleAvailable ? "true" : null,
+                    oModel.FilterIsCertified ? "true" : null,
+                    oModel.CurrentRowCount(BaseController.AreaName),
+                    oModel.CurrentPage,
+                    out oTotalRowsAux,
+                    out CurrentFilters);
 
-                    oModel.TotalRows = oTotalRowsAux;
-                    oModel.CurrentFilters = CurrentFilters;
-                }
+                oModel.TotalRows = oTotalRowsAux;
+                oModel.CurrentFilters = CurrentFilters;
+            }
 
-                //Seo model
-                ReplaceSeoModel(oModel, oSeoModel);
-                ViewBag.SeoModel = oSeoModel;
+            //Seo model
+            ReplaceSeoModel(oModel, oSeoModel);
+            ViewBag.SeoModel = oSeoModel;
 
-                return View(oModel);
-            //}
-            //catch (Exception err)
-            //{
-            //    //return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-            //}
+            return View(oModel);
         }
 
         #region Private methods

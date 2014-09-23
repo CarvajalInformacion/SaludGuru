@@ -115,23 +115,23 @@
 
         #region SEO
 
-        public const string C_Settings_SEO_Home_Title = "SEO_Home_Title";
+        public const string C_Settings_SEO_Home_Title = "SEO_Home_Title_{AreaName}";
 
-        public const string C_Settings_SEO_Home_Description = "SEO_Home_Description";
+        public const string C_Settings_SEO_Home_Description = "SEO_Home_Description_{AreaName}";
 
-        public const string C_Settings_SEO_Home_Keywords = "SEO_Home_Keywords";
+        public const string C_Settings_SEO_Home_Keywords = "SEO_Home_Keywords_{AreaName}";
 
-        public const string C_Settings_SEO_Search_Title = "SEO_Search_Title";
+        public const string C_Settings_SEO_Search_Title = "SEO_Search_Title_{AreaName}";
 
-        public const string C_Settings_SEO_Search_Description = "SEO_Search_Description";
+        public const string C_Settings_SEO_Search_Description = "SEO_Search_Description_{AreaName}";
 
-        public const string C_Settings_SEO_Search_Keywords = "SEO_Search_Keywords";
+        public const string C_Settings_SEO_Search_Keywords = "SEO_Search_Keywords_{AreaName}";
 
-        public const string C_Settings_SEO_Profile_Title = "SEO_Profile_Title";
+        public const string C_Settings_SEO_Profile_Title = "SEO_Profile_Title_{AreaName}";
 
-        public const string C_Settings_SEO_Profile_Description = "SEO_Profile_Description";
+        public const string C_Settings_SEO_Profile_Description = "SEO_Profile_Description_{AreaName}";
 
-        public const string C_Settings_SEO_Profile_Keywords = "SEO_Profile_Keywords";
+        public const string C_Settings_SEO_Profile_Keywords = "SEO_Profile_Keywords_{AreaName}";
 
 
         #endregion

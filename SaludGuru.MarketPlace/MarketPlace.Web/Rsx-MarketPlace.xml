@@ -57,19 +57,28 @@
 
     <!--SEO-->
     <!--variables {CityName}-->
-    <key name="SEO_Home_Title">Salud gurú - Profesionales de salud | Citas médicas en línea de {CityName}</key>
-    <key name="SEO_Home_Description">Encuentra a los mejores profesionales de la salud en {CityName} y agenda tu cita en línea gratis y rápidamente.</key>
-    <key name="SEO_Home_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
+    <key name="SEO_Home_Title_Web">Salud gurú - Profesionales de salud | Citas médicas en línea de {CityName}</key>
+    <key name="SEO_Home_Title_Mobile">Salud gurú - Profesionales de salud | Citas médicas en línea de {CityName}</key>
+    <key name="SEO_Home_Description_Web">Encuentra a los mejores profesionales de la salud en {CityName} y agenda tu cita en línea gratis y rápidamente.</key>
+    <key name="SEO_Home_Description_Mobile">Encuentra a los mejores profesionales de la salud en {CityName} y agenda tu cita en línea gratis y rápidamente.</key>
+    <key name="SEO_Home_Keywords_Web">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
+    <key name="SEO_Home_Keywords_Mobile">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, {CityName}, Colombia</key>
 
     <!--variables {SpecialtyName} {TreatmentName} {InsuranceName} {CityName}-->
-    <key name="SEO_Search_Title">Salud gurú - Agenda tu cita médica en línea con especialistas de {SpecialtyName}{TreatmentName} {InsuranceName} en {CityName}</key>
-    <key name="SEO_Search_Description">Encuentra a los mejores profesionales de la salud de {SpecialtyName}{TreatmentName} {InsuranceName} y agenda tu cita en línea gratis y rápidamente en {CityName}.</key>
-    <key name="SEO_Search_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}{TreatmentName} {InsuranceName}, profesionales de la salud de {InsuranceName}, doctores de {InsuranceName}, {CityName}, Colombia</key>
+    <key name="SEO_Search_Title_Web">Salud gurú - Agenda tu cita médica en línea con especialistas de {SpecialtyName}{TreatmentName} {InsuranceName} en {CityName}</key>
+    <key name="SEO_Search_Title_Mobile">Salud gurú - Agenda tu cita médica en línea con especialistas de {SpecialtyName}{TreatmentName} {InsuranceName} en {CityName}</key>    
+    <key name="SEO_Search_Description_Web">Encuentra a los mejores profesionales de la salud de {SpecialtyName}{TreatmentName} {InsuranceName} y agenda tu cita en línea gratis y rápidamente en {CityName}.</key>
+    <key name="SEO_Search_Description_Mobile">Encuentra a los mejores profesionales de la salud de {SpecialtyName}{TreatmentName} {InsuranceName} y agenda tu cita en línea gratis y rápidamente en {CityName}.</key>    
+    <key name="SEO_Search_Keywords_Web">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}{TreatmentName} {InsuranceName}, profesionales de la salud de {InsuranceName}, doctores de {InsuranceName}, {CityName}, Colombia</key>
+    <key name="SEO_Search_Keywords_Mobile">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}{TreatmentName} {InsuranceName}, profesionales de la salud de {InsuranceName}, doctores de {InsuranceName}, {CityName}, Colombia</key>
 
     <!--variables {SpecialtyName} {CityName} {DoctorName}-->
-    <key name="SEO_Profile_Title">Salud gurú - {DoctorName} especialista en {SpecialtyName} en {CityName}</key>
-    <key name="SEO_Profile_Description">Agenda tu cita médica en línea con {DoctorName} especialista en {SpecialtyName} en {CityName}.</key>
-    <key name="SEO_Profile_Keywords">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}, {DoctorName}, {CityName}, Colombia</key>
+    <key name="SEO_Profile_Title_Web">Salud gurú - {DoctorName} especialista en {SpecialtyName} en {CityName}</key>
+    <key name="SEO_Profile_Title_Mobile">Salud gurú - {DoctorName} especialista en {SpecialtyName} en {CityName}</key>
+    <key name="SEO_Profile_Description_Web">Agenda tu cita médica en línea con {DoctorName} especialista en {SpecialtyName} en {CityName}.</key>
+    <key name="SEO_Profile_Description_Mobile">Agenda tu cita médica en línea con {DoctorName} especialista en {SpecialtyName} en {CityName}.</key>
+    <key name="SEO_Profile_Keywords_Web">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}, {DoctorName}, {CityName}, Colombia</key>
+    <key name="SEO_Profile_Keywords_Mobile">Profesionales, Profesionales de la Salud, Cita con el Medico, Guia de Medicos, Guia Medica, Consulta en Linea, Medicina,Salud, Doctor, Cita, especialistas en {SpecialtyName}, {DoctorName}, {CityName}, Colombia</key>
 
     <!--mobile devices-->
     <key name="Mobile_Devices">
