@@ -62,7 +62,7 @@ namespace MarketPlace.Web.Controllers.Filters
                 string CurrentDevice = HttpCurrentContext.Request.ServerVariables["HTTP_USER_AGENT"].ToLower().Replace(" ", "");
                 string EnabledDevices = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_Mobile_Devices].Value;
 
-                if (EnabledDevices.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Any(x => x.ToLower().Replace(" ", "") == CurrentDevice))
+                if (EnabledDevices.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Any(x => CurrentDevice.Contains(x.ToLower().Replace(" ", ""))))
                 {
                     return true;
                 }
