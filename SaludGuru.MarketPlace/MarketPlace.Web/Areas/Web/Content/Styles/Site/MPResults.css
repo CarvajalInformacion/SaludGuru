@@ -135,11 +135,11 @@ div.MPResultsBreadCrumbsPages {
 
 div.MPResultsPaidProfile {
     display: block;
-    margin: 12px 0px 12px 30px;
+    margin: 10px 0px 10px 30px;
     padding: 12px;
     border-radius: 2px;
     width: 97%;
-    border: 1px solid #999;
+    border-bottom: 1px solid #92B92A;
     float: right;
 }
 
@@ -263,15 +263,19 @@ h2.MPResultsSpecialityName {
     font-size: 1.2em;
 }
 
-li.MPResultsInsuranceName,
-li.MPResultsInsuranceName h4 {
-    width: 84px;
-    line-height: 1em;
-    border: none;
-    display: inline-block;
-    font-size: 0.9em;
-    letter-spacing: -0.4px;
+li.MPResultsInsuranceName {
+    line-height: 1.5em !important;
 }
+
+    li.MPResultsInsuranceName,
+    li.MPResultsInsuranceName h4 {
+        width: 84px;
+        line-height: 1em;
+        border: none;
+        display: inline-block;
+        font-size: 0.9em;
+        letter-spacing: -0.4px;
+    }
 
 a.MPResultsPaidProfileDoctorName,
 a.MPResultsPaidProfileDoctorName:hover,
@@ -350,11 +354,11 @@ span.MPResultsDoctorShortDescription {
 @media screen and (max-width:1080px) {
     div.MPResultsDoctorDescriptionWrapper {
         border: none;
-display: inline-block;
-width: 100%;
-vertical-align: top;
-margin-top: 12px;
-text-align: justify;
+        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+        margin-top: 12px;
+        text-align: justify;
     }
 
     div.MPResultsPaidProfileDoctorData {

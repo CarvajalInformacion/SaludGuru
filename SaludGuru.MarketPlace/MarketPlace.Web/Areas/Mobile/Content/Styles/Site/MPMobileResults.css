@@ -4,6 +4,7 @@
     color: #666;
     letter-spacing: -0.1px;
 }
+
 .MPResultsGrandWrapper a {
     color: #92B92A;
     letter-spacing: -0.6px;
@@ -32,7 +33,7 @@ div.MPResultsBreadCrumbs {
     background-color: #fff;
     color: #FFF;
     height: 20px;
-    width:auto;
+    width: auto;
     margin: 0px auto;
 }
 
@@ -51,6 +52,7 @@ div.MPResultsBreadCrumbsModel a, div.MPResultsBreadCrumbsModel span {
 .MPResultsBreadCrumbs div.MPResultsBreadCrumbsPages {
     text-align: center;
 }
+
 div.MPResultsBreadCrumbsPages {
     background-color: #fff;
     border: medium none;
@@ -58,37 +60,43 @@ div.MPResultsBreadCrumbsPages {
     height: 25px;
     width: 100%;
 }
+
 .MPResultsBreadCrumbsPages a {
     color: #FFF;
     line-height: 1.3em;
     font-size: 1em;
     letter-spacing: -0.5px;
 }
+
     .MPResultsBreadCrumbsPages a:hover {
         color: #FFF;
     }
+
 .MPMobilePrevious, .MPMobileNext,
-.MPMobilePrevious:hover, .MPMobileNext:hover{
-    border: 1px solid;    
+.MPMobilePrevious:hover, .MPMobileNext:hover {
+    border: 1px solid;
     display: inline-block;
     text-decoration: underline;
-    width:49%;
+    width: 49%;
     text-align: center;
-    margin:0px;
+    margin: 0px;
 }
+
     .MPMobilePrevious:hover, .MPMobileNext:hover {
-        color:#666;
-        text-decoration:underline;
+        color: #666;
+        text-decoration: underline;
     }
 /********** MUESTRA TODOS LOS TIPOS DE PERFIL ***********/
 /**** pago, basico, gratis ****/
 div.MPResultsPaidProfile {
-    display: block;
-    margin: 12px auto;
-    padding: 12px;
-    border-radius: 2px;
+    /* display: block; */
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 10px;
+    /* border-radius: 2px; */
     width: 100%;
-    border: 1px solid;
+    /* border: 1px solid; */
+    border-bottom: 1px solid #92B92A;
 }
 
 
@@ -128,7 +136,7 @@ a.MPResultsDoctorPictureWrapper {
 img.MPResultsDoctorPicture {
     width: 100%;
     height: auto;
-    max-width: 80px;
+    max-width: 75px;
 }
 
 /************* FACEBOOK Y SITIO WEB **************/
@@ -174,7 +182,7 @@ div.MPResultsPaidProfileDoctorData {
     height: auto;
 }
 
-/*@media screen and (max-width:380px) {
+@media screen and (max-width:380px) {
     .MPResultsPaidProfileDoctorData {
         width: 63%;
     }
@@ -196,7 +204,7 @@ div.MPResultsPaidProfileDoctorData {
     .MPResultsPaidProfileDoctorData {
         width: 80%;
     }
-}*/
+}
 
 
 h2.MPResultsSpecialityName,
@@ -325,7 +333,7 @@ span.OfficeContactTelephone {
 .MPResultsDoctorLinksWrapper {
     width: 100%;
     text-align: center;
-    margin: 5px 0px -5px 0px !important;
+    margin: 5px 0px 0px 0px !important;
 }
     /********* enlace agenda gratis ********/
     .MPResultsBookAppFree, .MPResultsDoctorLinksWrapper span {
