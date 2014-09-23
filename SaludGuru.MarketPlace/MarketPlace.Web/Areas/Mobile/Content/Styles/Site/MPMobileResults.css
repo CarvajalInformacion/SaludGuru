@@ -275,6 +275,10 @@ label.OfficeTextSelector {
     font-weight: bold !important;
 }
 
+span.OfficeContactTelephone a {
+    margin-right: 12px;
+}
+
 div.OfficeSelector {
     border: none;
     display: block;

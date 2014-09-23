@@ -77,7 +77,31 @@
                     @if (oCurrentOffice != null)
                     {
                         <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => !string.IsNullOrWhiteSpace(x.Value) ? x.Value : string.Empty).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                        <span class="OfficeContactTelephone">Telefono:
+                            @{
+                                var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+                                string tel = oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault();
+                                string number = "";
+                                foreach (var item in tel.Replace(" ", "").Split('-'))
+                                {
+                                    if (item.Length == 7)
+                                    {
+                                        number = "tel:+57" + MarketPlace.Web.Controllers.BaseController.CityIndicative[oBaseController.CurrentCookie.CurrentCity].ToString() + item.ToString();
+                                        <a href="@number">@item.ToString()</a>
+                                    }
+                                    else if (item.Length == 10)
+                                    {
+                                        number = "tel:" + item.ToString();
+                                        <a href="@number">@item.ToString()</a>
+                                    }
+                                    else
+                                    {
+                                        @item.ToString()
+                                    }
+                                }
+                            }
+                        </span>
                     }
                     else
                     {

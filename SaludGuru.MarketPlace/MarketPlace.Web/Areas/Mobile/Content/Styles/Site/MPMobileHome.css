@@ -33,6 +33,10 @@
         max-width: 500px;
     }
 
+.SocialNetworks label {
+    text-align: center;
+}
+
 hr.featurette-divider.__loop {
     border-top: 1px solid #99c21d;
     display: block;
@@ -109,4 +113,4 @@ hr.featurette-divider.__loop {
 
     .social_bookmarks .iconlinkedin {
         background-position: -26px -70px;
-}
+    }

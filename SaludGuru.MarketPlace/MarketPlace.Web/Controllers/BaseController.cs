@@ -59,10 +59,30 @@ namespace MarketPlace.Web.Controllers
                         Value.
                         Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).
                         ToDictionary
-                            (k => Convert.ToInt32(k.Split(',')[0]),
+                            (k => Convert.ToInt32(k.Split(',')[0].Trim()),
                             v => v.Split(',')[1].Trim());
                 }
                 return oEnabledCities;
+            }
+        }
+
+        private static Dictionary<int, int> oCityIndicative;
+        public static Dictionary<int, int> CityIndicative
+        {
+            get
+            {
+                if (oCityIndicative == null)
+                {
+                    oCityIndicative = MarketPlace.Models.General.InternalSettings.Instance
+                        [MarketPlace.Models.General.Constants.C_Settings_City_Indicative].Value.
+                        Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).
+                        ToDictionary
+                            (k => Convert.ToInt32(k.Split(',')[0].Trim()),
+                            v => Convert.ToInt32(v.Split(',')[1].Trim()));
+                }
+                return oCityIndicative;
+
+
             }
         }
 

@@ -27,9 +27,9 @@ namespace MarketPlace.Web.Controllers
 
             SEOModel oSeoModel = new SEOModel()
             {
-                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                 CityName = oCityName,
 
@@ -112,9 +112,9 @@ namespace MarketPlace.Web.Controllers
 
             SEOModel oSeoModel = new SEOModel()
             {
-                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                 CityName = oCityName,
 
@@ -142,9 +142,9 @@ namespace MarketPlace.Web.Controllers
 
             SEOModel oSeoModel = new SEOModel()
             {
-                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                 CityName = oCityName,
 
@@ -172,9 +172,9 @@ namespace MarketPlace.Web.Controllers
 
             SEOModel oSeoModel = new SEOModel()
             {
-                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                 CityName = oCityName,
 
@@ -202,9 +202,9 @@ namespace MarketPlace.Web.Controllers
 
             SEOModel oSeoModel = new SEOModel()
             {
-                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                 CityName = oCityName,
 

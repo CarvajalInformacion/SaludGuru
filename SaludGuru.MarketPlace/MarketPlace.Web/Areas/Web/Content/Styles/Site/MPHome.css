@@ -129,7 +129,7 @@ h1 {
 .Image {
     width: calc(17%);
     max-width: 160px;
-    height: auto;
+    height: 160px;
     border-radius: 3px;
     margin: 10px 0px 10px 10px;
     float: left;

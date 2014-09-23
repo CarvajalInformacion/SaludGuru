@@ -33,9 +33,9 @@ namespace MarketPlace.Web.Controllers
                 //Seo model
                 SEOModel oSeoModel = new SEOModel()
                 {
-                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Title].Value,
-                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Description].Value,
-                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Keywords].Value,
+                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
 
                     IsNoFollow = !ControllerContext.RouteData.Values.
                                             Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
@@ -92,9 +92,9 @@ namespace MarketPlace.Web.Controllers
 
                     SEOModel oSeoModel = new SEOModel()
                     {
-                        Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value.Replace("{CityName}", oCityName),
-                        Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description].Value.Replace("{CityName}", oCityName),
-                        Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords].Value.Replace("{CityName}", oCityName),
+                        Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                        Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                        Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
 
                         IsNoIndex = false,
                         IsNoFollow = false,

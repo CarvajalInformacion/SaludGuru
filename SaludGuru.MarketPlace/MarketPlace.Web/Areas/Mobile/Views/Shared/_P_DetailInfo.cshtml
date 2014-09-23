@@ -56,7 +56,7 @@
                                         string CurrentSite = ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name) + "?ProfilePublicId=" + Model.CurrentProfile.ProfilePublicId;
                                         <input type="hidden" name="Url" id="UrlReturn" value="@Domain" />
                                         <input type="hidden" name="CurrentSite" id="CurrentSite" value="@CurrentSite" />
-                                                                        
+
                                         var urlProfile = (ovCurrentDomain + Url.Action(MVC.Appointment.ActionNames.Index, MVC.Appointment.Name, new { ProfilePublicId = Model.CurrentProfile.ProfilePublicId }));
 
 
@@ -72,7 +72,32 @@
                                                 <p>
                                                     <div class="MPMobileOfficeInfo" id="fragment-@oCurrentOffice.OfficePublicId">
                                                         <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                                                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                                        <span class="OfficeContactTelephone">
+                                                            Telefono:
+                                                            @{
+                                            var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+                                            string tel = oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault();
+                                            string number = "";
+                                            foreach (var item in tel.Replace(" ", "").Split('-'))
+                                            {
+                                                if (item.Length == 7)
+                                                {
+                                                    number = "tel:+57" + MarketPlace.Web.Controllers.BaseController.CityIndicative[oBaseController.CurrentCookie.CurrentCity].ToString() + item.ToString();
+                                                    <a href="@number">@item.ToString()</a>
+                                                }
+                                                else if (item.Length == 10)
+                                                {
+                                                    number = "tel:" + item.ToString();
+                                                    <a href="@number">@item.ToString()</a>
+                                                }
+                                                else
+                                                {
+                                                    item.ToString();
+                                                }
+                                            }
+                                                            }
+                                                        </span>
                                                     </div>
                                                     <h6>Agenda en Linea</h6>
                                                     <div>
@@ -110,7 +135,31 @@
                                                 <p>
                                                     <div class="MPMobileOfficeInfo" id="fragment-@oCurrentOffice.OfficePublicId">
                                                         <span class="OfficeContactAddress">Dirección: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Address).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
-                                                        <span class="OfficeContactTelephone">Telefono: @oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault()</span>
+                                                        <span class="OfficeContactTelephone">Telefono:
+                                                            @{
+                                                                var oBaseController = ViewContext.Controller as MarketPlace.Web.Controllers.BaseController;
+
+                                                                string tel = oCurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == SaludGuruProfile.Manager.Models.enumOfficeInfoType.Telephone).Select(x => x.Value).DefaultIfEmpty(string.Empty).FirstOrDefault();
+                                                                string number = "";
+                                                                foreach (var item in tel.Replace(" ", "").Split('-'))
+                                                                {
+                                                                    if (item.Length == 7)
+                                                                    {
+                                                                        number = "tel:+57" + MarketPlace.Web.Controllers.BaseController.CityIndicative[oBaseController.CurrentCookie.CurrentCity].ToString() + item.ToString();
+                                                                        <a href="@number">@item.ToString()</a>
+                                                                    }
+                                                                    else if (item.Length == 10)
+                                                                    {
+                                                                        number = "tel:" + item.ToString();
+                                                                        <a href="@number">@item.ToString()</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @item.ToString()
+                                                                    }
+                                                                }
+                                                            }
+                                                        </span>
                                                     </div>
                                                     <h6>Agenda en Linea</h6>
                                                     <div>
