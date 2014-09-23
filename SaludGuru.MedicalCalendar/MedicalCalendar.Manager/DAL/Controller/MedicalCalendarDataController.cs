@@ -47,6 +47,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.GetScheduleBusy(ProfilePublicId, OfficePublicId, StartDate, EndDate, CategoryId);
         }
 
+        public int GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate)
+        {
+            return DataFactory.GetByPublicProfileIdAndPeriodTime(ProfilePublicId, StartDate, EndDate); 
+        }
+
         #endregion
 
         #region Patient
@@ -196,6 +201,6 @@ namespace MedicalCalendar.Manager.DAL.Controller
         }
         #endregion
 
-        #endregion
+        #endregion      
     }
 }

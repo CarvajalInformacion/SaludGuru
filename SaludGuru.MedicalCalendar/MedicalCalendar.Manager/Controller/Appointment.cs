@@ -54,6 +54,16 @@ namespace MedicalCalendar.Manager.Controller
                 (ProfilePublicId, OfficePublicId, StartDate, EndDate, CategoryId);
         }
 
+        public static bool GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate)
+        {
+            bool oReturn = true;
+            if (MedicalCalendarDataController.Instance.GetByPublicProfileIdAndPeriodTime(ProfilePublicId, StartDate, EndDate) == 0)           
+                oReturn = false;           
+            else           
+                oReturn = true;           
+            return oReturn;
+        }
+
         public static List<AppointmentModel> AppointmentGetByPatient(string PatientPublicId)
         {
             PatientModel CurrentPatient = Patient.PatientGetAllByPublicPatientId(PatientPublicId);

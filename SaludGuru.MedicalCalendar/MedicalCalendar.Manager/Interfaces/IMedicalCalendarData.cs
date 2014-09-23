@@ -14,6 +14,7 @@ namespace MedicalCalendar.Manager.Interfaces
         //calendar
         List<HolidayModel> HolidayGetByCountry(int CountryId);
         List<ScheduleBusyModel> GetScheduleBusy(string ProfilePublicId, string OfficePublicId, DateTime? StartDate, DateTime? EndDate, int? CategoryId);
+        int GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate);
 
         //patinet
         string PatientCreate(string Name, string LastName, string ProfilePublicId, string UserPublicId);
@@ -42,7 +43,7 @@ namespace MedicalCalendar.Manager.Interfaces
         Models.Appointment.AppointmentModel AppointmentGetByIdBasicInfo(string AppointmentPublicId);
         Models.Appointment.AppointmentModel AppointmentGetByIdPatientInfo(string AppointmentPublicId);
         List<MedicalCalendar.Manager.Models.Appointment.AppointmentMonthModel> AppointmentGetByOfficeIdMonth(string OfficePublicId, DateTime StartDateTime);
-
+        
         List<Models.Appointment.AppointmentModel> MPAppointmentGetByOfficeIdBasicInfo(string OfficePublicId, DateTime StartDateTime, DateTime EndDateTime);
         bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO);
 
