@@ -91,20 +91,17 @@
                 }
             </ul>
         </div>
-
-
-
         <div class="MPResultsDoctorDescriptionWrapper">
             @{
-            SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
-            if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
-            {
-                oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
-                if (oCurrentOffice == null)
+                SaludGuruProfile.Manager.Models.Office.OfficeModel oCurrentOffice = null;
+                if (Model.RelatedOffice != null && Model.RelatedOffice.Count > 0)
                 {
-                    oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+                    oCurrentOffice = Model.RelatedOffice.Where(x => x.IsDefault == true).FirstOrDefault();
+                    if (oCurrentOffice == null)
+                    {
+                        oCurrentOffice = Model.RelatedOffice.FirstOrDefault();
+                    }
                 }
-            }
             }
             @if (oCurrentOffice != null)
             {
