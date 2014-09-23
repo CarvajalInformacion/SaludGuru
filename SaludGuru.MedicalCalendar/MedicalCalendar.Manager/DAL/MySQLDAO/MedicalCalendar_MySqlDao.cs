@@ -97,6 +97,26 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
+        public int GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDate));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDate));            
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandText = "AP_Appointment_GetByPublicProfileId_PeriodTime",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            return int.Parse(response.ScalarResult.ToString());
+        }
+
+
         #endregion
 
         #region Patient
