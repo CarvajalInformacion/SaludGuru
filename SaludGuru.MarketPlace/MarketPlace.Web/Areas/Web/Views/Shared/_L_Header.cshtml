@@ -6,7 +6,7 @@
     {
         oSeoModel = new MarketPlace.Models.General.SEOModel()
         {
-            Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title].Value,
+            Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
             IsNoIndex = false,
             IsNoFollow = false,
             CityName = MarketPlace.Web.Controllers.BaseController.EnabledCities
