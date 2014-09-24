@@ -54,16 +54,6 @@ namespace MedicalCalendar.Manager.Controller
                 (ProfilePublicId, OfficePublicId, StartDate, EndDate, CategoryId);
         }
 
-        public static bool GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate)
-        {
-            bool oReturn = true;
-            if (MedicalCalendarDataController.Instance.GetByPublicProfileIdAndPeriodTime(ProfilePublicId, StartDate, EndDate) == 0)           
-                oReturn = false;           
-            else           
-                oReturn = true;           
-            return oReturn;
-        }
-
         public static List<AppointmentModel> AppointmentGetByPatient(string PatientPublicId)
         {
             PatientModel CurrentPatient = Patient.PatientGetAllByPublicPatientId(PatientPublicId);
@@ -220,6 +210,11 @@ namespace MedicalCalendar.Manager.Controller
         public static string GetAppointmentByOldId(string OldAppointmentId)
         {
             return DAL.Controller.MedicalCalendarDataController.Instance.GetAppointmentByOldId(OldAppointmentId);
+        }
+
+        public static bool AppointmentValidateDuplicate(string OfficePublicId, string AppointmentPublicId, DateTime StartDate, DateTime EndDate)
+        {
+            return MedicalCalendarDataController.Instance.AppointmentValidateDuplicate(OfficePublicId, AppointmentPublicId, StartDate, EndDate);
         }
 
         #region MarketPlace

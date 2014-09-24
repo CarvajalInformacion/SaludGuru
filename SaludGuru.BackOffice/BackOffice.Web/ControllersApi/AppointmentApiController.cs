@@ -65,11 +65,11 @@ namespace BackOffice.Web.ControllersApi
                 if (AppointmentToUpsert.AppointmentPublicId == null)
                 {
                     AppointmentToUpsert.AppointmentPublicId = AppointmentPublicId;
-                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert, false); 
+                    SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.AsignedAppointment, PatientSource, AppointmentToUpsert, false);
                 }
                 else
                     SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ModifyAppointment, PatientSource, AppointmentToUpsert, false);
-                
+
                 AppointmentToUpsert.AppointmentPublicId = AppointmentPublicId;
                 SendNotifyOk = BackOffice.Web.Controllers.BaseController.SendMessage(oSource, enumProfileInfoType.ReminderAppointment, PatientSource, AppointmentToUpsert, false);
                 //TODO: Validar si se hizo o no con el log
@@ -225,6 +225,34 @@ namespace BackOffice.Web.ControllersApi
                 return lstAppointment.Select(x => new ScheduleEventMonthModel(x)).ToList();
             else
                 return new List<ScheduleEventMonthModel>();
+        }
+
+        [HttpPost]
+        [HttpGet]
+        public bool AppointmentValidateDuplicate(string ValidateAppointment, string OfficePublicId, string AppointmentPublicId, string StartDate, string StartTime, string Duration)
+        {
+            if (ValidateAppointment == "true")
+            {
+
+                //get date
+                DateTime oStartDate = DateTime.ParseExact
+                        (StartDate.Replace(" ", "") + "T" + StartTime.Replace(" ", ""),
+                        "dd/MM/yyyyTh:mmtt",
+                        System.Globalization.CultureInfo.InvariantCulture);
+
+                DateTime oEndDate = DateTime.ParseExact
+                        (StartDate.Replace(" ", "") + "T" + StartTime.Replace(" ", ""),
+                        "dd/MM/yyyyTh:mmtt",
+                        System.Globalization.CultureInfo.InvariantCulture).
+                        AddMinutes(Convert.ToInt32(!string.IsNullOrEmpty(Duration) ? Convert.ToInt32(Duration) : 0));
+
+                bool oReturn = MedicalCalendar.Manager.Controller.Appointment.AppointmentValidateDuplicate
+                    (OfficePublicId, AppointmentPublicId, oStartDate, oEndDate);
+
+                return oReturn;
+            }
+            else
+                return false;
         }
 
         #region Private Methods

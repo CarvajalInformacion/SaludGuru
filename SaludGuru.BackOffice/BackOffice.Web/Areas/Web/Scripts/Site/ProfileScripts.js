@@ -457,7 +457,6 @@ function ProfileReminderListGrid(vidDiv, vReminderData) {
 }
 
 function ProfileComunicationListGrid(vidDiv, vReminderData) {
-    debugger;
     $('#' + vidDiv).kendoGrid({
         toolbar: [{ template: $("#template_Header").html() }],
         dataSource: {

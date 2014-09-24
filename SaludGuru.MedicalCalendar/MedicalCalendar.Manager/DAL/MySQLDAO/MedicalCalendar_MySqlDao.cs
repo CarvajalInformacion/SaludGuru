@@ -97,26 +97,6 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             return oReturn;
         }
 
-        public int GetByPublicProfileIdAndPeriodTime(string ProfilePublicId, DateTime StartDate, DateTime EndDate)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
-
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", ProfilePublicId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDate));
-            lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDate));            
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
-                CommandText = "AP_Appointment_GetByPublicProfileId_PeriodTime",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            return int.Parse(response.ScalarResult.ToString());
-        }
-
-
         #endregion
 
         #region Patient
@@ -1015,6 +995,29 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
             {
                 return string.Empty;
             }
+        }
+
+        public bool AppointmentValidateDuplicate(string OfficePublicId, string AppointmentPublicId, DateTime StartDate, DateTime EndDate)
+        {
+            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
+
+            lstParams.Add(DataInstance.CreateTypedParameter("vOfficePublicId", OfficePublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vAppointmentPublicId", AppointmentPublicId));
+            lstParams.Add(DataInstance.CreateTypedParameter("vStartDateTime", StartDate));
+            lstParams.Add(DataInstance.CreateTypedParameter("vEndDateTime", EndDate));
+
+            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
+            {
+                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
+                CommandText = "AP_Appointment_ValidateDuplicate",
+                CommandType = System.Data.CommandType.StoredProcedure,
+                Parameters = lstParams
+            });
+
+            if (response.ScalarResult != null)
+                return (Convert.ToInt32(response.ScalarResult) == 1);
+            else
+                return false;
         }
 
         #region Marketplace

@@ -45,7 +45,7 @@ function InitTimePicker(DivId, DialogDivId) {
 }
 
 /*calendar render method*/
-var CalendarObject = {    
+var CalendarObject = {
     /*calendar info*/
     DivId: '',
     CountryId: '',
@@ -57,7 +57,7 @@ var CalendarObject = {
 
     /*init meeting calendar variables*/
     Init: function (vInitObject) {
-        
+
         this.DivId = vInitObject.DivId;
         this.CountryId = vInitObject.CountryId;
         this.ProfilePublicId = vInitObject.ProfilePublicId;
@@ -71,9 +71,9 @@ var CalendarObject = {
         $.ajax({
             type: "POST",
             url: '/api/Calendar?CountryId=' + this.CountryId + '&ProfilePublicId=' + this.ProfilePublicId,
-        }).done(function (data) {            
+        }).done(function (data) {
             //left date picker
-            
+
             CalendarObject.RenderCalendar(data, CalendarObject.FirstDate);
 
         }).fail(function () {
@@ -362,12 +362,12 @@ var MettingCalendarObject = {
                                 "Si": function () {
                                     ovRenderEvents = false;
                                     $(this).dialog("close");
-                                    UpsertAppointmentObject.SaveAppointment(true);
+                                    UpsertAppointmentObject.ValidateSaveAppointment(true);
                                 },
                                 "No": function () {
                                     ovRenderEvents = false;
                                     $(this).dialog("close");
-                                    UpsertAppointmentObject.SaveAppointment(false);
+                                    UpsertAppointmentObject.ValidateSaveAppointment(false);
                                 }
                             },
                             close: function (event, ui) {
@@ -390,12 +390,12 @@ var MettingCalendarObject = {
                                 "Si": function () {
                                     ovRenderEvents = false;
                                     $(this).dialog("close");
-                                    UpsertAppointmentObject.SaveAppointment(true);
+                                    UpsertAppointmentObject.ValidateSaveAppointment(true);
                                 },
                                 "No": function () {
                                     ovRenderEvents = false;
                                     $(this).dialog("close");
-                                    UpsertAppointmentObject.SaveAppointment(false);
+                                    UpsertAppointmentObject.ValidateSaveAppointment(false);
                                 }
                             },
                             close: function (event, ui) {
@@ -725,7 +725,6 @@ var UpsertAppointmentObject = {
     },
 
     RenderActions: function (vAppointmentInfo, vCurrentAppointmentStatus) {
-        debugger;
         //add style for specific appointment status
         $('#' + this.DivId).attr('class', '');
         $('#' + this.DivId).addClass('container2 AppointmentFormStatus_' + vCurrentAppointmentStatus);
@@ -892,11 +891,11 @@ var UpsertAppointmentObject = {
                     buttons: {
                         "Si": function () {
                             $(this).dialog("close");
-                            UpsertAppointmentObject.SaveAppointment(true);
+                            UpsertAppointmentObject.ValidateSaveAppointment(true);
                         },
                         "No": function () {
                             $(this).dialog("close");
-                            UpsertAppointmentObject.SaveAppointment(false);
+                            UpsertAppointmentObject.ValidateSaveAppointment(false);
                         }
                     }
                 });
@@ -904,7 +903,7 @@ var UpsertAppointmentObject = {
             });
         }
         else {
-            $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { UpsertAppointmentObject.SaveAppointment(true) });
+            $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { UpsertAppointmentObject.ValidateSaveAppointment(true) });
         }
 
         //Create patient        
@@ -939,7 +938,7 @@ var UpsertAppointmentObject = {
     },
 
     ValidateCreatePatient: function (vPatientModel) {
-        
+
         var rules = {
             Name: {
                 required: true,
@@ -947,7 +946,7 @@ var UpsertAppointmentObject = {
             IdentificationNumber: {
                 required: true,
                 minlength: 6,
-            }           
+            }
         };
 
         $('#frmCreatePatient').validate({
@@ -999,6 +998,52 @@ var UpsertAppointmentObject = {
         $('#lstPatient').find('#' + vPatientPublicId).remove();
         $('#PatientAppointmentDelete').val($('#PatientAppointmentDelete').val() + ',' + vPatientPublicId);
         $('#PatientAppointmentCreate').val($('#PatientAppointmentCreate').val().replace(new RegExp(vPatientPublicId, 'gi'), ''));
+    },
+
+    ValidateSaveAppointment: function (vSendNotifications) {
+
+        var vUrl = '/api/AppointmentApi?ValidateAppointment=true&OfficePublicId=' + $('#OfficePublicId').val() + '&AppointmentPublicId=' + $('#AppointmentPublicId').val() + '&StartDate=' + $('#StartDate').val() + '&StartTime=' + $('#StartTime').val() + '&Duration=' + $('#Duration').val();
+
+        $.ajax(
+            {
+                url: vUrl,
+                type: "POST",
+                success: function (data, textStatus, jqXHR) {
+                    //refresh all controls
+                    if (data != null && data == 'false') {
+                        UpsertAppointmentObject.SaveAppointment(vSendNotifications);
+                    }
+                    else {
+                        $("#Dialog_ValidateAppointment").dialog({
+                            buttons: {
+                                "Continuar": function () {
+                                    $(this).dialog("close");
+                                    UpsertAppointmentObject.SaveAppointment(vSendNotifications);
+                                },
+                                "Cancelar": function () {
+                                    $(this).dialog("close");
+                                },
+                            }
+                        });
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).hide();
+                    $('#' + UpsertAppointmentObject.DivBlockId).hide();
+                }
+            });
     },
 
     SaveAppointment: function (vSendNotifications) {
@@ -1579,7 +1624,7 @@ var AppointmentDetailObject = {
             });
         });
     },
-    
+
 
 
     RenderOffice: function (vCurrentOfficePublicId, vCurrentStartDate, vCurrentStartTime) {
@@ -1704,7 +1749,7 @@ var AppointmentDetailObject = {
                     url: '/api/PatientApi?SearchCriteria=' + request.term + '&PageNumber=0&RowCount=10',
                     dataType: 'json',
                     success: function (data) {
-                        
+
                         response(data);
                     }
                 });
@@ -1840,11 +1885,11 @@ var AppointmentDetailObject = {
                         buttons: {
                             "Si": function () {
                                 $(this).dialog("close");
-                                AppointmentDetailObject.SaveAppointment(true);
+                                AppointmentDetailObject.ValidateSaveAppointment(true);
                             },
                             "No": function () {
                                 $(this).dialog("close");
-                                AppointmentDetailObject.SaveAppointment(false);
+                                AppointmentDetailObject.ValidateSaveAppointment(false);
                             }
                         }
                     });
@@ -1852,7 +1897,7 @@ var AppointmentDetailObject = {
                 });
             }
             else {
-                $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { AppointmentDetailObject.SaveAppointment(true) });
+                $('#AppointmentUpsertActions .AppointmentActionsAccept').click(function () { AppointmentDetailObject.ValidateSaveAppointment(true) });
             }
         }
     },
@@ -1937,6 +1982,56 @@ var AppointmentDetailObject = {
                 template: $('#divPatientAppointmentTemplate').html()
             }]
         });
+    },
+
+    ValidateSaveAppointment: function (vSendNotifications) {
+
+        debugger;
+
+        var vUrl = '/api/AppointmentApi?ValidateAppointment=true&OfficePublicId=' + $('#OfficePublicId').val() + '&AppointmentPublicId=' + $('#AppointmentPublicId').val() + '&StartDate=' + $('#StartDate').val() + '&StartTime=' + $('#StartTime').val() + '&Duration=' + $('#Duration').val();
+
+        $.ajax(
+            {
+                url: vUrl,
+                type: "POST",
+                success: function (data, textStatus, jqXHR) {
+                    debugger;
+                    //refresh all controls
+                    if (data != null && data == 'false') {
+                        AppointmentDetailObject.SaveAppointment(vSendNotifications);
+                    }
+                    else {
+                        $("#Dialog_ValidateAppointment").dialog({
+                            buttons: {
+                                "Continuar": function () {
+                                    $(this).dialog("close");
+                                    AppointmentDetailObject.SaveAppointment(vSendNotifications);
+                                },
+                                "Cancelar": function () {
+                                    $(this).dialog("close");
+                                },
+                            }
+                        });
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    debugger;
+                    //refresh all controls
+                    UpsertAppointmentObject.Refresh();
+
+                    //show success message
+                    var oMsj = $('#SaveResultTemplate').html();
+                    oMsj = oMsj.replace(/{AppointmentPublicId}/gi, '');
+                    oMsj = oMsj.replace(/{Status}/gi, 'con errores');
+
+                    $("#Dialog_SaveResult").html(oMsj);
+                    $("#Dialog_SaveResult").dialog();
+
+                    //hidde create appointment form
+                    $('#' + UpsertAppointmentObject.DivId).hide();
+                    $('#' + UpsertAppointmentObject.DivBlockId).hide();
+                }
+            });
     },
 
     SaveAppointment: function (vSendNotifications) {

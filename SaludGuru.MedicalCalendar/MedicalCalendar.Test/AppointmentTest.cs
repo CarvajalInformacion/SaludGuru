@@ -72,5 +72,19 @@ namespace MedicalCalendar.Test
 
             Assert.AreEqual(true, result.Count > 0);
         }
+
+        [TestMethod]
+        public void AppointmentValidateDuplicate()
+        {
+            bool result =
+                MedicalCalendar.Manager.Controller.Appointment.AppointmentValidateDuplicate
+                ("5B36F20B",
+                null,
+                new DateTime(2014, 1, 1),
+                new DateTime(2014, 12, 31));
+
+            Assert.AreEqual(true, result);
+        }
+
     }
 }
