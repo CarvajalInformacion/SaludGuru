@@ -217,16 +217,16 @@
                     <li class="BOSelectAttendance">
                         <div>
                             <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.Attendance)" />
-                            <span>El paciente asistio a la cita</span>
+                            <span>El paciente SI asistió a la cita</span>
                         </div>
                         <div>
                             <input type="radio" name="NewStatus" value="@Html.Raw((int)MedicalCalendar.Manager.Models.enumAppointmentStatus.NotAttendance)" />
-                            <span>El paciente no asistio a la cita</span>
+                            <span>El paciente NO asistió a la cita</span>
                         </div>
                     </li>
                     <li id="liRemindedFuture">
                         <input name="SendRemindedFuture" id="SendRemindedFuture" type="checkbox" />
-                        <span>Enviar recordatorio de proxima cita</span>
+                        <span>¿Desea recordarle al paciente que agende una nueva cita?</span>
                         <div id="divRemindedDate">
                             <span>Seleccione la fecha de envio del recordatorio</span>
                             <input type="text" id="RemindedDate" name="RemindedDate" />

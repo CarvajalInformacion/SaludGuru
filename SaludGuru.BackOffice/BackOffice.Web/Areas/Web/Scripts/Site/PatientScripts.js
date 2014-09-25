@@ -42,7 +42,7 @@ function PatientListGrid(vidDiv) {
             template: $("#templateName").html()
         }, {
             field: "IdentificationNumber",
-            title: "Indentificación"
+            title: "Identificación"
         }, {
             field: "Email",
             title: "Correo electrónico"
