@@ -511,7 +511,7 @@ namespace BackOffice.Web.Controllers
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileUrl", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{ProfilePublicId}", Profile.ProfilePublicId).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty).Replace(" ","+") });
-                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.Value).FirstOrDefault() });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Reason", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.CancelAppointementReason).Select(x => x.LargeValue).FirstOrDefault() });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ReescheduleLink", Value = BackOffice.Models.General.InternalSettings.Instance[BackOffice.Models.General.Constants.C_Settings_Profile_MarketPlaceUrl].Value.Replace("{ProfileName}", RemoveAccent(Profile.Name + " " + Profile.LastName)).Replace("{SpecialtyName}", !string.IsNullOrEmpty(Profile.DefaultSpecialty.Name) ? Profile.DefaultSpecialty.Name : string.Empty) });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "SendToProcessRelatedMsj", Value = "true" });
                                     break;
@@ -660,6 +660,7 @@ namespace BackOffice.Web.Controllers
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Name", Value = item.Name });
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "LastName", Value = item.LastName });
                             oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientPublicId", Value = item.PatientPublicId });
+                            oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppPublicId", Value = AppointmentInfo.AppointmentPublicId });
                             //Valid the key "To"
                             string keyTO = oMessage.NewMessage.RelatedParameter.Where(x => x.Key == "TO").Select(x => x.Value).FirstOrDefault();
                             if (keyTO != null)

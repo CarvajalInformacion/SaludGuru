@@ -398,6 +398,7 @@
     </Content>
     <Content Include="Areas\Web\Views\WLLogin\StartLogin.cshtml" />
     <Content Include="Areas\Web\Views\FBLogin\StartLogin.cshtml" />
+    <None Include="Properties\PublishProfiles\Sebastian.pubxml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Areas\Web\Views\WLLogin\Login.cshtml" />
     <None Include="Properties\PublishProfiles\Auth_1.pubxml" />

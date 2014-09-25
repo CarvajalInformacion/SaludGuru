@@ -235,11 +235,14 @@
 		                Salud Gur&uacute; - Cancelaci&oacute;n de cita m&eacute;dica.
 	                </label>
                              <p>
-                                Hola {PatientName}!
+                                Hola {PatientName}!<br>
                                 Desafortunadamente tu Dr(a). {ProfileName}, no puede
                                 atenderte el día {AppointmentDate} a las {Hour} en el 
                                 consultorio situado en {OfficeAddress}
-                                Teléfono: {OfficePhone} por {Reason}.
+                                Teléfono: {OfficePhone}.<br>
+                                <br>
+                                Motivo: {Reason}.<br>
+                                <br>
                                 Para agendar una nueva fecha haz clic   <a href="{ProfileUrl}">  Aquí </a>.                                     
                               </p>
                             <div style="width:100%; height:30px;">
