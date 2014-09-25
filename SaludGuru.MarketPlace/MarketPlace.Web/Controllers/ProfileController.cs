@@ -15,55 +15,48 @@ namespace MarketPlace.Web.Controllers
             string ProfilePublicId,
             string SpecialtyName)
         {
-            try
+            //get model
+            ProfileViewModel oModel = new ProfileViewModel()
             {
-                //get model
-                ProfileViewModel oModel = new ProfileViewModel()
-                {
-                    CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
+                CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId),
 
-                    IsRedirect = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
-                };
+                IsRedirect = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsRedirect]),
+            };
 
-                if (oModel.CurrentProfile.RelatedOffice == null)
-                    oModel.CurrentProfile.RelatedOffice = new List<SaludGuruProfile.Manager.Models.Office.OfficeModel>();
+            if (oModel.CurrentProfile != null && oModel.CurrentProfile.RelatedOffice == null)
+                oModel.CurrentProfile.RelatedOffice = new List<SaludGuruProfile.Manager.Models.Office.OfficeModel>();
 
-                //Seo model
-                SEOModel oSeoModel = new SEOModel()
-                {
-                    Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
-                    Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
-                    Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
-
-                    IsNoFollow = !ControllerContext.RouteData.Values.
-                                            Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
-                                                Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
-                    IsNoIndex = !ControllerContext.RouteData.Values.
-                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
-                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
-                };
-
-                //get is canonical
-                bool IsCanonical = !ControllerContext.RouteData.Values.
-                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical) ? false :
-                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical]);
-
-                //eval redirect
-                EvalRedirect(oModel, DoctorName, ProfilePublicId, SpecialtyName, oSeoModel, IsCanonical);
-
-
-                ReplaceSeoModel(oModel, oSeoModel);
-                ViewBag.SeoModel = oSeoModel;
-
-                //render profile
-                return View(oModel);
-            }
-            catch
+            //Seo model
+            SEOModel oSeoModel = new SEOModel()
             {
-                return RedirectPermanent(Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Error_NotFound)));
-            }
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Profile_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value,
+
+                IsNoFollow = !ControllerContext.RouteData.Values.
+                                        Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow) ? false :
+                                            Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoFollow]),
+                IsNoIndex = !ControllerContext.RouteData.Values.
+                    Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex) ? false :
+                        Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsNoIndex]),
+            };
+
+            //get is canonical
+            bool IsCanonical = !ControllerContext.RouteData.Values.
+                Any(x => x.Key == MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical) ? false :
+                    Convert.ToBoolean(ControllerContext.RouteData.Values[MarketPlace.Models.General.Constants.C_RouteValue_IsCanonical]);
+
+            //eval redirect
+            EvalRedirect(oModel, DoctorName, ProfilePublicId, SpecialtyName, oSeoModel, IsCanonical);
+
+
+            ReplaceSeoModel(oModel, oSeoModel);
+            ViewBag.SeoModel = oSeoModel;
+
+            //render profile
+            return View(oModel);
         }
 
         public virtual ActionResult FBProfile(string ProfilePublicId, string LoginRequired)
