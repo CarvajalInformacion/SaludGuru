@@ -79,7 +79,6 @@ li.selected a {
     padding: 5px 42px;
     border: 1px solid #666;
     border-radius: 3px;
-    box-shadow: 2px 2px 2px #666;
 }
 
 div.SelOfficeGrid {
@@ -151,6 +150,7 @@ div.k-grid-content {
         border-style: solid;
         border-color:#B6DE3F;
         border-width: 1px;
+        border-left-width: 1px !important;
         border-radius: 3px;
         text-align: center;
         padding: 3px 0px !important;

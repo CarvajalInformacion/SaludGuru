@@ -378,7 +378,6 @@ div#divOffice ul li {
     margin: 0px auto -5px !important;
     padding: 0px !important;
     border-radius: 3px !important;
-    box-shadow: 2px 2px 2px #666;
     background: linear-gradient(#FFF, #ECECEC) repeat scroll 0% 0% transparent;
     position: relative;
     z-index: 2;
@@ -457,7 +456,7 @@ span.OfficeContactTelephone {
 
 div.k-grid-content {
     width: 100% !important;
-    height: 194px !important;
+    height: 250px !important;
 }
 
     div.k-grid-content > table > colgroup > col {
@@ -475,7 +474,6 @@ div.k-grid-content {
     height: 250px;
     margin: 14px 0px 0px 0px;
     border: 1px solid #666;
-    box-shadow: 2px 2px 2px #666;
     border-radius: 2px;
 }
 
