@@ -17,7 +17,7 @@ namespace MarketPlace.Web.ControllersApi
         [HttpPost]
         [HttpGet]
         public PatientModel PatientUpsert(string ProfilePublicId)
-        {            
+        {
             List<PatientModel> modelToValidate = new List<PatientModel>();
             ProfileModel oModelSend = new ProfileModel();
             oModelSend = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
@@ -28,22 +28,22 @@ namespace MarketPlace.Web.ControllersApi
             string mobile = modelToValidate.FirstOrDefault().PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault();
 
             PatientModel patientToCreate = this.GetRequestForNewPatient(email, mobile);
-            //Insert the new patient
-            string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(patientToCreate, ProfilePublicId, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId); 
 
-            #region Create the notification 
-            
+            //upsert patient to profile
+            MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(patientToCreate, ProfilePublicId, null);
+            //upsert patient to login user
+            string resultPatientPublicId = MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(patientToCreate, null, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+
+            #region Create the notification
+
             List<PatientModel> PatientSource = new List<PatientModel>();
             PatientModel ItemPatientSource = MedicalCalendar.Manager.Controller.Patient.PatientGetAllByPublicPatientId(resultPatientPublicId);
             PatientSource.Add(ItemPatientSource);
             AppointmentModel appModel = new AppointmentModel();
 
             //Send Notification reporting a new patient
-            MarketPlace.Web.Controllers.BaseController.SendMessage(oModelSend, null, PatientSource, appModel, true); 
+            MarketPlace.Web.Controllers.BaseController.SendMessage(oModelSend, null, PatientSource, appModel, true);
             #endregion
-
-            //Compare if patientTemporal Exist
-            bool isTemporal = MedicalCalendar.Manager.Controller.Patient.MPPatientTemporalUpsert(resultPatientPublicId, ProfilePublicId, enumPatientState.New, "0");
 
             patientToCreate.PatientPublicId = resultPatientPublicId;
             return patientToCreate;

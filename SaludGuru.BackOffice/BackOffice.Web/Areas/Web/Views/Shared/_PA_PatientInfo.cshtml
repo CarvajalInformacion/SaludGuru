@@ -290,8 +290,15 @@
         </ul>
         <div class="BOButtonContainerShort">
             @*hiden fields*@
-            <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
-            <input type="submit" class="BOButtons" value="guardar" />
+            @if (Model.Patient.IsProfilePatient)
+            {
+                <input type="hidden" name="UpsertAction" id="UpsertAction" value="true" />
+                <input type="submit" class="BOButtons" value="guardar" />
+            }
+            else
+            { 
+                <h3>Este paciente se ha creado desde su agenda en línea y no puede ser modificado.</h3>
+            }
         </div>
     </form>
 </div>

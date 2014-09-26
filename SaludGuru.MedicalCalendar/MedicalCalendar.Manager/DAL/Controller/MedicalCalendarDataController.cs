@@ -100,19 +100,11 @@ namespace MedicalCalendar.Manager.DAL.Controller
             return DataFactory.PatientGetFromIdentificationNumber(ProfilePublicId, IdentificationNumber);
         }
 
-        public bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO)
-        {
-            return DataFactory.MPPatientTemporalUpsert(PublicPatientId, PublicProfileId, Status, PublicPatientIdBO);
-        }
-
-        #region Market Place
-
         public List<PatientModel> MPPatientGetByUserPublicId(string vUserPublicId)
         {
             return DataFactory.MPPatientGetByUserPublicId(vUserPublicId);
         }
 
-        #endregion
         #endregion
 
         #region Appointment

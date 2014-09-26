@@ -26,12 +26,6 @@ namespace MedicalCalendar.Test
         }
 
         [TestMethod]
-        public void MPPatientTemporalUpsert()
-        {
-            bool result = MedicalCalendar.Manager.Controller.Patient.MPPatientTemporalUpsert("45ACA99B", "2C1D2510", enumPatientState.New, "0");
-        }
-
-        [TestMethod]
         public void PatientGetFromIdentificationNumber()
         {
             MedicalCalendar.Manager.Models.Patient.PatientModel result =

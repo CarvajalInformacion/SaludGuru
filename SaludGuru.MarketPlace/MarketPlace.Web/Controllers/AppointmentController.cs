@@ -40,11 +40,11 @@ namespace MarketPlace.Web.Controllers
 
             AppointmentViewModel oModel = new AppointmentViewModel();
 
-            oModel.CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now: DateTime.Parse(Date);
+            oModel.CurrentDate = string.IsNullOrEmpty(Date) ? DateTime.Now : DateTime.Parse(Date);
             oModel.CurrentProfile = SaludGuruProfile.Manager.Controller.Profile.MPProfileGetFull(ProfilePublicId);
             oModel.PatientGroup = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
             oModel.CurrentOffice = OfficePublicId;
-            if (!string.IsNullOrEmpty(Date))            
+            if (!string.IsNullOrEmpty(Date))
                 oModel.StartDate = datePass;
 
             if (oModel.PatientGroup == null)
@@ -264,8 +264,10 @@ namespace MarketPlace.Web.Controllers
                     },
                 };
 
-            //Insert the new patient
-            return MedicalCalendar.Manager.Controller.Patient.MPUpsertPatientInfo(newCurrentPatient, ProfilePublicId, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
+            //upsert patient to profile
+            MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(newCurrentPatient, ProfilePublicId, null);
+            //upsert patient to login user
+            return MedicalCalendar.Manager.Controller.Patient.UpsertPatientInfo(newCurrentPatient, null, MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
         }
         #endregion
     }

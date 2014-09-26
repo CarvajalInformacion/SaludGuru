@@ -229,6 +229,7 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                     PatientPublicId = response.DataTableResult.Rows[0].Field<string>("PatientPublicId"),
                     Name = response.DataTableResult.Rows[0].Field<string>("Name"),
                     LastName = response.DataTableResult.Rows[0].Field<string>("LastName"),
+                    IsProfilePatient = (response.DataTableResult.Rows[0].Field<int?>("ProfileId") != null),
                     LastModify = response.DataTableResult.Rows[0].Field<DateTime>("PatientLastModify"),
                     CreateDate = response.DataTableResult.Rows[0].Field<DateTime>("PatientCreationDate"),
 
@@ -1055,30 +1056,6 @@ namespace MedicalCalendar.Manager.DAL.MySQLDAO
                      }).ToList();
             }
             return oReturn;
-        }
-
-
-        public bool MPPatientTemporalUpsert(string PublicPatientId, string PublicProfileId, enumPatientState Status, string PublicPatientIdBO)
-        {
-            List<System.Data.IDbDataParameter> lstParams = new List<System.Data.IDbDataParameter>();
-
-            lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicIdMP", PublicPatientId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vProfilePublicId", PublicProfileId));
-            lstParams.Add(DataInstance.CreateTypedParameter("vStatus", (int)Status));
-            lstParams.Add(DataInstance.CreateTypedParameter("vPatientPublicIdBO", PublicPatientIdBO));
-
-            ADO.Models.ADOModelResponse response = DataInstance.ExecuteQuery(new ADO.Models.ADOModelRequest()
-            {
-                CommandExecutionType = ADO.Models.enumCommandExecutionType.Scalar,
-                CommandText = "MP_PT_PatientTemporal_UpSert",
-                CommandType = System.Data.CommandType.StoredProcedure,
-                Parameters = lstParams
-            });
-
-            if (response.ScalarResult != null)
-                return true;
-            else
-                return false;
         }
 
         #endregion
