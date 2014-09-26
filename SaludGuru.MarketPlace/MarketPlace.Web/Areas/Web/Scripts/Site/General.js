@@ -79,9 +79,9 @@ var ScheduleAppointmentObject = {
         }
         else {
 
-            $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, vLink));
-            $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, vLink));
-            $('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, vLink));
+            $('#dialog_ScheduleAppointmentNotLogin .MPFacebookLogIn').attr('href', ScheduleAppointmentObject.FBUrl.replace(/{{UrlRetorno}}/gi, encodeURIComponent(vLink.trim())));
+            $('#dialog_ScheduleAppointmentNotLogin .MPGoogleLogIn').attr('href', ScheduleAppointmentObject.GoogleUrl.replace(/{{UrlRetorno}}/gi, encodeURIComponent(vLink.trim())));
+            $('#dialog_ScheduleAppointmentNotLogin .MPOutlookLogIn').attr('href', ScheduleAppointmentObject.OutlookUrl.replace(/{{UrlRetorno}}/gi, encodeURIComponent(vLink.trim())));
 
             $('#dialog_ScheduleAppointmentNotLogin').dialog();
         }
