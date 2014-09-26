@@ -24,8 +24,29 @@ namespace MarketPlace.Web.ControllersApi
 
             modelToValidate = MedicalCalendar.Manager.Controller.Patient.MPPatientGetByUserPublicId(MarketPlace.Models.General.SessionModel.CurrentLoginUser.UserPublicId);
 
-            string email = modelToValidate.FirstOrDefault().PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Email).Select(x => x.Value).FirstOrDefault();
-            string mobile = modelToValidate.FirstOrDefault().PatientInfo.Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).Select(x => x.Value).FirstOrDefault();
+            string email = MarketPlace.Models.General.SessionModel.CurrentLoginUser.ExtraData.
+                    Where(x => x.InfoType == SessionController.Models.Auth.enumUserInfoType.Email).
+                    Select(x => x.Value).
+                    DefaultIfEmpty(modelToValidate.
+                        FirstOrDefault().
+                        PatientInfo.
+                        Where(x => x.PatientInfoType == enumPatientInfoType.Email).
+                        Select(x => x.Value).
+                        DefaultIfEmpty(string.Empty).
+                        FirstOrDefault()).
+                    DefaultIfEmpty(string.Empty).
+                    FirstOrDefault();
+
+            string mobile = modelToValidate.
+                    Where(x => x.PatientInfo.Any(y => y.PatientInfoType == enumPatientInfoType.Mobile && !string.IsNullOrEmpty(y.Value))).
+                    Select(x => x).
+                    DefaultIfEmpty(new PatientModel() { PatientInfo = new List<PatientInfoModel>() }).
+                    FirstOrDefault().
+                    PatientInfo.
+                    Where(x => x.PatientInfoType == enumPatientInfoType.Mobile).
+                    Select(x => x.Value).
+                    DefaultIfEmpty(string.Empty).
+                    FirstOrDefault();
 
             PatientModel patientToCreate = this.GetRequestForNewPatient(email, mobile);
 
