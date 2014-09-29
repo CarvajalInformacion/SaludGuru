@@ -943,8 +943,7 @@ var UpsertAppointmentObject = {
             Name: {
                 required: true,
             },
-            IdentificationNumber: {
-                required: true,
+            IdentificationNumber: {                
                 minlength: 6,
             }
         };
@@ -1585,8 +1584,7 @@ var AppointmentDetailObject = {
             Name: {
                 required: true,
             },
-            IdentificationNumber: {
-                required: true,
+            IdentificationNumber: {                
                 minlength: 6,
             },
             Mobile: {
