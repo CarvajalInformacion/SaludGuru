@@ -537,6 +537,7 @@ namespace BackOffice.Web.Controllers
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "PatientName", Value = item.Name });
                                     oMessage.NewMessage.MessageType = mType + "_" + MessageType.ToString();
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileName", Value = Profile.Name + " " + Profile.LastName });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "ProfileLastName", Value = Profile.LastName });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficeAddress", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Address).Select(x => x.Value).FirstOrDefault() });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
