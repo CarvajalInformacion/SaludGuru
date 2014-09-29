@@ -217,6 +217,28 @@ namespace MarketPlace.Web.Controllers
             return View();
         }
 
+        public virtual ActionResult ContactResponse()
+        {
+            //Seo model
+            string oCityName = base.CurrentCookie != null && EnabledCities.ContainsKey(base.CurrentCookie.CurrentCity) ? EnabledCities[base.CurrentCookie.CurrentCity] : DefaultCityName;
+
+            SEOModel oSeoModel = new SEOModel()
+            {
+                Title = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Title.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Description = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Description.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+                Keywords = MarketPlace.Models.General.InternalSettings.Instance[MarketPlace.Models.General.Constants.C_Settings_SEO_Home_Keywords.Replace("{AreaName}", MarketPlace.Web.Controllers.BaseController.AreaName)].Value.Replace("{CityName}", oCityName),
+
+                CityName = oCityName,
+
+                IsNoIndex = true,
+                IsNoFollow = true,
+            };
+            ViewBag.SeoModel = oSeoModel;
+
+
+            return View();
+        }
+
         public virtual ActionResult LogOutUser()
         {
             base.LogOut();
