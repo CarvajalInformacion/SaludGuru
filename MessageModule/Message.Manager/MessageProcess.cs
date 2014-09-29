@@ -228,7 +228,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Sms_ReminderAppointment":
-                    xDocMessBody = xDocMessBody.Replace("{ProfileLastName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{ProfileLastName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileLastName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{AppointmentDate}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentDate").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{Hour}", infoMessage.MessageParameters.Where(x => x.Key == "Hour").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     string urlShort = infoMessage.MessageParameters.Where(x => x.Key == "ConfirmCancelLink").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Index?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault();
