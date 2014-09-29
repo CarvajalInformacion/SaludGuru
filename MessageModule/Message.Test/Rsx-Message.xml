@@ -452,7 +452,7 @@
       ]]>
     </key>
     <key name="Message_Body_Sms_ReminderAppointment">
-      <![CDATA[Hola {PatientName} asistiras a tu cita con Dr(a).{ProfileLastName} el {AppointmentDate} {Hour}? Confirma SI/NO aqui {ConfirmCancelLink} Tel {OfficePhone}]]>      
+      <![CDATA[Hola! asistiras a tu cita con Dr(a).{ProfileLastName} el {AppointmentDate} {Hour}? Confirma SI/NO aqui {ConfirmCancelLink} Tel {OfficePhone}]]>      
     </key>
 
 
