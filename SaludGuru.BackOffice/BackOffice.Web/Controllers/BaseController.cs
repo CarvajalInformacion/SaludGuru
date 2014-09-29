@@ -498,6 +498,8 @@ namespace BackOffice.Web.Controllers
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "OfficePhone", Value = CurrentOffice.OfficeInfo.Where(x => x.OfficeInfoType == enumOfficeInfoType.Telephone).Select(x => x.Value).FirstOrDefault() });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentDate", Value = RemoveAccent(AppointmentInfo.StartDate.ToString("ddd d MMM", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co"))).Replace("+", " ") });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => x.LargeValue).FirstOrDefault()});
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AfterCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.AfterCare).Select(x => x.LargeValue).FirstOrDefault() });                                       
                                     break;
                                 #endregion
                                 #region Cancel
@@ -544,6 +546,9 @@ namespace BackOffice.Web.Controllers
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "Hour", Value = AppointmentInfo.StartDate.ToString("hh:mm tt", System.Globalization.CultureInfo.CreateSpecificCulture("ES-co")) });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AppointmentPublicId", Value = AppointmentInfo.AppointmentPublicId });
                                     oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "isReminder", Value = "true" });
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "BeforeCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.BeforeCare).Select(x => x.LargeValue).FirstOrDefault()});
+                                    oMessage.NewMessage.RelatedParameter.Add(new ClientMessageParameter() { Key = "AfterCare", Value = AppointmentInfo.AppointmentInfo.Where(x => x.AppointmentInfoType == enumAppointmentInfoType.AfterCare).Select(x => x.LargeValue).FirstOrDefault() });                                       
+                                    
                                     break;
                                 #endregion
                                 #region Reminder Next App

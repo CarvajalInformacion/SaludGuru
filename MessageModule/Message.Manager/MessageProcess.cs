@@ -160,6 +160,8 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{OfficeAddress}", infoMessage.MessageParameters.Where(x => x.Key == "OfficeAddress").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{OfficePhone}", infoMessage.MessageParameters.Where(x => x.Key == "OfficePhone").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{ProfileUrl}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileUrl").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AfterCare}", infoMessage.MessageParameters.Where(x => x.Key == "AfterCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Email_MPAsignedAppointment":
                     xDocMessBody = xDocMessBody.Replace("{PatientName}", infoMessage.MessageParameters.Where(x => x.Key == "PatientName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
@@ -226,6 +228,7 @@ namespace Message.Manager
                     xDocMessBody = xDocMessBody.Replace("{ConfirmLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Confirm?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{CancelLink}", infoMessage.MessageParameters.Where(x => x.Key == "AppointmentPublicId").Select(x => !string.IsNullOrEmpty(x.Value) ? "https://admin.saludguru.com.co/ExternalAppointment/Cancel?AppointmentPublicId=" + x.Value : string.Empty).FirstOrDefault());
                     xDocMessBody = xDocMessBody.Replace("{BeforeCare}", infoMessage.MessageParameters.Where(x => x.Key == "BeforeCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
+                    xDocMessBody = xDocMessBody.Replace("{AfterCare}", infoMessage.MessageParameters.Where(x => x.Key == "AfterCare").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
                     break;
                 case "Sms_ReminderAppointment":
                     xDocMessBody = xDocMessBody.Replace("{ProfileLastName}", infoMessage.MessageParameters.Where(x => x.Key == "ProfileLastName").Select(x => !string.IsNullOrEmpty(x.Value) ? x.Value : string.Empty).FirstOrDefault());
