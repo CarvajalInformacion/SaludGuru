@@ -112,18 +112,17 @@ var NotificationObject = {
 
             //set notification count background-image
             $('#aNotifyCount').html(NotificationObject.NotificationList.length);
-
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
+                
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
                 valSet = valSet.replace('{NotificationText}', item.Title);
                 valSet = valSet.replace('{NotificationId}', item.NotificationId);
                 
                 $("#ulNotificationList").append(valSet);
-
             });
         }
     },
