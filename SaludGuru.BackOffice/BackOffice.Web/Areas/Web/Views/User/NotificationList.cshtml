@@ -21,13 +21,13 @@
             <img src="${UserFromImage}" width="45" height="45" />
             <label style="vertical-align:17px; font-size: 16px; font-weight: normal">${UserFromName}</label>
         </div>
-        <div id="TemplateDeleteNotify">            
-            <a  href="@(Url.Action(MVC.User.ActionNames.UpsertNotyficationState, MVC.User.Name) + "?NotificationId=${NotificationId}&Status=${Status}")">
-                <img src="/Areas/Web/Content/Images/NotificationStatus_${Status}.png" width="45" height="45"> 
-            </a>            
+        <div id="TemplateDeleteNotify">
+            <a href="@(Url.Action(MVC.User.ActionNames.UpsertNotyficationState, MVC.User.Name) + "?NotificationId=${NotificationId}&Status=${Status}")">
+                <img src="/Areas/Web/Content/Images/NotificationStatus_${Status}.png" width="45" height="45">
+            </a>
         </div>
     </div>
-   
+
     @*<input class="BOButtons" type="submit" value="guardar">*@
     @{
         //get json office data
@@ -37,7 +37,8 @@
                 {
                     NotificationType = (int)x.NotificationType,
                     UserFromName = x.UserFrom == null ? string.Empty : x.UserFrom.Name + " " + x.UserFrom.LastName,
-                    UserFromImage = x.UserFrom == null ? string.Empty : x.UserFrom.ExtraData.
+                    UserFromImage = x.UserFrom == null ? string.Empty : x.UserFrom.ExtraData == null ? BackOffice.Models.General.InternalSettings.Instance
+                [BackOffice.Models.General.Constants.C_Settings_ProfileImage_Man].Value : x.UserFrom.ExtraData.
                             Where(y => y.InfoType == SessionController.Models.Auth.enumUserInfoType.ImageProfile).
                             Select(y => y.Value).
                             DefaultIfEmpty(string.Empty).
@@ -49,21 +50,21 @@
                 }).ToList());
     }
 
-    @section inlinescripts
+@section inlinescripts
 {
-        <script type="text/javascript">
-            var vDataNotifications = @Html.Raw(oNotificationData)
-            $(document).ready(function () {
-                //start office grid
-                UserNotificationsListGrid('divGridNotifications', vDataNotifications);
+    <script type="text/javascript">
+        var vDataNotifications = @Html.Raw(oNotificationData)
+        $(document).ready(function () {
+            //start office grid
+            UserNotificationsListGrid('divGridNotifications', vDataNotifications);
 
-                var idNotify = $('#IdNotify').val();
+            var idNotify = $('#IdNotify').val();
 
-                $('#chkIsReaded_' + idNotify).click(function () {
-                    @Url.Action()
-                });
+            $('#chkIsReaded_' + idNotify).click(function () {
+                @Url.Action()
             });
-        </script>
-    }
+        });
+    </script>
+}
 
 

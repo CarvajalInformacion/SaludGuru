@@ -129,17 +129,37 @@ var NotificationObject = {
     },
 };
 function ReadNotification_OnMouseOver(NotificationId) {
-    $.ajax({        
-        url: '/api/NotificationApi?NotificationId=' + NotificationId,
-        Type: "POST",
-        dataType: "Json"
-    }).done(function (data) {
-        NotificationObject.NotificationList = data;
-        NotificationObject.RenderNotifications();
-        //var oReturn
-    }).error(function (jqXHR, textStatus, errorThrown) {
-    });    
+    debugger;
+    var list = $('#listDivNotify ul').html();
+    var listUl = $('#SendList').html();
+    
+    $('#listDivNotify ul').append('<li> <input type="hidden" class="NotificationsListClass" value=" ' + NotificationId + '  " />' + NotificationId + '</li>');
+    //list.append(listUl);
+};
+
+$('#aNotifyCount').click(function () {
+    debugger;
+        ChangeNotificationStatus();
+});
+
+function ChangeNotificationStatus() {
+    debugger;
+    $('.NotificationsListClass').each(function (index, input) {
+        debugger;
+        $.ajax({
+            url: '/api/NotificationApi?NotificationId=' + input.value,
+            Type: "POST",
+            dataType: "Json"
+        }).done(function (data) {
+            NotificationObject.NotificationList = data;
+            NotificationObject.RenderNotifications();
+            //var oReturn
+        }).error(function (jqXHR, textStatus, errorThrown) {
+        });
+    });
 }
+
+
 
 /*change profile*/
 function Header_ChangeProfile(urlToChange) {
