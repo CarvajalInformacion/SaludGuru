@@ -38,7 +38,7 @@
     <key name="Url_MP_Desktop">https://localhost:44303</key>
     <key name="Url_MP_Mobile">https://localhost:44303</key>
     <key name="UrlBackOffice">https://stgadmin.saludguru.com.co</key>
-    <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor</key>
+    <key name="UrlHttpExceptions">/contacto+doctor,/contacto%2Bdoctor,/home/ContactResponse</key>
 
     <!--Search page-->
     <key name="SearchPage_RowCount_Web">20</key>

@@ -857,6 +857,7 @@
     <Content Include="Areas\Mobile\Views\Home\LoginDialog.cshtml" />
     <Content Include="Areas\Mobile\Views\Home\SiteMap.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_LayoutXml.cshtml" />
+    <Content Include="Areas\Mobile\Views\Home\ContactResponse.cshtml" />
     <None Include="Areas\Web\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.js" />
     <Content Include="Areas\Web\Scripts\bootstrap.min.js" />
@@ -1495,6 +1496,7 @@
     <Content Include="Areas\Web\Views\Shared\_LayoutXml.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_S_Filter.cshtml" />
     <Content Include="Areas\Mobile\Views\Home\ChangeMobileVersion.cshtml" />
+    <Content Include="Areas\Web\Views\Home\ContactResponse.cshtml" />
     <None Include="Properties\PublishProfiles\p1.pubxml" />
     <None Include="Properties\PublishProfiles\p3.pubxml" />
     <None Include="Properties\PublishProfiles\SebastianMartinez.pubxml" />
