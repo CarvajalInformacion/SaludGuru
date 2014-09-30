@@ -112,34 +112,53 @@ var NotificationObject = {
 
             //set notification count background-image
             $('#aNotifyCount').html(NotificationObject.NotificationList.length);
-
             $("#ulNotificationList").html('');
 
             $.each(NotificationObject.NotificationList, function (i, item) {
                 //get html notification template                 
                 var valSet = $("#NotificationTemplate").html();
+                
                 valSet = valSet.replace('{NotificationImage}', '/Areas/Web/Content/Images/NotificationType_' + item.NotificationType + '.png');
                 valSet = valSet.replace('{NotificationText}', item.Title);
                 valSet = valSet.replace('{NotificationId}', item.NotificationId);
                 
                 $("#ulNotificationList").append(valSet);
-
             });
         }
     },
 };
 function ReadNotification_OnMouseOver(NotificationId) {
-    $.ajax({        
-        url: '/api/NotificationApi?NotificationId=' + NotificationId,
-        Type: "POST",
-        dataType: "Json"
-    }).done(function (data) {
-        NotificationObject.NotificationList = data;
-        NotificationObject.RenderNotifications();
-        //var oReturn
-    }).error(function (jqXHR, textStatus, errorThrown) {
-    });    
+    debugger;
+    var list = $('#listDivNotify ul').html();
+    var listUl = $('#SendList').html();
+    
+    $('#listDivNotify ul').append('<li> <input type="hidden" class="NotificationsListClass" value=" ' + NotificationId + '  " />' + NotificationId + '</li>');
+    //list.append(listUl);
+};
+
+$('#aNotifyCount').click(function () {
+    debugger;
+        ChangeNotificationStatus();
+});
+
+function ChangeNotificationStatus() {
+    debugger;
+    $('.NotificationsListClass').each(function (index, input) {
+        debugger;
+        $.ajax({
+            url: '/api/NotificationApi?NotificationId=' + input.value,
+            Type: "POST",
+            dataType: "Json"
+        }).done(function (data) {
+            NotificationObject.NotificationList = data;
+            NotificationObject.RenderNotifications();
+            //var oReturn
+        }).error(function (jqXHR, textStatus, errorThrown) {
+        });
+    });
 }
+
+
 
 /*change profile*/
 function Header_ChangeProfile(urlToChange) {
