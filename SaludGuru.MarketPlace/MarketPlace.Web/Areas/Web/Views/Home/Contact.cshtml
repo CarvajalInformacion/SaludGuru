@@ -1,31 +1,26 @@
 ﻿@{
     Layout = "~/Areas/Web/Views/Shared/_Layout.cshtml";
 }
-<div style="height:50px;"></div>
+<div style="height:26px;"></div>
 <div class="iframeWrapper">
     <iframe src="http://info.carvajalinformacion.com/contactenos_salud_guru" class="remoteRegister"></iframe>
 </div>
 
-<style>
+<style type="text/css"> 
     /*************** FORMULARIO DE REGISTRO IFRAME***************/
     .iframeWrapper {
-        width: 510px;
-        height: 648px;
         margin: 0px auto;
-        border: solid 1px #666;
-        border-radius:2px;
+        border: 1px solid #666;
+        border-radius: 2px;
         overflow: hidden;
+height: 592px;
+width: 532px;
     }
     iframe.remoteRegister {
-        width: 816px;
-        height: 1000px;
+        height: 772px;
         display: block;
         overflow: hidden;
-        margin:0px;
+        margin: -30px 0px 0px;
+        width: 100%;
     }
-        iframe.remoteRegister html body{
-            border:2px solid green !important;
-            margin: -42px 0px 0px -146px !important;
-        }
-
 </style>

@@ -332,6 +332,7 @@
     <Content Include="Areas\Mobile\Content\Images\SGMPDeskTopSmall.png" />
     <Content Include="Areas\Mobile\Content\Images\social-network-logos.png" />
     <Content Include="Areas\Mobile\Content\Images\sprite.png" />
+    <Content Include="Areas\Mobile\Content\Images\thankYouPageMobile.png" />
     <Content Include="Areas\Mobile\Content\Images\try1.png" />
     <Content Include="Areas\Mobile\Content\jquerymobile\jquery.mobile-1.4.2.min.css" />
     <Content Include="Areas\Mobile\Content\Styles\bootstrap-theme.css" />
@@ -405,6 +406,7 @@
     <Content Include="Areas\Web\Content\Images\NotificationType_1501.png" />
     <Content Include="Areas\Web\Content\Images\NotificationType_1502.png" />
     <Content Include="Areas\Web\Content\Images\sprite.png" />
+    <Content Include="Areas\Web\Content\Images\thankYouPage.png" />
     <Content Include="Areas\Web\Content\Images\try1.png" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.css" />
     <Content Include="Areas\Web\Content\Styles\bootstrap-theme.min.css" />

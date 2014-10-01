@@ -10,12 +10,12 @@
     {
         if (string.IsNullOrEmpty(Model.CurrentSearchQuery))
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > doctores @ovCityName</span>
         }
         else
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > </span>
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchQuery_CityAll, new { CityName = ovUrlCityName}))" title="Profesionales de la salud @ovCityName ">doctores @ovCityName</a>
             <span> > @Html.Raw(Model.CurrentSearchQuery.Replace("+"," ")) </span>
@@ -25,7 +25,7 @@
     {
         if (Model.CurrentSpecialty != null && Model.CurrentInsurance != null && Model.CurrentTreatment == null)
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > </span>
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_SpecialtyCity, new { CityName = ovUrlCityName, SpecialtyName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentSpecialty.Name) }))" title="@Model.CurrentSpecialty.Name">@Model.CurrentSpecialty.Name</a>
             <span> > </span>
@@ -34,17 +34,17 @@
         }
         else if (Model.CurrentSpecialty != null && Model.CurrentInsurance == null && Model.CurrentTreatment == null)
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > @Model.CurrentSpecialty.Name @ovCityName</span>
         }
         else if (Model.CurrentSpecialty == null && Model.CurrentInsurance != null && Model.CurrentTreatment == null)
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > @Model.CurrentInsurance.Name @ovCityName</span>
         }
         else if (Model.CurrentSpecialty == null && Model.CurrentInsurance != null && Model.CurrentTreatment != null)
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > </span>
             <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_SearchCategory_TreatmentCity, new { CityName = ovUrlCityName, TreatmentName = MarketPlace.Web.Controllers.BaseController.RemoveAccent(Model.CurrentTreatment.Name) }))" title="@Model.CurrentTreatment.Name">@Model.CurrentTreatment.Name</a>
             <span> > </span>
@@ -53,7 +53,7 @@
         }
         else if (Model.CurrentSpecialty == null && Model.CurrentInsurance == null && Model.CurrentTreatment != null)
         {
-            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Home</a>
+            <a href="@Server.UrlDecode(Url.RouteUrl(MarketPlace.Models.General.Constants.C_Route_Home, null))" title="Regresar a Inicio">Inicio</a>
             <span> > @Model.CurrentTreatment.Name @ovCityName</span>
         }
     }
