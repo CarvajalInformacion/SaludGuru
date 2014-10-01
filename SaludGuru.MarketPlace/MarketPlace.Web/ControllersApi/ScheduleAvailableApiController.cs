@@ -135,7 +135,7 @@ namespace MarketPlace.Web.ControllersApi
                             //get date to eval
                             DateTime DateToEval = oStartDateTime.AddDays((int)ad - 1);
                             //eval if date is busy
-                            if (lstBusyTime.Any(bt => bt.EvalDate.Date == DateToEval.Date))
+                            if (lstBusyTime.Any(bt => bt.EvalDate.Date == DateToEval.Date && oStartDateTime >= DateTime.Now))
                             {
                                 if (lstBusyTime.Any(bt => bt.EvalDate.Date == DateToEval.Date && bt.MaxFreeTime.Minutes >= oMinIntervalMinutes))
                                 {
@@ -485,7 +485,7 @@ namespace MarketPlace.Web.ControllersApi
                     bool oExit = false;
                     do
                     {
-                        if (lstBusyTime.Any(x => x.EvalDate.Date == oStartDateTime.Date))
+                        if (lstBusyTime.Any(x => x.EvalDate.Date == oStartDateTime.Date  && oStartDateTime >= DateTime.Now))
                         {
                             int DaysToAdd = lstAvailableDay.
                                 Where(x => x >= oStartDateTime.DayOfWeek).
@@ -596,7 +596,7 @@ namespace MarketPlace.Web.ControllersApi
                 TimeSpan TimeIntervalEnd = TimeIntervalStart.Add(new TimeSpan(0, oMinutesInterval, 0));
 
                 CurrentOffice.ScheduleAvailable.
-                    Where(sa => sa.StartTime <= TimeIntervalStart && sa.EndTime >= TimeIntervalEnd && sa.Day == oStartDateTime.DayOfWeek).
+                    Where(sa => sa.StartTime <= TimeIntervalStart && sa.EndTime >= TimeIntervalEnd && sa.Day == oStartDateTime.DayOfWeek && oStartDateTime >= DateTime.Now).
                     GroupBy(sa => new { sa.Day }).
                     OrderBy(sa => sa.Key.Day).
                     All(sa =>

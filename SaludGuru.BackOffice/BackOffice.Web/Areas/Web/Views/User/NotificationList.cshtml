@@ -47,7 +47,7 @@
                     Body = x.Body,
                     Status = x.Status,
                     NotificationId = x.NotificationId
-                }).ToList());
+                }).OrderByDescending(x => x.CreateDate).ToList());
     }
 
 @section inlinescripts
