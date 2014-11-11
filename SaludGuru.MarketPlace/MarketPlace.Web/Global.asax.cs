@@ -36,21 +36,42 @@ namespace MarketPlace.Web
             }
         }
 
+        protected static bool EnableSSL
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToBoolean
+                        (System.Configuration.ConfigurationManager.
+                            AppSettings["EnableSSL"].
+                            ToLower().
+                            Replace(" ", ""));
+                }
+                catch
+                {
+                    return true;
+                }
+            }
+        }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            bool InsecureUrl = UrlHttpExceptions.Any
-                (x => x.ToLower() == Request.Url.AbsolutePath.ToLower());
+            if (EnableSSL)
+            {
+                bool InsecureUrl = UrlHttpExceptions.Any
+                    (x => x.ToLower() == Request.Url.AbsolutePath.ToLower());
 
-            if (Context.Request.IsSecureConnection && InsecureUrl)
-            {
-                //not security zone
-                Response.Redirect(Context.Request.Url.ToString().Replace("https:", "http:"), true);
-            }
-            else if (!Context.Request.IsSecureConnection && !InsecureUrl)
-            {
-                //ensure only https navigation
-                Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
+                if (Context.Request.IsSecureConnection && InsecureUrl)
+                {
+                    //not security zone
+                    Response.Redirect(Context.Request.Url.ToString().Replace("https:", "http:"), true);
+                }
+                else if (!Context.Request.IsSecureConnection && !InsecureUrl)
+                {
+                    //ensure only https navigation
+                    Response.Redirect(Context.Request.Url.ToString().Replace("http:", "https:"), true);
+                }
             }
         }
 
